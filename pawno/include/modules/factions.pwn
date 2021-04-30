@@ -541,11 +541,11 @@ YCMD:blockf(playerid, params[], help) {
 	return true;
 }
 
-YCMD:f(playerid, params[], help) {
+YCMD:factionchat(playerid, params[], help) {
 	if(playerInfo[playerid][pFaction] == 0) return sendPlayerError(playerid, "Nu ai vreo factiune.");
 	if(factionChat[playerInfo[playerid][pFaction]] == 1 && playerInfo[playerid][pFactionRank] < 6) return sendPlayerError(playerid, "Chatul factiunii a fost oprit.");
 	if(Iter_Contains(FactionMembers[1], playerid) || Iter_Contains(FactionMembers[2], playerid) || Iter_Contains(FactionMembers[3], playerid) || Iter_Contains(FactionMembers[4], playerid)) return sendPlayerError(playerid, "Pentru a scrie pe chatul factiunii, foloseste comanda '/r'");
-	extract params -> new string:result[250]; else return sendPlayerSyntax(playerid, "/f <text>");
+	extract params -> new string:result[250]; else return sendPlayerSyntax(playerid, "/factionchat <text>");
 	if(faceReclama(result)) return removeFunction(playerid, result);
     if(faceReclama(result)) return Reclama(playerid, result);
 	if(playerInfo[playerid][pspecFaction] != 0) {
