@@ -1,9 +1,8 @@
 @echo off
 echo --------------------------------------------------
-echo            Gamemode SA:MP Version 1.5
-echo            Scripter Vicentzo.
-echo			Ajutoare:Bunny.
-echo          Sigur vrei sa pornesti serverul?
+echo           Gamemode SA:MP Version 1.5
+echo           Scripter Vicentzo si Bunny
+echo           Sigur vrei sa pornesti serverul?
 echo --------------------------------------------------
 echo.
 echo.
