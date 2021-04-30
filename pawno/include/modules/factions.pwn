@@ -135,7 +135,8 @@ save_guns(playerid) {
 
 hook OnPlayerEnterVehicle(playerid, vehicleid, ispassenger) {
 	if(vehicleFaction[vehicleid] != playerInfo[playerid][pFaction] && vehicleFaction[vehicleid] != 0) {
-		sendPlayerError(playerid, "Nu faci parte din factiunea %s, pentru a intra in masina.", factionName(vehicleFaction[vehicleid]));
+		sendPlayerError(playerid, "Aceasta masina este una de factiune, iar tu nu esti in aceasta factiune.");
+		slapPlayer(playerid);
 		RemovePlayerFromVehicle(playerid);
 	}
 	return true;

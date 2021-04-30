@@ -2,7 +2,7 @@
 //////    Variables                        //////
 ////////////////////////////////////////////////
 
-new MySQL:SQL, gQuery[652], gString[565], Connection = 0, AntiCheatWarnings, PlayerNumber[20000], Weapons[MAX_PLAYERS][47], WeaponAmmo[MAX_PLAYERS][47], gates[4],
+new MySQL:SQL, gQuery[652], gString[565], Connection = 1, AntiCheatWarnings, PlayerNumber[20000], Weapons[MAX_PLAYERS][47], WeaponAmmo[MAX_PLAYERS][47], gates[4],
     StoreMoney[MAX_PLAYERS], MoneyMoney[MAX_PLAYERS], Selected[MAX_PLAYERS][50][180], selName[MAX_PLAYERS][180], Questions,
 	bool: vehicle_engine[MAX_VEHICLES],
 	bool: vehicle_lights[MAX_VEHICLES],

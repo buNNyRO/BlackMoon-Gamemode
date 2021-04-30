@@ -7299,7 +7299,7 @@
 		</member>
 		<member name="M:@_yCbanip" syntax="@_yCbanip(playerid, params[], help)">
 			<attribute name="public"/>
-			<stacksize value="639"/>
+			<stacksize value="644"/>
 			<referrer name="@yC_banip"/>
 			<dependency name="EOS"/>
 			<dependency name="GetPVarInt"/>
@@ -7314,6 +7314,7 @@
 			<dependency name="SetPVarInt"/>
 			<dependency name="cache_affected_rows"/>
 			<dependency name="gQuery"/>
+			<dependency name="getDateTime"/>
 			<dependency name="getDateTime"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
@@ -7342,7 +7343,7 @@
 		</member>
 		<member name="M:@_yCbanipoffline" syntax="@_yCbanipoffline(playerid, params[], help)">
 			<attribute name="public"/>
-			<stacksize value="92"/>
+			<stacksize value="657"/>
 			<referrer name="@yC_banipoffline"/>
 			<dependency name="EOS"/>
 			<dependency name="GetPVarInt"/>
@@ -7355,6 +7356,7 @@
 			<dependency name="SetPVarInt"/>
 			<dependency name="cache_affected_rows"/>
 			<dependency name="gQuery"/>
+			<dependency name="getDateTime"/>
 			<dependency name="getDateTime"/>
 			<dependency name="gettime"/>
 			<dependency name="mysql_format"/>
@@ -7380,7 +7382,7 @@
 		</member>
 		<member name="M:@_yCbanoffline" syntax="@_yCbanoffline(playerid, params[], help)">
 			<attribute name="public"/>
-			<stacksize value="104"/>
+			<stacksize value="669"/>
 			<referrer name="@yC_banoffline"/>
 			<dependency name="EOS"/>
 			<dependency name="GetPVarInt"/>
@@ -7397,6 +7399,7 @@
 			<dependency name="cache_get_value_name_int"/>
 			<dependency name="cache_num_rows"/>
 			<dependency name="gQuery"/>
+			<dependency name="getDateTime"/>
 			<dependency name="getDateTime"/>
 			<dependency name="gettime"/>
 			<dependency name="mysql_format"/>
@@ -18925,13 +18928,12 @@
 		</member>
 		<member name="M:@yH_OnPlayerEnterVehicle@008" syntax="@yH_OnPlayerEnterVehicle@008(playerid, vehicleid, ispassenger)">
 			<attribute name="public"/>
-			<stacksize value="42"/>
+			<stacksize value="5"/>
 			<dependency name="RemovePlayerFromVehicle"/>
-			<dependency name="factionName"/>
-			<dependency name="factionName"/>
 			<dependency name="pFaction"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
+			<dependency name="slapPlayer"/>
 			<dependency name="true"/>
 			<dependency name="vehicleFaction"/>
 			<param name="playerid">
@@ -18943,11 +18945,9 @@
 		</member>
 		<member name="M:@yH_OnPlayerStateChange@008" syntax="@yH_OnPlayerStateChange@008(playerid, newstate, oldstate)">
 			<attribute name="public"/>
-			<stacksize value="43"/>
+			<stacksize value="6"/>
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="RemovePlayerFromVehicle"/>
-			<dependency name="factionName"/>
-			<dependency name="factionName"/>
 			<dependency name="pFaction"/>
 			<dependency name="pFactionRank"/>
 			<dependency name="playerInfo"/>
@@ -42806,8 +42806,6 @@
 		<member name="M:factionName" syntax="factionName(fid)">
 			<stacksize value="41"/>
 			<referrer name="LoadSafes"/>
-			<referrer name="@yH_OnPlayerEnterVehicle@008"/>
-			<referrer name="@yH_OnPlayerStateChange@008"/>
 			<referrer name="@_yCfactions"/>
 			<referrer name="@_yCgotofaction"/>
 			<referrer name="@_yCmakeleader"/>
@@ -43378,6 +43376,7 @@
 			<referrer name="@_yCbanipoffline"/>
 			<dependency name="EOS"/>
 			<dependency name="gString"/>
+			<dependency name="getDateTime"/>
 			<dependency name="getdate"/>
 			<dependency name="gettime"/>
 			<dependency name="va_format"/>
@@ -43928,7 +43927,7 @@
 			</param>
 		</member>
 		<member name="M:kickPlayer" syntax="kickPlayer(playerid, adminid, silent, reason[])">
-			<stacksize value="39"/>
+			<stacksize value="604"/>
 			<referrer name="@_yCkick"/>
 			<dependency name="EOS"/>
 			<dependency name="GetPlayerName"/>
@@ -43938,6 +43937,7 @@
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPVarInt"/>
 			<dependency name="gQuery"/>
+			<dependency name="getDateTime"/>
 			<dependency name="getDateTime"/>
 			<dependency name="gettime"/>
 			<dependency name="kickEx_yT@"/>
@@ -44565,7 +44565,7 @@
 		</member>
 		<member name="M:onPlayerLogin" syntax="onPlayerLogin(playerid)">
 			<attribute name="public"/>
-			<stacksize value="622"/>
+			<stacksize value="623"/>
 			<dependency name="EOS"/>
 			<dependency name="GetPlayerCash"/>
 			<dependency name="GetPlayerIp"/>
@@ -44614,6 +44614,7 @@
 			<dependency name="false"/>
 			<dependency name="gQuery"/>
 			<dependency name="gString"/>
+			<dependency name="getDateTime"/>
 			<dependency name="getDateTime"/>
 			<dependency name="gettime"/>
 			<dependency name="giveQuest"/>
@@ -44709,6 +44710,7 @@
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="updateLevelBar"/>
+			<dependency name="va_SendClientMessage"/>
 			<dependency name="wantedTime"/>
 			<dependency name="wrongPass"/>
 			<param name="playerid">
@@ -46426,6 +46428,7 @@
 		</member>
 		<member name="M:slapPlayer" syntax="slapPlayer(playerid)">
 			<stacksize value="9"/>
+			<referrer name="@yH_OnPlayerEnterVehicle@008"/>
 			<dependency name="operator+(Float:,_:)"/>
 			<dependency name="GetPlayerPos"/>
 			<dependency name="SetPlayerPos"/>
@@ -47511,6 +47514,7 @@
 			<referrer name="mutePlayer"/>
 			<referrer name="showStats"/>
 			<referrer name="showLicenses"/>
+			<referrer name="onPlayerLogin"/>
 			<referrer name="@_yCaddbizgas"/>
 			<referrer name="gasTimer"/>
 			<dependency name="SendClientMessage"/>
