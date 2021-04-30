@@ -134,6 +134,7 @@ save_guns(playerid) {
 }
 
 hook OnPlayerEnterVehicle(playerid, vehicleid, ispassenger) {
+	if(ispassenger) return true;
 	if(vehicleFaction[vehicleid] != playerInfo[playerid][pFaction] && vehicleFaction[vehicleid] != 0) {
 		sendPlayerError(playerid, "Aceasta masina este una de factiune, iar tu nu esti in aceasta factiune.");
 		slapPlayer(playerid);
