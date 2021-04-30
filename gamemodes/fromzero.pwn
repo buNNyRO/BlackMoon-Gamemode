@@ -380,7 +380,7 @@ public OnPlayerDeath(playerid, killerid)
 new sexxx[128];
 public OnPlayerText(playerid, text[])
 {
-	if(strmatch(sexxx, text)) return 1;
+	if(strmatch(sexxx, text)) return 0;
 	format(sexxx, sizeof sexxx, text);
 	if(isPlayerLogged(playerid)) {
 		if(faceReclama(text)) return Reclama(playerid, text);
@@ -392,9 +392,9 @@ public OnPlayerText(playerid, text[])
 		gQuery[0] = (EOS);
 		mysql_format(SQL, gQuery, 256, "INSERT INTO `server_chat_logs` (PlayerName, PlayerID, ChatText) VALUES ('%s', '%d', '%s')", getName(playerid), playerInfo[playerid][pSQLID], string_fast("* (chat log): %s.", text));
 		mysql_pquery(SQL, gQuery, "", "");
-		return 1;
+		return 0;
 	}
-	return 1;
+	return 0;
 }
 
 public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)

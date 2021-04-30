@@ -1314,3 +1314,235 @@ v0.3.7-R2, (C)2005-2015 SA-MP Team
 [21:45:48] [connection] 127.0.0.1:55197 requests connection cookie.
 [21:45:49] [connection] incoming connection: 127.0.0.1:55197 id: 0
 [21:45:49] [join] mr.bunny has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:49:58] filterscripts = ""  (string)
+[22:49:58] 
+[22:49:58] Server Plugins
+[22:49:58] --------------
+[22:49:58]  Loading plugin: crashdetect
+[22:49:58]   CrashDetect plugin 4.19.4
+[22:49:58]   Loaded.
+[22:49:58]  Loading plugin: sscanf
+[22:49:58] 
+
+[22:49:58]  ===============================
+
+[22:49:58]       sscanf plugin loaded.     
+
+[22:49:58]          Version:  2.8.3        
+
+[22:49:58]   (c) 2018 Alex "Y_Less" Cole  
+
+[22:49:58]  ===============================
+
+[22:49:58]   Loaded.
+[22:49:58]  Loading plugin: streamer
+[22:49:58] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[22:49:58]   Loaded.
+[22:49:58]  Loading plugin: mysql
+[22:49:58]  >> plugin.mysql: R41-4 successfully loaded.
+[22:49:58]   Loaded.
+[22:49:58]  Loaded 4 plugins.
+
+[22:49:58] 
+[22:49:58] Filterscripts
+[22:49:58] ---------------
+[22:49:58]   Loaded 0 filterscripts.
+
+[22:49:58]  
+[22:49:58]  
+[22:49:58]  
+[22:49:58]  ======================================= 
+[22:49:58]  |                                     | 
+[22:49:58]  |        YSI version 4.00.0001        | 
+[22:49:58]  |        By Alex "Y_Less" Cole        | 
+[22:49:58]  |                                     | 
+[22:49:58]  ======================================= 
+[22:49:58]  
+[22:50:02] [MYSQL] Baza de date, s-a conectat.
+[22:50:02] Number of vehicle models: 0
+[22:50:02] Exam Checkpoints: 9 [From Database]
+[22:50:02] Jobs: 5 [From Database]
+[22:50:02] Businesses: 3 [From Database]
+[22:50:02] Houses: 0 [From Database]
+[22:50:02] Dealership models: 89 [From Database]
+[22:50:02] Factions: 10 [From Database]
+[22:50:02] Turfs: 43 [From Database]
+[22:50:03] Faction Safes: 0 [From Database]
+[22:50:03] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[22:50:03] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[22:50:03] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[22:50:03] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[22:50:03] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[22:50:03] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[22:50:03] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[22:50:03] Clans: 1 [From Database]
+[22:50:03] [connection] 127.0.0.1:49571 requests connection cookie.
+[22:50:04] [connection] incoming connection: 127.0.0.1:49571 id: 0
+[22:50:04] [join] mr.bunny has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:51:49] filterscripts = ""  (string)
+[22:51:49] 
+[22:51:49] Server Plugins
+[22:51:49] --------------
+[22:51:49]  Loading plugin: crashdetect
+[22:51:49]   CrashDetect plugin 4.19.4
+[22:51:49]   Loaded.
+[22:51:49]  Loading plugin: sscanf
+[22:51:49] 
+
+[22:51:49]  ===============================
+
+[22:51:49]       sscanf plugin loaded.     
+
+[22:51:49]          Version:  2.8.3        
+
+[22:51:49]   (c) 2018 Alex "Y_Less" Cole  
+
+[22:51:49]  ===============================
+
+[22:51:49]   Loaded.
+[22:51:49]  Loading plugin: streamer
+[22:51:49] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[22:51:49]   Loaded.
+[22:51:49]  Loading plugin: mysql
+[22:51:49]  >> plugin.mysql: R41-4 successfully loaded.
+[22:51:49]   Loaded.
+[22:51:49]  Loaded 4 plugins.
+
+[22:51:49] 
+[22:51:49] Filterscripts
+[22:51:49] ---------------
+[22:51:49]   Loaded 0 filterscripts.
+
+[22:51:49]  
+[22:51:49]  
+[22:51:49]  
+[22:51:49]  ======================================= 
+[22:51:49]  |                                     | 
+[22:51:49]  |        YSI version 4.00.0001        | 
+[22:51:49]  |        By Alex "Y_Less" Cole        | 
+[22:51:49]  |                                     | 
+[22:51:49]  ======================================= 
+[22:51:49]  
+[22:51:53] [MYSQL] Baza de date, s-a conectat.
+[22:51:53] Number of vehicle models: 0
+[22:51:53] Exam Checkpoints: 9 [From Database]
+[22:51:53] Jobs: 5 [From Database]
+[22:51:53] Businesses: 3 [From Database]
+[22:51:53] Houses: 0 [From Database]
+[22:51:53] Dealership models: 89 [From Database]
+[22:51:53] Factions: 10 [From Database]
+[22:51:53] Turfs: 43 [From Database]
+[22:51:53] Faction Safes: 0 [From Database]
+[22:51:53] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[22:51:53] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[22:51:53] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[22:51:53] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[22:51:53] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[22:51:53] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[22:51:53] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[22:51:53] Clans: 1 [From Database]
+[22:52:01] [connection] 127.0.0.1:64657 requests connection cookie.
+[22:52:02] [connection] incoming connection: 127.0.0.1:64657 id: 0
+[22:52:02] [join] mr.bunny has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[23:14:57] filterscripts = ""  (string)
+[23:14:57] 
+[23:14:57] Server Plugins
+[23:14:57] --------------
+[23:14:57]  Loading plugin: crashdetect
+[23:14:57]   CrashDetect plugin 4.19.4
+[23:14:57]   Loaded.
+[23:14:57]  Loading plugin: sscanf
+[23:14:57] 
+
+[23:14:57]  ===============================
+
+[23:14:57]       sscanf plugin loaded.     
+
+[23:14:57]          Version:  2.8.3        
+
+[23:14:57]   (c) 2018 Alex "Y_Less" Cole  
+
+[23:14:57]  ===============================
+
+[23:14:57]   Loaded.
+[23:14:57]  Loading plugin: streamer
+[23:14:57] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[23:14:57]   Loaded.
+[23:14:57]  Loading plugin: mysql
+[23:14:57]  >> plugin.mysql: R41-4 successfully loaded.
+[23:14:57]   Loaded.
+[23:14:57]  Loaded 4 plugins.
+
+[23:14:57] 
+[23:14:57] Filterscripts
+[23:14:57] ---------------
+[23:14:57]   Loaded 0 filterscripts.
+
+[23:14:57]  
+[23:14:57]  
+[23:14:57]  
+[23:14:57]  ======================================= 
+[23:14:57]  |                                     | 
+[23:14:57]  |        YSI version 4.00.0001        | 
+[23:14:57]  |        By Alex "Y_Less" Cole        | 
+[23:14:57]  |                                     | 
+[23:14:57]  ======================================= 
+[23:14:57]  
+[23:14:57] [connection] 127.0.0.1:59377 requests connection cookie.
+[23:15:01] [MYSQL] Baza de date, s-a conectat.
+[23:15:01] Number of vehicle models: 0
+[23:15:01] [connection] incoming connection: 127.0.0.1:59377 id: 0
+[23:15:01] [join] mr.bunny has joined the server (0:127.0.0.1)
+[23:15:01] Exam Checkpoints: 9 [From Database]
+[23:15:01] Jobs: 5 [From Database]
+[23:15:01] Businesses: 3 [From Database]
+[23:15:01] Houses: 0 [From Database]
+[23:15:01] Dealership models: 89 [From Database]
+[23:15:01] Factions: 10 [From Database]
+[23:15:01] Turfs: 43 [From Database]
+[23:15:01] Faction Safes: 0 [From Database]
+[23:15:01] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[23:15:01] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[23:15:01] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[23:15:01] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[23:15:01] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[23:15:01] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[23:15:01] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[23:15:01] Clans: 1 [From Database]
+[23:19:03] [part] mr.bunny has left the server (0:1)

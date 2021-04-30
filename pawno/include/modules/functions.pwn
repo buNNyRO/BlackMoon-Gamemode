@@ -141,7 +141,7 @@ function onPlayerLogin(playerid)
 	sscanf(gString, "p<|>dddddddd", playerInfo[playerid][pDrivingLicense], playerInfo[playerid][pDrivingLicenseSuspend], playerInfo[playerid][pWeaponLicense], playerInfo[playerid][pWeaponLicenseSuspend], playerInfo[playerid][pFlyLicense], playerInfo[playerid][pFlyLicenseSuspend], playerInfo[playerid][pBoatLicense], playerInfo[playerid][pBoatLicenseSuspend]);
 
 	clearChat(playerid, 30);
-	SCM(playerid, COLOR_GREY, string_fast("* Bine ai venit, %s.", getName(playerid))); 
+	SCMf(playerid, COLOR_GREY, "* Bine ai venit, %s.", getName(playerid)); 
 
 	mysql_format(SQL, gQuery, 128, "SELECT * FROM `server_personal_vehicles` WHERE `OwnerID` = '%d'", playerInfo[playerid][pSQLID]);
 	mysql_pquery(SQL, gQuery, "LoadPersonalVehicle", "d", playerid);

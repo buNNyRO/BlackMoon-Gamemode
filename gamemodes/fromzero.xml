@@ -1497,7 +1497,6 @@
 			<referrer name="wantedName"/>
 			<referrer name="sendFactionMessage"/>
 			<referrer name="@_yCinvite"/>
-			<referrer name="showFactionMembers"/>
 			<referrer name="@_yCsetguns"/>
 			<referrer name="@_yCquitjob"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@009"/>
@@ -4849,7 +4848,6 @@
 			<referrer name="wantedName"/>
 			<referrer name="sendFactionMessage"/>
 			<referrer name="@_yCinvite"/>
-			<referrer name="showFactionMembers"/>
 			<referrer name="@_yCsetguns"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@009"/>
 			<referrer name="jobWork"/>
@@ -27873,6 +27871,7 @@
 		<member name="M:GetPlayerID" syntax="GetPlayerID(playerName[])">
 			<stacksize value="7"/>
 			<referrer name="@_yCbuyhouse"/>
+			<referrer name="showFactionMembers"/>
 			<referrer name="dialog_DIALOG_MEMBERS2"/>
 			<referrer name="dialog_DIALOG_MEMBERSRANK"/>
 			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
@@ -46331,19 +46330,22 @@
 		</member>
 		<member name="M:showFactionMembers" syntax="showFactionMembers(playerid)">
 			<attribute name="public"/>
-			<stacksize value="219"/>
+			<stacksize value="1647"/>
 			<referrer name="dialog_DIALOG_MEMBERS2"/>
 			<dependency name="Dialog_Open"/>
-			<dependency name="EOS"/>
+			<dependency name="GetPlayerID"/>
 			<dependency name="Iter_Single@FactionMembers"/>
 			<dependency name="Selected"/>
 			<dependency name="cache_get_value_name"/>
 			<dependency name="cache_get_value_name_int"/>
 			<dependency name="cache_num_rows"/>
 			<dependency name="format"/>
-			<dependency name="gString"/>
 			<dependency name="pFaction"/>
+			<dependency name="pFactionRank"/>
 			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="strcat"/>
+			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -46543,6 +46545,7 @@
 			<referrer name="orm_load_inline"/>
 			<referrer name="orm_save_inline"/>
 			<referrer name="OnDialogResponse"/>
+			<referrer name="showFactionMembers"/>
 			<referrer name="@_yCsetguns"/>
 			<referrer name="@_yCsvf"/>
 			<referrer name="@_yCtog"/>
@@ -46693,6 +46696,7 @@
 			<referrer name="@_yCclear"/>
 			<referrer name="@_yCarrest"/>
 			<referrer name="@_yCmembers"/>
+			<referrer name="showFactionMembers"/>
 			<referrer name="dialog_DIALOG_MEMBERS"/>
 			<referrer name="dialog_DIALOG_MEMBERS2"/>
 			<referrer name="dialog_DIALOG_MEMBERSRANK"/>

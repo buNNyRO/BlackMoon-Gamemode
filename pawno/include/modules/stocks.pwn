@@ -694,7 +694,7 @@ stock getDateTime()
 	gettime(hour, minute, second); getdate(year, month, day);
 	gString[0] = (EOS);
 	va_format(gString, sizeof(gString), "%02d:%02d - %02d/%02d/%d", hour, minute, day, month, year);
-	return 1;
+	return gString;
 }
 stock sendAdmin(color, const text[], va_args<>)
 {
