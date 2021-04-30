@@ -541,11 +541,11 @@ YCMD:blockf(playerid, params[], help) {
 	return true;
 }
 
-YCMD:factionchat(playerid, params[], help) {
+YCMD:f(playerid, params[], help) {
 	if(playerInfo[playerid][pFaction] == 0) return sendPlayerError(playerid, "Nu ai vreo factiune.");
 	if(factionChat[playerInfo[playerid][pFaction]] == 1 && playerInfo[playerid][pFactionRank] < 6) return sendPlayerError(playerid, "Chatul factiunii a fost oprit.");
-	if(Iter_Contains(FactionMembers[1], playerid) || Iter_Contains(FactionMembers[2], playerid) || Iter_Contains(FactionMembers[3], playerid) || Iter_Contains(FactionMembers[4], playerid)) return sendPlayerError(playerid, "Pentru a scrie pe chatul factiunii, foloseste comanda '/r'");
-	extract params -> new string:result[250]; else return sendPlayerSyntax(playerid, "/factionchat <text>");
+	if(Iter_Contains(FactionMembers[2], playerid) || Iter_Contains(FactionMembers[3], playerid) || Iter_Contains(FactionMembers[4], playerid)) return sendPlayerError(playerid, "Pentru a scrie pe chatul factiunii, foloseste comanda '/r'");
+	extract params -> new string:result[250]; else return sendPlayerSyntax(playerid, "/f <text>");
 	if(faceReclama(result)) return removeFunction(playerid, result);
     if(faceReclama(result)) return Reclama(playerid, result);
 	if(playerInfo[playerid][pspecFaction] != 0) {
@@ -950,27 +950,29 @@ YCMD:arrest(playerid, params[], help) {
 
 YCMD:members(playerid, params[], help) {
 	if(playerInfo[playerid][pFaction] == 0) return true;
-	mysql_tquery(SQL, string_fast("SELECT * FROM `server_users` WHERE `Faction` = %d ORDER BY `FRank` DESC LIMIT 20", playerInfo[playerid][pFaction]), "showFactionMembers", "");
+	mysql_tquery(SQL, string_fast("SELECT `Name`,`LastLogin`,`FRank`,`FWarns`,`FAge`,`Commands` WHERE `server_users`.`Faction` = '%d' ORDER BY `server_users`.`FRank` DESC LIMIT 20", playerInfo[playerid][pFaction]), "showFactionMembers", "");
 	return 1;
 }
 
 function showFactionMembers(playerid) {
 	if(playerInfo[playerid][pFaction] == 0) return true;
+	new days, name[180], lastl[180], rank, fw, commands, tmembers, memberString[700];
 	if(!cache_num_rows()) return 1;
-	new days, name[180], rank, fw, commands, tmembers, title[20]; gString[0] = (EOS);
-	format(title, sizeof title, "Members (%d/%d)", Iter_Count(FactionMembers[playerInfo[playerid][pFaction]]),tmembers);
-	format(gString, sizeof gString, "#. Name\tRank - FW\tRaport Points\tDays\n");
-	for(new i = 0; i < cache_num_rows(); i++) {
+	strcat(memberString, "#. Name\tRank - FW - Raport Points\tStatus\tDays\n");
+	for(new i = 1; i < cache_num_rows() +1; i++) {
 		cache_get_value_name(i, "Name", name, 125);
+		cache_get_value_name(i, "LastLogin", lastl, 125);
 		cache_get_value_name_int(i, "FRank", rank);
 		cache_get_value_name_int(i, "FWarns", fw);
-		cache_get_value_name_int(i, "Commands", commands);
 		cache_get_value_name_int(i, "FAge", days);
+		cache_get_value_name_int(i, "Commands", commands);
 		format(Selected[playerid][tmembers], MAX_PLAYER_NAME, name);
-		format(gString, sizeof gString, "%s%d. %s\t%d - %d/3\t%d\t%d\n", gString, tmembers+1, name, rank, fw, commands, days);
+		new userID = GetPlayerID(name);	
+		if(userID != INVALID_PLAYER_ID) strcat(memberString, string_fast("%d. %s (%d)\t%d - %d/3 - %d\tOnline\t%d\n", tmembers+1, name, userID, playerInfo[playerid][pFactionRank], fw, commands, days), sizeof(memberString));
+		else strcat(memberString, string_fast("%d. %s (%d)\t%d - %d/3 - %d\t%s\t%d\n", tmembers+1, name, userID, rank, fw, commands, lastl, days), sizeof(memberString));
 		tmembers++;
 	}
-	Dialog_Show(playerid, DIALOG_MEMBERS, DIALOG_STYLE_TABLIST_HEADERS, title, gString, "Select", "Cancel");
+	Dialog_Show(playerid, DIALOG_MEMBERS, DIALOG_STYLE_TABLIST_HEADERS, string_fast("Members (%d/%d)", Iter_Count(FactionMembers[playerInfo[playerid][pFaction]]), tmembers), memberString, "Select", "Cancel");
 	return true;
 }
 
