@@ -575,8 +575,7 @@ stock isPlayerLogged(playerid)
 stock resetVars(playerid)
 {
 	GetPlayerName(playerid, playerInfo[playerid][pName], MAX_PLAYER_NAME);
-	AntiFlood_InitPlayer(playerid);
-	
+		
 	playerInfo[playerid][pLogged] = false;
 	playerInfo[playerid][pLoginEnabled] = false;
 	playerInfo[playerid][pFlymode] = false;
@@ -660,7 +659,12 @@ stock getVehicleHealth(vehicleid) {
 stock getVehicleSpeed(vehicleid,mode = 1) {
     new Float: x, Float: y, Float: z;
     GetVehicleVelocity(vehicleid , x , y , z);
-    // printf("%f,%f,%f", x,y,z);
+    printf("%f,%f,%f", x,y,z);
+    printf("x%f*%f=%d", x,x,x*x);
+    printf("y%f*%f=%d", y,y,y*y);
+    printf("z%f*%f=%d", z,z,z*z);
+    printf("%d", (x*x)+(y*y)+(z*z));
+
     return floatround(((floatsqroot(((x*x)+(y*y)+(z*z)))*(!mode ? 105.0 : 170.0 )))*1);
 }
 
@@ -674,7 +678,7 @@ stock sendPlayerError(playerid, const text[], va_args<>)
 stock sendPlayerSyntax(playerid, const text[], va_args<>)
 {
 	gString[0] = (EOS);
-	va_format(gString, sizeof gString, "Sintaxa: {FFFFFF}", text, va_start<2>);
+	va_format(gString, sizeof gString, "Sintaxa: {FFFFFF}%s", text, va_start<2>);
 	return SCM(playerid, COLOR_SYNTAX, gString);
 }
 

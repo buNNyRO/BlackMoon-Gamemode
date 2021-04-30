@@ -2,7 +2,7 @@
 //////    Variables                        //////
 ////////////////////////////////////////////////
 
-new MySQL:SQL, gQuery[652], gString[565], Connection = 1, AntiCheatWarnings, PlayerNumber[20000], Weapons[MAX_PLAYERS][47], WeaponAmmo[MAX_PLAYERS][47], gates[4],
+new MySQL:SQL, gQuery[652], gString[565], Connection = 0, AntiCheatWarnings, PlayerNumber[20000], Weapons[MAX_PLAYERS][47], WeaponAmmo[MAX_PLAYERS][47], gates[4],
     StoreMoney[MAX_PLAYERS], MoneyMoney[MAX_PLAYERS], Selected[MAX_PLAYERS][50][180], selName[MAX_PLAYERS][180], Questions,
 	bool: vehicle_engine[MAX_VEHICLES],
 	bool: vehicle_lights[MAX_VEHICLES],
@@ -18,8 +18,8 @@ new MySQL:SQL, gQuery[652], gString[565], Connection = 1, AntiCheatWarnings, Pla
 	Iterator:MutedPlayers<MAX_PLAYERS>,
 	Iterator:ExamenCheckpoints<MAX_EXAM_CHECKPOINTS>,
 	Iterator:AdminVehicles<MAX_VEHICLES>,
-	Iterator:Pickups<MAX_DYNAMIC_PICKUPS>,
-	Iterator:Labels<MAX_DYNAMIC_LABELS>,
+	/*Iterator:Pickups<MAX_DYNAMIC_PICKUPS>,
+	Iterator:Labels<MAX_DYNAMIC_LABELS>,*/
 	Iterator:Reports<MAX_REPORTS>,
     Iterator:PremiumPlayers<MAX_PLAYERS>,
     Iterator:VipPlayers<MAX_PLAYERS>,
@@ -31,9 +31,8 @@ new MySQL:SQL, gQuery[652], gString[565], Connection = 1, AntiCheatWarnings, Pla
 	playerInfo[MAX_PLAYERS][playerInfoEnum],
 	examenInfo[MAX_PLAYERS][examenInfoEnum],
 	reportInfo[MAX_REPORTS][reportInfoEnum],
-	pickupInfo[MAX_DYNAMIC_PICKUPS][pickupInfoEnum],
-	labelInfo[MAX_DYNAMIC_LABELS][labelInfoEnum],
-    AntiFlood_Data[MAX_PLAYERS][LIST_ANTIFLOOD],
+	/*pickupInfo[MAX_DYNAMIC_PICKUPS][pickupInfoEnum],
+	labelInfo[MAX_DYNAMIC_LABELS][labelInfoEnum],*/
 
 	Text:serverNameTD,
 	Text:serverInfoTD,

@@ -220,6 +220,7 @@ function LoadJobs() {
 
 		jobInfo[i][jobText] = CreateDynamic3DTextLabel(string_fast("Job ID: %d\nJob Name: %s\nJob Level: %d\nLegal: %s\nType (/getjob) to get this job.", i, jobInfo[i][jobName], jobInfo[i][jobLevel], legal), -1, jobInfo[i][jobX], jobInfo[i][jobY], jobInfo[i][jobZ], 20.0, 0xFFFF, 0xFFFF, 0, 0, 0, -1, STREAMER_3D_TEXT_LABEL_SD);
 		jobInfo[i][jobPickup] = CreateDynamicPickup(1239, 1, jobInfo[i][jobX], jobInfo[i][jobY], jobInfo[i][jobZ], 0, 0, -1, STREAMER_PICKUP_SD);
+		PickInfo[jobInfo[i][jobPickup]][JOB] = i;
 		if(jobInfo[i][jobXST] && jobInfo[i][jobYST] && jobInfo[i][jobZST]) {
 			jobInfo[i][jobTextST] = CreateDynamic3DTextLabel(string_fast("%s (ID:%d)\nstart work type (/startwork).", jobInfo[i][jobName], i), -1, jobInfo[i][jobXST], jobInfo[i][jobYST], jobInfo[i][jobZST], 20.0, 0xFFFF, 0xFFFF, 0, 0, 0, -1, STREAMER_3D_TEXT_LABEL_SD);
 			jobInfo[i][jobPickupST] = CreateDynamicPickup(1318, 1, jobInfo[i][jobXST], jobInfo[i][jobYST], jobInfo[i][jobZST], 0, 0, -1, STREAMER_PICKUP_SD);		
@@ -274,18 +275,12 @@ YCMD:jobs(playerid, params[], help) {
 YCMD:getjob(playerid, params[], help) {
 	if(!Iter_Count(ServerJobs)) return sendPlayerError(playerid, "Nu sunt job-uri disponibile pe server.");
 	if(playerInfo[playerid][pJob] != 0) return sendPlayerError(playerid, "Ai deja un job, foloseste (/quitjob).");
-	foreach(new i : ServerJobs) {
-		if(IsPlayerInRangeOfPoint(playerid, 3.5, jobInfo[i][jobX], jobInfo[i][jobY], jobInfo[i][jobZ])) {
-			if(playerInfo[playerid][pLevel] < jobInfo[i][jobLevel]) return sendPlayerError(playerid, "Pentru a avea acest job , ai nevoie de nivel %d", jobInfo[i][jobLevel]);
-			playerInfo[playerid][pJob] = i;
-			gQuery[0] = EOS;
-			mysql_format(SQL, gQuery, sizeof(gQuery), "UPDATE `server_users` SET `Job` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pJob], playerInfo[playerid][pSQLID]);
-			mysql_tquery(SQL, gQuery);
-			SCM(playerid, COLOR_GREY, string_fast("* Job Notice: Acum ai jobul '%s'.", jobInfo[i][jobName]));
-			break;
-		}
+	if(playerInfo[playerid][areaJob] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, jobInfo[playerInfo[playerid][areaJob]][jobX], jobInfo[playerInfo[playerid][areaJob]][jobY], jobInfo[playerInfo[playerid][areaJob]][jobZ])) {
+		if(playerInfo[playerid][pLevel] < jobInfo[playerInfo[playerid][areaJob]][jobLevel]) return sendPlayerError(playerid, "Pentru a avea acest job , ai nevoie de nivel %d", jobInfo[playerInfo[playerid][areaJob]][jobLevel]);
+		playerInfo[playerid][pJob] = playerInfo[playerid][areaJob];
+		update("UPDATE `server_users` SET `Job` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pJob], playerInfo[playerid][pSQLID]);
+		SCM(playerid, COLOR_GREY, string_fast("* Job Notice: Acum ai jobul '%s'.", jobInfo[playerInfo[playerid][areaJob]][jobName]));
 	}
-	if(!playerInfo[playerid][pJob]) return sendPlayerError(playerid, "Nu te afli langa un job.");
 	return true;
 }
 

@@ -132,6 +132,7 @@ function onPlayerLogin(playerid)
 		wantedTime[playerid] = repeat TimerWanted(playerid);
 		SCM(playerid, COLOR_LIGHTRED, "* Deoarece te-ai deconectat, iar acum ai intrat wanted-ul ti-a fost restaurat.");
 	}
+	if(playerInfo[playerid][pClan]) Iter_Add(TotalClanMembers, playerid);
 	if(playerInfo[playerid][pDailyMission][0] == -1 || playerInfo[playerid][pDailyMission][1] == -1) giveQuest(playerid);
 	if(playerInfo[playerid][pWTChannel] > 0) Iter_Add(Freqs[playerInfo[playerid][pWTChannel]], playerid);
 
@@ -195,7 +196,7 @@ function LoadExamCheckpoints() {
 	return printf("Exam Checkpoints: %d [From Database]", Iter_Count(ExamenCheckpoints));
 }
 
-function LoadPickups() {
+/*function LoadPickups() {
 	if(!cache_num_rows()) return print("Pickups: 0 [From Database]");
 
 	for(new i = 1; i < cache_num_rows() + 1; i++) {
@@ -229,7 +230,7 @@ function LoadLabels() {
 		labelInfo[i][labelID] = CreateDynamic3DTextLabel(labelInfo[i][labelText], -1, labelInfo[i][labelX], labelInfo[i][labelY], labelInfo[i][labelZ],  25.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, labelInfo[i][labelVirtualWorld], labelInfo[i][labelInterior]);
 	}
 	return printf("Labels: %d [From Database]", Iter_Count(Labels));
-}
+}*/
 
 
 function checkPanel() {
@@ -903,11 +904,6 @@ function Reclama(playerid, text[]) {
 	SCM(playerid, COLOR_LIGHTRED, "* Anti-Reclama: Deoarece ai facut reclama, ai primit mute timp de 2 minute.");
 	sendStaff(COLOR_LIGHTRED, "* Notice Anti-reclama: %s este posibil sa faca reclama ('%s').", getName(playerid), text);
 	return true;
-}
-
-AntiFlood_InitPlayer(playerid) {
-	AntiFlood_Data[playerid][lastCheck] = GetTickCount();
-	AntiFlood_Data[playerid][floodRate] = 0;
 }
 
 function PlayerToPoint(Float:radi, playerid, Float:x, Float:y, Float:z) {

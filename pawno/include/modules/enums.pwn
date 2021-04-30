@@ -184,9 +184,14 @@ enum playerInfoEnum
     pSafeID,
     pSelectedItem,
     pOnTurf,
+    areaBizz,
+    areaHouse,
+    areaFaction,
+    areaJob,
+    areaGascan,
     pSelectVehicle[MAX_PLAYER_PERSONAL_VEHICLES]
 };
-
+/*
 enum pickupInfoEnum {
     pickupSQLID,
     pickupID,
@@ -208,7 +213,7 @@ enum labelInfoEnum {
     labelInterior,
     Text3D:labelID
 };
-
+*/
 enum reportInfoEnum {
     reportID, 
     reportPlayer,

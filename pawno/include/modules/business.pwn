@@ -40,61 +40,6 @@ hook OnPlayerConnect(playerid) {
 	return true;
 }
 
-hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
-	if(PRESSED(KEY_SECONDARY_ATTACK)) {
-		foreach(new i : ServerBusinesses) {
-			if(IsPlayerInRangeOfPoint(playerid, 3.5, bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ])) {
-				if(bizInfo[i][bizLocked] == 1) return sendPlayerError(playerid, "Aceasta afacere, este inchisa.");
-				if(bizInfo[i][bizStatic] == 1) return sendPlayerError(playerid, "Aceasta afacere, este statica.");
-				if(GetPlayerCash(playerid) < bizInfo[i][bizFee]) return sendPlayerError(playerid, "Nu ai banii necesari pentru a intra in aceasta afacere.");
-				if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Esti intr-un vehicul.");
-				SetPlayerPos(playerid, bizInfo[i][bizX], bizInfo[i][bizY], bizInfo[i][bizZ]);
-				SetPlayerInterior(playerid, bizInfo[i][bizInterior]);
-				SetPlayerVirtualWorld(playerid, bizInfo[i][bizID]);
-				GivePlayerCash(playerid, 0, bizInfo[i][bizFee]);
-				GameTextForPlayer(playerid, string_fast("~r~-$%d", bizInfo[i][bizFee]), 1000, 1);
-				playerInfo[playerid][pinBusiness] = i;
-				bizInfo[i][bizBalance] += bizInfo[i][bizFee];
-				mysql_format(SQL, gQuery, sizeof(gQuery),"UPDATE `server_business` SET `Balance`='%d' WHERE `ID`='%d' LIMIT 1",bizInfo[i][bizBalance], i);
-				mysql_tquery(SQL, gQuery, "", "");	
-				switch(bizInfo[i][bizType]) {
-					case 1: SCM(playerid, -1, "Welcome in the business, commands available: /balance, /deposit, /withdraw, /transfer."); 
-					case 2: {
-						SCM(playerid, -1, "Welcome in the business, commands available: /buy.");
-						if(FishWeight[playerid]) {
-							new money = FishWeight[playerid] * 115;
-							SCM(playerid, COLOR_GREY, string_fast("* Fish Notice: Ai vandut pestele , si ai castigat $%s.", formatNumber(money)));
-							FishWeight[playerid] = 0;
-							playerInfo[playerid][pFishTimes] ++;
-							if(playerInfo[playerid][pFishSkill] < 5) {
-								if(playerInfo[playerid][pFishTimes] >= returnNeededPoints(playerid, JOB_FISHER)) {
-									playerInfo[playerid][pFishSkill] ++;
-									SCM(playerid, COLOR_GREY, string_fast("* Fisherman Notice: Ai avansat in %d skill. Vei castiga probabil mai multi bani", playerInfo[playerid][pFishSkill]));
-								}
-							}
-							GivePlayerCash(playerid, 1, money);
-							for(new m; m < 2; m++) {
-								if(playerInfo[playerid][pDailyMission][m] == 1) checkMission(playerid, m);
-							}
-							gQuery[0] = (EOS);
-							mysql_format(SQL, gQuery, sizeof(gQuery), "UPDATE `server_users` SET `Money`= '%d', `MStore` = '%d', `FishTimes` = '%d', `FishSkill` = '%d' WHERE `ID`='%d'", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pFishTimes], playerInfo[playerid][pFishSkill], playerInfo[playerid][pSQLID]);
-							mysql_tquery(SQL, gQuery);
-						}
-					}
-				}
-			}
-			if(IsPlayerInRangeOfPoint(playerid, 3.5, bizInfo[i][bizX], bizInfo[i][bizY], bizInfo[i][bizZ])) {
-				if(IsPlayerInAnyVehicle(playerid)) return true;
-				SetPlayerPos(playerid, bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ]);
-				SetPlayerInterior(playerid, 0);
-				SetPlayerVirtualWorld(playerid, 0);
-				playerInfo[playerid][pinBusiness] = -1;
-			}
-		}
-	}
-	return true;
-}
-
 function totalAds() {
 	new x;
 	foreach(new i : loggedPlayers) {
@@ -155,6 +100,7 @@ BusinessUpdate(businessid) {
 
 	bizInfo[businessid][bizText] = CreateDynamic3DTextLabel(string_fast("Business ID: %d\nBusiness Title: %s\nBusiness Description: %s\nBusiness Owner: %s\nBusiness Price: $%s\nBusiness Fee: $%s", bizInfo[businessid][bizID], bizInfo[businessid][bizTitle], bizInfo[businessid][bizDescription], bizInfo[businessid][bizOwner], formatNumber(bizInfo[businessid][bizPrice]),formatNumber(bizInfo[businessid][bizFee])), -1, bizInfo[businessid][bizExtX],bizInfo[businessid][bizExtY],bizInfo[businessid][bizExtZ], 20.0, 0xFFFF, 0xFFFF, 0, 0, 0, -1, STREAMER_3D_TEXT_LABEL_SD);
 	bizInfo[businessid][bizPickup] = CreateDynamicPickup(1239, 23, bizInfo[businessid][bizExtX],bizInfo[businessid][bizExtY],bizInfo[businessid][bizExtZ], 0, 0, -1, STREAMER_PICKUP_SD);					
+	PickInfo[bizInfo[businessid][bizPickup]][BIZZ] = businessid;
 	bizInfo[businessid][bizArea] = CreateDynamicSphere(bizInfo[businessid][bizExtX],bizInfo[businessid][bizExtY],bizInfo[businessid][bizExtZ], 2.0, 0, 0);
 	Streamer_SetIntData(STREAMER_TYPE_AREA, bizInfo[businessid][bizArea], E_STREAMER_EXTRA_ID, (businessid + BUSINESS_STREAMER_START));	
 	switch(bizInfo[businessid][bizType]) {
@@ -319,57 +265,50 @@ Dialog:TRANSFERBIZ(playerid, response) {
 YCMD:buybusiness(playerid, params[], help) {
 	if(playerInfo[playerid][pBusiness] != 0) return sendPlayerError(playerid, "Ai deja o afacere cumparata.");
 	if(playerInfo[playerid][pLevel] < 5) return sendPlayerError(playerid, "Trebuie sa detii, minim level 5.");
-	foreach(new i : ServerBusinesses) {
-		if(IsPlayerInRangeOfPoint(playerid, 3.5, bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ])) {
-			if(bizInfo[i][bizPrice] == 0) return sendPlayerError(playerid, "Aceasta afacere nu este de vanzare.");
-			if(bizInfo[i][bizOwned] == 1) {
-				new id = GetPlayerID(bizInfo[i][bizOwner]), moneys, newmoneys;
-				gQuery[0] = (EOS);
-				gString[0] = (EOS);
-				if(id != INVALID_PLAYER_ID) { 
-					playerInfo[id][pBusiness] = 0;
-					playerInfo[id][pBusinessID] = -1;
-					playerInfo[id][pBank] += bizInfo[i][bizPrice];
-					SCM(playerid, COLOR_GREY, string_fast("* %s ti-a cumparat afacerea, si ai primit $%s, in banca.", getName(playerid), formatNumber(bizInfo[i][bizPrice])));
-					update("UPDATE `server_users` SET `Bank` = '%d', `Business` = '0', `BusinessID` = '-1' WHERE `ID` = '%d'", playerInfo[id][pBank], playerInfo[id][pSQLID]);
-				}
-				else {
-					format(gQuery, sizeof(gQuery), "SELECT * FROM `server_users` WHERE `Name` = '%s'", bizInfo[i][bizOwner]);
-					new Cache: result = mysql_query(SQL, gQuery);
-					if(cache_num_rows() != 0) {
-						cache_get_value_name(0, "Bank", gString); moneys = strval(gString);
-						newmoneys = moneys + bizInfo[i][bizPrice];
-					}
-					cache_delete(result);
-					update("UPDATE `server_users` SET `Bank` = '%d', `Business` = '0', `BusinessID` = '-1' WHERE `ID` = '%d'", newmoneys, playerInfo[id][pSQLID]);
-				}
-				SCM(playerid, COLOR_GREY, string_fast("* Business Notice: Felicitari ! Ai cumparat afacerea cu id %d, si ai platit $%s.", i, formatNumber(bizInfo[i][bizPrice])));
-				GivePlayerCash(playerid, 0, bizInfo[i][bizPrice]);
-				format(bizInfo[i][bizOwner], 32, getName(playerid));
-				playerInfo[playerid][pBusiness] = 1;
-				playerInfo[playerid][pBusinessID] = i;
-				bizInfo[i][bizOwned] = 1;
-				bizInfo[i][bizPrice] = 0;
-				BusinessUpdate(i);
-				update("UPDATE `server_users` SET `Business` = '1', `BusinessID` = '%d' WHERE `ID` = '%d'", i, playerInfo[playerid][pSQLID]);
-				mysql_format(SQL, gQuery, sizeof(gQuery),"UPDATE `server_business` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d'",bizInfo[i][bizOwner], playerInfo[playerid][pSQLID], i);
-				mysql_tquery(SQL, gQuery, "", "");
+	if(playerInfo[playerid][areaBizz] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, bizInfo[playerInfo[playerid][areaBizz]][bizExtX], bizInfo[playerInfo[playerid][areaBizz]][bizExtY], bizInfo[playerInfo[playerid][areaBizz]][bizExtZ])) {
+		if(bizInfo[playerInfo[playerid][areaBizz]][bizPrice] == 0) return sendPlayerError(playerid, "Aceasta afacere nu este de vanzare.");
+		if(bizInfo[playerInfo[playerid][areaBizz]][bizOwned] == 1) {
+			new id = GetPlayerID(bizInfo[playerInfo[playerid][areaBizz]][bizOwner]), moneys, newmoneys;
+			gString[0] = (EOS);
+			if(id != INVALID_PLAYER_ID) { 
+				playerInfo[id][pBusiness] = 0;
+				playerInfo[id][pBusinessID] = -1;
+				playerInfo[id][pBank] += bizInfo[playerInfo[playerid][areaBizz]][bizPrice];
+				SCM(playerid, COLOR_GREY, string_fast("* %s ti-a cumparat afacerea, si ai primit $%s, in banca.", getName(playerid), formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizPrice])));
+				update("UPDATE `server_users` SET `Bank` = '%d', `Business` = '0', `BusinessID` = '-1' WHERE `ID` = '%d'", playerInfo[id][pBank], playerInfo[id][pSQLID]);
 			}
-			else if(bizInfo[i][bizOwned] == 0) {
-				gQuery[0] = (EOS);
-				SCM(playerid, COLOR_GREY, string_fast("* Business Notice: Felicitari ! Ai cumparat afacerea cu id %d, si ai platit $%s.", i, formatNumber(bizInfo[i][bizPrice])));
-				GivePlayerCash(playerid, 0, bizInfo[i][bizPrice]);
-				format(bizInfo[i][bizOwner], 32, getName(playerid));
-				playerInfo[playerid][pBusiness] = 1;
-				playerInfo[playerid][pBusinessID] = i;
-				playerInfo[playerid][pMoney] -= bizInfo[i][bizPrice];
-				bizInfo[i][bizOwned] = 1;
-				bizInfo[i][bizPrice] = 0;
-				BusinessUpdate(i);
-				update("UPDATE `server_users` SET `Money` = '%d', `MStore` = '%d', `Business` = '1', `BusinessID` = '%d' WHERE `ID` = '%d'", MoneyMoney[playerid], StoreMoney[playerid], i, playerInfo[playerid][pSQLID]);
-				mysql_format(SQL, gQuery, sizeof(gQuery),"UPDATE `server_business` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d'",bizInfo[i][bizOwner],playerInfo[playerid][pSQLID], i);
-				mysql_tquery(SQL, gQuery, "", "");
+			else {
+				new Cache: result = mysql_query(SQL, string_fast("SELECT * FROM `server_users` WHERE `Name` = '%s'", bizInfo[playerInfo[playerid][areaBizz]][bizOwner]));
+				if(cache_num_rows() != 0) {
+					cache_get_value_name(0, "Bank", gString); moneys = strval(gString);
+					newmoneys = moneys + bizInfo[playerInfo[playerid][areaBizz]][bizPrice];
+				}
+				cache_delete(result);
+				update("UPDATE `server_users` SET `Bank` = '%d', `Business` = '0', `BusinessID` = '-1' WHERE `ID` = '%d'", newmoneys, playerInfo[id][pSQLID]);
 			}
+			SCM(playerid, COLOR_GREY, string_fast("* Business Notice: Felicitari ! Ai cumparat afacerea cu id %d, si ai platit $%s.", playerInfo[playerid][areaBizz], formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizPrice])));
+			GivePlayerCash(playerid, 0, bizInfo[playerInfo[playerid][areaBizz]][bizPrice]);
+			format(bizInfo[playerInfo[playerid][areaBizz]][bizOwner], 32, getName(playerid));
+			playerInfo[playerid][pBusiness] = 1;
+			playerInfo[playerid][pBusinessID] = playerInfo[playerid][areaBizz];
+			bizInfo[playerInfo[playerid][areaBizz]][bizOwned] = 1;
+			bizInfo[playerInfo[playerid][areaBizz]][bizPrice] = 0;
+			BusinessUpdate(playerInfo[playerid][areaBizz]);
+			update("UPDATE `server_users` SET `Business` = '1', `BusinessID` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][areaBizz], playerInfo[playerid][pSQLID]);
+			update("UPDATE `server_business` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d'",bizInfo[playerInfo[playerid][areaBizz]][bizOwner], playerInfo[playerid][pSQLID], playerInfo[playerid][areaBizz]);
+		}
+		else if(bizInfo[playerInfo[playerid][areaBizz]][bizOwned] == 0) {
+			SCM(playerid, COLOR_GREY, string_fast("* Business Notice: Felicitari ! Ai cumparat afacerea cu id %d, si ai platit $%s.", playerInfo[playerid][areaBizz], formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizPrice])));
+			GivePlayerCash(playerid, 0, bizInfo[playerInfo[playerid][areaBizz]][bizPrice]);
+			format(bizInfo[playerInfo[playerid][areaBizz]][bizOwner], 32, getName(playerid));
+			playerInfo[playerid][pBusiness] = 1;
+			playerInfo[playerid][pBusinessID] = playerInfo[playerid][areaBizz];
+			GivePlayerCash(playerid, 0, bizInfo[playerInfo[playerid][areaBizz]][bizPrice]);
+			bizInfo[playerInfo[playerid][areaBizz]][bizOwned] = 1;
+			bizInfo[playerInfo[playerid][areaBizz]][bizPrice] = 0;
+			BusinessUpdate(playerInfo[playerid][areaBizz]);
+			update("UPDATE `server_users` SET `Money` = '%d', `MStore` = '%d', `Business` = '1', `BusinessID` = '%d' WHERE `ID` = '%d'", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][areaBizz], playerInfo[playerid][pSQLID]);
+			update("UPDATE `server_business` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d'",bizInfo[playerInfo[playerid][areaBizz]][bizOwner],playerInfo[playerid][pSQLID], playerInfo[playerid][areaBizz]);
 		}
 	}
 	return true;

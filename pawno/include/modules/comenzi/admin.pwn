@@ -1136,7 +1136,7 @@ YCMD:reportmute(playerid, params[], help) {
 	return true;
 }
 
-YCMD:createpickup(playerid, params[], help) {
+/*YCMD:createpickup(playerid, params[], help) {
 	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(Iter_Free(Pickups) == -1) return sendPlayerError(playerid, "In acest moment, nu se pot creea pickup-uri, deoarece s-a atins numarul maxim.");
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Trebuie sa cobori din vehicul.");
@@ -1178,8 +1178,8 @@ YCMD:createlabel(playerid, params[], help) {
 	SetPVarInt(playerid, "LabelInt", interior);
 	Dialog_Show(playerid, DIALOG_CREATE_LABEL, DIALOG_STYLE_INPUT, "Create Label:", "Scrie mai jos ce text doresti sa aiba label-ul:", "Ok", "Cancel");
 	return true;
-}
-
+}*/
+	
 YCMD:banip(playerid, params[], help) {
 	if(playerInfo[playerid][pAdmin] < 2) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(GetPVarInt(playerid, "banDeelay") > gettime()) return sendPlayerError(playerid, "Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "banDeelay") - gettime()));

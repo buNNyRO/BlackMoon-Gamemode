@@ -17,9 +17,10 @@ enum clanInfoEnum {
 	cRank6[32],
 	cRank7[32],
 	cDays,
-	cSlots
+	cSlots,
+	cTotal
 };
-new clanInfo[MAX_CLANS][clanInfoEnum], Iterator:ServerClans<MAX_CLANS>, Iterator:ClanMembers[MAX_CLANS]<MAX_CLANS>, clanInvitedBy[MAX_PLAYERS], clanChat[MAX_CLANS];
+new clanInfo[MAX_CLANS][clanInfoEnum], Iterator:ServerClans<MAX_CLANS>, Iterator:TotalClanMembers<MAX_PLAYERS>, clanInvitedBy[MAX_PLAYERS], clanChat[MAX_CLANS];
 
 hook OnPlayerConnect(playerid) {
 	clanInvitedBy[playerid] = -1;
@@ -27,10 +28,10 @@ hook OnPlayerConnect(playerid) {
 }
 
 stock sendClanMessage(cid, color, const message[], va_args<>) {
-	if(!Iter_Contains(ServerClans, cid) || !Iter_Count(ClanMembers[cid], playerid)) return false;
+	if(!Iter_Contains(ServerClans, cid) || !Iter_Count(TotalClanMembers)) return false;
 	gString[0] = (EOS);
 	va_format(gString, 256, message, va_start<3>);			
-	foreach(new id : ClanMembers[cid]) sendSplitMessage(id, color, gString);
+	foreach(new id : TotalClanMembers) if(playerInfo[id][pClan] == cid) sendSplitMessage(id, color, gString);
 	return true;
 }
 
@@ -44,8 +45,11 @@ function LoadClans() {
 	 	new rank[32];
 	 	cache_get_value_name(0, "Rank", rank, 32);
 		sscanf(rank, "p<|>sssssss", clanInfo[i][cRank1], clanInfo[i][cRank2], clanInfo[i][cRank3], clanInfo[i][cRank4], clanInfo[i][cRank5], clanInfo[i][cRank6], clanInfo[i][cRank7]);
+		cache_get_value_name_int(i - 1, "ID", clanInfo[i][cID]);
+		cache_get_value_name_int(i - 1, "OwnerID", clanInfo[i][cOwnerID]);		
 		cache_get_value_name_int(i - 1, "Days", clanInfo[i][cDays]);
-		cache_get_value_name_int(i - 1, "Slots", clanInfo[i][cSlots]);		
+		cache_get_value_name_int(i - 1, "Slots", clanInfo[i][cSlots]);	
+		cache_get_value_name_int(i - 1, "Total", clanInfo[i][cTotal]);		
 	}
 	return printf("Clans: %d [From Database]", Iter_Count(ServerClans));
 }
@@ -53,7 +57,7 @@ function LoadClans() {
 YCMD:cinvite(playerid, params[], help) {
 	if(!playerInfo[playerid][pClan]) return sendPlayerError(playerid, "Nu esti intr-un clan pentru a face acest lucru.");
 	if(playerInfo[playerid][pClanRank] < 5) return sendPlayerError(playerid, "Nu ai rank-ul 5+ pentru a face acest lucru.");
-	if(Iter_Count(ClanMembers[playerInfo[playerid][pClan]]) == clanInfo[playerInfo[playerid][pClan]][cSlots]) return sendPlayerError(playerid, "Nu poti invita membrii in clan deoarece nu mai sunt locuri libere.");
+	if(clanInfo[playerInfo[playerid][pClan]][cTotal] == clanInfo[playerInfo[playerid][pClan]][cSlots]) return sendPlayerError(playerid, "Nu poti invita membrii in clan deoarece nu mai sunt locuri libere.");
 	extract params -> new player:userID, string:reason[32]; else return sendPlayerSyntax(playerid, "/cinvite <name/id> <reason>");
 	if(userID == playerid) return sendPlayerError(playerid, "Nu poti folosi comanda asupra ta.");
 	if(!isPlayerLogged(userID)) return sendPlayerError(playerid, "Acel jucator nu este connectat.");
@@ -86,23 +90,15 @@ YCMD:clanchat(playerid, params[], help) {
 
 YCMD:leaveclan(playerid, params[], help) {
 	if(playerInfo[playerid][pClan] == 0) return sendPlayerError(playerid, "Nu esti intr-un clan pentru a face acest lucru.");
+	if(playerInfo[playerid][pClanRank] == 7) return sendPlayerError(playerid, "Nu poti iesi din clan, deoarece ai rank 7.");
 	sendClanMessage(playerInfo[playerid][pClan], clanInfo[playerInfo[playerid][pClan]][cClanColor], "* [CLAN] %s a iesit din clan.", getName(playerid));
 	SCM(playerid, COLOR_GOLD, "* (Clan): Ai iesit din clan.");
-	Iter_Remove(ClanMembers[playerInfo[playerid][pClan]], playerid);
+	Iter_Remove(TotalClanMembers, playerid);
+	clanInfo[playerInfo[playerid][pClan]][cTotal] --;
 	playerInfo[playerid][pClan] = 0;
 	playerInfo[playerid][pClanRank] = 0;
 	playerInfo[playerid][pClanAge] = 0;
 	playerInfo[playerid][pClanWarns] = 0;
-	return true;
-}
-
-YCMD:clanmembers(playerid, params[], help) {
-	if(playerInfo[playerid][pClan] == 0) return sendPlayerError(playerid, "Nu esti intr-un clan pentru a face acest lucru.");
-	SCM(playerid, COLOR_GOLD, string_fast("* Clan '%s' members *", clanInfo[playerInfo[playerid][pClan]][cName]));
-	foreach(new i : ClanMembers[playerInfo[playerid][pClan]]) {
-		SCM(playerid, COLOR_GOLD, string_fast("* %s (%d) - %d rank", getName(i), i, playerInfo[i][pClanRank]));
-	}
-	SCM(playerid, COLOR_GOLD, string_fast("* Sunt %d membrii online in clan *", Iter_Count(ClanMembers[playerInfo[playerid][pClan]])));
 	return true;
 }
 
@@ -118,7 +114,7 @@ Dialog:DIALOG_CLAN(playerid, response, listitem) {
 		case 0: SCM(playerid, COLOR_GOLD, "* (Clan): Comenzile clanului sunt /clanchat (/c), /leaveclan, /clan, /clanmembers.");
 		case 1: SCM(playerid, -1, "* Coming Soon");
 		case 2: Dialog_Show(playerid, DIALOG_CLANTAG, DIALOG_STYLE_LIST , "Clan Tag Settings", string_fast("%s\n%s%s\n%s%s", getName(playerid), clanInfo[playerInfo[playerid][pClan]][cTag], getName(playerid), getName(playerid), clanInfo[playerInfo[playerid][pClan]][cTag]), "Select", "Back");
-		case 3: Dialog_Show(playerid, DIALOG_CLANSETTINGS, DIALOG_STYLE_INPUT, "Clan Settings", "Clan Color\nClan Motd", "Select", "Back");
+		case 3: Dialog_Show(playerid, DIALOG_CLANSETTINGS, DIALOG_STYLE_LIST, "Clan Settings", "Clan Color\nClan Motd", "Select", "Back");
 	}
 	return true;
 }
@@ -140,6 +136,15 @@ Dialog:DIALOG_CLANTAG(playerid, response, listitem) {
 		}
 	}
 	return true;
+}
+
+function SetClanTag(playerid) {
+    switch(playerInfo[playerid][pClanTag]) {
+        case 0: SetPlayerName(playerid, string_fast("%s", getName(playerid)));
+        case 1: SetPlayerName(playerid, string_fast("%s%s", clanInfo[playerInfo[playerid][pClan]][cTag],getName(playerid)));
+        case 2: SetPlayerName(playerid, string_fast("%s%s", getName(playerid),clanInfo[playerInfo[playerid][pClan]][cTag]));
+    }
+    return true;
 }
 
 Dialog:DIALOG_CLANSETTINGS(playerid, response, listitem) {
@@ -167,13 +172,4 @@ Dialog:DIALOG_CLANSETTINGS2(playerid, response, listitem, inputtext[])  {
 	sendClanMessage(playerInfo[playerid][pClan], clanInfo[playerInfo[playerid][pClan]][cClanColor], "* [CLAN]: %s (%d) a schimbat motd-ul clanului in '%s'.", getName(playerid), playerid, clanInfo[playerInfo[playerid][pClan]][cMotd]);	
 	update("UPDATE `server_clans` SET `Motd` = '%s' WHERE `ID` = '%d' LIMIT 1", clanInfo[playerInfo[playerid][pClan]][cMotd], clanInfo[playerInfo[playerid][pClan]][cID]);
 	return true;
-}
-
-function SetClanTag(playerid) {
-    switch(playerInfo[playerid][pClanTag]) {
-        case 0: SetPlayerName(playerid, string_fast("%s", getName(playerid)));
-        case 1: SetPlayerName(playerid, string_fast("%s%s", clanInfo[playerInfo[playerid][pClan]][cTag],getName(playerid)));
-        case 2: SetPlayerName(playerid, string_fast("%s%s", getName(playerid),clanInfo[playerInfo[playerid][pClan]][cTag]));
-    }
-    return true;
 }

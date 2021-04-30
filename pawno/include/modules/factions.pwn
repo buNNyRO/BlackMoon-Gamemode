@@ -74,7 +74,6 @@ hook OnGameModeInit() {
 }
 
 hook OnPlayerConnect(playerid) {
-	DeletePVar(playerid, "factionEnterDeelay");
 	DeletePVar(playerid, "dutyDeelay");
 	DeletePVar(playerid, "inviteDeelay");
 	DeletePVar(playerid, "soDeelay");
@@ -263,39 +262,6 @@ hook OnPlayerEnterCheckpoint(playerid) {
 	return true;
 }
 
-hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
-	if(IsPlayerInAnyVehicle(playerid)) return Y_HOOKS_CONTINUE_RETURN_1;
-	if(newkeys & KEY_SECONDARY_ATTACK) {
-		if(playerInfo[playerid][pinFaction]) {
-			new fid = playerInfo[playerid][pinFaction];
-			if(IsPlayerInRangeOfPoint(playerid, 2.0, factionInfo[fid][fExitX], factionInfo[fid][fExitY], factionInfo[fid][fExitZ])) {
-				SetPlayerPos(playerid, factionInfo[fid][fEnterX],factionInfo[fid][fEnterY], factionInfo[fid][fEnterZ]);
-				SetPlayerVirtualWorld(playerid, 0);
-				SetPlayerInterior(playerid, 0);
-				playerInfo[playerid][pinFaction] = 0;
-			}
-			return Y_HOOKS_BREAK_RETURN_1;
-		}
-		if(GetPVarInt(playerid, "factionEnterDeelay") >= gettime()) return Y_HOOKS_CONTINUE_RETURN_1;
-		foreach(new fid : ServerFactions) {
-			if(IsPlayerInRangeOfPoint(playerid, 2.0, factionInfo[fid][fEnterX],factionInfo[fid][fEnterY], factionInfo[fid][fEnterZ])) {
-				if(playerInfo[playerid][pFaction] != fid && factionInfo[fid][fLocked]) {
-					sendPlayerError(playerid, "Nu faci parte din factiunea %s.", factionName(fid));
-					return Y_HOOKS_BREAK_RETURN_1;
-				}
-				SetPlayerPos(playerid, factionInfo[fid][fExitX], factionInfo[fid][fExitY], factionInfo[fid][fExitZ]);
-				SetPlayerInterior(playerid, factionInfo[fid][fInterior]);
-				SetPlayerVirtualWorld(playerid, factionInfo[fid][fID]);
-				SetPVarInt(playerid, "factionEnterDeelay", gettime() + 5);
-				playerInfo[playerid][pinFaction] = fid;	
-				return Y_HOOKS_BREAK_RETURN_1;
-			}
-		}
-	}
-
-	return true;
-}
-
 Dialog:DIALOG_WANTEDS(playerid, response) {
 	if(!response) return true;
 	new id = playerInfo[playerid][pSelectedItem];
@@ -382,6 +348,7 @@ function LoadFactions() {
 
 		factionInfo[i][fText] = CreateDynamic3DTextLabel(string_fast("Faction ID: %d\nFaction Name: %s\nFaction Locked: %s", factionInfo[i][fID], factionInfo[i][fName], factionInfo[i][fLocked] ? "Yes" : "No"), 0x2b8fa6FF, factionInfo[i][fEnterX],factionInfo[i][fEnterY], factionInfo[i][fEnterZ], 25.0, 0xFFFF, 0xFFFF, 0, 0, 0, -1, STREAMER_3D_TEXT_LABEL_SD);
 		factionInfo[i][fPickup] = CreateDynamicPickup(1314, 1, factionInfo[i][fEnterX],factionInfo[i][fEnterY], factionInfo[i][fEnterZ], 0, 0, -1, STREAMER_PICKUP_SD);
+		PickInfo[factionInfo[i][fPickup]][FACTION] = i;
 		if(factionInfo[i][fMapIconType]) {
 			factionInfo[i][fMapIcon] = CreateDynamicMapIcon(factionInfo[i][fEnterX],factionInfo[i][fEnterY], factionInfo[i][fEnterZ], factionInfo[i][fMapIconType], -1, 0, 0, -1, 1000.0);
 		}
@@ -981,31 +948,31 @@ YCMD:arrest(playerid, params[], help) {
 }
 
 
-YCMD:members(playerid, params[], help) return showFactionMembers(playerid);
+YCMD:members(playerid, params[], help) {
+	if(playerInfo[playerid][pFaction] == 0) return true;
+	mysql_tquery(SQL, string_fast("SELECT * FROM `server_users` WHERE `Faction` = %d ORDER BY `FRank` DESC LIMIT 20", playerInfo[playerid][pFaction]), "showFactionMembers", "");
+	return 1;
+}
 
 function showFactionMembers(playerid) {
 	if(playerInfo[playerid][pFaction] == 0) return true;
-	new days, name[180], lastl[180], rank, fw, commands, tmembers, memberString[700];
-	strcat(memberString, "#. Name\tRank - FW - Raport Points\tStatus\tDays\n");
-	new Cache: result = mysql_query(SQL, string_fast("SELECT * FROM `server_users` WHERE `server_users`.`Faction` = '%d' ORDER BY `server_users`.`FRank` DESC LIMIT 20", playerInfo[playerid][pFaction]));
-	for(new i, j = cache_num_rows(); i != j; ++i) {
+	if(!cache_num_rows()) return 1;
+	new days, name[180], rank, fw, commands, tmembers, title[20]; gString[0] = (EOS);
+	format(title, sizeof title, "Members (%d/%d)", Iter_Count(FactionMembers[playerInfo[playerid][pFaction]]),tmembers);
+	format(gString, sizeof gString, "#. Name\tRank - FW\tRaport Points\tDays\n");
+	for(new i = 0; i < cache_num_rows(); i++) {
 		cache_get_value_name(i, "Name", name, 125);
-		cache_get_value_name(i, "LastLogin", lastl, 125);
 		cache_get_value_name_int(i, "FRank", rank);
 		cache_get_value_name_int(i, "FWarns", fw);
-		cache_get_value_name_int(i, "FAge", days);
 		cache_get_value_name_int(i, "Commands", commands);
+		cache_get_value_name_int(i, "FAge", days);
 		format(Selected[playerid][tmembers], MAX_PLAYER_NAME, name);
-		new userID = GetPlayerID(name);	
-		if(userID != INVALID_PLAYER_ID) strcat(memberString, string_fast("%d. %s (%d)\t%d - %d/3 - %d\tOnline\t%d\n", tmembers+1, name, userID, playerInfo[playerid][pFactionRank], fw, commands, days), sizeof(memberString));
-		else strcat(memberString, string_fast("%d. %s (%d)\t%d - %d/3 - %d\t%s\t%d\n", tmembers+1, name, userID, rank, fw, commands, lastl, days), sizeof(memberString));
+		format(gString, sizeof gString, "%s%d. %s\t%d - %d/3\t%d\t%d\n", gString, tmembers+1, name, rank, fw, commands, days);
 		tmembers++;
 	}
-	cache_delete(result);
-	Dialog_Show(playerid, DIALOG_MEMBERS, DIALOG_STYLE_TABLIST_HEADERS, string_fast("Members (%d/%d)", Iter_Count(FactionMembers[playerInfo[playerid][pFaction]]), tmembers), memberString, "Select", "Cancel");
+	Dialog_Show(playerid, DIALOG_MEMBERS, DIALOG_STYLE_TABLIST_HEADERS, title, gString, "Select", "Cancel");
 	return true;
 }
-
 
 Dialog:DIALOG_MEMBERS(playerid, response, listitem) {
 	if(!response) return true;

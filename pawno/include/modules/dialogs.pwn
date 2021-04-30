@@ -155,7 +155,7 @@ Dialog:DIALOG_REPORT_CHEATER(playerid, response, listitem, inputtext[]) {
 	return true;
 }
 
-Dialog:DIALOG_CREATE_LABEL(playerid, response, listitem, inputtext[]) {
+/*Dialog:DIALOG_CREATE_LABEL(playerid, response, listitem, inputtext[]) {
 	if(!response) {
 		DeletePVar(playerid, "LabelVW");
 		DeletePVar(playerid, "LabelInt");
@@ -178,7 +178,7 @@ Dialog:DIALOG_CREATE_LABEL(playerid, response, listitem, inputtext[]) {
 	}
 	mysql_pquery_inline(SQL, gQuery, using inline getLabelID, "");
 	return true;
-}
+}*/
 
 Dialog:SPAWNCHANGE(playerid, response, listitem) {
 	if(!response) return true;

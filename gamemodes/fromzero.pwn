@@ -32,6 +32,7 @@
 #include <easyDialog>
 #include <modules\stocks.pwn>
 #include <modules\dialogs.pwn>
+#include <modules\pickups.pwn>
 #include <modules\houses.pwn>
 #include <modules\safes.pwn>
 #include <modules\turfs.pwn>
@@ -39,10 +40,11 @@
 #include <modules\jobs.pwn>
 #include <modules\business.pwn>
 #include <modules\comenzi\helper.pwn>
+#include <modules\clans.pwn>
 #include <modules\functions.pwn> 
 #include <modules\personalvehicles.pwn>
+#include <modules\gascan.pwn>
 #include <modules\timers.pwn>
-#include <modules\clans.pwn>
 #include <modules\comenzi\admin.pwn>
 #include <modules\comenzi\player.pwn>
 #include <modules\dealership.pwn>
@@ -503,6 +505,89 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 		}
 	}
 	if(PRESSED(KEY_SECONDARY_ATTACK)) {
+		new b = GetPlayerVirtualWorld(playerid);
+	    if(PRESSED(KEY_SECONDARY_ATTACK)) {
+	        if(playerInfo[playerid][areaBizz] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, bizInfo[playerInfo[playerid][areaBizz]][bizExtX], bizInfo[playerInfo[playerid][areaBizz]][bizExtY], bizInfo[playerInfo[playerid][areaBizz]][bizExtZ])) {
+				SetPlayerPos(playerid, bizInfo[playerInfo[playerid][areaBizz]][bizX], bizInfo[playerInfo[playerid][areaBizz]][bizY], bizInfo[playerInfo[playerid][areaBizz]][bizZ]);
+				SetPlayerInterior(playerid, bizInfo[playerInfo[playerid][areaBizz]][bizInterior]);
+				SetPlayerVirtualWorld(playerid, bizInfo[playerInfo[playerid][areaBizz]][bizID]);
+				GivePlayerCash(playerid, 0, bizInfo[playerInfo[playerid][areaBizz]][bizFee]);
+				GameTextForPlayer(playerid, string_fast("~r~-$%d", bizInfo[playerInfo[playerid][areaBizz]][bizFee]), 1000, 1);
+				playerInfo[playerid][pinBusiness] = bizInfo[playerInfo[playerid][areaBizz]][bizID];
+				bizInfo[playerInfo[playerid][areaBizz]][bizBalance] += bizInfo[playerInfo[playerid][areaBizz]][bizFee];
+				update("UPDATE `server_business` SET `Balance`='%d' WHERE `ID`='%d' LIMIT 1",bizInfo[playerInfo[playerid][areaBizz]][bizBalance], playerInfo[playerid][areaBizz]);
+				switch(bizInfo[playerInfo[playerid][areaBizz]][bizType]) {
+					case 1: SCM(playerid, -1, "Welcome in the business, commands available: /balance, /deposit, /withdraw, /transfer."); 
+					case 2: {
+						SCM(playerid, -1, "Welcome in the business, commands available: /buy.");
+						if(FishWeight[playerid]) {
+							new money = FishWeight[playerid] * 115;
+							SCM(playerid, COLOR_GREY, string_fast("* Fish Notice: Ai vandut pestele , si ai castigat $%s.", formatNumber(money)));
+							FishWeight[playerid] = 0;
+							playerInfo[playerid][pFishTimes] ++;
+							if(playerInfo[playerid][pFishSkill] < 5) {
+								if(playerInfo[playerid][pFishTimes] >= returnNeededPoints(playerid, JOB_FISHER)) {
+									playerInfo[playerid][pFishSkill] ++;
+									SCM(playerid, COLOR_GREY, string_fast("* Fisherman Notice: Ai avansat in %d skill. Vei castiga probabil mai multi bani", playerInfo[playerid][pFishSkill]));
+								}
+							}
+							GivePlayerCash(playerid, 1, money);
+							for(new m; m < 2; m++) {
+								if(playerInfo[playerid][pDailyMission][m] == 1) checkMission(playerid, m);
+							}
+							gQuery[0] = (EOS);
+							mysql_format(SQL, gQuery, sizeof(gQuery), "UPDATE `server_users` SET `Money`= '%d', `MStore` = '%d', `FishTimes` = '%d', `FishSkill` = '%d' WHERE `ID`='%d'", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pFishTimes], playerInfo[playerid][pFishSkill], playerInfo[playerid][pSQLID]);
+							mysql_tquery(SQL, gQuery);
+						}
+					}
+				}
+				playerInfo[playerid][areaBizz] = 0;
+				return true;
+	        }
+	        else if(IsPlayerInRangeOfPoint(playerid, 3.0, bizInfo[b][bizX], bizInfo[b][bizY], bizInfo[b][bizZ])) {
+	        	SetPlayerPos(playerid, bizInfo[b][bizExtX], bizInfo[b][bizExtY], bizInfo[b][bizExtZ]);
+	            SetPlayerInterior(playerid, 0);
+	            SetPlayerVirtualWorld(playerid, 0);
+	            playerInfo[playerid][pinHouse] = -1;
+	            return true;
+	        }
+    	}
+
+		if(playerInfo[playerid][areaHouse] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, bizInfo[playerInfo[playerid][areaHouse]][bizExtX], bizInfo[playerInfo[playerid][areaHouse]][bizExtY], bizInfo[playerInfo[playerid][areaHouse]][bizExtZ])) {
+			if(houseInfo[playerInfo[playerid][areaHouse]][hLocked] == 1) return sendPlayerError(playerid, "Acesta casa, este inchisa.");
+			if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Esti intr-un vehicul.");
+			SetPlayerPos(playerid, houseInfo[playerInfo[playerid][areaHouse]][hX], houseInfo[playerInfo[playerid][areaHouse]][hY], houseInfo[playerInfo[playerid][areaHouse]][hZ]);
+			SetPlayerInterior(playerid, houseInfo[playerInfo[playerid][areaHouse]][hInterior]);
+			SetPlayerVirtualWorld(playerid, houseInfo[playerInfo[playerid][areaHouse]][hID]);
+			playerInfo[playerid][pinHouse] = houseInfo[playerInfo[playerid][areaHouse]][hID];
+			SCM(playerid, COLOR_GREY, string_fast("* House Notice: Welcome to %s's house. Commands available: /eat, /sleep.", houseInfo[playerInfo[playerid][areaHouse]][hOwner]));
+			playerInfo[playerid][areaHouse] = 0;
+		}
+		else if(IsPlayerInRangeOfPoint(playerid, 3.5, houseInfo[b][hX], houseInfo[b][hY], houseInfo[b][hZ])) {
+			SetPlayerPos(playerid, houseInfo[b][hExtX], houseInfo[b][hExtY], houseInfo[b][hExtZ]);
+			SetPlayerInterior(playerid, 0);
+			SetPlayerVirtualWorld(playerid, 0);
+			playerInfo[playerid][pinHouse] = -1;
+			return true;
+		}
+
+		if(playerInfo[playerid][areaFaction] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, factionInfo[playerInfo[playerid][areaFaction]][fEnterX],factionInfo[playerInfo[playerid][areaFaction]][fEnterY], factionInfo[playerInfo[playerid][areaFaction]][fEnterZ])) {
+			if(playerInfo[playerid][pFaction] != playerInfo[playerid][areaFaction] && factionInfo[playerInfo[playerid][areaFaction]][fLocked]) return sendPlayerError(playerid, "Nu faci parte din factiunea %s.", factionName(playerInfo[playerid][areaFaction]));						
+			SetPlayerPos(playerid, factionInfo[playerInfo[playerid][areaFaction]][fExitX], factionInfo[playerInfo[playerid][areaFaction]][fExitY], factionInfo[playerInfo[playerid][areaFaction]][fExitZ]);
+			SetPlayerInterior(playerid, factionInfo[playerInfo[playerid][areaFaction]][fInterior]);
+			SetPlayerVirtualWorld(playerid, factionInfo[playerInfo[playerid][areaFaction]][fID]);
+			playerInfo[playerid][pinFaction] = playerInfo[playerid][areaFaction];	
+			playerInfo[playerid][areaFaction] = 0;
+			return true;
+		}
+		else if(IsPlayerInRangeOfPoint(playerid, 3.5, factionInfo[b][fExitX], factionInfo[b][fExitY], factionInfo[b][fExitZ])) {
+			SetPlayerPos(playerid, factionInfo[b][fEnterX],factionInfo[b][fEnterY], factionInfo[b][fEnterZ]);
+			SetPlayerVirtualWorld(playerid, 0);
+			SetPlayerInterior(playerid, 0);
+			playerInfo[playerid][pinFaction] = 0;
+			return true;
+		}
+
 		if(playerInfo[playerid][pFlymode] == true)  {
 			playerInfo[playerid][pFlymode] = false;
 			SetPlayerHealthEx(playerid, 100);

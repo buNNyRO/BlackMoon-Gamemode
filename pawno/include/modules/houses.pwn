@@ -70,31 +70,6 @@ function LoadHouses() {
 	return printf("Houses: %d [From Database]", Iter_Count(ServerHouses));
 }
 
-hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
-	if(PRESSED(KEY_SECONDARY_ATTACK)) {
-		foreach(new i : ServerHouses) {
-			if(IsPlayerInRangeOfPoint(playerid, 3.5, houseInfo[i][hExtX], houseInfo[i][hExtY], houseInfo[i][hExtZ])) {
-				if(houseInfo[i][hLocked] == 1) return sendPlayerError(playerid, "Acesta casa, este inchisa.");
-				if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Esti intr-un vehicul.");
-				SetPlayerPos(playerid, houseInfo[i][hX], houseInfo[i][hY], houseInfo[i][hZ]);
-				SetPlayerInterior(playerid, houseInfo[i][hInterior]);
-				SetPlayerVirtualWorld(playerid, houseInfo[i][hID]);
-				playerInfo[playerid][pinHouse] = i;
-				if(houseInfo[i][hOwned] == 1) SCM(playerid, COLOR_GREY, string_fast("* House Notice: Welcome to %s's house. Commands available: /eat, /sleep.", houseInfo[i][hOwner]));
-				else if(houseInfo[i][hOwned] == 0) SCM(playerid, COLOR_GREY, "* House Notice: Welcome to AdmBot house. Commands available: /eat, /sleep.");		
-			}
-			if(IsPlayerInRangeOfPoint(playerid, 3.5, houseInfo[i][hX], houseInfo[i][hY], houseInfo[i][hZ])) {
-				if(IsPlayerInAnyVehicle(playerid)) return true;
-				SetPlayerPos(playerid, houseInfo[i][hExtX], houseInfo[i][hExtY], houseInfo[i][hExtZ]);
-				SetPlayerInterior(playerid, 0);
-				SetPlayerVirtualWorld(playerid, 0);
-				playerInfo[playerid][pinHouse] = -1;
-			}
-		}
-	}
-	return true;
-}
-
 HouseUpdate(houseid) {
 	if(IsValidDynamic3DTextLabel(houseInfo[houseid][hText]))
 		DestroyDynamic3DTextLabel(houseInfo[houseid][hText]);
@@ -111,6 +86,7 @@ HouseUpdate(houseid) {
 	format(gString, sizeof(gString), "House ID: %d\nHouse Title: %s\nHouse Description: %s\nOwner: %s\nPrice: $%s%s", houseInfo[houseid][hID], houseInfo[houseid][hTitle], houseInfo[houseid][hDescription], houseInfo[houseid][hOwner], formatNumber(houseInfo[houseid][hPrice]),(houseInfo[houseid][hRentPrice] ? rent : ""));
 	houseInfo[houseid][hText] = CreateDynamic3DTextLabel(gString, -1, houseInfo[houseid][hExtX],houseInfo[houseid][hExtY],houseInfo[houseid][hExtZ], 20.0, 0xFFFF, 0xFFFF, 0, 0, 0, -1, STREAMER_3D_TEXT_LABEL_SD);
 	houseInfo[houseid][hPickup] = CreateDynamicPickup((houseInfo[houseid][hPrice] ? 1272 : 1273), 23, houseInfo[houseid][hExtX],houseInfo[houseid][hExtY],houseInfo[houseid][hExtZ], 0, 0, -1, STREAMER_PICKUP_SD);					
+	PickInfo[houseInfo[houseid][hPickup]][HOUSE] = houseid;
 	houseInfo[houseid][hArea] = CreateDynamicSphere(houseInfo[houseid][hExtX],houseInfo[houseid][hExtY],houseInfo[houseid][hExtZ], 2.0, 0, 0);
 	Streamer_SetIntData(STREAMER_TYPE_AREA, houseInfo[houseid][hArea], E_STREAMER_EXTRA_ID, (houseid + HOUSE_STREAMER_START));
 	CreateDynamicMapIcon(houseInfo[houseid][hExtX],houseInfo[houseid][hExtY],houseInfo[houseid][hExtZ],(houseInfo[houseid][hPrice] ? 31 : 32),0,-1,-1,-1,750.0); 		
@@ -206,59 +182,52 @@ Dialog:HOUSE_OPTION_DESCADMIN(playerid, response, listitem, inputtext[]) {
 YCMD:buyhouse(playerid, params[], help) {
 	if(playerInfo[playerid][pHouse] != 0) return sendPlayerError(playerid, "Ai deja o casa cumparata.");
 	if(playerInfo[playerid][pLevel] < 5) return sendPlayerError(playerid, "Trebuie sa detii, minim level 5.");
-	foreach(new i : ServerHouses) {
-		if(IsPlayerInRangeOfPoint(playerid, 3.5, houseInfo[i][hExtX], houseInfo[i][hExtY], houseInfo[i][hExtZ])) {
-			if(houseInfo[i][hPrice] == 0) return sendPlayerError(playerid, "Aceasta casa nu este de vanzare.");
-			if(houseInfo[i][hOwned] == 1) {
-				new id = GetPlayerID(houseInfo[i][hOwner]), moneys, newmoneys;
-				gQuery[0] = (EOS);
-				gString[0] = (EOS);
-				if(id != INVALID_PLAYER_ID) { 
-					playerInfo[id][pHouse] = 0;
-					playerInfo[id][pHouseID] = -1;
-					playerInfo[id][pBank] += houseInfo[i][hPrice];
-					SCM(playerid, COLOR_GREY, string_fast("* House Notice: %s ti-a cumparat casa, si ai primit $%s, in banca.", getName(playerid), formatNumber(houseInfo[i][hPrice])));
-					update("UPDATE `server_users` SET `Bank` = '%d', `House` = '0', `HouseID` = '-1' WHERE `ID` = '%d'", playerInfo[id][pBank], playerInfo[id][pSQLID]);
-				}
-				else {
-					format(gQuery, sizeof(gQuery), "SELECT * FROM `server_users` WHERE `Name` = '%s'", houseInfo[i][hOwner]);
-					new Cache: result = mysql_query(SQL, gQuery);
-					if(cache_num_rows() != 0) {
-						cache_get_value_name(0, "Bank", gString); moneys = strval(gString);
-						newmoneys = moneys + houseInfo[i][hPrice];
-					}
-					cache_delete(result);
-					update("UPDATE `server_users` SET `Bank` = '%d', `House` = '0', `HouseID` = '-1' WHERE `ID` = '%d'", newmoneys, playerInfo[id][pSQLID]);
-				}
-				SCM(playerid, COLOR_GREY, string_fast("* House Notice: Felicitari ! Ai cumparat casa cu id %d, si ai platit $%s.", i, formatNumber(houseInfo[i][hPrice])));
-				GivePlayerCash(playerid, 0, houseInfo[i][hPrice]);
-				format(houseInfo[i][hOwner], 32, getName(playerid));
-				playerInfo[playerid][pHouse] = 1;
-				playerInfo[playerid][pHouseID] = i;
-				playerInfo[playerid][pSpawnChange] = 2;
-				houseInfo[i][hOwned] = 1;
-				houseInfo[i][hPrice] = 0;
-				HouseUpdate(i);
-				update("UPDATE `server_users` SET `House` = '1', `HouseID` = '%d', `SpawnChange` = '2' WHERE `ID` = '%d'", i, playerInfo[playerid][pSQLID]);
-				mysql_format(SQL, gQuery, sizeof(gQuery),"UPDATE `server_houses` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d'",houseInfo[i][hOwner], playerInfo[playerid][pSQLID], i);
-				mysql_tquery(SQL, gQuery, "", "");
+	if(playerInfo[playerid][areaHouse] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, houseInfo[playerInfo[playerid][areaHouse]][hExtX], houseInfo[playerInfo[playerid][areaHouse]][hExtY], houseInfo[playerInfo[playerid][areaHouse]][hExtZ])) {
+		if(houseInfo[playerInfo[playerid][areaHouse]][hPrice] == 0) return sendPlayerError(playerid, "Aceasta casa nu este de vanzare.");
+		if(houseInfo[playerInfo[playerid][areaHouse]][hOwned] == 1) {
+			new id = GetPlayerID(houseInfo[playerInfo[playerid][areaHouse]][hOwner]), moneys, newmoneys;
+			gString[0] = (EOS);
+			if(id != INVALID_PLAYER_ID) { 
+				playerInfo[id][pHouse] = 0;
+				playerInfo[id][pHouseID] = -1;
+				playerInfo[id][pBank] += houseInfo[playerInfo[playerid][areaHouse]][hPrice];
+				SCM(playerid, COLOR_GREY, string_fast("* House Notice: %s ti-a cumparat casa, si ai primit $%s, in banca.", getName(playerid), formatNumber(houseInfo[playerInfo[playerid][areaHouse]][hPrice])));
+				update("UPDATE `server_users` SET `Bank` = '%d', `House` = '0', `HouseID` = '-1' WHERE `ID` = '%d'", playerInfo[id][pBank], playerInfo[id][pSQLID]);
 			}
-			else if(houseInfo[i][hOwned] == 0) {
-				gQuery[0] = (EOS);
-				SCM(playerid, COLOR_GREY, string_fast("* House Notice: Felicitari ! Ai cumparat casa cu id %d, si ai platit $%s.", i, formatNumber(houseInfo[i][hPrice])));
-				GivePlayerCash(playerid, 0, houseInfo[i][hPrice]);
-				format(houseInfo[i][hOwner], 32, getName(playerid));
-				playerInfo[playerid][pHouse] = 1;
-				playerInfo[playerid][pHouseID] = i;
-				playerInfo[playerid][pMoney] -= houseInfo[i][hPrice];
-				playerInfo[playerid][pSpawnChange] = 2;
-				houseInfo[i][hOwned] = 1;
-				houseInfo[i][hPrice] = 0;
-				HouseUpdate(i);
-				update("UPDATE `server_users` SET `Money` = '%d', `MStore` = '%d' `House` = '1', `HouseID` = '%d', `SpawnChange` = '2' WHERE `ID` = '%d'", MoneyMoney[playerid], StoreMoney[playerid], i, playerInfo[playerid][pSQLID]);
-				mysql_format(SQL, gQuery, sizeof(gQuery),"UPDATE `server_houses` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d'",houseInfo[i][hOwner],playerInfo[playerid][pSQLID], i);
-				mysql_tquery(SQL, gQuery, "", "");
+			else {
+				new Cache: result = mysql_query(SQL, string_fast("SELECT * FROM `server_users` WHERE `Name` = '%s'", houseInfo[playerInfo[playerid][areaHouse]][hOwner]));
+				if(cache_num_rows() != 0) {
+					cache_get_value_name(0, "Bank", gString); moneys = strval(gString);
+					newmoneys = moneys + houseInfo[playerInfo[playerid][areaHouse]][hPrice];
+				}
+				cache_delete(result);
+				update("UPDATE `server_users` SET `Bank` = '%d', `House` = '0', `HouseID` = '-1' WHERE `ID` = '%d'", newmoneys, playerInfo[id][pSQLID]);
 			}
+			SCM(playerid, COLOR_GREY, string_fast("* House Notice: Felicitari ! Ai cumparat casa cu id %d, si ai platit $%s.", playerInfo[playerid][areaHouse], formatNumber(houseInfo[playerInfo[playerid][areaHouse]][hPrice])));
+			GivePlayerCash(playerid, 0, houseInfo[playerInfo[playerid][areaHouse]][hPrice]);
+			format(houseInfo[playerInfo[playerid][areaHouse]][hOwner], 32, getName(playerid));
+			playerInfo[playerid][pHouse] = 1;
+			playerInfo[playerid][pHouseID] = playerInfo[playerid][areaHouse];
+			playerInfo[playerid][pSpawnChange] = 2;
+			houseInfo[playerInfo[playerid][areaHouse]][hOwned] = 1;
+			houseInfo[playerInfo[playerid][areaHouse]][hPrice] = 0;
+			HouseUpdate(playerInfo[playerid][areaHouse]);
+			update("UPDATE `server_users` SET `House` = '1', `HouseID` = '%d', `SpawnChange` = '2' WHERE `ID` = '%d'", playerInfo[playerid][areaHouse], playerInfo[playerid][pSQLID]);
+			update("UPDATE `server_houses` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d'",houseInfo[playerInfo[playerid][areaHouse]][hOwner], playerInfo[playerid][pSQLID], playerInfo[playerid][areaHouse]);
+		}
+		else if(houseInfo[playerInfo[playerid][areaHouse]][hOwned] == 0) {
+			SCM(playerid, COLOR_GREY, string_fast("* House Notice: Felicitari ! Ai cumparat casa cu id %d, si ai platit $%s.", playerInfo[playerid][areaHouse], formatNumber(houseInfo[playerInfo[playerid][areaHouse]][hPrice])));
+			GivePlayerCash(playerid, 0, houseInfo[playerInfo[playerid][areaHouse]][hPrice]);
+			format(houseInfo[playerInfo[playerid][areaHouse]][hOwner], 32, getName(playerid));
+			playerInfo[playerid][pHouse] = 1;
+			playerInfo[playerid][pHouseID] = playerInfo[playerid][areaHouse];
+			playerInfo[playerid][pMoney] -= houseInfo[playerInfo[playerid][areaHouse]][hPrice];
+			playerInfo[playerid][pSpawnChange] = 2;
+			houseInfo[playerInfo[playerid][areaHouse]][hOwned] = 1;
+			houseInfo[playerInfo[playerid][areaHouse]][hPrice] = 0;
+			HouseUpdate(playerInfo[playerid][areaHouse]);
+			update("UPDATE `server_users` SET `Money` = '%d', `MStore` = '%d' `House` = '1', `HouseID` = '%d', `SpawnChange` = '2' WHERE `ID` = '%d'", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][areaHouse], playerInfo[playerid][pSQLID]);
+			update("UPDATE `server_houses` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d'",houseInfo[playerInfo[playerid][areaHouse]][hOwner],playerInfo[playerid][pSQLID], playerInfo[playerid][areaHouse]);
 		}
 	}
 	return true;

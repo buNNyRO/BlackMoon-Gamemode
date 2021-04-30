@@ -12,9 +12,9 @@
 
 #define MAX_EXAM_CHECKPOINTS 			20
 #define MAX_REPORTS                     50
-#define MAX_DYNAMIC_PICKUPS             100
+//#define MAX_DYNAMIC_PICKUPS             100
 #define MAX_ADMIN_VEHICLES 				50
-#define MAX_DYNAMIC_LABELS              100
+//#define MAX_DYNAMIC_LABELS              100
 #define MAX_SERVER_VARS					10
 #define MAX_DSMODELS					90
 #define MAX_FREQS						10

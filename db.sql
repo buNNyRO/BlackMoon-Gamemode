@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Gazdă: 127.0.0.1
--- Timp de generare: apr. 22, 2021 la 11:07 PM
--- Versiune server: 10.4.17-MariaDB
--- Versiune PHP: 8.0.2
+-- Gazdă: localhost
+-- Timp de generare: apr. 30, 2021 la 11:03 AM
+-- Versiune server: 5.7.29-0ubuntu0.18.04.1
+-- Versiune PHP: 7.2.24-0ubuntu0.18.04.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Bază de date: `from0`
+-- Bază de date: `client106_samp`
 --
 
 -- --------------------------------------------------------
@@ -30,14 +30,14 @@ SET time_zone = "+00:00";
 CREATE TABLE `panelactions2` (
   `id` int(11) NOT NULL,
   `actionid` int(11) NOT NULL,
-  `actiontime` int(11) NOT NULL DEFAULT 0,
-  `complaintid` int(11) NOT NULL DEFAULT 0,
+  `actiontime` int(11) NOT NULL DEFAULT '0',
+  `complaintid` int(11) NOT NULL DEFAULT '0',
   `playerid` int(11) NOT NULL,
   `giverid` int(11) NOT NULL,
   `playername` varchar(64) NOT NULL,
   `givername` varchar(64) NOT NULL,
   `reason` varchar(128) NOT NULL,
-  `dm` int(3) NOT NULL DEFAULT 0
+  `dm` int(3) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -49,12 +49,12 @@ CREATE TABLE `panelactions2` (
 CREATE TABLE `server_bans` (
   `ID` int(11) NOT NULL,
   `PlayerName` varchar(24) NOT NULL DEFAULT 'None',
-  `PlayerID` int(11) NOT NULL DEFAULT 0,
+  `PlayerID` int(11) NOT NULL DEFAULT '0',
   `AdminName` varchar(24) NOT NULL DEFAULT 'AdminName',
-  `AdminID` int(11) NOT NULL DEFAULT 0,
+  `AdminID` int(11) NOT NULL DEFAULT '0',
   `Reason` varchar(64) NOT NULL DEFAULT 'None',
-  `Days` int(11) NOT NULL DEFAULT 0,
-  `Active` int(11) NOT NULL DEFAULT 1,
+  `Days` int(11) NOT NULL DEFAULT '0',
+  `Active` int(11) NOT NULL DEFAULT '1',
   `Date` varchar(32) NOT NULL DEFAULT 'None',
   `Permanent` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -68,13 +68,13 @@ CREATE TABLE `server_bans` (
 CREATE TABLE `server_bans_ip` (
   `ID` int(11) NOT NULL,
   `PlayerName` varchar(24) NOT NULL DEFAULT 'none',
-  `PlayerID` int(11) NOT NULL DEFAULT 0,
+  `PlayerID` int(11) NOT NULL DEFAULT '0',
   `PlayerIP` varchar(16) NOT NULL DEFAULT 'none',
   `AdminName` varchar(24) NOT NULL DEFAULT 'none',
-  `AdminID` int(11) NOT NULL DEFAULT 0,
+  `AdminID` int(11) NOT NULL DEFAULT '0',
   `Reason` varchar(64) NOT NULL DEFAULT 'none',
   `Date` varchar(32) NOT NULL DEFAULT 'none',
-  `Active` int(11) NOT NULL DEFAULT 1
+  `Active` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -90,18 +90,18 @@ CREATE TABLE `server_business` (
   `Fee` int(11) NOT NULL,
   `Static` int(11) NOT NULL,
   `Type` int(11) NOT NULL,
-  `X` float NOT NULL DEFAULT 0,
-  `Y` float NOT NULL DEFAULT 0,
-  `Z` float NOT NULL DEFAULT 0,
-  `ExtX` float NOT NULL DEFAULT 0,
-  `ExtY` float NOT NULL DEFAULT 0,
-  `ExtZ` float NOT NULL DEFAULT 0,
+  `X` float NOT NULL DEFAULT '0',
+  `Y` float NOT NULL DEFAULT '0',
+  `Z` float NOT NULL DEFAULT '0',
+  `ExtX` float NOT NULL DEFAULT '0',
+  `ExtY` float NOT NULL DEFAULT '0',
+  `ExtZ` float NOT NULL DEFAULT '0',
   `Interior` int(11) NOT NULL,
   `VW` int(11) NOT NULL,
   `Owner` varchar(32) NOT NULL DEFAULT 'none',
-  `Owned` int(11) NOT NULL DEFAULT 0,
+  `Owned` int(11) NOT NULL DEFAULT '0',
   `Price` int(11) NOT NULL,
-  `OwnerID` int(11) NOT NULL DEFAULT -1,
+  `OwnerID` int(11) NOT NULL DEFAULT '-1',
   `Locked` int(11) NOT NULL,
   `Balance` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -112,7 +112,7 @@ CREATE TABLE `server_business` (
 
 INSERT INTO `server_business` (`ID`, `Title`, `Description`, `Fee`, `Static`, `Type`, `X`, `Y`, `Z`, `ExtX`, `ExtY`, `ExtZ`, `Interior`, `VW`, `Owner`, `Owned`, `Price`, `OwnerID`, `Locked`, `Balance`) VALUES
 (1, 'Bank Los Santos', 'The Bank Los Santos', 500, 0, 1, 2315.95, -1.61817, 26.7422, 1464.83, -1011.11, 26.8025, 0, 1, 'AdmBot', 1, 0, -1, 0, 10500),
-(2, '24/7 Los Santos', 'The 24/7 Los Santos', 500, 0, 2, -25.8845, -185.869, 1003.55, 1154.09, -1771.65, 16.4356, 17, 2, 'AdmBot', 1, 0, -1, 0, 24000),
+(2, '24/7 Los Santos', 'The 24/7 Los Santos', 500, 0, 2, -25.8845, -185.869, 1003.55, 1154.09, -1771.65, 16.4356, 17, 2, 'AdmBot', 1, 0, -1, 0, 78500),
 (3, 'CNN Los Santos', 'The CNN Los Santos', 0, 1, 3, 0, 0, 0, 1170.64, -1489.73, 22.7018, 0, 0, 'AdmBot', 1, 0, -1, 0, 0);
 
 -- --------------------------------------------------------
@@ -124,9 +124,9 @@ INSERT INTO `server_business` (`ID`, `Title`, `Description`, `Fee`, `Static`, `T
 CREATE TABLE `server_chat_logs` (
   `ID` int(11) NOT NULL,
   `PlayerName` varchar(24) NOT NULL DEFAULT 'None',
-  `PlayerID` int(11) NOT NULL DEFAULT 0,
+  `PlayerID` int(11) NOT NULL DEFAULT '0',
   `ChatText` varchar(128) NOT NULL DEFAULT 'None',
-  `Time` timestamp NOT NULL DEFAULT current_timestamp()
+  `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -905,7 +905,51 @@ INSERT INTO `server_chat_logs` (`ID`, `PlayerName`, `PlayerID`, `ChatText`, `Tim
 (769, 'Vicentzo', 3, '* (chat log): much better.', '2021-04-16 18:41:07'),
 (770, 'Vicentzo', 3, '* (chat log): nu cade fly.', '2021-04-16 18:41:09'),
 (771, 'Vicentzo', 3, '* (chat log): merge extrem de bn.', '2021-04-16 18:41:12'),
-(772, 'Vicentzo', 3, '* (chat log): v.', '2021-04-18 16:29:41');
+(772, 'Vicentzo', 3, '* (chat log): v.', '2021-04-18 16:29:41'),
+(773, 'mr.bunny', 2, '* (chat log): mr.bunny.', '2021-04-29 09:50:01'),
+(774, 'Vicentzo', 1, '* (chat log): v.', '2021-04-29 09:56:46'),
+(775, 'mr.bunny', 2, '* (chat log): w.', '2021-04-29 12:12:12'),
+(776, 'mr.bunny', 2, '* (chat log): wA.', '2021-04-29 16:12:08'),
+(777, 'Aditsu', 4, '* (chat log): lasã citu ratatule.', '2021-04-29 16:42:39'),
+(778, 'Aditsu', 4, '* (chat log): ewaeaw.', '2021-04-29 16:42:46'),
+(779, 'Vicentzo', 1, '* (chat log): asd.', '2021-04-29 16:42:47'),
+(780, 'mr.bunny', 2, '* (chat log): dasd.', '2021-04-29 16:42:49'),
+(781, 'Aditsu', 4, '* (chat log): ewaewaeaw.', '2021-04-29 16:42:49'),
+(782, 'Aditsu', 4, '* (chat log): ewaewa.', '2021-04-29 16:43:02'),
+(783, 'Quez]', 6, '* (chat log): cf.', '2021-04-29 18:54:51'),
+(784, 'mr.bunny', 2, '* (chat log): cf chelie.', '2021-04-29 19:19:30'),
+(785, 'ZeCo.F', 5, '* (chat log): asa.', '2021-04-29 19:19:56'),
+(786, 'CORLEA', 8, '* (chat log): a.', '2021-04-29 19:30:51'),
+(787, 'Aptiv', 11, '* (chat log): baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.', '2021-04-29 20:21:52'),
+(788, 'Vicentzo', 1, '* (chat log): r/jail.', '2021-04-29 21:11:46'),
+(789, 'Vicentzo', 1, '* (chat log): asd.', '2021-04-29 21:30:39'),
+(790, 'mr.bunny', 2, '* (chat log): da.', '2021-04-29 21:30:42');
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `server_clans`
+--
+
+CREATE TABLE `server_clans` (
+  `ID` int(11) NOT NULL,
+  `OwnerID` int(11) NOT NULL DEFAULT '-1',
+  `Name` varchar(24) NOT NULL DEFAULT 'none',
+  `Tag` varchar(16) NOT NULL DEFAULT 'none',
+  `ClanColor` varchar(32) NOT NULL DEFAULT 'ffffff',
+  `Motd` varchar(128) NOT NULL DEFAULT 'none',
+  `Days` int(11) NOT NULL,
+  `Slots` int(11) NOT NULL,
+  `Rank` varchar(32) NOT NULL DEFAULT '%s|%s|%s|%s|%s|%s|%s',
+  `Total` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Eliminarea datelor din tabel `server_clans`
+--
+
+INSERT INTO `server_clans` (`ID`, `OwnerID`, `Name`, `Tag`, `ClanColor`, `Motd`, `Days`, `Slots`, `Rank`, `Total`) VALUES
+(0, 1, 'Sintembosi', 'sntbos', 'ffffff', 'asd', 30, 100, 'sintbos|asd|231|sasd|sas|sda|12', 0);
 
 -- --------------------------------------------------------
 
@@ -916,12 +960,12 @@ INSERT INTO `server_chat_logs` (`ID`, `PlayerName`, `PlayerID`, `ChatText`, `Tim
 CREATE TABLE `server_ds` (
   `ID` int(10) NOT NULL,
   `Model` int(11) NOT NULL,
-  `Price` int(11) NOT NULL DEFAULT 1,
-  `MaxSpeed` int(4) NOT NULL DEFAULT 1,
+  `Price` int(11) NOT NULL DEFAULT '1',
+  `MaxSpeed` int(4) NOT NULL DEFAULT '1',
   `Type` int(10) NOT NULL,
   `Premium` int(10) NOT NULL,
-  `Gold` int(10) NOT NULL DEFAULT 500,
-  `Stock` int(11) NOT NULL DEFAULT 30
+  `Gold` int(10) NOT NULL DEFAULT '500',
+  `Stock` int(11) NOT NULL DEFAULT '30'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -936,14 +980,14 @@ INSERT INTO `server_ds` (`ID`, `Model`, `Price`, `MaxSpeed`, `Type`, `Premium`, 
 (5, 549, 310000, 153, 1, 0, 35, 25),
 (6, 401, 290000, 147, 1, 0, 30, 27),
 (7, 400, 520000, 158, 1, 0, 40, 26),
-(8, 543, 325000, 151, 1, 0, 35, 29),
+(8, 543, 325000, 151, 1, 0, 35, 28),
 (9, 482, 490000, 156, 1, 0, 50, 30),
 (10, 483, 520000, 129, 1, 0, 55, 30),
 (11, 508, 570000, 108, 1, 0, 55, 30),
 (12, 550, 410000, 130, 1, 0, 55, 21),
 (13, 585, 325000, 150, 1, 0, 55, 27),
 (14, 496, 500000, 162, 1, 0, 60, 16),
-(15, 542, 520000, 164, 1, 0, 65, 27),
+(15, 542, 520000, 164, 1, 0, 65, 26),
 (16, 419, 410000, 149, 1, 0, 65, 30),
 (17, 554, 530000, 144, 1, 0, 70, 28),
 (18, 518, 390000, 164, 1, 0, 70, 26),
@@ -1069,19 +1113,19 @@ CREATE TABLE `server_factions` (
   `ID` int(11) NOT NULL,
   `Name` varchar(32) NOT NULL DEFAULT 'faction name',
   `Motd` varchar(128) NOT NULL DEFAULT 'faction motd',
-  `MinLevel` int(11) NOT NULL DEFAULT 5,
-  `MaxMembers` int(11) NOT NULL DEFAULT 10,
-  `Interior` int(11) NOT NULL DEFAULT 0,
-  `Type` int(11) NOT NULL DEFAULT 0,
-  `MapIconType` int(11) NOT NULL DEFAULT 0,
-  `Apps` int(11) NOT NULL DEFAULT 0,
-  `Locked` int(11) NOT NULL DEFAULT 0,
-  `X` float NOT NULL DEFAULT 0,
-  `Y` float NOT NULL DEFAULT 0,
-  `Z` float NOT NULL DEFAULT 0,
-  `ExtX` float NOT NULL DEFAULT 0,
-  `ExtY` float NOT NULL DEFAULT 0,
-  `ExtZ` float NOT NULL DEFAULT 0,
+  `MinLevel` int(11) NOT NULL DEFAULT '5',
+  `MaxMembers` int(11) NOT NULL DEFAULT '10',
+  `Interior` int(11) NOT NULL DEFAULT '0',
+  `Type` int(11) NOT NULL DEFAULT '0',
+  `MapIconType` int(11) NOT NULL DEFAULT '0',
+  `Apps` int(11) NOT NULL DEFAULT '0',
+  `Locked` int(11) NOT NULL DEFAULT '0',
+  `X` float NOT NULL DEFAULT '0',
+  `Y` float NOT NULL DEFAULT '0',
+  `Z` float NOT NULL DEFAULT '0',
+  `ExtX` float NOT NULL DEFAULT '0',
+  `ExtY` float NOT NULL DEFAULT '0',
+  `ExtZ` float NOT NULL DEFAULT '0',
   `SkinRank1` varchar(11) NOT NULL,
   `SkinRank2` int(11) NOT NULL,
   `SkinRank3` int(11) NOT NULL,
@@ -1123,8 +1167,8 @@ INSERT INTO `server_factions` (`ID`, `Name`, `Motd`, `MinLevel`, `MaxMembers`, `
 CREATE TABLE `server_faction_logs` (
   `ID` int(11) NOT NULL,
   `Text` varchar(256) NOT NULL DEFAULT 'none.',
-  `Player` int(11) NOT NULL DEFAULT -1,
-  `Leader` int(11) NOT NULL DEFAULT -1
+  `Player` int(11) NOT NULL DEFAULT '-1',
+  `Leader` int(11) NOT NULL DEFAULT '-1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1137,23 +1181,23 @@ CREATE TABLE `server_houses` (
   `ID` int(11) NOT NULL,
   `Title` varchar(32) NOT NULL DEFAULT 'none',
   `Description` varchar(64) NOT NULL DEFAULT 'none',
-  `ExtX` float NOT NULL DEFAULT 0,
-  `ExtY` float NOT NULL DEFAULT 0,
-  `ExtZ` float NOT NULL DEFAULT 0,
-  `X` float NOT NULL DEFAULT 0,
-  `Y` float NOT NULL DEFAULT 0,
-  `Z` float NOT NULL DEFAULT 0,
+  `ExtX` float NOT NULL DEFAULT '0',
+  `ExtY` float NOT NULL DEFAULT '0',
+  `ExtZ` float NOT NULL DEFAULT '0',
+  `X` float NOT NULL DEFAULT '0',
+  `Y` float NOT NULL DEFAULT '0',
+  `Z` float NOT NULL DEFAULT '0',
   `Interior` int(11) NOT NULL,
   `VW` int(11) NOT NULL,
-  `Locked` int(11) NOT NULL DEFAULT 0,
+  `Locked` int(11) NOT NULL DEFAULT '0',
   `Price` int(11) NOT NULL,
-  `Balance` int(11) NOT NULL DEFAULT 0,
+  `Balance` int(11) NOT NULL DEFAULT '0',
   `Owner` varchar(32) NOT NULL,
   `OwnerID` int(11) NOT NULL,
   `Owned` int(11) NOT NULL,
   `Rentabil` int(11) NOT NULL,
-  `Renters` int(11) NOT NULL DEFAULT 0,
-  `Upgrade` int(11) NOT NULL DEFAULT 0,
+  `Renters` int(11) NOT NULL DEFAULT '0',
+  `Upgrade` int(11) NOT NULL DEFAULT '0',
   `RentPrice` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1166,15 +1210,15 @@ CREATE TABLE `server_houses` (
 CREATE TABLE `server_jobs` (
   `ID` int(11) NOT NULL,
   `Name` varchar(32) NOT NULL DEFAULT 'none',
-  `Level` int(11) NOT NULL DEFAULT 1,
-  `PosX` float NOT NULL DEFAULT 0,
-  `PosY` float NOT NULL DEFAULT 0,
-  `PosZ` float NOT NULL DEFAULT 0,
+  `Level` int(11) NOT NULL DEFAULT '1',
+  `PosX` float NOT NULL DEFAULT '0',
+  `PosY` float NOT NULL DEFAULT '0',
+  `PosZ` float NOT NULL DEFAULT '0',
   `Legal` int(11) NOT NULL,
   `Description` varchar(95) NOT NULL,
-  `XST` float NOT NULL DEFAULT 0,
-  `YST` float NOT NULL DEFAULT 0,
-  `ZST` float NOT NULL DEFAULT 0
+  `XST` float NOT NULL DEFAULT '0',
+  `YST` float NOT NULL DEFAULT '0',
+  `ZST` float NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1197,9 +1241,9 @@ INSERT INTO `server_jobs` (`ID`, `Name`, `Level`, `PosX`, `PosY`, `PosZ`, `Legal
 CREATE TABLE `server_kick_logs` (
   `ID` int(11) NOT NULL,
   `PlayerName` varchar(24) NOT NULL DEFAULT 'none',
-  `PlayerID` int(11) NOT NULL DEFAULT 0,
+  `PlayerID` int(11) NOT NULL DEFAULT '0',
   `AdminName` varchar(24) NOT NULL DEFAULT 'AdmBot',
-  `AdminID` int(11) NOT NULL DEFAULT 0,
+  `AdminID` int(11) NOT NULL DEFAULT '0',
   `Reason` varchar(64) NOT NULL DEFAULT 'none',
   `Date` varchar(32) NOT NULL DEFAULT 'none'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -1212,12 +1256,12 @@ CREATE TABLE `server_kick_logs` (
 
 CREATE TABLE `server_labels` (
   `ID` int(11) NOT NULL,
-  `X` float NOT NULL DEFAULT 0,
-  `Y` float NOT NULL DEFAULT 0,
-  `Z` float NOT NULL DEFAULT 0,
+  `X` float NOT NULL DEFAULT '0',
+  `Y` float NOT NULL DEFAULT '0',
+  `Z` float NOT NULL DEFAULT '0',
   `Text` varchar(128) NOT NULL DEFAULT 'none',
-  `WorldID` int(11) NOT NULL DEFAULT -1,
-  `Interior` int(11) NOT NULL DEFAULT -1
+  `WorldID` int(11) NOT NULL DEFAULT '-1',
+  `Interior` int(11) NOT NULL DEFAULT '-1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1247,7 +1291,7 @@ INSERT INTO `server_labels` (`ID`, `X`, `Y`, `Z`, `Text`, `WorldID`, `Interior`)
 CREATE TABLE `server_logs` (
   `ID` int(11) NOT NULL,
   `text` varchar(128) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1396,12 +1440,12 @@ INSERT INTO `server_logs` (`ID`, `text`, `time`) VALUES
 CREATE TABLE `server_mute_logs` (
   `ID` int(11) NOT NULL,
   `PlayerName` varchar(24) NOT NULL DEFAULT 'None',
-  `PlayerID` int(11) NOT NULL DEFAULT 0,
+  `PlayerID` int(11) NOT NULL DEFAULT '0',
   `AdminName` varchar(24) NOT NULL DEFAULT 'AdmBot',
-  `AdminID` int(11) NOT NULL DEFAULT 0,
+  `AdminID` int(11) NOT NULL DEFAULT '0',
   `MuteReason` varchar(64) NOT NULL DEFAULT 'None',
-  `MuteMinutes` int(11) NOT NULL DEFAULT 1,
-  `Time` timestamp NOT NULL DEFAULT current_timestamp()
+  `MuteMinutes` int(11) NOT NULL DEFAULT '1',
+  `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1412,30 +1456,38 @@ CREATE TABLE `server_mute_logs` (
 
 CREATE TABLE `server_personal_vehicles` (
   `ID` int(11) NOT NULL,
-  `ModelID` int(11) NOT NULL DEFAULT 400,
-  `OwnerID` int(11) NOT NULL DEFAULT 0,
-  `ColorOne` int(11) NOT NULL DEFAULT 0,
-  `ColorTwo` int(11) NOT NULL DEFAULT 0,
-  `X` float NOT NULL DEFAULT 0,
-  `Y` float NOT NULL DEFAULT 0,
-  `Z` float NOT NULL DEFAULT 0,
-  `Angle` float NOT NULL DEFAULT 0,
-  `Odometer` float NOT NULL DEFAULT 0,
-  `Fuel` float NOT NULL DEFAULT 100,
+  `ModelID` int(11) NOT NULL DEFAULT '400',
+  `OwnerID` int(11) NOT NULL DEFAULT '0',
+  `ColorOne` int(11) NOT NULL DEFAULT '0',
+  `ColorTwo` int(11) NOT NULL DEFAULT '0',
+  `X` float NOT NULL DEFAULT '0',
+  `Y` float NOT NULL DEFAULT '0',
+  `Z` float NOT NULL DEFAULT '0',
+  `Angle` float NOT NULL DEFAULT '0',
+  `Odometer` float NOT NULL DEFAULT '0',
+  `Fuel` float NOT NULL DEFAULT '100',
   `Age` int(11) NOT NULL,
   `CarPlate` varchar(12) NOT NULL DEFAULT 'New Car',
   `Components` varchar(64) NOT NULL DEFAULT '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0',
-  `InsurancePoints` int(11) NOT NULL DEFAULT 5,
-  `LockStatus` int(11) NOT NULL DEFAULT 0,
-  `VirtualWorld` int(11) NOT NULL DEFAULT 0,
-  `Interior` int(11) NOT NULL DEFAULT 0,
-  `Health` float NOT NULL DEFAULT 1000,
-  `DamagePanels` int(11) NOT NULL DEFAULT 0,
-  `DamageDoors` int(11) NOT NULL DEFAULT 0,
-  `DamageLights` int(11) NOT NULL DEFAULT 0,
-  `DamageTires` int(11) NOT NULL DEFAULT 0,
-  `PaintJob` int(11) NOT NULL DEFAULT -1
+  `InsurancePoints` int(11) NOT NULL DEFAULT '5',
+  `LockStatus` int(11) NOT NULL DEFAULT '0',
+  `VirtualWorld` int(11) NOT NULL DEFAULT '0',
+  `Interior` int(11) NOT NULL DEFAULT '0',
+  `Health` float NOT NULL DEFAULT '1000',
+  `DamagePanels` int(11) NOT NULL DEFAULT '0',
+  `DamageDoors` int(11) NOT NULL DEFAULT '0',
+  `DamageLights` int(11) NOT NULL DEFAULT '0',
+  `DamageTires` int(11) NOT NULL DEFAULT '0',
+  `PaintJob` int(11) NOT NULL DEFAULT '-1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Eliminarea datelor din tabel `server_personal_vehicles`
+--
+
+INSERT INTO `server_personal_vehicles` (`ID`, `ModelID`, `OwnerID`, `ColorOne`, `ColorTwo`, `X`, `Y`, `Z`, `Angle`, `Odometer`, `Fuel`, `Age`, `CarPlate`, `Components`, `InsurancePoints`, `LockStatus`, `VirtualWorld`, `Interior`, `Health`, `DamagePanels`, `DamageDoors`, `DamageLights`, `DamageTires`, `PaintJob`) VALUES
+(1, 543, 1, 1, 1, 1411.3, -2241.7, 13.274, 179.814, 0, 100, 1261, 'DS Car', '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', 10, 0, 0, 0, 1000, 0, 0, 0, 0, -1),
+(2, 542, 2, 1, 1, 1408.04, -2241.74, 13.2739, 180.753, 0, 100, 1261, 'DS Car', '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', 10, 0, 0, 0, 1000, 0, 0, 0, 0, -1);
 
 -- --------------------------------------------------------
 
@@ -1445,12 +1497,12 @@ CREATE TABLE `server_personal_vehicles` (
 
 CREATE TABLE `server_pickups` (
   `ID` int(11) NOT NULL,
-  `Model` int(11) NOT NULL DEFAULT 1239,
-  `X` float NOT NULL DEFAULT 0,
-  `Y` float NOT NULL DEFAULT 0,
-  `Z` float NOT NULL DEFAULT 0,
-  `WorldID` int(11) NOT NULL DEFAULT 0,
-  `Interior` int(11) NOT NULL DEFAULT 0
+  `Model` int(11) NOT NULL DEFAULT '1239',
+  `X` float NOT NULL DEFAULT '0',
+  `Y` float NOT NULL DEFAULT '0',
+  `Z` float NOT NULL DEFAULT '0',
+  `WorldID` int(11) NOT NULL DEFAULT '0',
+  `Interior` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1468,14 +1520,14 @@ INSERT INTO `server_pickups` (`ID`, `Model`, `X`, `Y`, `Z`, `WorldID`, `Interior
 
 CREATE TABLE `server_safes` (
   `ID` int(11) NOT NULL,
-  `Faction` int(11) NOT NULL DEFAULT 0,
-  `Money` int(11) NOT NULL DEFAULT 0,
-  `Drugs` int(11) NOT NULL DEFAULT 0,
-  `Materials` int(11) NOT NULL DEFAULT 0,
-  `VirtualWorld` int(11) NOT NULL DEFAULT -1,
-  `X` float NOT NULL DEFAULT 0,
-  `Y` float NOT NULL DEFAULT 0,
-  `Z` float NOT NULL DEFAULT 0
+  `Faction` int(11) NOT NULL DEFAULT '0',
+  `Money` int(11) NOT NULL DEFAULT '0',
+  `Drugs` int(11) NOT NULL DEFAULT '0',
+  `Materials` int(11) NOT NULL DEFAULT '0',
+  `VirtualWorld` int(11) NOT NULL DEFAULT '-1',
+  `X` float NOT NULL DEFAULT '0',
+  `Y` float NOT NULL DEFAULT '0',
+  `Z` float NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1486,12 +1538,12 @@ CREATE TABLE `server_safes` (
 
 CREATE TABLE `server_turfs` (
   `ID` int(11) NOT NULL,
-  `Owned` int(11) NOT NULL DEFAULT 0,
-  `MinX` float NOT NULL DEFAULT 0,
-  `MaxX` float NOT NULL DEFAULT 0,
-  `MinY` float NOT NULL DEFAULT 0,
-  `MaxY` float NOT NULL DEFAULT 0,
-  `Time` int(11) NOT NULL DEFAULT -1
+  `Owned` int(11) NOT NULL DEFAULT '0',
+  `MinX` float NOT NULL DEFAULT '0',
+  `MaxX` float NOT NULL DEFAULT '0',
+  `MinY` float NOT NULL DEFAULT '0',
+  `MaxY` float NOT NULL DEFAULT '0',
+  `Time` int(11) NOT NULL DEFAULT '-1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1555,82 +1607,105 @@ CREATE TABLE `server_users` (
   `Password` varchar(65) NOT NULL DEFAULT 'None',
   `EMail` varchar(128) NOT NULL DEFAULT 'None',
   `LastLogin` varchar(32) NOT NULL DEFAULT 'None',
-  `RegisterDate` timestamp NOT NULL DEFAULT current_timestamp(),
-  `Skin` int(11) NOT NULL DEFAULT 250,
-  `Admin` int(11) NOT NULL DEFAULT 0,
-  `Helper` int(11) NOT NULL DEFAULT 0,
-  `Level` int(11) NOT NULL DEFAULT 1,
-  `RespectPoints` int(11) NOT NULL DEFAULT 0,
-  `Money` int(11) NOT NULL DEFAULT 2500,
-  `Bank` int(11) NOT NULL DEFAULT 5000,
-  `Hours` int(11) NOT NULL DEFAULT 0,
-  `Seconds` int(11) NOT NULL DEFAULT 0,
-  `Mute` int(11) NOT NULL DEFAULT 0,
-  `Gender` int(11) NOT NULL DEFAULT 1,
-  `Tutorial` tinyint(1) NOT NULL DEFAULT 0,
+  `RegisterDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Skin` int(11) NOT NULL DEFAULT '250',
+  `Admin` int(11) NOT NULL DEFAULT '0',
+  `Helper` int(11) NOT NULL DEFAULT '0',
+  `Level` int(11) NOT NULL DEFAULT '1',
+  `RespectPoints` int(11) NOT NULL DEFAULT '0',
+  `Money` int(11) NOT NULL DEFAULT '2500',
+  `Bank` int(11) NOT NULL DEFAULT '5000',
+  `Hours` int(11) NOT NULL DEFAULT '0',
+  `Seconds` int(11) NOT NULL DEFAULT '0',
+  `Mute` int(11) NOT NULL DEFAULT '0',
+  `Gender` int(11) NOT NULL DEFAULT '1',
+  `Tutorial` tinyint(1) NOT NULL DEFAULT '0',
   `Licenses` varchar(48) NOT NULL DEFAULT '0|0|0|0|0|0|0|0',
-  `Warn` int(11) NOT NULL DEFAULT 0,
-  `ReportMute` int(11) NOT NULL DEFAULT 0,
+  `Warn` int(11) NOT NULL DEFAULT '0',
+  `ReportMute` int(11) NOT NULL DEFAULT '0',
   `Status` int(11) NOT NULL,
   `PremiumPoints` int(11) NOT NULL,
-  `Job` int(11) NOT NULL DEFAULT 0,
+  `Job` int(11) NOT NULL DEFAULT '0',
   `Business` int(11) NOT NULL,
   `BusinessID` int(11) NOT NULL,
   `IP` varchar(16) NOT NULL,
   `House` int(11) NOT NULL,
   `HouseID` int(11) NOT NULL,
-  `FRank` int(11) NOT NULL DEFAULT 0,
-  `SpawnChange` int(11) NOT NULL DEFAULT 1,
-  `Rent` int(11) NOT NULL DEFAULT 0,
-  `VehicleSlots` int(11) NOT NULL DEFAULT 2,
-  `FishSkill` int(11) NOT NULL DEFAULT 1,
-  `FishTimes` int(11) NOT NULL DEFAULT 0,
-  `TruckTimes` int(11) NOT NULL DEFAULT 0,
-  `TruckSkill` int(11) NOT NULL DEFAULT 1,
-  `ArmsSkill` int(11) NOT NULL DEFAULT 1,
-  `ArmsTimes` int(11) NOT NULL DEFAULT 0,
-  `DrugsSkill` int(11) NOT NULL DEFAULT 1,
-  `DrugsTimes` int(11) NOT NULL DEFAULT 0,
-  `Tickets` int(11) NOT NULL DEFAULT 0,
+  `FRank` int(11) NOT NULL DEFAULT '0',
+  `SpawnChange` int(11) NOT NULL DEFAULT '1',
+  `Rent` int(11) NOT NULL DEFAULT '0',
+  `VehicleSlots` int(11) NOT NULL DEFAULT '2',
+  `FishSkill` int(11) NOT NULL DEFAULT '1',
+  `FishTimes` int(11) NOT NULL DEFAULT '0',
+  `TruckTimes` int(11) NOT NULL DEFAULT '0',
+  `TruckSkill` int(11) NOT NULL DEFAULT '1',
+  `ArmsSkill` int(11) NOT NULL DEFAULT '1',
+  `ArmsTimes` int(11) NOT NULL DEFAULT '0',
+  `DrugsSkill` int(11) NOT NULL DEFAULT '1',
+  `DrugsTimes` int(11) NOT NULL DEFAULT '0',
+  `Tickets` int(11) NOT NULL DEFAULT '0',
   `Unbans` int(11) NOT NULL,
   `Complaints` int(11) NOT NULL,
   `Drugs` int(11) NOT NULL,
   `VIP` int(11) NOT NULL,
   `Premium` int(11) NOT NULL,
-  `FWarns` int(11) NOT NULL DEFAULT 0,
-  `FPunish` int(11) NOT NULL DEFAULT 0,
+  `FWarns` int(11) NOT NULL DEFAULT '0',
+  `FPunish` int(11) NOT NULL DEFAULT '0',
   `Beta` int(11) NOT NULL,
   `LastIP` varchar(16) NOT NULL,
   `StaffWarns` int(11) NOT NULL,
   `Note` varchar(250) NOT NULL,
   `Mats` int(11) NOT NULL,
-  `Faction` int(11) NOT NULL DEFAULT 0,
-  `CarpenterTimes` int(11) NOT NULL DEFAULT 0,
-  `CarpenterSkill` int(11) NOT NULL DEFAULT 1,
+  `Faction` int(11) NOT NULL DEFAULT '0',
+  `CarpenterTimes` int(11) NOT NULL DEFAULT '0',
+  `CarpenterSkill` int(11) NOT NULL DEFAULT '1',
   `Phone` int(11) NOT NULL,
-  `FAge` int(11) NOT NULL DEFAULT 0,
+  `FAge` int(11) NOT NULL DEFAULT '0',
   `PhoneBook` int(11) NOT NULL,
   `MBank` int(11) NOT NULL,
   `MStore` int(100) NOT NULL,
-  `JailTime` int(11) NOT NULL DEFAULT 0,
-  `Jailed` int(11) NOT NULL DEFAULT 0,
-  `Arrested` int(11) NOT NULL DEFAULT 0,
-  `WantedDeaths` int(11) NOT NULL DEFAULT 0,
+  `JailTime` int(11) NOT NULL DEFAULT '0',
+  `Jailed` int(11) NOT NULL DEFAULT '0',
+  `Arrested` int(11) NOT NULL DEFAULT '0',
+  `WantedDeaths` int(11) NOT NULL DEFAULT '0',
   `Commands` int(11) NOT NULL,
-  `WantedLevel` int(11) NOT NULL DEFAULT 0,
-  `DailyMission` int(11) NOT NULL DEFAULT -1,
-  `DailyMission2` int(11) NOT NULL DEFAULT -1,
+  `WantedLevel` int(11) NOT NULL DEFAULT '0',
+  `DailyMission` int(11) NOT NULL DEFAULT '-1',
+  `DailyMission2` int(11) NOT NULL DEFAULT '-1',
   `Progress` int(11) NOT NULL,
   `Progress2` int(11) NOT NULL,
   `NeedProgress1` int(10) NOT NULL,
   `NeedProgress2` int(10) NOT NULL,
-  `WTChannel` int(11) NOT NULL DEFAULT 0,
+  `WTChannel` int(11) NOT NULL DEFAULT '0',
   `WTalkie` int(11) NOT NULL,
   `WToggle` int(11) NOT NULL,
-  `WantedTime` int(11) NOT NULL DEFAULT 0,
+  `WantedTime` int(11) NOT NULL DEFAULT '0',
   `LiveToggle` int(11) NOT NULL,
-  `Guns` varchar(35) NOT NULL DEFAULT '0|0|0|0|0'
+  `Guns` varchar(35) NOT NULL DEFAULT '0|0|0|0|0',
+  `Clan` int(11) NOT NULL DEFAULT '0',
+  `ClanRank` int(11) NOT NULL DEFAULT '1',
+  `ClanAge` int(11) NOT NULL DEFAULT '0',
+  `ClanWarns` int(11) NOT NULL DEFAULT '0',
+  `ClanTag` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Eliminarea datelor din tabel `server_users`
+--
+
+INSERT INTO `server_users` (`ID`, `Name`, `Password`, `EMail`, `LastLogin`, `RegisterDate`, `Skin`, `Admin`, `Helper`, `Level`, `RespectPoints`, `Money`, `Bank`, `Hours`, `Seconds`, `Mute`, `Gender`, `Tutorial`, `Licenses`, `Warn`, `ReportMute`, `Status`, `PremiumPoints`, `Job`, `Business`, `BusinessID`, `IP`, `House`, `HouseID`, `FRank`, `SpawnChange`, `Rent`, `VehicleSlots`, `FishSkill`, `FishTimes`, `TruckTimes`, `TruckSkill`, `ArmsSkill`, `ArmsTimes`, `DrugsSkill`, `DrugsTimes`, `Tickets`, `Unbans`, `Complaints`, `Drugs`, `VIP`, `Premium`, `FWarns`, `FPunish`, `Beta`, `LastIP`, `StaffWarns`, `Note`, `Mats`, `Faction`, `CarpenterTimes`, `CarpenterSkill`, `Phone`, `FAge`, `PhoneBook`, `MBank`, `MStore`, `JailTime`, `Jailed`, `Arrested`, `WantedDeaths`, `Commands`, `WantedLevel`, `DailyMission`, `DailyMission2`, `Progress`, `Progress2`, `NeedProgress1`, `NeedProgress2`, `WTChannel`, `WTalkie`, `WToggle`, `WantedTime`, `LiveToggle`, `Guns`, `Clan`, `ClanRank`, `ClanAge`, `ClanWarns`, `ClanTag`) VALUES
+(1, 'Vicentzo', '3D35EFB6BAFB1213ECF5120FEDACD36859475ACAFA4EDC7762A98C50059E202F', 'asd@Gmail.com', ' Bine ai venit, Vicentzo.', '2021-04-29 09:34:07', 293, 6, 0, 2, 3, 195670, 5000, 3, 0, 0, 1, 1, '98|0|98|0|98|0|98|0', 0, 0, 0, 0, 0, 0, 0, '86.120.191.35', 0, 0, 7, 4, 0, 2, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '86.120.191.35', 0, '', 0, 7, 0, 1, 0, 0, 0, 0, 100, 300, 1, 0, 0, 0, 0, 1, 3, 0, 0, 10, 1, 0, 0, 0, 0, 0, '0|0|0|0|0', 1, 7, 123, 0, 0),
+(2, 'mr.bunny', '65A134209A6CF777E2E9415709DB14EAC16FAB3F50A02DB56C1981D856128FE4', 'nuam@gmail.com', ' Bine ai venit, mr.bunny.', '2021-04-29 09:34:56', 12, 6, 0, 1, 0, 0, 5000, 0, 0, 0, 0, 1, '100|0|100|0|100|0|100|0', 0, 0, 0, 0, 0, 0, 0, '185.53.197.16', 0, 0, 0, 1, 0, 2, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '185.53.197.16', 0, '', 0, 0, 0, 1, 0, 0, 0, 0, 100, 600, 1, 0, 0, 0, 0, 3, 1, 0, 0, 1, 5, 0, 0, 0, 0, 0, '0|0|0|0|0', 1, 0, 0, 0, 0),
+(3, 'rafi71', 'B28532892AB9AB26623727DEE3250688DEFBDCABC66BBE90E9DA603F98F127DA', 'dsad@Gmail.com', '18:32 - 29/04/2021', '2021-04-29 12:07:37', 12, 6, 0, 1, 0, 2000, 5000, 0, 978, 0, 0, 1, '100|0|0|0|0|0|0|0', 0, 0, 0, 0, 0, 0, 0, '212.93.128.154', 0, 0, 0, 1, 0, 2, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '212.93.128.154', 0, '', 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0', 0, 1, 0, 0, 0),
+(4, 'Aditsu', 'B9CA3E2B5179DE65CBF5D2E7FF768F4BEB7C22B5E116F3E0298E7FFC7E886459', 'nam@yahoo.com', '00:08 - 30/04/2021', '2021-04-29 16:41:38', 250, 6, 0, 1, 1, 2625, 5000, 0, 36, 0, 1, 1, '0|0|0|0|0|0|0|0', 0, 0, 0, 0, 0, 0, 0, '89.123.227.199', 0, 0, 0, 1, 0, 2, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '89.123.227.199', 0, '', 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0', 0, 1, 0, 0, 0),
+(5, 'ZeCo.F', '620E25D5198936CB184942B3284FCC04C5B30D58C578E87BB2FB376A29945EB3', 'f_zeco@yahoo.com', '22:15 - 29/04/2021', '2021-04-29 18:51:51', 227, 6, 0, 1, 0, 275, 5000, 0, 1342, 0, 1, 1, '100|0|100|0|100|0|100|0', 0, 0, 0, 0, 1, 0, 0, '82.20.32.76', 0, 0, 7, 4, 0, 2, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '82.20.32.76', 0, '', 0, 1, 0, 1, 11233, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 0, 0, 0, 0, 0, 1, 0, 0, 0, '0|0|0|0|0', 0, 1, 0, 0, 0),
+(6, 'Quez]', '8A03F46B8F177B02CDF6279B08DBD180B5F4E6BEDA65EA86798F01386D2A52A8', 'dsadisad@gmail.com', '21:54 - 29/04/2021', '2021-04-29 18:54:36', 12, 0, 0, 1, 0, 2500, 5000, 0, 40, 0, 0, 1, '0|0|0|0|0|0|0|0', 0, 0, 0, 0, 0, 0, 0, '82.79.152.25', 0, 0, 0, 1, 0, 2, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, '', 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0', 0, 1, 0, 0, 0),
+(7, '.FLORiN46', 'EE5F7A1A06CFB3DB984F6B440C2EDEA18DC8B27BB4EC375CE74D243E6775F1B7', 'flirinflansf@gmail.com', '22:16 - 29/04/2021', '2021-04-29 19:17:09', 12, 0, 0, 1, 0, 2500, 5000, 0, 113, 0, 0, 1, '0|0|0|0|0|0|0|0', 0, 76, 0, 0, 0, 0, 0, '88.120.18.103', 0, 0, 0, 1, 0, 2, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, '', 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0', 0, 1, 0, 0, 0),
+(8, 'CORLEA', 'C14CE81DC43CAC61A96B6818095A7AE09B0E0ABA177196DCCCD40136EA283249', 'darius@gmail.com', '22:29 - 29/04/2021', '2021-04-29 19:29:29', 12, 0, 0, 1, 0, 2500, 5000, 0, 110, 0, 0, 1, '0|0|0|0|0|0|0|0', 0, 0, 0, 0, 0, 0, 0, '46.97.168.202', 0, 0, 0, 1, 0, 2, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, '', 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0', 0, 1, 0, 0, 0),
+(9, 'mr.bunny2', '65A134209A6CF777E2E9415709DB14EAC16FAB3F50A02DB56C1981D856128FE4', 'asdasdas@dasdac.dsd', '22:59 - 29/04/2021', '2021-04-29 19:59:25', 12, 0, 0, 1, 1, 2625, 5000, 0, 14, 0, 0, 1, '0|0|0|0|0|0|0|0', 0, 0, 0, 0, 0, 0, 0, '185.53.197.16', 0, 0, 0, 1, 0, 2, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, '', 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0', 0, 1, 0, 0, 0),
+(10, 'HPQ123', 'B28532892AB9AB26623727DEE3250688DEFBDCABC66BBE90E9DA603F98F127DA', 'mafia@gmail.com', ' Bine ai venit, HPQ123.', '2021-04-29 20:10:29', 12, 0, 0, 1, 1, 2625, 5000, 0, 347, 0, 0, 1, '0|0|0|0|0|0|0|0', 0, 0, 0, 0, 1, 0, 0, '109.97.72.241', 0, 0, 0, 1, 0, 2, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '109.97.72.241', 0, '', 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 7, 0, 0, 0, 0, 0, '0|0|0|0|0', 0, 1, 0, 0, 0),
+(11, 'Aptiv', 'D2BC755012551E1541FF9BA90F972B335BD95A5E33FA8DFDFCF88315DAE9B12A', 'kkkafaa@gmail.com', '23:19 - 29/04/2021', '2021-04-29 20:16:50', 250, 0, 0, 1, 0, 2500, 5000, 0, 269, 0, 1, 1, '0|0|0|0|0|0|0|0', 0, 0, 0, 0, 0, 0, 0, '185.69.145.37', 0, 0, 0, 1, 0, 2, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '185.69.145.37', 0, '', 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0', 0, 1, 0, 0, 0),
+(12, 'RaKneT', 'D2BC755012551E1541FF9BA90F972B335BD95A5E33FA8DFDFCF88315DAE9B12A', 'None', 'None', '2021-04-29 20:19:17', 250, 0, 0, 1, 0, 2500, 5000, 0, 0, 0, 1, 0, '0|0|0|0|0|0|0|0', 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 1, 0, 2, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, '', 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0', 0, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1661,14 +1736,14 @@ INSERT INTO `server_vars` (`ID`, `Name`, `Value`, `TypeVar`) VALUES
 
 CREATE TABLE `server_vehicles` (
   `ID` int(11) NOT NULL,
-  `Model` int(11) NOT NULL DEFAULT 400,
-  `X` float NOT NULL DEFAULT 0,
-  `Y` float NOT NULL DEFAULT 0,
-  `Z` float NOT NULL DEFAULT 0,
-  `Angle` float NOT NULL DEFAULT 0,
-  `Faction` int(11) NOT NULL DEFAULT 0,
-  `ColorOne` int(11) NOT NULL DEFAULT 1,
-  `ColorTwo` int(11) NOT NULL DEFAULT 1,
+  `Model` int(11) NOT NULL DEFAULT '400',
+  `X` float NOT NULL DEFAULT '0',
+  `Y` float NOT NULL DEFAULT '0',
+  `Z` float NOT NULL DEFAULT '0',
+  `Angle` float NOT NULL DEFAULT '0',
+  `Faction` int(11) NOT NULL DEFAULT '0',
+  `ColorOne` int(11) NOT NULL DEFAULT '1',
+  `ColorTwo` int(11) NOT NULL DEFAULT '1',
   `VirtualWorld` int(11) NOT NULL,
   `Rank` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -1696,11 +1771,11 @@ INSERT INTO `server_vehicles` (`ID`, `Model`, `X`, `Y`, `Z`, `Angle`, `Faction`,
 CREATE TABLE `server_warn_logs` (
   `ID` int(11) NOT NULL,
   `PlayerName` varchar(24) NOT NULL DEFAULT 'None',
-  `PlayerID` int(11) NOT NULL DEFAULT 0,
+  `PlayerID` int(11) NOT NULL DEFAULT '0',
   `AdminName` varchar(24) NOT NULL DEFAULT 'AdmBot',
-  `AdminID` int(11) NOT NULL DEFAULT 0,
+  `AdminID` int(11) NOT NULL DEFAULT '0',
   `WarnReason` varchar(64) NOT NULL DEFAULT 'None',
-  `WarnTime` timestamp NOT NULL DEFAULT current_timestamp()
+  `WarnTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1717,7 +1792,7 @@ CREATE TABLE `wcode_applications` (
   `Answers` text NOT NULL,
   `Questions` int(11) NOT NULL,
   `Status` int(11) NOT NULL,
-  `Date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ActionBy` varchar(24) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1732,7 +1807,7 @@ CREATE TABLE `wcode_clan_topics` (
   `title` varchar(128) NOT NULL,
   `description` text NOT NULL,
   `username` varchar(32) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` int(11) NOT NULL,
   `pinned` int(11) NOT NULL,
   `clanid` int(11) NOT NULL
@@ -1750,7 +1825,7 @@ CREATE TABLE `wcode_commentaries` (
   `UserName` varchar(32) NOT NULL,
   `Skin` int(11) NOT NULL,
   `Text` text NOT NULL,
-  `Date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Section` varchar(32) NOT NULL,
   `TopicID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1771,7 +1846,7 @@ CREATE TABLE `wcode_complaints` (
   `Category` int(11) NOT NULL,
   `Faction` int(11) NOT NULL,
   `Status` int(11) NOT NULL,
-  `Date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ActionBy` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1786,7 +1861,7 @@ CREATE TABLE `wcode_editables` (
   `Text` text NOT NULL,
   `By` varchar(32) NOT NULL,
   `Form` varchar(32) NOT NULL,
-  `Updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `Updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1801,7 +1876,7 @@ CREATE TABLE `wcode_email_change` (
   `old_email` varchar(64) NOT NULL,
   `new_email` varchar(64) NOT NULL,
   `token` varchar(32) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `time` int(11) NOT NULL,
   `user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1819,7 +1894,7 @@ CREATE TABLE `wcode_functions` (
   `Tag` varchar(64) NOT NULL,
   `Color` varchar(32) NOT NULL,
   `Icon` varchar(64) NOT NULL,
-  `Date` timestamp NOT NULL DEFAULT current_timestamp()
+  `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1835,7 +1910,7 @@ CREATE TABLE `wcode_logs` (
   `Log` text NOT NULL,
   `VictimID` int(11) NOT NULL,
   `VictimName` varchar(32) NOT NULL,
-  `Date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Structure` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1854,7 +1929,7 @@ CREATE TABLE `wcode_notifications` (
   `FromName` varchar(32) NOT NULL,
   `Seen` int(11) NOT NULL,
   `Link` text NOT NULL,
-  `Date` timestamp NOT NULL DEFAULT current_timestamp()
+  `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1889,7 +1964,7 @@ CREATE TABLE `wcode_questions` (
   `id` int(11) NOT NULL,
   `question` text NOT NULL,
   `factionid` int(11) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp()
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2105,7 +2180,7 @@ CREATE TABLE `wcode_recover` (
   `email` varchar(128) NOT NULL,
   `token` varchar(64) NOT NULL,
   `time` int(11) NOT NULL,
-  `autotime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `autotime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -2122,7 +2197,7 @@ CREATE TABLE `wcode_suspend` (
   `Admin` varchar(32) NOT NULL,
   `Adminid` int(11) NOT NULL,
   `Days` int(11) NOT NULL,
-  `Date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Date_unix` int(11) NOT NULL,
   `Expire_unix` int(11) NOT NULL,
   `Expire` varchar(32) NOT NULL,
@@ -2142,7 +2217,7 @@ CREATE TABLE `wcode_tickets` (
   `Category` int(11) NOT NULL,
   `Text` text NOT NULL,
   `Status` int(11) NOT NULL,
-  `Date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ActionBy` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -2160,7 +2235,7 @@ CREATE TABLE `wcode_unban` (
   `Title` varchar(32) NOT NULL,
   `Details` text NOT NULL,
   `Status` int(11) NOT NULL,
-  `Date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ActionBy` varchar(32) NOT NULL DEFAULT 'Banned'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -2368,7 +2443,7 @@ ALTER TABLE `server_business`
 -- AUTO_INCREMENT pentru tabele `server_chat_logs`
 --
 ALTER TABLE `server_chat_logs`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=773;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=791;
 
 --
 -- AUTO_INCREMENT pentru tabele `server_ds`
@@ -2434,7 +2509,7 @@ ALTER TABLE `server_mute_logs`
 -- AUTO_INCREMENT pentru tabele `server_personal_vehicles`
 --
 ALTER TABLE `server_personal_vehicles`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pentru tabele `server_pickups`
@@ -2458,7 +2533,7 @@ ALTER TABLE `server_turfs`
 -- AUTO_INCREMENT pentru tabele `server_users`
 --
 ALTER TABLE `server_users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pentru tabele `server_vars`

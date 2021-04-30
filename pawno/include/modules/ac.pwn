@@ -49,7 +49,7 @@ hook OnPlayerEnterVehicle(playerid, vehicleid, ispassenger) {
     if(IsPlayerInAnyVehicle(playerid)) return TrollDetect(playerid, 1);
     return 1;
 }
-public OnPlayerUpdate(playerid) {
+public -(playerid) {
     TrollDetect(playerid);
     return 1;
 }

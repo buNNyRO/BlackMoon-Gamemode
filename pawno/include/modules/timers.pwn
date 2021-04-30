@@ -78,7 +78,15 @@ task Timers[1000]()
 		}
 		resetQuest();
 		foreach(new i : TotalPlayerVehicles) personalVehicle[i][pvAge] ++;
-		mysql_tquery(SQL, "UPDATE server_personal_vehicles SET Age = Age+1");	
+		mysql_tquery(SQL, "UPDATE `server_personal_vehicles` SET `Age` = Age+1");
+        foreach(new x : ServerClans) {
+            if(clanInfo[x][cDays] == 0) {
+            	mysql_tquery(SQL, string_fast("DELETE FROM `server_clans` WHERE `server_clans`.`ID` = %d", clanInfo[x][cDays]));
+                Iter_Remove(ServerClans, x);
+            }
+            clanInfo[x][cDays] --;
+        }
+        mysql_tquery(SQL, "UPDATE `server_clans` SET `Days` = Days-1 WHERE `Days` > 0"); 		
 	}
 	foreach(new playerid : loggedPlayers) {
 		if(IsPlayerInRangeOfPoint(playerid, 1.0, playerInfo[playerid][pLastPosX], playerInfo[playerid][pLastPosY], playerInfo[playerid][pLastPosZ]) || IsPlayerPaused(playerid))
@@ -256,8 +264,7 @@ timer ExpirationReport[120000](id) {
 	Iter_Remove(Reports, id);
 	return true;
 }
-
-timer PickupLabel[500](playerid, label_id) {
+/*timer PickupLabel[500](playerid, label_id) {
 	gQuery[0] = (EOS);
 	mysql_format(SQL, gQuery, sizeof gQuery, "SELECT * FROM `server_labels` WHERE `ID`='%d'", labelInfo[label_id][labelSQLID]);
 	inline getText() {
@@ -269,7 +276,7 @@ timer PickupLabel[500](playerid, label_id) {
 	}
 	mysql_pquery_inline(SQL, gQuery, using inline getText, "");
 	return true;
-}
+}*/
 
 timer closeGate[6000](gate) {
 	switch(gate) {

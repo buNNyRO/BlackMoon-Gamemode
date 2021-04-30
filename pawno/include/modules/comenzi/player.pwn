@@ -402,12 +402,13 @@ YCMD:accept(playerid, params[], help) {
 		if(clanInvitedBy[playerid] == -1) return sendPlayerError(playerid, "Nu ai fost invitat de nimeni intr-un clan.");
 		SCM(clanInvitedBy[playerid], COLOR_GOLD, string_fast("* (Clan): Jucatorul '%s' (%d) pe care l-ai invitat in clanul tau a acceptat.", getName(playerid), playerid));
 		SCM(playerid, COLOR_GOLD, string_fast("* (Clan): Ai acceptat invitatia de intrare in clan oferita de %S (%d).", getName(clanInvitedBy[playerid]), clanInvitedBy[playerid]));
-		Iter_Add(ClanMembers[playerInfo[clanInvitedBy[playerid]][pClan]], playerid);
 		playerInfo[playerid][pClan] = playerInfo[clanInvitedBy[playerid]][pClan];
 		playerInfo[playerid][pClanRank] = 1;
 		playerInfo[playerid][pClanAge] = 0;
 		playerInfo[playerid][pClanWarns] = 0;
-		update("UPDATE `server_users` SET `Clan` = '%d', `ClanRank` = '0', `ClanAge` = '0', `ClanWarns` = '0' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pClan], playerInfo[playerid][pSQLID]);
+		Iter_Add(TotalClanMembers, playerid);
+		clanInfo[playerInfo[clanInvitedBy[playerid]][pClan]][cTotal]++;
+		update("UPDATE `server_users` SET `Clan` = '%d', `ClanRank` = '0', `ClanAge` = '0', `Total` = Total+1, `ClanWarns` = '0' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pClan], playerInfo[playerid][pSQLID]);
 		clanInvitedBy[clanInvitedBy[playerid]] = -1;
 		clanInvitedBy[playerid] = -1;
 		return true;
