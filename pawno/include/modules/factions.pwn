@@ -156,11 +156,11 @@ hook OnPlayerStateChange(playerid, newstate, oldstate) {
 	new vehicleid = GetPlayerVehicleID(playerid);
 	if(newstate == PLAYER_STATE_DRIVER) {
 		if(vehicleFaction[vehicleid] != playerInfo[playerid][pFaction] && vehicleFaction[vehicleid] != 0) {
-			sendPlayerError(playerid, "Nu faci parte din factiunea %s, pentru a intra in masina.", factionName(vehicleFaction[vehicleid]));
+			sendPlayerError(playerid, "Aceasta masina este una de factiune, iar tu nu esti in aceasta factiune.");
 			RemovePlayerFromVehicle(playerid);
 		}
 		if(vehicleRank[vehicleid] > playerInfo[playerid][pFactionRank]) {
-			sendPlayerError(playerid,  "Nu ai rank %d, pentru a intra in masina.", vehicleRank[vehicleid]);
+			sendPlayerError(playerid,  "Nu ai rank-ul necesar pentru a intra in masina.");
 			RemovePlayerFromVehicle(playerid);	
 		}
 	}
