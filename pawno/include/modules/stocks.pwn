@@ -187,8 +187,200 @@ stock showLicenses(playerid, userID)
 	return true;
 }
 
-stock playerTextDraws(playerid)
-{
+stock playerTextDraws(playerid) {
+	vehicleHud[0] = CreatePlayerTextDraw(playerid, 552.778930, 341.824401, "box");
+	PlayerTextDrawLetterSize(playerid, vehicleHud[0], 0.000000, 5.911108);
+	PlayerTextDrawTextSize(playerid, vehicleHud[0], 0.000000, 147.000000);
+	PlayerTextDrawAlignment(playerid, vehicleHud[0], 2);
+	PlayerTextDrawColor(playerid, vehicleHud[0], -8039681);
+	PlayerTextDrawUseBox(playerid, vehicleHud[0], 1);
+	PlayerTextDrawBoxColor(playerid, vehicleHud[0], -8039681);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[0], 0);
+	PlayerTextDrawSetOutline(playerid, vehicleHud[0], 0);
+	PlayerTextDrawBackgroundColor(playerid, vehicleHud[0], 255);
+	PlayerTextDrawFont(playerid, vehicleHud[0], 1);
+	PlayerTextDrawSetProportional(playerid, vehicleHud[0], 1);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[0], 0);
+
+	vehicleHud[1] = CreatePlayerTextDraw(playerid, 552.523559, 342.924468, "box");
+	PlayerTextDrawLetterSize(playerid, vehicleHud[1], 0.000000, 5.688887);
+	PlayerTextDrawTextSize(playerid, vehicleHud[1], 0.000000, 145.000000);
+	PlayerTextDrawAlignment(playerid, vehicleHud[1], 2);
+	PlayerTextDrawColor(playerid, vehicleHud[1], 2017853314);
+	PlayerTextDrawUseBox(playerid, vehicleHud[1], 1);
+	PlayerTextDrawBoxColor(playerid, vehicleHud[1], 210);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[1], 0);
+	PlayerTextDrawSetOutline(playerid, vehicleHud[1], 0);
+	PlayerTextDrawBackgroundColor(playerid, vehicleHud[1], 255);
+	PlayerTextDrawFont(playerid, vehicleHud[1], 1);
+	PlayerTextDrawSetProportional(playerid, vehicleHud[1], 1);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[1], 0);
+
+	vehicleHud[2] = CreatePlayerTextDraw(playerid, 518.033020, 341.824401, "box");
+	PlayerTextDrawLetterSize(playerid, vehicleHud[2], 0.000000, 1.955548);
+	PlayerTextDrawTextSize(playerid, vehicleHud[2], 0.000000, -3.000000);
+	PlayerTextDrawAlignment(playerid, vehicleHud[2], 2);
+	PlayerTextDrawColor(playerid, vehicleHud[2], -2139062017);
+	PlayerTextDrawUseBox(playerid, vehicleHud[2], 1);
+	PlayerTextDrawBoxColor(playerid, vehicleHud[2], -8039681);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[2], 0);
+	PlayerTextDrawSetOutline(playerid, vehicleHud[2], 0);
+	PlayerTextDrawBackgroundColor(playerid, vehicleHud[2], 255);
+	PlayerTextDrawFont(playerid, vehicleHud[2], 1);
+	PlayerTextDrawSetProportional(playerid, vehicleHud[2], 1);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[2], 0);
+
+	vehicleHud[3] = CreatePlayerTextDraw(playerid, 552.912780, 364.724273, "box");
+	PlayerTextDrawLetterSize(playerid, vehicleHud[3], 0.000000, -0.577784);
+	PlayerTextDrawTextSize(playerid, vehicleHud[3], 0.000000, 147.000000);
+	PlayerTextDrawAlignment(playerid, vehicleHud[3], 2);
+	PlayerTextDrawColor(playerid, vehicleHud[3], -2139062017);
+	PlayerTextDrawUseBox(playerid, vehicleHud[3], 1);
+	PlayerTextDrawBoxColor(playerid, vehicleHud[3], -8039681);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[3], 0);
+	PlayerTextDrawSetOutline(playerid, vehicleHud[3], 0);
+	PlayerTextDrawBackgroundColor(playerid, vehicleHud[3], 255);
+	PlayerTextDrawFont(playerid, vehicleHud[3], 1);
+	PlayerTextDrawSetProportional(playerid, vehicleHud[3], 1);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[3], 0);
+
+	vehicleHud[4] = CreatePlayerTextDraw(playerid, 517.333984, 336.148956, "000");
+	PlayerTextDrawLetterSize(playerid, vehicleHud[4], 0.620001, 2.978841);
+	PlayerTextDrawAlignment(playerid, vehicleHud[4], 3);
+	PlayerTextDrawColor(playerid, vehicleHud[4], -206);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[4], 0);
+	PlayerTextDrawSetOutline(playerid, vehicleHud[4], 0);
+	PlayerTextDrawBackgroundColor(playerid, vehicleHud[4], 255);
+	PlayerTextDrawFont(playerid, vehicleHud[4], 3);
+	PlayerTextDrawSetProportional(playerid, vehicleHud[4], 1);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[4], 0);
+
+	vehicleHud[5] = CreatePlayerTextDraw(playerid, 477.166320, 345.733062, "");
+	PlayerTextDrawLetterSize(playerid, vehicleHud[5], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, vehicleHud[5], 66.000000, 71.000000);
+	PlayerTextDrawAlignment(playerid, vehicleHud[5], 1);
+	PlayerTextDrawColor(playerid, vehicleHud[5], -18);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[5], 0);
+	PlayerTextDrawSetOutline(playerid, vehicleHud[5], 0);
+	PlayerTextDrawBackgroundColor(playerid, vehicleHud[5], 0);
+	PlayerTextDrawFont(playerid, vehicleHud[5], 5);
+	PlayerTextDrawSetProportional(playerid, vehicleHud[5], 0);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[5], 0);
+	PlayerTextDrawSetPreviewModel(playerid, vehicleHud[5], 411);
+	PlayerTextDrawSetPreviewRot(playerid, vehicleHud[5], 0.000000, 0.000000, 270.000000, 1.000000);
+	PlayerTextDrawSetPreviewVehCol(playerid, vehicleHud[5], 1, 1);
+
+	vehicleHud[6] = CreatePlayerTextDraw(playerid, 541.988647, 364.224273, "box");
+	PlayerTextDrawLetterSize(playerid, vehicleHud[6], 0.000000, 3.333328);
+	PlayerTextDrawTextSize(playerid, vehicleHud[6], 0.000000, -3.000000);
+	PlayerTextDrawAlignment(playerid, vehicleHud[6], 2);
+	PlayerTextDrawColor(playerid, vehicleHud[6], -2139062017);
+	PlayerTextDrawUseBox(playerid, vehicleHud[6], 1);
+	PlayerTextDrawBoxColor(playerid, vehicleHud[6], -8039681);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[6], 0);
+	PlayerTextDrawSetOutline(playerid, vehicleHud[6], 0);
+	PlayerTextDrawBackgroundColor(playerid, vehicleHud[6], 255);
+	PlayerTextDrawFont(playerid, vehicleHud[6], 1);
+	PlayerTextDrawSetProportional(playerid, vehicleHud[6], 1);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[6], 0);
+
+	vehicleHud[7] = CreatePlayerTextDraw(playerid, 544.221496, 382.639892, "~g~UNLOCKED");
+	PlayerTextDrawLetterSize(playerid, vehicleHud[7], 0.287111, 1.281421);
+	PlayerTextDrawAlignment(playerid, vehicleHud[7], 1);
+	PlayerTextDrawColor(playerid, vehicleHud[7], -54);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[7], 0);
+	PlayerTextDrawSetOutline(playerid, vehicleHud[7], 0);
+	PlayerTextDrawBackgroundColor(playerid, vehicleHud[7], 255);
+	PlayerTextDrawFont(playerid, vehicleHud[7], 2);
+	PlayerTextDrawSetProportional(playerid, vehicleHud[7], 1);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[7], 0);
+
+	vehicleHud[8] = CreatePlayerTextDraw(playerid, 519.578002, 336.151184, "000000.0");
+	PlayerTextDrawLetterSize(playerid, vehicleHud[8], 0.620001, 2.978841);
+	PlayerTextDrawAlignment(playerid, vehicleHud[8], 1);
+	PlayerTextDrawColor(playerid, vehicleHud[8], -138);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[8], 0);
+	PlayerTextDrawSetOutline(playerid, vehicleHud[8], 0);
+	PlayerTextDrawBackgroundColor(playerid, vehicleHud[8], 255);
+	PlayerTextDrawFont(playerid, vehicleHud[8], 3);
+	PlayerTextDrawSetProportional(playerid, vehicleHud[8], 1);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[8], 0);
+
+	vehicleHud[9] = CreatePlayerTextDraw(playerid, 479.777526, 362.231140, "100.0%");
+	PlayerTextDrawLetterSize(playerid, vehicleHud[9], 0.199111, 0.972800);
+	PlayerTextDrawAlignment(playerid, vehicleHud[9], 1);
+	PlayerTextDrawColor(playerid, vehicleHud[9], -137);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[9], 0);
+	PlayerTextDrawSetOutline(playerid, vehicleHud[9], 0);
+	PlayerTextDrawBackgroundColor(playerid, vehicleHud[9], 255);
+	PlayerTextDrawFont(playerid, vehicleHud[9], 2);
+	PlayerTextDrawSetProportional(playerid, vehicleHud[9], 1);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[9], 0);
+
+	vehicleHud[10] = CreatePlayerTextDraw(playerid, 620.094116, 398.223052, "box");
+	PlayerTextDrawLetterSize(playerid, vehicleHud[10], 0.000000, -4.177791);
+	PlayerTextDrawTextSize(playerid, vehicleHud[10], 0.000000, 10.000000);
+	PlayerTextDrawAlignment(playerid, vehicleHud[10], 2);
+	PlayerTextDrawColor(playerid, vehicleHud[10], -16776961);
+	PlayerTextDrawUseBox(playerid, vehicleHud[10], 1);
+	PlayerTextDrawBoxColor(playerid, vehicleHud[10], -16777090);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[10], 0);
+	PlayerTextDrawSetOutline(playerid, vehicleHud[10], 0);
+	PlayerTextDrawBackgroundColor(playerid, vehicleHud[10], 255);
+	PlayerTextDrawFont(playerid, vehicleHud[10], 1);
+	PlayerTextDrawSetProportional(playerid, vehicleHud[10], 1);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[10], 0);
+
+	vehicleHud[11] = CreatePlayerTextDraw(playerid, 612.654479, 399.068511, "box");
+	PlayerTextDrawLetterSize(playerid, vehicleHud[11], 0.000000, -6.755570);
+	PlayerTextDrawTextSize(playerid, vehicleHud[11], 0.000000, -3.000000);
+	PlayerTextDrawAlignment(playerid, vehicleHud[11], 2);
+	PlayerTextDrawColor(playerid, vehicleHud[11], -2139062017);
+	PlayerTextDrawUseBox(playerid, vehicleHud[11], 1);
+	PlayerTextDrawBoxColor(playerid, vehicleHud[11], -8039681);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[11], 0);
+	PlayerTextDrawSetOutline(playerid, vehicleHud[11], 0);
+	PlayerTextDrawBackgroundColor(playerid, vehicleHud[11], 255);
+	PlayerTextDrawFont(playerid, vehicleHud[11], 1);
+	PlayerTextDrawSetProportional(playerid, vehicleHud[11], 1);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[11], 0);
+
+	vehicleHud[12] = CreatePlayerTextDraw(playerid, 620.153442, 336.151184, "5");
+	PlayerTextDrawLetterSize(playerid, vehicleHud[12], 0.620001, 2.978841);
+	PlayerTextDrawAlignment(playerid, vehicleHud[12], 2);
+	PlayerTextDrawColor(playerid, vehicleHud[12], -138);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[12], 0);
+	PlayerTextDrawSetOutline(playerid, vehicleHud[12], 0);
+	PlayerTextDrawBackgroundColor(playerid, vehicleHud[12], 255);
+	PlayerTextDrawFont(playerid, vehicleHud[12], 3);
+	PlayerTextDrawSetProportional(playerid, vehicleHud[12], 1);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[12], 0);
+
+	vehicleHud[13] = CreatePlayerTextDraw(playerid, 543.332580, 361.733215, "Taraf Romania");
+	PlayerTextDrawLetterSize(playerid, vehicleHud[13], 0.168444, 0.942932);
+	PlayerTextDrawAlignment(playerid, vehicleHud[13], 1);
+	PlayerTextDrawColor(playerid, vehicleHud[13], -135);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[13], 0);
+	PlayerTextDrawSetOutline(playerid, vehicleHud[13], 0);
+	PlayerTextDrawBackgroundColor(playerid, vehicleHud[13], 255);
+	PlayerTextDrawFont(playerid, vehicleHud[13], 2);
+	PlayerTextDrawSetProportional(playerid, vehicleHud[13], 1);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[13], 0);
+
+	vehicleHud[14] = CreatePlayerTextDraw(playerid, 620.094116, 398.223052, "box");
+	PlayerTextDrawLetterSize(playerid, vehicleHud[14], 0.000000, -0.533345);
+	PlayerTextDrawTextSize(playerid, vehicleHud[14], 0.000000, 10.000000);
+	PlayerTextDrawAlignment(playerid, vehicleHud[14], 2);
+	PlayerTextDrawColor(playerid, vehicleHud[14], -16776961);
+	PlayerTextDrawUseBox(playerid, vehicleHud[14], 1);
+	PlayerTextDrawBoxColor(playerid, vehicleHud[14], -16777090);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[14], 0);
+	PlayerTextDrawSetOutline(playerid, vehicleHud[14], 0);
+	PlayerTextDrawBackgroundColor(playerid, vehicleHud[14], 255);
+	PlayerTextDrawFont(playerid, vehicleHud[14], 1);
+	PlayerTextDrawSetProportional(playerid, vehicleHud[14], 1);
+	PlayerTextDrawSetShadow(playerid, vehicleHud[14], 0);
+	
 	playerNamePTD[playerid] = CreatePlayerTextDraw(playerid, 639.499511, 422.266052, "");
 	PlayerTextDrawLetterSize(playerid, playerNamePTD[playerid], 0.202001, 1.320000);
 	PlayerTextDrawAlignment(playerid, playerNamePTD[playerid], 3);
@@ -224,17 +416,6 @@ stock playerTextDraws(playerid)
 	PlayerTextDrawFont(playerid, playerExamenPTD[playerid], 1);
 	PlayerTextDrawSetProportional(playerid, playerExamenPTD[playerid], 1);
 	PlayerTextDrawSetShadow(playerid, playerExamenPTD[playerid], 0);
-
-	playerSpeedPTD[playerid] = CreatePlayerTextDraw(playerid, 581.250183, 333.629516, "");
-	PlayerTextDrawLetterSize(playerid, playerSpeedPTD[playerid], 0.260416, 1.117778);
-	PlayerTextDrawAlignment(playerid, playerSpeedPTD[playerid], 2);
-	PlayerTextDrawColor(playerid, playerSpeedPTD[playerid], -1);
-	PlayerTextDrawSetShadow(playerid, playerSpeedPTD[playerid], 1);
-	PlayerTextDrawSetOutline(playerid, playerSpeedPTD[playerid], 1);
-	PlayerTextDrawBackgroundColor(playerid, playerSpeedPTD[playerid], 255);
-	PlayerTextDrawFont(playerid, playerSpeedPTD[playerid], 1);
-	PlayerTextDrawSetProportional(playerid, playerSpeedPTD[playerid], 1);
-	PlayerTextDrawSetShadow(playerid, playerSpeedPTD[playerid], 1);
 
 	serverDealerPTD[playerid][0] = CreatePlayerTextDraw(playerid, 202.666656, 307.948120, "");
 	PlayerTextDrawLetterSize(playerid, serverDealerPTD[playerid][0], 0.000000, 0.000000);
@@ -340,7 +521,6 @@ stock destroyPlayerTextDraws(playerid)
 {
 	PlayerTextDrawDestroy(playerid, playerNamePTD[playerid]);
 	PlayerTextDrawDestroy(playerid, playerLevelPTD[playerid]);
-	PlayerTextDrawDestroy(playerid, playerSpeedPTD[playerid]);
 	PlayerTextDrawDestroy(playerid, serverDealerPTD[playerid][0]);
 	PlayerTextDrawDestroy(playerid, serverDealerPTD[playerid][1]);
 	PlayerTextDrawDestroy(playerid, serverDealerPTD[playerid][2]);	
@@ -665,16 +845,23 @@ stock getVehicleSpeed(vehicleid,mode = 1) {
 
 stock sendPlayerError(playerid, const text[], va_args<>)
 {
-	gString[0] = (EOS);
-	va_format(gString, sizeof gString, "[ERROR] {FFFFFF}%s", text, va_start<2>);
-	return SCM(playerid, COLOR_ERROR, gString);
+	gFast[0] = (EOS);
+	va_format(gFast, sizeof gFast, "[ERROR] {FFFFFF}%s", text, va_start<2>);
+	return SCM(playerid, COLOR_ERROR, gFast);
 }
 
 stock sendPlayerSyntax(playerid, const text[], va_args<>)
 {
-	gString[0] = (EOS);
-	va_format(gString, sizeof gString, "Command: {FFFFFF}%s", text, va_start<2>);
-	return SCM(playerid, COLOR_SYNTAX, gString);
+	gFast[0] = (EOS);
+	va_format(gFast, sizeof gFast, "Command: {FFFFFF}%s", text, va_start<2>);
+	return SCM(playerid, COLOR_SYNTAX, gFast);
+}
+
+stock va_PlayerTextDrawSetString(playerid, PlayerText:text, const string[], va_args<>)
+{
+	gFast[0] = (EOS);
+	va_format(gFast, sizeof gFast, string, va_start<3>);
+	return PlayerTextDrawSetString(playerid, text, gFast);
 }
 
 stock clearChat(playerid, lines = 20)
@@ -693,33 +880,33 @@ stock getDateTime()
 }
 stock sendAdmin(color, const text[], va_args<>)
 {
-	gString[0] = (EOS);
-	va_format(gString, 256, text, va_start<2>);
-	foreach(new playerid : ServerAdmins) SCM(playerid, color, gString);
+	gFast[0] = (EOS);
+	va_format(gFast, 256, text, va_start<2>);
+	foreach(new playerid : ServerAdmins) SCM(playerid, color, gFast);
 	return true;
 }
 
 stock sendHelper(color, const text[], va_args<>)
 {
-	gString[0] = (EOS);
-	va_format(gString, 256, text, va_start<2>);
-	foreach(new playerid : ServerHelpers)  SCM(playerid, color, gString);
+	gFast[0] = (EOS);
+	va_format(gFast, 256, text, va_start<2>);
+	foreach(new playerid : ServerHelpers)  SCM(playerid, color, gFast);
 	return true;
 }
 
 stock sendStaff(color, const text[], va_args<>)
 {
-	gString[0] = (EOS);
-	va_format(gString, 256, text, va_start<2>);
-	foreach(new playerid : ServerStaff)  SCM(playerid, color, gString);
+	gFast[0] = (EOS);
+	va_format(gFast, 256, text, va_start<2>);
+	foreach(new playerid : ServerStaff)  SCM(playerid, color, gFast);
 	return true;
 }
 
 stock oocNews(color, const text[], va_args<>) {
-	gString[0] = (EOS);
-	va_format(gString, 256, text, va_start<2>);
+	gFast[0] = (EOS);
+	va_format(gFast, 256, text, va_start<2>);
 	foreach(new playerid : Player) {
-		if(playerInfo[playerid][pLiveToggle] == 0) SCM(playerid, color, gString);
+		if(playerInfo[playerid][pLiveToggle] == 0) SCM(playerid, color, gFast);
 	}
 	return true;
 }

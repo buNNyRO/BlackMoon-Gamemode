@@ -411,14 +411,23 @@ timer TimerFuel[1000](playerid) {
 }
 
 timer TimerSpeedo[1000](playerid) { 
-	new vehicleid = GetPlayerVehicleID(playerid);
-	PlayerTextDrawSetString(playerid, playerSpeedPTD[playerid], string_fast("%s", vehicle_personal[vehicleid] > -1 ? string_fast("%s~n~Odometer: %.2fKM~n~Status: %s~w~", gString, personalVehicle[vehicle_personal[vehicleid]][pvOdometer], (personalVehicle[vehicle_personal[vehicleid]][pvLock] == 1) ? ("~r~Locked") : ("~g~Unlocked")) : string_fast("~w~Speed: ~r~%d~w~ km/h~n~Fuel: %s%.0f~w~L", getVehicleSpeed(vehicleid), (vehicle_fuel[vehicleid] >= 30) ? ("~g~") : ("~r~"), vehicle_fuel[vehicleid])));
+	// PlayerTextDrawSetString(playerid, playerSpeedPTD[playerid], 
+	// 	string_fast("%s", vehicle_personal[vehicleid] > -1 ? 
+	// 		string_fast("%s~n~Odometer: %.2fKM~n~Status: %s~w~", gString, personalVehicle[vehicle_personal[vehicleid]][pvOdometer], 
+	// 			(personalVehicle[vehicle_personal[vehicleid]][pvLock] == 1) ? ("~r~Locked") : ("~g~Unlocked")) : 
+	// 		string_fast("~w~Speed: ~r~%d~w~ km/h~n~Fuel: %s%.0f~w~L", getVehicleSpeed(vehicleid), (vehicle_fuel[vehicleid] >= 30) ? 
+	// 			("~g~") : ("~r~"), vehicle_fuel[vehicleid])));
+	new vehicleid = GetPlayerVehicleID(playerid), Float:he;
+	GetVehicleHealth(vehicleid, he);
+	va_PlayerTextDrawSetString(playerid, vehicleHud[4], "%d", getVehicleSpeed(vehicleid));
+	va_PlayerTextDrawSetString(playerid, vehicleHud[9], "%.1f%s", he/10, "%");
+	va_PlayerTextDrawSetString(playerid, vehicleHud[12], "%d", getVehicleSpeed(vehicleid)/30);
+	va_PlayerTextDrawSetString(playerid, vehicleHud[13], "Bunny manelistu'", he, "%");
+	if(vehicle_personal[vehicleid] < -1) {
+		va_PlayerTextDrawSetString(playerid, vehicleHud[7], "%s", (personalVehicle[vehicle_personal[vehicleid]][pvLock]) ? ("~g~Unlocked") : ("~r~Locked"));
+		va_PlayerTextDrawSetString(playerid, vehicleHud[8], "%.1f", personalVehicle[vehicle_personal[vehicleid]][pvOdometer]);
+	}
 	return true;
-}
-
-CMD:testtt(playerid, params[]) {
-	printf("%d", Iter_Count(PlayerVehicles[playerid]));
-	return 1;
 }
 
 hook OnPlayerDisconnect(playerid, reason) {
@@ -596,6 +605,27 @@ CMD:park(playerid, params[]) {
 	UpdateVehicleDamageStatus(personalVehicle[id][pvSpawnedID],personalVehicle[id][pvDamagePanels], personalVehicle[id][pvDamageDoors], personalVehicle[id][pvDamageLights], personalVehicle[id][pvDamageTires]);
 	return true;
 }
+
+CMD:vehicles2(playerid, params[]) {
+	if(!Iter_Count(PlayerVehicles[playerid])) return sendPlayerError(playerid, "Nu ai nici un vehicul personal.");
+	new count = 0, title[40];
+	format(title, sizeof title, "Personal garage (%d/%d slots)", playerInfo[playerid][pVehicleSlots], MAX_PLAYER_PERSONAL_VEHICLES);
+	gString[0] = (EOS);
+	foreach(new i : PlayerVehicles[playerid]) {
+		if(personalVehicle[i][pvModelID] == 0) return sendPlayerError(playerid, "S-a creeat un bug la sistemul de vehicule, te rog sa raportezi pe /report.");
+		if(personalVehicle[i][pvSpawnedID] == INVALID_VEHICLE_ID) {
+			format(gString, 2048, "%s{FFFFFF}%d\t%s\tHidden\t-\n", gString, (count + 1), getVehicleName(personalVehicle[i][pvModelID]));
+		}
+		else {
+			format(gString, 2048, "%s{FFFFFF}%d\t%s\t%s\t%d min\n", gString, (count + 1), getVehicleName(personalVehicle[i][pvModelID]), (IsVehicleOccupied(personalVehicle[i][pvSpawnedID])) ? ("{E5913E}Occupied{FFFFFF}") : ("{4DFF00}Available{FFFFFF}"), (!personalVehicle[i][pvDespawnTime] ? (0) : ((personalVehicle[i][pvDespawnTime] - gettime()) / 60)));	
+		}
+		playerInfo[playerid][pSelectVehicle][count] = i;
+		count ++;
+	}
+	Dialog_Show(playerid, MY_GARAGE, DIALOG_STYLE_TABLIST, title, gString, "Select", "Close");
+	return true;
+}
+
 
 CMD:vehicles(playerid, params[]) {
 	if(!Iter_Count(PlayerVehicles[playerid])) return sendPlayerError(playerid, "Nu ai nici un vehicul personal.");

@@ -617,7 +617,7 @@ function getVehicleMaxSpeed(model) {
 	return speed;
 }
 
-serverWeapon(playerid, weaponid, ammo) {
+function serverWeapon(playerid, weaponid, ammo) {
 	if(playerInfo[playerid][pWeaponLicense] == 0 && weaponid >= 8 && weaponid != 43 || weaponid == 9 && playerInfo[playerid][pJob] == 0 && Working[playerid] == 0) return true;
 	Weapons[playerid][weaponid] = 1;
 	WeaponAmmo[playerid][getWeaponSlot(weaponid)] += ammo;
@@ -748,6 +748,15 @@ function loadMaps() {
 	CreateDynamicObject(751, 1165.56, 1344.74, 9.24,   0.00, 0.00, 0.00, 1337);
 	CreateDynamicObject(987, 1163.42, 1223.87, 11.69,   0.00, 0.00, 0.00, 1337);
 	CreateDynamicObject(987, 1158.71, 1223.87, 11.69,   0.00, 0.00, 0.00, 1337);
+
+	// Iesirile LV
+	CreateDynamicObject(4518, 1738.54089, 521.78296, 28.59834,   360.77997, -6.14000, 75.88000);
+	CreateDynamicObject(4520, 2766.62354, 603.93372, 9.14063,   0.56160, -0.36001, 88.99719);
+	CreateDynamicObject(4514, 437.74054, 591.05017, 19.92368,   358.65833, 0.18000, 37.15075);
+	CreateDynamicObject(4516, -141.33594, 468.64844, 12.60057,   362.73816, -1.74000, -12.23980);
+	CreateDynamicObject(4527, -1010.04584, 943.52643, 35.47656,   3.14159, 0.00000, -182.25642);
+	CreateDynamicObject(4524, -1141.71875, 1098.05469, 39.41900,   360.51825, -0.66000, 1.82159);
+	CreateDynamicObject(4511, -2686.70630, 2059.17188, 59.77920,   0.20160, 0.72000, 93.13080);
 	return true;
 }
 
