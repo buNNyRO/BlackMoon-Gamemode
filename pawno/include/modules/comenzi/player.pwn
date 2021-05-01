@@ -24,9 +24,7 @@ CMD:helpers(playerid, params[])
 	return true;
 }
 
-CMD:licenses(playerid, params[])
-	return showLicenses(playerid, playerid);
-
+CMD:licenses(playerid, params[]) return showLicenses(playerid, playerid);
 
 CMD:stats(playerid, params[])
 	return showStats(playerid, playerid);

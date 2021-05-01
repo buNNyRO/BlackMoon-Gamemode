@@ -5077,6 +5077,10 @@
 			<referrer name="fareUpdateTimer"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 		</member>
+		<member name="F:testt">
+			<tagname value="PlayerText"/>
+			<referrer name="playerTextDraws"/>
+		</member>
 		<member name="F:ticketMoney">
 			<referrer name="@yH_OnPlayerConnect@007"/>
 			<referrer name="pc_cmd_ticket"/>
@@ -5215,6 +5219,7 @@
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerCar"/>
 			<referrer name="TimerFuel"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_park"/>
 			<referrer name="pc_cmd_fill"/>
 			<referrer name="gasTimer"/>
@@ -5573,6 +5578,7 @@
 			<referrer name="GetDistanceBetweenPoints"/>
 			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="TimerFuel"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_fill"/>
 			<referrer name="PayDay"/>
 			<param name="oper1">
@@ -5613,6 +5619,7 @@
 			<referrer name="IsPlayerSprayingVehicle"/>
 			<referrer name="getVehicleSpeed"/>
 			<referrer name="GetDistancePlayerToVeh"/>
+			<referrer name="TimerSpeedo"/>
 			<param name="oper1">
 				<paraminfo>Float </paraminfo>
 			</param>
@@ -21144,6 +21151,7 @@
 			<attribute name="native"/>
 			<referrer name="CreatePlayerProgressBar"/>
 			<referrer name="playerTextDraws"/>
+			<referrer name="TimerSpeedo"/>
 			<param name="playerid">
 			</param>
 			<param name="text">
@@ -24252,8 +24260,11 @@
 			<stacksize value="11"/>
 			<referrer name="TimerSpeedo@_yT"/>
 			<dependency name="operator/(Float:,_:)"/>
+			<dependency name="operator+(Float:,Float:)"/>
+			<dependency name="operator*(Float:,Float:)"/>
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="GetVehicleHealth"/>
+			<dependency name="PlayerTextDrawLetterSize"/>
 			<dependency name="getVehicleSpeed"/>
 			<dependency name="personalVehicle"/>
 			<dependency name="personalVehicle"/>
@@ -24262,6 +24273,7 @@
 			<dependency name="true"/>
 			<dependency name="va_PlayerTextDrawSetString"/>
 			<dependency name="vehicleHud"/>
+			<dependency name="vehicle_fuel"/>
 			<dependency name="vehicle_personal"/>
 			<param name="playerid">
 			</param>
@@ -36619,6 +36631,7 @@
 			<dependency name="playerNamePTD"/>
 			<dependency name="serverDealerPTD"/>
 			<dependency name="serverDealerPTD"/>
+			<dependency name="testt"/>
 			<dependency name="true"/>
 			<dependency name="vehicleHud"/>
 			<dependency name="wantedTD"/>

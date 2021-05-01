@@ -44,6 +44,7 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], Connection = 0, AntiChea
 	PlayerText:playerLevelPTD[MAX_PLAYERS],
 	PlayerText:playerExamenPTD[MAX_PLAYERS],
     PlayerText:vehicleHud[15],
+    PlayerText:testt[3],
     PlayerText:serverDealerPTD[MAX_PLAYERS][3],
     PlayerText:wantedTD[MAX_PLAYERS],
     PlayerText:fareTD[MAX_PLAYERS],

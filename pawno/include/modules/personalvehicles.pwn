@@ -423,6 +423,15 @@ timer TimerSpeedo[1000](playerid) {
 	va_PlayerTextDrawSetString(playerid, vehicleHud[9], "%.1f%s", he/10, "%");
 	va_PlayerTextDrawSetString(playerid, vehicleHud[12], "%d", getVehicleSpeed(vehicleid)/30);
 	va_PlayerTextDrawSetString(playerid, vehicleHud[13], "Bunny manelistu'", he, "%");
+	
+	PlayerTextDrawLetterSize(playerid, vehicleHud[14], 0.000000, (-0.533344)+(-0.03644447*vehicle_fuel[vehicleid]));
+	// CMD:testx(playerid, params[]) {
+	// 	new testtf;
+	// 	if(sscanf(params, "d", testtf)) return sendPlayerSyntax(playerid, "da");
+	// 	printf("%f", (-0.03644447*testtf));
+	// 	printf("%f", (-0.533344)+(-0.03644447*testtf));
+	// 	return 1;
+	// }
 	if(vehicle_personal[vehicleid] < -1) {
 		va_PlayerTextDrawSetString(playerid, vehicleHud[7], "%s", (personalVehicle[vehicle_personal[vehicleid]][pvLock]) ? ("~g~Unlocked") : ("~r~Locked"));
 		va_PlayerTextDrawSetString(playerid, vehicleHud[8], "%.1f", personalVehicle[vehicle_personal[vehicleid]][pvOdometer]);
