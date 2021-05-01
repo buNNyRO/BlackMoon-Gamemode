@@ -221,7 +221,7 @@ hook OnPlayerClickTextDraw(playerid, Text:clickedid) {
 
 timer testDriveTimer[120000](playerid) cancelDriveTest(playerid, 1); 
 
-YCMD:buycar(playerid, params[], help) {
+CMD:buycar(playerid, params[]) {
 	if(playerInfo[playerid][pinDealer] > 1) return sendPlayerError(playerid, "Momentan esti deja in dealer-ul de masini.");
 	if(TestingModel[playerid] > 0) return sendPlayerError(playerid, "Esti in modul de 'test drive' momentan.");
 	LoadDsVehs(playerid);

@@ -54,7 +54,7 @@ function LoadClans() {
 	return printf("Clans: %d [From Database]", Iter_Count(ServerClans));
 }
 
-YCMD:cinvite(playerid, params[], help) {
+CMD:cinvite(playerid, params[]) {
 	if(!playerInfo[playerid][pClan]) return sendPlayerError(playerid, "Nu esti intr-un clan pentru a face acest lucru.");
 	if(playerInfo[playerid][pClanRank] < 5) return sendPlayerError(playerid, "Nu ai rank-ul 5+ pentru a face acest lucru.");
 	if(clanInfo[playerInfo[playerid][pClan]][cTotal] == clanInfo[playerInfo[playerid][pClan]][cSlots]) return sendPlayerError(playerid, "Nu poti invita membrii in clan deoarece nu mai sunt locuri libere.");
@@ -70,7 +70,7 @@ YCMD:cinvite(playerid, params[], help) {
 	return true;
 }
 
-YCMD:clanchat(playerid, params[], help) {
+CMD:clanchat(playerid, params[]) {
 	if(playerInfo[playerid][pClan] == 0) return sendPlayerError(playerid, "Nu esti intr-un clan pentru a face acest lucru.");
 	if(clanChat[playerInfo[playerid][pClan]] == 1 && playerInfo[playerid][pClanRank] < 6) return sendPlayerError(playerid, "Chatul clanului a fost oprit.");
 	extract params -> new string:result[144]; else return sendPlayerSyntax(playerid, "/clanchat <text>");
@@ -88,7 +88,7 @@ YCMD:clanchat(playerid, params[], help) {
 	return true;
 }
 
-YCMD:leaveclan(playerid, params[], help) {
+CMD:leaveclan(playerid, params[]) {
 	if(playerInfo[playerid][pClan] == 0) return sendPlayerError(playerid, "Nu esti intr-un clan pentru a face acest lucru.");
 	if(playerInfo[playerid][pClanRank] == 7) return sendPlayerError(playerid, "Nu poti iesi din clan, deoarece ai rank 7.");
 	sendClanMessage(playerInfo[playerid][pClan], clanInfo[playerInfo[playerid][pClan]][cClanColor], "* [CLAN] %s a iesit din clan.", getName(playerid));
@@ -102,7 +102,7 @@ YCMD:leaveclan(playerid, params[], help) {
 	return true;
 }
 
-YCMD:clan(playerid, params[], help) {
+CMD:clan(playerid, params[]) {
 	if(playerInfo[playerid][pClan] == 0) return sendPlayerError(playerid, "Nu esti intr-un clan pentru a face acest lucru.");
 	Dialog_Show(playerid, DIALOG_CLAN, DIALOG_STYLE_LIST, "Clan Menu", "Comenzile Clanului\nMembrii clanului\nTag\nSetari", "Select", "Close");
 	return true;

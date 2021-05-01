@@ -179,7 +179,7 @@ Dialog:HOUSE_OPTION_DESCADMIN(playerid, response, listitem, inputtext[]) {
 	return true;
 }
 
-YCMD:buyhouse(playerid, params[], help) {
+CMD:buyhouse(playerid, params[]) {
 	if(playerInfo[playerid][pHouse] != 0) return sendPlayerError(playerid, "Ai deja o casa cumparata.");
 	if(playerInfo[playerid][pLevel] < 5) return sendPlayerError(playerid, "Trebuie sa detii, minim level 5.");
 	if(playerInfo[playerid][areaHouse] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, houseInfo[playerInfo[playerid][areaHouse]][hExtX], houseInfo[playerInfo[playerid][areaHouse]][hExtY], houseInfo[playerInfo[playerid][areaHouse]][hExtZ])) {
@@ -233,7 +233,7 @@ YCMD:buyhouse(playerid, params[], help) {
 	return true;
 }
 
-YCMD:sellhousestate(playerid, params[], help) {
+CMD:sellhousestate(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti face aceasta actiune, deoarece esti in masina.");
 	if(GetPlayerVirtualWorld(playerid) != 0 && GetPlayerInterior(playerid) != 0 && playerInfo[playerid][pinHouse] != -1) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda deoarece, esti intr-un alt virtualworld / interior / esti intr-o casa.");
@@ -242,7 +242,7 @@ YCMD:sellhousestate(playerid, params[], help) {
 	return true;
 }
 
-YCMD:housebalance(playerid, params[], help) {
+CMD:housebalance(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
 	new houseid = playerInfo[playerid][pHouseID];
@@ -250,7 +250,7 @@ YCMD:housebalance(playerid, params[], help) {
 	return true;
 }
 
-YCMD:housewithdraw(playerid, params[], help) {
+CMD:housewithdraw(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
 	new houseid = playerInfo[playerid][pHouseID], suma;
@@ -269,7 +269,7 @@ YCMD:housewithdraw(playerid, params[], help) {
 	return true;
 }
 
-YCMD:housedeposit(playerid, params[], help) {
+CMD:housedeposit(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
 	new houseid = playerInfo[playerid][pHouseID], suma;
@@ -284,7 +284,7 @@ YCMD:housedeposit(playerid, params[], help) {
 	return true;
 }
 
-YCMD:houseoption(playerid, params[], help) {
+CMD:houseoption(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
@@ -292,7 +292,7 @@ YCMD:houseoption(playerid, params[], help) {
 	return true;
 }
 
-YCMD:hlock(playerid, params[], help) {
+CMD:hlock(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
 	new houseid = playerInfo[playerid][pHouseID];
@@ -310,7 +310,7 @@ YCMD:hlock(playerid, params[], help) {
 	return true;
 }
 
-YCMD:sellhouse(playerid, params[], help) {
+CMD:sellhouse(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
 	new houseid = playerInfo[playerid][pHouseID], suma;
@@ -324,7 +324,7 @@ YCMD:sellhouse(playerid, params[], help) {
 	return true;
 }
 
-YCMD:adminhouse(playerid, params[], help) {
+CMD:adminhouse(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pAdmin] < 4) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
@@ -336,7 +336,7 @@ YCMD:adminhouse(playerid, params[], help) {
 	return true;
 }
 
-YCMD:rentabil(playerid, params[], help) {
+CMD:rentabil(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
 	if(GetPVarInt(playerid, "RentDeelay") > gettime()) return sendPlayerError(playerid, "Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "RentDeelay") - gettime()));
@@ -350,7 +350,7 @@ YCMD:rentabil(playerid, params[], help) {
 	return true;
 }
 
-YCMD:renters(playerid, params[], help) {
+CMD:renters(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
 	new houseid = playerInfo[playerid][pHouseID];
@@ -358,7 +358,7 @@ YCMD:renters(playerid, params[], help) {
 	return true;
 }
 
-YCMD:rentroom(playerid, parmas[], help) {
+CMD:rentroom(playerid, parmas[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 1 && playerInfo[playerid][pHouseID] != -1) return sendPlayerError(playerid, "Detii deja o casa, nu poti folosi aceasta comanda.");
 	if(playerInfo[playerid][pRent] != -1) return sendPlayerError(playerid, "Ai deja rentroom la o casa, foloseste (/unrentroom).");
@@ -382,7 +382,7 @@ YCMD:rentroom(playerid, parmas[], help) {
 	return true;
 }
 
-YCMD:unrentroom(playerid, params[], help) {
+CMD:unrentroom(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pRent] == -1) return sendPlayerError(playerid, "Nu ai rentroom la o casa, foloseste (/rentroom).");
 	new houseid = playerInfo[playerid][pRent];
@@ -395,7 +395,7 @@ YCMD:unrentroom(playerid, params[], help) {
 	return true;
 }
 
-YCMD:setrentprice(playerid, params[], help) {
+CMD:setrentprice(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
 	new houseid = playerInfo[playerid][pHouseID], suma;
@@ -409,7 +409,7 @@ YCMD:setrentprice(playerid, params[], help) {
 	return true;
 }
 
-YCMD:upgradehouse(playerid, params[], help) {
+CMD:upgradehouse(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
 	new houseid = playerInfo[playerid][pHouseID], upgrade;
@@ -437,7 +437,7 @@ YCMD:upgradehouse(playerid, params[], help) {
 	return true;
 }
 
-YCMD:eat(playerid, params[], help) {
+CMD:eat(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1 && playerInfo[playerid][pRent] == -1) return sendPlayerError(playerid, "Nu detii o casa / rent.");
 	if(playerInfo[playerid][pHouse] != 0 && playerInfo[playerid][pHouseID] != -1) {
@@ -459,7 +459,7 @@ YCMD:eat(playerid, params[], help) {
 	return true;
 }
 
-YCMD:armour(playerid, params[], help) {
+CMD:armour(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1 && playerInfo[playerid][pRent] == -1) return sendPlayerError(playerid, "Nu detii o casa / rent.");
 	if(playerInfo[playerid][pHouse] != 0 && playerInfo[playerid][pHouseID] != -1) {

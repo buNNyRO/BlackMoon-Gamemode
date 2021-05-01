@@ -1,252 +1,23 @@
 #include <YSI\y_hooks>
-new spoiler[20][0] = {
-	{1000},
-	{1001},
-	{1002},
-	{1003},
-	{1014},
-	{1015},
-	{1016},
-	{1023},
-	{1058},
-	{1060},
-	{1049},
-	{1050},
-	{1138},
-	{1139},
-	{1146},
-	{1147},
-	{1158},
-	{1162},
-	{1163},
-	{1164}
-};
-
-new nitro[3][0] = {
-	{1008},
-	{1009},
-	{1010}
-};
-
-new fbumper[23][0] = {
-	{1117},
-	{1152},
-	{1153},
-	{1155},
-	{1157},
-	{1160},
-	{1165},
-	{1167},
-	{1169},
-	{1170},
-	{1171},
-	{1172},
-	{1173},
-	{1174},
-	{1175},
-	{1179},
-	{1181},
-	{1182},
-	{1185},
-	{1188},
-	{1189},
-	{1192},
-	{1193}
-};
-
-new rbumper[22][0] = {
-	{1140},
-	{1141},
-	{1148},
-	{1149},
-	{1150},
-	{1151},
-	{1154},
-	{1156},
-	{1159},
-	{1161},
-	{1166},
-	{1168},
-	{1176},
-	{1177},
-	{1178},
-	{1180},
-	{1183},
-	{1184},
-	{1186},
-	{1187},
-	{1190},
-	{1191}
-};
-
-new exhaust[28][0] = {
-	{1018},
-	{1019},
-	{1020},
-	{1021},
-	{1022},
-	{1028},
-	{1029},
-	{1037},
-	{1043},
-	{1044},
-	{1045},
-	{1046},
-	{1059},
-	{1064},
-	{1065},
-	{1066},
-	{1089},
-	{1092},
-	{1104},
-	{1105},
-	{1113},
-	{1114},
-	{1126},
-	{1127},
-	{1129},
-	{1132},
-	{1135},
-	{1136}
-};
-
-new bventr[2][0] = {
-	{1142},
-	{1144}
-};
-
-new bventl[2][0] = {
-	{1143},
-	{1145}
-};
-
-new bscoop[4][0] = {
-	{1004},
-	{1005},
-	{1011},
-	{1012}
-};
-
-new rscoop[17][0] = {
-	{1006},
-	{1032},
-	{1033},
-	{1035},
-	{1038},
-	{1053},
-	{1054},
-	{1055},
-	{1061},
-	{1067},
-	{1068},
-	{1088},
-	{1091},
-	{1103},
-	{1128},
-	{1130},
-	{1131}
-};
-
-new lskirt[21][0] = {
-	{1007},
-	{1026},
-	{1031},
-	{1036},
-	{1039},
-	{1042},
-	{1047},
-	{1048},
-	{1056},
-	{1057},
-	{1069},
-	{1070},
-	{1090},
-	{1093},
-	{1106},
-	{1108},
-	{1118},
-	{1119},
-	{1133},
-	{1122},
-	{1134}
-};
-
-new rskirt[21][0] = {
-	{1017},
-	{1027},
-	{1030},
-	{1040},
-	{1041},
-	{1051},
-	{1052},
-	{1062},
-	{1063},
-	{1071},
-	{1072},
-	{1094},
-	{1095},
-	{1099},
-	{1101},
-	{1102},
-	{1107},
-	{1120},
-	{1121},
-	{1124},
-	{1137}
-};
-
-new hydraulics[1][0] = {
-	{1087}
-};
-
-new vbase[1][0] = {
-	{1086}
-};
-
-new rbbars[4][0] = {
-	{1109},
-	{1110},
-	{1123},
-	{1125}
-};
-
-new fbbars[2][0] = {
-	{1115},
-	{1116}
-};
-
-new wheels[17][0] = {
-	{1025},
-	{1073},
-	{1074},
-	{1075},
-	{1076},
-	{1077},
-	{1078},
-	{1079},
-	{1080},
-	{1081},
-	{1082},
-	{1083},
-	{1084},
-	{1085},
-	{1096},
-	{1097},
-	{1098}
-};
-
-new vlights[2][0] = {
-	{1013},
-	{1024}
-};
-
-new Float:DebugVehicles[5][4] = {
-	{1404.7991, -2242.4053, 13.2740, 179.9745},
-	{1408.0391, -2241.7424, 13.2739, 180.7533},
-	{1411.2999, -2241.6965, 13.2740, 179.8135},
-	{1414.5262, -2241.7778, 13.2740, 179.0950},
-	{1401.4760, -2242.2036, 13.2740, 179.6247}
-};
+new 
+vbase[1][0] = { {1086} },
+hydraulics[1][0] = { {1087} },
+bventr[2][0] = { {1142},{1144} },
+bventl[2][0] = { {1143},{1145} },
+fbbars[2][0] = { {1115},{1116} },
+vlights[2][0] = { {1013},{1024} },
+nitro[3][0] = { {1008},{1009},{1010} },
+bscoop[4][0] = { {1004},{1005},{1011},{1012} },
+rbbars[4][0] = { {1109},{1110},{1123},{1125} },
+rscoop[17][0] = { {1006},{1032},{1033},{1035},{1038},{1053},{1054},{1055},{1061},{1067},{1068},{1088},{1091},{1103},{1128},{1130},{1131} },
+wheels[17][0] = { {1025},{1073},{1074},{1075},{1076},{1077},{1078},{1079},{1080},{1081},{1082},{1083},{1084},{1085},{1096},{1097},{1098} },
+lskirt[21][0] = { {1007},{1026},{1031},{1036},{1039},{1042},{1047},{1048},{1056},{1057},{1069},{1070},{1090},{1093},{1106},{1108},{1118},{1119},{1133},{1122},{1134} },
+rskirt[21][0] = { {1017},{1027},{1030},{1040},{1041},{1051},{1052},{1062},{1063},{1071},{1072},{1094},{1095},{1099},{1101},{1102},{1107},{1120},{1121},{1124},{1137} },
+rbumper[22][0] = { {1140},{1141},{1148},{1149},{1150},{1151},{1154},{1156},{1159},{1161},{1166},{1168},{1176},{1177},{1178},{1180},{1183},{1184},{1186},{1187},{1190},{1191} },
+spoiler[20][0] = { {1000}, {1001}, {1002}, {1003},{1014}, {1015}, {1016}, {1023},{1058}, {1060}, {1049}, {1050},{1138}, {1139}, {1146}, {1147},{1158}, {1162}, {1163}, {1164} },
+fbumper[23][0] = { {1117},{1152},{1153},{1155},{1157},{1160},{1165},{1167},{1169},{1170},{1171},{1172},{1173},{1174},{1175},{1179},{1181},{1182},{1185},{1188},{1189},{1192},{1193} },
+exhaust[28][0] = { {1018},{1019},{1020},{1021},{1022},{1028},{1029},{1037},{1043},{1044},{1045},{1046},{1059},{1064},{1065},{1066},{1089},{1092},{1104},{1105},{1113},{1114},{1126},{1127},{1129},{1132},{1135},{1136} },
+Float:DebugVehicles[5][4] = { {1404.7991, -2242.4053, 13.2740, 179.9745},{1408.0391, -2241.7424, 13.2739, 180.7533},{1411.2999, -2241.6965, 13.2740, 179.8135},{1414.5262, -2241.7778, 13.2740, 179.0950},{1401.4760, -2242.2036, 13.2740, 179.6247} };
 
 enum personalVehicleEnum {
 	pvID,
@@ -645,11 +416,14 @@ timer TimerSpeedo[1000](playerid) {
 	return true;
 }
 
+CMD:testtt(playerid, params[]) {
+	printf("%d", Iter_Count(PlayerVehicles[playerid]));
+	return 1;
+}
+
 hook OnPlayerDisconnect(playerid, reason) {
 	foreach(new i : PlayerVehicles[playerid]) {
-		gQuery[0] = (EOS); 
-		mysql_format(SQL, gQuery, sizeof(gQuery), "UPDATE `server_personal_vehicles` SET  `Health` = '%f', `Fuel` = '%f', `Odometer`='%f', `DamageDoors`='%d', `DamageLights`='%d', `DamageTires`='%d' WHERE `ID`='%d'", personalVehicle[i][pvHealth], personalVehicle[i][pvFuel], personalVehicle[i][pvOdometer], personalVehicle[i][pvDamagePanels], personalVehicle[i][pvDamageDoors], personalVehicle[i][pvDamageLights], personalVehicle[i][pvDamageTires],personalVehicle[i][pvID]);
-		mysql_tquery(SQL, gQuery, "", "");
+		update("UPDATE `server_personal_vehicles` SET  `Health` = '%f', `Fuel` = '%f', `Odometer`='%f', `DamageDoors`='%d', `DamageLights`='%d', `DamageTires`='%d' WHERE `ID`='%d'", personalVehicle[i][pvHealth], personalVehicle[i][pvFuel], personalVehicle[i][pvOdometer], personalVehicle[i][pvDamagePanels], personalVehicle[i][pvDamageDoors], personalVehicle[i][pvDamageLights], personalVehicle[i][pvDamageTires],personalVehicle[i][pvID]);
 
 		personalVehicle[i][pvID] = 0;
 		personalVehicle[i][pvModelID] = 0;
@@ -683,14 +457,15 @@ hook OnPlayerDisconnect(playerid, reason) {
 			DestroyVehicle(personalVehicle[i][pvSpawnedID]);
 			personalVehicle[i][pvSpawnedID] = INVALID_VEHICLE_ID;
 		}
-		
-		Iter_SafeRemove(TotalPlayerVehicles, i, i);
-		Iter_SafeRemove(PlayerVehicles[playerid], i, i);
+
+		Iter_Clear(TotalPlayerVehicles);
+		Iter_Clear(PlayerVehicles[playerid]);
+		break;
 	}
 	return true;
 }
 
-YCMD:lock(playerid, params[], help) {
+CMD:lock(playerid, params[]) {
 	new vehicleid = INVALID_VEHICLE_ID;
 	if(IsPlayerInAnyVehicle(playerid)) {
 		vehicleid = GetPlayerVehicleID(playerid);	
@@ -720,7 +495,7 @@ YCMD:lock(playerid, params[], help) {
 	return true;
 }
 
-YCMD:swapcolors(playerid, params[], help) {
+CMD:swapcolors(playerid, params[]) {
 	if(!IsPlayerInAnyVehicle(playerid) || GetPlayerState(playerid) != PLAYER_STATE_DRIVER || !Iter_Contains(PlayerVehicles[playerid], vehicle_personal[GetPlayerVehicleID(playerid)])) return sendPlayerError(playerid, "Nu te afli intr-un vehicul.");
 	if(GetPlayerCash(playerid) < 2000) return sendPlayerError(playerid, "Nu ai $2,000.");
 	new id = vehicle_personal[GetPlayerVehicleID(playerid)], color = personalVehicle[id][pvColorOne];
@@ -734,14 +509,14 @@ YCMD:swapcolors(playerid, params[], help) {
 	return true;
 }
 
-YCMD:buyinsurance(playerid, params[], help) {
+CMD:buyinsurance(playerid, params[]) {
 	if(GetPlayerState(playerid) != PLAYER_STATE_DRIVER || !Iter_Contains(PlayerVehicles[playerid], vehicle_personal[GetPlayerVehicleID(playerid)])) return sendPlayerError(playerid, "Nu te afli intr-un vehicul.");
 	if(personalVehicle[vehicle_personal[GetPlayerVehicleID(playerid)]][pvInsurancePoints] >= 5) return sendPlayerError(playerid, "Vehiculul tau are deja mai mult sau egal cu 5 puncte de asigurare");
 	Dialog_Show(playerid, BUY_INSURANCE, DIALOG_STYLE_MSGBOX, "SERVER: Buy Insurance", "Esti sigur ca doresti sa cumperi un punct de asigurare pentru $%s?", "Da", "Nu", formatNumber(getInsurancePrice(floatround(personalVehicle[vehicle_personal[GetPlayerVehicleID(playerid)]][pvOdometer]), personalVehicle[vehicle_personal[GetPlayerVehicleID(playerid)]][pvAge])));
 	return true;
 }
 
-YCMD:carplate(playerid, params[], help) {
+CMD:carplate(playerid, params[]) {
 	if(!IsPlayerInAnyVehicle(playerid) || GetPlayerState(playerid) != PLAYER_STATE_DRIVER || !Iter_Contains(PlayerVehicles[playerid], vehicle_personal[GetPlayerVehicleID(playerid)])) return sendPlayerError(playerid, "Nu te afli intr-un vehicul.");
 	if(isnull(params) || strlen(params) > 12) return sendPlayerSyntax(playerid, "/carplate <plate>");
 	if(GetPlayerCash(playerid) < 4000) return sendPlayerError(playerid, "Nu ai $4,000.");
@@ -756,7 +531,7 @@ YCMD:carplate(playerid, params[], help) {
 	return true;
 }
 
-YCMD:carcolor(playerid, params[], help) {
+CMD:carcolor(playerid, params[]) {
 	if(!IsPlayerInAnyVehicle(playerid) || GetPlayerState(playerid) != PLAYER_STATE_DRIVER || !Iter_Contains(PlayerVehicles[playerid], vehicle_personal[GetPlayerVehicleID(playerid)])) return sendPlayerError(playerid, "Nu te afli intr-un vehicul.");
 	if(!Iter_Contains(PlayerVehicles[playerid], vehicle_personal[GetPlayerVehicleID(playerid)])) return sendPlayerError(playerid, "Acest vehicul nu iti apartine.");
 	if(GetPlayerCash(playerid) < 2000) return sendPlayerError(playerid, "Nu ai $2,000.");
@@ -777,7 +552,7 @@ YCMD:carcolor(playerid, params[], help) {
 	return true;
 }
 
-YCMD:park(playerid, params[], help) {
+CMD:park(playerid, params[]) {
 	if(GetPlayerState(playerid) != PLAYER_STATE_DRIVER) return sendPlayerError(playerid, "Nu te afli intr-un vehicul ca sofer.");
 	if(IsPlayerInRangeOfPoint(playerid, 50.0, 1310.1444, -1369.5681, 13.5640)) return sendPlayerError(playerid, "Nu poti parca masina in zona spawnului.");
 	new vehicleid = GetPlayerVehicleID(playerid);
@@ -822,19 +597,22 @@ YCMD:park(playerid, params[], help) {
 	return true;
 }
 
-YCMD:vehicles(playerid, params[], help) {
+CMD:vehicles(playerid, params[]) {
 	if(!Iter_Count(PlayerVehicles[playerid])) return sendPlayerError(playerid, "Nu ai nici un vehicul personal.");
-	new string[2048] = "Slot\tVehicle\tStatus\tDespawn Time\n", count = 0;
+	new count = 0, title[40];
+	format(title, sizeof title, "Personal garage (%d/%d slots)", playerInfo[playerid][pVehicleSlots], MAX_PLAYER_PERSONAL_VEHICLES);
+	gString[0] = (EOS);
 	foreach(new i : PlayerVehicles[playerid]) {
+		if(personalVehicle[i][pvModelID] == 0) return sendPlayerError(playerid, "S-a creeat un bug la sistemul de vehicule, te rog sa raportezi pe /report.");
 		if(personalVehicle[i][pvSpawnedID] == INVALID_VEHICLE_ID) {
-			format(string, 2048, "%s{FFFFFF}%d\t%s\tHidden\t-\n", string, (count + 1), getVehicleName(personalVehicle[i][pvModelID]));
+			format(gString, 2048, "%s{FFFFFF}%d\t%s\tHidden\t-\n", gString, (count + 1), getVehicleName(personalVehicle[i][pvModelID]));
 		}
 		else {
-			format(string, 2048, "%s{FFFFFF}%d\t%s\t%s\t%d min\n", string, (count + 1), getVehicleName(personalVehicle[i][pvModelID]), (IsVehicleOccupied(personalVehicle[i][pvSpawnedID])) ? ("{E5913E}Occupied{FFFFFF}") : ("{4DFF00}Available{FFFFFF}"), (!personalVehicle[i][pvDespawnTime] ? (0) : ((personalVehicle[i][pvDespawnTime] - gettime()) / 60)));	
+			format(gString, 2048, "%s{FFFFFF}%d\t%s\t%s\t%d min\n", gString, (count + 1), getVehicleName(personalVehicle[i][pvModelID]), (IsVehicleOccupied(personalVehicle[i][pvSpawnedID])) ? ("{E5913E}Occupied{FFFFFF}") : ("{4DFF00}Available{FFFFFF}"), (!personalVehicle[i][pvDespawnTime] ? (0) : ((personalVehicle[i][pvDespawnTime] - gettime()) / 60)));	
 		}
 		playerInfo[playerid][pSelectVehicle][count] = i;
 		count ++;
 	}
-	Dialog_Show(playerid, MY_GARAGE, DIALOG_STYLE_TABLIST_HEADERS, string_fast("%s's garage (%d slots)", getName(playerid), playerInfo[playerid][pVehicleSlots]), string, "Select", "Close");
+	Dialog_Show(playerid, MY_GARAGE, DIALOG_STYLE_TABLIST, title, gString, "Select", "Close");
 	return true;
 }

@@ -34,7 +34,7 @@ function LoadTurfs() {
 	return printf("Turfs: %d [From Database]", Iter_Count(ServerTurfs));
 }
 
-YCMD:turfs(playerid, params[], help) {
+CMD:turfs(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Trebuie sa fi logat pentru a folosi aceasta comanda.");
 	if(playerInfo[playerid][pShowTurfs] == 0) {
 		playerInfo[playerid][pShowTurfs] = 1;

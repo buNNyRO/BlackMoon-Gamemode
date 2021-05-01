@@ -6,15 +6,17 @@
 #include <a_zones>
 #include <beaZone>
 
+
 #include <YSI\y_iterate>
 #include <profiler>
 #include <YSI\y_timers>
 #include <YSI\y_master>
-#include <YSI\y_commands>
+// #include <YSI\y_commands>
 #include <YSI\y_va>
 #include <YSI\y_inline>
 #include <YSI\y_stringhash>
 
+#include <PawnCMD>
 #include <a_mysql>
 #include <a_mysql_yinline>
 #include <sscanf2>
@@ -65,16 +67,6 @@ public OnGameModeInit()
 {
 	MySQLLoad();
 
-	Command_AddAltNamed("adminchat", "a");
-	Command_AddAltNamed("helperchat", "hc");
-	Command_AddAltNamed("setrespectpoints", "setrp");
-	Command_AddAltNamed("admingivelicense", "agl");
-	Command_AddAltNamed("adminsuspendlicense", "asl");
-	Command_AddAltNamed("adminsuspendlicense", "suspendlicense");
-	Command_AddAltNamed("vehicles", "v");
-	Command_AddAltNamed("vehicles", "g");
-	Command_AddAltNamed("vehicles", "garage");
-
 	Iter_Clear(AdminVehicles);
 
 	SetNameTagDrawDistance(20.0);
@@ -84,6 +76,24 @@ public OnGameModeInit()
     DisableInteriorEnterExits();
 	AllowInteriorWeapons(true);
 	UsePlayerPedAnims();
+
+	// alias:adminchat("a");
+	// alias:helperchat("hc");
+	// alias:setrespectpoints("setrp");
+	// alias:admingivelicense("agl");
+	// alias:admintakelicense("atl");
+	// alias:adminsuspendlicense("asl");
+	// alias:adminsuspendlicense("suspendlicense");
+	// alias:vehicles("v");
+	// alias:vehicles("g");
+	// alias:vehicles("garage");
+	// alias:fixveh("fv");
+	// alias:addnos("nos");
+	// alias:despawncar("vre");
+	// alias:set("setstats", "setstat");
+	// alias:makeleader("setleader");
+	// alias:setadmin("makeadmin");
+
 	return true;
 }
 
@@ -501,7 +511,7 @@ public OnVehicleDeath(vehicleid, killerid) {
 public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 	if(PRESSED(KEY_LOOK_BEHIND)) {
 		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER || !isBike(GetPlayerVehicleID(playerid)) || GetPVarInt(playerid, "engineDeelay") != gettime()) {
-			Command_ReProcess(playerid, "engine", false);
+			PC_EmulateCommand(playerid, "engine");
 		}
 	}
 	if(PRESSED(KEY_SECONDARY_ATTACK)) {
@@ -613,7 +623,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 	}
 	if(PRESSED(KEY_ACTION)) {
 		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER) {
-			Command_ReProcess(playerid, "lights", false);
+			PC_EmulateCommand(playerid, "lights");
 		}
 	}
 	if(PRESSED(KEY_ANALOG_DOWN)) {
@@ -643,8 +653,8 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 		}
 	}
 	if(PRESSED(KEY_NO)) {
-		Command_ReProcess(playerid, "lock", false);
-		Command_ReProcess(playerid, "finalquest", false);
+		PC_EmulateCommand(playerid, "lock");
+		PC_EmulateCommand(playerid, "finalquest");
 	}
 	if(PRESSED(KEY_CROUCH)) {
 		if(Iter_Contains(FactionMembers[2], playerid) || Iter_Contains(FactionMembers[3], playerid) || Iter_Contains(FactionMembers[4], playerid)) {
@@ -796,6 +806,18 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	}
 	return true;
 }
+
+public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags) 
+{ 
+    if(result == -1) 
+    { 
+        SendClientMessage(playerid, 0xFFFFFFFF, "SERVER: Unknown command."); 
+
+        return 0; 
+    } 
+
+    return 1; 
+} 
 
 public OnPlayerRequestSpawn(playerid)
 {

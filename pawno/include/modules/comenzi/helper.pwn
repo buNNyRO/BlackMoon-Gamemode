@@ -64,7 +64,7 @@ timer helpnTimer[10 * 1000](playerid) {
 	return true;
 }	
 
-YCMD:helduty(playerid, params[], help) {
+CMD:helduty(playerid, params[]) {
 	if(!Iter_Contains(ServerHelpers, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(GetPVarInt(playerid, "helDuty") > gettime())
 		return sendPlayerError(playerid, "Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "helDuty") - gettime()));
@@ -83,7 +83,7 @@ YCMD:helduty(playerid, params[], help) {
 	return true;
 }
 
-YCMD:n(playerid, params[], help)
+CMD:n(playerid, params[])
 {
 	new message[128];
 	if(sscanf(params, "s[128]", message)) return sendPlayerSyntax(playerid, "/n <question>");
@@ -93,7 +93,7 @@ YCMD:n(playerid, params[], help)
 	return 1;
 }
 
-YCMD:ar(playerid, params[], help)
+CMD:ar(playerid, params[])
 {
 	new playerAtribut;
 	if(!Iter_Contains(ServerHelpers, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
@@ -106,7 +106,7 @@ YCMD:ar(playerid, params[], help)
 	return 1;
 }
 
-YCMD:ch(playerid, params[], help)
+CMD:ch(playerid, params[])
 {
 	new message[128];
 	if(!Iter_Contains(ServerHelpers, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
@@ -134,7 +134,7 @@ YCMD:ch(playerid, params[], help)
 	return 1;
 }
 
-YCMD:hl(playerid, params[], help)
+CMD:hl(playerid, params[])
 {
 	new message[128];
 	if(HelperBusy[playerid] == -1 && playerInfo[playerid][pHelper] > 0) return sendPlayerError(playerid, "Niciun jucator nu ti-a fost atribuit.");
@@ -159,7 +159,7 @@ YCMD:hl(playerid, params[], help)
 	return 1;
 }
 
-YCMD:skipn(playerid, params[], help)
+CMD:skipn(playerid, params[])
 {
 	new jucatorAtribuit;
 	if(!Iter_Contains(ServerHelpers, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
@@ -169,7 +169,7 @@ YCMD:skipn(playerid, params[], help)
 	return 1;
 }
 
-YCMD:deletead(playerid, params[], help) {
+CMD:deletead(playerid, params[]) {
 	if(!Iter_Contains(ServerHelpers, playerid) && !Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	new deletePlayer, reason[32];
 	if(sscanf(params, "us[32]", deletePlayer, reason)) return sendPlayerSyntax(playerid, "/deletead <name/id> <reason>");

@@ -259,7 +259,7 @@ Dialog:DIALOG_JOBS(playerid, response, listitem, inputtext[]) {
 	return true;
 }
 
-YCMD:jobs(playerid, params[], help) {
+CMD:jobs(playerid, params[]) {
 	if(!Iter_Count(ServerJobs)) return sendPlayerError(playerid, "Nu sunt job-uri disponibile pe server.");
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
 	new string[256] = "Job Name\tJob Level\tJob Legal\n", legal[24];
@@ -272,7 +272,7 @@ YCMD:jobs(playerid, params[], help) {
 	return true;
 }
 
-YCMD:getjob(playerid, params[], help) {
+CMD:getjob(playerid, params[]) {
 	if(!Iter_Count(ServerJobs)) return sendPlayerError(playerid, "Nu sunt job-uri disponibile pe server.");
 	if(playerInfo[playerid][pJob] != 0) return sendPlayerError(playerid, "Ai deja un job, foloseste (/quitjob).");
 	if(playerInfo[playerid][areaJob] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, jobInfo[playerInfo[playerid][areaJob]][jobX], jobInfo[playerInfo[playerid][areaJob]][jobY], jobInfo[playerInfo[playerid][areaJob]][jobZ])) {
@@ -284,7 +284,7 @@ YCMD:getjob(playerid, params[], help) {
 	return true;
 }
 
-YCMD:quitjob(playerid, params[], help) {
+CMD:quitjob(playerid, params[]) {
 	if(playerInfo[playerid][pJob] == 0) return sendPlayerError(playerid, "Nu ai un job, foloseste (/getjob).");
 	if(Working[playerid]) CancelJob(playerid, Working[playerid]);
 	playerInfo[playerid][pJob] = 0;
@@ -295,7 +295,7 @@ YCMD:quitjob(playerid, params[], help) {
 	return true;
 }
 
-YCMD:fish(playerid, params[], help) {
+CMD:fish(playerid, params[]) {
 	if(playerInfo[playerid][pJob] != 1) return sendPlayerError(playerid, "Nu ai jobul 'Fisher'.");
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti pescui din vehicul.");
 	if(!IsPlayerInArea(playerid, 348, -2089, 411, -2074)) return sendPlayerError(playerid, "Nu esti in zona in care poti pescui.");
@@ -312,7 +312,7 @@ YCMD:fish(playerid, params[], help) {
 	return true;
 }
 
-YCMD:skills(playerid, params[], help) {
+CMD:skills(playerid, params[]) {
 	SCM(playerid, COLOR_GREY, "* --- Jobs Skills --- *");
 	if(playerInfo[playerid][pFishSkill] >= 5) SCM(playerid, COLOR_WHITE, string_fast("* Fisherman: 5 (%d times)", playerInfo[playerid][pFishTimes]));
 	else SCM(playerid, COLOR_WHITE, string_fast("* (Fisherman): %d (%d times, %d needed)", playerInfo[playerid][pFishSkill], playerInfo[playerid][pFishTimes], returnNeededPoints(playerid, JOB_FISHER)));
@@ -327,7 +327,7 @@ YCMD:skills(playerid, params[], help) {
 	return true;
 }
 
-YCMD:startwork(playerid, params[], help) {
+CMD:startwork(playerid, params[]) {
 	if(playerInfo[playerid][pJob] == 0) return sendPlayerError(playerid, "Nu ai un job, foloseste (/getjob).");
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti lucra din vehicul.");
 	if(Working[playerid] != 0) return sendPlayerError(playerid, "Deja lucrezi.");
@@ -337,7 +337,7 @@ YCMD:startwork(playerid, params[], help) {
 	new jobid = playerInfo[playerid][pJob];
 	switch(jobid) {
 		case 1: {
-			Command_ReProcess(playerid, "fish", false);
+			PC_EmulateCommand(playerid, "fish");
 		}
 		case 2: {
 			if(!IsPlayerInRangeOfPoint(playerid, 5.5, jobInfo[jobid][jobXST], jobInfo[jobid][jobYST], jobInfo[jobid][jobZST])) return sendPlayerError(playerid, "Nu esti la punctul de start work pentru jobul 'Trucker'.");
@@ -359,7 +359,7 @@ YCMD:startwork(playerid, params[], help) {
 	return true;
 }
 
-YCMD:usedrugs(playerid, params[], help) {
+CMD:usedrugs(playerid, params[]) {
 	if(playerInfo[playerid][pDrugs] == 0) return sendPlayerError(playerid, "Nu ai droguri.");
 	if(UsingDrugs[playerid] == 1) return sendPlayerError(playerid, "Deja te droghezi.");
 	playerInfo[playerid][pDrugs] --;

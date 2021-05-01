@@ -1,4 +1,4 @@
-YCMD:addexamcp(playerid, params[], help) {
+CMD:addexamcp(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(Iter_Count(ExamenCheckpoints) >= MAX_EXAM_CHECKPOINTS) return sendPlayerError(playerid, "Eroare ! Database:Limita de checkpoint-uri a fost atinsa !");
 	new i = Iter_Free(ExamenCheckpoints);
@@ -15,7 +15,7 @@ YCMD:addexamcp(playerid, params[], help) {
 	return true;
 }
 
-YCMD:warn(playerid, params[], help)
+CMD:warn(playerid, params[])
 {
 	if(!Iter_Contains(ServerAdmins, playerid))
 		return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
@@ -35,7 +35,7 @@ YCMD:warn(playerid, params[], help)
 	return true;
 }
 
-YCMD:unwarn(playerid, params[], help)
+CMD:unwarn(playerid, params[])
 {
 	if(playerInfo[playerid][pAdmin] < 3)
 		return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
@@ -63,7 +63,7 @@ YCMD:unwarn(playerid, params[], help)
 	return true;
 }
 
-YCMD:ban(playerid, params[], help)
+CMD:ban(playerid, params[])
 {
 	if(!Iter_Contains(ServerAdmins, playerid))
 		return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
@@ -89,7 +89,7 @@ YCMD:ban(playerid, params[], help)
 	return true;
 }
 
-YCMD:banoffline(playerid, params[], help)
+CMD:banoffline(playerid, params[])
 {
 	if(!Iter_Contains(ServerAdmins, playerid))
 		return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
@@ -149,7 +149,7 @@ YCMD:banoffline(playerid, params[], help)
 	return true;
 }
 
-YCMD:unban(playerid, params[], help)
+CMD:unban(playerid, params[])
 {
 	if(playerInfo[playerid][pAdmin] < 3)
 		return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
@@ -181,7 +181,7 @@ YCMD:unban(playerid, params[], help)
 	return true;
 }
 
-YCMD:mute(playerid, params[], help)
+CMD:mute(playerid, params[])
 {
 	if(!Iter_Contains(ServerAdmins, playerid))
 		return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
@@ -213,7 +213,7 @@ YCMD:mute(playerid, params[], help)
 	return true;
 }
 
-YCMD:unmute(playerid, params[], help)
+CMD:unmute(playerid, params[])
 {
 	if(!Iter_Contains(ServerAdmins, playerid))
 		return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
@@ -239,7 +239,7 @@ YCMD:unmute(playerid, params[], help)
 	return true;
 }
 
-YCMD:mutedplayers(playerid, params[], help)
+CMD:mutedplayers(playerid, params[])
 {
 	if(!Iter_Contains(ServerAdmins, playerid))
 		return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
@@ -257,7 +257,7 @@ YCMD:mutedplayers(playerid, params[], help)
 	return true;
 }
 
-YCMD:adminchat(playerid, params[], help)
+CMD:adminchat(playerid, params[])
 {
 	if(!Iter_Contains(ServerAdmins, playerid))
 		return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
@@ -269,7 +269,7 @@ YCMD:adminchat(playerid, params[], help)
 	return true;
 }
 
-YCMD:helperchat(playerid, params[], help)
+CMD:helperchat(playerid, params[])
 {
 	if(!Iter_Contains(ServerAdmins, playerid) && !Iter_Contains(ServerHelpers, playerid))
 		return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
@@ -281,7 +281,7 @@ YCMD:helperchat(playerid, params[], help)
 	return true;
 }
 
-YCMD:setadmin(playerid, params[], help)
+CMD:setadmin(playerid, params[])
 {
 	if(playerInfo[playerid][pAdmin] < 6 && !strmatch(getName(playerid), "Vicentzo"))
 		return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
@@ -314,7 +314,7 @@ YCMD:setadmin(playerid, params[], help)
 	return true;
 }
 
-YCMD:sethelper(playerid, params[], help)
+CMD:sethelper(playerid, params[])
 {
 	if(playerInfo[playerid][pAdmin] < 6 && !strmatch(getName(playerid), "Vicentzo"))
 		return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
@@ -342,7 +342,7 @@ YCMD:sethelper(playerid, params[], help)
 	return true;
 }
 
-YCMD:givemoney(playerid, params[], help)
+CMD:givemoney(playerid, params[])
 {
 	if(playerInfo[playerid][pAdmin] < 5)
 		return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
@@ -363,7 +363,7 @@ YCMD:givemoney(playerid, params[], help)
 	return true;
 }
 
-YCMD:adminsuspendlicense(playerid, params[], help)
+CMD:adminsuspendlicense(playerid, params[])
 {
 	if(playerInfo[playerid][pAdmin] < 4)
 		return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
@@ -438,7 +438,7 @@ YCMD:adminsuspendlicense(playerid, params[], help)
 	return true;
 }
 
-YCMD:admingivelicense(playerid, params[], help)
+CMD:admingivelicense(playerid, params[])
 {
 	if(playerInfo[playerid][pAdmin] < 4)
 		return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
@@ -535,7 +535,101 @@ YCMD:admingivelicense(playerid, params[], help)
 	return true;
 }
 
-YCMD:kick(playerid, params[], help) {
+CMD:admintakelicense(playerid, params[])
+{
+	if(playerInfo[playerid][pAdmin] < 4)
+		return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
+
+	new userID, license[32];
+	if(sscanf(params, "us[32]d", userID, license))
+	{
+		sendPlayerSyntax(playerid, "/admintakelicense <name/id> <license>");
+		return SCM(playerid, COLOR_GREY, "Licente: Driving, Flying, Boat, Weapon, All.");
+	}
+
+	if(!isPlayerLogged(userID))
+		return sendPlayerError(playerid, "Jucatorul nu este conectat.");
+
+	switch(YHash(license))
+	{
+		case _H<driving>:
+		{
+			if(playerInfo[userID][pDrivingLicense] == 0)
+				return sendPlayerError(playerid, "Jucatorul nu are licenta de condus.");
+
+			if(playerInfo[userID][pDrivingLicenseSuspend] > 0 && playerInfo[playerid][pAdmin] < 6)
+				return sendPlayerError(playerid, "Jucatorul are licenta de condus suspendata.");
+
+			playerInfo[userID][pDrivingLicense] = 0;
+			playerInfo[userID][pDrivingLicenseSuspend] = 0;
+
+			sendAdmin(COLOR_SERVER, "Notice: {FFFFFF}Admin %s i-a sters lui %s licenta de condus.", getName(playerid), getName(userID));
+			SCM(userID, COLOR_GREY, string_fast("* Admin %s ti-a sters licenta de condus.", getName(playerid)));
+		}
+		case _H<flying>:
+		{
+			if(playerInfo[userID][pFlyLicense] == 0)
+				return sendPlayerError(playerid, "Jucatorul nu are licenta de pilot.");
+
+			if(playerInfo[userID][pFlyLicenseSuspend] > 0 && playerInfo[playerid][pAdmin] < 6)
+				return sendPlayerError(playerid, "Jucatorul are licenta de pilot suspendata.");
+
+			playerInfo[userID][pFlyLicense] = 0;
+			playerInfo[userID][pFlyLicenseSuspend] = 0;
+
+			sendAdmin(COLOR_SERVER, "Notice: {FFFFFF}Admin %s i-a sters lui %s licenta de pilot.", getName(playerid), getName(userID));
+			SCM(userID, COLOR_GREY, string_fast("* Admin %s ti-a sters licenta de pilot.", getName(playerid)));
+		}
+		case _H<boat>:
+		{
+			if(playerInfo[userID][pBoatLicense] == 0)
+				return sendPlayerError(playerid, "Jucatorul nu are licenta de navigatie.");
+
+			if(playerInfo[userID][pBoatLicenseSuspend] > 0 && playerInfo[playerid][pAdmin] < 6)
+				return sendPlayerError(playerid, "Jucatorul are licenta de navigatie suspendata.");
+
+			playerInfo[userID][pBoatLicense] = 0;
+			playerInfo[userID][pBoatLicenseSuspend] = 0;
+
+			sendAdmin(COLOR_SERVER, "Notice: {FFFFFF}Admin %s i-a sters lui %s licenta de navigatie.", getName(playerid), getName(userID));
+			SCM(userID, COLOR_GREY, string_fast("* Admin %s ti-a sters licenta de navigatie.", getName(playerid)));
+		}
+		case _H<weapon>:
+		{
+			if(playerInfo[userID][pWeaponLicense] == 0)
+				return sendPlayerError(playerid, "Jucatorul nu are licenta de port-arma.");
+
+			if(playerInfo[userID][pWeaponLicenseSuspend] > 0 && playerInfo[playerid][pAdmin] < 6)
+				return sendPlayerError(playerid, "Jucatorul are licenta de port-arma suspendata.");
+
+			playerInfo[userID][pWeaponLicense] = 0;
+			playerInfo[userID][pWeaponLicenseSuspend] = 0;
+
+			sendAdmin(COLOR_SERVER, "Notice: {FFFFFF}Admin %s i-a sters lui %s licenta de port-arma.", getName(playerid), getName(userID));
+			SCM(userID, COLOR_GREY, string_fast("* Admin %s ti-a sters licenta de port-arma.", getName(playerid)));
+		}
+		case _H<all>:
+		{
+			if((playerInfo[userID][pDrivingLicenseSuspend] || playerInfo[userID][pFlyLicenseSuspend] || playerInfo[userID][pBoatLicenseSuspend] || playerInfo[userID][pWeaponLicenseSuspend]) && playerInfo[playerid][pAdmin] < 6)
+				return sendPlayerError(playerid, "Jucatorul are o licenta suspendata.");
+
+			playerInfo[userID][pDrivingLicense] = playerInfo[userID][pFlyLicense] = playerInfo[userID][pBoatLicense] = playerInfo[userID][pWeaponLicense] = 0;
+			playerInfo[userID][pDrivingLicenseSuspend] = playerInfo[userID][pFlyLicenseSuspend] = playerInfo[userID][pBoatLicenseSuspend] = playerInfo[userID][pWeaponLicenseSuspend] = 0;
+			
+			sendAdmin(COLOR_SERVER, "Notice: {FFFFFF}Admin %s i-a sters lui %s toate licentele.", getName(playerid), getName(userID));
+			SCM(userID, COLOR_GREY, string_fast("* Admin %s ti-a sters toate licentele.", getName(playerid)));
+		}
+		default:
+		{
+			sendPlayerSyntax(playerid, "/admintakelicense <name/id> <license>");
+			return SCM(playerid, COLOR_GREY, "Licente: Driving, Flying, Boat, Weapon, All.");
+		}
+	}
+	update("UPDATE `server_users` SET `Licenses` = '%d|%d|%d|%d|%d|%d|%d|%d' WHERE `ID` = '%d'", playerInfo[userID][pDrivingLicense], playerInfo[userID][pDrivingLicenseSuspend], playerInfo[userID][pWeaponLicense], playerInfo[userID][pWeaponLicenseSuspend], playerInfo[userID][pFlyLicense], playerInfo[userID][pFlyLicenseSuspend], playerInfo[userID][pBoatLicense], playerInfo[userID][pBoatLicenseSuspend], playerInfo[userID][pSQLID]);
+	return true;
+}
+
+CMD:kick(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(GetPVarInt(playerid, "kickDeelay") >= gettime()) return sendPlayerError(playerid, "Trebuie sa astepti %d secunde inainte de a folosi aceasta comanda.", (GetPVarInt(playerid, "kickDeelay") - gettime()));
 	new id, silent, reason[64];
@@ -548,7 +642,7 @@ YCMD:kick(playerid, params[], help) {
 	return true;
 }
 
-YCMD:spawncar(playerid, params[], help) {
+CMD:spawncar(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(Iter_Count(AdminVehicles) >= MAX_ADMIN_VEHICLES) return sendPlayerError(playerid, "Nu poti crea un vehicul deoarece s-a atins numarul maxim de vehicule (Vehicule Existente: %d | Numar Maxim: %d)", Iter_Count(AdminVehicles), MAX_ADMIN_VEHICLES);
 	if(playerInfo[playerid][pDrivingLicense] == 0 && playerInfo[playerid][pFlyLicense] == 0 && playerInfo[playerid][pBoatLicense] == 0) return sendPlayerError(playerid, "Nu poti spawna o masina deoarece nu ai licenta de condus / navigatie / pilot.");
@@ -568,7 +662,7 @@ YCMD:spawncar(playerid, params[], help) {
 	return true;
 }
 
-YCMD:despawncar(playerid, params[], help) {
+CMD:despawncar(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(!IsPlayerInAnyVehicle(playerid)) {
 		if(isnull(params)) return sendPlayerSyntax(playerid, "/despawncar <vehicle id>");
@@ -597,7 +691,7 @@ YCMD:despawncar(playerid, params[], help) {
 	return true;
 }
 
-YCMD:despawncars(playerid, params[], help) {
+CMD:despawncars(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(!Iter_Count(AdminVehicles)) return sendPlayerError(playerid, "Nu sunt vehicule create pe server.");
 	sendAdmin(COLOR_SERVER, "Notice: {ffffff}Admin %s a sters toate vehiculele spawnate (Numar maxim masini: %d | Numar vehicule despawnate: %d)", getName(playerid), MAX_ADMIN_VEHICLES, Iter_Count(AdminVehicles));
@@ -613,7 +707,7 @@ YCMD:despawncars(playerid, params[], help) {
 	return true;
 }
 
-YCMD:gotocar(playerid, params[], help) {
+CMD:gotocar(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Trebuie sa cobori jos din vehicul.");
 	if(isnull(params) || !IsNumeric(params)) return sendPlayerSyntax(playerid, "/gotocar <vehicle id>");
@@ -627,7 +721,7 @@ YCMD:gotocar(playerid, params[], help) {
 	return true;
 }
 
-YCMD:getcar(playerid, params[], help) {
+CMD:getcar(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Trebuie sa cobori jos din vehicul.");
 	if(isnull(params) || !IsNumeric(params)) return sendPlayerSyntax(playerid, "/getcar <vehicle id>");
@@ -641,7 +735,7 @@ YCMD:getcar(playerid, params[], help) {
 	return true;
 }
 
-YCMD:slapcar(playerid, params[], help) {
+CMD:slapcar(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(IsPlayerInAnyVehicle(playerid)) {
 		new Float:x, Float:y, Float:z;
@@ -659,7 +753,7 @@ YCMD:slapcar(playerid, params[], help) {
 	return true;
 }
 
-YCMD:fixveh(playerid, params[], help) {
+CMD:fixveh(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(IsPlayerInAnyVehicle(playerid)) {
 		RepairVehicle(GetPlayerVehicleID(playerid));
@@ -673,7 +767,7 @@ YCMD:fixveh(playerid, params[], help) {
 	return true;
 }
 
-YCMD:addnos(playerid, params[], help) {
+CMD:addnos(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(IsPlayerInAnyVehicle(playerid)) {
 		AddVehicleComponent(GetPlayerVehicleID(playerid), 1010);
@@ -687,7 +781,7 @@ YCMD:addnos(playerid, params[], help) {
 	return true;
 }
 
-YCMD:flipveh(playerid, params[], help) {
+CMD:flipveh(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(IsPlayerInAnyVehicle(playerid)) {
 		new Float:vehAngle;
@@ -705,7 +799,7 @@ YCMD:flipveh(playerid, params[], help) {
 	return true;
 }
 
-YCMD:closestcar(playerid, params[], help) {
+CMD:closestcar(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Trebuie sa cobori jos din vehicul.");
 	new vehicleID = GetClosestVehicle(playerid);
@@ -715,7 +809,7 @@ YCMD:closestcar(playerid, params[], help) {
 	return true;
 }
 
-YCMD:entercar(playerid, params[], help) {
+CMD:entercar(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Trebuie sa cobori jos din vehicul.");
 	new vehicleid, seatid;
@@ -729,7 +823,7 @@ YCMD:entercar(playerid, params[], help) {
 	return true;
 }
 
-YCMD:fly(playerid, params[], help) {
+CMD:fly(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(playerInfo[playerid][pFlymode] == true) {
 		playerInfo[playerid][pFlymode] = false;
@@ -743,7 +837,7 @@ YCMD:fly(playerid, params[], help) {
 	return true;
 }
 
-YCMD:goto(playerid, params[], help) {
+CMD:goto(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	new id = INVALID_PLAYER_ID, Float:x, Float:y, Float:z;
 	if(sscanf(params, "u", id)) return sendPlayerSyntax(playerid, "/goto <name/id>");
@@ -770,7 +864,7 @@ YCMD:goto(playerid, params[], help) {
 	return true;
 }
 
-YCMD:gethere(playerid, params[], help) {
+CMD:gethere(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	new id = INVALID_PLAYER_ID, Float:x, Float:y, Float:z;
 	if(sscanf(params, "u", id)) return sendPlayerSyntax(playerid, "/gethere <name/id>");
@@ -790,7 +884,7 @@ YCMD:gethere(playerid, params[], help) {
 	return true;
 }
 
-YCMD:slap(playerid, params[], help) {
+CMD:slap(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	new id = INVALID_PLAYER_ID, Float:x, Float:y, Float:z, Float:health;
 	if(sscanf(params, "u", id)) return sendPlayerSyntax(playerid, "/slap <name/id>");
@@ -804,7 +898,7 @@ YCMD:slap(playerid, params[], help) {
 	return true;
 }
 
-YCMD:freeze(playerid, params[], help) {
+CMD:freeze(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	new id = INVALID_PLAYER_ID;
 	if(sscanf(params, "u", id)) return sendPlayerSyntax(playerid, "/freeze <name/id>");
@@ -816,7 +910,7 @@ YCMD:freeze(playerid, params[], help) {
 	return true;
 }
 
-YCMD:unfreeze(playerid, params[], help) {
+CMD:unfreeze(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	new id = INVALID_PLAYER_ID;
 	if(sscanf(params, "u", id)) return sendPlayerSyntax(playerid, "/unfreeze <name/id>");
@@ -828,7 +922,7 @@ YCMD:unfreeze(playerid, params[], help) {
 	return true;
 }
 
-YCMD:set(playerid, params[], help) {
+CMD:set(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	new id = INVALID_PLAYER_ID, option[32], value;
 	if(sscanf(params, "us[32]d", id, option, value)) {
@@ -857,16 +951,10 @@ YCMD:set(playerid, params[], help) {
 		}
 		case _H<health>: {
 			if(value < 0 || value > 100) return sendPlayerError(playerid, "Result Invalid (0 - 100).");
-			new Float:hp;
-			GetPlayerHealthEx(id, hp);
-			if(hp == value) return sendPlayerError(playerid, "Jucatorul are deja %d HP.", value);
 			SetPlayerHealthEx(id, value);
 		}
 		case _H<armour>: {
 			if(value < 0 || value > 100) return sendPlayerError(playerid, "Result Invalid (0 - 100).");
-			new Float:armour;
-			GetPlayerArmourEx(id, armour);
-			if(armour == value) return sendPlayerError(playerid, "Jucatorul are deja %d armura.", value);
 			SetPlayerArmourEx(id, value);
 		}
 		case _H<respectpoints>, _H<rp>: {
@@ -895,7 +983,7 @@ YCMD:set(playerid, params[], help) {
 	return true;
 }
 
-YCMD:respawn(playerid, params[], help) {
+CMD:respawn(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	new id = INVALID_PLAYER_ID;	
 	if(sscanf(params, "u", id)) return sendPlayerSyntax(playerid, "/respawn <name/id>");
@@ -911,7 +999,7 @@ YCMD:respawn(playerid, params[], help) {
 	return true;
 }
 
-YCMD:respawnhere(playerid, params[], help) {
+CMD:respawnhere(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	new id = INVALID_PLAYER_ID, Float:x, Float:y, Float:z;
 	if(sscanf(params, "u", id)) return sendPlayerSyntax(playerid, "/respawnhere <name/id>");
@@ -926,7 +1014,7 @@ YCMD:respawnhere(playerid, params[], help) {
 	return true;
 }
 
-YCMD:pm(playerid, params[], help) {
+CMD:pm(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid) && !Iter_Contains(ServerHelpers, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	new id = INVALID_PLAYER_ID, text[128];
 	if(sscanf(params, "us[128]", id, text)) return sendPlayerSyntax(playerid, "/pm <name/id> <text>");
@@ -937,7 +1025,7 @@ YCMD:pm(playerid, params[], help) {
 	return true;
 }
 
-YCMD:mark(playerid, params[], help) {
+CMD:mark(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	GetPlayerPos(playerid, playerInfo[playerid][pMarkX], playerInfo[playerid][pMarkY], playerInfo[playerid][pMarkZ]);
 	playerInfo[playerid][pMark] = true;
@@ -946,7 +1034,7 @@ YCMD:mark(playerid, params[], help) {
 	return true;
 }
 
-YCMD:gotomark(playerid, params[], help) {
+CMD:gotomark(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(playerInfo[playerid][pMark] == false) return sendPlayerError(playerid, "Nu ai pozitii salvate, foloseste comanda (/mark) pentru a salva pozitiile.");
 	SetPlayerPos(playerid, playerInfo[playerid][pMarkX], playerInfo[playerid][pMarkY], playerInfo[playerid][pMarkZ]);
@@ -955,14 +1043,14 @@ YCMD:gotomark(playerid, params[], help) {
 	return true;
 }
 
-YCMD:healme(playerid, params[], help) {
+CMD:healme(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	SCM(playerid, COLOR_GREY, "* Ai primit viata folosind comanda (/healme).");
 	SetPlayerHealthEx(playerid, 100);
 	return true;
 }
 
-YCMD:area(playerid, params[], help) {
+CMD:area(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 2) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	extract params -> new string:option[32], Float:value, value1 = -1; else {
 		sendPlayerSyntax(playerid, "/area <option> <range> <result>");
@@ -1019,7 +1107,7 @@ YCMD:area(playerid, params[], help) {
 	return true;
 }
 
-YCMD:givegun(playerid, params[], help) {
+CMD:givegun(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	new id, weapon_id, weapon_ammo;
 	if(sscanf(params, "udd", id , weapon_id, weapon_ammo)) return sendPlayerSyntax(playerid, "/givegun <name/id> <weapon id> <ammo>");
@@ -1033,7 +1121,7 @@ YCMD:givegun(playerid, params[], help) {
 	return true;
 }
 
-YCMD:disarm(playerid, params[], help) {
+CMD:disarm(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	new id = INVALID_PLAYER_ID;
 	if(sscanf(params, "u", id)) return sendPlayerSyntax(playerid, "/disarm <name/id>");
@@ -1046,7 +1134,7 @@ YCMD:disarm(playerid, params[], help) {
 }
 
 
-YCMD:reports(playerid, params[], help) {
+CMD:reports(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(!Iter_Count(Reports)) return sendPlayerError(playerid, "Nu sunt report-uri.");
 	SCM(playerid, COLOR_GREY, "* Report-uri active: *");
@@ -1056,7 +1144,7 @@ YCMD:reports(playerid, params[], help) {
 	return true;
 }
 
-YCMD:acceptreport(playerid, params[], help) {
+CMD:acceptreport(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(!Iter_Count(Reports)) return sendPlayerError(playerid, "Nu sunt report-uri.");
 	if(playerInfo[playerid][pReportChat] != INVALID_PLAYER_ID) return sendPlayerError(playerid, "Ai deja o conversatie deschisa.");
@@ -1080,7 +1168,7 @@ YCMD:acceptreport(playerid, params[], help) {
 	return true;
 }
 
-YCMD:rchat(playerid, params[], help) {
+CMD:rchat(playerid, params[]) {
 	if(playerInfo[playerid][pReportChat] == INVALID_PLAYER_ID) return sendPlayerError(playerid, "Nu ai o conversatie deschisa.");
 	if(isnull(params) || strlen(params) > 128) return sendPlayerSyntax(playerid, "/reportchat <text>");
 	SCM(playerid, COLOR_YELLOW, string_fast("%s %s spune: %s", (Iter_Contains(ServerAdmins, playerid)) ? ("Admin") : ("Jucator"), getName(playerid), params));
@@ -1088,7 +1176,7 @@ YCMD:rchat(playerid, params[], help) {
 	return true;
 }
 
-YCMD:closereport(playerid, params[], help) {
+CMD:closereport(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(playerInfo[playerid][pReportChat] != INVALID_PLAYER_ID) {
 		SCM(playerInfo[playerid][pReportChat], COLOR_YELLOW, string_fast("* Admin %s a inchis conversatia.", getName(playerid)));
@@ -1115,7 +1203,7 @@ YCMD:closereport(playerid, params[], help) {
 	return true;
 }
 
-YCMD:reportmute(playerid, params[], help) {
+CMD:reportmute(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	new id = INVALID_PLAYER_ID, minutes = 0, reason[64];
 	if(sscanf(params, "uds[64]", id, minutes, reason)) return sendPlayerSyntax(playerid, "/reportmute <name/id> <minutes> <reason>");
@@ -1136,7 +1224,7 @@ YCMD:reportmute(playerid, params[], help) {
 	return true;
 }
 
-/*YCMD:createpickup(playerid, params[], help) {
+/*CMD:createpickup(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(Iter_Free(Pickups) == -1) return sendPlayerError(playerid, "In acest moment, nu se pot creea pickup-uri, deoarece s-a atins numarul maxim.");
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Trebuie sa cobori din vehicul.");
@@ -1165,7 +1253,7 @@ YCMD:reportmute(playerid, params[], help) {
 	return true;
 }
 
-YCMD:createlabel(playerid, params[], help) {
+CMD:createlabel(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(Iter_Free(Labels) == -1) return sendPlayerError(playerid, "In acest moment, nu se pot creea pickup-uri, deoarece s-a atins numarul maxim.");
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Trebuie sa cobori din vehicul.");
@@ -1180,7 +1268,7 @@ YCMD:createlabel(playerid, params[], help) {
 	return true;
 }*/
 	
-YCMD:banip(playerid, params[], help) {
+CMD:banip(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 2) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(GetPVarInt(playerid, "banDeelay") > gettime()) return sendPlayerError(playerid, "Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "banDeelay") - gettime()));
 	new id = INVALID_PLAYER_ID, reason[64];
@@ -1200,7 +1288,7 @@ YCMD:banip(playerid, params[], help) {
 	return true;
 }
 
-YCMD:unbanip(playerid, params[], help) {
+CMD:unbanip(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 2) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(GetPVarInt(playerid, "unbanDeelay") > gettime()) return sendPlayerError(playerid, "Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "unbanDeelay") - gettime()));
 	if(isnull(params) || strlen(params) > 16) return sendPlayerSyntax(playerid, "/unbanip <ip>");
@@ -1220,7 +1308,7 @@ YCMD:unbanip(playerid, params[], help) {
 	return true;
 }
 
-YCMD:banipoffline(playerid, params[], help) {
+CMD:banipoffline(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 2) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(GetPVarInt(playerid, "banDeelay") > gettime()) return sendPlayerError(playerid, "Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "banDeelay") - gettime()));
 	new ip[16], reason[64];
@@ -1239,7 +1327,7 @@ YCMD:banipoffline(playerid, params[], help) {
 	return true;
 }
 
-YCMD:gotojob(playerid, params[], help) {
+CMD:gotojob(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Trebuie sa cobori jos din vehicul.");
 	if(isnull(params) || !IsNumeric(params)) return sendPlayerSyntax(playerid, "/gotojob <job id>");
@@ -1249,21 +1337,23 @@ YCMD:gotojob(playerid, params[], help) {
 	return true;
 }
  
-YCMD:ah(playerid, params[], help) {
+CMD:ah(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(playerInfo[playerid][pAdmin] >= 1) {
-		SCM(playerid, 0x32a8a0FF, "A1: /ban ; /banoffline ; /mute ; /unmute ; /mutedplayers ; /adminchat(/a) ; /kick ; /spawncar ; /despawncar ; /gethere ; /slap ; /freeze ; /unfreeze ; /gotomark ; /healme");
-		SCM(playerid, 0x32a8a0FF, "A1: /despawncars ; /gotocar ; /getcar ; /slapcar\n/fixveh ; /addnos ; /flipveh ; /closestcar ; /entercar ; /fly ; /goto ; /respawn ; /respawnhere ; /mark ; /givegun ; /disarm");
+		SCM(playerid, 0x32a8a0FF, "Admin 1{FFFFFF}: /ban | /banoffline | /mute | /unmute | /mutedplayers | /adminchat(/a) | /kick | /spawncar");
+		SCM(playerid, 0x32a8a0FF, "Admin 1{FFFFFF}: /despawncar | /gethere | /slap | /freeze | /unfreeze | /gotomark | /healme");
+		SCM(playerid, 0x32a8a0FF, "Admin 1{FFFFFF}: /despawncars | /gotocar | /getcar | /slapcar | /fixveh | /addnos | /flipveh | /closestcar");
+		SCM(playerid, 0x32a8a0FF, "Admin 1{FFFFFF}: /entercar | /fly | /goto | /respawn | /respawnhere | /mark | /givegun | /disarm");
 	}
-	if(playerInfo[playerid][pAdmin] >= 2) SCM(playerid, 0x32a8a0FF, "A2: /area  ; /banip ; /unbanip ; /banipoffline");
-	if(playerInfo[playerid][pAdmin] >= 3) SCM(playerid, 0x32a8a0FF, "A3: /unwarn ; /unban ; /jail ; /jailo ; /unjail ; /unjailo");
-	if(playerInfo[playerid][pAdmin] >= 4) SCM(playerid, 0x32a8a0FF, "A4: /adminsuspendlicense(/asl) ; /admingivelicense(/agl)");
-	if(playerInfo[playerid][pAdmin] >= 5) SCM(playerid, 0x32a8a0FF, "A5: /givemoney");
-	if(playerInfo[playerid][pAdmin] >= 6) SCM(playerid, 0x32a8a0FF, "A6: /addexamcp ; /setadmin ; /sethelper ; /createpickup ; /createlabel ; /resetquests");
+	if(playerInfo[playerid][pAdmin] >= 2) SCM(playerid, 0x32a8a0FF, "Admin 2{FFFFFF}: /area  | /banip | /unbanip | /banipoffline");
+	if(playerInfo[playerid][pAdmin] >= 3) SCM(playerid, 0x32a8a0FF, "Admin 3{FFFFFF}: /unwarn | /unban | /jail | /jailo | /unjail | /unjailo");
+	if(playerInfo[playerid][pAdmin] >= 4) SCM(playerid, 0x32a8a0FF, "Admin 4{FFFFFF}: /adminsuspendlicense(/asl) | /admingivelicense(/agl) | /admintakelicense(/atl)"); 
+	if(playerInfo[playerid][pAdmin] >= 5) SCM(playerid, 0x32a8a0FF, "Admin 5{FFFFFF}: /givemoney");
+	if(playerInfo[playerid][pAdmin] >= 6) SCM(playerid, 0x32a8a0FF, "Admin 6{FFFFFF}: /addexamcp | /setadmin | /sethelper | /createpickup | /createlabel | /resetquests");
 	return true;
 }
 
-YCMD:gotoxyz(playerid, params[], help) {
+CMD:gotoxyz(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	extract params -> new Float:x, Float:y, Float:z, vw, interior; else {
 		sendPlayerSyntax(playerid, "/gotoxyz <x> <y> <z> <virtual world> <interior>");
@@ -1276,7 +1366,7 @@ YCMD:gotoxyz(playerid, params[], help) {
 	return true;
 }
 
-YCMD:unjail(playerid, params[], help) {
+CMD:unjail(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 3) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	extract params -> new player:userID, string:reason[32]; else return sendPlayerSyntax(playerid, "/unjail <name/id> <reason>");
 	if(userID == playerid) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda asupra ta.");
@@ -1296,7 +1386,7 @@ YCMD:unjail(playerid, params[], help) {
 	return true;
 }
 
-YCMD:unjailo(playerid, params[], help) {
+CMD:unjailo(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 3) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	extract params -> new string:playerName[MAX_PLAYER_NAME], string:reason[32]; else return sendPlayerSyntax(playerid, "/unjailo <name> <reason>");
 	if(strlen(reason) < 1 || strlen(reason) > 32) return sendPlayerError(playerid, "Reason invalid, min. 1 caracter max. 32 caractere.");
@@ -1322,7 +1412,7 @@ YCMD:unjailo(playerid, params[], help) {
 	return true;
 }
 
-YCMD:jail(playerid, params[], help) {
+CMD:jail(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 3) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	extract params -> new player:userID, minutes, string:reason[32]; else return sendPlayerSyntax(playerid, "/jail <name/id> <minutes> <reason>");
 	if(minutes < 1 || minutes > 500) return sendPlayerError(playerid, "Minute invalide, min. 1 min. max. 500 min.");
@@ -1354,7 +1444,7 @@ YCMD:jail(playerid, params[], help) {
 	return true;
 }
 
-YCMD:jailo(playerid, params[], help) {
+CMD:jailo(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 3) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	extract params -> new string:playerName[MAX_PLAYER_NAME], minutes, string:reason[32]; else return sendPlayerSyntax(playerid, "/unjailo <name> <minutes> <reason>");
 	if(strlen(reason) < 1 || strlen(reason) > 32) return sendPlayerError(playerid, "Reason invalid, min. 1 caracter max. 32 caractere.");
@@ -1380,13 +1470,13 @@ YCMD:jailo(playerid, params[], help) {
 	return true;
 }
 
-YCMD:resetquests(playerid, params[], help) {
+CMD:resetquests(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 6) return true;
 	resetQuest();
 	return true;
 }
 
-YCMD:showfreq(playerid, params[], help) {
+CMD:showfreq(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	extract params -> new userID; else return sendPlayerSyntax(playerid, "/showfreq <name/id>");
     if(playerInfo[userID][pWTalkie] == 0) return sendPlayerError(playerid, "Acel player nu are un walkie talkie.");

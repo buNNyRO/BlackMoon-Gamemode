@@ -34,7 +34,7 @@ function updateGasCan(gid) {
 	return true;
 }
 
-YCMD:addbizgas(playerid, params[], help) {
+CMD:addbizgas(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(Iter_Count(ServerGasCan) == MAX_GASCAN) return sendPlayerError(playerid, "Nu poti adauga un nou gascan deoarece s-a atins limita maxima.");
 	extract params -> new id, fuel; else return sendPlayerSyntax(playerid, "/addbizgas <biz id> <fuel>");
@@ -54,7 +54,7 @@ YCMD:addbizgas(playerid, params[], help) {
 	return true;
 }
 
-YCMD:fill(playerid, params[], help) {
+CMD:fill(playerid, params[]) {
 	if(!IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Trebuie sa fi intr-un vehicul pentru a face acest lucru."); 
 	extract params -> new Float:full; else return sendPlayerSyntax(playerid, "/fill <gas procent>");
 	if(playerInfo[playerid][areaGascan] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, gasInfo[playerInfo[playerid][areaGascan]][gX], gasInfo[playerInfo[playerid][areaGascan]][gY], gasInfo[playerInfo[playerid][areaGascan]][gZ])) {

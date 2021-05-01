@@ -40,7 +40,7 @@ function LoadSafes() {
 	return printf("Faction Safes: %d [From Database]", Iter_Count(FactionSafes));
 }
 
-YCMD:fdeposit(playerid, params[], help) {
+CMD:fdeposit(playerid, params[]) {
 	for(new s = 0; s < Iter_Count(FactionSafes); s++) {
 		if(!PlayerToPoint(5, playerid, safeInfo[s][sPosX], safeInfo[s][sPosY], safeInfo[s][sPosZ]))
 			continue;
@@ -54,7 +54,7 @@ YCMD:fdeposit(playerid, params[], help) {
 	return true;
 }
 
-YCMD:fwithdraw(playerid, params[], help) {
+CMD:fwithdraw(playerid, params[]) {
 	if(playerInfo[playerid][pFactionRank] < 6)
 		return true;
 

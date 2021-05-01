@@ -262,7 +262,7 @@ Dialog:TRANSFERBIZ(playerid, response) {
 	return true;
 }
 
-YCMD:buybusiness(playerid, params[], help) {
+CMD:buybusiness(playerid, params[]) {
 	if(playerInfo[playerid][pBusiness] != 0) return sendPlayerError(playerid, "Ai deja o afacere cumparata.");
 	if(playerInfo[playerid][pLevel] < 5) return sendPlayerError(playerid, "Trebuie sa detii, minim level 5.");
 	if(playerInfo[playerid][areaBizz] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, bizInfo[playerInfo[playerid][areaBizz]][bizExtX], bizInfo[playerInfo[playerid][areaBizz]][bizExtY], bizInfo[playerInfo[playerid][areaBizz]][bizExtZ])) {
@@ -314,7 +314,7 @@ YCMD:buybusiness(playerid, params[], help) {
 	return true;
 }
 
-YCMD:sellbizstate(playerid, params[], help) {
+CMD:sellbizstate(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti face aceasta actiune, deoarece esti in masina.");
 	if(GetPlayerVirtualWorld(playerid) != 0 && GetPlayerInterior(playerid) != 0 && playerInfo[playerid][pinBusiness] != -1) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda deoarece, esti intr-un alt virtualworld / interior / esti intr-un business.");
@@ -323,7 +323,7 @@ YCMD:sellbizstate(playerid, params[], help) {
 	return true;
 }
 
-YCMD:bizbalance(playerid, params[], help) {
+CMD:bizbalance(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pBusiness] == 0 && playerInfo[playerid][pBusinessID] == -1) return sendPlayerError(playerid, "Nu detii o afacere.");
 	new businessid = playerInfo[playerid][pBusinessID];
@@ -331,7 +331,7 @@ YCMD:bizbalance(playerid, params[], help) {
 	return true;
 }
 
-YCMD:bizwithdraw(playerid, params[], help) {
+CMD:bizwithdraw(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pBusiness] == 0 && playerInfo[playerid][pBusinessID] == -1) return sendPlayerError(playerid, "Nu detii o afacere.");
 	new businessid = playerInfo[playerid][pBusinessID], suma;
@@ -350,7 +350,7 @@ YCMD:bizwithdraw(playerid, params[], help) {
 	return true;
 }
 
-YCMD:bizdeposit(playerid, params[], help) {
+CMD:bizdeposit(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pBusiness] == 0 && playerInfo[playerid][pBusinessID] == -1) return sendPlayerError(playerid, "Nu detii o afacere.");
 	new businessid = playerInfo[playerid][pBusinessID], suma;
@@ -365,7 +365,7 @@ YCMD:bizdeposit(playerid, params[], help) {
 	return true;
 }
 
-YCMD:bizoption(playerid, params[], help) {
+CMD:bizoption(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pBusiness] == 0 && playerInfo[playerid][pBusinessID] == -1) return sendPlayerError(playerid, "Nu detii o afacere.");
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
@@ -373,7 +373,7 @@ YCMD:bizoption(playerid, params[], help) {
 	return true;
 }
 
-YCMD:bizlock(playerid, params[], help) {
+CMD:bizlock(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pBusiness] == 0 && playerInfo[playerid][pBusinessID] == -1) return sendPlayerError(playerid, "Nu detii o afacere.");
 	new businessid = playerInfo[playerid][pBusinessID];
@@ -391,7 +391,7 @@ YCMD:bizlock(playerid, params[], help) {
 	return true;
 }
 
-YCMD:sellbiz(playerid, params[], help) {
+CMD:sellbiz(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pBusiness] == 0 && playerInfo[playerid][pBusinessID] == -1) return sendPlayerError(playerid, "Nu detii o afacere.");
 	new businessid = playerInfo[playerid][pBusinessID], suma;
@@ -405,7 +405,7 @@ YCMD:sellbiz(playerid, params[], help) {
 	return true;
 }
 
-YCMD:adminbusiness(playerid, params[], help) {
+CMD:adminbusiness(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pAdmin] < 4) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
@@ -417,7 +417,7 @@ YCMD:adminbusiness(playerid, params[], help) {
 	return true;
 }
 
-YCMD:buy(playerid, params[], help) {
+CMD:buy(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
 	if(playerInfo[playerid][pinBusiness] != 2 && GetPlayerInterior(playerid) == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti intr-un biz de tip 24/7.");	
@@ -425,13 +425,13 @@ YCMD:buy(playerid, params[], help) {
 	return true;
 }
 
-YCMD:balance(playerid, params[], help) {
+CMD:balance(playerid, params[]) {
 	if(playerInfo[playerid][pinBusiness] != 1 && GetPlayerInterior(playerid) == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti intr-un biz de tip banca.");	
 	SCM(playerid, COLOR_GREY, string_fast("* Bank Notice: Ai $%s bani in contul tau bancar.", GetBankMoney(playerid)));
 	return true;
 }
 
-YCMD:deposit(playerid, params[], help) {
+CMD:deposit(playerid, params[]) {
 	if(playerInfo[playerid][pinBusiness] != 1 && GetPlayerInterior(playerid) == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti intr-un biz de tip banca.");	
 	new depositMoney;
 	if(sscanf(params, "d", depositMoney)) return sendPlayerSyntax(playerid, "/deposit <money>");
@@ -443,7 +443,7 @@ YCMD:deposit(playerid, params[], help) {
 	return true;
 }
 
-YCMD:withdraw(playerid, params[], help) {
+CMD:withdraw(playerid, params[]) {
 	if(playerInfo[playerid][pinBusiness] != 1 && GetPlayerInterior(playerid) == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti intr-un biz de tip banca.");	
 	new withdrawMoney;
 	if(sscanf(params, "d", withdrawMoney)) return sendPlayerSyntax(playerid, "/withdraw <money>");
@@ -456,7 +456,7 @@ YCMD:withdraw(playerid, params[], help) {
 	return true;
 }
 
-YCMD:transfer(playerid, params[], help) {
+CMD:transfer(playerid, params[]) {
 	if(playerInfo[playerid][pinBusiness] != 1 && GetPlayerInterior(playerid) == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti intr-un biz de tip banca.");	
 	new userID, transferMoney;
 	if(sscanf(params, "ud", userID, transferMoney)) return sendPlayerSyntax(playerid, "/transfer <name/id> <money>");
@@ -471,7 +471,7 @@ YCMD:transfer(playerid, params[], help) {
 	return true;
 }
 
-YCMD:ad(playerid, params[], help) {
+CMD:ad(playerid, params[]) {
 	if(AdTimer[playerid] != 0) return sendPlayerError(playerid, "Ai pus un anunt recent. Foloseste comanda /myad pentru a-l vedea.");
 	if(playerInfo[playerid][pMute] > 0) return sendPlayerError(playerid, "Nu pot folosi aceasta comanda deoarece ai mute.");
 	if(playerInfo[playerid][pLevel] < 3) return sendPlayerError(playerid, "Nu ai l`Moevel 3 pentru a folosi aceasta comanda.");
@@ -498,8 +498,8 @@ YCMD:ad(playerid, params[], help) {
 	return true;
 }
 
-YCMD:myad(playerid, params[], help) return SCM(playerid, COLOR_GREY, string_fast("* AD Notice: Ad-ul tau este '%s'", AdText[playerid]));
-YCMD:deletemyad(playerid, params[], help) {
+CMD:myad(playerid, params[]) return SCM(playerid, COLOR_GREY, string_fast("* AD Notice: Ad-ul tau este '%s'", AdText[playerid]));
+CMD:deletemyad(playerid, params[]) {
 	if(AdTimer[playerid] == 0) return sendPlayerError(playerid, "Nu ai un ad pus.");
 	AdText[playerid] = "";
 	AdTimer[playerid] = 0;

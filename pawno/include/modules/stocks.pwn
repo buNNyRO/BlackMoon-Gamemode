@@ -659,26 +659,20 @@ stock getVehicleHealth(vehicleid) {
 stock getVehicleSpeed(vehicleid,mode = 1) {
     new Float: x, Float: y, Float: z;
     GetVehicleVelocity(vehicleid , x , y , z);
-    printf("%f,%f,%f", x,y,z);
-    printf("x%f*%f=%d", x,x,x*x);
-    printf("y%f*%f=%d", y,y,y*y);
-    printf("z%f*%f=%d", z,z,z*z);
-    printf("%d", (x*x)+(y*y)+(z*z));
-
-    return floatround(((floatsqroot(((x*x)+(y*y)+(z*z)))*(!mode ? 105.0 : 170.0 )))*1);
+    return floatround(((floatsqroot(((x*x)+(y*y)+(z*z)))*(!mode ? 105.0 : 170.0 )))*1.06);
 }
 
 stock sendPlayerError(playerid, const text[], va_args<>)
 {
 	gString[0] = (EOS);
-	va_format(gString, sizeof gString, "Eroare: {FFFFFF}%s", text, va_start<2>);
+	va_format(gString, sizeof gString, "[ERROR] {FFFFFF}%s", text, va_start<2>);
 	return SCM(playerid, COLOR_ERROR, gString);
 }
 
 stock sendPlayerSyntax(playerid, const text[], va_args<>)
 {
 	gString[0] = (EOS);
-	va_format(gString, sizeof gString, "Sintaxa: {FFFFFF}%s", text, va_start<2>);
+	va_format(gString, sizeof gString, "Command: {FFFFFF}%s", text, va_start<2>);
 	return SCM(playerid, COLOR_SYNTAX, gString);
 }
 

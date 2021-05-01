@@ -1,4 +1,4 @@
-YCMD:admins(playerid, params[], help)
+CMD:admins(playerid, params[])
 {
 	if(!Iter_Count(ServerAdmins))
 		return sendPlayerError(playerid, "Nu sunt admini conectati.");
@@ -11,7 +11,7 @@ YCMD:admins(playerid, params[], help)
 	return true;
 }
 
-YCMD:helpers(playerid, params[], help)
+CMD:helpers(playerid, params[])
 {
 	if(!Iter_Count(ServerHelpers))
 		return sendPlayerError(playerid, "Nu sunt helperi conectati.");
@@ -27,14 +27,14 @@ YCMD:helpers(playerid, params[], help)
 	return true;
 }
 
-YCMD:licenses(playerid, params[], help)
+CMD:licenses(playerid, params[])
 	return showLicenses(playerid, playerid);
 
 
-YCMD:stats(playerid, params[], help)
+CMD:stats(playerid, params[])
 	return showStats(playerid, playerid);
 
-YCMD:showlicenses(playerid, params[], help) {
+CMD:showlicenses(playerid, params[]) {
 	extract params -> new userID; else return sendPlayerSyntax(playerid, "/showlicenses <name/id>");
 	if(!isPlayerLogged(userID)) return sendPlayerError(playerid, "Acel player nu este connectat.");
 	showLicenses(playerid, userID);
@@ -43,7 +43,7 @@ YCMD:showlicenses(playerid, params[], help) {
 	return true;
 }
 
-YCMD:buylevel(playerid, params[], help)
+CMD:buylevel(playerid, params[])
 {
 	new money = (playerInfo[playerid][pLevel] * 250);
 	if(GetPlayerCash(playerid) < money)
@@ -65,7 +65,7 @@ YCMD:buylevel(playerid, params[], help)
 	return true;
 }
 
-YCMD:exam(playerid, params[], help) {
+CMD:exam(playerid, params[]) {
 	if(playerInfo[playerid][pDrivingLicense] > 0) return sendPlayerError(playerid, "Ai deja licenta de condus.");
 	if(playerInfo[playerid][pDrivingLicenseSuspend] > 0) return sendPlayerError(playerid, "Ai licenta suspendata pentru %d ore.", playerInfo[playerid][pDrivingLicenseSuspend]);
 	if(IsPlayerInRangeOfPoint(playerid, 2.5, 1111.0061, -1795.6694, 16.7100) && GetPlayerVirtualWorld(playerid) != 0) return sendPlayerError(playerid, "Nu te afli la pozitia in care poti da examen-ul, sau te afli in alt Virtual World"); 
@@ -88,7 +88,7 @@ YCMD:exam(playerid, params[], help) {
 	return true;
 }
 
-YCMD:engine(playerid, params[], help) {
+CMD:engine(playerid, params[]) {
 	if(!IsPlayerInAnyVehicle(playerid) || GetPlayerState(playerid) != PLAYER_STATE_DRIVER) return true;
 	if(isBike(GetPlayerVehicleID(playerid))) return sendPlayerError(playerid, "Acest vehicul nu are un motor.");
 	if(GetPVarInt(playerid, "engineDeelay") == gettime()) return true;
@@ -112,7 +112,7 @@ YCMD:engine(playerid, params[], help) {
 	return true;
 }
 
-YCMD:lights(playerid, params[], help) {
+CMD:lights(playerid, params[]) {
 	if(!IsPlayerInAnyVehicle(playerid) || GetPlayerState(playerid) != PLAYER_STATE_DRIVER) return sendPlayerError(playerid, "Nu esti soferul unui vehicul.");
 	if(isBike(GetPlayerVehicleID(playerid)) && isPlane(GetPlayerVehicleID(playerid)) && isBoat(GetPlayerVehicleID(playerid))) return sendPlayerError(playerid, "Acest vehicul nu are faruri.");
 	new engine, lights, alarm, doors, bonnet, boot, objective;
@@ -128,7 +128,7 @@ YCMD:lights(playerid, params[], help) {
 }
 
 
-YCMD:report(playerid, params[], help) {
+CMD:report(playerid, params[]) {
 	if(Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda, deoarece esti administrator.");
 	if(playerInfo[playerid][pReportMute] > gettime()) return sendPlayerError(playerid, "Pentru a folosi aceasta comanda trebuie sa astepti %d secunde", (playerInfo[playerid][pReportMute] - gettime()));
 	if(Iter_Count(Reports) >= MAX_REPORTS) return sendPlayerError(playerid, "Momentan sunt prea multe report-uri in asteptare.");
@@ -138,14 +138,14 @@ YCMD:report(playerid, params[], help) {
 	return true;
 }
 
-YCMD:spawnchange(playerid, params[], help) {
+CMD:spawnchange(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
 	Dialog_Show(playerid, SPAWNCHANGE, DIALOG_STYLE_LIST, "Spawnchange:", "Spawn\nHouse\nRent\nFaction", "Select", "Cancel");
 	return true;
 }
 
-YCMD:killcp(playerid, params[], help) {
+CMD:killcp(playerid, params[]) {
 	if(playerInfo[playerid][pCheckpoint] == CHECKPOINT_NONE) return sendPlayerError(playerid, "Nu ai un checkpoint activ pe mini map.");
 	DisablePlayerCheckpoint(playerid);
 	playerInfo[playerid][pCheckpoint] = CHECKPOINT_NONE;
@@ -154,7 +154,7 @@ YCMD:killcp(playerid, params[], help) {
 	return true;
 }
 
-YCMD:sms(playerid, params[], help) {
+CMD:sms(playerid, params[]) {
 	if(playerInfo[playerid][pMute] > 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai mute inca %d secunde.", playerInfo[playerid][pMute]);
 	extract params -> new phonenumber, string:smstext[180]; else return sendPlayerSyntax(playerid, "/sms <number> <text>");	
 	if(playerInfo[playerid][pPhone] == 0) return sendPlayerError(playerid, "Nu ai un telefon.");
@@ -176,7 +176,7 @@ YCMD:sms(playerid, params[], help) {
 	return true;
 }
 
-YCMD:number(playerid, params[], help) {
+CMD:number(playerid, params[]) {
 	extract params -> new player:targetid; else return sendPlayerSyntax(playerid, "/number <name/id>");
 	if(!isPlayerLogged(targetid)) return sendPlayerError(playerid, "Acel player nu este connectat.");
 	if(playerInfo[playerid][pPhoneBook] == 0) return sendPlayerError(playerid, "Nu ai o agenda telefonica.");
@@ -186,7 +186,7 @@ YCMD:number(playerid, params[], help) {
 	return true;
 }
 
-YCMD:reply(playerid, params[], help) {
+CMD:reply(playerid, params[]) {
 	if(playerInfo[playerid][pMute] > 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai mute inca %d secunde.", playerInfo[playerid][pMute]);
 	extract params -> new string:smstext[180]; else return sendPlayerSyntax(playerid, "/reply <text>");	
 	if(playerInfo[playerid][pPhone] == 0) return sendPlayerError(playerid, "Nu ai un telefon.");
@@ -208,7 +208,7 @@ YCMD:reply(playerid, params[], help) {
 	return true;
 }
 
-YCMD:gps(playerid, params[], help) {
+CMD:gps(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti conectat.");
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi comanda, deoarece ai un dialog afisat.");
 	if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) return sendPlayerError(playerid, "Ai un checkpoint activ pe harta.");
@@ -216,7 +216,7 @@ YCMD:gps(playerid, params[], help) {
 	return true;
 }
 
-YCMD:cancel(playerid, params[], help) {
+CMD:cancel(playerid, params[]) {
 	extract params -> new player:targetid = 1001, string:item[32]; else {
 		sendPlayerSyntax(playerid, "/cancel <name/id> <service>");
 		SCM(playerid, COLOR_GREY, "Available service: Medic, Taxi, Instructor.");
@@ -318,7 +318,7 @@ YCMD:cancel(playerid, params[], help) {
 	}
 	return true;
 }
-YCMD:accept(playerid, params[], help) {
+CMD:accept(playerid, params[]) {
 	extract params-> new player:targetid = 1001, string:item[32]; else {
 		sendPlayerSyntax(playerid, "/accept <name/id> <service>");
 		SCM(playerid, COLOR_GREY, "Available service: medic, taxi, instructor, invite, ticket, live, lesson, cinvite.");
@@ -490,7 +490,7 @@ YCMD:accept(playerid, params[], help) {
 	return true;
 }
 
-YCMD:animlist(playerid, params[], help) {
+CMD:animlist(playerid, params[]) {
     SCM(playerid,COLOR_LIMEGREEN,"Anim list:");
     SCM(playerid,COLOR_LIMEGREEN,"Lifejump, Robman, Exhaust, Carlock, Rcarjack1, Lcarjack1, Rcarjack2, Lcarjack2, Hoodfrisked;");
     SCM(playerid,COLOR_LIMEGREEN,"Lightcig, Tapcig, Bat, Lean, Clearanim, Dancing, Box, Lowthrow, Highthrow;");
@@ -503,72 +503,72 @@ YCMD:animlist(playerid, params[], help) {
     return true;
 }
 
-YCMD:carhand(playerid, params[], help) {
+CMD:carhand(playerid, params[]) {
     if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     ApplyAnimation(playerid,"CAR","Tap_hand",4.1,0,1,1 ,1,1);
 	return true;
 }
-YCMD:lifejump(playerid, params[], help) {
+CMD:lifejump(playerid, params[]) {
     if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"PED","EV_dive",4.0,0,1,1,1,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
-YCMD:robman(playerid, params[], help) {
+CMD:robman(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	LoopingAnim(playerid, "SHOP", "ROB_Loop_Threat", 4.0, 1, 0, 0, 0, 0);
  	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
-YCMD:exhaust(playerid, params[], help) {
+CMD:exhaust(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"PED","IDLE_tired",3.0,1,0,0,0,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
-YCMD:rcarjack1(playerid, params[], help) {
+CMD:rcarjack1(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	OnePlayAnim(playerid,"PED","CAR_pulloutL_LHS",4.0,0,0,0,0,0);
 	return true;
 }
-YCMD:lcarjack1(playerid, params[], help) {
+CMD:lcarjack1(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	OnePlayAnim(playerid,"PED","CAR_pulloutL_RHS",4.0,0,0,0,0,0);
 	return true;
 }
-YCMD:rcarjack2(playerid, params[], help) {
+CMD:rcarjack2(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	OnePlayAnim(playerid,"PED","CAR_pullout_LHS",4.0,0,0,0,0,0);
 	return true;
 }
-YCMD:lcarjack2(playerid, params[], help) {
+CMD:lcarjack2(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	OnePlayAnim(playerid,"PED","CAR_pullout_RHS",4.0,0,0,0,0,0);
 	return true;
 }
-YCMD:hoodfrisked(playerid, params[], help) {
+CMD:hoodfrisked(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	LoopingAnim(playerid,"POLICE","crm_drgbst_01",4.0,0,1,1,1,0);
  	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
-YCMD:lightcig(playerid, params[], help) {
+CMD:lightcig(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	OnePlayAnim(playerid,"SMOKING","M_smk_in",3.0,0,0,0,0,0);
 	return true;
 }
-YCMD:tapcig(playerid, params[], help) {
+CMD:tapcig(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	OnePlayAnim(playerid,"SMOKING","M_smk_tap",3.0,0,0,0,0,0);
 	return true;
 }
-YCMD:bat(playerid, params[], help) {
+CMD:bat(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	LoopingAnim(playerid,"BASEBALL","Bat_IDLE",4.0,1,1,1,1,0);
  	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
-YCMD:lean(playerid, params[], help) {
+CMD:lean(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     extract params -> new test; else return sendPlayerSyntax(playerid, "/lean <1-2>");
     switch (test)
@@ -585,12 +585,12 @@ YCMD:lean(playerid, params[], help) {
 	}
 	return true;
 }
-YCMD:clearanim(playerid, params[], help) {
+CMD:clearanim(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	ApplyAnimation(playerid, "CARRY", "crry_prtial", 1.0, 0, 0, 0, 0, 0);
 	return true;
 }
-YCMD:dancing(playerid, params[], help) {
+CMD:dancing(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	extract params -> new test; else return sendPlayerSyntax(playerid, "/dancing <1-7>");
    	switch (test) {
@@ -626,161 +626,161 @@ YCMD:dancing(playerid, params[], help) {
 	}
 	return true;
 }
-YCMD:box(playerid, params[], help) {
+CMD:box(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	LoopingAnim(playerid,"GYMNASIUM","GYMshadowbox",4.0,1,1,1,1,0);
  	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
-YCMD:lowthrow(playerid, params[], help) {
+CMD:lowthrow(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	OnePlayAnim(playerid,"GRENADE","WEAPON_throwu",3.0,0,0,0,0,0);
 	return true;
 }
-YCMD:highthrow(playerid, params[], help) {
+CMD:highthrow(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	OnePlayAnim(playerid,"GRENADE","WEAPON_throw",4.0,0,0,0,0,0);
 	return true;
 }
-YCMD:leftslap(playerid, params[], help) {
+CMD:leftslap(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	OnePlayAnim(playerid,"PED","BIKE_elbowL",4.0,0,0,0,0,0);
 	return true;
 }
-YCMD:handsup(playerid, params[], help) {
+CMD:handsup(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	if(playerInfo[playerid][pFreezed] == 1) return true;
 	SetPlayerSpecialAction(playerid,SPECIAL_ACTION_HANDSUP);
 	return true;
 }
-YCMD:fall(playerid, params[], help) {
+CMD:fall(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"PED","KO_skid_front",4.1,0,1,1,1,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
-YCMD:fallback(playerid, params[], help) {
+CMD:fallback(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid, "PED","FLOOR_hit_f", 4.0, 1, 0, 0, 0, 0);
     if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
     return true;
 }
-YCMD:laugh(playerid, params[], help) {
+CMD:laugh(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	OnePlayAnim(playerid, "RAPPING", "Laugh_01", 4.0, 0, 0, 0, 0, 0);
 	return true;
 }
-YCMD:lookout(playerid, params[], help) {
+CMD:lookout(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     OnePlayAnim(playerid, "SHOP", "ROB_Shifty", 4.0, 0, 0, 0, 0, 0);
 	return true;
 }
-YCMD:aim(playerid, params[], help) {
+CMD:aim(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid, "SHOP", "ROB_Loop_Threat", 4.0, 1, 0, 0, 0, 0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
-YCMD:crossarms(playerid, params[], help) {
+CMD:crossarms(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid, "COP_AMBIENT", "Coplook_loop", 4.0, 0, 1, 1, 1, -1);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
-YCMD:lay(playerid, params[], help) {
+CMD:lay(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	LoopingAnim(playerid,"BEACH", "bather", 4.0, 1, 0, 0, 0, 0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
-YCMD:hide(playerid, params[], help) {
+CMD:hide(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	LoopingAnim(playerid, "ped", "cower", 3.0, 1, 0, 0, 0, 0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
-YCMD:vomit(playerid, params[], help) {
+CMD:vomit(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	OnePlayAnim(playerid, "FOOD", "EAT_Vomit_P", 3.0, 0, 0, 0, 0, 0);
 	return true;
 }
-YCMD:wave(playerid, params[], help) {
+CMD:wave(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid, "ON_LOOKERS", "wave_loop", 4.0, 1, 0, 0, 0, 0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
-YCMD:shouting(playerid, params[], help) {
+CMD:shouting(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid,"RIOT","RIOT_shout",4.0,1,0,0,0,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
-YCMD:chant(playerid, params[], help) {
+CMD:chant(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid,"RIOT","RIOT_CHANT",4.0,1,1,1,1,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
-YCMD:frisked(playerid, params[], help) {
+CMD:frisked(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid,"POLICE","crm_drgbst_01",4.0,0,1,1,1,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;    
 	return true;
 
 }
-YCMD:exhausted(playerid, params[], help) {
+CMD:exhausted(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid,"PED","IDLE_tired",3.0,1,0,0,0,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
-YCMD:injured(playerid, params[], help) {
+CMD:injured(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid, "SWEET", "Sweet_injuredloop", 4.0, 1, 0, 0, 0, 0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
-YCMD:slapass(playerid, params[], help) {
+CMD:slapass(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     OnePlayAnim(playerid, "SWEET", "sweet_ass_slap", 4.0, 0, 0, 0, 0, 0);
 	return true;
 }
-YCMD:deal(playerid, params[], help) {
+CMD:deal(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     OnePlayAnim(playerid, "DEALER", "DEALER_DEAL", 4.0, 0, 0, 0, 0, 0);
 	return true;
 }
-YCMD:dealstance(playerid, params[], help) {
+CMD:dealstance(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid,"DEALER","DEALER_IDLE",4.0,1,0,0,0,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
-YCMD:crack(playerid, params[], help) {
+CMD:crack(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid, "CRACK", "crckdeth2", 4.0, 1, 0, 0, 0, 0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;    
 	return true;
 }
-YCMD:wank(playerid, params[], help) {
+CMD:wank(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid,"PAULNMAC", "wank_loop", 1.800001, 1, 0, 0, 1, 600);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
-YCMD:salute(playerid, params[], help) {
+CMD:salute(playerid, params[]) {
     if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     ApplyAnimation(playerid, "ON_LOOKERS", "Pointup_loop", 4.0, 1, 0, 0, 0, 0, 1);
     return true;
 }
-YCMD:gro(playerid, params[], help) {
+CMD:gro(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	LoopingAnim(playerid,"BEACH", "ParkSit_M_loop", 4.0, 1, 0, 0, 0, 0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
-YCMD:sup(playerid, params[], help) {
+CMD:sup(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     extract params -> new test; else return sendPlayerSyntax(playerid, "/sup <1-3>");
 	switch (test)
@@ -792,7 +792,7 @@ YCMD:sup(playerid, params[], help) {
 	}
     return true;
 }
-YCMD:rap(playerid, params[], help) {
+CMD:rap(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     extract params -> new test; else return sendPlayerSyntax(playerid, "/rap <1-4>");
 	switch (test)
@@ -817,127 +817,127 @@ YCMD:rap(playerid, params[], help) {
 	}
     return true;
 }
-YCMD:push(playerid, params[], help) {
+CMD:push(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	OnePlayAnim(playerid,"GANGS","shake_cara",4.0,0,0,0,0,0);
 	return true;
 }
-YCMD:akick(playerid, params[], help) {
+CMD:akick(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	OnePlayAnim(playerid,"POLICE","Door_Kick",4.0,0,0,0,0,0);
 	return true;
 }
-YCMD:lowbodypush(playerid, params[], help) {
+CMD:lowbodypush(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	OnePlayAnim(playerid,"GANGS","shake_carSH",4.0,0,0,0,0,0);
 	return true;
 }
-YCMD:headbutt(playerid, params[], help) {
+CMD:headbutt(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	OnePlayAnim(playerid,"WAYFARER","WF_Fwd",4.0,0,0,0,0,0);
 	return true;
 }
-YCMD:pee(playerid, params[], help) {
+CMD:pee(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	if(playerInfo[playerid][pFreezed] == 1) return true;
 	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_PISSING);
 	return true;
 }
-YCMD:koface(playerid, params[], help) {
+CMD:koface(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"PED","KO_shot_face",4.0,0,1,1,1,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
-YCMD:kostomach(playerid, params[], help) {
+CMD:kostomach(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"PED","KO_shot_stom",4.0,0,1,1,1,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
-YCMD:kiss(playerid, params[], help) {
+CMD:kiss(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"KISSING", "Grlfrd_Kiss_02", 1.800001, 1, 0, 0, 1, 600);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
-YCMD:rollfall(playerid, params[], help) {
+CMD:rollfall(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"PED","BIKE_fallR",4.0,0,1,1,1,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
-YCMD:lay2(playerid, params[], help) {
+CMD:lay2(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"SUNBATHE","Lay_Bac_in",3.0,0,1,1,1,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 		
 	return true;
 }
-YCMD:hitch(playerid, params[], help) {
+CMD:hitch(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"MISC","Hiker_Pose", 4.0, 1, 0, 0, 0, 0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
-YCMD:beach(playerid, params[], help) {
+CMD:beach(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"BEACH","SitnWait_loop_W",4.1,0,1,1,1,1);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
-YCMD:medic(playerid, params[], help) {
+CMD:medic(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"MEDIC","CPR",4.1,0,1,1,1,1);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
-YCMD:scratch(playerid, params[], help) {
+CMD:scratch(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"MISC","Scratchballs_01", 4.0, 1, 0, 0, 0, 0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
-YCMD:sit(playerid, params[], help) {
+CMD:sit(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"PED","SEAT_idle", 4.0, 1, 0, 0, 0, 0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 		
 	return true;
 }
-YCMD:drunk(playerid, params[], help) {
+CMD:drunk(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"PED","WALK_DRUNK",4.0,1,1,1,1,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
-YCMD:bomb(playerid, params[], help) {
+CMD:bomb(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
    	ClearAnimations(playerid);
    	OnePlayAnim(playerid, "BOMBER", "BOM_Plant", 4.0, 0, 0, 0, 0, 0);
 	return true;
 }
-YCMD:getarrested(playerid, params[], help) {
+CMD:getarrested(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid,"ped", "ARRESTgun", 4.0, 0, 1, 1, 1, -1);
     if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
-YCMD:chat(playerid, params[], help) {
+CMD:chat(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     OnePlayAnim(playerid,"PED","IDLE_CHAT",4.0,0,0,0,0,0);
 	return true;
 }
-YCMD:fucku(playerid, params[], help) {
+CMD:fucku(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     OnePlayAnim(playerid,"PED","fucku",4.0,0,0,0,0,0);
 	return true;
 }
-YCMD:taichi(playerid, params[], help) {
+CMD:taichi(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid,"PARK","Tai_Chi_Loop",4.0,1,0,0,0,0);
     if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
-YCMD:knife(playerid, params[], help) {
+CMD:knife(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     extract params -> new test; else return sendPlayerSyntax(playerid, "/knife <1-4>");
 	switch (test)
@@ -959,7 +959,7 @@ YCMD:knife(playerid, params[], help) {
 	}
 	return true;
 }
-YCMD:basket(playerid, params[], help) {
+CMD:basket(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	extract params -> new test; else return sendPlayerSyntax(playerid, "/basket <1-6>");
 	switch (test)
@@ -986,7 +986,7 @@ YCMD:basket(playerid, params[], help) {
 	}
 	return true;
 }
-YCMD:dance(playerid, params[], help) {
+CMD:dance(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_GREY, "Nu poti folosi animatia aceasta atata timp cat esti intr-un vehicul.");
 	extract params -> new test; else return sendPlayerSyntax(playerid, "/dance <1-4>");
 	switch(test) {
@@ -998,13 +998,13 @@ YCMD:dance(playerid, params[], help) {
 	}
 	return true;
 }
-YCMD:jumpwater(playerid, params[], help) {
+CMD:jumpwater(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_GREY, "Nu poti folosi animatia aceasta atata timp cat esti intr-un vehicul.");
     ApplyAnimation(playerid,"DAM_JUMP","DAM_LAUNCH",2,0,1,1,0,0);
 	return true;
 }
 
-YCMD:quests(playerid, params[], help) {
+CMD:quests(playerid, params[]) {
 	new status1[45], status2[45];
 	if(playerInfo[playerid][pProgress][0] >= getNeedProgress(playerid, 0)) format(status1, sizeof(status1), "Misiune terminata");
 	else format(status1, sizeof(status1), "%d/%d", playerInfo[playerid][pProgress][0], getNeedProgress(playerid, 0));
@@ -1016,13 +1016,13 @@ YCMD:quests(playerid, params[], help) {
 	return true;
 }
 
-YCMD:wthelp(playerid, params[], help) {
+CMD:wthelp(playerid, params[]) {
 	if(playerInfo[playerid][pWTalkie] == 0) return sendPlayerError(playerid, "Nu ai un walkie talkie.");
 	SCM(playerid,COLOR_GREY,"* Walkie Talkie: /setfreq /wt /freqmembers.");
 	return true;
 }
 
-YCMD:setfreq(playerid, params[], help) {	
+CMD:setfreq(playerid, params[]) {	
 	if(playerInfo[playerid][pWTalkie] == 0) return sendPlayerError(playerid, "Nu ai un walkie talkie.");
 	extract params -> new freq; else return sendPlayerSyntax(playerid, "/setfreq <freq>");
 	if(freq < 0 || freq > 10) return sendPlayerError(playerid, "Frecvente disponibile: 1-10.");
@@ -1039,7 +1039,7 @@ YCMD:setfreq(playerid, params[], help) {
 	return true;
 }
 
-YCMD:wt(playerid, params[], help) {
+CMD:wt(playerid, params[]) {
 	if(playerInfo[playerid][pWTalkie] == 0) return sendPlayerError(playerid, "Nu ai un walkie talkie.");
 	if(playerInfo[playerid][pMute] > 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai mute inca %d secunde.", playerInfo[playerid][pMute]);
     extract params -> new string:msg[128];
@@ -1052,7 +1052,7 @@ YCMD:wt(playerid, params[], help) {
 	return true;
 }
 
-YCMD:freqmembers(playerid, params[], help) {
+CMD:freqmembers(playerid, params[]) {
 	if(playerInfo[playerid][pWTalkie] == 0) return sendPlayerError(playerid, "Nu ai un walkie talkie.");
 	if(playerInfo[playerid][pWTChannel] == 0) return sendPlayerError(playerid, "Nu esti pe o frecventa.");
 	if(Iter_Count(Freqs[playerInfo[playerid][pWTChannel]]) == 0) return sendPlayerError(playerid, "Nu sunt jucatori pe aceasta frecventa.");
@@ -1064,7 +1064,7 @@ YCMD:freqmembers(playerid, params[], help) {
 	return true;
 }
 
-YCMD:tog(playerid, params[], help) {
+CMD:tog(playerid, params[]) {
 	gString[0] = (EOS);
 	strcat(gString, "Function\tStatus\n");
 	strcat(gString, playerInfo[playerid][pLiveToggle] ? "Live Conversation\t{3BBF0B}Enabled\n" : "Live Conversation\t{FF0000}Disabled\n");
@@ -1072,7 +1072,7 @@ YCMD:tog(playerid, params[], help) {
 	return true;
 }
 
-YCMD:finalquest(playerid, params[], help) {
+CMD:finalquest(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a folosi aceasta comanda.");
 	if(IsPlayerInRangeOfPoint(playerid, 50, -2304.2849,-1663.8442,483.6583)) {
 		for(new m; m < 2; m++) {
