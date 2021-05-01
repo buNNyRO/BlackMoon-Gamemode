@@ -1360,25 +1360,6 @@ Dialog:DIALOG_SETGUN(playerid, response, listitem) {
 	return true;
 }
 
-CMD:order(playerid, params[]) {
-	if(!Iter_Contains(FactionMembers[8], playerid) && !Iter_Contains(FactionMembers[9], playerid)) return sendPlayerError(playerid, "Nu esti in factiunea 'Grove Street' sau 'Ballas' pentru a folosi aceasta comanda.");
-	if(playerInfo[playerid][pWeaponLicense] == 0) return sendPlayerError(playerid, "Nu ai licenta de 'Gun'.");
-	if(playerInfo[playerid][pinFaction] != playerInfo[playerid][pFaction]) return sendPlayerError(playerid, "Nu esti in HQ-ul factiunii tale.");
-	new x = playerInfo[playerid][pFaction], y[3];
-	for(new i = 0; i < 5; i++) {
-		if(safeInfo[x][sMaterials] < GunOrder[i][2] && safeInfo[x][sMoney] < GunOrder[i][1] || !playerInfo[playerid][pGuns][i]) return true;
-		safeInfo[x][sMaterials] -= GunOrder[i][1];
-		safeInfo[x][sMoney] -= GunOrder[i][2];
-		serverWeapon(playerid, GunOrder[i][0], 60);
-		y[0] ++;
-		y[1] += GunOrder[i][1];
-		y[2] += GunOrder[i][2];
-	}
-	saveSafe(x);
-	SCM(playerid, COLOR_LIGHTRED, string_fast("* (Order Guns):{ffffff} Ai primit '%d' arme si ai dat '%s' materiale si '$%s'.", y[0], formatNumber(y[1]), formatNumber(y[2])));
-	return true;
-}
-
 CMD:tie(playerid, params[]) {
 	if(!Iter_Contains(FactionMembers[8], playerid) && !Iter_Contains(FactionMembers[9], playerid)) return sendPlayerError(playerid, "Nu esti in factiunea 'Grove Street' sau 'Ballas' pentru a folosi aceasta comanda.");
 	if(playerInfo[playerid][pFactionRank] < 2) return sendPlayerError(playerid, "Ai nevoie rank 2+ pentru a face acest lucru.");

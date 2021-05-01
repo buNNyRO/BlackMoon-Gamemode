@@ -5,7 +5,8 @@ enum pickInfo {
  	HOUSE,
  	GASCAN,
  	FACTION,
- 	JOB
+ 	JOB,
+ 	SAFE
 };
 new PickInfo[MAX_PICKUPS][pickInfo];
 
@@ -15,5 +16,6 @@ public OnPlayerPickUpDynamicPickup(playerid, STREAMER_TAG_PICKUP:pickupid) {
     if(PickInfo[pickupid][GASCAN] != 0) playerInfo[playerid][areaGascan] = PickInfo[pickupid][GASCAN]; 
     if(PickInfo[pickupid][FACTION] != 0) playerInfo[playerid][areaFaction] = PickInfo[pickupid][FACTION];
     if(PickInfo[pickupid][JOB] != 0) playerInfo[playerid][areaJob] = PickInfo[pickupid][JOB];
+    if(PickInfo[pickupid][SAFE] != 0) playerInfo[playerid][areaSafe] = PickInfo[pickupid][SAFE];
     return 1;
 }

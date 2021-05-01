@@ -36,18 +36,17 @@ function LoadSafes() {
 		Iter_Add(FactionSafes, i);
 		safeInfo[i][sPickup] = CreateDynamicPickup(1274, 23, safeInfo[i][sPosX], safeInfo[i][sPosY], safeInfo[i][sPosZ], safeInfo[i][sVirtualID]);
 	    safeInfo[i][sText] = CreateDynamic3DTextLabel(string_fast("Safe Faction %s\n/fdeposit - /fwithdraw", factionName(i-1)), 0xFFEA00FF, safeInfo[i][sPosX],safeInfo[i][sPosY], safeInfo[i][sPosZ], 25.0, 0xFFFF, 0xFFFF, 0, 0, 0, -1, STREAMER_3D_TEXT_LABEL_SD);
+		PickInfo[safeInfo[i][sPickup]][SAFE] = i;
 	}
 	return printf("Faction Safes: %d [From Database]", Iter_Count(FactionSafes));
 }
 
 CMD:fdeposit(playerid, params[]) {
-	for(new s = 0; s < Iter_Count(FactionSafes); s++) {
-		if(!PlayerToPoint(5, playerid, safeInfo[s][sPosX], safeInfo[s][sPosY], safeInfo[s][sPosZ]))
-			continue;
+	if(playerInfo[playerid][pFaction] == 0 && playerInfo[playerid][pFactionRank] < 6)
+		return true;
 
-		if(playerInfo[playerid][pFaction] != safeInfo[s][sFactionID])
-			continue;
-
+	if(playerInfo[playerid][areaSafe] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, safeInfo[playerInfo[playerid][areaSafe]][sPosX], safeInfo[playerInfo[playerid][areaSafe]][sPosY], safeInfo[playerInfo[playerid][areaSafe]][sPosZ])) {
+		if(playerInfo[playerid][pFaction] != safeInfo[playerInfo[playerid][areaSafe]][sFactionID]) return true;
 		playerInfo[playerid][pSafeID] = playerInfo[playerid][pFaction];
 		Dialog_Show(playerid, DIALOG_FDEPOSIT, DIALOG_STYLE_LIST, "Faction Deposit", "Money\nMaterials\nDrugs", "Select", "Cancel");
 	}
@@ -55,17 +54,63 @@ CMD:fdeposit(playerid, params[]) {
 }
 
 CMD:fwithdraw(playerid, params[]) {
-	if(playerInfo[playerid][pFactionRank] < 6)
+	if(playerInfo[playerid][pFaction] == 0 && playerInfo[playerid][pFactionRank] < 6)
 		return true;
 
-	for(new s = 0; s < Iter_Count(FactionSafes); s++) {
-		if(!PlayerToPoint(5, playerid, safeInfo[s][sPosX], safeInfo[s][sPosY], safeInfo[s][sPosZ]))
-			continue;
-
-		if(playerInfo[playerid][pFaction] != safeInfo[s][sFactionID])
-			continue;
+	if(playerInfo[playerid][areaSafe] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, safeInfo[playerInfo[playerid][areaSafe]][sPosX], safeInfo[playerInfo[playerid][areaSafe]][sPosY], safeInfo[playerInfo[playerid][areaSafe]][sPosZ])) {
+		if(playerInfo[playerid][pFaction] != safeInfo[playerInfo[playerid][areaSafe]][sFactionID]) return true;
 		playerInfo[playerid][pSafeID] = playerInfo[playerid][pFaction];
-		Dialog_Show(playerid, DIALOG_FWITHDRAW, DIALOG_STYLE_TABLIST_HEADERS, "Faction Withdraw", string_fast("Option\tResult\nMoney\t$%s\nMaterials\t%s\nDrugs\t%s\n", formatNumber(safeInfo[s][sMoney]), formatNumber(safeInfo[s][sMaterials]), formatNumber(safeInfo[s][sDrugs])), "Select", "Cancel");
+		Dialog_Show(playerid, DIALOG_FWITHDRAW, DIALOG_STYLE_TABLIST_HEADERS, "Faction Withdraw", string_fast("Option\tResult\nMoney\t$%s\nMaterials\t%s\nDrugs\t%s\n", formatNumber(safeInfo[playerInfo[playerid][areaSafe]][sMoney]), formatNumber(safeInfo[playerInfo[playerid][areaSafe]][sMaterials]), formatNumber(safeInfo[playerInfo[playerid][areaSafe]][sDrugs])), "Select", "Cancel");
+	}
+	return true;
+}
+
+CMD:createsafe(playerid, params[]) {
+	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
+	extract params -> new factionID, money, mats, drugs; else return sendPlayerSyntax(playerid, "/createsafe <faction id> <money> <materials> <drugs>");
+	if(!Iter_Contains(ServerFactions, factionID)) return sendPlayerError(playerid, "Aceasta factiune nu exista.");
+	if(!(0 <= money <= 100000000) && !(0 <= mats <= 1000000) && !(0 <= drugs <= 1000)) return sendPlayerError(playerid, "Invalid money or materials or drugs (Max: $100.000.000 | Materials: 1.000.000 | Drugs: 1.000).");
+	new id = Iter_Free(FactionSafes), Float:x, Float:y, Float:z;
+	GetPlayerPos(playerid, x, y, z);
+	safeInfo[id][sID] = id;
+	safeInfo[id][sFactionID] = factionID;
+	safeInfo[id][sPosX] = x;
+	safeInfo[id][sPosY] = y;
+	safeInfo[id][sPosZ] = z;
+	safeInfo[id][sMoney] = money;
+	safeInfo[id][sDrugs] = drugs;
+	safeInfo[id][sMaterials] = mats;
+	safeInfo[id][sVirtualID] = GetPlayerVirtualWorld(playerid);
+	SCMf(playerid, COLOR_SERVER, "* Ai adaugat un seif factiunii %s cu $%s, %d materiale si %d drugs.", factionName(factionID), formatNumber(money), mats, drugs);
+	update("INSERT INTO `server_safes` (`Faction`, `Money`, `Drugs`, `Materials`, `VirtualWorld`, `X`, `Y`, `Z`) VALUES ('%d', '%d', '%d', '%d', '%d', '%.2f', '%.2f', '%.2f'", factionID, money, drugs, mats, GetPlayerVirtualWorld(playerid), x, y, z);
+	return true;
+}
+
+CMD:order(playerid, params[]) {
+	if(playerInfo[playerid][pWeaponLicense] == 0) return sendPlayerError(playerid, "Nu ai licenta de 'Gun'.");
+	if(playerInfo[playerid][pinFaction] != playerInfo[playerid][pFaction]) return sendPlayerError(playerid, "Nu esti in HQ-ul factiunii tale.");
+	if(Iter_Contains(FactionMembers[8], playerid) && Iter_Contains(FactionMembers[9], playerid)) {
+		new x = playerInfo[playerid][pFaction], y[3];
+		for(new i = 0; i < 5; i++) {
+			if(safeInfo[x][sMaterials] < GunOrder[i][2] && safeInfo[x][sMoney] < GunOrder[i][1] || !playerInfo[playerid][pGuns][i]) return true;
+			safeInfo[x][sMaterials] -= GunOrder[i][1];
+			safeInfo[x][sMoney] -= GunOrder[i][2];
+			serverWeapon(playerid, GunOrder[i][0], 60);
+			y[0] ++;
+			y[1] += GunOrder[i][1];
+			y[2] += GunOrder[i][2];
+		}
+		saveSafe(x);
+		SCM(playerid, COLOR_LIGHTRED, string_fast("* (Order Guns):{ffffff} Ai primit '%d' arme si ai dat '%s' materiale si '$%s'.", y[0], formatNumber(y[1]), formatNumber(y[2])));
+	}
+	else if(Iter_Contains(FactionMembers[10], playerid)) {
+		new y = playerInfo[playerid][pFaction];
+		if(safeInfo[y][sMaterials] < 100 && safeInfo[y][sMoney] < 1000) return true;
+		safeInfo[y][sMaterials] -= 100;
+		safeInfo[y][sMoney] -= 1000;
+		serverWeapon(playerid, 34, 100);
+		serverWeapon(playerid, 4, 1);
+		saveSafe(y);
 	}
 	return true;
 }

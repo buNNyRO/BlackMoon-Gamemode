@@ -51,6 +51,7 @@ CMD:addbizgas(playerid, params[]) {
 	gasInfo[i][gFull] = fuel;
 	updateGasCan(i);
 	SCMf(playerid, COLOR_GOLD, "* Ai adaugat un nou gascan (id %d | %.1f procentaj | biz id %d) de combustibil. Acum acesta este valabil pentru jucatori.", gasInfo[i][gID], gasInfo[i][gFull], gasInfo[i][gBizID]);
+	update("INSERT INTO `server_gascan` (`BizID`, `X`, `Y`, `Z`, `Full`) VALUES ('%d', '%.2f', '%.2f', '%.2f', '%.2f')", id, x, y, z, fuel);
 	return true;
 }
 
