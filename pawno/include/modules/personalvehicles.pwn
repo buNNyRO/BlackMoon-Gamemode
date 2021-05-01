@@ -647,9 +647,7 @@ timer TimerSpeedo[1000](playerid) {
 
 hook OnPlayerDisconnect(playerid, reason) {
 	foreach(new i : PlayerVehicles[playerid]) {
-		gQuery[0] = (EOS); 
-		mysql_format(SQL, gQuery, sizeof(gQuery), "UPDATE `server_personal_vehicles` SET  `Health` = '%f', `Fuel` = '%f', `Odometer`='%f', `DamageDoors`='%d', `DamageLights`='%d', `DamageTires`='%d' WHERE `ID`='%d'", personalVehicle[i][pvHealth], personalVehicle[i][pvFuel], personalVehicle[i][pvOdometer], personalVehicle[i][pvDamagePanels], personalVehicle[i][pvDamageDoors], personalVehicle[i][pvDamageLights], personalVehicle[i][pvDamageTires],personalVehicle[i][pvID]);
-		mysql_tquery(SQL, gQuery, "", "");
+		update("UPDATE `server_personal_vehicles` SET  `Health` = '%f', `Fuel` = '%f', `Odometer`='%f', `DamageDoors`='%d', `DamageLights`='%d', `DamageTires`='%d' WHERE `ID`='%d'", personalVehicle[i][pvHealth], personalVehicle[i][pvFuel], personalVehicle[i][pvOdometer], personalVehicle[i][pvDamagePanels], personalVehicle[i][pvDamageDoors], personalVehicle[i][pvDamageLights], personalVehicle[i][pvDamageTires],personalVehicle[i][pvID]);
 
 		personalVehicle[i][pvID] = 0;
 		personalVehicle[i][pvModelID] = 0;
