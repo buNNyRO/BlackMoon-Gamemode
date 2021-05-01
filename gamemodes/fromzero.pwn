@@ -6,17 +6,15 @@
 #include <a_zones>
 #include <beaZone>
 
-
 #include <YSI\y_iterate>
 #include <profiler>
 #include <YSI\y_timers>
 #include <YSI\y_master>
-// #include <YSI\y_commands>
 #include <YSI\y_va>
 #include <YSI\y_inline>
 #include <YSI\y_stringhash>
 
-#include <PawnCMD>
+#include <Pawn.CMD>
 #include <a_mysql>
 #include <a_mysql_yinline>
 #include <sscanf2>
@@ -36,9 +34,9 @@
 #include <modules\dialogs.pwn>
 #include <modules\pickups.pwn>
 #include <modules\houses.pwn>
-#include <modules\safes.pwn>
 #include <modules\turfs.pwn>
 #include <modules\factions.pwn>
+#include <modules\safes.pwn>
 #include <modules\jobs.pwn>
 #include <modules\business.pwn>
 #include <modules\comenzi\helper.pwn>
@@ -52,6 +50,19 @@
 #include <modules\dealership.pwn>
 
 main() {}
+
+alias:adminchat("a", "ac")
+alias:helperchat("h", "hc")
+alias:setrepsectpoints("setrp", "setrespect")
+alias:admingivelicense("agl", "admingl")
+alias:adminsuspendlicense("asl", "adminsl")
+alias:vehicles("v", "g", "garage", "vehicles")
+alias:fixveh("fv", "fixvehicle")
+alias:addnos("nos", "addnitro")
+alias:flipveh("flip", "flipvehicle")
+alias:acceptreport("ar", "areport")
+alias:closereport("cr", "clreport")
+alias:reportmute("rmute", "repmute")
 
 public OnQueryError(errorid, const error[], const callback[], const query[], MySQL:handle)
 {
@@ -67,8 +78,6 @@ public OnGameModeInit()
 {
 	MySQLLoad();
 
-	Iter_Clear(AdminVehicles);
-
 	SetNameTagDrawDistance(20.0);
 	EnableStuntBonusForAll(false);
 	ShowPlayerMarkers(PLAYER_MARKERS_MODE_OFF);
@@ -76,24 +85,6 @@ public OnGameModeInit()
     DisableInteriorEnterExits();
 	AllowInteriorWeapons(true);
 	UsePlayerPedAnims();
-
-	// alias:adminchat("a");
-	// alias:helperchat("hc");
-	// alias:setrespectpoints("setrp");
-	// alias:admingivelicense("agl");
-	// alias:admintakelicense("atl");
-	// alias:adminsuspendlicense("asl");
-	// alias:adminsuspendlicense("suspendlicense");
-	// alias:vehicles("v");
-	// alias:vehicles("g");
-	// alias:vehicles("garage");
-	// alias:fixveh("fv");
-	// alias:addnos("nos");
-	// alias:despawncar("vre");
-	// alias:set("setstats", "setstat");
-	// alias:makeleader("setleader");
-	// alias:setadmin("makeadmin");
-
 	return true;
 }
 
@@ -390,7 +381,7 @@ public OnPlayerDeath(playerid, killerid)
 new sexxx[128];
 public OnPlayerText(playerid, text[])
 {
-	if(strmatch(sexxx, text)) return 0;
+	if(strmatch(sexxx, text)) return 1;
 	format(sexxx, sizeof sexxx, text);
 	if(isPlayerLogged(playerid)) {
 		if(faceReclama(text)) return Reclama(playerid, text);
@@ -402,9 +393,9 @@ public OnPlayerText(playerid, text[])
 		gQuery[0] = (EOS);
 		mysql_format(SQL, gQuery, 256, "INSERT INTO `server_chat_logs` (PlayerName, PlayerID, ChatText) VALUES ('%s', '%d', '%s')", getName(playerid), playerInfo[playerid][pSQLID], string_fast("* (chat log): %s.", text));
 		mysql_pquery(SQL, gQuery, "", "");
-		return 0;
+		return 1;
 	}
-	return 0;
+	return 1;
 }
 
 public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
@@ -511,7 +502,7 @@ public OnVehicleDeath(vehicleid, killerid) {
 public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 	if(PRESSED(KEY_LOOK_BEHIND)) {
 		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER || !isBike(GetPlayerVehicleID(playerid)) || GetPVarInt(playerid, "engineDeelay") != gettime()) {
-			PC_EmulateCommand(playerid, "engine");
+			//Command_ReProcess(playerid, "engine", false);
 		}
 	}
 	if(PRESSED(KEY_SECONDARY_ATTACK)) {
@@ -623,7 +614,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 	}
 	if(PRESSED(KEY_ACTION)) {
 		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER) {
-			PC_EmulateCommand(playerid, "lights");
+			//Command_ReProcess(playerid, "lights", false);
 		}
 	}
 	if(PRESSED(KEY_ANALOG_DOWN)) {
@@ -653,8 +644,8 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 		}
 	}
 	if(PRESSED(KEY_NO)) {
-		PC_EmulateCommand(playerid, "lock");
-		PC_EmulateCommand(playerid, "finalquest");
+		//Command_ReProcess(playerid, "lock", false);
+		//Command_ReProcess(playerid, "finalquest", false);
 	}
 	if(PRESSED(KEY_CROUCH)) {
 		if(Iter_Contains(FactionMembers[2], playerid) || Iter_Contains(FactionMembers[3], playerid) || Iter_Contains(FactionMembers[4], playerid)) {
@@ -806,18 +797,6 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	}
 	return true;
 }
-
-public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags) 
-{ 
-    if(result == -1) 
-    { 
-        SendClientMessage(playerid, 0xFFFFFFFF, "SERVER: Unknown command."); 
-
-        return 0; 
-    } 
-
-    return 1; 
-} 
 
 public OnPlayerRequestSpawn(playerid)
 {
