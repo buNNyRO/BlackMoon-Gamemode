@@ -26,14 +26,12 @@ timer TimerWanted[1000](x) {
 	playerInfo[x][pWantedTime] --;
 	PlayerTextDrawShow(x, wantedTD[x]);
 	PlayerTextDrawSetString(x, wantedTD[x], string_fast("Wanted Time: ~r~%d secunde", playerInfo[x][pWantedTime]));\
-	SCM(x, -1, "se scade");
 	if(playerInfo[x][pWantedTime] <= 0 && playerInfo[x][pWantedLevel] > 0) {
 		playerInfo[x][pWantedTime] = 300;
 		playerInfo[x][pWantedLevel] --;
 		SetPlayerWantedLevel(x, playerInfo[x][pWantedLevel]);
 		SCM(x, COLOR_LIGHTRED, "* Wanted: Ti-a fost scazut un punct de urmarire.");	
 		sendPolice(3, -1, x, playerInfo[x][pWantedLevel], "lose point wanted");
-		SCM(x, -1, "a scazut un punct");
 		update("UPDATE `server_users` SET `WantedLevel` = '%d', `WantedTime` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[x][pWantedLevel], playerInfo[x][pWantedTime], playerInfo[x][pSQLID]);
 	}	
 	else {
@@ -41,7 +39,6 @@ timer TimerWanted[1000](x) {
 		playerInfo[x][pWantedTime] = 0;
 		SetPlayerWantedLevel(x, playerInfo[x][pWantedLevel]);
 		stop wantedTime[x];
-		SCM(x, -1, "s-a oprit");
 		SCM(x, COLOR_LIGHTRED, "* Wanted: Politistii ti-au pierdut urmele deoarece nu mai ai wanted.");
 		update("UPDATE `server_users` SET `WantedLevel` = '%d', `WantedTime` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[x][pWantedLevel], playerInfo[x][pWantedTime], playerInfo[x][pSQLID]);
 	}

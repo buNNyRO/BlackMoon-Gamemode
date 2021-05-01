@@ -105,8 +105,8 @@ hook OnPlayerDeath(playerid, killerid) {
 					else if(playerInfo[killerid][pFaction] == warInfo[turf][wFaction]) WarScore[2][turf] += 1.5;
 					new weaponName[32];
 					GetWeaponName(GetPlayerWeapon(killerid), weaponName, 32); 
-					SCM(killerid, COLOR_LIGHTGREEN, string_fast("* (War System): L-ai omorat pe %s cu %s de la %d metri, ai primit %0.2f scor iar la echipa ai adus %s scor.", getName(playerid), weaponName, DistanceToPlayer(killerid, playerid), WarScore2[playerid][turf], playerInfo[killerid][pFaction] == warInfo[turf][wAttacker] ? string_fast("%0.2f", WarScore[1][turf]) : string_fast("%0.2f", WarScore[2][turf])));
-					SCM(playerid, COLOR_LIGHTGREEN, string_fast("* (War System): Ai fost omorat de %s cu %s de la %d metri.", getName(killerid), weaponName, DistanceToPlayer(playerid, killerid)));
+					SCMf(killerid, COLOR_LIGHTGREEN, "* (War System): L-ai omorat pe %s cu %s de la %d metri, ai primit %0.2f scor iar la echipa ai adus %s scor.", getName(playerid), weaponName, DistanceToPlayer(killerid, playerid), WarScore2[playerid][turf], playerInfo[killerid][pFaction] == warInfo[turf][wAttacker] ? string_fast("%0.2f", WarScore[1][turf]) : string_fast("%0.2f", WarScore[2][turf]));
+					SCMf(playerid, COLOR_LIGHTGREEN, "* (War System): Ai fost omorat de %s cu %s de la %d metri.", getName(killerid), weaponName, DistanceToPlayer(playerid, killerid));
 				}
 			}
 		}
@@ -186,7 +186,7 @@ hook OnPlayerDisconnect(playerid, reason) {
 		MedicAcceptedCall[MedicAcceptedCall[playerid]] = -1;
 		if(Iter_Contains(FactionMembers[1], playerid)) {
 			sendFactionMessage(1, COLOR_LIMEGREEN, "(*) %s a anulat apelul lui %s deoarece s-a deconectat.", getName(playerid), getName(MedicAcceptedCall[playerid]));
-			SCM(MedicAcceptedCall[playerid], -1, string_fast("{FF6347}(Paramedic Call): {FFFFFF}Your call has been canceled by %s because he disconnected."));
+			SCMf(MedicAcceptedCall[playerid], -1, "{FF6347}(Paramedic Call): {FFFFFF}Your call has been canceled by %s because he disconnected.", getName(playerid));
 		}
 		else {
 			sendFactionMessage(1, COLOR_LIMEGREEN, "(*) %s a anulat apelul preluat de %s deoarece s-a deconectat.", getName(playerid), getName(MedicAcceptedCall[playerid]));
@@ -201,7 +201,7 @@ hook OnPlayerDisconnect(playerid, reason) {
 		TaxiAcceptedCall[TaxiAcceptedCall[playerid]] = -1;
 		if(Iter_Contains(FactionMembers[5], playerid)) {
 			sendFactionMessage(5, COLOR_LIMEGREEN, "(*) %s a anulat apelul lui %s deoarece s-a deconectat.", getName(playerid), getName(TaxiAcceptedCall[playerid]));
-			SCM(TaxiAcceptedCall[playerid], -1, string_fast("{FF6347}(Taxi Call): {FFFFFF}Your call has been canceled by %s because he disconnected."));
+			SCMf(TaxiAcceptedCall[playerid], -1, "{FF6347}(Taxi Call): {FFFFFF}Your call has been canceled by %s because he disconnected.", getName(playerid));
 		}
 		else {
 			sendFactionMessage(5, COLOR_LIMEGREEN, "(*) %s a anulat apelul preluat de %s deoarece s-a deconectat.", getName(playerid), getName(TaxiAcceptedCall[playerid]));
@@ -275,7 +275,7 @@ Dialog:DIALOG_WANTEDS(playerid, response) {
 	playerInfo[playerid][pCheckpoint] = CHECKPOINT_WANTEDFIND;
 	playerInfo[playerid][pCheckpointID] = id;
 	wantedFind[playerid] = repeat TimersWantedFind(playerid);
-	SCM(playerid, COLOR_GREY, string_fast("*- Ti-a fost setat un checkpoint pe %s (%d) care se afla in zona %s. -*", getName(id), id, zone));
+	SCMf(playerid, COLOR_GREY, "*- Ti-a fost setat un checkpoint pe %s (%d) care se afla in zona %s. -*", getName(id), id, zone);
 	playerInfo[playerid][pSelectedItem] = -1;
 	return true;
 }
@@ -298,8 +298,8 @@ function showMDC(playerid, targetid) {
 	if(playerInfo[targetid][pWantedLevel] == 0) return sendPlayerError(playerid, "Acel player nu are wanted.");
 	playerInfo[playerid][pMDCon] = targetid;
 	SCM(playerid, COLOR_GREY, "*------------------------------------------- Police MDC -------------------------------------------*");	
-	SCM(playerid, COLOR_GREY, string_fast("Name: %s (%d) | Wanted Level: %d | Wanted Time: %d minutes | Chased by: %d cops.", getName(targetid), targetid, playerInfo[targetid][pWantedLevel], playerInfo[targetid][pWantedTime]/60, chasedBy(targetid)));
-	SCM(playerid, COLOR_GREY, string_fast("Reason: %s.", wantedName(targetid)));			
+	SCMf(playerid, COLOR_GREY, "Name: %s (%d) | Wanted Level: %d | Wanted Time: %d minutes | Chased by: %d cops.", getName(targetid), targetid, playerInfo[targetid][pWantedLevel], playerInfo[targetid][pWantedTime]/60, chasedBy(targetid));
+	SCMf(playerid, COLOR_GREY, "Reason: %s.", wantedName(targetid));			
 	SCM(playerid, COLOR_GREY, "*------------------------------------------- Police MDC -------------------------------------------*");
 	return true;
 }
@@ -367,13 +367,6 @@ function whenPlayerLeaveFaction(playerid) {
 	return true;
 }
 
-function whenPlayerGotLeader(playerid) {
-	playerInfo[playerid][pSpawnChange] = 4;
-	SetPlayerSkin(playerid, playerInfo[playerid][pSkin]);
-	update("UPDATE `server_users` SET `SpawnChange` = '4' WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
-	SpawnPlayer(playerid);
-	return true;
-}
 
 function sendPolice(type, playerid, accusedid, wantedlevel, reason[]) {
 	switch(type) {
@@ -455,7 +448,7 @@ CMD:gotofaction(playerid, params[]) {
 	SetPlayerVirtualWorld(playerid, 0);
 	SetPlayerInterior(playerid, 0);
 	playerInfo[playerid][pinFaction] = 0;		
-	return SCM(playerid, COLOR_GREY, string_fast("* Goto Notice: Te-ai teleportat la factiunea %s.", factionName(fid)));
+	return SCMf(playerid, COLOR_GREY, "* Goto Notice: Te-ai teleportat la factiunea %s.", factionName(fid));
 }
 
 CMD:makeleader(playerid, params[]) {
@@ -469,11 +462,13 @@ CMD:makeleader(playerid, params[]) {
 	playerInfo[targetid][pFactionAge] = 0;
 	playerInfo[targetid][pFactionWarns] = 0;
 	playerInfo[targetid][pSkin] = fSkins[playerInfo[playerid][pFaction]][playerInfo[targetid][pFactionRank]];
+	playerInfo[targetid][pSpawnChange] = 4;
+	SetPlayerSkin(targetid, playerInfo[playerid][pSkin]);
+	SpawnPlayer(targetid);
 	update("UPDATE `server_users` SET `Faction` = '%d', `FRank` = '7', `FAge` = '%d', `FWarns` = '0', `SpawnChange` = '4', `Skin` = '%d' WHERE `ID` = '%d'", playerInfo[targetid][pFaction], playerInfo[targetid][pFactionAge], playerInfo[targetid][pSkin], playerInfo[targetid][pSQLID]);
-	whenPlayerGotLeader(targetid);
 	Iter_Add(FactionMembers[fid], targetid);
 	sendAdmin(COLOR_SERVER, "Notice: {ffffff}Admin %s i-a setat lui %s lider la factiunea %s.", getName(playerid), getName(targetid), factionName(fid));
-	SCM(targetid, COLOR_YELLOW, string_fast("* Admin %s te-a promovat lider la factiunea %s.", getName(playerid), factionName(fid)));
+	SCMf(targetid, COLOR_YELLOW, "* Admin %s te-a promovat lider la factiunea %s.", getName(playerid), factionName(fid));
 	return true;
 }
 
@@ -492,6 +487,7 @@ CMD:auninvite(playerid, params[]) {
 		vehicleRank[playerVehicle[targetid]] = 0;
 		playerVehicle[targetid] = -1;
 	}
+	Iter_Remove(FactionMembers[playerInfo[targetid][pFaction]], targetid);
 	playerInfo[targetid][pSpawnChange] = 1;
 	playerInfo[targetid][pFaction] = 0;
 	playerInfo[targetid][pFactionRank] = 0;
@@ -501,7 +497,7 @@ CMD:auninvite(playerid, params[]) {
 	if(playerInfo[playerid][pFactionDuty]) playerInfo[playerid][pFactionDuty] = 0;
 	update("UPDATE `server_users` SET `Faction` = '0', `FRank` = '7', `FAge` = '0', `FWarns` = '0', `FPunish` = '%d' WHERE `ID` = '%d'", playerInfo[targetid][pFactionPunish], playerInfo[targetid][pSQLID]);
 	whenPlayerLeaveFaction(targetid);
-	return SCM(targetid, COLOR_YELLOW, string_fast("* Admin %s te-a demis din factiunea %s cu %d faction punish.", getName(playerid), factionName(fid), fp));
+	return SCMf(targetid, COLOR_YELLOW, "* Admin %s te-a demis din factiunea %s cu %d faction punish.", getName(playerid), factionName(fid), fp);
 }
 
 CMD:flock(playerid, params[]) {
@@ -610,8 +606,8 @@ CMD:heal(playerid, params[]) {
 	addRaportPoint(playerid);
 	update("UPDATE `server_users` SET `Money` = '%d', `MStore` = '%d' WHERE `ID` = '%d'", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pSQLID]);
 	update("UPDATE `server_users` SET `Money` = '%d', `MStore` = '%d' WHERE `ID` = '%d'", MoneyMoney[targetid], StoreMoney[targetid], playerInfo[targetid][pSQLID]);
-	SCM(playerid, -1, string_fast("{FF6347}(Paramedic): {FFFFFF}You healed %s for $%s.", getName(targetid), formatNumber(money)));
-	SCM(targetid, -1, string_fast("{FF6347}(Paramedic %s): {FFFFFF}You receoved health for $%s.", getName(playerid), formatNumber(money)));
+	SCMf(playerid, -1, "{FF6347}(Paramedic): {FFFFFF}You healed %s for $%s.", getName(targetid), formatNumber(money));
+	SCMf(targetid, -1, "{FF6347}(Paramedic %s): {FFFFFF}You receoved health for $%s.", getName(playerid), formatNumber(money));
 	return true;
 }
 
@@ -622,7 +618,7 @@ CMD:service(playerid, params[]) {
 		new MapZone:zoneid = GetPlayerMapZone(playerid), zonename[27] = "Unknown";
 		if(IsValidMapZone(zoneid)) GetMapZoneName(zoneid, zonename, 27);
 		sendFactionMessage(1, COLOR_LIMEGREEN, "(*) %s are nevoie de un medic locatie: %s (%s), scrie /accept medic %d pentru a accepta.", getName(playerid), zonename, GetPlayerCityLocation(playerid), playerid);
-		SCM(playerid, -1, string_fast("{FF6347}(Paramedic Call): {FFFFFF}Your call has been sent please wait an answer."));
+		SCMf(playerid, -1, "{FF6347}(Paramedic Call): {FFFFFF}Your call has been sent please wait an answer.");
 		Iter_Add(ServiceCalls[SERVICE_PARAMEDICS], playerid);
 		return true;
 	}
@@ -632,7 +628,7 @@ CMD:service(playerid, params[]) {
 		new MapZone:zoneid = GetPlayerMapZone(playerid), zonename[27] = "Unknown";
 		if(IsValidMapZone(zoneid)) GetMapZoneName(zoneid, zonename, 27);
 		sendFactionMessage(5, COLOR_LIMEGREEN, "(*) %s are nevoie de un taxi locatie: %s (%s), scrie /accept taxi %d pentru a accepta.", getName(playerid), zonename, GetPlayerCityLocation(playerid), playerid);
-		SCM(playerid, -1, string_fast("{FF6347}(Taxi Call): {FFFFFF}Your call has been sent please wait an answer."));
+		SCMf(playerid, -1, "{FF6347}(Taxi Call): {FFFFFF}Your call has been sent please wait an answer.");
 		Iter_Add(ServiceCalls[SERVICE_TAXI], playerid);
 		return true;	
 	}
@@ -642,7 +638,7 @@ CMD:service(playerid, params[]) {
 		new MapZone:zoneid = GetPlayerMapZone(playerid), zonename[27] = "Unknown";
 		if(IsValidMapZone(zoneid)) GetMapZoneName(zoneid, zonename, 27);
 		sendFactionMessage(7, COLOR_LIMEGREEN, "(*) %s are nevoie de un instructor locatie: %s (%s), scrie /accept instructor %d pentru a accepta.", getName(playerid), zonename, GetPlayerCityLocation(playerid), playerid);
-		SCM(playerid, -1, string_fast("{FF6347}(Instructor Call): {FFFFFF}Your call has been sent please wait an answer."));
+		SCMf(playerid, -1, "{FF6347}(Instructor Call): {FFFFFF}Your call has been sent please wait an answer.");
 		Iter_Add(ServiceCalls[SERVICE_INSTRUCTOR], playerid);
 		return true;	
 	}	
@@ -697,8 +693,8 @@ CMD:invite(playerid, params[]) {
 	gString[0] = (EOS);
 	va_format(gString, sizeof(gString), "{32CD32}*{ffffff} Ai invitat pe {32CD32}'%s'{ffffff} (%d) in factiunea ta {32CD32}'%s'{ffffff}. Motiv: %s.", getName(userID), userID, factionName(playerInfo[playerid][pFaction]), reason);
 	sendSplitMessage(playerid, COLOR_WHITE, gString);
-	SCM(userID, COLOR_WHITE, string_fast("{32CD32}*{ffffff} Ai fost invitat de {32CD32}'%s'{ffffff} (%d) in factiunea lui {32CD32}'%s'{ffffff}. Motiv: %s.", getName(playerid), playerid, factionName(playerInfo[playerid][pFaction]), reason));
-	SCM(userID, COLOR_WHITE, string_fast("{32CD32}*{ffffff} Pentru a accepta invitatia tasteaza /accept invite %d.", playerid));
+	SCMf(userID, COLOR_WHITE, "{32CD32}*{ffffff} Ai fost invitat de {32CD32}'%s'{ffffff} (%d) in factiunea lui {32CD32}'%s'{ffffff}. Motiv: %s.", getName(playerid), playerid, factionName(playerInfo[playerid][pFaction]), reason);
+	SCMf(userID, COLOR_WHITE, "{32CD32}*{ffffff} Pentru a accepta invitatia tasteaza /accept invite %d.", playerid);
 	SetPVarInt(playerid, "inviteDeelay", gettime() + 5);
 	return true;
 }
@@ -736,15 +732,15 @@ CMD:frisk(playerid, params[])  {
 	if(userID == playerid) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda asupra ta.");
 	if(!isPlayerLogged(userID)) return sendPlayerError(playerid, "Acel player nu este conncetat.");
 	if(Iter_Contains(FactionMembers[2], userID) || Iter_Contains(FactionMembers[3], userID) || Iter_Contains(FactionMembers[4], userID)) return sendPlayerError(playerid, "Nu poti controla un coleg.");
-	SCM(playerid, COLOR_GREY, string_fast("* - Lucrurile lui %s (%d) - *", getName(userID), userID));
-	SCM(playerid, COLOR_GREY, string_fast("- = Droguri: %s = -\n- = Materiale: %s = -\n", playerInfo[userID][pDrugs] ? (string_fast("%d", playerInfo[userID][pDrugs])) : ("Nu are."), playerInfo[userID][pMats] ? (string_fast("%d", playerInfo[userID][pMats])) : ("Nu are.")));
+	SCMf(playerid, COLOR_GREY, "* - Lucrurile lui %s (%d) - *", getName(userID), userID);
+	SCMf(playerid, COLOR_GREY, "- = Droguri: %s = -\n- = Materiale: %s = -\n", playerInfo[userID][pDrugs] ? (string_fast("%d", playerInfo[userID][pDrugs])) : ("Nu are."), playerInfo[userID][pMats] ? (string_fast("%d", playerInfo[userID][pMats])) : ("Nu are."));
 	new Player_Weapons[13], Player_Ammos[13], i;
 	for(i = 1;i <= 12;i++) {
 		GetPlayerWeaponData(userID,i,Player_Weapons[i],Player_Ammos[i]); 
 		if(Player_Weapons[i] != 0) {
 			new weaponName[45];
 			GetWeaponName(Player_Weapons[i],weaponName,45);
-			SCM(playerid, COLOR_GREY, string_fast("* - Arma: %s | Gloante: %d - *", weaponName,Player_Ammos[i]));
+			SCMf(playerid, COLOR_GREY, "* - Arma: %s | Gloante: %d - *", weaponName,Player_Ammos[i]);
 		}
 	}
 	sendNearbyMessage(playerid, COLOR_GREY, 30.0, "*- %s l-a verificat pe %s pentru lucruri ilegale. -*", getName(playerid), getName(userID));
@@ -816,7 +812,7 @@ CMD:confiscate(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(userID)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece jucatorul este in masina.");
 	if(strmatch(item, "driving")) {
 		if(playerInfo[userID][pDrivingLicense] == 0) return sendPlayerError(playerid, "Acest player nu detine licenta de condus.");
-		SCM(userID, COLOR_GREY, string_fast("*- Agent %s ti-a confiscat licenta de condus. -*", getName(userID)));
+		SCMf(userID, COLOR_GREY, "*- Agent %s ti-a confiscat licenta de condus. -*", getName(userID));
 		playerInfo[userID][pDrivingLicense] = 0;
 		playerInfo[userID][pDrivingLicenseSuspend] = 2;
 		update("UPDATE `server_users` SET `Licenses` = '%d|%d|%d|%d|%d|%d|%d|%d' WHERE `ID` = '%d'", playerInfo[userID][pDrivingLicense], playerInfo[userID][pDrivingLicenseSuspend], playerInfo[userID][pWeaponLicense], playerInfo[userID][pWeaponLicenseSuspend], playerInfo[userID][pFlyLicense], playerInfo[userID][pFlyLicenseSuspend], playerInfo[userID][pBoatLicense], playerInfo[userID][pBoatLicenseSuspend], playerInfo[userID][pSQLID]);	
@@ -824,13 +820,13 @@ CMD:confiscate(playerid, params[]) {
 	}
 	if(strmatch(item, "weapons")) {
 		if(haveWeapons(playerid) == 0) return sendPlayerError(playerid, "Acest player nu are arme.");
-		SCM(userID, COLOR_GREY, string_fast("*- Agent %s ti-a confiscat armele. -*", getName(userID)));
+		SCMf(userID, COLOR_GREY, "*- Agent %s ti-a confiscat armele. -*", getName(userID));
 		resetWeapons(userID);
 		addRaportPoint(playerid);
 	}
 	if(strmatch(item, "drugs")) {
 		if(playerInfo[userID][pDrugs] == 0) return sendPlayerError(playerid, "Acest player nu are droguri.");
-		SCM(userID, COLOR_GREY, string_fast("*- Agent %s ti-a confiscat drogurile. -*", getName(userID)));
+		SCMf(userID, COLOR_GREY, "*- Agent %s ti-a confiscat drogurile. -*", getName(userID));
 		playerInfo[userID][pDrugs] = 0;
 		update("UPDATE `server_users` SET `Drugs` = '0' WHERE `ID` = '%d'", playerInfo[userID][pSQLID]);
 		addRaportPoint(playerid);
@@ -850,8 +846,8 @@ CMD:ticket(playerid, params[]) {
 	ticketMoney[userID] = money;
 	ticketPlayer[playerid] = userID;
 	ticketPlayer[userID] = playerid;
-	SCM(userID, COLOR_GREY, string_fast("*- Agent %s te amendeaza cu suma %s, motiv: %s. Pentru a plati amenda, tasteaza /accept ticket %d. -*", getName(playerid), formatNumber(money), reason, playerid));
-	SCM(playerid, COLOR_GREY, string_fast("*- Il amendezi pe %s cu suma de %s, motiv: %s. -*", getName(userID), formatNumber(money), reason));
+	SCMf(userID, COLOR_GREY, "*- Agent %s te amendeaza cu suma %s, motiv: %s. Pentru a plati amenda, tasteaza /accept ticket %d. -*", getName(playerid), formatNumber(money), reason, playerid);
+	SCMf(playerid, COLOR_GREY, "*- Il amendezi pe %s cu suma de %s, motiv: %s. -*", getName(userID), formatNumber(money), reason);
 	return true;
 }
 
@@ -861,12 +857,12 @@ CMD:wanteds(playerid, params[]) {
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai un dialog afisat.");
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Trebuie sa fi logat pentru a putea folosi aceasta comanda.");
 	if(Iter_Count(Wanteds) == 0) return sendPlayerError(playerid, "Nu sunt suspecti momentan.");
-	new string[256] = "Name\tWanted Level\tChased by\n";
+	gString[0] = (EOS);
 	foreach(new i : Wanteds) {
-		format(string, 60, "%s (%d)\t%d\t%d cops\n", getName(i), i, playerInfo[i][pWantedLevel], i);
+		format(gString, 244, "%s (%d)\t%d\t%d cops\n", gString, getName(i), i, playerInfo[i][pWantedLevel], i);
 		playerInfo[playerid][pSelectedItem] = i;
 	}
-	Dialog_Show(playerid, DIALOG_WANTEDS, DIALOG_STYLE_TABLIST_HEADERS, string_fast("Player with Wanted: %d", Iter_Count(Wanteds)), string, "Ok", "Cancel");
+	Dialog_Show(playerid, DIALOG_WANTEDS, DIALOG_STYLE_TABLIST_HEADERS, string_fast("Player with Wanted: %d", Iter_Count(Wanteds)), gString, "Ok", "Cancel");
 	return true;
 }
 
@@ -906,7 +902,7 @@ CMD:clear(playerid, params[]) {
 	if(userID == playerid) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda asupra ta.");
 	if(!playerInfo[userID][pWantedLevel]) return sendPlayerError(playerid, "Acel player nu are wanted.");
 	sendPolice(2, playerid, userID, playerInfo[userID][pWantedLevel], reason);
-	SCM(userID, COLOR_LIGHTRED, string_fast("* Info Clear: Ai primit clear de la %s. Motiv: %s.", getName(playerid), wantedName(userID)));
+	SCMf(userID, COLOR_LIGHTRED, "* Info Clear: Ai primit clear de la %s. Motiv: %s.", getName(playerid), wantedName(userID));
 	playerInfo[userID][pWantedLevel] = 0;
 	playerInfo[userID][pWantedTime] = 0;
 	SetPlayerWantedLevel(userID, 0);
@@ -938,7 +934,7 @@ CMD:arrest(playerid, params[]) {
 	playerInfo[userID][pJailed] = 1;
 	playerInfo[userID][pJailTime] = playerInfo[userID][pWantedLevel]*250;
 	playerInfo[userID][pArrested] += 1;	
-	SendClientMessageToAll(COLOR_LIGHTRED, string_fast("* Arrest: Infractorul %s, a fost prins de %s. Acesta platind o amenda in valoare de $%s si inchisoare pe timp de %d secunde.", getName(userID), getName(playerid), formatNumber(playerInfo[userID][pWantedLevel]*2000), playerInfo[userID][pJailTime]));
+	va_SendClientMessageToAll(COLOR_LIGHTRED, "* Arrest: Infractorul %s, a fost prins de %s. Acesta platind o amenda in valoare de $%s si inchisoare pe timp de %d secunde.", getName(userID), getName(playerid), formatNumber(playerInfo[userID][pWantedLevel]*2000), playerInfo[userID][pJailTime]);
 	playerInfo[userID][pWantedLevel] = 0;
 	GivePlayerCash(userID, 0, playerInfo[userID][pWantedLevel]*2000);
 	GivePlayerCash(playerid, 1, playerInfo[userID][pWantedLevel]*2000);
@@ -1112,7 +1108,7 @@ CMD:fare(playerid, params[]) {
 				stop taxi[i];
 			}
 		}
-		SCM(playerid, COLOR_LIMEGREEN, string_fast("* Fare: Acum nu mai esti la datorie si ai primit $%s, banii facuti pana in acest moment.", formatNumber(playerInfo[playerid][pTaxiMoney])));
+		SCMf(playerid, COLOR_LIMEGREEN, "* Fare: Acum nu mai esti la datorie si ai primit $%s, banii facuti pana in acest moment.", formatNumber(playerInfo[playerid][pTaxiMoney]));
 		PlayerTextDrawHide(playerid, fareTD[playerid]);
 		GivePlayerCash(playerid, 1, playerInfo[playerid][pTaxiMoney]);
 		playerInfo[playerid][pTaxiFare] = 0;
@@ -1125,21 +1121,7 @@ CMD:fare(playerid, params[]) {
 	playerInfo[playerid][pTaxiDuty] = 1;
 	playerInfo[playerid][pTaxiMoney] = 0;
 	updateTaxiTextdraw(playerid);
-	foreach(new i : loggedPlayers) {
-		SCM(i, COLOR_GOLD, string_fast("* Taxi Driver %s is now on duty for $%s, use [/service taxi].", getName(playerid), formatNumber(fare)));
-		if(GetPlayerState(i) == PLAYER_STATE_PASSENGER) {
-			if(PlayerMoney(playerid, playerInfo[playerid][pTaxiFare])) {
-				SCM(playerid, COLOR_GREY, string_fast("* Nu ai $%s pentru a intra in acest taxi.", formatNumber(playerInfo[playerid][pTaxiFare])));
-				RemovePlayerFromVehicle(playerid);
-			}
-			else {
-				playerInfo[i][pTaxiDriver] = playerid;
-				playerInfo[i][pTaxiMoney] = 0;
-				taxi[i] = repeat fareUpdateTimer(i);
-				updateTaxiTextdraw(i);
-			}
-		}
-	}
+	va_SendClientMessageToAll(COLOR_GOLD, "* Taxi Driver %s is now on duty for $%s, use [/service taxi].", getName(playerid), formatNumber(fare));
 	return true;
 }
 
@@ -1207,8 +1189,8 @@ CMD:live(playerid, params[]) {
 	gettime(hour, minute, second);
 	if(hour >= 00 && hour < 8) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda in intervalul 00-08.");
 	sendFactionMessage(6, COLOR_LIMEGREEN, "* (NR Dispatch: Reporter %s (%d) e pe cale sa inceapa un interviu cu %s (%d).) *", getName(playerid), playerid, getName(userID), userID);
-	SCM(playerid, COLOR_GREY, string_fast("* I-ai oferit lui %s (%d) o conversatie 'Live'.", getName(userID), userID));
-	SCM(userID, COLOR_GREY, string_fast("* %s (%d) ti-a oferit o conversatie 'Live', /accept live %d pentru a accepta.", getName(playerid), playerid));
+	SCMf(playerid, COLOR_GREY, "* I-ai oferit lui %s (%d) o conversatie 'Live'.", getName(userID), userID);
+	SCMf(userID, COLOR_GREY, "* %s (%d) ti-a oferit o conversatie 'Live', /accept live %d pentru a accepta.", getName(playerid), playerid);
 	playerInfo[userID][pLiveOffer] = playerid;
 	return true;
 }
@@ -1225,7 +1207,7 @@ CMD:endlive(playerid, params[]) {
 	addRaportPoint(playerid);
 	Questions = 0;
 	foreach(new i : loggedPlayers) {
-		if(isPlayerLogged(i) && strlen(playerInfo[i][pQuestionText]) > 10) format(playerInfo[i][pQuestionText], 4, "None");
+		if(strlen(playerInfo[i][pQuestionText]) > 10) format(playerInfo[i][pQuestionText], 4, "None");
 	}		
 	return true;
 }
@@ -1267,7 +1249,7 @@ CMD:aq(playerid, params[]) {
 	if(userID == playerid) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda asupra ta.");
 	if(strlen(playerInfo[playerid][pQuestionText]) < 10) return sendPlayerError(playerid, "Acel player nu a pus o intrebare.");
 	format(playerInfo[playerid][pQuestionText], 4, "None");
-	SendClientMessageToAll(COLOR_LIGHTGREEN, string_fast("* Intrebare de la %s: %s", getName(userID), playerInfo[playerid][pQuestionText]));
+	va_SendClientMessageToAll(COLOR_LIGHTGREEN, "* Intrebare de la %s: %s", getName(userID), playerInfo[playerid][pQuestionText]);
 	return true;
 }
 
@@ -1277,10 +1259,10 @@ CMD:startlesson(playerid, params[]) {
 	if(userID == playerid) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda asupra ta.");
 	if(!isPlayerLogged(userID)) return sendPlayerError(playerid, "Acel player nu este connectat.");
 	if(playerInfo[playerid][pInLesson] != 0 || playerInfo[userID][pInLesson] != 0) return sendPlayerSyntax(playerid, "Tu sau acel player sunteti deja intr-o lectie.");
-	if(playerInfo[userID][pLevel] < 3) return sendPlayerError(playerid, "Acel player are level 3, nu ii poti acorda o lectie.");
+	if(playerInfo[userID][pLevel] < 3) return sendPlayerError(playerid, "Acel player nu are level 3, nu ii poti acorda o lectie.");
 	if(!ProxDetectorS(9.0, playerid, userID)) return sendPlayerError(playerid, "Nu esti langa acel jucator.");
-	SCM(userID, COLOR_GREY, string_fast("* Instructorul %s (%d) doreste sa inceapa o lectie cu tine, /accept lesson %d.", getName(playerid), playerid, playerid));
-	SCM(playerid, COLOR_GREY, string_fast("* Ai trimis o invitatie de lectie lui %s (%d).", getName(userID), userID));
+	SCMf(userID, COLOR_GREY, "* Instructorul %s (%d) doreste sa inceapa o lectie cu tine, /accept lesson %d.", getName(playerid), playerid, playerid);
+	SCMf(playerid, COLOR_GREY, "* Ai trimis o invitatie de lectie lui %s (%d).", getName(userID), userID);
 	playerInfo[userID][pInLesson] = playerid;
 	playerInfo[playerid][pInLesson] = userID;
 	return true;
@@ -1295,8 +1277,8 @@ CMD:stoplesson(playerid, params[]) {
 	if(playerInfo[userID][pInLesson] != playerid) return sendPlayerError(playerid, "Acel player nu este intr-o lectie cu tine.");
 	playerInfo[userID][pInLesson] = 0;
 	playerInfo[playerid][pInLesson] = 0;	
-	SCM(userID, COLOR_GREY, string_fast("* Instructorul %s (%d) a oprit lectia cu tine.", getName(playerid), playerid));
-	SCM(playerid, COLOR_GREY, string_fast("* Ai oprit lectia cu %s (%d).", getName(userID), userID));
+	SCMf(userID, COLOR_GREY, "* Instructorul %s (%d) a oprit lectia cu tine.", getName(playerid), playerid);
+	SCMf(playerid, COLOR_GREY, "* Ai oprit lectia cu %s (%d).", getName(userID), userID);
 	return true;
 }
 
@@ -1314,8 +1296,8 @@ CMD:givelicense(playerid, params[]) {
 		if(PlayerMoney(userID, 100000)) return sendPlayerError(playerid, "Acel jucator nu are suma necesara de bani.");
 		if(playerInfo[playerid][pFlyLicenseSuspend] > 0) return sendPlayerError(playerid, "Acel jucator are aceasta licenta suspendata.");
 		if(playerInfo[playerid][pFlyLicense] > 0) return sendPlayerError(playerid, "Acel jucator are deja aceasta licenta.");
-		SCM(playerid, COLOR_GREY, string_fast("* I-ai oferit lui %s (%d) licenta de 'Fly' pentru suma de $100,000.", getName(userID), userID));
-		SCM(userID, COLOR_GREY, string_fast("* Instructorul %s (%d) ti-a oferit licenta de 'Fly' in schimbul sumei de $100,000, /accept license %d.", getName(playerid), playerid, playerid));
+		SCMf(playerid, COLOR_GREY, "* I-ai oferit lui %s (%d) licenta de 'Fly' pentru suma de $100,000.", getName(userID), userID);
+		SCMf(userID, COLOR_GREY, "* Instructorul %s (%d) ti-a oferit licenta de 'Fly' in schimbul sumei de $100,000, /accept license %d.", getName(playerid), playerid, playerid);
 		playerInfo[userID][pLicense] = 1;
 		playerInfo[userID][pLicenseOffer] = playerid;
 		return true;
@@ -1324,8 +1306,8 @@ CMD:givelicense(playerid, params[]) {
 		if(PlayerMoney(userID, 200000)) return sendPlayerError(playerid, "Acel jucator nu are suma necesara de bani.");
 		if(playerInfo[playerid][pBoatLicenseSuspend] > 0) return sendPlayerError(playerid, "Acel jucator are aceasta licenta suspendata.");
 		if(playerInfo[playerid][pBoatLicense] > 0) return sendPlayerError(playerid, "Acel jucator are deja aceasta licenta.");
-		SCM(playerid, COLOR_GREY, string_fast("* I-ai oferit lui %s (%d) licenta de 'Boat' pentru suma de $200,000.", getName(userID), userID));
-		SCM(userID, COLOR_GREY, string_fast("* Instructorul %s (%d) ti-a oferit licenta de 'Boat' in schimbul sumei de $200,000, /accept license %d.", getName(playerid), playerid, playerid));
+		SCMf(playerid, COLOR_GREY, "* I-ai oferit lui %s (%d) licenta de 'Boat' pentru suma de $200,000.", getName(userID), userID);
+		SCMf(userID, COLOR_GREY, "* Instructorul %s (%d) ti-a oferit licenta de 'Boat' in schimbul sumei de $200,000, /accept license %d.", getName(playerid), playerid, playerid);
 		playerInfo[userID][pLicense] = 2;
 		playerInfo[userID][pLicenseOffer] = playerid;
 		return true;
@@ -1334,8 +1316,8 @@ CMD:givelicense(playerid, params[]) {
 		if(PlayerMoney(userID, 300000)) return sendPlayerError(playerid, "Acel jucator nu are suma necesara de bani.");
 		if(playerInfo[playerid][pBoatLicenseSuspend] > 0) return sendPlayerError(playerid, "Acel jucator are aceasta licenta suspendata.");
 		if(playerInfo[playerid][pBoatLicense] > 0) return sendPlayerError(playerid, "Acel jucator are deja aceasta licenta.");
-		SCM(playerid, COLOR_GREY, string_fast("* I-ai oferit lui %s (%d) licenta de 'Gun' pentru suma de $300,000.", getName(userID), userID));
-		SCM(userID, COLOR_GREY, string_fast("* Instructorul %s (%d) ti-a oferit licenta de 'Gun' in schimbul sumei de $300,000, /accept license %d.", getName(playerid), playerid, playerid));
+		SCMf(playerid, COLOR_GREY, "* I-ai oferit lui %s (%d) licenta de 'Gun' pentru suma de $300,000.", getName(userID), userID);
+		SCMf(userID, COLOR_GREY, "* Instructorul %s (%d) ti-a oferit licenta de 'Gun' in schimbul sumei de $300,000, /accept license %d.", getName(playerid), playerid, playerid);
 		playerInfo[userID][pLicense] = 3;
 		playerInfo[userID][pLicenseOffer] = playerid;
 		return true;
@@ -1355,7 +1337,7 @@ CMD:setguns(playerid, parmas[]) {
 Dialog:DIALOG_SETGUN(playerid, response, listitem) {
 	if(!response) return true;
 	playerInfo[playerid][pGuns][listitem] = playerInfo[playerid][pGuns][listitem] ? false : true;
-	SCM(playerid, COLOR_LIGHTRED, string_fast("* (Order Guns):{ffffff} Arma '%s' a fost setata pe modul '%s'.", GunName[listitem], playerInfo[playerid][pGuns][listitem] ? ("{00ff00}Enabled") : ("{ff0000}Desabled")));
+	SCMf(playerid, COLOR_LIGHTRED, "* (Order Guns):{ffffff} Arma '%s' a fost setata pe modul '%s'.", GunName[listitem], playerInfo[playerid][pGuns][listitem] ? ("{00ff00}Enabled") : ("{ff0000}Desabled"));
 	save_guns(playerid);
 	return true;
 }
@@ -1420,9 +1402,9 @@ CMD:attack(playerid, params[]) {
 CMD:wars(playerid, params[]) {
 	if(Iter_Count(ServerWars) == 0) return sendPlayerError(playerid, "Momentan nu sunt war-uri.");
 	for(new i = 1; i < Iter_Count(ServerWars); i++) {
-		if(warInfo[i][wAttacker] != 0) SCM(playerid, COLOR_LIGHTGREEN, string_fast("* [WAR]: %s (score: %0.2f) - %s (score: %0.2f) [turf: %d]. Time Left: %d seconds.", factionName(warInfo[i][wAttacker]), WarScore[1][i], factionName(warInfo[i][wFaction]), WarScore[2][i], i, warInfo[i][wTime]));
+		if(warInfo[i][wAttacker] != 0) SCMf(playerid, COLOR_LIGHTGREEN, "* [WAR]: %s (score: %0.2f) - %s (score: %0.2f) [turf: %d]. Time Left: %d seconds.", factionName(warInfo[i][wAttacker]), WarScore[1][i], factionName(warInfo[i][wFaction]), WarScore[2][i], i, warInfo[i][wTime]);
 	}
-	SCM(playerid, COLOR_LIGHTGREEN, string_fast("* - Sunt %d war-uri in acest moment.", Iter_Count(ServerWars)));
+	SCMf(playerid, COLOR_LIGHTGREEN, "* - Sunt %d war-uri in acest moment.", Iter_Count(ServerWars));
 	return true;
 }
 
@@ -1444,8 +1426,8 @@ timer TimerWar[1000](i) {
 			PlayerTextDrawHide(x, warTD[x]);
 			if(WarScore[1][i] == WarScore[2][i]) {
 				if(playerInfo[x][pFaction] == warInfo[i][wAttacker] || playerInfo[x][pFaction] == warInfo[i][wFaction]) {
-					SCM(x, COLOR_LIMEGREEN, string_fast("* (War): {ffffff}Razboiul dintre %s si %s s-a terminat. Deoarece scorul echipelor este egal, nu exista o echipa castigatoare.", 
-					factionName(warInfo[i][wAttacker]), factionName(warInfo[i][wFaction]))); 
+					SCMf(x, COLOR_LIMEGREEN, "* (War): {ffffff}Razboiul dintre %s si %s s-a terminat. Deoarece scorul echipelor este egal, nu exista o echipa castigatoare.", 
+					factionName(warInfo[i][wAttacker]), factionName(warInfo[i][wFaction])); 
 					decese[x][i] = 0;
 					ucideri[x][i] = 0;
 					GangZoneStopFlashForPlayer(x, turfInfo[i][tID]);
@@ -1469,8 +1451,8 @@ timer TimerWar[1000](i) {
 				case 9: GangZoneShowForPlayerEx(x, turfInfo[i][tID], 0xc22da999);
 			}
 			if(playerInfo[x][pFaction] == warInfo[i][wAttacker] || playerInfo[x][pFaction] == warInfo[i][wFaction]) {
-				SCM(x, COLOR_LIMEGREEN, string_fast("* (War): {ffffff}Razboiul dintre %s si %s s-a terminat. Echipa castigatoare cu scorul de %0.2f este %s.", 
-				factionName(warInfo[i][wAttacker]), factionName(warInfo[i][wFaction]), WarScore[winner][i], factionName(winner))); 
+				SCMf(x, COLOR_LIMEGREEN, "* (War): {ffffff}Razboiul dintre %s si %s s-a terminat. Echipa castigatoare cu scorul de %0.2f este %s.", 
+				factionName(warInfo[i][wAttacker]), factionName(warInfo[i][wFaction]), WarScore[winner][i], factionName(winner)); 
 				decese[x][i] = 0;
 				ucideri[x][i] = 0;
 				GangZoneStopFlashForPlayer(x, turfInfo[i][tID]);
@@ -1502,7 +1484,7 @@ CMD:contract(playerid, params[]) {
 	contractInfo[id][cMoney] = money;
 	Iter_Add(Contracts, id);
 	GivePlayerCash(playerid, 0, money);
-	SCM(playerid, COLOR_GOLD, string_fast("* (Contracts): Ai depus un contract pe %s (%d) in valoare de $%s.", getName(userID), userID, formatNumber(money)));
+	SCMf(playerid, COLOR_GOLD, "* (Contracts): Ai depus un contract pe %s (%d) in valoare de $%s.", getName(userID), userID, formatNumber(money));
 	sendFactionMessage(10, COLOR_LIMEGREEN, "* %s (%d) a depus un contract pe %s (%d) in valoare de $%s.", getName(playerid), playerid, getName(userID), userID, formatNumber(money));
 	return true;
 }
@@ -1516,12 +1498,12 @@ CMD:gethit(playerid, params[]) {
 	if(!Undercover[playerid]) {
 		Undercover[playerid] = true;
 		ShowPlayerNameTagForPlayer(contractInfo[id][cAgainst], playerid, false);
-		SCM(playerid, COLOR_GOLD, string_fast("* (Undercover): {ffffff}Ai fost pus automat undercover."));
+		SCM(playerid, COLOR_GOLD, "* (Undercover): {ffffff}Ai fost pus automat undercover.");
 	}
 	SetPlayerCheckpoint(playerid, x, y, z, 3);
 	playerInfo[playerid][pCheckpoint] = CHECKPOINT_GETHIT;
 	playerInfo[playerid][pCheckpointID] = contractInfo[id][cAgainst];
-	SCM(playerid, COLOR_GOLD, string_fast("* (Contracts) : {ffffff}Ai primit un contract pe %s (%d) in valoare de $%s.", getName(contractInfo[Contract[playerid]][cAgainst]), contractInfo[Contract[playerid]][cAgainst], formatNumber(contractInfo[Contract[playerid]][cMoney])));	 
+	SCMf(playerid, COLOR_GOLD, "* (Contracts): {ffffff}Ai primit un contract pe %s (%d) in valoare de $%s.", getName(contractInfo[Contract[playerid]][cAgainst]), contractInfo[Contract[playerid]][cAgainst], formatNumber(contractInfo[Contract[playerid]][cMoney]));	 
 	getHit[playerid] = repeat TimerGetHit(playerid);
 	return true;
 }
@@ -1530,9 +1512,9 @@ CMD:contracts(playerid, params[]) {
 	if(!Iter_Contains(FactionMembers[10], playerid)) return sendPlayerError(playerid, "Nu esti in factiunea 'Hitman Agency' pentru a folosi aceasta comanda.");
 	if(Iter_Count(Contracts) == 0) return sendPlayerError(playerid, "Nu sunt contracte momentan.");
 	foreach(new i : Contracts) {
-		SCM(playerid, COLOR_GOLD, string_fast("* #%d. %s (%d) - $%s.", contractInfo[i][cID], getName(contractInfo[i][cAgainst]), contractInfo[i][cAgainst], formatNumber(contractInfo[i][cMoney])));
+		SCMf(playerid, COLOR_GOLD, "* #%d. %s (%d) - $%s.", contractInfo[i][cID], getName(contractInfo[i][cAgainst]), contractInfo[i][cAgainst], formatNumber(contractInfo[i][cMoney]));
 	}
-	SCM(playerid, COLOR_GOLD, string_fast("* Sunt %d contracte momentan.", Iter_Count(Contracts)));
+	SCMf(playerid, COLOR_GOLD, "* Sunt %d contracte momentan.", Iter_Count(Contracts));
 	return true;
 }
 
@@ -1731,12 +1713,12 @@ CMD:setraport(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat pentru a folosi aceasta comanda.");
 	if(playerInfo[playerid][pFactionRank] < 7 && playerInfo[playerid][pFaction] == 0) return sendPlayerError(playerid, "Aceasta comanda poate fi folosita doar de la rank 7.");
 	extract params -> new rank, cmds; else {
-		SCM(playerid, COLOR_GREY, string_fast("Rank 1: %d | Rank 2: %d | Rank 3: %d | Rank 4: %d | Rank 5: %d | Rank 6: %d | Rank 7: %d.", factionInfo[playerInfo[playerid][pFaction]][fCommands][0], factionInfo[playerInfo[playerid][pFaction]][fCommands][1], factionInfo[playerInfo[playerid][pFaction]][fCommands][2], 
-		factionInfo[playerInfo[playerid][pFaction]][fCommands][3], factionInfo[playerInfo[playerid][pFaction]][fCommands][4], factionInfo[playerInfo[playerid][pFaction]][fCommands][5], factionInfo[playerInfo[playerid][pFaction]][fCommands][6]));
+		SCMf(playerid, COLOR_GREY, "Rank 1: %d | Rank 2: %d | Rank 3: %d | Rank 4: %d | Rank 5: %d | Rank 6: %d | Rank 7: %d.", factionInfo[playerInfo[playerid][pFaction]][fCommands][0], factionInfo[playerInfo[playerid][pFaction]][fCommands][1], factionInfo[playerInfo[playerid][pFaction]][fCommands][2], 
+		factionInfo[playerInfo[playerid][pFaction]][fCommands][3], factionInfo[playerInfo[playerid][pFaction]][fCommands][4], factionInfo[playerInfo[playerid][pFaction]][fCommands][5], factionInfo[playerInfo[playerid][pFaction]][fCommands][6]);
 		return sendPlayerSyntax(playerid, "/setraport <rank> <points>");
 	}
 	if(rank < 1 || rank > 5) return sendPlayerError(playerid, "Poti seta puncte de raport doar la rank 1-5.");
-	SCM(playerid, COLOR_LIGHTRED, string_fast("* Raport:{ffffff} Ai setat cu succes numarul de comenzi la rank %d in %d.", rank, cmds));
+	SCMf(playerid, COLOR_LIGHTRED, "* Raport:{ffffff} Ai setat cu succes numarul de comenzi la rank %d in %d.", rank, cmds);
 	factionInfo[playerInfo[playerid][pFaction]][fCommands][rank-1] = cmds;
 	update("UPDATE `server_factions` SET `Commands%d` = '%d' WHERE `ID` = '%d'", rank, cmds, playerInfo[playerid][pFaction]);
 	return true;
@@ -1748,7 +1730,7 @@ CMD:resetraport(playerid, params[]) {
 	new fid = playerInfo[playerid][pFaction];
 	foreach(new i : FactionMembers[fid]) {
 		playerInfo[i][pCommands] = 0;
-		SCM(i, COLOR_LIGHTRED, string_fast("* Raport:{ffffff} Lider %s ti-a resetat raportul.", getName(playerid)));
+		SCMf(i, COLOR_LIGHTRED, "* Raport:{ffffff} Lider %s ti-a resetat raportul.", getName(playerid));
 	}
 	update("UPDATE `server_users` SET `Commands` = '0' WHERE `Faction` = '%d'", fid);
 	return true;
@@ -1758,10 +1740,10 @@ CMD:myraport(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat pentru a folosi aceasta comanda.");
 	if(playerInfo[playerid][pFaction] == 0) return sendPlayerError(playerid, "Nu ai o factiune.");
 	new fid = playerInfo[playerid][pFaction];
-	SCM(playerid, COLOR_LIGHTRED, string_fast("*---{ffffff} Raport {FF6347}---*"));
-	SCM(playerid, COLOR_LIGHTRED, string_fast("Factiune: %s.Rank: %d.Days: %d.", factionName(fid), playerInfo[playerid][pFactionRank], playerInfo[playerid][pFactionAge]));
-	SCM(playerid, COLOR_LIGHTRED, string_fast("Puncte de raport:{ffffff} %d/%d.", playerInfo[playerid][pCommands], raportPoints(playerid)));
-	SCM(playerid, COLOR_LIGHTRED, string_fast("Status raport:{ffffff} %s.", playerInfo[playerid][pCommands] >= raportPoints(playerid) ? "Terminat" : "Neterminat"));
+	SCMf(playerid, COLOR_LIGHTRED, "*---{ffffff} Raport {FF6347}---*");
+	SCMf(playerid, COLOR_LIGHTRED, "Factiune: %s.Rank: %d.Days: %d.", factionName(fid), playerInfo[playerid][pFactionRank], playerInfo[playerid][pFactionAge]);
+	SCMf(playerid, COLOR_LIGHTRED, "Puncte de raport:{ffffff} %d/%d.", playerInfo[playerid][pCommands], raportPoints(playerid));
+	SCMf(playerid, COLOR_LIGHTRED, "Status raport:{ffffff} %s.", playerInfo[playerid][pCommands] >= raportPoints(playerid) ? "Terminat" : "Neterminat");
 	return true;
 }
 

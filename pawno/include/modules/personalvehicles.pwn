@@ -599,8 +599,7 @@ CMD:park(playerid, params[]) {
 
 CMD:vehicles(playerid, params[]) {
 	if(!Iter_Count(PlayerVehicles[playerid])) return sendPlayerError(playerid, "Nu ai nici un vehicul personal.");
-	new count = 0, title[40];
-	format(title, sizeof title, "Personal garage (%d/%d slots)", playerInfo[playerid][pVehicleSlots], MAX_PLAYER_PERSONAL_VEHICLES);
+	new count = 0;
 	gString[0] = (EOS);
 	foreach(new i : PlayerVehicles[playerid]) {
 		if(personalVehicle[i][pvModelID] == 0) return sendPlayerError(playerid, "S-a creeat un bug la sistemul de vehicule, te rog sa raportezi pe /report.");
@@ -613,6 +612,6 @@ CMD:vehicles(playerid, params[]) {
 		playerInfo[playerid][pSelectVehicle][count] = i;
 		count ++;
 	}
-	Dialog_Show(playerid, MY_GARAGE, DIALOG_STYLE_TABLIST, title, gString, "Select", "Close");
+	Dialog_Show(playerid, MY_GARAGE, DIALOG_STYLE_TABLIST, string_fast("Personal garage (%d/%d slots)", playerInfo[playerid][pVehicleSlots], MAX_PLAYER_PERSONAL_VEHICLES), gString, "Select", "Close");
 	return true;
 }

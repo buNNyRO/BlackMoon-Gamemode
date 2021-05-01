@@ -5,7 +5,7 @@ CMD:admins(playerid, params[])
 
 	SendClientMessage(playerid, COLOR_GREY, "-----------------------------------------------------------");
 	foreach(new i : ServerAdmins) {
-		SCM(playerid, COLOR_WHITE, string_fast("* %s(%d) - Nivel: %d", getName(i), i, playerInfo[i][pAdmin]));
+		SCMf(playerid, COLOR_WHITE, "* %s(%d) - Nivel: %d", getName(i), i, playerInfo[i][pAdmin]);
 	}
 	SendClientMessage(playerid, COLOR_GREY, "-----------------------------------------------------------");
 	return true;
@@ -18,10 +18,7 @@ CMD:helpers(playerid, params[])
 
 	SendClientMessage(playerid, COLOR_GREY, "-----------------------------------------------------------");
 	foreach(new i : ServerHelpers) {
-		switch(HelperDuty[playerid]) {
-			case 0: SCM(playerid, COLOR_WHITE, string_fast("* %s(%d) - Nivel: %d", getName(i), i, playerInfo[i][pHelper]));
-			case 1: SCM(playerid, COLOR_WHITE, string_fast("* %s(%d) - Nivel: %d ON-DUTY", getName(i), i, playerInfo[i][pHelper]));
-		}
+		SCMf(playerid, COLOR_WHITE, "* %s(%d) - Nivel: %d %s", getName(i), i, playerInfo[i][pHelper], HelperDuty[playerid] ? "on-duty" : "no-duty");
 	}
 	SendClientMessage(playerid, COLOR_GREY, "-----------------------------------------------------------");
 	return true;
@@ -38,8 +35,8 @@ CMD:showlicenses(playerid, params[]) {
 	extract params -> new userID; else return sendPlayerSyntax(playerid, "/showlicenses <name/id>");
 	if(!isPlayerLogged(userID)) return sendPlayerError(playerid, "Acel player nu este connectat.");
 	showLicenses(playerid, userID);
-	SCM(playerid, COLOR_LIMEGREEN, string_fast("* Ai aratat licentele tale lui %s.", getName(userID)));
-	SCM(userID, COLOR_LIMEGREEN, string_fast("* %s ti-a aratat licentele.", getName(playerid)));
+	SCMf(playerid, COLOR_LIMEGREEN, "* Ai aratat licentele tale lui %s.", getName(userID));
+	SCMf(userID, COLOR_LIMEGREEN, "* %s ti-a aratat licentele.", getName(playerid));
 	return true;
 }
 
@@ -61,7 +58,7 @@ CMD:buylevel(playerid, params[])
 	updateLevelBar(playerid);
 
 	update("UPDATE `server_users` SET `Level` = '%d', `Money` = '%d', `MStore` = '%d', `RespectPoints` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pLevel], MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pRespectPoints], playerInfo[playerid][pSQLID]);
-	SCM(playerid, COLOR_YELLOW, string_fast("Felicitari, ai cumparat nivel %d.", playerInfo[playerid][pLevel]));
+	SCMf(playerid, COLOR_YELLOW, "Felicitari, ai cumparat nivel %d.", playerInfo[playerid][pLevel]);
 	return true;
 }
 
@@ -165,8 +162,8 @@ CMD:sms(playerid, params[]) {
 		giveplayerid = PlayerNumber[phonenumber];
 		if(isPlayerLogged(giveplayerid) && giveplayerid == INVALID_PLAYER_ID) return sendPlayerError(playerid, "Numar de telefon invalid.");
 		if(playerInfo[giveplayerid][pPhoneOnline] == 0) return sendPlayerError(playerid, "Telefonul lui este inchis.");
-		SCM(giveplayerid, COLOR_YELLOW, string_fast("(*) SMS de la %s (%d): %s.", getName(playerid), playerid, smstext));
-		SCM(playerid, COLOR_YELLOW, string_fast("(*) SMS trimis lui %s (%d): %s.", getName(giveplayerid), giveplayerid, smstext));
+		SCMf(giveplayerid, COLOR_YELLOW, "(*) SMS de la %s (%d): %s.", getName(playerid), playerid, smstext);
+		SCMf(playerid, COLOR_YELLOW, "(*) SMS trimis lui %s (%d): %s.", getName(giveplayerid), giveplayerid, smstext);
 		sendToAdmin(playerid, COLOR_LIGHTRED, "(SMS Log): {FFFFFF} %s(%d) catre %s(%d): %s.", getName(playerid), playerid, getName(giveplayerid), giveplayerid, smstext);
 		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
 		PlayerPlaySound(giveplayerid, 1138, 0.0, 0.0, 0.0);
@@ -182,7 +179,7 @@ CMD:number(playerid, params[]) {
 	if(playerInfo[playerid][pPhoneBook] == 0) return sendPlayerError(playerid, "Nu ai o agenda telefonica.");
 	if(targetid == playerid) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda asupra ta.");
 	if(playerInfo[targetid][pPhone] > 0)
-	SCM(playerid, COLOR_GREY, string_fast("(&) %s's phone number: %s", getName(targetid), playerInfo[targetid][pPhone] ? (string_fast("%d", playerInfo[targetid][pPhone])) : ("None")));
+	SCMf(playerid, COLOR_GREY, "(&) %s's phone number: %s", getName(targetid), playerInfo[targetid][pPhone] ? (string_fast("%d", playerInfo[targetid][pPhone])) : ("None"));
 	return true;
 }
 
@@ -197,8 +194,8 @@ CMD:reply(playerid, params[]) {
 		giveplayerid = PlayerNumber[phonenumber];
 		if(isPlayerLogged(giveplayerid) && giveplayerid == INVALID_PLAYER_ID) return sendPlayerError(playerid, "Numar de telefon invalid.");
 		if(playerInfo[giveplayerid][pPhoneOnline] == 0) return sendPlayerError(playerid, "Telefonul lui este inchis.");
-		SCM(giveplayerid, COLOR_YELLOW, string_fast("(*) SMS de la %s (%d): %s.", getName(playerid), playerid, smstext));
-		SCM(playerid, COLOR_YELLOW, string_fast("(*) SMS trimis lui %s (%d): %s.", getName(giveplayerid), giveplayerid, smstext));
+		SCMf(giveplayerid, COLOR_YELLOW, "(*) SMS de la %s (%d): %s.", getName(playerid), playerid, smstext);
+		SCMf(playerid, COLOR_YELLOW, "(*) SMS trimis lui %s (%d): %s.", getName(giveplayerid), giveplayerid, smstext);
 		sendToAdmin(playerid, COLOR_LIGHTRED, "(SMS Log): {FFFFFF} %s(%d) catre %s(%d): %s.", getName(playerid), playerid, getName(giveplayerid), giveplayerid, smstext);
 		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
 		PlayerPlaySound(giveplayerid, 1138, 0.0, 0.0, 0.0);
@@ -227,7 +224,7 @@ CMD:cancel(playerid, params[]) {
 		if(MedicAcceptedCall[playerid] == -1 && !Iter_Contains(ServiceCalls[SERVICE_PARAMEDICS], playerid)) return sendPlayerError(playerid, "You don't have an call.");
 		if(Iter_Contains(ServiceCalls[SERVICE_PARAMEDICS], playerid)) {
 			sendFactionMessage(1, COLOR_LIMEGREEN, "(*) %s a anulat apelul.", getName(playerid));
-			SCM(playerid, COLOR_LIGHTRED, string_fast("* (Paramedic Call): {FFFFFF}You canceled the call."));
+			SCM(playerid, COLOR_LIGHTRED, "* (Paramedic Call): {FFFFFF}You canceled the call.");
 			Iter_Remove(ServiceCalls[SERVICE_PARAMEDICS], playerid);
 			return true;
 		}
@@ -235,7 +232,7 @@ CMD:cancel(playerid, params[]) {
 			MedicAcceptedCall[playerid] = -1;
 			MedicAcceptedCall[MedicAcceptedCall[playerid]] = -1;
 			sendFactionMessage(1, COLOR_LIMEGREEN, "(*) %s a anulat apelul lui %s.", getName(playerid), getName(MedicAcceptedCall[playerid]));
-			SCM(MedicAcceptedCall[playerid], COLOR_LIGHTRED, string_fast("{FF6347}(Paramedic Call): {FFFFFF}Your call has been canceled by %s.", getName(playerid)));
+			SCMf(MedicAcceptedCall[playerid], COLOR_LIGHTRED, "{FF6347}(Paramedic Call): {FFFFFF}Your call has been canceled by %s.", getName(playerid));
 			DisablePlayerCheckpoint(playerid);
 			playerInfo[playerid][pCheckpoint] = CHECKPOINT_NONE;
 			playerInfo[playerid][pCheckpointID] = -1;
@@ -245,7 +242,7 @@ CMD:cancel(playerid, params[]) {
 			MedicAcceptedCall[playerid] = -1;
 			MedicAcceptedCall[MedicAcceptedCall[playerid]] = -1;	
 			sendFactionMessage(1, COLOR_LIMEGREEN, "(*) %s a anulat apelul preluat de medic %s.", getName(playerid), getName(MedicAcceptedCall[playerid]));
-			SCM(playerid, COLOR_LIGHTRED, string_fast("{FF6347}(Paramedic Call): {FFFFFF}Your call has been canceled."));
+			SCM(playerid, COLOR_LIGHTRED, "{FF6347}(Paramedic Call): {FFFFFF}Your call has been canceled.");
 			if(playerInfo[MedicAcceptedCall[playerid]][pCheckpoint] == CHECKPOINT_FACTION_DUTY && playerInfo[MedicAcceptedCall[playerid]][pCheckpointID] == playerid) {
 				DisablePlayerCheckpoint(MedicAcceptedCall[playerid]);
 				playerInfo[MedicAcceptedCall[playerid]][pCheckpoint] = CHECKPOINT_NONE;
@@ -258,7 +255,7 @@ CMD:cancel(playerid, params[]) {
 		if(TaxiAcceptedCall[playerid] == -1 && !Iter_Contains(ServiceCalls[SERVICE_TAXI], playerid)) return sendPlayerError(playerid, "You don't have an call.");
 		if(Iter_Contains(ServiceCalls[SERVICE_TAXI], playerid)) {
 			sendFactionMessage(5, COLOR_LIMEGREEN, "(*) %s a anulat apelul.", getName(playerid));
-			SCM(playerid, COLOR_YELLOW, string_fast("* (Taxi Call): {FFFFFF}You canceled the call."));
+			SCM(playerid, COLOR_YELLOW, "* (Taxi Call): {FFFFFF}You canceled the call.");
 			Iter_Remove(ServiceCalls[SERVICE_TAXI], playerid);
 			return true;
 		}
@@ -266,7 +263,7 @@ CMD:cancel(playerid, params[]) {
 			TaxiAcceptedCall[playerid] = -1;
 			TaxiAcceptedCall[TaxiAcceptedCall[playerid]] = -1;
 			sendFactionMessage(5, COLOR_LIMEGREEN, "(*) %s a anulat apelul lui %s.", getName(playerid), getName(TaxiAcceptedCall[playerid]));
-			SCM(TaxiAcceptedCall[playerid], COLOR_YELLOW, string_fast("{FF6347}(Taxi Call): {FFFFFF}Your call has been canceled by %s.", getName(playerid)));
+			SCMf(TaxiAcceptedCall[playerid], COLOR_YELLOW, "{FF6347}(Taxi Call): {FFFFFF}Your call has been canceled by %s.", getName(playerid));
 			DisablePlayerCheckpoint(playerid);
 			playerInfo[playerid][pCheckpoint] = CHECKPOINT_NONE;
 			playerInfo[playerid][pCheckpointID] = -1;
@@ -276,7 +273,7 @@ CMD:cancel(playerid, params[]) {
 			TaxiAcceptedCall[playerid] = -1;
 			TaxiAcceptedCall[TaxiAcceptedCall[playerid]] = -1;	
 			sendFactionMessage(5, COLOR_LIMEGREEN, "(*) %s a anulat apelul preluat de medic %s.", getName(playerid), getName(TaxiAcceptedCall[playerid]));
-			SCM(playerid, COLOR_YELLOW, string_fast("{FF6347}(Taxi Call): {FFFFFF}Your call has been canceled."));
+			SCM(playerid, COLOR_YELLOW, "{FF6347}(Taxi Call): {FFFFFF}Your call has been canceled.");
 			if(playerInfo[TaxiAcceptedCall[playerid]][pCheckpoint] == CHECKPOINT_FACTION_DUTY && playerInfo[TaxiAcceptedCall[playerid]][pCheckpointID] == playerid) {
 				DisablePlayerCheckpoint(TaxiAcceptedCall[playerid]);
 				playerInfo[TaxiAcceptedCall[playerid]][pCheckpoint] = CHECKPOINT_NONE;
@@ -289,7 +286,7 @@ CMD:cancel(playerid, params[]) {
 		if(InstructorAcceptedCall[playerid] == -1 && !Iter_Contains(ServiceCalls[SERVICE_INSTRUCTOR], playerid)) return sendPlayerError(playerid, "You don't have an call.");
 		if(Iter_Contains(ServiceCalls[SERVICE_INSTRUCTOR], playerid)) {
 			sendFactionMessage(5, COLOR_LIMEGREEN, "(*) %s a anulat apelul.", getName(playerid));
-			SCM(playerid, COLOR_LIGHTGREEN, string_fast("* (Instructor Call): {FFFFFF}You canceled the call."));
+			SCM(playerid, COLOR_LIGHTGREEN, "* (Instructor Call): {FFFFFF}You canceled the call.");
 			Iter_Remove(ServiceCalls[SERVICE_INSTRUCTOR], playerid);
 			return true;
 		}
@@ -297,7 +294,7 @@ CMD:cancel(playerid, params[]) {
 			InstructorAcceptedCall[playerid] = -1;
 			InstructorAcceptedCall[InstructorAcceptedCall[playerid]] = -1;
 			sendFactionMessage(5, COLOR_LIMEGREEN, "(*) %s a anulat apelul lui %s.", getName(playerid), getName(InstructorAcceptedCall[playerid]));
-			SCM(InstructorAcceptedCall[playerid], COLOR_LIGHTGREEN, string_fast("{FF6347}(Instructor Call): {FFFFFF}Your call has been canceled by %s.", getName(playerid)));
+			SCMf(InstructorAcceptedCall[playerid], COLOR_LIGHTGREEN, "{FF6347}(Instructor Call): {FFFFFF}Your call has been canceled by %s.", getName(playerid));
 			DisablePlayerCheckpoint(playerid);
 			playerInfo[playerid][pCheckpoint] = CHECKPOINT_NONE;
 			playerInfo[playerid][pCheckpointID] = -1;
@@ -307,7 +304,7 @@ CMD:cancel(playerid, params[]) {
 			InstructorAcceptedCall[playerid] = -1;
 			InstructorAcceptedCall[InstructorAcceptedCall[playerid]] = -1;	
 			sendFactionMessage(5, COLOR_LIMEGREEN, "(*) %s a anulat apelul preluat de medic %s.", getName(playerid), getName(InstructorAcceptedCall[playerid]));
-			SCM(playerid, COLOR_LIGHTGREEN, string_fast("{FF6347}(Instructor Call): {FFFFFF}Your call has been canceled."));
+			SCM(playerid, COLOR_LIGHTGREEN, "{FF6347}(Instructor Call): {FFFFFF}Your call has been canceled.");
 			if(playerInfo[InstructorAcceptedCall[playerid]][pCheckpoint] == CHECKPOINT_FACTION_DUTY && playerInfo[InstructorAcceptedCall[playerid]][pCheckpointID] == playerid) {
 				DisablePlayerCheckpoint(InstructorAcceptedCall[playerid]);
 				playerInfo[InstructorAcceptedCall[playerid]][pCheckpoint] = CHECKPOINT_NONE;
@@ -324,6 +321,7 @@ CMD:accept(playerid, params[]) {
 		SCM(playerid, COLOR_GREY, "Available service: medic, taxi, instructor, invite, ticket, live, lesson, cinvite.");
 		return true;
 	}
+	if(!isPlayerLogged(targetid) && targetid != 1001) return sendPlayerError(playerid, "Acel player nu este connectat.");
 	if(strmatch(item, "medic")) {
 		if(!Iter_Contains(FactionMembers[1], playerid)) return sendPlayerError(playerid, "Nu esti in factiunea 'Paramedic Department' pentru a folosi aceasta comanda.");
 		if(MedicAcceptedCall[playerid] != -1) return sendPlayerError(playerid, "Ai deja un apel acceptat.");
@@ -331,7 +329,7 @@ CMD:accept(playerid, params[]) {
 		if(!Iter_Contains(ServiceCalls[SERVICE_PARAMEDICS], targetid)) return sendPlayerError(playerid, "Acel player nu are un apel.");
 		if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) return sendPlayerError(playerid, "Ai un checkpoint activ.");
 		sendFactionMessage(1, COLOR_LIMEGREEN, "(*) %s a acceptat apelul lui %s.", getName(playerid), getName(targetid));
-		SCM(targetid, COLOR_LIGHTRED, string_fast("* (Paramedic Call): {FFFFFF}Your call has been accepted by %s, please wait.", getName(playerid)));
+		SCMf(targetid, COLOR_LIGHTRED, "* (Paramedic Call): {FFFFFF}Your call has been accepted by %s, please wait.", getName(playerid));
 		new Float:x, Float:y, Float:z;
 		GetPlayerPos(playerid, x, y, z);
 		SetPlayerCheckpoint(playerid, x, y, z, 4.0);
@@ -349,7 +347,7 @@ CMD:accept(playerid, params[]) {
 		if(!Iter_Contains(ServiceCalls[SERVICE_TAXI], targetid)) return sendPlayerError(playerid, "Acel player nu are un apel.");
 		if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) return sendPlayerError(playerid, "Ai un checkpoint activ.");
 		sendFactionMessage(5, COLOR_LIMEGREEN, "(*) %s a acceptat apelul lui %s.", getName(playerid), getName(targetid));
-		SCM(targetid, COLOR_YELLOW, string_fast("* (Taxi Call): {FFFFFF}Your call has been accepted by %s, please wait.", getName(playerid)));
+		SCMf(targetid, COLOR_YELLOW, "* (Taxi Call): {FFFFFF}Your call has been accepted by %s, please wait.", getName(playerid));
 		new Float:x, Float:y, Float:z;
 		GetPlayerPos(playerid, x, y, z);
 		SetPlayerCheckpoint(playerid, x, y, z, 4.0);
@@ -367,7 +365,7 @@ CMD:accept(playerid, params[]) {
 		if(!Iter_Contains(ServiceCalls[SERVICE_INSTRUCTOR], targetid)) return sendPlayerError(playerid, "Acel player nu are un apel.");
 		if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) return sendPlayerError(playerid, "Ai un checkpoint activ.");
 		sendFactionMessage(7, COLOR_LIMEGREEN, "(*) %s a acceptat apelul lui %s.", getName(playerid), getName(targetid));
-		SCM(targetid, COLOR_LIGHTGREEN, string_fast("* (Instructor Call): {FFFFFF}Your call has been accepted by %s, please wait.", getName(playerid)));
+		SCMf(targetid, COLOR_LIGHTGREEN, "* (Instructor Call): {FFFFFF}Your call has been accepted by %s, please wait.", getName(playerid));
 		new Float:x, Float:y, Float:z;
 		GetPlayerPos(playerid, x, y, z);
 		SetPlayerCheckpoint(playerid, x, y, z, 4.0);
@@ -380,9 +378,9 @@ CMD:accept(playerid, params[]) {
 	}
 	if(strmatch(item, "invite")) {
 		if(invitedByPlayer[playerid] == -1) return sendPlayerError(playerid, "Nu ai fost invitat de nimeni intr-o factiune.");
-		SCM(invitedByPlayer[playerid], COLOR_WHITE, string_fast("{32CD32}*{ffffff} Jucatorul {32CD32}'%s'{ffffff} (%d) pe care l-ai invitat in factiunea ta a acceptat.", getName(playerid), playerid));
-		SCM(playerid, COLOR_WHITE, string_fast("{32CD32}*{ffffff} Ai acceptat invitatia lui {32CD32}'%s'{ffffff} (%d) in factiunea lui.", getName(invitedByPlayer[playerid]), invitedByPlayer[playerid]));
-		SCM(playerid, COLOR_WHITE, string_fast("{32CD32}*{ffffff} Deoarece ai acceptat invitatia in factiune, spawn-ul tau a fost schimbat la {32CD32}'Factiune'{ffffff}."));
+		SCMf(invitedByPlayer[playerid], COLOR_WHITE, "{32CD32}*{ffffff} Jucatorul {32CD32}'%s'{ffffff} (%d) pe care l-ai invitat in factiunea ta a acceptat.", getName(playerid), playerid);
+		SCMf(playerid, COLOR_WHITE, "{32CD32}*{ffffff} Ai acceptat invitatia lui {32CD32}'%s'{ffffff} (%d) in factiunea lui.", getName(invitedByPlayer[playerid]), invitedByPlayer[playerid]);
+		SCMf(playerid, COLOR_WHITE, "{32CD32}*{ffffff} Deoarece ai acceptat invitatia in factiune, spawn-ul tau a fost schimbat la {32CD32}'Factiune'{ffffff}.");
 		Iter_Add(FactionMembers[playerInfo[invitedByPlayer[playerid]][pFaction]], playerid);
 		playerInfo[playerid][pFaction] = playerInfo[invitedByPlayer[playerid]][pFaction];
 		playerInfo[playerid][pFactionRank] = 1;
@@ -400,8 +398,8 @@ CMD:accept(playerid, params[]) {
 	}
 	if(strmatch(item, "cinvite")) {
 		if(clanInvitedBy[playerid] == -1) return sendPlayerError(playerid, "Nu ai fost invitat de nimeni intr-un clan.");
-		SCM(clanInvitedBy[playerid], COLOR_GOLD, string_fast("* (Clan): Jucatorul '%s' (%d) pe care l-ai invitat in clanul tau a acceptat.", getName(playerid), playerid));
-		SCM(playerid, COLOR_GOLD, string_fast("* (Clan): Ai acceptat invitatia de intrare in clan oferita de %S (%d).", getName(clanInvitedBy[playerid]), clanInvitedBy[playerid]));
+		SCMf(clanInvitedBy[playerid], COLOR_GOLD, "* (Clan): Jucatorul '%s' (%d) pe care l-ai invitat in clanul tau a acceptat.", getName(playerid), playerid);
+		SCMf(playerid, COLOR_GOLD, "* (Clan): Ai acceptat invitatia de intrare in clan oferita de %S (%d).", getName(clanInvitedBy[playerid]), clanInvitedBy[playerid]);
 		playerInfo[playerid][pClan] = playerInfo[clanInvitedBy[playerid]][pClan];
 		playerInfo[playerid][pClanRank] = 1;
 		playerInfo[playerid][pClanAge] = 0;
@@ -447,8 +445,8 @@ CMD:accept(playerid, params[]) {
 		playerInfo[targetid][pInLesson] = 0;
 		playerInfo[targetid][pLesson] = 1;
 		sendFactionMessage(playerInfo[targetid][pFaction], COLOR_LIMEGREEN, "* (SI Dispatch: %s (%d) a inceput o lectie cu %s (%d).) *", getName(targetid), targetid, getName(playerid), playerid);
-		SCM(playerid, COLOR_GREY, string_fast("* Ai acceptat o lectie oferita de instructorul %s (%d).", getName(targetid), targetid));
-		SCM(targetid, COLOR_GREY, string_fast("* %s (%d) ti-a acceptat cererea de lectie.", getName(playerid), playerid));		
+		SCMf(playerid, COLOR_GREY, "* Ai acceptat o lectie oferita de instructorul %s (%d).", getName(targetid), targetid);
+		SCMf(targetid, COLOR_GREY, "* %s (%d) ti-a acceptat cererea de lectie.", getName(playerid), playerid);		
 		return true;
 	}
 	if(strmatch(item, "license")) {
@@ -486,7 +484,6 @@ CMD:accept(playerid, params[]) {
 		}
 		return true;
 	}
-	if(!isPlayerLogged(targetid) && targetid != 1001) return sendPlayerError(playerid, "Player not connected.");
 	return true;
 }
 
@@ -1011,8 +1008,8 @@ CMD:quests(playerid, params[]) {
 	if(playerInfo[playerid][pProgress][1] >= getNeedProgress(playerid, 1)) format(status2, sizeof(status2), "Misiune terminata");
 	else format(status2, sizeof(status2), "%d/%d", playerInfo[playerid][pProgress][1], getNeedProgress(playerid, 1));
 	SCM(playerid, COLOR_ORANGE, "--> Daily Missions <--");
-	SCM(playerid, COLOR_ORANGE, string_fast("* -> (1) '%s' (Progres: %s).", missionName(playerid, playerInfo[playerid][pDailyMission][0], 0), status1));
-	SCM(playerid, COLOR_ORANGE, string_fast("* -> (2) '%s' (Progres: %s).",  missionName(playerid, playerInfo[playerid][pDailyMission][1], 1), status2));
+	SCMf(playerid, COLOR_ORANGE, "* -> (1) '%s' (Progres: %s).", missionName(playerid, playerInfo[playerid][pDailyMission][0], 0), status1);
+	SCMf(playerid, COLOR_ORANGE, "* -> (2) '%s' (Progres: %s).",  missionName(playerid, playerInfo[playerid][pDailyMission][1], 1), status2);
 	return true;
 }
 
@@ -1035,7 +1032,7 @@ CMD:setfreq(playerid, params[]) {
 	playerInfo[playerid][pWTChannel] = freq;
 	Iter_Add(Freqs[freq], playerid);
 	update("UPDATE `server_users` SET `WTChannel` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pWTChannel], playerInfo[playerid][pSQLID]);		
-    SCM(playerid, COLOR_LIGHTBLUE, string_fast("* Freq: Ai intrat pe frecventa %d.", freq));
+    SCMf(playerid, COLOR_LIGHTBLUE, "* Freq: Ai intrat pe frecventa %d.", freq);
 	return true;
 }
 
@@ -1048,7 +1045,7 @@ CMD:wt(playerid, params[]) {
     if(strlen(msg) < 1 || strlen(msg) > 128) return sendPlayerError(playerid, "Mesaj invalid. Minim 1 caracter, maxim 128 caractere.");
 	if(playerInfo[playerid][pWToggle] == 1) return sendPlayerError(playerid, "Statia ta a fost oprita. Foloseste comanda /tog pentru a o activa.");
 	if(playerInfo[playerid][pWTChannel] == 0) return sendPlayerError(playerid, "Nu esti pe o frecventa.");
-	foreach(new i : Freqs[playerInfo[playerid][pWTChannel]]) SCM(i, COLOR_FREQ, string_fast("[FREQ %d] %s: %s", playerInfo[playerid][pWTChannel], getName(playerid), msg));
+	foreach(new i : Freqs[playerInfo[playerid][pWTChannel]]) SCMf(i, COLOR_FREQ, "[FREQ %d] %s: %s", playerInfo[playerid][pWTChannel], getName(playerid), msg);
 	return true;
 }
 
@@ -1056,11 +1053,11 @@ CMD:freqmembers(playerid, params[]) {
 	if(playerInfo[playerid][pWTalkie] == 0) return sendPlayerError(playerid, "Nu ai un walkie talkie.");
 	if(playerInfo[playerid][pWTChannel] == 0) return sendPlayerError(playerid, "Nu esti pe o frecventa.");
 	if(Iter_Count(Freqs[playerInfo[playerid][pWTChannel]]) == 0) return sendPlayerError(playerid, "Nu sunt jucatori pe aceasta frecventa.");
-	SCM(playerid, COLOR_FREQ, string_fast("* Jucatori pe frecventa %d", playerInfo[playerid][pWTChannel]));
+	SCMf(playerid, COLOR_FREQ, "* Jucatori pe frecventa %d", playerInfo[playerid][pWTChannel]);
 	foreach(new i : Freqs[playerInfo[playerid][pWTChannel]]) {
-		SCM(playerid, COLOR_FREQ, string_fast("* -> %s (%d)", getName(i), i));
+		SCMf(playerid, COLOR_FREQ, "* -> %s (%d)", getName(i), i);
 	}
-	SCM(playerid, COLOR_FREQ, string_fast("* Au fost gasiti %d jucatori pe aceasta frecventa.", Iter_Count(Freqs[playerInfo[playerid][pWTChannel]])));	
+	SCMf(playerid, COLOR_FREQ, "* Au fost gasiti %d jucatori pe aceasta frecventa.", Iter_Count(Freqs[playerInfo[playerid][pWTChannel]]));	
 	return true;
 }
 

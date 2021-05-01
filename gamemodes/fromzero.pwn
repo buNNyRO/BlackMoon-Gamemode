@@ -56,11 +56,11 @@ alias:helperchat("h", "hc")
 alias:setrepsectpoints("setrp", "setrespect")
 alias:admingivelicense("agl", "admingl")
 alias:adminsuspendlicense("asl", "adminsl")
-alias:vehicles("v", "g", "garage", "vehicles")
+alias:vehicles("v", "g", "garage")
 alias:fixveh("fv", "fixvehicle")
 alias:addnos("nos", "addnitro")
 alias:flipveh("flip", "flipvehicle")
-alias:acceptreport("ar", "areport")
+alias:acceptreport("acr", "areport")
 alias:closereport("cr", "clreport")
 alias:reportmute("rmute", "repmute")
 
@@ -381,7 +381,7 @@ public OnPlayerDeath(playerid, killerid)
 new sexxx[128];
 public OnPlayerText(playerid, text[])
 {
-	if(strmatch(sexxx, text)) return 1;
+	if(strmatch(sexxx, text)) return 0;
 	format(sexxx, sizeof sexxx, text);
 	if(isPlayerLogged(playerid)) {
 		if(faceReclama(text)) return Reclama(playerid, text);
@@ -393,9 +393,9 @@ public OnPlayerText(playerid, text[])
 		gQuery[0] = (EOS);
 		mysql_format(SQL, gQuery, 256, "INSERT INTO `server_chat_logs` (PlayerName, PlayerID, ChatText) VALUES ('%s', '%d', '%s')", getName(playerid), playerInfo[playerid][pSQLID], string_fast("* (chat log): %s.", text));
 		mysql_pquery(SQL, gQuery, "", "");
-		return 1;
+		return 0;
 	}
-	return 1;
+	return 0;
 }
 
 public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
@@ -889,15 +889,33 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
             case 1..3: if(weaponid == 34 && GetPlayerDistanceFromPoint(playerid, x, y, z) < 50) return true;
             default: if(weaponid == 34 && GetPlayerDistanceFromPoint(playerid, x, y, z) < 100) return true;
         }
+        if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) {
+        	DisablePlayerCheckpoint(playerid);
+        	playerInfo[playerid][pCheckpoint] = CHECKPOINT_NONE;
+        	playerInfo[playerid][pCheckpointID] = -1;
+        }
         addRaportPoint(playerid);
         Iter_Remove(Contracts, contractInfo[Contract[playerid]][cID]);
+        ShowPlayerNameTagForPlayer(contractInfo[Contract[playerid]][cAgainst], playerid, true);
         contractInfo[Contract[playerid]][cID] = -1;
         contractInfo[Contract[playerid]][cAgainst] = -1;
         contractInfo[Contract[playerid]][cMoney] = -1;
         new weaponName[25];
         GetWeaponName(weaponid, weaponName, 25);
         Contract[playerid] = -1;
-        SCM(playerid, COLOR_GOLD, string_fast("* (Contracts): Ti-ai indeplinit misiunea pe %s (%d) folosind arma %s de la distanta %i.", getName(hitid), hitid, weaponName, GetPlayerDistanceFromPoint(playerid, x, y, z)));
+        SCM(playerid, COLOR_GOLD, string_fast("* (Contracts): {ffffff}Ti-ai indeplinit misiunea pe %s (%d) folosind arma %s de la distanta %.1f m.", getName(hitid), hitid, weaponName, GetPlayerDistanceFromPoint(playerid, x, y, z)));
     }
 	return true;
+}
+
+public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags) 
+{ 
+    if(result == -1) 
+    { 
+        SendClientMessage(playerid, 0xFFFFFFFF, "SERVER: Unknown command."); 
+
+        return 0; 
+    } 
+
+    return 1; 
 }

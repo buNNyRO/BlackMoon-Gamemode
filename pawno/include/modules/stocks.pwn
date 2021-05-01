@@ -4,9 +4,9 @@ stock IsVehicleOccupied(vehicleid) {
 }
 
 stock string_fast(const varname[], va_args<>) {
-    gString[0] = (EOS);
-    va_format(gString, sizeof gString, varname, va_start<1>);
-    return gString;
+    gFast[0] = (EOS);
+    va_format(gString, sizeof gFast, varname, va_start<1>);
+    return gFast;
 }
 
 stock sendNearbyMessage(playerid, color, Float:distance, const text[], va_args<>)
@@ -52,7 +52,7 @@ stock warnPlayer(playerid, adminid, const reason[])
 	if(playerInfo[playerid][pWarn] == 3)
 	{
 		playerInfo[playerid][pWarn] = 0;
-		SendClientMessageToAll(COLOR_LIGHTRED, string_fast("AdmCmd: %s a primit ban 3 zile de la administratorul AdmBot, motiv: Acumulare 3/3 warns.", getName(playerid)));	
+		va_SendClientMessageToAll(COLOR_LIGHTRED, "AdmCmd: %s a primit ban 3 zile de la administratorul AdmBot, motiv: Acumulare 3/3 warns.", getName(playerid));	
 		banPlayer(playerid, INVALID_PLAYER_ID, 3, "Acumulare 3/3 Warns");
 	}
 
@@ -630,6 +630,7 @@ stock resetVars(playerid)
 	playerInfo[playerid][pSafeID] = -1;
 	playerInfo[playerid][pSelectedItem] = -1;
 	playerInfo[playerid][pOnTurf] = 0;
+	playerInfo[playerid][pFactionDuty] = 0;
 
 	if(IsValidVehicle(playerInfo[playerid][pExamenVehicle])) DestroyVehicle(playerInfo[playerid][pExamenVehicle]);
 
@@ -758,7 +759,7 @@ stock Calculate(seconds)
 	minute = seconds / 60;
 	seconds = seconds % 60;
 	second = seconds;
-	return spritnf("%02d:%02d:%02d", hour, minute, second);
+	return string_fast("%02d:%02d:%02d", hour, minute, second);
 }
 
 stock IsNumeric(const string[]) {
