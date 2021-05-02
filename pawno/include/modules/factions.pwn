@@ -1150,13 +1150,13 @@ timer fareUpdateTimer[5000](playerid) {
 
 function updateTaxiTextdraw(playerid) {
 	if(playerInfo[playerid][pTaxiDuty] == 1) {
-	    PlayerTextDrawSetString(playerid, fareTD[playerid], string_fast("%s", playerInfo[playerid][pTaxiFare] ? string_fast("Tarif: ~g~$%s~n~~w~~h~Castig total: ~g~$%s", formatNumber(playerInfo[playerid][pTaxiFare]), 
-		formatNumber(playerInfo[playerid][pTaxiMoney])) : string_fast("Tarif: ~r~Oprit~n~~w~~h~Castig total: ~g~$%s", formatNumber(playerInfo[playerid][pTaxiMoney]))));
+	    va_PlayerTextDrawSetString(playerid, fareTD[playerid], "%s", playerInfo[playerid][pTaxiFare] ? string_fast("Tarif: ~g~$%s~n~~w~~h~Castig total: ~g~$%s", formatNumber(playerInfo[playerid][pTaxiFare]),
+		formatNumber(playerInfo[playerid][pTaxiMoney])) : string_fast("Tarif: ~r~Oprit~n~~w~~h~Castig total: ~g~$%s", formatNumber(playerInfo[playerid][pTaxiMoney])));
 		PlayerTextDrawShow(playerid, fareTD[playerid]);
 	}
 	else {
-	    PlayerTextDrawSetString(playerid, fareTD[playerid], string_fast("%s", playerInfo[playerInfo[playerid][pTaxiDriver]][pTaxiFare] ? string_fast("Tarif: ~g~$%s~n~~w~~h~Costul cursei: ~g~$%s", formatNumber(playerInfo[playerInfo[playerid][pTaxiDriver]][pTaxiFare]),
-		formatNumber(playerInfo[playerid][pTaxiMoney])) : string_fast("Tarif: ~r~Oprit~n~~w~~h~Costul cursei: ~g~$%", formatNumber(playerInfo[playerid][pTaxiMoney]))));
+	    va_PlayerTextDrawSetString(playerid, fareTD[playerid], "%s", playerInfo[playerInfo[playerid][pTaxiDriver]][pTaxiFare] ? string_fast("Tarif: ~g~$%s~n~~w~~h~Costul cursei: ~g~$%s", formatNumber(playerInfo[playerInfo[playerid][pTaxiDriver]][pTaxiFare]),
+		formatNumber(playerInfo[playerid][pTaxiMoney])) : string_fast("Tarif: ~r~Oprit~n~~w~~h~Costul cursei: ~g~$%", formatNumber(playerInfo[playerid][pTaxiMoney])));
 		PlayerTextDrawShow(playerid, fareTD[playerid]);
 	}
 	return true;
@@ -1420,7 +1420,7 @@ timer TimerWar[1000](i) {
 		}
 		if(warInfo[i][wAttacker] == 8) GangZoneFlashForPlayer(x, turfInfo[i][tID], 0x0CAB3C99);
 		else if(warInfo[i][wAttacker] == 9) GangZoneFlashForPlayer(x, turfInfo[i][tID], 0xc22da999);
-		PlayerTextDrawSetString(x, warTD[x], string_fast("War System~n~%s - %s~n~Score:%0.2f - Score:%0.2f~n~Kills: %d - Deaths:%d~n~Score:%0.2f",factionName(warInfo[i][wAttacker]), factionName(warInfo[i][wFaction]), WarScore[1][i], WarScore[2][i], ucideri[x][i], decese[x][i], WarScore[x][i]));
+		va_PlayerTextDrawSetString(x, warTD[x], "War System~n~%s - %s~n~Score:%0.2f - Score:%0.2f~n~Kills: %d - Deaths:%d~n~Score:%0.2f",factionName(warInfo[i][wAttacker]), factionName(warInfo[i][wFaction]), WarScore[1][i], WarScore[2][i], ucideri[x][i], decese[x][i], WarScore[x][i]);
 		PlayerTextDrawShow(x, warTD[x]);
 		if(warInfo[i][wTime] <= 0) {
 			PlayerTextDrawHide(x, warTD[x]);

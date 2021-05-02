@@ -824,7 +824,7 @@ public OnPlayerEnterCheckpoint(playerid)
 			return true;
 		}
 		SetPlayerCheckpoint(playerid, examenInfo[playerInfo[playerid][pExamenCheckpoint]][dmvX], examenInfo[playerInfo[playerid][pExamenCheckpoint]][dmvY], examenInfo[playerInfo[playerid][pExamenCheckpoint]][dmvZ], 3.0);
-		PlayerTextDrawSetString(playerid, playerExamenPTD[playerid], string_fast("DMV Exam~n~Checkpoints:%d/%d~n~Stay Tuned !", (playerInfo[playerid][pExamenCheckpoint] - 1),  Iter_Count(ExamenCheckpoints)));
+		va_PlayerTextDrawSetString(playerid, playerExamenPTD[playerid], "DMV Exam~n~Checkpoints:%d/%d~n~Stay Tuned !", (playerInfo[playerid][pExamenCheckpoint] - 1),  Iter_Count(ExamenCheckpoints));
 		return true;
 	}
 	switch(playerInfo[playerid][pCheckpoint]) {

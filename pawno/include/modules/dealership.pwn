@@ -12,9 +12,9 @@ function ShowCamera(playerid) {
 
 
 function ShowDealerShipTD(playerid) {
-	if(GetPlayerCash(playerid) < DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]) PlayerTextDrawSetString(playerid, serverDealerPTD[playerid][2], string_fast("Price: ~r~$%s~W~~H~~N~Stock: ~R~%d available~W~~H~~N~Max Speed: ~R~%dKM/H", formatNumber(DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]), DSModels[SelectedCar[playerid][DealerID[playerid]]][dStock], getVehicleMaxSpeed(DSModels[SelectedCar[playerid][DealerID[playerid]]][dModel])));
-	else if(GetPlayerCash(playerid) >= DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]) PlayerTextDrawSetString(playerid, serverDealerPTD[playerid][2], string_fast("Price: ~g~$%s~W~~H~~N~Stock: ~R~%d available~W~~H~~N~Max Speed: ~R~%dKM/H", formatNumber(DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]), DSModels[SelectedCar[playerid][DealerID[playerid]]][dStock], getVehicleMaxSpeed(DSModels[SelectedCar[playerid][DealerID[playerid]]][dModel])));
-	PlayerTextDrawSetString(playerid, serverDealerPTD[playerid][1], string_fast("%s", getVehicleName(DSModels[SelectedCar[playerid][DealerID[playerid]]][dModel])));
+	if(GetPlayerCash(playerid) < DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]) va_PlayerTextDrawSetString(playerid, serverDealerPTD[playerid][2], "Price: ~r~$%s~W~~H~~N~Stock: ~R~%d available~W~~H~~N~Max Speed: ~R~%dKM/H", formatNumber(DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]), DSModels[SelectedCar[playerid][DealerID[playerid]]][dStock], getVehicleMaxSpeed(DSModels[SelectedCar[playerid][DealerID[playerid]]][dModel]));
+	else if(GetPlayerCash(playerid) >= DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]) va_PlayerTextDrawSetString(playerid, serverDealerPTD[playerid][2], "Price: ~g~$%s~W~~H~~N~Stock: ~R~%d available~W~~H~~N~Max Speed: ~R~%dKM/H", formatNumber(DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]), DSModels[SelectedCar[playerid][DealerID[playerid]]][dStock], getVehicleMaxSpeed(DSModels[SelectedCar[playerid][DealerID[playerid]]][dModel]));
+	va_PlayerTextDrawSetString(playerid, serverDealerPTD[playerid][1], "%s", getVehicleName(DSModels[SelectedCar[playerid][DealerID[playerid]]][dModel]));
 	for(new i = 0; i < 3; i++) PlayerTextDrawShow(playerid, serverDealerPTD[playerid][i]);
 	for(new i = 0; i < 9; i++) TextDrawShowForPlayer(playerid, serverDealerTD[i]);
 	return true;
@@ -157,9 +157,9 @@ hook OnPlayerClickTextDraw(playerid, Text:clickedid) {
 		DealerCar[playerid] = CreateVehicle(DSModels[DealerID[playerid]][dModel],1524.8397,-2412.6653,24.4380,35.8937,1,1,-1,0); 
 		vehicle_personal[DealerCar[playerid]] = -1;
 		SetVehicleVirtualWorld(DealerCar[playerid], playerid+1);
-		if(GetPlayerCash(playerid) < DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]) PlayerTextDrawSetString(playerid, serverDealerPTD[playerid][2], string_fast("Price: ~r~$%s~W~~H~~N~Stock: ~R~%d available~W~~H~~N~Max Speed: ~R~%dKM/H", formatNumber(DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]), DSModels[SelectedCar[playerid][DealerID[playerid]]][dStock], getVehicleMaxSpeed(DSModels[SelectedCar[playerid][DealerID[playerid]]][dModel])));
-		else if(GetPlayerCash(playerid) >= DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]) PlayerTextDrawSetString(playerid, serverDealerPTD[playerid][2], string_fast("Price: ~g~$%s~W~~H~~N~Stock: ~R~%d available~W~~H~~N~Max Speed: ~R~%dKM/H", formatNumber(DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]), DSModels[SelectedCar[playerid][DealerID[playerid]]][dStock], getVehicleMaxSpeed(DSModels[SelectedCar[playerid][DealerID[playerid]]][dModel])));
-		PlayerTextDrawSetString(playerid, serverDealerPTD[playerid][1], string_fast("%s", getVehicleName(DSModels[SelectedCar[playerid][DealerID[playerid]]][dModel])));		
+		if(GetPlayerCash(playerid) < DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]) va_PlayerTextDrawSetString(playerid, serverDealerPTD[playerid][2], "Price: ~r~$%s~W~~H~~N~Stock: ~R~%d available~W~~H~~N~Max Speed: ~R~%dKM/H", formatNumber(DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]), DSModels[SelectedCar[playerid][DealerID[playerid]]][dStock], getVehicleMaxSpeed(DSModels[SelectedCar[playerid][DealerID[playerid]]][dModel]));
+		else if(GetPlayerCash(playerid) >= DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]) va_PlayerTextDrawSetString(playerid, serverDealerPTD[playerid][2], "Price: ~g~$%s~W~~H~~N~Stock: ~R~%d available~W~~H~~N~Max Speed: ~R~%dKM/H", formatNumber(DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]), DSModels[SelectedCar[playerid][DealerID[playerid]]][dStock], getVehicleMaxSpeed(DSModels[SelectedCar[playerid][DealerID[playerid]]][dModel]));
+		va_PlayerTextDrawSetString(playerid, serverDealerPTD[playerid][1], "%s", getVehicleName(DSModels[SelectedCar[playerid][DealerID[playerid]]][dModel]));		
 		PlayerTextDrawSetPreviewModel(playerid, serverDealerPTD[playerid][0], DSModels[DealerID[playerid]][dModel]);
 		PlayerTextDrawShow(playerid, serverDealerPTD[playerid][0]);
 	}
@@ -170,9 +170,9 @@ hook OnPlayerClickTextDraw(playerid, Text:clickedid) {
 		DealerCar[playerid] = CreateVehicle(DSModels[DealerID[playerid]][dModel],1524.8397,-2412.6653,24.4380,35.8937,1,1,-1,0); 
 		vehicle_personal[DealerCar[playerid]] = -1;
 		SetVehicleVirtualWorld(DealerCar[playerid], playerid+1);
-		if(GetPlayerCash(playerid) < DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]) PlayerTextDrawSetString(playerid, serverDealerPTD[playerid][2], string_fast("Price: ~r~$%s~W~~H~~N~Stock: ~R~%d available~W~~H~~N~Max Speed: ~R~%dKM/H", formatNumber(DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]), DSModels[SelectedCar[playerid][DealerID[playerid]]][dStock], getVehicleMaxSpeed(DSModels[SelectedCar[playerid][DealerID[playerid]]][dModel])));
-		else if(GetPlayerCash(playerid) >= DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]) PlayerTextDrawSetString(playerid, serverDealerPTD[playerid][2], string_fast("Price: ~g~$%s~W~~H~~N~Stock: ~R~%d available~W~~H~~N~Max Speed: ~R~%dKM/H", formatNumber(DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]), DSModels[SelectedCar[playerid][DealerID[playerid]]][dStock], getVehicleMaxSpeed(DSModels[SelectedCar[playerid][DealerID[playerid]]][dModel])));
-		PlayerTextDrawSetString(playerid, serverDealerPTD[playerid][1], string_fast("%s", getVehicleName(DSModels[SelectedCar[playerid][DealerID[playerid]]][dModel])));
+		if(GetPlayerCash(playerid) < DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]) va_PlayerTextDrawSetString(playerid, serverDealerPTD[playerid][2], "Price: ~r~$%s~W~~H~~N~Stock: ~R~%d available~W~~H~~N~Max Speed: ~R~%dKM/H", formatNumber(DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]), DSModels[SelectedCar[playerid][DealerID[playerid]]][dStock], getVehicleMaxSpeed(DSModels[SelectedCar[playerid][DealerID[playerid]]][dModel]));
+		else if(GetPlayerCash(playerid) >= DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]) va_PlayerTextDrawSetString(playerid, serverDealerPTD[playerid][2], "Price: ~g~$%s~W~~H~~N~Stock: ~R~%d available~W~~H~~N~Max Speed: ~R~%dKM/H", formatNumber(DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]), DSModels[SelectedCar[playerid][DealerID[playerid]]][dStock], getVehicleMaxSpeed(DSModels[SelectedCar[playerid][DealerID[playerid]]][dModel]));
+		va_PlayerTextDrawSetString(playerid, serverDealerPTD[playerid][1], "%s", getVehicleName(DSModels[SelectedCar[playerid][DealerID[playerid]]][dModel]));
 		PlayerTextDrawSetPreviewModel(playerid, serverDealerPTD[playerid][0], DSModels[DealerID[playerid]][dModel]);
 		PlayerTextDrawShow(playerid, serverDealerPTD[playerid][0]);
 	}

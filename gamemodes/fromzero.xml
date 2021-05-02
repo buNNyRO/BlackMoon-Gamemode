@@ -1486,7 +1486,6 @@
 			<referrer name="TimerCar"/>
 			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<referrer name="pc_cmd_park"/>
-			<referrer name="pc_cmd_vehicles2"/>
 			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="ExpirationReport"/>
 			<referrer name="pc_cmd_addexamcp"/>
@@ -2118,7 +2117,6 @@
 			<referrer name="pc_cmd_carplate"/>
 			<referrer name="pc_cmd_carcolor"/>
 			<referrer name="pc_cmd_park"/>
-			<referrer name="pc_cmd_vehicles2"/>
 			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="updateGasCan"/>
 			<referrer name="pc_cmd_addbizgas"/>
@@ -2795,7 +2793,6 @@
 		<member name="F:Iter_Single@PlayerVehicles">
 			<referrer name="LoadPersonalVehicle"/>
 			<referrer name="@yH_OnPlayerDisconnect@012"/>
-			<referrer name="pc_cmd_vehicles2"/>
 			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="InsertCarDS"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
@@ -3081,7 +3078,6 @@
 			<referrer name="pc_cmd_buyinsurance"/>
 			<referrer name="pc_cmd_carplate"/>
 			<referrer name="pc_cmd_carcolor"/>
-			<referrer name="pc_cmd_vehicles2"/>
 			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="InsertCarDS"/>
 			<referrer name="OnVehicleMod"/>
@@ -4263,7 +4259,6 @@
 			<referrer name="Get2DPosZone"/>
 		</member>
 		<member name="F:gString">
-			<referrer name="string_fast"/>
 			<referrer name="sendNearbyMessage"/>
 			<referrer name="formatNumber"/>
 			<referrer name="getDateTime"/>
@@ -4286,7 +4281,6 @@
 			<referrer name="LoadPersonalVehicle"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
-			<referrer name="pc_cmd_vehicles2"/>
 			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="pc_cmd_tog"/>
 			<referrer name="InsertCarDS"/>
@@ -4505,7 +4499,6 @@
 			<referrer name="pc_cmd_carplate"/>
 			<referrer name="pc_cmd_carcolor"/>
 			<referrer name="pc_cmd_park"/>
-			<referrer name="pc_cmd_vehicles2"/>
 			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="gasTimer"/>
 			<referrer name="Timers"/>
@@ -4747,7 +4740,6 @@
 			<referrer name="pc_cmd_carplate"/>
 			<referrer name="pc_cmd_carcolor"/>
 			<referrer name="pc_cmd_park"/>
-			<referrer name="pc_cmd_vehicles2"/>
 			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="pc_cmd_addbizgas"/>
 			<referrer name="pc_cmd_fill"/>
@@ -5077,10 +5069,6 @@
 			<referrer name="fareUpdateTimer"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 		</member>
-		<member name="F:testt">
-			<tagname value="PlayerText"/>
-			<referrer name="playerTextDraws"/>
-		</member>
 		<member name="F:ticketMoney">
 			<referrer name="@yH_OnPlayerConnect@007"/>
 			<referrer name="pc_cmd_ticket"/>
@@ -5118,7 +5106,6 @@
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="pc_cmd_lock"/>
-			<referrer name="pc_cmd_vehicles2"/>
 			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="pc_cmd_spawncar"/>
 			<referrer name="pc_cmd_despawncar"/>
@@ -6008,7 +5995,7 @@
 		</member>
 		<member name="M:@yH_OnPlayerClickTextDraw@013" syntax="@yH_OnPlayerClickTextDraw@013(playerid, clickedid)">
 			<attribute name="public"/>
-			<stacksize value="8203"/>
+			<stacksize value="4106"/>
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="CB_CancelSelectTextDraw"/>
 			<dependency name="CB_CreateVehicle"/>
@@ -6027,7 +6014,6 @@
 			<dependency name="J@"/>
 			<dependency name="LinkVehicleToInterior"/>
 			<dependency name="PlayerTextDrawSetPreviewModel"/>
-			<dependency name="PlayerTextDrawSetString"/>
 			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="PutPlayerInVehicle"/>
 			<dependency name="SQL"/>
@@ -6057,10 +6043,10 @@
 			<dependency name="sendPlayerError"/>
 			<dependency name="serverDealerPTD"/>
 			<dependency name="serverDealerTD"/>
-			<dependency name="string_fast"/>
 			<dependency name="testDriveTimer_yT@"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
+			<dependency name="va_PlayerTextDrawSetString"/>
 			<dependency name="vehNames"/>
 			<dependency name="vehNames"/>
 			<dependency name="vehicle_fuel"/>
@@ -12314,7 +12300,6 @@
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="pc_cmd_buyinsurance"/>
-			<referrer name="pc_cmd_vehicles2"/>
 			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="pc_cmd_report"/>
 			<referrer name="pc_cmd_spawnchange"/>
@@ -16948,7 +16933,6 @@
 		<member name="M:IsVehicleOccupied" syntax="IsVehicleOccupied(vehicleid)">
 			<stacksize value="5"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
-			<referrer name="pc_cmd_vehicles2"/>
 			<referrer name="pc_cmd_vehicles"/>
 			<dependency name="IsPlayerInVehicle"/>
 			<dependency name="Iterator@PlayerInVehicle"/>
@@ -19840,7 +19824,7 @@
 		</member>
 		<member name="M:OnPlayerEnterCheckpoint" syntax="OnPlayerEnterCheckpoint(playerid)">
 			<attribute name="public"/>
-			<stacksize value="4106"/>
+			<stacksize value="4103"/>
 			<dependency name="CHECKPOINT_FINDCAR"/>
 			<dependency name="CHECKPOINT_GPS"/>
 			<dependency name="CHECKPOINT_NONE"/>
@@ -19851,7 +19835,6 @@
 			<dependency name="Iter_Single@ExamenCheckpoints"/>
 			<dependency name="Iterator@ExamenCheckpoints"/>
 			<dependency name="PlayerTextDrawHide"/>
-			<dependency name="PlayerTextDrawSetString"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerCheckpoint"/>
 			<dependency name="SetPlayerPos"/>
@@ -19881,6 +19864,7 @@
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
+			<dependency name="va_PlayerTextDrawSetString"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -21247,17 +21231,7 @@
 		</member>
 		<member name="M:PlayerTextDrawSetString" syntax="PlayerTextDrawSetString(playerid, text, string[])">
 			<attribute name="native"/>
-			<referrer name="updateLevelBar"/>
 			<referrer name="va_PlayerTextDrawSetString"/>
-			<referrer name="updateTaxiTextdraw"/>
-			<referrer name="TimerWar"/>
-			<referrer name="onPlayerLogin"/>
-			<referrer name="TimerJail"/>
-			<referrer name="TimerWanted"/>
-			<referrer name="pc_cmd_exam"/>
-			<referrer name="ShowDealerShipTD"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
 			<param name="playerid">
 			</param>
 			<param name="text">
@@ -21270,10 +21244,12 @@
 		<member name="M:PlayerTextDrawShow" syntax="PlayerTextDrawShow(playerid, text)">
 			<attribute name="native"/>
 			<referrer name="ShowPlayerProgressBar"/>
+			<referrer name="testPlayerTextDrawShow"/>
 			<referrer name="updateLevelBar"/>
 			<referrer name="updateTaxiTextdraw"/>
 			<referrer name="TimerWar"/>
 			<referrer name="onPlayerLogin"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="TimerJail"/>
 			<referrer name="TimerWanted"/>
 			<referrer name="pc_cmd_exam"/>
@@ -23385,14 +23361,13 @@
 		</member>
 		<member name="M:ShowDealerShipTD" syntax="ShowDealerShipTD(playerid)">
 			<attribute name="public"/>
-			<stacksize value="8203"/>
+			<stacksize value="4106"/>
 			<referrer name="cancelDriveTest"/>
 			<referrer name="pc_cmd_buycar"/>
 			<dependency name="DSModels"/>
 			<dependency name="DSModels"/>
 			<dependency name="DealerID"/>
 			<dependency name="GetPlayerCash"/>
-			<dependency name="PlayerTextDrawSetString"/>
 			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="SelectedCar"/>
 			<dependency name="TextDrawShowForPlayer"/>
@@ -23404,8 +23379,8 @@
 			<dependency name="getVehicleMaxSpeed"/>
 			<dependency name="serverDealerPTD"/>
 			<dependency name="serverDealerTD"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="va_PlayerTextDrawSetString"/>
 			<dependency name="vehNames"/>
 			<dependency name="vehNames"/>
 			<param name="playerid">
@@ -24144,13 +24119,12 @@
 			</param>
 		</member>
 		<member name="M:TimerJail" syntax="TimerJail(i)">
-			<stacksize value="4104"/>
+			<stacksize value="4103"/>
 			<referrer name="TimerJail@_yT"/>
 			<dependency name="Iter_Remove_InternalC"/>
 			<dependency name="Iter_Single@JailedPlayers"/>
 			<dependency name="Iterator@JailedPlayers"/>
 			<dependency name="PlayerTextDrawHide"/>
-			<dependency name="PlayerTextDrawSetString"/>
 			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SpawnPlayer"/>
@@ -24163,6 +24137,7 @@
 			<dependency name="playerInfo"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="va_PlayerTextDrawSetString"/>
 			<param name="i">
 			</param>
 		</member>
@@ -24265,9 +24240,11 @@
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="GetVehicleHealth"/>
 			<dependency name="PlayerTextDrawLetterSize"/>
+			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="getVehicleSpeed"/>
 			<dependency name="personalVehicle"/>
 			<dependency name="personalVehicle"/>
+			<dependency name="printf"/>
 			<dependency name="pvLock"/>
 			<dependency name="pvOdometer"/>
 			<dependency name="true"/>
@@ -24345,9 +24322,8 @@
 			</param>
 		</member>
 		<member name="M:TimerWanted" syntax="TimerWanted(x)">
-			<stacksize value="4104"/>
+			<stacksize value="8"/>
 			<referrer name="TimerWanted@_yT"/>
-			<dependency name="PlayerTextDrawSetString"/>
 			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerWantedLevel"/>
@@ -24358,9 +24334,9 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPolice"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
+			<dependency name="va_PlayerTextDrawSetString"/>
 			<dependency name="wantedTD"/>
 			<dependency name="wantedTime"/>
 			<param name="x">
@@ -24388,7 +24364,7 @@
 			</param>
 		</member>
 		<member name="M:TimerWar" syntax="TimerWar(i)">
-			<stacksize value="4181"/>
+			<stacksize value="118"/>
 			<referrer name="TimerWar@_yT"/>
 			<dependency name="operator==(Float:,Float:)"/>
 			<dependency name="operator&gt;(Float:,Float:)"/>
@@ -24403,7 +24379,6 @@
 			<dependency name="Iterator@ServerWars"/>
 			<dependency name="Iterator@loggedPlayers"/>
 			<dependency name="PlayerTextDrawHide"/>
-			<dependency name="PlayerTextDrawSetString"/>
 			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerVirtualWorld"/>
@@ -24418,7 +24393,6 @@
 			<dependency name="pOnTurf"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="string_fast"/>
 			<dependency name="tID"/>
 			<dependency name="tOwned"/>
 			<dependency name="true"/>
@@ -24427,6 +24401,7 @@
 			<dependency name="ucideri"/>
 			<dependency name="ucideri"/>
 			<dependency name="update"/>
+			<dependency name="va_PlayerTextDrawSetString"/>
 			<dependency name="va_SendClientMessage"/>
 			<dependency name="wAttacker"/>
 			<dependency name="wFaction"/>
@@ -28096,7 +28071,6 @@
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="pc_cmd_carplate"/>
-			<referrer name="pc_cmd_vehicles2"/>
 			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="pc_cmd_quests"/>
 			<referrer name="OnPlayerDeath"/>
@@ -28474,7 +28448,6 @@
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerCar_yT@"/>
-			<referrer name="pc_cmd_vehicles2"/>
 			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="Timers"/>
 			<referrer name="pc_cmd_warn"/>
@@ -29510,7 +29483,6 @@
 			<dependency name="J@"/>
 			<dependency name="MoneyMoney"/>
 			<dependency name="PlayerNumber"/>
-			<dependency name="PlayerTextDrawSetString"/>
 			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="SQL"/>
 			<dependency name="SendClientMessage"/>
@@ -29624,9 +29596,9 @@
 			<dependency name="serverInfoTD"/>
 			<dependency name="serverNameTD"/>
 			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="updateLevelBar"/>
+			<dependency name="va_PlayerTextDrawSetString"/>
 			<dependency name="va_SendClientMessage"/>
 			<dependency name="wantedTime"/>
 			<dependency name="wrongPass"/>
@@ -32172,7 +32144,7 @@
 		</member>
 		<member name="M:pc_cmd_exam" syntax="pc_cmd_exam(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4106"/>
+			<stacksize value="12"/>
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="CB_CreateVehicle"/>
 			<dependency name="GetPlayerCash"/>
@@ -32183,7 +32155,6 @@
 			<dependency name="Iter_Single@ExamenCheckpoints"/>
 			<dependency name="Iterator@ExamenCheckpoints"/>
 			<dependency name="MoneyMoney"/>
-			<dependency name="PlayerTextDrawSetString"/>
 			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="PutPlayerInVehicle"/>
 			<dependency name="SendClientMessage"/>
@@ -32204,9 +32175,9 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
+			<dependency name="va_PlayerTextDrawSetString"/>
 			<dependency name="vehicle_fuel"/>
 			<dependency name="vehicle_personal"/>
 			<param name="playerid">
@@ -36388,35 +36359,6 @@
 				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
-		<member name="M:pc_cmd_vehicles2" syntax="pc_cmd_vehicles2(playerid, params[])">
-			<attribute name="public"/>
-			<stacksize value="58"/>
-			<dependency name="Dialog_Open"/>
-			<dependency name="EOS"/>
-			<dependency name="IsVehicleOccupied"/>
-			<dependency name="Iter_Single@PlayerVehicles"/>
-			<dependency name="Iterator@PlayerVehicles"/>
-			<dependency name="format"/>
-			<dependency name="gString"/>
-			<dependency name="gettime"/>
-			<dependency name="pSelectVehicle"/>
-			<dependency name="pVehicleSlots"/>
-			<dependency name="personalVehicle"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="pvDespawnTime"/>
-			<dependency name="pvModelID"/>
-			<dependency name="pvSpawnedID"/>
-			<dependency name="sendPlayerError"/>
-			<dependency name="true"/>
-			<dependency name="vehNames"/>
-			<dependency name="vehNames"/>
-			<param name="playerid">
-			</param>
-			<param name="params">
-				<paraminfo> [] </paraminfo>
-			</param>
-		</member>
 		<member name="M:pc_cmd_vomit" syntax="pc_cmd_vomit(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
@@ -36631,7 +36573,6 @@
 			<dependency name="playerNamePTD"/>
 			<dependency name="serverDealerPTD"/>
 			<dependency name="serverDealerPTD"/>
-			<dependency name="testt"/>
 			<dependency name="true"/>
 			<dependency name="vehicleHud"/>
 			<dependency name="wantedTD"/>
@@ -36672,6 +36613,7 @@
 			<referrer name="ProfilerInit"/>
 			<referrer name="DumpStack"/>
 			<referrer name="PrintStackTrace"/>
+			<referrer name="testPlayerTextDrawShow"/>
 			<referrer name="dialog_REGISTER"/>
 			<referrer name="LoadHouses"/>
 			<referrer name="LoadTurfs"/>
@@ -36682,6 +36624,7 @@
 			<referrer name="LoadClans"/>
 			<referrer name="LoadExamCheckpoints"/>
 			<referrer name="LoadPersonalVehicle"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="LoadGasCan"/>
 			<referrer name="LoadDSVehicles"/>
 			<referrer name="OnQueryError"/>
@@ -37461,7 +37404,6 @@
 			<referrer name="pc_cmd_carplate"/>
 			<referrer name="pc_cmd_carcolor"/>
 			<referrer name="pc_cmd_park"/>
-			<referrer name="pc_cmd_vehicles2"/>
 			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="pc_cmd_addbizgas"/>
 			<referrer name="pc_cmd_fill"/>
@@ -38287,7 +38229,6 @@
 		</member>
 		<member name="M:string_fast" syntax="string_fast(varname[], ...)">
 			<stacksize value="15"/>
-			<referrer name="updateLevelBar"/>
 			<referrer name="Calculate"/>
 			<referrer name="dialog_EMAIL"/>
 			<referrer name="dialog_GENDER"/>
@@ -38321,7 +38262,6 @@
 			<referrer name="dialog_DIALOG_MEMBERSUINV"/>
 			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="updateTaxiTextdraw"/>
-			<referrer name="TimerWar"/>
 			<referrer name="dialog_DIALOG_SVF"/>
 			<referrer name="LoadSafes"/>
 			<referrer name="pc_cmd_fwithdraw"/>
@@ -38361,7 +38301,6 @@
 			<referrer name="pc_cmd_cinvite"/>
 			<referrer name="dialog_DIALOG_CLAN"/>
 			<referrer name="SetClanTag"/>
-			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
 			<referrer name="checkPlayerBanIP"/>
 			<referrer name="checkMission"/>
@@ -38373,7 +38312,6 @@
 			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="updateGasCan"/>
 			<referrer name="TimerJail"/>
-			<referrer name="TimerWanted"/>
 			<referrer name="Timers"/>
 			<referrer name="TimerTutorial"/>
 			<referrer name="PayDay"/>
@@ -38411,12 +38349,9 @@
 			<referrer name="pc_cmd_unjail"/>
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="pc_cmd_showfreq"/>
-			<referrer name="pc_cmd_exam"/>
 			<referrer name="pc_cmd_number"/>
 			<referrer name="pc_cmd_accept"/>
-			<referrer name="ShowDealerShipTD"/>
 			<referrer name="cancelDriveTest"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="OnPlayerRequestClass"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<referrer name="OnPlayerDeath"/>
@@ -38429,7 +38364,6 @@
 			<dependency name="EOS"/>
 			<dependency name="YVA2_DummyPush"/>
 			<dependency name="gFast"/>
-			<dependency name="gString"/>
 			<dependency name="string_fast"/>
 			<dependency name="va_format"/>
 			<param name="varname">
@@ -38709,6 +38643,18 @@
 			<param name="playerid">
 			</param>
 		</member>
+		<member name="M:testPlayerTextDrawShow" syntax="testPlayerTextDrawShow(playerid, text, nr)">
+			<stacksize value="4"/>
+			<dependency name="PlayerTextDrawShow"/>
+			<dependency name="printf"/>
+			<param name="playerid">
+			</param>
+			<param name="text">
+				<paraminfo>PlayerText </paraminfo>
+			</param>
+			<param name="nr">
+			</param>
+		</member>
 		<member name="M:tolower" syntax="tolower(c)">
 			<attribute name="native"/>
 			<referrer name="StrToLower"/>
@@ -38944,7 +38890,7 @@
 			</param>
 		</member>
 		<member name="M:updateLevelBar" syntax="updateLevelBar(playerid)">
-			<stacksize value="4107"/>
+			<stacksize value="10"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkMission"/>
 			<referrer name="PayDay"/>
@@ -38953,7 +38899,6 @@
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="CreatePlayerProgressBar"/>
 			<dependency name="DestroyPlayerProgressBar"/>
-			<dependency name="PlayerTextDrawSetString"/>
 			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="SetPlayerProgressBarMaxValue"/>
 			<dependency name="SetPlayerProgressBarValue"/>
@@ -38962,10 +38907,9 @@
 			<dependency name="pRespectPoints"/>
 			<dependency name="playerBarPTD"/>
 			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
 			<dependency name="playerLevelPTD"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="va_PlayerTextDrawSetString"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -38983,11 +38927,10 @@
 		</member>
 		<member name="M:updateTaxiTextdraw" syntax="updateTaxiTextdraw(playerid)">
 			<attribute name="public"/>
-			<stacksize value="16394"/>
+			<stacksize value="12298"/>
 			<referrer name="pc_cmd_fare"/>
 			<referrer name="fareUpdateTimer"/>
 			<referrer name="CB_OnPlayerStateChange"/>
-			<dependency name="PlayerTextDrawSetString"/>
 			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="fareTD"/>
 			<dependency name="formatNumber"/>
@@ -39000,6 +38943,7 @@
 			<dependency name="string_fast"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="va_PlayerTextDrawSetString"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -39093,7 +39037,17 @@
 		</member>
 		<member name="M:va_PlayerTextDrawSetString" syntax="va_PlayerTextDrawSetString(playerid, text, string[], ...)">
 			<stacksize value="15"/>
+			<referrer name="updateLevelBar"/>
+			<referrer name="updateTaxiTextdraw"/>
+			<referrer name="TimerWar"/>
+			<referrer name="onPlayerLogin"/>
 			<referrer name="TimerSpeedo"/>
+			<referrer name="TimerJail"/>
+			<referrer name="TimerWanted"/>
+			<referrer name="pc_cmd_exam"/>
+			<referrer name="ShowDealerShipTD"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
+			<referrer name="OnPlayerEnterCheckpoint"/>
 			<dependency name="EOS"/>
 			<dependency name="PlayerTextDrawSetString"/>
 			<dependency name="YVA2_DummyPush"/>

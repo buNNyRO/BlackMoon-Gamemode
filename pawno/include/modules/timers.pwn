@@ -9,7 +9,7 @@ timer kickEx[1000](playerid)
 timer TimerJail[1000](i) {
 	playerInfo[i][pJailTime] --;
 	PlayerTextDrawShow(i, jailTimeTD[i]);
-	PlayerTextDrawSetString(i, jailTimeTD[i], string_fast("Jail Time: ~r~%d secunde", playerInfo[i][pJailTime]));
+	va_PlayerTextDrawSetString(i, jailTimeTD[i], "Jail Time: ~r~%d secunde", playerInfo[i][pJailTime]);
 	if(playerInfo[i][pJailTime] <= 0) {
 		stop jailTime[i];
 		playerInfo[i][pJailTime] = 0;
@@ -25,7 +25,7 @@ timer TimerJail[1000](i) {
 timer TimerWanted[1000](x) {
 	playerInfo[x][pWantedTime] --;
 	PlayerTextDrawShow(x, wantedTD[x]);
-	PlayerTextDrawSetString(x, wantedTD[x], string_fast("Wanted Time: ~r~%d secunde", playerInfo[x][pWantedTime]));\
+	va_PlayerTextDrawSetString(x, wantedTD[x], "Wanted Time: ~r~%d secunde", playerInfo[x][pWantedTime]);
 	if(playerInfo[x][pWantedTime] <= 0 && playerInfo[x][pWantedLevel] > 0) {
 		playerInfo[x][pWantedTime] = 300;
 		playerInfo[x][pWantedLevel] --;

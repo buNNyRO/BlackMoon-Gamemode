@@ -77,7 +77,7 @@ CMD:exam(playerid, params[]) {
 	vehicle_personal[playerInfo[playerid][pExamenVehicle]] = -1;
 	SetPlayerCheckpoint(playerid, examenInfo[Iter_First(ExamenCheckpoints)][dmvX], examenInfo[Iter_First(ExamenCheckpoints)][dmvY], examenInfo[Iter_First(ExamenCheckpoints)][dmvZ], 3.0);
 	playerInfo[playerid][pExamenCheckpoint] = Iter_First(ExamenCheckpoints);
-	PlayerTextDrawSetString(playerid, playerExamenPTD[playerid], string_fast("DMV Exam~n~Checkpoints:%d/%d~n~Stay Tuned !", (playerInfo[playerid][pExamenCheckpoint] - 1), Iter_Count(ExamenCheckpoints)));
+	va_PlayerTextDrawSetString(playerid, playerExamenPTD[playerid], "DMV Exam~n~Checkpoints:%d/%d~n~Stay Tuned !", (playerInfo[playerid][pExamenCheckpoint] - 1), Iter_Count(ExamenCheckpoints));
 	PlayerTextDrawShow(playerid, playerExamenPTD[playerid]);
 	SCM(playerid, COLOR_AQUA, "DMV Exam: {ffffff} Examen-ul a inceput, te rugam sa intri in toate checkpoint-urile.");	
 	return true;

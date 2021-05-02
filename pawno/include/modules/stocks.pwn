@@ -503,7 +503,7 @@ stock updateLevelBar(playerid)
 	SetPlayerProgressBarValue(playerid, playerBarPTD[playerid], playerInfo[playerid][pRespectPoints]);
 	ShowPlayerProgressBar(playerid, playerBarPTD[playerid]);
 
-	PlayerTextDrawSetString(playerid, playerLevelPTD[playerid], string_fast("Nivel %d (%d/%d RP)", playerInfo[playerid][pLevel], playerInfo[playerid][pRespectPoints], (playerInfo[playerid][pLevel] * 3)));
+	va_PlayerTextDrawSetString(playerid, playerLevelPTD[playerid], "Nivel %d (%d/%d RP)", playerInfo[playerid][pLevel], playerInfo[playerid][pRespectPoints], (playerInfo[playerid][pLevel] * 3));
 	PlayerTextDrawShow(playerid, playerLevelPTD[playerid]);
 	return true;
 }
