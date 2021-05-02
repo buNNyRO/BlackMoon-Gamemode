@@ -48,6 +48,7 @@
 #include <modules\comenzi\admin.pwn>
 #include <modules\comenzi\player.pwn>
 #include <modules\dealership.pwn>
+#include <modules\emails.pwn>
 
 main() {}
 
@@ -843,14 +844,6 @@ public OnPlayerEnterCheckpoint(playerid)
 }
 	
 public OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ) {
-	if(Iter_Contains(ServerAdmins, playerid)) {
-		SetPlayerInterior(playerid, 0);
-		SetPlayerVirtualWorld(playerid, 0);
-		if(!IsPlayerInAnyVehicle(playerid)) return SetPlayerPos(playerid, fX, fY, (fZ + 5));
-		SetVehiclePos(GetPlayerVehicleID(playerid), fX, fY, (fZ + 5));
-		SetVehicleVirtualWorld(GetPlayerVehicleID(playerid), 0);
-		LinkVehicleToInterior(GetPlayerVehicleID(playerid), 0);
-	}
 	return true;
 }
 

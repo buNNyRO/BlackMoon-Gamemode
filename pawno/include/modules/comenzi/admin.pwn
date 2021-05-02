@@ -301,11 +301,15 @@ CMD:setadmin(playerid, params[])
 	if(admin)
 		TextDrawShowForPlayer(userID, serverInfoTD);
 
-	if(Iter_Contains(ServerAdmins, userID) && !admin)
+	if(Iter_Contains(ServerAdmins, userID) && !admin) {
 		Iter_Remove(ServerAdmins, userID);
+		AllowPlayerTeleport(playerid, 0);
+	} 
 
-	if(!Iter_Contains(ServerAdmins, userID) && admin)
+	if(!Iter_Contains(ServerAdmins, userID) && admin) {
 		Iter_Add(ServerAdmins, userID);
+		AllowPlayerTeleport(playerid, 1);
+	}
 
 	playerInfo[userID][pAdmin] = admin;
 	update("UPDATE `server_users` SET `Admin` = '%d' WHERE `ID` = '%d'", admin, playerInfo[userID][pSQLID]);

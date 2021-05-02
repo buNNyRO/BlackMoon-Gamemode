@@ -139,6 +139,7 @@ function onPlayerLogin(playerid)
 	gString[0] = (EOS);
 	cache_get_value_name(0, "Licenses", gString, 48);
 	sscanf(gString, "p<|>dddddddd", playerInfo[playerid][pDrivingLicense], playerInfo[playerid][pDrivingLicenseSuspend], playerInfo[playerid][pWeaponLicense], playerInfo[playerid][pWeaponLicenseSuspend], playerInfo[playerid][pFlyLicense], playerInfo[playerid][pFlyLicenseSuspend], playerInfo[playerid][pBoatLicense], playerInfo[playerid][pBoatLicenseSuspend]);
+	mysql_tquery(SQL, string_fast("SELECT * FROM `panel_notifications` WHERE `UserID` = '%d' AND `Read` = 0", playerInfo[playerid][pSQLID]), "CalculateEmails", "");
 
 	clearChat(playerid, 30);
 	SCMf(playerid, COLOR_GREY, "* Bine ai venit, %s.", getName(playerid)); 
@@ -154,6 +155,7 @@ function onPlayerLogin(playerid)
 	if(playerInfo[playerid][pAdmin]) {
 		Iter_Add(ServerAdmins, playerid);
 		Iter_Add(ServerStaff, playerid);
+		AllowPlayerTeleport(playerid, 1);
 		TextDrawShowForPlayer(playerid, serverInfoTD);
 	}
 
