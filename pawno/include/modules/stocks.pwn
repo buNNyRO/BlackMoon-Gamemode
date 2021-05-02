@@ -300,7 +300,7 @@ stock playerTextDraws(playerid) {
 	PlayerTextDrawSetProportional(playerid, vehicleHud[7], 1);
 	PlayerTextDrawSetShadow(playerid, vehicleHud[7], 0);
 
-	vehicleHud[8] = CreatePlayerTextDraw(playerid, 519.578002, 336.151184, "000000.0");
+	vehicleHud[8] = CreatePlayerTextDraw(playerid, 519.578002, 336.151184, "VEHICLES");
 	PlayerTextDrawLetterSize(playerid, vehicleHud[8], 0.620001, 2.978841);
 	PlayerTextDrawAlignment(playerid, vehicleHud[8], 1);
 	PlayerTextDrawColor(playerid, vehicleHud[8], -138);
@@ -831,7 +831,7 @@ stock getVehicleHealth(vehicleid) {
 stock getVehicleSpeed(vehicleid,mode = 1) {
     new Float: x, Float: y, Float: z;
     GetVehicleVelocity(vehicleid , x , y , z);
-    return floatround(((floatsqroot(((x*x)+(y*y)+(z*z)))*(!mode ? 105.0 : 170.0 )))*1.06);
+    return floatround(((floatsqroot(((x*x)+(y*y)+(z*z)))*(!mode ? 105.0 : 170.0 )))*0.98);
 }
 
 stock sendPlayerError(playerid, const text[], va_args<>)

@@ -502,7 +502,9 @@ public OnVehicleDeath(vehicleid, killerid) {
 public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 	if(PRESSED(KEY_LOOK_BEHIND)) {
 		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER || !isBike(GetPlayerVehicleID(playerid)) || GetPVarInt(playerid, "engineDeelay") != gettime()) {
-			//Command_ReProcess(playerid, "engine", false);
+			callcmd::engine(playerid, "\1");
+			// PC_EmulateCommand(playerid, "engine");
+			print("test");
 		}
 	}
 	if(PRESSED(KEY_SECONDARY_ATTACK)) {
@@ -614,7 +616,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 	}
 	if(PRESSED(KEY_ACTION)) {
 		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER) {
-			//Command_ReProcess(playerid, "lights", false);
+			callcmd::lights(playerid, "\1");
 		}
 	}
 	if(PRESSED(KEY_ANALOG_DOWN)) {
@@ -644,8 +646,8 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 		}
 	}
 	if(PRESSED(KEY_NO)) {
-		//Command_ReProcess(playerid, "lock", false);
-		//Command_ReProcess(playerid, "finalquest", false);
+		callcmd::lock(playerid, "\1");
+		callcmd::finalquest(playerid, "\1");
 	}
 	if(PRESSED(KEY_CROUCH)) {
 		if(Iter_Contains(FactionMembers[2], playerid) || Iter_Contains(FactionMembers[3], playerid) || Iter_Contains(FactionMembers[4], playerid)) {
@@ -719,14 +721,10 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 			playerInfo[playerid][pTaxiMoney] = 0;
 		}
 	}
-	if(oldstate == PLAYER_STATE_DRIVER) {
-		stop collision[playerid];
-		stop carFuel[playerid];
-	}
+	if(oldstate == PLAYER_STATE_DRIVER) stop collision[playerid];
 	if(newstate == PLAYER_STATE_DRIVER)
 	{
 		collision[playerid] = repeat TimerCollision(playerid);
-		carFuel[playerid] = repeat TimerFuel(playerid);
 		new vehicleid = GetPlayerVehicleID(playerid);
 		if(playerInfo[playerid][pFlyLicense] == 0 && isPlane(vehicleid))
 		{
@@ -772,7 +770,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 		}
 		if(vehicle_personal[vehicleid] > -1) {
 			new id = vehicle_personal[vehicleid];
-			SCM(playerid, COLOR_WHITE, string_fast("Acest %s (ID: %d) este detinut de %s | Age: %d zile | Kilometraj: %.02f km | Culori: %d, %d", getVehicleName(personalVehicle[id][pvModelID]), personalVehicle[id][pvID], getName(getVehicleOwner(personalVehicle[id][pvOwnerID])), personalVehicle[id][pvAge], personalVehicle[id][pvOdometer], personalVehicle[id][pvColorOne], personalVehicle[id][pvColorTwo]));
+			SCMf(playerid, COLOR_WHITE, "Acest %s (ID: %d) este detinut de %s | Age: %d zile | Kilometraj: %.02f km | Culori: %d, %d", getVehicleName(personalVehicle[id][pvModelID]), personalVehicle[id][pvID], getName(getVehicleOwner(personalVehicle[id][pvOwnerID])), personalVehicle[id][pvAge], personalVehicle[id][pvOdometer], personalVehicle[id][pvColorOne], personalVehicle[id][pvColorTwo]);
 			personalVehicle[id][pvDespawnTime] = 0;
 		}
 	}

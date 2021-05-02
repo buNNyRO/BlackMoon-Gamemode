@@ -85,6 +85,7 @@ CMD:exam(playerid, params[]) {
 
 CMD:engine(playerid, params[]) {
 	if(!IsPlayerInAnyVehicle(playerid) || GetPlayerState(playerid) != PLAYER_STATE_DRIVER) return true;
+	if(vehicle_fuel[GetPlayerVehicleID(playerid)] < 1) return sendPlayerError(playerid, "Acest vehicul nu mai are combustibil.");
 	if(isBike(GetPlayerVehicleID(playerid))) return sendPlayerError(playerid, "Acest vehicul nu are un motor.");
 	if(GetPVarInt(playerid, "engineDeelay") == gettime()) return true;
 	if(vehicle_personal[GetPlayerVehicleID(playerid)] > -1) {

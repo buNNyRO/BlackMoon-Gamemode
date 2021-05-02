@@ -1771,6 +1771,7 @@
 			<referrer name="IsPlayerInTurf"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerCar"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_park"/>
 			<referrer name="pc_cmd_despawncar"/>
 			<referrer name="pc_cmd_despawncars"/>
@@ -2108,7 +2109,6 @@
 			<referrer name="ModVehicle"/>
 			<referrer name="SaveComponent"/>
 			<referrer name="TimerCar"/>
-			<referrer name="TimerFuel"/>
 			<referrer name="TimerSpeedo"/>
 			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<referrer name="pc_cmd_lock"/>
@@ -2654,7 +2654,6 @@
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerCar_yT@"/>
-			<referrer name="TimerFuel_yT@"/>
 			<referrer name="TimerSpeedo_yT@"/>
 			<referrer name="pc_cmd_fill"/>
 			<referrer name="gasTimer_yT@"/>
@@ -3339,7 +3338,6 @@
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerCar_yT@"/>
-			<referrer name="TimerFuel_yT@"/>
 			<referrer name="TimerSpeedo_yT@"/>
 			<referrer name="pc_cmd_fill"/>
 			<referrer name="gasTimer_yT@"/>
@@ -4028,10 +4026,6 @@
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="OnPlayerEnterCheckpoint"/>
 		</member>
-		<member name="F:carFuel">
-			<tagname value="Timer"/>
-			<referrer name="CB_OnPlayerStateChange"/>
-		</member>
 		<member name="F:cellRandom">
 			<tagname value="Float"/>
 			<referrer name="pc_cmd_arrest"/>
@@ -4490,7 +4484,6 @@
 			<referrer name="ModVehicle"/>
 			<referrer name="SaveComponent"/>
 			<referrer name="TimerCar"/>
-			<referrer name="TimerFuel"/>
 			<referrer name="TimerSpeedo"/>
 			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<referrer name="pc_cmd_lock"/>
@@ -4736,6 +4729,7 @@
 			<referrer name="dialog_BUY_INSURANCE"/>
 			<referrer name="getVehicleOwner"/>
 			<referrer name="TimerCar"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_swapcolors"/>
 			<referrer name="pc_cmd_carplate"/>
 			<referrer name="pc_cmd_carcolor"/>
@@ -5105,6 +5099,7 @@
 		<member name="F:vehNames">
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_lock"/>
 			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="pc_cmd_spawncar"/>
@@ -5189,7 +5184,7 @@
 			<referrer name="jobWork"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerCar"/>
-			<referrer name="TimerFuel"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_park"/>
 			<referrer name="pc_cmd_despawncar"/>
 			<referrer name="pc_cmd_despawncars"/>
@@ -5205,7 +5200,6 @@
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerCar"/>
-			<referrer name="TimerFuel"/>
 			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_park"/>
 			<referrer name="pc_cmd_fill"/>
@@ -5214,6 +5208,7 @@
 			<referrer name="pc_cmd_despawncar"/>
 			<referrer name="pc_cmd_despawncars"/>
 			<referrer name="pc_cmd_exam"/>
+			<referrer name="pc_cmd_engine"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="OnVehicleSpawn"/>
 			<referrer name="OnVehicleDeath"/>
@@ -5239,7 +5234,6 @@
 			<referrer name="ModVehicle"/>
 			<referrer name="SaveComponent"/>
 			<referrer name="TimerCar"/>
-			<referrer name="TimerFuel"/>
 			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_lock"/>
 			<referrer name="pc_cmd_swapcolors"/>
@@ -5467,7 +5461,6 @@
 			<stacksize value="4"/>
 			<referrer name="GangZoneCreateEx"/>
 			<referrer name="CreatePlayerProgressBar"/>
-			<referrer name="TimerFuel"/>
 			<referrer name="TimerSpeedo"/>
 			<referrer name="PayDay"/>
 			<dependency name="float"/>
@@ -5482,7 +5475,7 @@
 			<tagname value="Float"/>
 			<stacksize value="4"/>
 			<referrer name="Callback_GetSpeed"/>
-			<referrer name="TimerFuel"/>
+			<referrer name="TimerSpeedo"/>
 			<dependency name="float"/>
 			<dependency name="floatmul"/>
 			<param name="oper1">
@@ -5537,7 +5530,7 @@
 			<referrer name="AttachTrailer"/>
 			<referrer name="ProxDetectorS"/>
 			<referrer name="PlayerToPoint"/>
-			<referrer name="TimerFuel"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_fill"/>
 			<param name="oper1">
 				<paraminfo>Float </paraminfo>
@@ -5564,7 +5557,6 @@
 			<referrer name="getVehicleSpeed"/>
 			<referrer name="GetDistanceBetweenPoints"/>
 			<referrer name="@yH_OnPlayerDeath@007"/>
-			<referrer name="TimerFuel"/>
 			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_fill"/>
 			<referrer name="PayDay"/>
@@ -5658,7 +5650,7 @@
 			<referrer name="Fly"/>
 			<referrer name="_GetMapZoneLoopStartIndex"/>
 			<referrer name="TimerWar"/>
-			<referrer name="TimerFuel"/>
+			<referrer name="TimerSpeedo"/>
 			<dependency name="floatcmp"/>
 			<param name="oper1">
 				<paraminfo>Float </paraminfo>
@@ -5699,6 +5691,7 @@
 			<tagname value="bool"/>
 			<stacksize value="4"/>
 			<referrer name="GetClosestVehicle"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_area"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
 			<dependency name="float"/>
@@ -5791,6 +5784,7 @@
 			<tagname value="bool"/>
 			<stacksize value="4"/>
 			<referrer name="pc_cmd_area"/>
+			<referrer name="pc_cmd_engine"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
 			<dependency name="float"/>
 			<dependency name="floatcmp"/>
@@ -10065,12 +10059,17 @@
 			<dependency name="pFlymode"/>
 			<dependency name="pJob"/>
 			<dependency name="pSQLID"/>
+			<dependency name="pc_cmd_engine"/>
+			<dependency name="pc_cmd_finalquest"/>
+			<dependency name="pc_cmd_lights"/>
+			<dependency name="pc_cmd_lock"/>
 			<dependency name="personalVehicle"/>
 			<dependency name="pinBusiness"/>
 			<dependency name="pinFaction"/>
 			<dependency name="pinHouse"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
+			<dependency name="print"/>
 			<dependency name="pvSpawnedID"/>
 			<dependency name="returnNeededPoints"/>
 			<dependency name="sendPlayerError"/>
@@ -10118,12 +10117,10 @@
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetVehicleParamsEx"/>
 			<dependency name="TimerCollision_yT@"/>
-			<dependency name="TimerFuel_yT@"/>
 			<dependency name="TimerSpeedo_yT@"/>
 			<dependency name="Working"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="addRaportPoint"/>
-			<dependency name="carFuel"/>
 			<dependency name="collision"/>
 			<dependency name="examenFail"/>
 			<dependency name="fareTD"/>
@@ -10176,6 +10173,7 @@
 			<dependency name="taxi"/>
 			<dependency name="true"/>
 			<dependency name="updateTaxiTextdraw"/>
+			<dependency name="va_SendClientMessage"/>
 			<dependency name="vehNames"/>
 			<dependency name="vehNames"/>
 			<dependency name="vehicleFaction"/>
@@ -14549,6 +14547,7 @@
 			<referrer name="OnPlayerKeyStateChange"/>
 			<referrer name="Callback_TabCheck"/>
 			<referrer name="dialog_BUY_INSURANCE"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_swapcolors"/>
 			<referrer name="pc_cmd_buyinsurance"/>
 			<referrer name="pc_cmd_carplate"/>
@@ -14589,7 +14588,6 @@
 			<referrer name="pc_cmd_tie"/>
 			<referrer name="AttachTrailer"/>
 			<referrer name="dialog_BUY_INSURANCE"/>
-			<referrer name="TimerFuel"/>
 			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_lock"/>
 			<referrer name="pc_cmd_swapcolors"/>
@@ -15127,6 +15125,7 @@
 			<referrer name="isBoat"/>
 			<referrer name="isBike"/>
 			<referrer name="isMotor"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_despawncar"/>
 			<referrer name="pc_cmd_gotocar"/>
 			<referrer name="pc_cmd_getcar"/>
@@ -15145,6 +15144,7 @@
 		<member name="M:GetVehicleParamsEx" syntax="GetVehicleParamsEx(vehicleid, &amp;engine, &amp;lights, &amp;alarm, &amp;doors, &amp;bonnet, &amp;boot, &amp;objective)">
 			<attribute name="native"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_lock"/>
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="pc_cmd_lights"/>
@@ -19359,7 +19359,6 @@
 			<referrer name="advertismentTimer_yT@"/>
 			<referrer name="helpnTimer_yT@"/>
 			<referrer name="TimerCar_yT@"/>
-			<referrer name="TimerFuel_yT@"/>
 			<referrer name="TimerSpeedo_yT@"/>
 			<referrer name="gasTimer_yT@"/>
 			<referrer name="kickEx_yT@"/>
@@ -23262,6 +23261,7 @@
 		<member name="M:SetVehicleParamsEx" syntax="SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective)">
 			<attribute name="native"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_lock"/>
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="pc_cmd_lights"/>
@@ -24043,50 +24043,6 @@
 			<param name="i">
 			</param>
 		</member>
-		<member name="M:TimerFuel" syntax="TimerFuel(playerid)">
-			<stacksize value="8"/>
-			<referrer name="TimerFuel@_yT"/>
-			<dependency name="operator/(Float:,_:)"/>
-			<dependency name="operator*(Float:,_:)"/>
-			<dependency name="operator-(Float:,Float:)"/>
-			<dependency name="operator+(Float:,Float:)"/>
-			<dependency name="operator==(Float:,Float:)"/>
-			<dependency name="GetPlayerVehicleID"/>
-			<dependency name="getVehicleSpeed"/>
-			<dependency name="isBike"/>
-			<dependency name="isBoat"/>
-			<dependency name="isPlane"/>
-			<dependency name="personalVehicle"/>
-			<dependency name="personalVehicle"/>
-			<dependency name="pvFuel"/>
-			<dependency name="pvOdometer"/>
-			<dependency name="true"/>
-			<dependency name="vehicle_engine"/>
-			<dependency name="vehicle_fuel"/>
-			<dependency name="vehicle_personal"/>
-			<param name="playerid">
-			</param>
-		</member>
-		<member name="M:TimerFuel@_yT" syntax="TimerFuel@_yT(__r, playerid)">
-			<tagname value="@Yj"/>
-			<attribute name="public"/>
-			<stacksize value="4"/>
-			<dependency name="TimerFuel"/>
-			<param name="__r">
-			</param>
-			<param name="playerid">
-			</param>
-		</member>
-		<member name="M:TimerFuel_yT@" syntax="TimerFuel_yT@(playerid)">
-			<stacksize value="8"/>
-			<referrer name="CB_OnPlayerStateChange"/>
-			<dependency name="I@"/>
-			<dependency name="J@"/>
-			<dependency name="O@"/>
-			<dependency name="_Timer_C"/>
-			<param name="playerid">
-			</param>
-		</member>
 		<member name="M:TimerGetHit" syntax="TimerGetHit(playerid)">
 			<stacksize value="10"/>
 			<referrer name="TimerGetHit@_yT"/>
@@ -24232,24 +24188,43 @@
 			</param>
 		</member>
 		<member name="M:TimerSpeedo" syntax="TimerSpeedo(playerid)">
-			<stacksize value="11"/>
+			<stacksize value="19"/>
 			<referrer name="TimerSpeedo@_yT"/>
 			<dependency name="operator/(Float:,_:)"/>
+			<dependency name="operator*(Float:,_:)"/>
+			<dependency name="operator-(Float:,Float:)"/>
 			<dependency name="operator+(Float:,Float:)"/>
 			<dependency name="operator*(Float:,Float:)"/>
+			<dependency name="operator==(Float:,Float:)"/>
+			<dependency name="operator&gt;(Float:,_:)"/>
+			<dependency name="GetPlayerState"/>
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="GetVehicleHealth"/>
+			<dependency name="GetVehicleModel"/>
+			<dependency name="GetVehicleParamsEx"/>
 			<dependency name="PlayerTextDrawLetterSize"/>
 			<dependency name="PlayerTextDrawShow"/>
+			<dependency name="SetVehicleParamsEx"/>
+			<dependency name="false"/>
 			<dependency name="getVehicleSpeed"/>
+			<dependency name="isBike"/>
+			<dependency name="isBoat"/>
+			<dependency name="isPlane"/>
+			<dependency name="pName"/>
 			<dependency name="personalVehicle"/>
 			<dependency name="personalVehicle"/>
-			<dependency name="printf"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="pvFuel"/>
 			<dependency name="pvLock"/>
 			<dependency name="pvOdometer"/>
+			<dependency name="sendNearbyMessage"/>
 			<dependency name="true"/>
 			<dependency name="va_PlayerTextDrawSetString"/>
+			<dependency name="vehNames"/>
+			<dependency name="vehNames"/>
 			<dependency name="vehicleHud"/>
+			<dependency name="vehicle_engine"/>
 			<dependency name="vehicle_fuel"/>
 			<dependency name="vehicle_personal"/>
 			<param name="playerid">
@@ -25285,7 +25260,6 @@
 			<referrer name="advertismentTimer_yT@"/>
 			<referrer name="helpnTimer_yT@"/>
 			<referrer name="TimerCar_yT@"/>
-			<referrer name="TimerFuel_yT@"/>
 			<referrer name="TimerSpeedo_yT@"/>
 			<referrer name="gasTimer_yT@"/>
 			<referrer name="kickEx_yT@"/>
@@ -28348,7 +28322,6 @@
 		</member>
 		<member name="M:getVehicleSpeed" syntax="getVehicleSpeed(vehicleid, mode)">
 			<stacksize value="9"/>
-			<referrer name="TimerFuel"/>
 			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_park"/>
 			<dependency name="operator+(Float:,Float:)"/>
@@ -28546,7 +28519,7 @@
 		</member>
 		<member name="M:isBike" syntax="isBike(carid)">
 			<stacksize value="3"/>
-			<referrer name="TimerFuel"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_entercar"/>
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="pc_cmd_lights"/>
@@ -28561,7 +28534,7 @@
 		</member>
 		<member name="M:isBoat" syntax="isBoat(carid)">
 			<stacksize value="3"/>
-			<referrer name="TimerFuel"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_lights"/>
 			<referrer name="OnPlayerEnterVehicle"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
@@ -28583,7 +28556,7 @@
 		</member>
 		<member name="M:isPlane" syntax="isPlane(carid)">
 			<stacksize value="3"/>
-			<referrer name="TimerFuel"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_lights"/>
 			<referrer name="OnPlayerEnterVehicle"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
@@ -32086,6 +32059,8 @@
 		<member name="M:pc_cmd_engine" syntax="pc_cmd_engine(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="17"/>
+			<referrer name="CB_OnPlayerKeyStateChange"/>
+			<dependency name="operator&lt;(Float:,_:)"/>
 			<dependency name="GetPVarInt"/>
 			<dependency name="GetPlayerState"/>
 			<dependency name="GetPlayerVehicleID"/>
@@ -32108,6 +32083,7 @@
 			<dependency name="vehNames"/>
 			<dependency name="vehNames"/>
 			<dependency name="vehicle_engine"/>
+			<dependency name="vehicle_fuel"/>
 			<dependency name="vehicle_personal"/>
 			<param name="playerid">
 			</param>
@@ -32416,6 +32392,7 @@
 		<member name="M:pc_cmd_finalquest" syntax="pc_cmd_finalquest(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="7"/>
+			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="IsPlayerInRangeOfPoint"/>
 			<dependency name="checkMission"/>
@@ -32433,6 +32410,7 @@
 		<member name="M:pc_cmd_fish" syntax="pc_cmd_fish(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="20"/>
+			<referrer name="pc_cmd_startwork"/>
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="CB_ApplyAnimation"/>
 			<dependency name="ClearAnimations"/>
@@ -33954,6 +33932,7 @@
 		<member name="M:pc_cmd_lights" syntax="pc_cmd_lights(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="17"/>
+			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<dependency name="GetPlayerState"/>
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="GetVehicleParamsEx"/>
@@ -34004,6 +33983,7 @@
 		<member name="M:pc_cmd_lock" syntax="pc_cmd_lock(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="4112"/>
+			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<dependency name="GameTextForPlayer"/>
 			<dependency name="GetClosestVehicle"/>
 			<dependency name="GetPlayerVehicleID"/>
@@ -35676,6 +35656,7 @@
 			<dependency name="pDrivingLicense"/>
 			<dependency name="pDrivingLicenseSuspend"/>
 			<dependency name="pJob"/>
+			<dependency name="pc_cmd_fish"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
@@ -36599,6 +36580,7 @@
 			<referrer name="LoadGasCan"/>
 			<referrer name="closeGate"/>
 			<referrer name="OnQueryError"/>
+			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<param name="string">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -36624,7 +36606,6 @@
 			<referrer name="LoadClans"/>
 			<referrer name="LoadExamCheckpoints"/>
 			<referrer name="LoadPersonalVehicle"/>
-			<referrer name="TimerSpeedo"/>
 			<referrer name="LoadGasCan"/>
 			<referrer name="LoadDSVehicles"/>
 			<referrer name="OnQueryError"/>
@@ -37241,6 +37222,7 @@
 			<referrer name="pc_cmd_untie"/>
 			<referrer name="FishingTimer"/>
 			<referrer name="pc_cmd_usedrugs"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="pc_cmd_accept"/>
 			<referrer name="OnPlayerText"/>
@@ -39117,6 +39099,7 @@
 			<referrer name="pc_cmd_setfreq"/>
 			<referrer name="pc_cmd_wt"/>
 			<referrer name="pc_cmd_freqmembers"/>
+			<referrer name="CB_OnPlayerStateChange"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="YVA2_DummyPush"/>
 			<dependency name="va_return"/>

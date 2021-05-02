@@ -336,6 +336,7 @@ CMD:startwork(playerid, params[]) {
 	if(playerInfo[playerid][pDrivingLicenseSuspend] > 0) return sendPlayerError(playerid, "Ai licenta suspendata pentru %d ore.", playerInfo[playerid][pDrivingLicenseSuspend]);
 	new jobid = playerInfo[playerid][pJob];
 	switch(jobid) {
+		case 1: callcmd::fish(playerid, "\1");
 		case 2: {
 			if(!IsPlayerInRangeOfPoint(playerid, 5.5, jobInfo[jobid][jobXST], jobInfo[jobid][jobYST], jobInfo[jobid][jobZST])) return sendPlayerError(playerid, "Nu esti la punctul de start work pentru jobul 'Trucker'.");
 			jobWork(playerid, JOB_TRUCKER);

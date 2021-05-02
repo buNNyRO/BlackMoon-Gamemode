@@ -393,30 +393,8 @@ timer TimerCar[gettime() + 900](i) {
 	return true;
 }
 
-timer TimerFuel[1000](playerid) {
-	new vehicleid = GetPlayerVehicleID(playerid);
-	if(!isPlane(vehicleid) && !isBoat(vehicleid) && !isBike(vehicleid) && vehicle_engine[vehicleid] == true)  {
-		new Float: fuel = 0.050, speed = getVehicleSpeed(vehicleid);
-		if(speed >= 5) {
-			fuel = (speed * 0.10) / 100;
-		}
-		vehicle_fuel[vehicleid] -= fuel;
-		if(vehicle_personal[vehicleid] > -1) {
-			new id = vehicle_personal[vehicleid];
-			personalVehicle[id][pvFuel] -= fuel;
-			personalVehicle[id][pvOdometer] += (fuel == 0.050) ? (0.0) : (fuel);
-		}	
-	}
-	return true;
-}
-
 timer TimerSpeedo[1000](playerid) { 
-	// PlayerTextDrawSetString(playerid, playerSpeedPTD[playerid], 
-	// 	string_fast("%s", vehicle_personal[vehicleid] > -1 ? 
-	// 		string_fast("%s~n~Odometer: %.2fKM~n~Status: %s~w~", gString, personalVehicle[vehicle_personal[vehicleid]][pvOdometer], 
-	// 			(personalVehicle[vehicle_personal[vehicleid]][pvLock] == 1) ? ("~r~Locked") : ("~g~Unlocked")) : 
-	// 		string_fast("~w~Speed: ~r~%d~w~ km/h~n~Fuel: %s%.0f~w~L", getVehicleSpeed(vehicleid), (vehicle_fuel[vehicleid] >= 30) ? 
-	// 			("~g~") : ("~r~"), vehicle_fuel[vehicleid])));
+
 	new vehicleid = GetPlayerVehicleID(playerid), Float:he;
 	GetVehicleHealth(vehicleid, he);
 	va_PlayerTextDrawSetString(playerid, vehicleHud[4], "%d", getVehicleSpeed(vehicleid));
@@ -424,19 +402,32 @@ timer TimerSpeedo[1000](playerid) {
 	va_PlayerTextDrawSetString(playerid, vehicleHud[12], "%d", getVehicleSpeed(vehicleid)/30);
 	va_PlayerTextDrawSetString(playerid, vehicleHud[13], "Bunny manelistu'", he, "%");
 	
-	PlayerTextDrawLetterSize(playerid, vehicleHud[10], 0.000000, (-0.533344)+(-0.03644447*vehicle_fuel[vehicleid]));
-	PlayerTextDrawShow(playerid, vehicleHud[10]);
-	printf("%f", vehicle_fuel[vehicleid]);
-	// CMD:testx(playerid, params[]) {
-	// 	new testtf;
-	// 	if(sscanf(params, "d", testtf)) return sendPlayerSyntax(playerid, "da");
-	// 	printf("%f", (-0.03644447*testtf));
-	// 	printf("%f", (-0.533344)+(-0.03644447*testtf));
-	// 	return 1;
-	// }
-	if(vehicle_personal[vehicleid] < -1) {
-		va_PlayerTextDrawSetString(playerid, vehicleHud[7], "%s", (personalVehicle[vehicle_personal[vehicleid]][pvLock]) ? ("~g~Unlocked") : ("~r~Locked"));
+	if(vehicle_fuel[vehicleid] > 0) {
+		PlayerTextDrawLetterSize(playerid, vehicleHud[10], 0.000000, (-0.533344)+(-0.03644447*vehicle_fuel[vehicleid]));
+		PlayerTextDrawShow(playerid, vehicleHud[10]);
+	} else {
+		new engine, lights, alarm, doors, bonnet, boot, objective;
+		sendNearbyMessage(playerid, COLOR_PURPLE, 25.0, "* %s a %s motorul unui %s", getName(playerid), (vehicle_engine[vehicleid]) ? ("oprit") : ("pornit"), getVehicleName(GetVehicleModel(vehicleid)));
+		GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+		SetVehicleParamsEx(GetPlayerVehicleID(playerid), VEHICLE_PARAMS_OFF, lights, alarm, doors, bonnet, boot, objective);
+		vehicle_engine[GetPlayerVehicleID(playerid)] = false;	
+	}
+	if(vehicle_personal[vehicleid] > -1) {
+		va_PlayerTextDrawSetString(playerid, vehicleHud[7], "%s", (personalVehicle[vehicle_personal[vehicleid]][pvLock]) ? ("~g~UNLOCKED") : ("~r~LOCKED"));
 		va_PlayerTextDrawSetString(playerid, vehicleHud[8], "%.1f", personalVehicle[vehicle_personal[vehicleid]][pvOdometer]);
+	}
+
+	if(!isPlane(vehicleid) && !isBoat(vehicleid) && !isBike(vehicleid) && vehicle_engine[vehicleid] == true && GetPlayerState(playerid) == PLAYER_STATE_DRIVER)  {
+		new Float: fuel = 0.050, speed = getVehicleSpeed(vehicleid);
+		if(speed >= 5) {
+			fuel = (speed * 0.15) / 100;
+		}
+		vehicle_fuel[vehicleid] -= fuel;
+		if(vehicle_personal[vehicleid] > -1) {
+			new id = vehicle_personal[vehicleid];
+			personalVehicle[id][pvFuel] -= fuel;
+			personalVehicle[id][pvOdometer] += (fuel == 0.050) ? (0.0) : (fuel);
+		}	
 	}
 	return true;
 }

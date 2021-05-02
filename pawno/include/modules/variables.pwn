@@ -59,7 +59,6 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], Connection = 0, AntiChea
     Timer:carFind[MAX_PLAYERS],
     Timer:muteTime[MAX_PLAYERS],
     Timer:speedo[MAX_PLAYERS],
-    Timer:carFuel[MAX_PLAYERS],
     Timer:war[MAX_TURFS],
     Timer:taxi[MAX_PLAYERS],
     Timer:getHit[MAX_PLAYERS],
