@@ -5,7 +5,7 @@ stock IsVehicleOccupied(vehicleid) {
 
 stock string_fast(const varname[], va_args<>) {
     gFast[0] = (EOS);
-    va_format(gString, sizeof gFast, varname, va_start<1>);
+    va_format(gFast, sizeof gFast, varname, va_start<1>);
     return gFast;
 }
 
@@ -187,49 +187,12 @@ stock showLicenses(playerid, userID)
 	return true;
 }
 
+stock testPlayerTextDrawShow(playerid, PlayerText:text, nr=1) {
+	printf("td %d", nr);
+	return PlayerTextDrawShow(playerid, text);
+}
+
 stock playerTextDraws(playerid) {
-	testt[0] = CreatePlayerTextDraw(playerid, 612.654479, 399.068511, "box");
-	PlayerTextDrawLetterSize(playerid, testt[0], 0.000000, -6.755570);
-	PlayerTextDrawTextSize(playerid, testt[0], 0.000000, -3.000000);
-	PlayerTextDrawAlignment(playerid, testt[0], 2);
-	PlayerTextDrawColor(playerid, testt[0], -2139062017);
-	PlayerTextDrawUseBox(playerid, testt[0], 1);
-	PlayerTextDrawBoxColor(playerid, testt[0], -8039681);
-	PlayerTextDrawSetShadow(playerid, testt[0], 0);
-	PlayerTextDrawSetOutline(playerid, testt[0], 0);
-	PlayerTextDrawBackgroundColor(playerid, testt[0], 255);
-	PlayerTextDrawFont(playerid, testt[0], 1);
-	PlayerTextDrawSetProportional(playerid, testt[0], 1);
-	PlayerTextDrawSetShadow(playerid, testt[0], 0);
-
-	testt[1] = CreatePlayerTextDraw(playerid, 620.094116, 398.223052, "box");
-	PlayerTextDrawLetterSize(playerid, testt[1], 0.000000, -0.533345);
-	PlayerTextDrawTextSize(playerid, testt[1], 0.000000, 10.000000);
-	PlayerTextDrawAlignment(playerid, testt[1], 2);
-	PlayerTextDrawColor(playerid, testt[1], -16776961);
-	PlayerTextDrawUseBox(playerid, testt[1], 1);
-	PlayerTextDrawBoxColor(playerid, testt[1], -16777090);
-	PlayerTextDrawSetShadow(playerid, testt[1], 0);
-	PlayerTextDrawSetOutline(playerid, testt[1], 0);
-	PlayerTextDrawBackgroundColor(playerid, testt[1], 255);
-	PlayerTextDrawFont(playerid, testt[1], 1);
-	PlayerTextDrawSetProportional(playerid, testt[1], 1);
-	PlayerTextDrawSetShadow(playerid, testt[1], 0);
-
-	testt[2] = CreatePlayerTextDraw(playerid, 620.094116, 398.223052, "box");
-	PlayerTextDrawLetterSize(playerid, testt[2], 0.000000, -2.311122);
-	PlayerTextDrawTextSize(playerid, testt[2], 0.000000, 9.000000);
-	PlayerTextDrawAlignment(playerid, testt[2], 2);
-	PlayerTextDrawColor(playerid, testt[2], -16776961);
-	PlayerTextDrawUseBox(playerid, testt[2], 1);
-	PlayerTextDrawBoxColor(playerid, testt[2], -16777090);
-	PlayerTextDrawSetShadow(playerid, testt[2], 0);
-	PlayerTextDrawSetOutline(playerid, testt[2], 0);
-	PlayerTextDrawBackgroundColor(playerid, testt[2], 255);
-	PlayerTextDrawFont(playerid, testt[2], 1);
-	PlayerTextDrawSetProportional(playerid, testt[2], 1);
-	PlayerTextDrawSetShadow(playerid, testt[2], 0);
-		
 	vehicleHud[0] = CreatePlayerTextDraw(playerid, 552.778930, 341.824401, "box");
 	PlayerTextDrawLetterSize(playerid, vehicleHud[0], 0.000000, 5.911108);
 	PlayerTextDrawTextSize(playerid, vehicleHud[0], 0.000000, 147.000000);
@@ -408,20 +371,6 @@ stock playerTextDraws(playerid) {
 	PlayerTextDrawFont(playerid, vehicleHud[13], 2);
 	PlayerTextDrawSetProportional(playerid, vehicleHud[13], 1);
 	PlayerTextDrawSetShadow(playerid, vehicleHud[13], 0);
-
-	vehicleHud[14] = CreatePlayerTextDraw(playerid, 620.094116, 398.223052, "box");
-	PlayerTextDrawLetterSize(playerid, vehicleHud[14], 0.000000, -0.533345);
-	PlayerTextDrawTextSize(playerid, vehicleHud[14], 0.000000, 10.000000);
-	PlayerTextDrawAlignment(playerid, vehicleHud[14], 2);
-	PlayerTextDrawColor(playerid, vehicleHud[14], -16776961);
-	PlayerTextDrawUseBox(playerid, vehicleHud[14], 1);
-	PlayerTextDrawBoxColor(playerid, vehicleHud[14], -16777090);
-	PlayerTextDrawSetShadow(playerid, vehicleHud[14], 0);
-	PlayerTextDrawSetOutline(playerid, vehicleHud[14], 0);
-	PlayerTextDrawBackgroundColor(playerid, vehicleHud[14], 255);
-	PlayerTextDrawFont(playerid, vehicleHud[14], 1);
-	PlayerTextDrawSetProportional(playerid, vehicleHud[14], 1);
-	PlayerTextDrawSetShadow(playerid, vehicleHud[14], 0);
 
 	playerNamePTD[playerid] = CreatePlayerTextDraw(playerid, 639.499511, 422.266052, "");
 	PlayerTextDrawLetterSize(playerid, playerNamePTD[playerid], 0.202001, 1.320000);

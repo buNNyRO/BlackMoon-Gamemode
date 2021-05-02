@@ -172,7 +172,7 @@ function onPlayerLogin(playerid)
 	PlayerNumber[playerInfo[playerid][pPhone]] = playerid;
 	Iter_Add(loggedPlayers, playerid);
 
-	PlayerTextDrawSetString(playerid, playerNamePTD[playerid], string_fast("%s ~R~(%d)", getName(playerid), playerid));
+	va_PlayerTextDrawSetString(playerid, playerNamePTD[playerid], "%s ~R~(%d)", getName(playerid), playerid);
 	PlayerTextDrawShow(playerid, playerNamePTD[playerid]);
 
 	TextDrawShowForPlayer(playerid, serverDateTD);
