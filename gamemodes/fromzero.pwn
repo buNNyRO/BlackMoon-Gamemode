@@ -51,18 +51,18 @@
 
 main() {}
 
-// alias:adminchat("a", "ac")
-// alias:helperchat("h", "hc")
-// alias:setrepsectpoints("setrp", "setrespect")
-// alias:admingivelicense("agl", "admingl")
-// alias:adminsuspendlicense("asl", "adminsl")
-// alias:vehicles("v", "g", "garage")
-// alias:fixveh("fv", "fixvehicle")
-// alias:addnos("nos", "addnitro")
-// alias:flipveh("flip", "flipvehicle")
-// alias:acceptreport("acr", "areport")
-// alias:closereport("cr", "clreport")
-// alias:reportmute("rmute", "repmute")
+alias:adminchat("a", "ac")
+alias:helperchat("h", "hc")
+alias:setrepsectpoints("setrp", "setrespect")
+alias:admingivelicense("agl", "admingl")
+alias:adminsuspendlicense("asl", "adminsl")
+alias:vehicles("v", "g", "garage")
+alias:fixveh("fv", "fixvehicle")
+alias:addnos("nos", "addnitro")
+alias:flipveh("flip", "flipvehicle")
+alias:acceptreport("acr", "areport")
+alias:closereport("cr", "clreport")
+alias:reportmute("rmute", "repmute")
 
 public OnQueryError(errorid, const error[], const callback[], const query[], MySQL:handle)
 {
