@@ -4,14 +4,9 @@ CMD:addexamcp(playerid, params[]) {
 	new i = Iter_Free(ExamenCheckpoints);
 	GetPlayerPos(playerid, examenInfo[i][dmvX], examenInfo[i][dmvY], examenInfo[i][dmvZ]);
 	gQuery[0] = (EOS);
-	inline assignCheckpointID() {
-		Iter_Add(ExamenCheckpoints, i);
-		examenInfo[i][dmvID] = cache_insert_id();
-		SCM(playerid, COLOR_LIGHTRED, string_fast("Ai adaugat un nou checkpoint in DMV cu succes. (SQLID: %d)", examenInfo[i][dmvID]));
-		return true;
-	}
 	mysql_format(SQL, gQuery, 128, "INSERT INTO `server_exam_checkpoints` (X, Y, Z) VALUES ('%f', '%f', '%f')", examenInfo[i][dmvX], examenInfo[i][dmvY], examenInfo[i][dmvZ]);
-	mysql_pquery_inline(SQL, gQuery, using inline assignCheckpointID, "");
+	mysql_tquery(SQL, gQuery, "assignCheckpointID", "d", i);
+	SCM(playerid, COLOR_LIGHTRED, string_fast("Ai adaugat un nou checkpoint in DMV cu succes. (SQLID: %d)", examenInfo[i][dmvID]));
 	return true;
 }
 
@@ -97,7 +92,7 @@ CMD:banoffline(playerid, params[])
 	if(GetPVarInt(playerid, "banDeelay") > gettime())
 		return sendPlayerError(playerid, "Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "banDeelay") - gettime()));
 
-	new playerName[MAX_PLAYER_NAME], playerID, days, reason[64];
+	new playerName[MAX_PLAYER_NAME], days, reason[64];
 	if(sscanf(params, "s[24]ds[64]", playerName, days, reason) || days < 0)
 		return sendPlayerSyntax(playerid, "/banoffline <name> <days (0 = permanent)> <reason>");
 
@@ -107,45 +102,9 @@ CMD:banoffline(playerid, params[])
 			return sendPlayerError(playerid, "Jucatorul este conectat.");
 	}
 
-	inline checkAccount()
-	{
-		if(!cache_num_rows())
-			return sendPlayerError(playerid, "Acest cont nu exista.");
-
-		cache_get_value_name(0, "Name", playerName, MAX_PLAYER_NAME);
-		cache_get_value_name_int(0, "ID", playerID);
-
-		if(days)
-		{
-			va_SendClientMessageToAll(COLOR_LIGHTRED, "AdmCmd: %s (offline) a primit ban %d zile de la %s, motiv: %s", playerName, days, getName(playerid), reason);
-		}
-		else
-		{
-			va_SendClientMessageToAll(COLOR_LIGHTRED, "AdmCmd: %s (offline) a primit ban permanent de la %s, motiv: %s", playerName, getName(playerid), reason);
-		}
-
-		gQuery[0] = (EOS);
-		mysql_format(SQL, gQuery, 256, "INSERT INTO `server_bans` (PlayerName, PlayerID, AdminName, AdminID, Reason, Days, Date) VALUES ('%s', '%d', '%s', '%d', '%s', '%d', '%s')", playerName, playerID, getName(playerid), playerInfo[playerid][pSQLID], reason, days, getDateTime());
-		mysql_pquery(SQL, gQuery, "", "");
-
-		SetPVarInt(playerid, "banDeelay", (gettime() + 60));	
-		return true;
-	}
-
-	inline checkAccountInBanDatabase()
-	{
-		if(cache_num_rows())
-			return sendPlayerError(playerid, "Acest cont este deja banat.");
-
-		gQuery[0] = (EOS);
-		mysql_format(SQL, gQuery, sizeof gQuery, "SELECT * FROM `server_users` WHERE `Name` = '%s' LIMIT 1", playerName);
-		mysql_pquery_inline(SQL, gQuery, using inline checkAccount, "");
-		return true;
-	}
-
 	gQuery[0] = (EOS);
 	mysql_format(SQL, gQuery, sizeof gQuery, "SELECT * FROM `server_bans` WHERE `PlayerName` = '%s' AND `Active` = '1' LIMIT 1", playerName);
-	mysql_pquery_inline(SQL, gQuery, using inline checkAccountInBanDatabase, "");
+	mysql_tquery(SQL, gQuery, "checkAccountInBanDatabase", "dsds", playerid, playerName, days, reason);
 	return true;
 }
 
@@ -161,23 +120,8 @@ CMD:unban(playerid, params[])
 		return sendPlayerSyntax(playerid, "/unban <name>");
 
 	gQuery[0] = (EOS);
-	inline checkBanPlayer()
-	{
-		if(!cache_num_rows())
-			return sendPlayerError(playerid, "Nu a fost gasit nici-un jucator banat cu acest nume.");
-
-		new playerName[MAX_PLAYER_NAME], playerID;
-		cache_get_value_name(0, "PlayerName", playerName, MAX_PLAYER_NAME);
-		cache_get_value_name_int(0, "ID", playerID);
-		sendAdmin(COLOR_SERVER, "Notice: {ffffff}Admin %s i-a dat unban lui %s.", getName(playerid), playerName);
-		update("UPDATE `server_bans` SET `Active` = '0' WHERE `ID` = '%d'", playerID);
-
-		SetPVarInt(playerid, "unbanDeelay", (gettime() + 60));
-		return true;
-	}
-
 	mysql_format(SQL, gQuery, 128, "SELECT * FROM `server_bans` WHERE `PlayerName` = '%s' AND `Active` = '1' LIMIT 1", params);
-	mysql_pquery_inline(SQL, gQuery, using inline checkBanPlayer, "");
+	mysql_tquery(SQL, gQuery, "checkBanPlayer", "d", playerid);
 	return true;
 }
 
@@ -1282,13 +1226,7 @@ CMD:banip(playerid, params[]) {
 	if(playerInfo[id][pAdmin] >= playerInfo[playerid][pAdmin] && !strmatch(getName(playerid), "Vicentzo")) return sendPlayerError(playerid, "Nu poti sa-i dai ban acelui jucator.");
 	gQuery[0] = (EOS);
 	mysql_format(SQL, gQuery, 256, "INSERT INTO `server_bans_ip` (PlayerName, PlayerID, PlayerIP, AdminName, AdminID, Reason, Date) VALUES ('%s', '%d', '%s', '%s', '%d', '%s', '%s)",getName(id), playerInfo[id][pSQLID], getIp(id), getName(playerid), playerInfo[playerid][pSQLID], reason, getDateTime());
-	inline BanIPPlayer() {
-		if(!cache_affected_rows()) return sendPlayerError(playerid, "Banul nu a putut fi acordat, eroare tehnica reveniti mai tarziu.");
-		SendClientMessageToAll(COLOR_LIGHTRED, string_fast("AdmCmd: %s a primit ban ip de la administratorul %s, motiv: %s.", getName(id), getName(playerid), reason));
-		SetPVarInt(playerid, "banDeelay", (gettime() + 60));
-		defer kickEx(id);
-	}
-	mysql_pquery_inline(SQL, gQuery, using inline BanIPPlayer, "");
+	mysql_tquery(SQL, gQuery, "BanIPPlayer", "dds", playerid, id, reason);
 	return true;
 }
 
@@ -1298,17 +1236,7 @@ CMD:unbanip(playerid, params[]) {
 	if(isnull(params) || strlen(params) > 16) return sendPlayerSyntax(playerid, "/unbanip <ip>");
 	gQuery[0] = (EOS);
 	mysql_format(SQL, gQuery, 256, "SELECT * FROM `server_bans_ip` WHERE `PlayerIP` = '%s' AND `Active` = '1' LIMIT 1", params);
-	inline CheckIP() {
-		new playerID;
-		cache_get_value_name_int(0, "ID", playerID);
-		if(!cache_num_rows()) return sendPlayerError(playerid, "Acest ip nu este banat.");
-		sendAdmin(COLOR_SERVER, "* Ban Notice: {ffffff}Admin %s a debanat ip-ul %s.", getName(playerid), params);
-		SetPVarInt(playerid, "unbanDeelay", (gettime() + 60));
-		
-		mysql_format(SQL, gQuery, 256, "UPDATE `server_bans_ip` SET `Active` = '0' WHERE `ID` = '%d'", playerID);
-		mysql_tquery(SQL, gQuery, "", "");
-	}
-	mysql_pquery_inline(SQL, gQuery, using inline CheckIP, "");
+	mysql_tquery(SQL, gQuery, "CheckIP", "ds", playerid, params);
 	return true;
 }
 
@@ -1322,12 +1250,7 @@ CMD:banipoffline(playerid, params[]) {
 	}
 	gQuery[0] = (EOS);
 	mysql_format(SQL, gQuery, 256, "INSERT INTO `server_bans_ip` (PlayerIP, AdminName, AdminID, Reason, Date) VALUES ('%s', '%s', '%d', '%s', '%s')",ip, getName(playerid), playerInfo[playerid][pSQLID], reason, getDateTime());
-	inline BanIPOffline() {
-		if(!cache_affected_rows()) return sendPlayerError(playerid, "Banul nu a putut fi acordat, eroare tehnica reveniti mai tarziu.");
-		sendAdmin(COLOR_SERVER, "* Ban Notice: {ffffff}Admin %s a banat ip-ul %s, motiv: %s.", getName(playerid), ip, reason);
-		SetPVarInt(playerid, "banDeelay", (gettime() + 60));
-	}
-	mysql_pquery_inline(SQL, gQuery, using inline BanIPOffline, "");
+	mysql_tquery(SQL, gQuery, "BanIPOffline", "dss", playerid, ip, reason);
 	return true;
 }
 
@@ -1396,23 +1319,8 @@ CMD:unjailo(playerid, params[]) {
 	if(strlen(reason) < 1 || strlen(reason) > 32) return sendPlayerError(playerid, "Reason invalid, min. 1 caracter max. 32 caractere.");
 	foreach(new i : loggedPlayers) if(strmatch(getName(i), playerName)) return sendPlayerError(playerid, "Jucatorul este conectat.");
 	gQuery[0] = (EOS);
-	inline checkAccount()
-	{
-		if(!cache_num_rows()) return sendPlayerError(playerid, "Acest cont nu exista.");
-		cache_get_value_name(0, "Name", playerName, MAX_PLAYER_NAME);
-		sendAdmin(COLOR_SERVER, "* Notice: {ffffff}Admin %s l-a eliberat din inchisoare pe %s. Motiv: %s.", getName(playerid), playerName, reason);
-		update("UPDATE `server_users` SET `Jailed` = '0', `JailTime` = '0' WHERE `Name` = '%s' LIMIT 1", playerName);
-		return true;
-	}
-	inline checkAccountInDatabase()
-	{
-		if(!cache_num_rows()) return sendPlayerError(playerid, "Acest cont nu este in jail.");
-		mysql_format(SQL, gQuery, sizeof gQuery, "SELECT * FROM `server_users` WHERE `Name` = '%s' LIMIT 1", playerName);
-		mysql_pquery_inline(SQL, gQuery, using inline checkAccount, "");
-		return true;
-	}
 	mysql_format(SQL, gQuery, sizeof gQuery, "SELECT * FROM `server_users` WHERE `Name` = '%s' AND `Jailed` = '1' OR `Jailed` = '2' LIMIT 1", playerName);
-	mysql_pquery_inline(SQL, gQuery, using inline checkAccountInDatabase, "");
+	mysql_tquery(SQL, gQuery, "checkAccountInDatabase", "dss", playerid, playerName, reason);
 	return true;
 }
 
@@ -1462,15 +1370,8 @@ CMD:jailo(playerid, params[]) {
 		update("UPDATE `server_users` SET `Jailed` = '2', `JailTime` = '%d' WHERE `Name` = '%s' LIMIT 1", minutes*60, playerName);
 		return true;
 	}
-	inline checkAccountInDatabase()
-	{
-		if(cache_num_rows()) return sendPlayerError(playerid, "Acest cont este deja in jail.");
-		mysql_format(SQL, gQuery, sizeof gQuery, "SELECT * FROM `server_users` WHERE `Name` = '%s' LIMIT 1", playerName);
-		mysql_pquery_inline(SQL, gQuery, using inline checkAccount, "");
-		return true;
-	}
 	mysql_format(SQL, gQuery, sizeof gQuery, "SELECT * FROM `server_users` WHERE `Name` = '%s' AND `Jailed` = '0' LIMIT 1", playerName);
-	mysql_pquery_inline(SQL, gQuery, using inline checkAccountInDatabase, "");
+	mysql_tquery(SQL, gQuery, "checkAccountInDatabaseJailo", "dssd", playerid, playerName, reason, minutes);
 	return true;
 }
 

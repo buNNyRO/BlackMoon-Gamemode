@@ -53,7 +53,6 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], Connection = MYSQL, Anti
 
     Timer:jailTime[MAX_PLAYERS],
     Timer:wantedTime[MAX_PLAYERS],
-    Timer:collision[MAX_PLAYERS],
     Timer:wantedFind[MAX_PLAYERS],
     Timer:tutorial[MAX_PLAYERS],
     Timer:carFind[MAX_PLAYERS],
