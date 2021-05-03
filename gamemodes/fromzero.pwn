@@ -19,7 +19,7 @@
 // B::::::::::::::::B  l::::::l a::::::::::aa:::a  cc:::::::::::::::ck::::::k   k:::::k M::::::M               M::::::M oo:::::::::::oo  oo:::::::::::oo   n::::n    n::::n
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define MYSQL 1 // 0 - local | 1 - host
+#define MYSQL 0 // 0 - local | 1 - host
 
 #include <a_samp>
 #include <a_zones>
@@ -78,6 +78,7 @@ alias:adminsuspendlicense("asl", "adminsl")
 alias:vehicles("v", "g", "garage")
 alias:fixveh("fv", "fixvehicle")
 alias:addnos("nos", "addnitro")
+alias:despawncar("vre")
 alias:flipveh("flip", "flipvehicle")
 alias:acceptreport("acr", "areport")
 alias:closereport("cr", "clreport")
@@ -473,11 +474,7 @@ public OnVehicleDeath(vehicleid, killerid) {
 
 public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 	if(PRESSED(KEY_LOOK_BEHIND)) {
-		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER || !isBike(GetPlayerVehicleID(playerid)) || GetPVarInt(playerid, "engineDeelay") != gettime()) {
-			callcmd::engine(playerid, "\1");
-			// PC_EmulateCommand(playerid, "engine");
-			print("test");
-		}
+		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER || !isBike(GetPlayerVehicleID(playerid)) || GetPVarInt(playerid, "engineDeelay") != gettime()) callcmd::engine(playerid, "\1");
 	}
 	if(PRESSED(KEY_SECONDARY_ATTACK)) {
 		new b = GetPlayerVirtualWorld(playerid);

@@ -4750,6 +4750,7 @@
 			<referrer name="getVehicleOwner"/>
 			<referrer name="TimerCar"/>
 			<referrer name="TimerSpeedo"/>
+			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<referrer name="pc_cmd_swapcolors"/>
 			<referrer name="pc_cmd_carplate"/>
 			<referrer name="pc_cmd_carcolor"/>
@@ -6348,14 +6349,17 @@
 			<stacksize value="13"/>
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="EOS"/>
-			<dependency name="Iter_Clear_InternalC"/>
 			<dependency name="Iter_DestroyVehicle"/>
+			<dependency name="Iter_Remove_InternalC"/>
+			<dependency name="Iter_SafeRemove_InternalC"/>
 			<dependency name="Iter_Single@PlayerVehicles"/>
 			<dependency name="Iter_Single@TotalPlayerVehicles"/>
 			<dependency name="Iterator@PlayerVehicles"/>
 			<dependency name="Iterator@TotalPlayerVehicles"/>
+			<dependency name="pSQLID"/>
 			<dependency name="personalVehicle"/>
 			<dependency name="personalVehicle"/>
+			<dependency name="playerInfo"/>
 			<dependency name="pvAge"/>
 			<dependency name="pvAngle"/>
 			<dependency name="pvCarPlate"/>
@@ -10162,7 +10166,6 @@
 			<dependency name="pinHouse"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="print"/>
 			<dependency name="pvSpawnedID"/>
 			<dependency name="returnNeededPoints"/>
 			<dependency name="sendPlayerError"/>
@@ -17285,7 +17288,6 @@
 		<member name="M:Iter_Clear_InternalC" syntax="Iter_Clear_InternalC(array[], size, entries, lst, ...)">
 			<stacksize value="5"/>
 			<referrer name="@yH_OnScriptInit@002"/>
-			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<referrer name="pc_cmd_despawncars"/>
 			<dependency name="setarg"/>
 			<param name="array">
@@ -18143,6 +18145,7 @@
 			<referrer name="pc_cmd_leaveclan"/>
 			<referrer name="checkPanel"/>
 			<referrer name="removeFunction"/>
+			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<referrer name="TimerJail"/>
 			<referrer name="Timers"/>
 			<referrer name="TimerMute"/>
@@ -18212,6 +18215,7 @@
 		<member name="M:Iter_SafeRemove_InternalC" syntax="Iter_SafeRemove_InternalC(&amp;count, array[], size, value, &amp;last)">
 			<stacksize value="1"/>
 			<referrer name="Iter_Remove_InternalC"/>
+			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<dependency name="cellmin"/>
 			<param name="count">
 				<paraminfo> &amp; </paraminfo>
@@ -20958,6 +20962,7 @@
 			<referrer name="pc_alias_vehicles"/>
 			<referrer name="pc_alias_fixveh"/>
 			<referrer name="pc_alias_addnos"/>
+			<referrer name="pc_alias_despawncar"/>
 			<referrer name="pc_alias_flipveh"/>
 			<referrer name="pc_alias_acceptreport"/>
 			<referrer name="pc_alias_closereport"/>
@@ -29796,6 +29801,11 @@
 			<stacksize value="5"/>
 			<dependency name="PC_RegAlias"/>
 		</member>
+		<member name="M:pc_alias_despawncar" syntax="pc_alias_despawncar()">
+			<attribute name="public"/>
+			<stacksize value="4"/>
+			<dependency name="PC_RegAlias"/>
+		</member>
 		<member name="M:pc_alias_fixveh" syntax="pc_alias_fixveh()">
 			<attribute name="public"/>
 			<stacksize value="5"/>
@@ -36288,6 +36298,7 @@
 			<dependency name="personalVehicle"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
+			<dependency name="printf"/>
 			<dependency name="pvDespawnTime"/>
 			<dependency name="pvModelID"/>
 			<dependency name="pvSpawnedID"/>
@@ -36542,7 +36553,6 @@
 			<referrer name="LoadGasCan"/>
 			<referrer name="closeGate"/>
 			<referrer name="OnQueryError"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<param name="string">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -36568,6 +36578,7 @@
 			<referrer name="LoadExamCheckpoints"/>
 			<referrer name="assignSQLID"/>
 			<referrer name="LoadPersonalVehicle"/>
+			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="LoadGasCan"/>
 			<referrer name="LoadDSVehicles"/>
 			<referrer name="OnQueryError"/>

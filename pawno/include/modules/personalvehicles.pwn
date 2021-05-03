@@ -451,44 +451,46 @@ timer TimerSpeedo[1000](playerid) {
 
 hook OnPlayerDisconnect(playerid, reason) {
 	foreach(new i : PlayerVehicles[playerid]) {
-		update("UPDATE `server_personal_vehicles` SET  `Health` = '%f', `Fuel` = '%f', `Odometer`='%f', `DamageDoors`='%d', `DamageLights`='%d', `DamageTires`='%d' WHERE `ID`='%d'", personalVehicle[i][pvHealth], personalVehicle[i][pvFuel], personalVehicle[i][pvOdometer], personalVehicle[i][pvDamagePanels], personalVehicle[i][pvDamageDoors], personalVehicle[i][pvDamageLights], personalVehicle[i][pvDamageTires],personalVehicle[i][pvID]);
+		if(personalVehicle[i][pvOwnerID] == playerInfo[playerid][pSQLID]) {
+			update("UPDATE `server_personal_vehicles` SET  `Health` = '%f', `Fuel` = '%f', `Odometer`='%f', `DamageDoors`='%d', `DamageLights`='%d', `DamageTires`='%d' WHERE `ID`='%d'", personalVehicle[i][pvHealth], personalVehicle[i][pvFuel], personalVehicle[i][pvOdometer], personalVehicle[i][pvDamagePanels], personalVehicle[i][pvDamageDoors], personalVehicle[i][pvDamageLights], personalVehicle[i][pvDamageTires],personalVehicle[i][pvID]);
 
-		personalVehicle[i][pvID] = 0;
-		personalVehicle[i][pvModelID] = 0;
-		personalVehicle[i][pvOwnerID] = 0;
-		personalVehicle[i][pvColorOne] = 0;
-		personalVehicle[i][pvColorTwo] = 0;
-		personalVehicle[i][pvX] = 0;
-		personalVehicle[i][pvY] = 0;
-		personalVehicle[i][pvZ] = 0;
-		personalVehicle[i][pvAngle] = 0;
-		personalVehicle[i][pvOdometer] = 0;
-		personalVehicle[i][pvFuel] = 0;
-		personalVehicle[i][pvAge] = 0;
-		personalVehicle[i][pvInsurancePoints] = 0;
-		personalVehicle[i][pvLock] = 0;
-		personalVehicle[i][pvHealth] = 0.0;
-		personalVehicle[i][pvVirtualWorld] = 0;
-		personalVehicle[i][pvInterior] = 0;
-		personalVehicle[i][pvDamagePanels] = 0;
-		personalVehicle[i][pvDamageDoors] = 0;
-		personalVehicle[i][pvDamageLights] = 0;
-		personalVehicle[i][pvDamageTires] = 0;
-		personalVehicle[i][pvCarPlate] = (EOS);
-		personalVehicle[i][pvDespawnTime] = 0;
+			personalVehicle[i][pvID] = 0;
+			personalVehicle[i][pvModelID] = 0;
+			personalVehicle[i][pvOwnerID] = 0;
+			personalVehicle[i][pvColorOne] = 0;
+			personalVehicle[i][pvColorTwo] = 0;
+			personalVehicle[i][pvX] = 0;
+			personalVehicle[i][pvY] = 0;
+			personalVehicle[i][pvZ] = 0;
+			personalVehicle[i][pvAngle] = 0;
+			personalVehicle[i][pvOdometer] = 0;
+			personalVehicle[i][pvFuel] = 0;
+			personalVehicle[i][pvAge] = 0;
+			personalVehicle[i][pvInsurancePoints] = 0;
+			personalVehicle[i][pvLock] = 0;
+			personalVehicle[i][pvHealth] = 0.0;
+			personalVehicle[i][pvVirtualWorld] = 0;
+			personalVehicle[i][pvInterior] = 0;
+			personalVehicle[i][pvDamagePanels] = 0;
+			personalVehicle[i][pvDamageDoors] = 0;
+			personalVehicle[i][pvDamageLights] = 0;
+			personalVehicle[i][pvDamageTires] = 0;
+			personalVehicle[i][pvCarPlate] = (EOS);
+			personalVehicle[i][pvDespawnTime] = 0;
 
-		for(new x = 0; x < 17; x++) {
-			personalVehicle[i][pvComponents][x] = 0;
+			for(new x = 0; x < 17; x++) {
+				personalVehicle[i][pvComponents][x] = 0;
+			}
+
+			if(personalVehicle[i][pvSpawnedID] != INVALID_PLAYER_ID) {
+				DestroyVehicle(personalVehicle[i][pvSpawnedID]);
+				personalVehicle[i][pvSpawnedID] = INVALID_VEHICLE_ID;
+			}
+
+			Iter_Remove(TotalPlayerVehicles, i);
+			Iter_SafeRemove(PlayerVehicles[playerid], i, i);
+			// Iter_Clear(PlayerVehicles[playerid]);
 		}
-
-		if(personalVehicle[i][pvSpawnedID] != INVALID_PLAYER_ID) {
-			DestroyVehicle(personalVehicle[i][pvSpawnedID]);
-			personalVehicle[i][pvSpawnedID] = INVALID_VEHICLE_ID;
-		}
-
-		Iter_Clear(TotalPlayerVehicles);
-		Iter_Clear(PlayerVehicles[playerid]);
-		break;
 	}
 	return true;
 }
@@ -639,6 +641,7 @@ CMD:vehicles(playerid, params[]) {
 		}
 		playerInfo[playerid][pSelectVehicle][count] = i;
 		count ++;
+		printf("%d" , i);
 	}
 	Dialog_Show(playerid, MY_GARAGE, DIALOG_STYLE_TABLIST, string_fast("Personal garage (%d/%d slots)", playerInfo[playerid][pVehicleSlots], MAX_PLAYER_PERSONAL_VEHICLES), gString, "Select", "Close");
 	return true;
