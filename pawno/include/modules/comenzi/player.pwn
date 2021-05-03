@@ -5,7 +5,7 @@ CMD:admins(playerid, params[])
 
 	SendClientMessage(playerid, COLOR_GREY, "-----------------------------------------------------------");
 	foreach(new i : ServerAdmins) {
-		SCMf(playerid, COLOR_WHITE, "* %s(%d) - admin level %d (%s)", getName(i), i, playerInfo[i][pAdmin], playerInfo[i][pAdmin] >= 7 ? "Scripter" : "Fondator");
+		SCMf(playerid, COLOR_WHITE, "* %s(%d) - admin level %d", getName(i), i, playerInfo[i][pAdmin]);
 	}
 	SendClientMessage(playerid, COLOR_GREY, "-----------------------------------------------------------");
 	return true;

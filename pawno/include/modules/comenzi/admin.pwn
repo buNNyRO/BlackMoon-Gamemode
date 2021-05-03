@@ -231,8 +231,8 @@ CMD:setadmin(playerid, params[])
 		return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 
 	new userID, admin;
-	if(sscanf(params, "ud", userID, admin) || admin < 0 || admin > 8)
-		return sendPlayerSyntax(playerid, "/setadmin <name/id> <level admin (0 - 8)>");
+	if(sscanf(params, "ud", userID, admin) || admin < 0 || admin > 7)
+		return sendPlayerSyntax(playerid, "/setadmin <name/id> <level admin (0 - 7)>");
 
 	if(!isPlayerLogged(userID))
 		return sendPlayerError(playerid, "Jucatorul nu este conectat.");
