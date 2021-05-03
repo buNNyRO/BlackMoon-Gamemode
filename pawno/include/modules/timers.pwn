@@ -45,6 +45,12 @@ timer TimerWanted[1000](x) {
 	return true;
 }
 
+timer TimerCollision[3000](i) {
+	if(IsPlayerInRangeOfPoint(i, 50, 883.191, -1799.8, 13.7926) && IsPlayerInRangeOfPoint(i, 50, 1035.12, -1456.75, 13.5988) && playerInfo[i][pCollision] == 0) DisableRemoteVehicleCollisions(i, 1), playerInfo[i][pCollision] = 1;
+	else if(!IsPlayerInRangeOfPoint(i, 50, 883.191, -1799.8, 13.7926) && !IsPlayerInRangeOfPoint(i, 50, 1035.12, -1456.75, 13.5988) && playerInfo[i][pCollision] == 1) DisableRemoteVehicleCollisions(i, 0), playerInfo[i][pCollision] = 0;
+	return true;
+}
+
 task Timers[1000]() 
 {
 	new hour, minute, second, year, month, day;
