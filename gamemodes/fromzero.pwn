@@ -19,7 +19,7 @@
 // B::::::::::::::::B  l::::::l a::::::::::aa:::a  cc:::::::::::::::ck::::::k   k:::::k M::::::M               M::::::M oo:::::::::::oo  oo:::::::::::oo   n::::n    n::::n
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define MYSQL 0 // 0 - local | 1 - host
+#define MYSQL 1 // 0 - local | 1 - host
 
 #include <a_samp>
 #include <a_zones>
@@ -429,9 +429,7 @@ public OnVehicleMod(playerid, vehicleid, componentid) {
 public OnVehiclePaintjob(playerid, vehicleid, paintjobid) {
 	if(vehicle_personal[vehicleid] > -1 && Iter_Contains(PlayerVehicles[playerid], vehicle_personal[vehicleid])) {
 		personalVehicle[vehicle_personal[vehicleid]][pvPaintJob] = paintjobid;
-		gQuery[0] = (EOS);
-		mysql_format(SQL, gQuery, sizeof(gQuery), "UPDATE `server_personal_vehicles` SET `PaintJob`='%d' WHERE `ID`='%d'", paintjobid, personalVehicle[vehicle_personal[vehicleid]][pvID]);
-		mysql_tquery(SQL, gQuery, "", "");
+		update("UPDATE `server_personal_vehicles` SET `PaintJob`='%d' WHERE `ID`='%d'", paintjobid, personalVehicle[vehicle_personal[vehicleid]][pvID]);
 	}
 	return true;
 }
@@ -439,9 +437,7 @@ public OnVehiclePaintjob(playerid, vehicleid, paintjobid) {
 public OnVehicleRespray(playerid, vehicleid, color1, color2) {
 	if(vehicle_personal[vehicleid] > -1 && Iter_Contains(PlayerVehicles[playerid], vehicle_personal[vehicleid])) {
 		personalVehicle[vehicle_personal[vehicleid]][pvHealth] = 1000;
-		gQuery[0] = (EOS);
-		mysql_format(SQL, gQuery, sizeof(gQuery), "UPDATE `server_personal_vehicles` SET `Health`= '%f' WHERE `ID`='%d'", personalVehicle[vehicle_personal[vehicleid]][pvHealth], personalVehicle[vehicle_personal[vehicleid]][pvID]);
-		mysql_tquery(SQL, gQuery, "", "");
+		update("UPDATE `server_personal_vehicles` SET `Health`= '%f' WHERE `ID`='%d'", personalVehicle[vehicle_personal[vehicleid]][pvHealth], personalVehicle[vehicle_personal[vehicleid]][pvID]);
 	}
 	return true;
 }
@@ -458,9 +454,7 @@ public OnVehicleDeath(vehicleid, killerid) {
 	if(vehicle_personal[vehicleid] > -1) {
 		new id = vehicle_personal[vehicleid];
 		personalVehicle[id][pvInsurancePoints] --;
-		gQuery[0] = (EOS);
-		mysql_format(SQL, gQuery, sizeof(gQuery), "UPDATE `server_personal_vehicles` SET `InsurancePoints`='%d' WHERE `ID`='%d'", personalVehicle[id][pvInsurancePoints], personalVehicle[id][pvID]);
-		mysql_tquery(SQL, gQuery, "", "");
+		update("UPDATE `server_personal_vehicles` SET `InsurancePoints`='%d' WHERE `ID`='%d'", personalVehicle[id][pvInsurancePoints], personalVehicle[id][pvID]);
 		SCM(getVehicleOwner(personalVehicle[id][pvOwnerID]), -1, string_fast("Vehiculul tau %s a pierdut un punct de asigurare.", getVehicleName(personalVehicle[id][pvModelID])));
 	}
 
@@ -507,9 +501,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 							for(new m; m < 2; m++) {
 								if(playerInfo[playerid][pDailyMission][m] == 1) checkMission(playerid, m);
 							}
-							gQuery[0] = (EOS);
-							mysql_format(SQL, gQuery, sizeof(gQuery), "UPDATE `server_users` SET `Money`= '%d', `MStore` = '%d', `FishTimes` = '%d', `FishSkill` = '%d' WHERE `ID`='%d'", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pFishTimes], playerInfo[playerid][pFishSkill], playerInfo[playerid][pSQLID]);
-							mysql_tquery(SQL, gQuery);
+							update("UPDATE `server_users` SET `Money`= '%d', `MStore` = '%d', `FishTimes` = '%d', `FishSkill` = '%d' WHERE `ID`='%d'", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pFishTimes], playerInfo[playerid][pFishSkill], playerInfo[playerid][pSQLID]);
 						}
 					}
 				}
@@ -588,6 +580,13 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 			callcmd::lights(playerid, "\1");
 		}
 	}
+	if(PRESSED(KEY_FIRE)) {
+        if(playerInfo[playerid][pEnableBoost] == 1 && GetPlayerState(playerid) == PLAYER_STATE_DRIVER) {
+            new Float:vx,Float:vy,Float:vz;
+            GetVehicleVelocity(GetPlayerVehicleID(playerid),vx,vy,vz);
+            SetVehicleVelocity(GetPlayerVehicleID(playerid), vx * 1.8, vy *1.8, vz * 1.8);
+        }
+	}
 	if(PRESSED(KEY_ANALOG_DOWN)) {
 		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER || !isBike(GetPlayerVehicleID(playerid)) ||  !isPlane(GetPlayerVehicleID(playerid)) ||  !isBoat(GetPlayerVehicleID(playerid))) {
 			new engine, lights, alarm, doors, bonnet, boot, objective;
@@ -656,9 +655,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 		if(vehicle_personal[vehicleid] > -1) {
 			new i = vehicle_personal[vehicleid];
 			personalVehicle[i][pvDespawnTime] = (gettime() + 900);
-			gQuery[0] = (EOS); 
-			mysql_format(SQL, gQuery, sizeof(gQuery), "UPDATE `server_personal_vehicles` SET  `Health` = '%f', `Fuel` = '%f', `Odometer`='%f', `DamageDoors`='%d', `DamageLights`='%d', `DamageTires`='%d' WHERE `ID`='%d'", personalVehicle[i][pvHealth], personalVehicle[i][pvFuel], personalVehicle[i][pvOdometer], personalVehicle[i][pvDamagePanels], personalVehicle[i][pvDamageDoors], personalVehicle[i][pvDamageLights], personalVehicle[i][pvDamageTires],personalVehicle[i][pvID]);
-			mysql_tquery(SQL, gQuery, "", "");
+			update("UPDATE `server_personal_vehicles` SET  `Health` = '%f', `Fuel` = '%f', `Odometer`='%f', `DamageDoors`='%d', `DamageLights`='%d', `DamageTires`='%d' WHERE `ID`='%d'", personalVehicle[i][pvHealth], personalVehicle[i][pvFuel], personalVehicle[i][pvOdometer], personalVehicle[i][pvDamagePanels], personalVehicle[i][pvDamageDoors], personalVehicle[i][pvDamageLights], personalVehicle[i][pvDamageTires],personalVehicle[i][pvID]);
 		}	
 		for(new i; i < sizeof vehicleHud; i++) PlayerTextDrawHide(playerid, vehicleHud[i]);
 		stop speedo[playerid];

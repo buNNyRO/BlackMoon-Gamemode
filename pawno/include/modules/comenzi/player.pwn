@@ -5,7 +5,7 @@ CMD:admins(playerid, params[])
 
 	SendClientMessage(playerid, COLOR_GREY, "-----------------------------------------------------------");
 	foreach(new i : ServerAdmins) {
-		SCMf(playerid, COLOR_WHITE, "* %s(%d) - Nivel: %d", getName(i), i, playerInfo[i][pAdmin]);
+		SCMf(playerid, COLOR_WHITE, "* %s(%d) - admin level %d (%s)", getName(i), i, playerInfo[i][pAdmin], playerInfo[i][pAdmin] >= 7 ? "Scripter" : "Fondator");
 	}
 	SendClientMessage(playerid, COLOR_GREY, "-----------------------------------------------------------");
 	return true;
@@ -18,7 +18,7 @@ CMD:helpers(playerid, params[])
 
 	SendClientMessage(playerid, COLOR_GREY, "-----------------------------------------------------------");
 	foreach(new i : ServerHelpers) {
-		SCMf(playerid, COLOR_WHITE, "* %s(%d) - Nivel: %d %s", getName(i), i, playerInfo[i][pHelper], HelperDuty[playerid] ? "on-duty" : "no-duty");
+		SCMf(playerid, COLOR_WHITE, "* %s(%d) - helper level: %d (%s)", getName(i), i, playerInfo[i][pHelper], HelperDuty[playerid] ? "on-duty" : "no-duty");
 	}
 	SendClientMessage(playerid, COLOR_GREY, "-----------------------------------------------------------");
 	return true;
