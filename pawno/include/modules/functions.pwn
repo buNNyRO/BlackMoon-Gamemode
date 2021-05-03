@@ -188,7 +188,9 @@ function onPlayerLogin(playerid)
 	clearChat(playerid, 30);
 	SCMf(playerid, COLOR_GREY, "* Bine ai venit, %s.", getName(playerid)); 
 
+	gQuery[0] = (EOS);
 	mysql_format(SQL, gQuery, 128, "SELECT * FROM `server_personal_vehicles` WHERE `OwnerID` = '%d'", playerInfo[playerid][pSQLID]);
+	printf("%s", gQuery);
 	mysql_pquery(SQL, gQuery, "LoadPersonalVehicle", "d", playerid);
 
 	new ipnew[16];

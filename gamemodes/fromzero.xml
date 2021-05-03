@@ -23445,7 +23445,7 @@
 		</member>
 		<member name="M:ShowEmails" syntax="ShowEmails(playerid)">
 			<attribute name="public"/>
-			<stacksize value="4339"/>
+			<stacksize value="243"/>
 			<dependency name="Dialog_Open"/>
 			<dependency name="EOS"/>
 			<dependency name="Selected"/>
@@ -23453,8 +23453,8 @@
 			<dependency name="cache_num_rows"/>
 			<dependency name="format"/>
 			<dependency name="gString"/>
+			<dependency name="printf"/>
 			<dependency name="strcat"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -29735,6 +29735,7 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerNamePTD"/>
+			<dependency name="printf"/>
 			<dependency name="serverDateTD"/>
 			<dependency name="serverInfoTD"/>
 			<dependency name="serverNameTD"/>
@@ -36284,7 +36285,7 @@
 		</member>
 		<member name="M:pc_cmd_vehicles" syntax="pc_cmd_vehicles(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4108"/>
+			<stacksize value="4107"/>
 			<dependency name="Dialog_Open"/>
 			<dependency name="EOS"/>
 			<dependency name="IsVehicleOccupied"/>
@@ -36296,10 +36297,11 @@
 			<dependency name="pSelectVehicle"/>
 			<dependency name="pVehicleSlots"/>
 			<dependency name="personalVehicle"/>
+			<dependency name="personalVehicle"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="printf"/>
 			<dependency name="pvDespawnTime"/>
+			<dependency name="pvID"/>
 			<dependency name="pvModelID"/>
 			<dependency name="pvSpawnedID"/>
 			<dependency name="sendPlayerError"/>
@@ -36575,12 +36577,13 @@
 			<referrer name="LoadJobs"/>
 			<referrer name="LoadBusinesses"/>
 			<referrer name="LoadClans"/>
+			<referrer name="onPlayerLogin"/>
 			<referrer name="LoadExamCheckpoints"/>
 			<referrer name="assignSQLID"/>
 			<referrer name="LoadPersonalVehicle"/>
-			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="LoadGasCan"/>
 			<referrer name="LoadDSVehicles"/>
+			<referrer name="ShowEmails"/>
 			<referrer name="OnQueryError"/>
 			<param name="format">
 				<paraminfo> [] </paraminfo>
@@ -38313,7 +38316,6 @@
 			<referrer name="pc_cmd_number"/>
 			<referrer name="pc_cmd_accept"/>
 			<referrer name="cancelDriveTest"/>
-			<referrer name="ShowEmails"/>
 			<referrer name="dialog_DIALOG_EMAILS"/>
 			<referrer name="pc_cmd_emails"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
