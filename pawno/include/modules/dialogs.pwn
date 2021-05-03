@@ -59,14 +59,8 @@ Dialog:REGISTER(playerid, response, listitem, inputtext[])
 	SHA256_PassHash(inputtext, "fez9yGgHWUqF5hEw", playerInfo[playerid][pPassword], 65);
 
 	gQuery[0] = (EOS);
-	inline assignSQLID()
-	{
-		playerInfo[playerid][pSQLID] = cache_insert_id();
-		return printf("%s (%d) s-a inregistrat.", getName(playerid), playerid);
-	}
-
 	mysql_format(SQL, gQuery, sizeof(gQuery), "INSERT INTO `server_users` (Name, Password) VALUES ('%s', '%s')", getName(playerid), playerInfo[playerid][pPassword]);
-	mysql_pquery_inline(SQL, gQuery, using inline assignSQLID, "");
+	mysql_tquery(SQL, gQuery, "assignSQLID", "d", playerid);
 	
 	Dialog_Show(playerid, LOGIN, DIALOG_STYLE_PASSWORD, "Login", "Te-ai inregistrat cu succes.\nScrie mai jos parola contului tau:", "Login", "Quit");
 	return true;

@@ -34,6 +34,50 @@ function MySQLLoad() {
 	return true;
 }
 
+function checkPlayerBan(playerid) {
+	playerInfo[playerid][pLoginEnabled] = true;
+	
+	if(!cache_num_rows()) {
+		gQuery[0] = (EOS);
+		mysql_format(SQL, gQuery, 256, "SELECT * FROM `server_bans_ip` WHERE `Active` = '1' AND `PlayerIP` = '%s' LIMIT 1", getIp(playerid));
+		mysql_tquery(SQL, gQuery, "checkPlayerBanIP", "d", playerid);
+		return true;
+	}
+
+	new adminName[MAX_PLAYER_NAME], reason[64], date[32], days, playerID, permanent;
+	cache_get_value_name(0, "AdminName", adminName, MAX_PLAYER_NAME);
+	cache_get_value_name(0, "Reason", reason, 64);
+	cache_get_value_name(0, "Date", date, 32);
+	cache_get_value_name_int(0, "Permanent", permanent);
+	cache_get_value_name_int(0, "Days", days);
+	cache_get_value_name_int(0, "ID", playerID);
+	
+	if(permanent) {
+		SCMf(playerid, COLOR_LIGHTRED, "System: Esti banat permanent pe acest server de catre Admin %s.", adminName);
+		SCMf(playerid, COLOR_LIGHTRED, "System: Motivul banului: %s", reason);
+		SCMf(playerid, COLOR_LIGHTRED, "System: Data banului: %s", date);
+		defer kickEx(playerid);
+		return true;
+	}
+	if(days >= 1)
+	{
+		SCMf(playerid, COLOR_LIGHTRED, "System: Esti banat temporar pe acest server de catre Admin %s.", adminName);
+		SCMf(playerid, COLOR_LIGHTRED, "System: Motivul banului: %s", reason);
+		SCMf(playerid, COLOR_LIGHTRED, "System: Data banului: %s", date);
+		SCMf(playerid, COLOR_LIGHTRED, "System: Banul expira in: %d zile.",days);
+		defer kickEx(playerid);
+		return true;
+	}
+
+	update("UPDATE `server_bans` SET `Active` = '0' WHERE `ID` = '%d'", playerID);
+	sendAdmin(COLOR_SERVER, "Ban System Notice: {ffffff}%s a primit unban automat.", getName(playerid));
+
+	gQuery[0] = (EOS);
+	mysql_format(SQL, gQuery, 256, "SELECT * FROM `server_bans_ip` WHERE `Active` = '1' AND `PlayerIP` = '%s' LIMIT 1", getIp(playerid));
+	mysql_tquery(SQL, gQuery, "checkPlayerBanIP", "d", playerid);
+	return true;
+}
+
 function onPlayerLogin(playerid)
 {
 	if(!cache_num_rows())
@@ -372,31 +416,135 @@ function checkPanel() {
 	return true;
 }	
 
+function checkPlayerAccount(playerid) {
+	if(!cache_num_rows())
+		return Dialog_Show(playerid, REGISTER, DIALOG_STYLE_PASSWORD, "Register", "Bine ai venit, %s.\nScrie mai jos parola pe care doresti sa o ai:", "Register", "Quit", getName(playerid));
+
+	new lastLogin[64];
+	cache_get_value_name(0, "LastLogin", lastLogin, 64);
+
+	Dialog_Show(playerid, LOGIN, DIALOG_STYLE_PASSWORD, "Login", "Bine ai revenit, %s.\nScrie mai jos parola contului tau:\n\n{ffffff}* Ultima logare: %s", "Login", "Quit", getName(playerid), lastLogin);
+	return true;
+}
+
+function assignSQLID(playerid) {
+	playerInfo[playerid][pSQLID] = cache_insert_id();
+	return printf("%s (%d) s-a inregistrat.", getName(playerid), playerid);
+}
+
+function assignCheckpointID(i) {
+	Iter_Add(ExamenCheckpoints, i);
+	examenInfo[i][dmvID] = cache_insert_id();
+	return true;	
+}
+
+function checkAccountInBanDatabase(playerid, playerName, days, reason) {
+	if(cache_num_rows())
+		return sendPlayerError(playerid, "Acest cont este deja banat.");
+
+	gQuery[0] = (EOS);
+	mysql_format(SQL, gQuery, sizeof gQuery, "SELECT * FROM `server_users` WHERE `Name` = '%s' LIMIT 1", playerName);
+	mysql_tquery(SQL, gQuery, "checkAccountBanDatabase", "dsds", playerid, playerName, days, reason);
+	return true;
+}
+
+function checkAccountBanDatabase(playerid, playerName, days, reason)  {
+	if(!cache_num_rows())
+		return sendPlayerError(playerid, "Acest cont nu exista.");
+
+	new playerID;
+	cache_get_value_name_int(0, "ID", playerID);
+
+	if(days) va_SendClientMessageToAll(COLOR_LIGHTRED, "AdmCmd: %s (offline) a primit ban %d zile de la %s, motiv: %s", playerName, days, getName(playerid), reason);
+	else va_SendClientMessageToAll(COLOR_LIGHTRED, "AdmCmd: %s (offline) a primit ban permanent de la %s, motiv: %s", playerName, getName(playerid), reason);
+	
+	update("INSERT INTO `server_bans` (PlayerName, PlayerID, AdminName, AdminID, Reason, Days, Date) VALUES ('%s', '%d', '%s', '%d', '%s', '%d', '%s')", playerName, playerID, getName(playerid), playerInfo[playerid][pSQLID], reason, days, getDateTime());
+	SetPVarInt(playerid, "banDeelay", (gettime() + 60));	
+	return true;	
+}
+
 function checkPlayerBanIP(playerid) {
 	if(!cache_num_rows()) {
 		gQuery[0] = (EOS);
 		mysql_format(SQL, gQuery, 256, "SELECT * FROM `server_users` WHERE `Name` = '%s' LIMIT 1", getName(playerid));
-		inline checkPlayerAccount()
-		{
-			if(!cache_num_rows())
-				return Dialog_Show(playerid, REGISTER, DIALOG_STYLE_PASSWORD, "Register", "Bine ai venit, %s.\nScrie mai jos parola pe care doresti sa o ai:", "Register", "Quit", getName(playerid));
-
-			new lastLogin[64];
-			cache_get_value_name(0, "LastLogin", lastLogin, 64);
-
-			Dialog_Show(playerid, LOGIN, DIALOG_STYLE_PASSWORD, "Login", "Bine ai revenit, %s.\nScrie mai jos parola contului tau:\n\n{ffffff}* Ultima logare: %s", "Login", "Quit", getName(playerid), lastLogin);
-			return true;
-		}
-		mysql_pquery_inline(SQL, gQuery, using inline checkPlayerAccount, "");
+		mysql_tquery(SQL, gQuery, "checkPlayerAccount", "d", playerid);
 		return true;
 	}
 	new AdminName[MAX_PLAYER_NAME], Reason[64], Date[32];
 	cache_get_value_name(0, "AdminName", AdminName, MAX_PLAYER_NAME);
 	cache_get_value_name(0, "Reason", Reason, 64);
 	cache_get_value_name(0, "Date", Date, 32);
-	SCM(playerid, COLOR_LIGHTRED, string_fast("System: Acest IP este banat pe acest server de catre Admin %s.", AdminName));
-	SCM(playerid, COLOR_LIGHTRED, string_fast("System: Motivul banului: %s", Reason));
-	SCM(playerid, COLOR_LIGHTRED, string_fast("System: Data banului: %s", Date));
+	SCMf(playerid, COLOR_LIGHTRED, "System: Acest IP este banat pe acest server de catre Admin %s.", AdminName);
+	SCMf(playerid, COLOR_LIGHTRED, "System: Motivul banului: %s", Reason);
+	SCMf(playerid, COLOR_LIGHTRED, "System: Data banului: %s", Date);
+	return true;
+}
+
+function checkBanPlayer(playerid) {
+	if(!cache_num_rows())
+		return sendPlayerError(playerid, "Nu a fost gasit nici-un jucator banat cu acest nume.");
+
+	new playerName[MAX_PLAYER_NAME], playerID;
+	cache_get_value_name(0, "PlayerName", playerName, MAX_PLAYER_NAME);
+	cache_get_value_name_int(0, "ID", playerID);
+	sendAdmin(COLOR_SERVER, "Notice: {ffffff}Admin %s i-a dat unban lui %s.", getName(playerid), playerName);
+	update("UPDATE `server_bans` SET `Active` = '0' WHERE `ID` = '%d'", playerID);
+
+	SetPVarInt(playerid, "unbanDeelay", (gettime() + 60));
+	return true;
+}
+
+function BanIPPlayer(playerid, id, reason) {
+	if(!cache_affected_rows()) return sendPlayerError(playerid, "Banul nu a putut fi acordat, eroare tehnica reveniti mai tarziu.");
+	SendClientMessageToAll(COLOR_LIGHTRED, string_fast("AdmCmd: %s a primit ban ip de la administratorul %s, motiv: %s.", getName(id), getName(playerid), reason));
+	SetPVarInt(playerid, "banDeelay", (gettime() + 60));
+	defer kickEx(id);
+	return true;
+}
+
+function CheckIP(playerid, params) {
+	if(!cache_num_rows()) return sendPlayerError(playerid, "Acest ip nu este banat.");
+	new playerID;
+	cache_get_value_name_int(0, "ID", playerID);
+	sendAdmin(COLOR_SERVER, "* Ban Notice: {ffffff}Admin %s a debanat ip-ul %s.", getName(playerid), params);
+	SetPVarInt(playerid, "unbanDeelay", (gettime() + 60));	
+	update("UPDATE `server_bans_ip` SET `Active` = '0' WHERE `ID` = '%d'", playerID);
+	return true;
+}
+
+function BanIPOffline(playerid, ip, reason) {
+	if(!cache_affected_rows()) return sendPlayerError(playerid, "Banul nu a putut fi acordat, eroare tehnica reveniti mai tarziu.");
+	sendAdmin(COLOR_SERVER, "* Ban Notice: {ffffff}Admin %s a banat ip-ul %s, motiv: %s.", getName(playerid), ip, reason);
+	SetPVarInt(playerid, "banDeelay", (gettime() + 60));
+	return true;
+}
+
+function checkAccountInDatabase(playerid, playerName, reason) {
+	if(!cache_num_rows()) return sendPlayerError(playerid, "Acest cont nu este in jail.");
+	mysql_format(SQL, gQuery, sizeof gQuery, "SELECT * FROM `server_users` WHERE `Name` = '%s' LIMIT 1", playerName);
+	mysql_tquery(SQL, gQuery, "checkAccountJail", "dss", playerid, playerName, reason);
+	return true;
+}
+
+function checkAccountJail(playerid, playerName, reason) {
+	if(!cache_num_rows()) return sendPlayerError(playerid, "Acest cont nu exista.");
+	sendAdmin(COLOR_SERVER, "* Notice: {ffffff}Admin %s l-a eliberat din inchisoare pe %s. Motiv: %s.", getName(playerid), playerName, reason);
+	update("UPDATE `server_users` SET `Jailed` = '0', `JailTime` = '0' WHERE `Name` = '%s' LIMIT 1", playerName);
+	return true;
+}
+
+function checkAccountInDatabaseJailo(playerid, playerName, reason, minutes) {
+	if(cache_num_rows()) return sendPlayerError(playerid, "Acest cont este deja in jail.");
+	gQuery[0] = (EOS);
+	mysql_format(SQL, gQuery, sizeof gQuery, "SELECT * FROM `server_users` WHERE `Name` = '%s' LIMIT 1", playerName);
+	mysql_tquery(SQL, gQuery, "checkAccountJailo", "dssd", playerid, playerName, reason, minutes);
+	return true;
+}
+
+function checkAccountJailo(playerid, playerName, reason, minutes) {
+	if(!cache_num_rows()) return sendPlayerError(playerid, "Acest cont nu exista.");
+	sendAdmin(COLOR_SERVER, "* Notice: {ffffff}Admin %s l-a bagat in inchisoare pe %s, %d minute. Motiv: %s.", getName(playerid), playerName, minutes, reason);
+	update("UPDATE `server_users` SET `Jailed` = '2', `JailTime` = '%d' WHERE `Name` = '%s' LIMIT 1", minutes*60, playerName);
 	return true;
 }
 
