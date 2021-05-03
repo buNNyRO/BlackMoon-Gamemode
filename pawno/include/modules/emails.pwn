@@ -6,21 +6,18 @@ function InsertEmail(playerid, const from[], const text[], type) {
 
 function ShowEmails(playerid) {
 	if(!cache_num_rows()) return true;
-	SCM(playerid, -1, "sint bos #1");
-	new text[144], from[MAX_PLAYER_NAME], date[64];
+	new text[144], from[MAX_PLAYER_NAME], date[64], id=0;
 	gString[0] = (EOS);
 	strcat(gString, "#. Email\tBy\tDate\n");
-	SCM(playerid, -1, "sint bos #2");
-	for(new i = 1; i < cache_num_rows() +1; i++) {
+	for(new i = 0; i < cache_num_rows(); i++) {
+		id++;
 		cache_get_value_name(i, "Text", text, 144);
 		cache_get_value_name(i, "From", from, MAX_PLAYER_NAME);
 		cache_get_value_name(i, "Date", date, 64);
 		format(Selected[playerid][i], 144, text);
-		strcat(gString, string_fast("%d. %s\t%s\t%s\n", i, text, from, date));
-		SCM(playerid, -1, "sint bos incarca email");
+		format(gString, sizeof gString, "%s%d. %s\t%s\t%s\n", gString, id, text, from, date);
 	}
 	Dialog_Show(playerid, DIALOG_EMAILS, DIALOG_STYLE_TABLIST_HEADERS, "Emails", gString, "Select", "Cancel");
-	SCM(playerid, -1, "sint bos #3");
 	return true;
 }
 
@@ -49,7 +46,7 @@ Dialog:DIALOG_EMAILS2(playerid, response, listitem) {
 
 CMD:emails(playerid, params[]) {
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti face acest lucru deoarece ai un dialog afisat.");
-	mysql_tquery(SQL, string_fast("SELECT * FROM `panel_notifications` WHERE `UserID`='%d' ORDER BY `ID` DESC LIMIT 10", playerInfo[playerid][pSQLID]), "ShowEmails", "d", playerid);
+	mysql_tquery(SQL, string_fast("SELECT * FROM `panel_notifications` WHERE `UserID`='%d' ORDER BY `ID` DESC LIMIT 10", playerInfo[playerid][pSQLID]), "ShowEmails", "");
 	return true;
 }
 

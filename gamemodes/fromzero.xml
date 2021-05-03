@@ -880,7 +880,7 @@
 			<member name="C:SAFE" value="5">
 			</member>
 		</member>
-		<member name="T:playerInfoEnum" value="596">
+		<member name="T:playerInfoEnum" value="597">
 			<tagname value="playerInfoEnum"/>
 			<member name="C:pSQLID" value="0">
 			</member>
@@ -1200,7 +1200,9 @@
 			</member>
 			<member name="C:areaSafe" value="575">
 			</member>
-			<member name="C:pSelectVehicle" value="576">
+			<member name="C:pEnableBoost" value="576">
+			</member>
+			<member name="C:pSelectVehicle" value="577">
 				<size value="20"/>
 			</member>
 		</member>
@@ -1498,11 +1500,6 @@
 			<referrer name="ShowEmails"/>
 			<referrer name="OnPlayerRequestClass"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
-			<referrer name="OnVehiclePaintjob"/>
-			<referrer name="OnVehicleRespray"/>
-			<referrer name="OnVehicleDeath"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
-			<referrer name="CB_OnPlayerStateChange"/>
 		</member>
 		<member name="C:E_STREAMER_EXTRA_ID" value="15">
 			<referrer name="HouseUpdate"/>
@@ -2194,6 +2191,7 @@
 			<referrer name="pc_cmd_jailo"/>
 			<referrer name="pc_cmd_resetquests"/>
 			<referrer name="pc_cmd_showfreq"/>
+			<referrer name="pc_cmd_speed"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_helpers"/>
 			<referrer name="pc_cmd_showlicenses"/>
@@ -3552,11 +3550,6 @@
 			<referrer name="pc_cmd_emails"/>
 			<referrer name="ScriptInit_OnGameModeExit"/>
 			<referrer name="OnPlayerRequestClass"/>
-			<referrer name="OnVehiclePaintjob"/>
-			<referrer name="OnVehicleRespray"/>
-			<referrer name="OnVehicleDeath"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
-			<referrer name="CB_OnPlayerStateChange"/>
 		</member>
 		<member name="F:SSCANF_QUIET">
 		</member>
@@ -4249,11 +4242,6 @@
 			<referrer name="pc_cmd_jailo"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="OnPlayerRequestClass"/>
-			<referrer name="OnVehiclePaintjob"/>
-			<referrer name="OnVehicleRespray"/>
-			<referrer name="OnVehicleDeath"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
-			<referrer name="CB_OnPlayerStateChange"/>
 		</member>
 		<member name="F:gSAZones">
 			<referrer name="GetPlayer2DZone"/>
@@ -4828,6 +4816,7 @@
 			<referrer name="pc_cmd_jailo"/>
 			<referrer name="pc_cmd_resetquests"/>
 			<referrer name="pc_cmd_showfreq"/>
+			<referrer name="pc_cmd_speed"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_helpers"/>
 			<referrer name="pc_cmd_showlicenses"/>
@@ -5629,6 +5618,7 @@
 			<referrer name="getVehicleSpeed"/>
 			<referrer name="GetDistancePlayerToVeh"/>
 			<referrer name="TimerSpeedo"/>
+			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<param name="oper1">
 				<paraminfo>Float </paraminfo>
 			</param>
@@ -10056,9 +10046,9 @@
 		<member name="M:CB_OnPlayerKeyStateChange" syntax="CB_OnPlayerKeyStateChange(playerid, newkeys, oldkeys)">
 			<attribute name="public"/>
 			<stacksize value="8202"/>
+			<dependency name="operator*(Float:,Float:)"/>
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="AttachTrailer"/>
-			<dependency name="EOS"/>
 			<dependency name="FishWeight"/>
 			<dependency name="GameTextForPlayer"/>
 			<dependency name="GetPVarInt"/>
@@ -10067,6 +10057,7 @@
 			<dependency name="GetPlayerVirtualWorld"/>
 			<dependency name="GetVehicleParamsEx"/>
 			<dependency name="GetVehiclePos"/>
+			<dependency name="GetVehicleVelocity"/>
 			<dependency name="GivePlayerCash"/>
 			<dependency name="I@"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
@@ -10081,7 +10072,6 @@
 			<dependency name="JobVehicle"/>
 			<dependency name="MoneyMoney"/>
 			<dependency name="MoveDynamicObject"/>
-			<dependency name="SQL"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerHealthEx"/>
 			<dependency name="SetPlayerInterior"/>
@@ -10089,6 +10079,7 @@
 			<dependency name="SetPlayerVirtualWorld"/>
 			<dependency name="SetVehicleParamsEx"/>
 			<dependency name="SetVehicleParamsForPlayer"/>
+			<dependency name="SetVehicleVelocity"/>
 			<dependency name="StopFly"/>
 			<dependency name="StopLoopingAnim"/>
 			<dependency name="StoreMoney"/>
@@ -10128,7 +10119,6 @@
 			<dependency name="false"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
-			<dependency name="gQuery"/>
 			<dependency name="gates"/>
 			<dependency name="gettime"/>
 			<dependency name="hExtX"/>
@@ -10146,10 +10136,9 @@
 			<dependency name="isBike"/>
 			<dependency name="isBoat"/>
 			<dependency name="isPlane"/>
-			<dependency name="mysql_format"/>
-			<dependency name="mysql_tquery"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="pDailyMission"/>
+			<dependency name="pEnableBoost"/>
 			<dependency name="pFaction"/>
 			<dependency name="pFishSkill"/>
 			<dependency name="pFishTimes"/>
@@ -10187,7 +10176,6 @@
 			<stacksize value="8201"/>
 			<dependency name="CancelJob"/>
 			<dependency name="ClearAnimations"/>
-			<dependency name="EOS"/>
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="GetVehicleModel"/>
 			<dependency name="GetVehicleParamsEx"/>
@@ -10209,7 +10197,6 @@
 			<dependency name="PlayerTextDrawSetPreviewModel"/>
 			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="RemovePlayerFromVehicle"/>
-			<dependency name="SQL"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetVehicleParamsEx"/>
 			<dependency name="TimerSpeedo_yT@"/>
@@ -10221,14 +10208,11 @@
 			<dependency name="fareUpdateTimer_yT@"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
-			<dependency name="gQuery"/>
 			<dependency name="getVehicleOwner"/>
 			<dependency name="gettime"/>
 			<dependency name="isBike"/>
 			<dependency name="isBoat"/>
 			<dependency name="isPlane"/>
-			<dependency name="mysql_format"/>
-			<dependency name="mysql_tquery"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pBoatLicense"/>
 			<dependency name="pDrivingLicense"/>
@@ -10266,6 +10250,7 @@
 			<dependency name="string_fast"/>
 			<dependency name="taxi"/>
 			<dependency name="true"/>
+			<dependency name="update"/>
 			<dependency name="updateTaxiTextdraw"/>
 			<dependency name="va_SendClientMessage"/>
 			<dependency name="vehNames"/>
@@ -15322,6 +15307,7 @@
 			<attribute name="native"/>
 			<referrer name="Callback_GetSpeed"/>
 			<referrer name="getVehicleSpeed"/>
+			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<param name="vehicleid">
 			</param>
 			<param name="X">
@@ -20755,21 +20741,16 @@
 		<member name="M:OnVehicleDeath" syntax="OnVehicleDeath(vehicleid, killerid)">
 			<attribute name="public"/>
 			<stacksize value="4112"/>
-			<dependency name="EOS"/>
 			<dependency name="GetVehicleParamsEx"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iter_DestroyVehicle"/>
 			<dependency name="Iter_Remove_InternalC"/>
 			<dependency name="Iter_Single@AdminVehicles"/>
 			<dependency name="Iterator@AdminVehicles"/>
-			<dependency name="SQL"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetVehicleParamsEx"/>
 			<dependency name="false"/>
-			<dependency name="gQuery"/>
 			<dependency name="getVehicleOwner"/>
-			<dependency name="mysql_format"/>
-			<dependency name="mysql_tquery"/>
 			<dependency name="personalVehicle"/>
 			<dependency name="personalVehicle"/>
 			<dependency name="pvID"/>
@@ -20778,6 +20759,7 @@
 			<dependency name="pvOwnerID"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="update"/>
 			<dependency name="vehNames"/>
 			<dependency name="vehNames"/>
 			<dependency name="vehicle_bonnet"/>
@@ -20808,19 +20790,15 @@
 		</member>
 		<member name="M:OnVehiclePaintjob" syntax="OnVehiclePaintjob(playerid, vehicleid, paintjobid)">
 			<attribute name="public"/>
-			<stacksize value="8"/>
-			<dependency name="EOS"/>
+			<stacksize value="6"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@PlayerVehicles"/>
-			<dependency name="SQL"/>
-			<dependency name="gQuery"/>
-			<dependency name="mysql_format"/>
-			<dependency name="mysql_tquery"/>
 			<dependency name="personalVehicle"/>
 			<dependency name="personalVehicle"/>
 			<dependency name="pvID"/>
 			<dependency name="pvPaintJob"/>
 			<dependency name="true"/>
+			<dependency name="update"/>
 			<dependency name="vehicle_personal"/>
 			<param name="playerid">
 			</param>
@@ -20831,20 +20809,16 @@
 		</member>
 		<member name="M:OnVehicleRespray" syntax="OnVehicleRespray(playerid, vehicleid, color1, color2)">
 			<attribute name="public"/>
-			<stacksize value="8"/>
+			<stacksize value="6"/>
 			<dependency name="Float:operator=(_:)"/>
-			<dependency name="EOS"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@PlayerVehicles"/>
-			<dependency name="SQL"/>
-			<dependency name="gQuery"/>
-			<dependency name="mysql_format"/>
-			<dependency name="mysql_tquery"/>
 			<dependency name="personalVehicle"/>
 			<dependency name="personalVehicle"/>
 			<dependency name="pvHealth"/>
 			<dependency name="pvID"/>
 			<dependency name="true"/>
+			<dependency name="update"/>
 			<dependency name="vehicle_personal"/>
 			<param name="playerid">
 			</param>
@@ -21182,6 +21156,7 @@
 			<referrer name="fareUpdateTimer"/>
 			<referrer name="TimerWar"/>
 			<referrer name="TimerJail"/>
+			<referrer name="TimerWanted"/>
 			<referrer name="pc_cmd_unjail"/>
 			<referrer name="HideDealerShipTD"/>
 			<referrer name="CB_OnPlayerStateChange"/>
@@ -22421,7 +22396,6 @@
 			<referrer name="pc_cmd_unwarn"/>
 			<referrer name="pc_cmd_unmute"/>
 			<referrer name="pc_cmd_mutedplayers"/>
-			<referrer name="pc_cmd_setadmin"/>
 			<referrer name="pc_cmd_sethelper"/>
 			<referrer name="pc_cmd_givemoney"/>
 			<referrer name="pc_cmd_adminsuspendlicense"/>
@@ -23378,6 +23352,21 @@
 				<paraminfo>Float </paraminfo>
 			</param>
 		</member>
+		<member name="M:SetVehicleVelocity" syntax="SetVehicleVelocity(vehicleid, X, Y, Z)">
+			<attribute name="native"/>
+			<referrer name="CB_OnPlayerKeyStateChange"/>
+			<param name="vehicleid">
+			</param>
+			<param name="X">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="Y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="Z">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
 		<member name="M:SetVehicleVirtualWorld" syntax="SetVehicleVirtualWorld(vehicleid, worldid)">
 			<attribute name="native"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
@@ -23445,7 +23434,7 @@
 		</member>
 		<member name="M:ShowEmails" syntax="ShowEmails(playerid)">
 			<attribute name="public"/>
-			<stacksize value="243"/>
+			<stacksize value="244"/>
 			<dependency name="Dialog_Open"/>
 			<dependency name="EOS"/>
 			<dependency name="Selected"/>
@@ -23453,7 +23442,6 @@
 			<dependency name="cache_num_rows"/>
 			<dependency name="format"/>
 			<dependency name="gString"/>
-			<dependency name="printf"/>
 			<dependency name="strcat"/>
 			<dependency name="true"/>
 			<param name="playerid">
@@ -24342,6 +24330,7 @@
 		<member name="M:TimerWanted" syntax="TimerWanted(x)">
 			<stacksize value="8"/>
 			<referrer name="TimerWanted@_yT"/>
+			<dependency name="PlayerTextDrawHide"/>
 			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerWantedLevel"/>
@@ -25896,6 +25885,7 @@
 			<attribute name="public"/>
 			<stacksize value="3"/>
 			<referrer name="showMDC"/>
+			<referrer name="pc_cmd_wanteds"/>
 			<dependency name="Iterator@Wanteds"/>
 			<dependency name="pCheckpointID"/>
 			<dependency name="pMDCon"/>
@@ -28273,7 +28263,6 @@
 			<referrer name="pc_cmd_buyhouse"/>
 			<referrer name="factionName"/>
 			<referrer name="pc_cmd_factions"/>
-			<referrer name="pc_cmd_wanteds"/>
 			<referrer name="showFactionMembers"/>
 			<referrer name="dialog_DIALOG_MEMBERS"/>
 			<referrer name="pc_cmd_endlive"/>
@@ -29415,11 +29404,6 @@
 			<referrer name="pc_cmd_jailo"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="OnPlayerRequestClass"/>
-			<referrer name="OnVehiclePaintjob"/>
-			<referrer name="OnVehicleRespray"/>
-			<referrer name="OnVehicleDeath"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
-			<referrer name="CB_OnPlayerStateChange"/>
 			<param name="handle">
 				<paraminfo>MySQL </paraminfo>
 			</param>
@@ -29535,11 +29519,6 @@
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_emails"/>
 			<referrer name="OnPlayerRequestClass"/>
-			<referrer name="OnVehiclePaintjob"/>
-			<referrer name="OnVehicleRespray"/>
-			<referrer name="OnVehicleDeath"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
-			<referrer name="CB_OnPlayerStateChange"/>
 			<param name="handle">
 				<paraminfo>MySQL </paraminfo>
 			</param>
@@ -35173,14 +35152,13 @@
 		</member>
 		<member name="M:pc_cmd_setadmin" syntax="pc_cmd_setadmin(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4107"/>
+			<stacksize value="10"/>
 			<dependency name="AllowPlayerTeleport"/>
 			<dependency name="Iter_Add_InternalC"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iter_Remove_InternalC"/>
 			<dependency name="Iter_Single@ServerAdmins"/>
 			<dependency name="Iterator@ServerAdmins"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="TextDrawHideForPlayer"/>
 			<dependency name="TextDrawShowForPlayer"/>
 			<dependency name="isPlayerLogged"/>
@@ -35194,10 +35172,10 @@
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="serverInfoTD"/>
 			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="strmatch"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -35613,6 +35591,22 @@
 			<dependency name="isPlayerLogged"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:pc_cmd_speed" syntax="pc_cmd_speed(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="7"/>
+			<dependency name="pAdmin"/>
+			<dependency name="pEnableBoost"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -36346,7 +36340,7 @@
 		</member>
 		<member name="M:pc_cmd_wanteds" syntax="pc_cmd_wanteds(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4106"/>
+			<stacksize value="4109"/>
 			<dependency name="CallRemoteFunction"/>
 			<dependency name="Dialog_Open"/>
 			<dependency name="EOS"/>
@@ -36354,7 +36348,7 @@
 			<dependency name="Iter_Single@Wanteds"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="Iterator@Wanteds"/>
-			<dependency name="format"/>
+			<dependency name="chasedBy"/>
 			<dependency name="gString"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pFaction"/>
@@ -36365,6 +36359,7 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
+			<dependency name="strcat"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<param name="playerid">
@@ -36583,7 +36578,6 @@
 			<referrer name="LoadPersonalVehicle"/>
 			<referrer name="LoadGasCan"/>
 			<referrer name="LoadDSVehicles"/>
-			<referrer name="ShowEmails"/>
 			<referrer name="OnQueryError"/>
 			<param name="format">
 				<paraminfo> [] </paraminfo>
@@ -36819,6 +36813,7 @@
 			<dependency name="pCuffed"/>
 			<dependency name="pDrivingLicense"/>
 			<dependency name="pDrivingLicenseSuspend"/>
+			<dependency name="pEnableBoost"/>
 			<dependency name="pExamenCheckpoint"/>
 			<dependency name="pExamenVehicle"/>
 			<dependency name="pFactionDuty"/>
@@ -37436,6 +37431,7 @@
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="pc_cmd_jailo"/>
 			<referrer name="pc_cmd_showfreq"/>
+			<referrer name="pc_cmd_speed"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_helpers"/>
 			<referrer name="pc_cmd_showlicenses"/>
@@ -38087,6 +38083,7 @@
 			<referrer name="Malloc_SetVAS"/>
 			<referrer name="_@_y_inline_@_"/>
 			<referrer name="OnDialogResponse"/>
+			<referrer name="pc_cmd_wanteds"/>
 			<referrer name="showFactionMembers"/>
 			<referrer name="pc_cmd_setguns"/>
 			<referrer name="pc_cmd_svf"/>
@@ -38287,7 +38284,6 @@
 			<referrer name="pc_cmd_mute"/>
 			<referrer name="pc_cmd_unmute"/>
 			<referrer name="pc_cmd_mutedplayers"/>
-			<referrer name="pc_cmd_setadmin"/>
 			<referrer name="pc_cmd_sethelper"/>
 			<referrer name="pc_cmd_givemoney"/>
 			<referrer name="pc_cmd_adminsuspendlicense"/>
@@ -38822,7 +38818,11 @@
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="OnPlayerText"/>
+			<referrer name="OnVehiclePaintjob"/>
+			<referrer name="OnVehicleRespray"/>
+			<referrer name="OnVehicleDeath"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
+			<referrer name="CB_OnPlayerStateChange"/>
 			<referrer name="OnPlayerEnterCheckpoint"/>
 			<dependency name="EOS"/>
 			<dependency name="SQL"/>
@@ -39078,6 +39078,8 @@
 			<referrer name="checkPlayerBanIP"/>
 			<referrer name="pc_cmd_addbizgas"/>
 			<referrer name="gasTimer"/>
+			<referrer name="pc_cmd_setadmin"/>
+			<referrer name="pc_cmd_speed"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_helpers"/>
 			<referrer name="pc_cmd_showlicenses"/>
