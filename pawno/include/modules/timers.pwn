@@ -38,6 +38,7 @@ timer TimerWanted[1000](x) {
 		playerInfo[x][pWantedLevel] = 0;
 		playerInfo[x][pWantedTime] = 0;
 		SetPlayerWantedLevel(x, playerInfo[x][pWantedLevel]);
+		PlayerTextDrawHide(x, wantedTD[x]);
 		stop wantedTime[x];
 		SCM(x, COLOR_LIGHTRED, "* Wanted: Politistii ti-au pierdut urmele deoarece nu mai ai wanted.");
 		update("UPDATE `server_users` SET `WantedLevel` = '%d', `WantedTime` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[x][pWantedLevel], playerInfo[x][pWantedTime], playerInfo[x][pSQLID]);

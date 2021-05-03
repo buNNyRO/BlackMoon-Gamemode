@@ -190,6 +190,7 @@ enum playerInfoEnum
     areaJob,
     areaGascan,
     areaSafe,
+    pEnableBoost,
     pSelectVehicle[MAX_PLAYER_PERSONAL_VEHICLES]
 };
 /*

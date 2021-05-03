@@ -231,8 +231,8 @@ CMD:setadmin(playerid, params[])
 		return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 
 	new userID, admin;
-	if(sscanf(params, "ud", userID, admin) || admin < 0 || admin > 6)
-		return sendPlayerSyntax(playerid, "/setadmin <name/id> <level admin (0 - 6)>");
+	if(sscanf(params, "ud", userID, admin) || admin < 0 || admin > 7)
+		return sendPlayerSyntax(playerid, "/setadmin <name/id> <level admin (0 - 7)>");
 
 	if(!isPlayerLogged(userID))
 		return sendPlayerError(playerid, "Jucatorul nu este conectat.");
@@ -258,7 +258,7 @@ CMD:setadmin(playerid, params[])
 	playerInfo[userID][pAdmin] = admin;
 	update("UPDATE `server_users` SET `Admin` = '%d' WHERE `ID` = '%d'", admin, playerInfo[userID][pSQLID]);
 	sendAdmin(COLOR_SERVER, "Notice: {ffffff}Admin %s i-a setat lui %s admin nivel %d.", getName(playerid), getName(userID), admin);
-	SCM(userID, COLOR_YELLOW, string_fast("* Admin %s ti-a setat admin %d.", getName(playerid), admin));
+	SCMf(userID, COLOR_YELLOW, "* Admin %s ti-a setat admin %d.", getName(playerid), admin);
 	return true;
 }
 
@@ -1340,8 +1340,8 @@ CMD:jail(playerid, params[]) {
 		TogglePlayerControllable(userID, 1);
 		playerInfo[userID][pCuffed] = 0;
 	}
-	SetPlayerPos(playerid, cellRandom[rand][0], cellRandom[rand][1], cellRandom[rand][2]);
-	SetPlayerVirtualWorld(playerid, 1337);
+	SetPlayerPos(userID, cellRandom[rand][0], cellRandom[rand][1], cellRandom[rand][2]);
+	SetPlayerVirtualWorld(userID, 1337);
 	jailTime[userID] = repeat TimerJail(userID);
 	playerInfo[userID][pJailed] = 1;
 	playerInfo[userID][pJailTime] = minutes*60;
@@ -1379,4 +1379,12 @@ CMD:showfreq(playerid, params[]) {
     if(playerInfo[userID][pWTalkie] == 0) return sendPlayerError(playerid, "Acel player nu are un walkie talkie.");
     SCM(playerid, COLOR_WHITE, string_fast("* Jucatorul are frecventa %d.", playerInfo[userID][pWTChannel]));
     return true;
+}
+
+CMD:speed(playerid, params[]) {
+	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
+	if(playerInfo[playerid][pEnableBoost]) playerInfo[playerid][pEnableBoost] = 1;
+	else playerInfo[playerid][pEnableBoost] = 0;
+	SCMf(playerid, COLOR_SERVER, "Notice: {ffffff}Speed Boost %s.", playerInfo[playerid][pEnableBoost] ? "activat" : "dezactivat");
+	return true;
 }

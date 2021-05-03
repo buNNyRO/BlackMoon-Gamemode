@@ -802,6 +802,7 @@ stock resetVars(playerid)
 	playerInfo[playerid][pSelectedItem] = -1;
 	playerInfo[playerid][pOnTurf] = 0;
 	playerInfo[playerid][pFactionDuty] = 0;
+	playerInfo[playerid][pEnableBoost] = 0;
 
 	if(IsValidVehicle(playerInfo[playerid][pExamenVehicle])) DestroyVehicle(playerInfo[playerid][pExamenVehicle]);
 
