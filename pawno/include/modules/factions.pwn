@@ -946,10 +946,9 @@ CMD:arrest(playerid, params[]) {
 	return true;
 }
 
-
 CMD:members(playerid, params[]) {
 	if(playerInfo[playerid][pFaction] == 0) return true;
-	mysql_tquery(SQL, string_fast("SELECT `Name`,`LastLogin`,`FRank`,`FWarns`,`FAge`,`Commands` WHERE `server_users`.`Faction` = '%d' ORDER BY `server_users`.`FRank` DESC LIMIT 20", playerInfo[playerid][pFaction]), "showFactionMembers", "");
+	mysql_tquery(SQL, string_fast("SELECT * FROM `server_users` WHERE `Faction` = '%d' ORDER BY `FRank` DESC LIMIT 20", playerInfo[playerid][pFaction]), "showFactionMembers", "");
 	return 1;
 }
 

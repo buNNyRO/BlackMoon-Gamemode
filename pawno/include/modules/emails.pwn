@@ -46,7 +46,7 @@ Dialog:DIALOG_EMAILS2(playerid, response, listitem) {
 
 CMD:emails(playerid, params[]) {
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti face acest lucru deoarece ai un dialog afisat.");
-	mysql_tquery(SQL, string_fast("SELECT * FROM `panel_notifications` WHERE `UserID`='%d' ORDER BY `ID` DESC LIMIT 10", playerInfo[playerid][pSQLID]), "ShowEmails", "");
+	mysql_tquery(SQL, string_fast("SELECT * FROM `panel_notifications` WHERE `UserID`='%d' ORDER BY `ID` DESC LIMIT 10", playerInfo[playerid][pSQLID]), "ShowEmails", "d", playerid);
 	return true;
 }
 

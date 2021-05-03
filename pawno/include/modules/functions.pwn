@@ -183,14 +183,13 @@ function onPlayerLogin(playerid)
 	gString[0] = (EOS);
 	cache_get_value_name(0, "Licenses", gString, 48);
 	sscanf(gString, "p<|>dddddddd", playerInfo[playerid][pDrivingLicense], playerInfo[playerid][pDrivingLicenseSuspend], playerInfo[playerid][pWeaponLicense], playerInfo[playerid][pWeaponLicenseSuspend], playerInfo[playerid][pFlyLicense], playerInfo[playerid][pFlyLicenseSuspend], playerInfo[playerid][pBoatLicense], playerInfo[playerid][pBoatLicenseSuspend]);
-	mysql_tquery(SQL, string_fast("SELECT * FROM `panel_notifications` WHERE `UserID` = '%d' AND `Read` = 0", playerInfo[playerid][pSQLID]), "CalculateEmails", "");
+	mysql_tquery(SQL, string_fast("SELECT * FROM `panel_notifications` WHERE `UserID` = '%d' AND `Read` = 0", playerInfo[playerid][pSQLID]), "CalculateEmails", "d", playerid);
 
 	clearChat(playerid, 30);
 	SCMf(playerid, COLOR_GREY, "* Bine ai venit, %s.", getName(playerid)); 
 
 	gQuery[0] = (EOS);
 	mysql_format(SQL, gQuery, 128, "SELECT * FROM `server_personal_vehicles` WHERE `OwnerID` = '%d'", playerInfo[playerid][pSQLID]);
-	printf("%s", gQuery);
 	mysql_pquery(SQL, gQuery, "LoadPersonalVehicle", "d", playerid);
 
 	new ipnew[16];

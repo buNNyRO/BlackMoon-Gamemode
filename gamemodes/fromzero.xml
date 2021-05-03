@@ -20941,6 +20941,8 @@
 			<referrer name="pc_alias_acceptreport"/>
 			<referrer name="pc_alias_closereport"/>
 			<referrer name="pc_alias_reportmute"/>
+			<referrer name="pc_alias_makeleader"/>
+			<referrer name="pc_alias_setadmin"/>
 			<param name="cmd">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -29714,7 +29716,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerNamePTD"/>
-			<dependency name="printf"/>
 			<dependency name="serverDateTD"/>
 			<dependency name="serverInfoTD"/>
 			<dependency name="serverNameTD"/>
@@ -29801,9 +29802,19 @@
 			<stacksize value="5"/>
 			<dependency name="PC_RegAlias"/>
 		</member>
+		<member name="M:pc_alias_makeleader" syntax="pc_alias_makeleader()">
+			<attribute name="public"/>
+			<stacksize value="4"/>
+			<dependency name="PC_RegAlias"/>
+		</member>
 		<member name="M:pc_alias_reportmute" syntax="pc_alias_reportmute()">
 			<attribute name="public"/>
 			<stacksize value="5"/>
+			<dependency name="PC_RegAlias"/>
+		</member>
+		<member name="M:pc_alias_setadmin" syntax="pc_alias_setadmin()">
+			<attribute name="public"/>
+			<stacksize value="4"/>
 			<dependency name="PC_RegAlias"/>
 		</member>
 		<member name="M:pc_alias_setrepsectpoints" syntax="pc_alias_setrepsectpoints()">
@@ -36572,7 +36583,6 @@
 			<referrer name="LoadJobs"/>
 			<referrer name="LoadBusinesses"/>
 			<referrer name="LoadClans"/>
-			<referrer name="onPlayerLogin"/>
 			<referrer name="LoadExamCheckpoints"/>
 			<referrer name="assignSQLID"/>
 			<referrer name="LoadPersonalVehicle"/>
