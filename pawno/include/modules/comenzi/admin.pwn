@@ -1385,6 +1385,6 @@ CMD:speed(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(playerInfo[playerid][pEnableBoost]) playerInfo[playerid][pEnableBoost] = 1;
 	else playerInfo[playerid][pEnableBoost] = 0;
-	SCMf(playerid, COLOR_SERVER, "Notice: {ffffff}Speed Boost %s.", playerInfo[playerid][pEnableBoost] ? "activat" : "dezactivat");
+	SCMf(playerid, COLOR_SERVER, "Notice: {ffffff}Speed Boost %s.", playerInfo[playerid][pEnableBoost] > 0 ? "activat" : "dezactivat");
 	return true;
 }
