@@ -259,15 +259,6 @@
 				<size value="2"/>
 			</member>
 			<referrer name="Callback_Get"/>
-			<referrer name="mysql_tquery_inline"/>
-			<referrer name="mysql_pquery_inline"/>
-			<referrer name="mysql_tquery_file_inline"/>
-			<referrer name="orm_select_inline"/>
-			<referrer name="orm_update_inline"/>
-			<referrer name="orm_insert_inline"/>
-			<referrer name="orm_delete_inline"/>
-			<referrer name="orm_load_inline"/>
-			<referrer name="orm_save_inline"/>
 		</member>
 		<member name="T:E_HOOK_NAME_REPLACEMENT_DATA" value="34">
 			<tagname value="E_HOOK_NAME_REPLACEMENT_DATA"/>
@@ -1476,9 +1467,12 @@
 			<referrer name="pc_cmd_ad"/>
 			<referrer name="pc_cmd_hl"/>
 			<referrer name="sendClanMessage"/>
+			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
+			<referrer name="checkAccountInBanDatabase"/>
 			<referrer name="checkPlayerBanIP"/>
+			<referrer name="checkAccountInDatabaseJailo"/>
 			<referrer name="LoadPersonalVehicle"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
@@ -1504,7 +1498,6 @@
 			<referrer name="ShowEmails"/>
 			<referrer name="OnPlayerRequestClass"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
-			<referrer name="OnPlayerText"/>
 			<referrer name="OnVehiclePaintjob"/>
 			<referrer name="OnVehicleRespray"/>
 			<referrer name="OnVehicleDeath"/>
@@ -1714,15 +1707,6 @@
 			<referrer name="_Master_Get"/>
 			<referrer name="Master_GetCurrentMaster"/>
 			<referrer name="Callback_Get"/>
-			<referrer name="mysql_tquery_inline"/>
-			<referrer name="mysql_pquery_inline"/>
-			<referrer name="mysql_tquery_file_inline"/>
-			<referrer name="orm_select_inline"/>
-			<referrer name="orm_update_inline"/>
-			<referrer name="orm_insert_inline"/>
-			<referrer name="orm_delete_inline"/>
-			<referrer name="orm_load_inline"/>
-			<referrer name="orm_save_inline"/>
 			<referrer name="DestroyPlayerProgressBar"/>
 			<referrer name="InitFly"/>
 			<referrer name="StartFly"/>
@@ -2085,9 +2069,22 @@
 			<referrer name="dialog_DIALOG_CLANSETTINGS1"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS2"/>
 			<referrer name="MySQLLoad"/>
+			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
+			<referrer name="checkPlayerAccount"/>
+			<referrer name="assignCheckpointID"/>
+			<referrer name="checkAccountInBanDatabase"/>
+			<referrer name="checkAccountBanDatabase"/>
 			<referrer name="checkPlayerBanIP"/>
+			<referrer name="checkBanPlayer"/>
+			<referrer name="BanIPPlayer"/>
+			<referrer name="CheckIP"/>
+			<referrer name="BanIPOffline"/>
+			<referrer name="checkAccountInDatabase"/>
+			<referrer name="checkAccountJail"/>
+			<referrer name="checkAccountInDatabaseJailo"/>
+			<referrer name="checkAccountJailo"/>
 			<referrer name="serverWeapon"/>
 			<referrer name="ProxDetectorS"/>
 			<referrer name="loadMaps"/>
@@ -2125,7 +2122,6 @@
 			<referrer name="gasTimer"/>
 			<referrer name="TimerJail"/>
 			<referrer name="TimerWanted"/>
-			<referrer name="TimerCollision"/>
 			<referrer name="Timers"/>
 			<referrer name="TimersWantedFind"/>
 			<referrer name="TimerPos"/>
@@ -2303,10 +2299,11 @@
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 			<referrer name="InsertEmail"/>
-			<referrer name="pc_cmd_emails"/>
 			<referrer name="ShowEmails"/>
 			<referrer name="dialog_DIALOG_EMAILS"/>
 			<referrer name="dialog_DIALOG_EMAILS2"/>
+			<referrer name="pc_cmd_emails"/>
+			<referrer name="pc_cmd_insertemail"/>
 			<referrer name="OnQueryError"/>
 			<referrer name="CB_OnGameModeInit"/>
 			<referrer name="ScriptInit_OnGameModeExit"/>
@@ -2654,8 +2651,10 @@
 			<referrer name="pc_cmd_ad"/>
 			<referrer name="CautaHelper"/>
 			<referrer name="helpnTimer_yT@"/>
+			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
+			<referrer name="BanIPPlayer"/>
 			<referrer name="removeFunction"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
@@ -2666,7 +2665,6 @@
 			<referrer name="kickEx_yT@"/>
 			<referrer name="TimerJail_yT@"/>
 			<referrer name="TimerWanted_yT@"/>
-			<referrer name="TimerCollision_yT@"/>
 			<referrer name="TimersWantedFind_yT@"/>
 			<referrer name="TimerPos_yT@"/>
 			<referrer name="TimerMute_yT@"/>
@@ -2677,11 +2675,9 @@
 			<referrer name="closeGate_yT@"/>
 			<referrer name="tazerTimer_yT@"/>
 			<referrer name="pc_cmd_respawnhere"/>
-			<referrer name="pc_cmd_banip"/>
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="testDriveTimer_yT@"/>
-			<referrer name="OnPlayerRequestClass"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerStateChange"/>
@@ -2738,6 +2734,7 @@
 		</member>
 		<member name="F:Iter_Single@ExamenCheckpoints">
 			<referrer name="LoadExamCheckpoints"/>
+			<referrer name="assignCheckpointID"/>
 			<referrer name="pc_cmd_addexamcp"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="OnPlayerEnterCheckpoint"/>
@@ -2950,6 +2947,7 @@
 		</member>
 		<member name="F:Iterator@ExamenCheckpoints">
 			<referrer name="LoadExamCheckpoints"/>
+			<referrer name="assignCheckpointID"/>
 			<referrer name="pc_cmd_addexamcp"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="OnPlayerEnterCheckpoint"/>
@@ -3337,8 +3335,10 @@
 			<referrer name="pc_cmd_ad"/>
 			<referrer name="CautaHelper"/>
 			<referrer name="helpnTimer_yT@"/>
+			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
+			<referrer name="BanIPPlayer"/>
 			<referrer name="removeFunction"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
@@ -3349,7 +3349,6 @@
 			<referrer name="kickEx_yT@"/>
 			<referrer name="TimerJail_yT@"/>
 			<referrer name="TimerWanted_yT@"/>
-			<referrer name="TimerCollision_yT@"/>
 			<referrer name="TimersWantedFind_yT@"/>
 			<referrer name="TimerPos_yT@"/>
 			<referrer name="TimerMute_yT@"/>
@@ -3360,11 +3359,9 @@
 			<referrer name="closeGate_yT@"/>
 			<referrer name="tazerTimer_yT@"/>
 			<referrer name="pc_cmd_respawnhere"/>
-			<referrer name="pc_cmd_banip"/>
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="testDriveTimer_yT@"/>
-			<referrer name="OnPlayerRequestClass"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerStateChange"/>
@@ -3530,9 +3527,13 @@
 			<referrer name="pc_cmd_bizlock"/>
 			<referrer name="pc_cmd_sellbiz"/>
 			<referrer name="MySQLLoad"/>
+			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
+			<referrer name="checkAccountInBanDatabase"/>
 			<referrer name="checkPlayerBanIP"/>
+			<referrer name="checkAccountInDatabase"/>
+			<referrer name="checkAccountInDatabaseJailo"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="SaveComponent"/>
 			<referrer name="TimerCar"/>
@@ -3547,11 +3548,10 @@
 			<referrer name="pc_cmd_unjailo"/>
 			<referrer name="pc_cmd_jailo"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
-			<referrer name="pc_cmd_emails"/>
 			<referrer name="dialog_DIALOG_EMAILS"/>
+			<referrer name="pc_cmd_emails"/>
 			<referrer name="ScriptInit_OnGameModeExit"/>
 			<referrer name="OnPlayerRequestClass"/>
-			<referrer name="OnPlayerText"/>
 			<referrer name="OnVehiclePaintjob"/>
 			<referrer name="OnVehicleRespray"/>
 			<referrer name="OnVehicleDeath"/>
@@ -4063,10 +4063,6 @@
 			<referrer name="pc_cmd_cinvite"/>
 			<referrer name="pc_cmd_accept"/>
 		</member>
-		<member name="F:collision">
-			<tagname value="Timer"/>
-			<referrer name="CB_OnPlayerStateChange"/>
-		</member>
 		<member name="F:contractInfo">
 			<referrer name="pc_cmd_contract"/>
 			<referrer name="pc_cmd_gethit"/>
@@ -4079,6 +4075,7 @@
 		</member>
 		<member name="F:examenInfo">
 			<referrer name="LoadExamCheckpoints"/>
+			<referrer name="assignCheckpointID"/>
 			<referrer name="pc_cmd_addexamcp"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="OnPlayerEnterCheckpoint"/>
@@ -4231,9 +4228,13 @@
 			<referrer name="pc_cmd_bizdeposit"/>
 			<referrer name="pc_cmd_bizlock"/>
 			<referrer name="pc_cmd_sellbiz"/>
+			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
+			<referrer name="checkAccountInBanDatabase"/>
 			<referrer name="checkPlayerBanIP"/>
+			<referrer name="checkAccountInDatabase"/>
+			<referrer name="checkAccountInDatabaseJailo"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="SaveComponent"/>
 			<referrer name="TimerCar"/>
@@ -4248,7 +4249,6 @@
 			<referrer name="pc_cmd_jailo"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="OnPlayerRequestClass"/>
-			<referrer name="OnPlayerText"/>
 			<referrer name="OnVehiclePaintjob"/>
 			<referrer name="OnVehicleRespray"/>
 			<referrer name="OnVehicleDeath"/>
@@ -4720,9 +4720,19 @@
 			<referrer name="SetClanTag"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS1"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS2"/>
+			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
+			<referrer name="checkPlayerAccount"/>
+			<referrer name="assignSQLID"/>
+			<referrer name="checkAccountBanDatabase"/>
 			<referrer name="checkPlayerBanIP"/>
+			<referrer name="checkBanPlayer"/>
+			<referrer name="BanIPPlayer"/>
+			<referrer name="CheckIP"/>
+			<referrer name="BanIPOffline"/>
+			<referrer name="checkAccountJail"/>
+			<referrer name="checkAccountJailo"/>
 			<referrer name="serverWeapon"/>
 			<referrer name="SetPlayerFreeze"/>
 			<referrer name="StopLoopingAnim"/>
@@ -4750,7 +4760,6 @@
 			<referrer name="gasTimer"/>
 			<referrer name="TimerJail"/>
 			<referrer name="TimerWanted"/>
-			<referrer name="TimerCollision"/>
 			<referrer name="Timers"/>
 			<referrer name="TimerPos"/>
 			<referrer name="TimerMute"/>
@@ -4886,9 +4895,10 @@
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 			<referrer name="InsertEmail"/>
-			<referrer name="pc_cmd_emails"/>
 			<referrer name="dialog_DIALOG_EMAILS"/>
 			<referrer name="dialog_DIALOG_EMAILS2"/>
+			<referrer name="pc_cmd_emails"/>
+			<referrer name="pc_cmd_insertemail"/>
 			<referrer name="OnPlayerRequestClass"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<referrer name="OnPlayerSpawn"/>
@@ -5646,7 +5656,6 @@
 			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<referrer name="pc_cmd_addbizgas"/>
 			<referrer name="gasTimer"/>
-			<referrer name="TimerCollision"/>
 			<referrer name="PayDay"/>
 			<referrer name="pc_cmd_fly"/>
 			<referrer name="pc_cmd_set"/>
@@ -9597,6 +9606,48 @@
 			<param name="vehicleid">
 			</param>
 		</member>
+		<member name="M:BanIPOffline" syntax="BanIPOffline(playerid, ip, reason)">
+			<attribute name="public"/>
+			<stacksize value="10"/>
+			<dependency name="SetPVarInt"/>
+			<dependency name="cache_affected_rows"/>
+			<dependency name="gettime"/>
+			<dependency name="pName"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendAdmin"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="true"/>
+			<param name="playerid">
+			</param>
+			<param name="ip">
+			</param>
+			<param name="reason">
+			</param>
+		</member>
+		<member name="M:BanIPPlayer" syntax="BanIPPlayer(playerid, id, reason)">
+			<attribute name="public"/>
+			<stacksize value="4105"/>
+			<dependency name="I@"/>
+			<dependency name="J@"/>
+			<dependency name="SendClientMessageToAll"/>
+			<dependency name="SetPVarInt"/>
+			<dependency name="cache_affected_rows"/>
+			<dependency name="gettime"/>
+			<dependency name="kickEx_yT@"/>
+			<dependency name="pName"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="string_fast"/>
+			<dependency name="true"/>
+			<param name="playerid">
+			</param>
+			<param name="id">
+			</param>
+			<param name="reason">
+			</param>
+		</member>
 		<member name="M:Bit_Bits" syntax="Bit_Bits(size)">
 			<stacksize value="1"/>
 			<param name="size">
@@ -10050,6 +10101,8 @@
 			<dependency name="bizInfo"/>
 			<dependency name="bizInfo"/>
 			<dependency name="bizInterior"/>
+			<dependency name="bizLocked"/>
+			<dependency name="bizStatic"/>
 			<dependency name="bizType"/>
 			<dependency name="bizX"/>
 			<dependency name="bizY"/>
@@ -10109,6 +10162,7 @@
 			<dependency name="pinHouse"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
+			<dependency name="print"/>
 			<dependency name="pvSpawnedID"/>
 			<dependency name="returnNeededPoints"/>
 			<dependency name="sendPlayerError"/>
@@ -10155,12 +10209,10 @@
 			<dependency name="SQL"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetVehicleParamsEx"/>
-			<dependency name="TimerCollision_yT@"/>
 			<dependency name="TimerSpeedo_yT@"/>
 			<dependency name="Working"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="addRaportPoint"/>
-			<dependency name="collision"/>
 			<dependency name="examenFail"/>
 			<dependency name="fareTD"/>
 			<dependency name="fareUpdateTimer_yT@"/>
@@ -10559,7 +10611,6 @@
 			<stacksize value="28"/>
 			<referrer name="Callback_Call"/>
 			<referrer name="Callback_Array"/>
-			<referrer name="__MysqlInlineProcessCallback"/>
 			<dependency name="AMX_HEADER_COD"/>
 			<dependency name="AsmContext"/>
 			<dependency name="AsmEmitAddC"/>
@@ -10595,15 +10646,6 @@
 		<member name="M:Callback_Get" syntax="Callback_Get(name[], ret[], expect[], remote)">
 			<tagname value="bool"/>
 			<stacksize value="14"/>
-			<referrer name="mysql_tquery_inline"/>
-			<referrer name="mysql_pquery_inline"/>
-			<referrer name="mysql_tquery_file_inline"/>
-			<referrer name="orm_select_inline"/>
-			<referrer name="orm_update_inline"/>
-			<referrer name="orm_insert_inline"/>
-			<referrer name="orm_delete_inline"/>
-			<referrer name="orm_load_inline"/>
-			<referrer name="orm_save_inline"/>
 			<dependency name="AMX_Read"/>
 			<dependency name="E_CALLBACK_DATA"/>
 			<dependency name="E_CALLBACK_DATA_ALLOC"/>
@@ -10741,7 +10783,6 @@
 		</member>
 		<member name="M:Callback_Release" syntax="Callback_Release(input[])">
 			<stacksize value="4"/>
-			<referrer name="__MysqlInlineProcessCallback"/>
 			<dependency name="E_CALLBACK_DATA_ALLOC"/>
 			<dependency name="E_CALLBACK_DATA_POINTER"/>
 			<dependency name="Malloc_Free"/>
@@ -11035,6 +11076,25 @@
 			<param name="vehicleid">
 			</param>
 			<param name="paintjobid">
+			</param>
+		</member>
+		<member name="M:CheckIP" syntax="CheckIP(playerid, params)">
+			<attribute name="public"/>
+			<stacksize value="11"/>
+			<dependency name="SetPVarInt"/>
+			<dependency name="cache_get_value_name_int"/>
+			<dependency name="cache_num_rows"/>
+			<dependency name="gettime"/>
+			<dependency name="pName"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendAdmin"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="true"/>
+			<dependency name="update"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
 			</param>
 		</member>
 		<member name="M:CheckerBigInt" syntax="CheckerBigInt(BigInt[])">
@@ -12341,7 +12401,7 @@
 			<referrer name="dialog_DIALOG_CLANSETTINGS"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS1"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS2"/>
-			<referrer name="checkPlayerBanIP"/>
+			<referrer name="checkPlayerAccount"/>
 			<referrer name="dialog_MY_GARAGE"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
@@ -12403,14 +12463,6 @@
 			<referrer name="OnPlayerEnterCheckpoint"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
 			<param name="playerid">
-			</param>
-		</member>
-		<member name="M:DisableRemoteVehicleCollisions" syntax="DisableRemoteVehicleCollisions(playerid, disable)">
-			<attribute name="native"/>
-			<referrer name="TimerCollision"/>
-			<param name="playerid">
-			</param>
-			<param name="disable">
 			</param>
 		</member>
 		<member name="M:DisasmDecodeInsn" syntax="DisasmDecodeInsn(ctx[])">
@@ -15862,16 +15914,6 @@
 			<referrer name="Inline_OnAsmError"/>
 			<referrer name="I@K"/>
 			<referrer name="I@L"/>
-			<referrer name="mysql_tquery_inline"/>
-			<referrer name="mysql_pquery_inline"/>
-			<referrer name="mysql_tquery_file_inline"/>
-			<referrer name="orm_select_inline"/>
-			<referrer name="orm_update_inline"/>
-			<referrer name="orm_insert_inline"/>
-			<referrer name="orm_delete_inline"/>
-			<referrer name="orm_load_inline"/>
-			<referrer name="orm_save_inline"/>
-			<referrer name="__MysqlInlineProcessCallback"/>
 			<referrer name="Dialog_Open"/>
 		</member>
 		<member name="M:Hooks_SortPublics" syntax="Hooks_SortPublics()">
@@ -15999,17 +16041,6 @@
 		</member>
 		<member name="M:I@E" syntax="I@E(s[])">
 			<stacksize value="53"/>
-			<referrer name="dialog_REGISTER"/>
-			<referrer name="checkPlayerBanIP"/>
-			<referrer name="pc_cmd_addexamcp"/>
-			<referrer name="pc_cmd_banoffline"/>
-			<referrer name="pc_cmd_unban"/>
-			<referrer name="pc_cmd_banip"/>
-			<referrer name="pc_cmd_unbanip"/>
-			<referrer name="pc_cmd_banipoffline"/>
-			<referrer name="pc_cmd_unjailo"/>
-			<referrer name="pc_cmd_jailo"/>
-			<referrer name="OnPlayerRequestClass"/>
 			<dependency name="AMX_BASE_ADDRESS"/>
 			<dependency name="AMX_HEADER_COD"/>
 			<dependency name="AMX_REAL_ADDRESS"/>
@@ -16056,17 +16087,6 @@
 		</member>
 		<member name="M:I@F" syntax="I@F()">
 			<stacksize value="29"/>
-			<referrer name="dialog_REGISTER"/>
-			<referrer name="checkPlayerBanIP"/>
-			<referrer name="pc_cmd_addexamcp"/>
-			<referrer name="pc_cmd_banoffline"/>
-			<referrer name="pc_cmd_unban"/>
-			<referrer name="pc_cmd_banip"/>
-			<referrer name="pc_cmd_unbanip"/>
-			<referrer name="pc_cmd_banipoffline"/>
-			<referrer name="pc_cmd_unjailo"/>
-			<referrer name="pc_cmd_jailo"/>
-			<referrer name="OnPlayerRequestClass"/>
 			<dependency name="Debug_Print0"/>
 			<dependency name="DisasmContext"/>
 			<dependency name="DisasmDecodeInsn"/>
@@ -16083,34 +16103,12 @@
 		</member>
 		<member name="M:I@K" syntax="I@K(...)">
 			<stacksize value="3"/>
-			<referrer name="dialog_REGISTER"/>
-			<referrer name="checkPlayerBanIP"/>
-			<referrer name="pc_cmd_addexamcp"/>
-			<referrer name="pc_cmd_banoffline"/>
-			<referrer name="pc_cmd_unban"/>
-			<referrer name="pc_cmd_banip"/>
-			<referrer name="pc_cmd_unbanip"/>
-			<referrer name="pc_cmd_banipoffline"/>
-			<referrer name="pc_cmd_unjailo"/>
-			<referrer name="pc_cmd_jailo"/>
-			<referrer name="OnPlayerRequestClass"/>
 			<dependency name="Hooks_NumArgs"/>
 			<param name="...">
 			</param>
 		</member>
 		<member name="M:I@L" syntax="I@L(constFunc, ...)">
 			<stacksize value="57"/>
-			<referrer name="dialog_REGISTER"/>
-			<referrer name="checkPlayerBanIP"/>
-			<referrer name="pc_cmd_addexamcp"/>
-			<referrer name="pc_cmd_banoffline"/>
-			<referrer name="pc_cmd_unban"/>
-			<referrer name="pc_cmd_banip"/>
-			<referrer name="pc_cmd_unbanip"/>
-			<referrer name="pc_cmd_banipoffline"/>
-			<referrer name="pc_cmd_unjailo"/>
-			<referrer name="pc_cmd_jailo"/>
-			<referrer name="OnPlayerRequestClass"/>
 			<dependency name="AMX_BASE_ADDRESS"/>
 			<dependency name="AMX_HEADER_COD"/>
 			<dependency name="AMX_REAL_ADDRESS"/>
@@ -16360,6 +16358,7 @@
 		<member name="M:InsertEmail" syntax="InsertEmail(playerid, from[], text[], type)">
 			<attribute name="public"/>
 			<stacksize value="8"/>
+			<referrer name="pc_cmd_insertemail"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pSQLID"/>
@@ -16679,7 +16678,6 @@
 			<referrer name="pc_cmd_lock"/>
 			<referrer name="pc_cmd_park"/>
 			<referrer name="pc_cmd_fill"/>
-			<referrer name="TimerCollision"/>
 			<referrer name="Timers"/>
 			<referrer name="pc_cmd_area"/>
 			<referrer name="pc_cmd_exam"/>
@@ -17174,9 +17172,9 @@
 			<referrer name="onPlayerLogin"/>
 			<referrer name="LoadExamCheckpoints"/>
 			<referrer name="checkPanel"/>
+			<referrer name="assignCheckpointID"/>
 			<referrer name="LoadPersonalVehicle"/>
 			<referrer name="LoadGasCan"/>
-			<referrer name="pc_cmd_addexamcp"/>
 			<referrer name="pc_cmd_setadmin"/>
 			<referrer name="pc_cmd_sethelper"/>
 			<referrer name="pc_cmd_spawncar"/>
@@ -19432,7 +19430,6 @@
 			<referrer name="kickEx_yT@"/>
 			<referrer name="TimerJail_yT@"/>
 			<referrer name="TimerWanted_yT@"/>
-			<referrer name="TimerCollision_yT@"/>
 			<referrer name="TimersWantedFind_yT@"/>
 			<referrer name="TimerPos_yT@"/>
 			<referrer name="TimerMute_yT@"/>
@@ -20231,40 +20228,24 @@
 		</member>
 		<member name="M:OnPlayerRequestClass" syntax="OnPlayerRequestClass(playerid, classid)">
 			<attribute name="public"/>
-			<stacksize value="4227"/>
+			<stacksize value="11"/>
 			<dependency name="EOS"/>
-			<dependency name="I@"/>
-			<dependency name="I@E"/>
-			<dependency name="I@F"/>
-			<dependency name="I@K"/>
-			<dependency name="I@L"/>
 			<dependency name="InterpolateCameraLookAt"/>
 			<dependency name="InterpolateCameraPos"/>
-			<dependency name="J@"/>
 			<dependency name="SQL"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerVirtualWorld"/>
 			<dependency name="SpawnPlayer"/>
 			<dependency name="TogglePlayerControllable"/>
-			<dependency name="cache_get_value_name"/>
-			<dependency name="cache_get_value_name_int"/>
-			<dependency name="cache_num_rows"/>
 			<dependency name="false"/>
 			<dependency name="gQuery"/>
-			<dependency name="kickEx_yT@"/>
 			<dependency name="mysql_format"/>
-			<dependency name="mysql_pquery"/>
-			<dependency name="mysql_pquery_inline"/>
-			<dependency name="pIp"/>
+			<dependency name="mysql_tquery"/>
 			<dependency name="pLogged"/>
 			<dependency name="pLoginEnabled"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendAdmin"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
-			<dependency name="update"/>
 			<param name="playerid">
 			</param>
 			<param name="classid">
@@ -20505,17 +20486,12 @@
 		</member>
 		<member name="M:OnPlayerText" syntax="OnPlayerText(playerid, text[])">
 			<attribute name="public"/>
-			<stacksize value="4108"/>
-			<dependency name="EOS"/>
+			<stacksize value="4105"/>
 			<dependency name="Reclama"/>
-			<dependency name="SQL"/>
 			<dependency name="SetPlayerChatBubble"/>
 			<dependency name="faceReclama"/>
 			<dependency name="format"/>
-			<dependency name="gQuery"/>
 			<dependency name="isPlayerLogged"/>
-			<dependency name="mysql_format"/>
-			<dependency name="mysql_pquery"/>
 			<dependency name="oocNews"/>
 			<dependency name="pFaction"/>
 			<dependency name="pMute"/>
@@ -20530,6 +20506,7 @@
 			<dependency name="string_fast"/>
 			<dependency name="string_fast"/>
 			<dependency name="strmatch"/>
+			<dependency name="update"/>
 			<param name="playerid">
 			</param>
 			<param name="text">
@@ -22419,7 +22396,6 @@
 			<referrer name="dialog_DIALOG_CLAN"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
-			<referrer name="checkPlayerBanIP"/>
 			<referrer name="resetQuest"/>
 			<referrer name="checkMission"/>
 			<referrer name="Reclama"/>
@@ -22488,7 +22464,6 @@
 			<referrer name="cancelDriveTest"/>
 			<referrer name="InsertEmail"/>
 			<referrer name="CalculateEmails"/>
-			<referrer name="OnPlayerRequestClass"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<referrer name="OnPlayerSpawn"/>
 			<referrer name="OnPlayerDeath"/>
@@ -22511,10 +22486,10 @@
 			<referrer name="va_SendClientMessageToAll"/>
 			<referrer name="pc_cmd_ch"/>
 			<referrer name="checkPanel"/>
+			<referrer name="BanIPPlayer"/>
 			<referrer name="pc_cmd_warn"/>
 			<referrer name="pc_cmd_ban"/>
 			<referrer name="pc_cmd_mute"/>
-			<referrer name="pc_cmd_banip"/>
 			<param name="color">
 			</param>
 			<param name="message">
@@ -22734,13 +22709,13 @@
 			<referrer name="pc_cmd_invite"/>
 			<referrer name="pc_cmd_so"/>
 			<referrer name="pc_cmd_helduty"/>
+			<referrer name="checkAccountBanDatabase"/>
+			<referrer name="checkBanPlayer"/>
+			<referrer name="BanIPPlayer"/>
+			<referrer name="CheckIP"/>
+			<referrer name="BanIPOffline"/>
 			<referrer name="dialog_MY_GARAGE"/>
 			<referrer name="pc_cmd_unwarn"/>
-			<referrer name="pc_cmd_banoffline"/>
-			<referrer name="pc_cmd_unban"/>
-			<referrer name="pc_cmd_banip"/>
-			<referrer name="pc_cmd_unbanip"/>
-			<referrer name="pc_cmd_banipoffline"/>
 			<referrer name="pc_cmd_engine"/>
 			<param name="playerid">
 			</param>
@@ -24103,39 +24078,6 @@
 			<param name="i">
 			</param>
 		</member>
-		<member name="M:TimerCollision" syntax="TimerCollision(i)">
-			<stacksize value="7"/>
-			<referrer name="TimerCollision@_yT"/>
-			<dependency name="Float:operator=(_:)"/>
-			<dependency name="DisableRemoteVehicleCollisions"/>
-			<dependency name="IsPlayerInRangeOfPoint"/>
-			<dependency name="pCollision"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="true"/>
-			<param name="i">
-			</param>
-		</member>
-		<member name="M:TimerCollision@_yT" syntax="TimerCollision@_yT(__r, i)">
-			<tagname value="@Yj"/>
-			<attribute name="public"/>
-			<stacksize value="4"/>
-			<dependency name="TimerCollision"/>
-			<param name="__r">
-			</param>
-			<param name="i">
-			</param>
-		</member>
-		<member name="M:TimerCollision_yT@" syntax="TimerCollision_yT@(i)">
-			<stacksize value="8"/>
-			<referrer name="CB_OnPlayerStateChange"/>
-			<dependency name="I@"/>
-			<dependency name="J@"/>
-			<dependency name="O@"/>
-			<dependency name="_Timer_C"/>
-			<param name="i">
-			</param>
-		</member>
 		<member name="M:TimerGetHit" syntax="TimerGetHit(playerid)">
 			<stacksize value="10"/>
 			<referrer name="TimerGetHit@_yT"/>
@@ -25361,7 +25303,6 @@
 			<referrer name="kickEx_yT@"/>
 			<referrer name="TimerJail_yT@"/>
 			<referrer name="TimerWanted_yT@"/>
-			<referrer name="TimerCollision_yT@"/>
 			<referrer name="TimersWantedFind_yT@"/>
 			<referrer name="TimerPos_yT@"/>
 			<referrer name="TimerMute_yT@"/>
@@ -25471,24 +25412,6 @@
 		<member name="M:__CompilerSecondPass" syntax="__CompilerSecondPass()">
 			<stacksize value="1"/>
 		</member>
-		<member name="M:__MysqlInlineProcessCallback" syntax="__MysqlInlineProcessCallback(params_format[], cb_data[], cb_data_size, ...)">
-			<attribute name="public"/>
-			<stacksize value="10"/>
-			<dependency name="Callback_Call"/>
-			<dependency name="Callback_Release"/>
-			<dependency name="Hooks_NumArgs"/>
-			<dependency name="strlen"/>
-			<param name="params_format">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="cb_data">
-				<paraminfo> [5] </paraminfo>
-			</param>
-			<param name="cb_data_size">
-			</param>
-			<param name="...">
-			</param>
-		</member>
 		<member name="M:__TU" syntax="__TU(t, iters)">
 			<stacksize value="27"/>
 			<dependency name="operator/(Float:,Float:)"/>
@@ -25502,20 +25425,6 @@
 				The number of iterations completed in this time.
 			</param>
 			    <remarks>  Formats and returns a string representing the time taken for one iteration,  given the time required for many iterations.  This attempts to format the  number using a reasonable fraction of a second.  </remarks> 
-		</member>
-		<member name="M:__int_MysqlInline_Invoke" syntax="__int_MysqlInline_Invoke()">
-			<attribute name="public"/>
-			<stacksize value="6"/>
-			<dependency name="mysql_pquery"/>
-			<dependency name="mysql_tquery"/>
-			<dependency name="mysql_tquery_file"/>
-			<dependency name="orm_delete"/>
-			<dependency name="orm_insert"/>
-			<dependency name="orm_load"/>
-			<dependency name="orm_save"/>
-			<dependency name="orm_select"/>
-			<dependency name="orm_update"/>
-			y_inline support include for BlueG's MySQL plugin 
 		</member>
 		<member name="M:_y_utils_OnPlayerConnect" syntax="_y_utils_OnPlayerConnect(playerid)">
 			<attribute name="public"/>
@@ -25608,6 +25517,32 @@
 			<param name="n">
 			</param>
 		</member>
+		<member name="M:assignCheckpointID" syntax="assignCheckpointID(i)">
+			<attribute name="public"/>
+			<stacksize value="7"/>
+			<dependency name="Iter_Add_InternalC"/>
+			<dependency name="Iter_Single@ExamenCheckpoints"/>
+			<dependency name="Iterator@ExamenCheckpoints"/>
+			<dependency name="cache_insert_id"/>
+			<dependency name="dmvID"/>
+			<dependency name="examenInfo"/>
+			<dependency name="examenInfo"/>
+			<dependency name="true"/>
+			<param name="i">
+			</param>
+		</member>
+		<member name="M:assignSQLID" syntax="assignSQLID(playerid)">
+			<attribute name="public"/>
+			<stacksize value="5"/>
+			<dependency name="cache_insert_id"/>
+			<dependency name="pName"/>
+			<dependency name="pSQLID"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="printf"/>
+			<param name="playerid">
+			</param>
+		</member>
 		<member name="M:atan" syntax="atan(value)">
 			<tagname value="Float"/>
 			<attribute name="native"/>
@@ -25697,8 +25632,8 @@
 		</member>
 		<member name="M:cache_affected_rows" syntax="cache_affected_rows()">
 			<attribute name="native"/>
-			<referrer name="pc_cmd_banip"/>
-			<referrer name="pc_cmd_banipoffline"/>
+			<referrer name="BanIPPlayer"/>
+			<referrer name="BanIPOffline"/>
 		</member>
 		<member name="M:cache_delete" syntax="cache_delete(cache_id)">
 			<attribute name="native"/>
@@ -25766,17 +25701,15 @@
 			<referrer name="LoadBusinesses"/>
 			<referrer name="pc_cmd_buybusiness"/>
 			<referrer name="LoadClans"/>
+			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
+			<referrer name="checkPlayerAccount"/>
 			<referrer name="checkPlayerBanIP"/>
+			<referrer name="checkBanPlayer"/>
 			<referrer name="LoadPersonalVehicle"/>
-			<referrer name="pc_cmd_banoffline"/>
-			<referrer name="pc_cmd_unban"/>
-			<referrer name="pc_cmd_unjailo"/>
-			<referrer name="pc_cmd_jailo"/>
 			<referrer name="ShowEmails"/>
 			<referrer name="dialog_DIALOG_EMAILS"/>
-			<referrer name="OnPlayerRequestClass"/>
 			<param name="row_idx">
 			</param>
 			<param name="column_name">
@@ -25836,16 +25769,16 @@
 			<referrer name="LoadJobs"/>
 			<referrer name="LoadBusinesses"/>
 			<referrer name="LoadClans"/>
+			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="LoadExamCheckpoints"/>
 			<referrer name="checkPanel"/>
+			<referrer name="checkAccountBanDatabase"/>
+			<referrer name="checkBanPlayer"/>
+			<referrer name="CheckIP"/>
 			<referrer name="LoadPersonalVehicle"/>
 			<referrer name="LoadGasCan"/>
-			<referrer name="pc_cmd_banoffline"/>
-			<referrer name="pc_cmd_unban"/>
-			<referrer name="pc_cmd_unbanip"/>
 			<referrer name="LoadDSVehicles"/>
-			<referrer name="OnPlayerRequestClass"/>
 			<param name="row_idx">
 			</param>
 			<param name="column_name">
@@ -25857,8 +25790,8 @@
 		</member>
 		<member name="M:cache_insert_id" syntax="cache_insert_id()">
 			<attribute name="native"/>
-			<referrer name="dialog_REGISTER"/>
-			<referrer name="pc_cmd_addexamcp"/>
+			<referrer name="assignSQLID"/>
+			<referrer name="assignCheckpointID"/>
 			<referrer name="InsertCarDS"/>
 		</member>
 		<member name="M:cache_num_fields" syntax="cache_num_fields()">
@@ -25881,21 +25814,25 @@
 			<referrer name="LoadBusinesses"/>
 			<referrer name="pc_cmd_buybusiness"/>
 			<referrer name="LoadClans"/>
+			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="LoadExamCheckpoints"/>
 			<referrer name="checkPanel"/>
+			<referrer name="checkPlayerAccount"/>
+			<referrer name="checkAccountInBanDatabase"/>
+			<referrer name="checkAccountBanDatabase"/>
 			<referrer name="checkPlayerBanIP"/>
+			<referrer name="checkBanPlayer"/>
+			<referrer name="CheckIP"/>
+			<referrer name="checkAccountInDatabase"/>
+			<referrer name="checkAccountJail"/>
+			<referrer name="checkAccountInDatabaseJailo"/>
+			<referrer name="checkAccountJailo"/>
 			<referrer name="LoadPersonalVehicle"/>
 			<referrer name="LoadGasCan"/>
-			<referrer name="pc_cmd_banoffline"/>
-			<referrer name="pc_cmd_unban"/>
-			<referrer name="pc_cmd_unbanip"/>
-			<referrer name="pc_cmd_unjailo"/>
-			<referrer name="pc_cmd_jailo"/>
 			<referrer name="LoadDSVehicles"/>
 			<referrer name="ShowEmails"/>
 			<referrer name="CalculateEmails"/>
-			<referrer name="OnPlayerRequestClass"/>
 			<dependency name="cache_get_row_count"/>
 		</member>
 		<member name="M:calloc" syntax="calloc(size)">
@@ -25958,6 +25895,145 @@
 			<dependency name="pCheckpointID"/>
 			<dependency name="pMDCon"/>
 			<dependency name="playerInfo"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:checkAccountBanDatabase" syntax="checkAccountBanDatabase(playerid, playerName, days, reason)">
+			<attribute name="public"/>
+			<stacksize value="4108"/>
+			<dependency name="SetPVarInt"/>
+			<dependency name="cache_get_value_name_int"/>
+			<dependency name="cache_num_rows"/>
+			<dependency name="getDateTime"/>
+			<dependency name="getDateTime"/>
+			<dependency name="gettime"/>
+			<dependency name="pName"/>
+			<dependency name="pSQLID"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="true"/>
+			<dependency name="update"/>
+			<dependency name="va_SendClientMessageToAll"/>
+			<param name="playerid">
+			</param>
+			<param name="playerName">
+			</param>
+			<param name="days">
+			</param>
+			<param name="reason">
+			</param>
+		</member>
+		<member name="M:checkAccountInBanDatabase" syntax="checkAccountInBanDatabase(playerid, playerName, days, reason)">
+			<attribute name="public"/>
+			<stacksize value="10"/>
+			<dependency name="EOS"/>
+			<dependency name="SQL"/>
+			<dependency name="cache_num_rows"/>
+			<dependency name="gQuery"/>
+			<dependency name="mysql_format"/>
+			<dependency name="mysql_tquery"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="true"/>
+			<param name="playerid">
+			</param>
+			<param name="playerName">
+			</param>
+			<param name="days">
+			</param>
+			<param name="reason">
+			</param>
+		</member>
+		<member name="M:checkAccountInDatabase" syntax="checkAccountInDatabase(playerid, playerName, reason)">
+			<attribute name="public"/>
+			<stacksize value="9"/>
+			<dependency name="SQL"/>
+			<dependency name="cache_num_rows"/>
+			<dependency name="gQuery"/>
+			<dependency name="mysql_format"/>
+			<dependency name="mysql_tquery"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="true"/>
+			<param name="playerid">
+			</param>
+			<param name="playerName">
+			</param>
+			<param name="reason">
+			</param>
+		</member>
+		<member name="M:checkAccountInDatabaseJailo" syntax="checkAccountInDatabaseJailo(playerid, playerName, reason, minutes)">
+			<attribute name="public"/>
+			<stacksize value="10"/>
+			<dependency name="EOS"/>
+			<dependency name="SQL"/>
+			<dependency name="cache_num_rows"/>
+			<dependency name="gQuery"/>
+			<dependency name="mysql_format"/>
+			<dependency name="mysql_tquery"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="true"/>
+			<param name="playerid">
+			</param>
+			<param name="playerName">
+			</param>
+			<param name="reason">
+			</param>
+			<param name="minutes">
+			</param>
+		</member>
+		<member name="M:checkAccountJail" syntax="checkAccountJail(playerid, playerName, reason)">
+			<attribute name="public"/>
+			<stacksize value="8"/>
+			<dependency name="cache_num_rows"/>
+			<dependency name="pName"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendAdmin"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="true"/>
+			<dependency name="update"/>
+			<param name="playerid">
+			</param>
+			<param name="playerName">
+			</param>
+			<param name="reason">
+			</param>
+		</member>
+		<member name="M:checkAccountJailo" syntax="checkAccountJailo(playerid, playerName, reason, minutes)">
+			<attribute name="public"/>
+			<stacksize value="9"/>
+			<dependency name="cache_num_rows"/>
+			<dependency name="pName"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendAdmin"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="true"/>
+			<dependency name="update"/>
+			<param name="playerid">
+			</param>
+			<param name="playerName">
+			</param>
+			<param name="reason">
+			</param>
+			<param name="minutes">
+			</param>
+		</member>
+		<member name="M:checkBanPlayer" syntax="checkBanPlayer(playerid)">
+			<attribute name="public"/>
+			<stacksize value="35"/>
+			<dependency name="SetPVarInt"/>
+			<dependency name="cache_get_value_name"/>
+			<dependency name="cache_get_value_name_int"/>
+			<dependency name="cache_num_rows"/>
+			<dependency name="gettime"/>
+			<dependency name="pName"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendAdmin"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="true"/>
+			<dependency name="update"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -26040,27 +26116,60 @@
 			<dependency name="true"/>
 			<dependency name="update"/>
 		</member>
+		<member name="M:checkPlayerAccount" syntax="checkPlayerAccount(playerid)">
+			<attribute name="public"/>
+			<stacksize value="76"/>
+			<dependency name="Dialog_Open"/>
+			<dependency name="cache_get_value_name"/>
+			<dependency name="cache_num_rows"/>
+			<dependency name="pName"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="true"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:checkPlayerBan" syntax="checkPlayerBan(playerid)">
+			<attribute name="public"/>
+			<stacksize value="130"/>
+			<dependency name="EOS"/>
+			<dependency name="I@"/>
+			<dependency name="J@"/>
+			<dependency name="SQL"/>
+			<dependency name="cache_get_value_name"/>
+			<dependency name="cache_get_value_name_int"/>
+			<dependency name="cache_num_rows"/>
+			<dependency name="gQuery"/>
+			<dependency name="kickEx_yT@"/>
+			<dependency name="mysql_format"/>
+			<dependency name="mysql_tquery"/>
+			<dependency name="pIp"/>
+			<dependency name="pLoginEnabled"/>
+			<dependency name="pName"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendAdmin"/>
+			<dependency name="true"/>
+			<dependency name="update"/>
+			<dependency name="va_SendClientMessage"/>
+			<param name="playerid">
+			</param>
+		</member>
 		<member name="M:checkPlayerBanIP" syntax="checkPlayerBanIP(playerid)">
 			<attribute name="public"/>
-			<stacksize value="4224"/>
-			<dependency name="Dialog_Open"/>
+			<stacksize value="127"/>
 			<dependency name="EOS"/>
-			<dependency name="I@E"/>
-			<dependency name="I@F"/>
-			<dependency name="I@K"/>
-			<dependency name="I@L"/>
 			<dependency name="SQL"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="cache_get_value_name"/>
 			<dependency name="cache_num_rows"/>
 			<dependency name="gQuery"/>
 			<dependency name="mysql_format"/>
-			<dependency name="mysql_pquery_inline"/>
+			<dependency name="mysql_tquery"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -27475,24 +27584,17 @@
 			<stacksize value="11"/>
 			<dependency name="Dialog_Open"/>
 			<dependency name="EOS"/>
-			<dependency name="I@E"/>
-			<dependency name="I@F"/>
-			<dependency name="I@K"/>
-			<dependency name="I@L"/>
 			<dependency name="Kick"/>
 			<dependency name="SHA256_PassHash"/>
 			<dependency name="SQL"/>
-			<dependency name="cache_insert_id"/>
 			<dependency name="gQuery"/>
 			<dependency name="mysql_format"/>
-			<dependency name="mysql_pquery_inline"/>
+			<dependency name="mysql_tquery"/>
 			<dependency name="pLogged"/>
 			<dependency name="pName"/>
 			<dependency name="pPassword"/>
-			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="printf"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
 			<param name="playerid">
@@ -28404,7 +28506,7 @@
 			<referrer name="banPlayer"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="onPlayerLogin"/>
-			<referrer name="pc_cmd_banoffline"/>
+			<referrer name="checkAccountBanDatabase"/>
 			<referrer name="pc_cmd_banip"/>
 			<referrer name="pc_cmd_banipoffline"/>
 			<dependency name="EOS"/>
@@ -28414,15 +28516,15 @@
 			<dependency name="gettime"/>
 			<dependency name="va_format"/>
 		</member>
-		<member name="M:getInsurancePrice" syntax="getInsurancePrice(x, y)">
+		<member name="M:getInsurancePrice" syntax="getInsurancePrice(km, days)">
 			<stacksize value="1"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="dialog_BUY_INSURANCE"/>
 			<referrer name="pc_cmd_buyinsurance"/>
-			<param name="x">
+			<param name="km">
 			</param>
-			<param name="y">
+			<param name="days">
 			</param>
 		</member>
 		<member name="M:getNeedProgress" syntax="getNeedProgress(playerid, id)">
@@ -28561,6 +28663,11 @@
 			<referrer name="pc_cmd_live"/>
 			<referrer name="pc_cmd_helduty"/>
 			<referrer name="onPlayerLogin"/>
+			<referrer name="checkAccountBanDatabase"/>
+			<referrer name="checkBanPlayer"/>
+			<referrer name="BanIPPlayer"/>
+			<referrer name="CheckIP"/>
+			<referrer name="BanIPOffline"/>
 			<referrer name="SetPlayerFreeze"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
@@ -28805,6 +28912,7 @@
 			<referrer name="pc_cmd_accept"/>
 			<referrer name="pc_cmd_finalquest"/>
 			<referrer name="InsertEmail"/>
+			<referrer name="pc_cmd_insertemail"/>
 			<referrer name="OnPlayerText"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@Player"/>
@@ -28934,9 +29042,9 @@
 			<referrer name="banPlayer"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="wrongPass"/>
+			<referrer name="checkPlayerBan"/>
 			<referrer name="checkPanel"/>
-			<referrer name="pc_cmd_banip"/>
-			<referrer name="OnPlayerRequestClass"/>
+			<referrer name="BanIPPlayer"/>
 			<dependency name="I@"/>
 			<dependency name="J@"/>
 			<dependency name="O@"/>
@@ -29281,9 +29389,13 @@
 			<referrer name="pc_cmd_bizdeposit"/>
 			<referrer name="pc_cmd_bizlock"/>
 			<referrer name="pc_cmd_sellbiz"/>
+			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
+			<referrer name="checkAccountInBanDatabase"/>
 			<referrer name="checkPlayerBanIP"/>
+			<referrer name="checkAccountInDatabase"/>
+			<referrer name="checkAccountInDatabaseJailo"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="SaveComponent"/>
 			<referrer name="TimerCar"/>
@@ -29298,7 +29410,6 @@
 			<referrer name="pc_cmd_jailo"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="OnPlayerRequestClass"/>
-			<referrer name="OnPlayerText"/>
 			<referrer name="OnVehiclePaintjob"/>
 			<referrer name="OnVehicleRespray"/>
 			<referrer name="OnVehicleDeath"/>
@@ -29328,17 +29439,12 @@
 		</member>
 		<member name="M:mysql_pquery" syntax="mysql_pquery(handle, query[], callback[], format[], ...)">
 			<attribute name="native"/>
-			<referrer name="__int_MysqlInline_Invoke"/>
-			<referrer name="mysql_pquery_inline"/>
 			<referrer name="warnPlayer"/>
 			<referrer name="banPlayer"/>
 			<referrer name="mutePlayer"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="dialog_LOGIN"/>
 			<referrer name="onPlayerLogin"/>
-			<referrer name="pc_cmd_banoffline"/>
-			<referrer name="OnPlayerRequestClass"/>
-			<referrer name="OnPlayerText"/>
 			<param name="handle">
 				<paraminfo>MySQL </paraminfo>
 			</param>
@@ -29347,41 +29453,6 @@
 			</param>
 			<param name="callback">
 				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="format">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="...">
-				<paraminfo> {Float,_} </paraminfo>
-			</param>
-		</member>
-		<member name="M:mysql_pquery_inline" syntax="mysql_pquery_inline(handle, query[], inline_callback[], format[], ...)">
-			<stacksize value="75"/>
-			<referrer name="dialog_REGISTER"/>
-			<referrer name="checkPlayerBanIP"/>
-			<referrer name="pc_cmd_addexamcp"/>
-			<referrer name="pc_cmd_banoffline"/>
-			<referrer name="pc_cmd_unban"/>
-			<referrer name="pc_cmd_banip"/>
-			<referrer name="pc_cmd_unbanip"/>
-			<referrer name="pc_cmd_banipoffline"/>
-			<referrer name="pc_cmd_unjailo"/>
-			<referrer name="pc_cmd_jailo"/>
-			<referrer name="OnPlayerRequestClass"/>
-			<dependency name="Callback_Get"/>
-			<dependency name="E_CALLBACK_DATA"/>
-			<dependency name="Hooks_NumArgs"/>
-			<dependency name="false"/>
-			<dependency name="mysql_pquery"/>
-			<dependency name="strcat"/>
-			<param name="handle">
-				<paraminfo>MySQL </paraminfo>
-			</param>
-			<param name="query">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="inline_callback">
-				<paraminfo>callback_tag [] </paraminfo>
 			</param>
 			<param name="format">
 				<paraminfo> [] </paraminfo>
@@ -29412,9 +29483,8 @@
 		</member>
 		<member name="M:mysql_tquery" syntax="mysql_tquery(handle, query[], callback[], format[], ...)">
 			<attribute name="native"/>
-			<referrer name="__int_MysqlInline_Invoke"/>
-			<referrer name="mysql_tquery_inline"/>
 			<referrer name="update"/>
+			<referrer name="dialog_REGISTER"/>
 			<referrer name="dialog_SELL_HOUSE_STATE"/>
 			<referrer name="dialog_HOUSE_OPTION_TITLE"/>
 			<referrer name="dialog_HOUSE_OPTION_DESCRIPTION"/>
@@ -29437,16 +29507,29 @@
 			<referrer name="pc_cmd_bizlock"/>
 			<referrer name="pc_cmd_sellbiz"/>
 			<referrer name="MySQLLoad"/>
+			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
+			<referrer name="checkAccountInBanDatabase"/>
+			<referrer name="checkPlayerBanIP"/>
+			<referrer name="checkAccountInDatabase"/>
+			<referrer name="checkAccountInDatabaseJailo"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="SaveComponent"/>
 			<referrer name="TimerCar"/>
 			<referrer name="pc_cmd_park"/>
 			<referrer name="Timers"/>
+			<referrer name="pc_cmd_addexamcp"/>
+			<referrer name="pc_cmd_banoffline"/>
+			<referrer name="pc_cmd_unban"/>
+			<referrer name="pc_cmd_banip"/>
 			<referrer name="pc_cmd_unbanip"/>
+			<referrer name="pc_cmd_banipoffline"/>
+			<referrer name="pc_cmd_unjailo"/>
+			<referrer name="pc_cmd_jailo"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_emails"/>
+			<referrer name="OnPlayerRequestClass"/>
 			<referrer name="OnVehiclePaintjob"/>
 			<referrer name="OnVehicleRespray"/>
 			<referrer name="OnVehicleDeath"/>
@@ -29460,74 +29543,6 @@
 			</param>
 			<param name="callback">
 				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="format">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="...">
-				<paraminfo> {Float,_} </paraminfo>
-			</param>
-		</member>
-		<member name="M:mysql_tquery_file" syntax="mysql_tquery_file(handle, file_path[], callback[], format[], ...)">
-			<attribute name="native"/>
-			<referrer name="__int_MysqlInline_Invoke"/>
-			<referrer name="mysql_tquery_file_inline"/>
-			<param name="handle">
-				<paraminfo>MySQL </paraminfo>
-			</param>
-			<param name="file_path">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="callback">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="format">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="...">
-				<paraminfo> {Float,_} </paraminfo>
-			</param>
-		</member>
-		<member name="M:mysql_tquery_file_inline" syntax="mysql_tquery_file_inline(handle, file_path[], inline_callback[], format[], ...)">
-			<stacksize value="75"/>
-			<dependency name="Callback_Get"/>
-			<dependency name="E_CALLBACK_DATA"/>
-			<dependency name="Hooks_NumArgs"/>
-			<dependency name="false"/>
-			<dependency name="mysql_tquery_file"/>
-			<dependency name="strcat"/>
-			<param name="handle">
-				<paraminfo>MySQL </paraminfo>
-			</param>
-			<param name="file_path">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="inline_callback">
-				<paraminfo>callback_tag [] </paraminfo>
-			</param>
-			<param name="format">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="...">
-				<paraminfo> {Float,_} </paraminfo>
-			</param>
-		</member>
-		<member name="M:mysql_tquery_inline" syntax="mysql_tquery_inline(handle, query[], inline_callback[], format[], ...)">
-			<stacksize value="75"/>
-			<dependency name="Callback_Get"/>
-			<dependency name="E_CALLBACK_DATA"/>
-			<dependency name="Hooks_NumArgs"/>
-			<dependency name="false"/>
-			<dependency name="mysql_tquery"/>
-			<dependency name="strcat"/>
-			<param name="handle">
-				<paraminfo>MySQL </paraminfo>
-			</param>
-			<param name="query">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="inline_callback">
-				<paraminfo>callback_tag [] </paraminfo>
 			</param>
 			<param name="format">
 				<paraminfo> [] </paraminfo>
@@ -29749,234 +29764,6 @@
 			</param>
 			<param name="...">
 				<paraminfo> {_,Language,Bit,Text,Menu,Style,XML,Bintree,Group,Timer,Float,File,Text3D} </paraminfo>
-			</param>
-		</member>
-		<member name="M:orm_delete" syntax="orm_delete(id, callback[], format[], ...)">
-			<attribute name="native"/>
-			<referrer name="__int_MysqlInline_Invoke"/>
-			<referrer name="orm_delete_inline"/>
-			<param name="id">
-				<paraminfo>ORM </paraminfo>
-			</param>
-			<param name="callback">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="format">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="...">
-				<paraminfo> {Float,_} </paraminfo>
-			</param>
-		</member>
-		<member name="M:orm_delete_inline" syntax="orm_delete_inline(orm_id, inline_callback[], format[], ...)">
-			<stacksize value="75"/>
-			<dependency name="Callback_Get"/>
-			<dependency name="E_CALLBACK_DATA"/>
-			<dependency name="Hooks_NumArgs"/>
-			<dependency name="false"/>
-			<dependency name="orm_delete"/>
-			<dependency name="strcat"/>
-			<param name="orm_id">
-				<paraminfo>ORM </paraminfo>
-			</param>
-			<param name="inline_callback">
-				<paraminfo>callback_tag [] </paraminfo>
-			</param>
-			<param name="format">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="...">
-				<paraminfo> {Float,_} </paraminfo>
-			</param>
-		</member>
-		<member name="M:orm_insert" syntax="orm_insert(id, callback[], format[], ...)">
-			<attribute name="native"/>
-			<referrer name="__int_MysqlInline_Invoke"/>
-			<referrer name="orm_insert_inline"/>
-			<param name="id">
-				<paraminfo>ORM </paraminfo>
-			</param>
-			<param name="callback">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="format">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="...">
-				<paraminfo> {Float,_} </paraminfo>
-			</param>
-		</member>
-		<member name="M:orm_insert_inline" syntax="orm_insert_inline(orm_id, inline_callback[], format[], ...)">
-			<stacksize value="75"/>
-			<dependency name="Callback_Get"/>
-			<dependency name="E_CALLBACK_DATA"/>
-			<dependency name="Hooks_NumArgs"/>
-			<dependency name="false"/>
-			<dependency name="orm_insert"/>
-			<dependency name="strcat"/>
-			<param name="orm_id">
-				<paraminfo>ORM </paraminfo>
-			</param>
-			<param name="inline_callback">
-				<paraminfo>callback_tag [] </paraminfo>
-			</param>
-			<param name="format">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="...">
-				<paraminfo> {Float,_} </paraminfo>
-			</param>
-		</member>
-		<member name="M:orm_load" syntax="orm_load(id, callback[], format[], ...)">
-			<attribute name="native"/>
-			<referrer name="__int_MysqlInline_Invoke"/>
-			<referrer name="orm_load_inline"/>
-			<param name="id">
-				<paraminfo>ORM </paraminfo>
-			</param>
-			<param name="callback">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="format">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="...">
-				<paraminfo> {Float,_} </paraminfo>
-			</param>
-		</member>
-		<member name="M:orm_load_inline" syntax="orm_load_inline(orm_id, inline_callback[], format[], ...)">
-			<stacksize value="75"/>
-			<dependency name="Callback_Get"/>
-			<dependency name="E_CALLBACK_DATA"/>
-			<dependency name="Hooks_NumArgs"/>
-			<dependency name="false"/>
-			<dependency name="orm_load"/>
-			<dependency name="strcat"/>
-			<param name="orm_id">
-				<paraminfo>ORM </paraminfo>
-			</param>
-			<param name="inline_callback">
-				<paraminfo>callback_tag [] </paraminfo>
-			</param>
-			<param name="format">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="...">
-				<paraminfo> {Float,_} </paraminfo>
-			</param>
-		</member>
-		<member name="M:orm_save" syntax="orm_save(id, callback[], format[], ...)">
-			<attribute name="native"/>
-			<referrer name="__int_MysqlInline_Invoke"/>
-			<referrer name="orm_save_inline"/>
-			<param name="id">
-				<paraminfo>ORM </paraminfo>
-			</param>
-			<param name="callback">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="format">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="...">
-				<paraminfo> {Float,_} </paraminfo>
-			</param>
-		</member>
-		<member name="M:orm_save_inline" syntax="orm_save_inline(orm_id, inline_callback[], format[], ...)">
-			<stacksize value="75"/>
-			<dependency name="Callback_Get"/>
-			<dependency name="E_CALLBACK_DATA"/>
-			<dependency name="Hooks_NumArgs"/>
-			<dependency name="false"/>
-			<dependency name="orm_save"/>
-			<dependency name="strcat"/>
-			<param name="orm_id">
-				<paraminfo>ORM </paraminfo>
-			</param>
-			<param name="inline_callback">
-				<paraminfo>callback_tag [] </paraminfo>
-			</param>
-			<param name="format">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="...">
-				<paraminfo> {Float,_} </paraminfo>
-			</param>
-		</member>
-		<member name="M:orm_select" syntax="orm_select(id, callback[], format[], ...)">
-			<attribute name="native"/>
-			<referrer name="__int_MysqlInline_Invoke"/>
-			<referrer name="orm_select_inline"/>
-			<param name="id">
-				<paraminfo>ORM </paraminfo>
-			</param>
-			<param name="callback">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="format">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="...">
-				<paraminfo> {Float,_} </paraminfo>
-			</param>
-		</member>
-		<member name="M:orm_select_inline" syntax="orm_select_inline(orm_id, inline_callback[], format[], ...)">
-			<stacksize value="75"/>
-			<dependency name="Callback_Get"/>
-			<dependency name="E_CALLBACK_DATA"/>
-			<dependency name="Hooks_NumArgs"/>
-			<dependency name="false"/>
-			<dependency name="orm_select"/>
-			<dependency name="strcat"/>
-			<param name="orm_id">
-				<paraminfo>ORM </paraminfo>
-			</param>
-			<param name="inline_callback">
-				<paraminfo>callback_tag [] </paraminfo>
-			</param>
-			<param name="format">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="...">
-				<paraminfo> {Float,_} </paraminfo>
-			</param>
-		</member>
-		<member name="M:orm_update" syntax="orm_update(id, callback[], format[], ...)">
-			<attribute name="native"/>
-			<referrer name="__int_MysqlInline_Invoke"/>
-			<referrer name="orm_update_inline"/>
-			<param name="id">
-				<paraminfo>ORM </paraminfo>
-			</param>
-			<param name="callback">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="format">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="...">
-				<paraminfo> {Float,_} </paraminfo>
-			</param>
-		</member>
-		<member name="M:orm_update_inline" syntax="orm_update_inline(orm_id, inline_callback[], format[], ...)">
-			<stacksize value="75"/>
-			<dependency name="Callback_Get"/>
-			<dependency name="E_CALLBACK_DATA"/>
-			<dependency name="Hooks_NumArgs"/>
-			<dependency name="false"/>
-			<dependency name="orm_update"/>
-			<dependency name="strcat"/>
-			<param name="orm_id">
-				<paraminfo>ORM </paraminfo>
-			</param>
-			<param name="inline_callback">
-				<paraminfo>callback_tag [] </paraminfo>
-			</param>
-			<param name="format">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="...">
-				<paraminfo> {Float,_} </paraminfo>
 			</param>
 		</member>
 		<member name="M:pc_alias_acceptreport" syntax="pc_alias_acceptreport()">
@@ -30246,17 +30033,11 @@
 			<stacksize value="4105"/>
 			<dependency name="EOS"/>
 			<dependency name="GetPlayerPos"/>
-			<dependency name="I@E"/>
-			<dependency name="I@F"/>
-			<dependency name="I@K"/>
-			<dependency name="I@L"/>
-			<dependency name="Iter_Add_InternalC"/>
 			<dependency name="Iter_Free_Internal"/>
 			<dependency name="Iter_Single@ExamenCheckpoints"/>
 			<dependency name="Iterator@ExamenCheckpoints"/>
 			<dependency name="SQL"/>
 			<dependency name="SendClientMessage"/>
-			<dependency name="cache_insert_id"/>
 			<dependency name="dmvID"/>
 			<dependency name="dmvX"/>
 			<dependency name="dmvY"/>
@@ -30265,7 +30046,7 @@
 			<dependency name="examenInfo"/>
 			<dependency name="gQuery"/>
 			<dependency name="mysql_format"/>
-			<dependency name="mysql_pquery_inline"/>
+			<dependency name="mysql_tquery"/>
 			<dependency name="pAdmin"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
@@ -30826,24 +30607,14 @@
 			<stacksize value="4175"/>
 			<dependency name="EOS"/>
 			<dependency name="GetPVarInt"/>
-			<dependency name="I@"/>
-			<dependency name="I@E"/>
-			<dependency name="I@F"/>
-			<dependency name="I@K"/>
-			<dependency name="I@L"/>
-			<dependency name="J@"/>
 			<dependency name="SQL"/>
-			<dependency name="SendClientMessageToAll"/>
-			<dependency name="SetPVarInt"/>
-			<dependency name="cache_affected_rows"/>
 			<dependency name="gQuery"/>
 			<dependency name="getDateTime"/>
 			<dependency name="getDateTime"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
-			<dependency name="kickEx_yT@"/>
 			<dependency name="mysql_format"/>
-			<dependency name="mysql_pquery_inline"/>
+			<dependency name="mysql_tquery"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pIp"/>
 			<dependency name="pName"/>
@@ -30853,7 +30624,6 @@
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="strmatch"/>
 			<dependency name="true"/>
 			<param name="playerid">
@@ -30867,27 +30637,20 @@
 			<stacksize value="4188"/>
 			<dependency name="EOS"/>
 			<dependency name="GetPVarInt"/>
-			<dependency name="I@E"/>
-			<dependency name="I@F"/>
-			<dependency name="I@K"/>
-			<dependency name="I@L"/>
 			<dependency name="Iterator@loggedPlayers"/>
 			<dependency name="SQL"/>
-			<dependency name="SetPVarInt"/>
-			<dependency name="cache_affected_rows"/>
 			<dependency name="gQuery"/>
 			<dependency name="getDateTime"/>
 			<dependency name="getDateTime"/>
 			<dependency name="gettime"/>
 			<dependency name="mysql_format"/>
-			<dependency name="mysql_pquery_inline"/>
+			<dependency name="mysql_tquery"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pIp"/>
 			<dependency name="pName"/>
 			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sscanf"/>
 			<dependency name="strmatch"/>
@@ -30900,38 +30663,24 @@
 		</member>
 		<member name="M:pc_cmd_banoffline" syntax="pc_cmd_banoffline(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4200"/>
+			<stacksize value="99"/>
 			<dependency name="EOS"/>
 			<dependency name="GetPVarInt"/>
-			<dependency name="I@E"/>
-			<dependency name="I@F"/>
-			<dependency name="I@K"/>
-			<dependency name="I@L"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="Iterator@loggedPlayers"/>
 			<dependency name="SQL"/>
-			<dependency name="SetPVarInt"/>
-			<dependency name="cache_get_value_name"/>
-			<dependency name="cache_get_value_name_int"/>
-			<dependency name="cache_num_rows"/>
 			<dependency name="gQuery"/>
-			<dependency name="getDateTime"/>
-			<dependency name="getDateTime"/>
 			<dependency name="gettime"/>
 			<dependency name="mysql_format"/>
-			<dependency name="mysql_pquery"/>
-			<dependency name="mysql_pquery_inline"/>
+			<dependency name="mysql_tquery"/>
 			<dependency name="pName"/>
-			<dependency name="pSQLID"/>
-			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sscanf"/>
 			<dependency name="strmatch"/>
 			<dependency name="true"/>
-			<dependency name="va_SendClientMessageToAll"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -33739,6 +33488,30 @@
 				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
+		<member name="M:pc_cmd_insertemail" syntax="pc_cmd_insertemail(playerid, params[], help)">
+			<attribute name="public"/>
+			<stacksize value="131"/>
+			<dependency name="InsertEmail"/>
+			<dependency name="isPlayerLogged"/>
+			<dependency name="pAdmin"/>
+			<dependency name="pName"/>
+			<dependency name="pSQLID"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="sendPlayerSyntax"/>
+			<dependency name="strlen"/>
+			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="help">
+			</param>
+		</member>
 		<member name="M:pc_cmd_invite" syntax="pc_cmd_invite(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="78"/>
@@ -33817,31 +33590,22 @@
 		</member>
 		<member name="M:pc_cmd_jailo" syntax="pc_cmd_jailo(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="66"/>
+			<stacksize value="67"/>
 			<dependency name="EOS"/>
-			<dependency name="I@E"/>
-			<dependency name="I@F"/>
-			<dependency name="I@K"/>
-			<dependency name="I@L"/>
 			<dependency name="Iterator@loggedPlayers"/>
 			<dependency name="SQL"/>
-			<dependency name="cache_get_value_name"/>
-			<dependency name="cache_num_rows"/>
 			<dependency name="gQuery"/>
 			<dependency name="mysql_format"/>
-			<dependency name="mysql_pquery_inline"/>
+			<dependency name="mysql_tquery"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strlen"/>
 			<dependency name="strmatch"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
-			<dependency name="update"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -36199,32 +35963,20 @@
 		</member>
 		<member name="M:pc_cmd_unban" syntax="pc_cmd_unban(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="35"/>
+			<stacksize value="10"/>
 			<dependency name="EOS"/>
 			<dependency name="GetPVarInt"/>
-			<dependency name="I@E"/>
-			<dependency name="I@F"/>
-			<dependency name="I@K"/>
-			<dependency name="I@L"/>
 			<dependency name="SQL"/>
-			<dependency name="SetPVarInt"/>
-			<dependency name="cache_get_value_name"/>
-			<dependency name="cache_get_value_name_int"/>
-			<dependency name="cache_num_rows"/>
 			<dependency name="gQuery"/>
 			<dependency name="gettime"/>
 			<dependency name="mysql_format"/>
-			<dependency name="mysql_pquery_inline"/>
+			<dependency name="mysql_tquery"/>
 			<dependency name="pAdmin"/>
-			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
-			<dependency name="update"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -36233,27 +35985,16 @@
 		</member>
 		<member name="M:pc_cmd_unbanip" syntax="pc_cmd_unbanip(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="11"/>
+			<stacksize value="10"/>
 			<dependency name="EOS"/>
 			<dependency name="GetPVarInt"/>
-			<dependency name="I@E"/>
-			<dependency name="I@F"/>
-			<dependency name="I@K"/>
-			<dependency name="I@L"/>
 			<dependency name="SQL"/>
-			<dependency name="SetPVarInt"/>
-			<dependency name="cache_get_value_name_int"/>
-			<dependency name="cache_num_rows"/>
 			<dependency name="gQuery"/>
 			<dependency name="gettime"/>
 			<dependency name="mysql_format"/>
-			<dependency name="mysql_pquery_inline"/>
 			<dependency name="mysql_tquery"/>
 			<dependency name="pAdmin"/>
-			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strlen"/>
@@ -36354,31 +36095,22 @@
 		</member>
 		<member name="M:pc_cmd_unjailo" syntax="pc_cmd_unjailo(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="64"/>
+			<stacksize value="65"/>
 			<dependency name="EOS"/>
-			<dependency name="I@E"/>
-			<dependency name="I@F"/>
-			<dependency name="I@K"/>
-			<dependency name="I@L"/>
 			<dependency name="Iterator@loggedPlayers"/>
 			<dependency name="SQL"/>
-			<dependency name="cache_get_value_name"/>
-			<dependency name="cache_num_rows"/>
 			<dependency name="gQuery"/>
 			<dependency name="mysql_format"/>
-			<dependency name="mysql_pquery_inline"/>
+			<dependency name="mysql_tquery"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strlen"/>
 			<dependency name="strmatch"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
-			<dependency name="update"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -36810,6 +36542,7 @@
 			<referrer name="LoadGasCan"/>
 			<referrer name="closeGate"/>
 			<referrer name="OnQueryError"/>
+			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<param name="string">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -36825,7 +36558,6 @@
 			<referrer name="DumpStack"/>
 			<referrer name="PrintStackTrace"/>
 			<referrer name="testPlayerTextDrawShow"/>
-			<referrer name="dialog_REGISTER"/>
 			<referrer name="LoadHouses"/>
 			<referrer name="LoadTurfs"/>
 			<referrer name="LoadFactions"/>
@@ -36834,6 +36566,7 @@
 			<referrer name="LoadBusinesses"/>
 			<referrer name="LoadClans"/>
 			<referrer name="LoadExamCheckpoints"/>
+			<referrer name="assignSQLID"/>
 			<referrer name="LoadPersonalVehicle"/>
 			<referrer name="LoadGasCan"/>
 			<referrer name="LoadDSVehicles"/>
@@ -37276,10 +37009,15 @@
 			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_fspec"/>
 			<referrer name="pc_cmd_attack"/>
+			<referrer name="checkPlayerBan"/>
 			<referrer name="checkPanel"/>
+			<referrer name="checkBanPlayer"/>
+			<referrer name="CheckIP"/>
+			<referrer name="BanIPOffline"/>
+			<referrer name="checkAccountJail"/>
+			<referrer name="checkAccountJailo"/>
 			<referrer name="ExpirationReport"/>
 			<referrer name="pc_cmd_unwarn"/>
-			<referrer name="pc_cmd_unban"/>
 			<referrer name="pc_cmd_unmute"/>
 			<referrer name="pc_cmd_adminchat"/>
 			<referrer name="pc_cmd_setadmin"/>
@@ -37312,14 +37050,9 @@
 			<referrer name="pc_cmd_acceptreport"/>
 			<referrer name="pc_cmd_closereport"/>
 			<referrer name="pc_cmd_reportmute"/>
-			<referrer name="pc_cmd_unbanip"/>
-			<referrer name="pc_cmd_banipoffline"/>
 			<referrer name="pc_cmd_gotojob"/>
 			<referrer name="pc_cmd_unjail"/>
-			<referrer name="pc_cmd_unjailo"/>
 			<referrer name="pc_cmd_jail"/>
-			<referrer name="pc_cmd_jailo"/>
-			<referrer name="OnPlayerRequestClass"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
@@ -37607,6 +37340,16 @@
 			<referrer name="pc_cmd_clanchat"/>
 			<referrer name="pc_cmd_leaveclan"/>
 			<referrer name="pc_cmd_clan"/>
+			<referrer name="checkAccountInBanDatabase"/>
+			<referrer name="checkAccountBanDatabase"/>
+			<referrer name="checkBanPlayer"/>
+			<referrer name="BanIPPlayer"/>
+			<referrer name="CheckIP"/>
+			<referrer name="BanIPOffline"/>
+			<referrer name="checkAccountInDatabase"/>
+			<referrer name="checkAccountJail"/>
+			<referrer name="checkAccountInDatabaseJailo"/>
+			<referrer name="checkAccountJailo"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="dialog_BUY_INSURANCE"/>
 			<referrer name="pc_cmd_lock"/>
@@ -37770,6 +37513,7 @@
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 			<referrer name="pc_cmd_emails"/>
+			<referrer name="pc_cmd_insertemail"/>
 			<referrer name="OnPlayerText"/>
 			<referrer name="OnPlayerEnterVehicle"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
@@ -37914,6 +37658,7 @@
 			<referrer name="pc_cmd_basket"/>
 			<referrer name="pc_cmd_dance"/>
 			<referrer name="pc_cmd_setfreq"/>
+			<referrer name="pc_cmd_insertemail"/>
 			<dependency name="EOS"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="YVA2_DummyPush"/>
@@ -38327,15 +38072,6 @@
 			<referrer name="_Hooks_AddReplacement"/>
 			<referrer name="Malloc_SetVAS"/>
 			<referrer name="_@_y_inline_@_"/>
-			<referrer name="mysql_tquery_inline"/>
-			<referrer name="mysql_pquery_inline"/>
-			<referrer name="mysql_tquery_file_inline"/>
-			<referrer name="orm_select_inline"/>
-			<referrer name="orm_update_inline"/>
-			<referrer name="orm_insert_inline"/>
-			<referrer name="orm_delete_inline"/>
-			<referrer name="orm_load_inline"/>
-			<referrer name="orm_save_inline"/>
 			<referrer name="OnDialogResponse"/>
 			<referrer name="showFactionMembers"/>
 			<referrer name="pc_cmd_setguns"/>
@@ -38516,7 +38252,7 @@
 			<referrer name="SetClanTag"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
-			<referrer name="checkPlayerBanIP"/>
+			<referrer name="BanIPPlayer"/>
 			<referrer name="checkMission"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
@@ -38559,7 +38295,6 @@
 			<referrer name="pc_cmd_rchat"/>
 			<referrer name="pc_cmd_closereport"/>
 			<referrer name="pc_cmd_reportmute"/>
-			<referrer name="pc_cmd_banip"/>
 			<referrer name="pc_cmd_gotoxyz"/>
 			<referrer name="pc_cmd_unjail"/>
 			<referrer name="pc_cmd_jail"/>
@@ -38567,10 +38302,9 @@
 			<referrer name="pc_cmd_number"/>
 			<referrer name="pc_cmd_accept"/>
 			<referrer name="cancelDriveTest"/>
-			<referrer name="pc_cmd_emails"/>
 			<referrer name="ShowEmails"/>
 			<referrer name="dialog_DIALOG_EMAILS"/>
-			<referrer name="OnPlayerRequestClass"/>
+			<referrer name="pc_cmd_emails"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="OnPlayerText"/>
@@ -38638,7 +38372,6 @@
 			<referrer name="Remote_RawStrpack"/>
 			<referrer name="Remote_WriteSpecAndFunc"/>
 			<referrer name="YHash"/>
-			<referrer name="__MysqlInlineProcessCallback"/>
 			<referrer name="OnPlayerUpdate"/>
 			<referrer name="Dialog_Open"/>
 			<referrer name="OnDialogResponse"/>
@@ -38685,6 +38418,7 @@
 			<referrer name="pc_cmd_jailo"/>
 			<referrer name="pc_cmd_reply"/>
 			<referrer name="pc_cmd_wt"/>
+			<referrer name="pc_cmd_insertemail"/>
 			<param name="string">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -38960,6 +38694,7 @@
 			<referrer name="pc_cmd_dance"/>
 			<referrer name="pc_cmd_setfreq"/>
 			<referrer name="pc_cmd_wt"/>
+			<referrer name="pc_cmd_insertemail"/>
 			<param name="data">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -39027,7 +38762,13 @@
 			<referrer name="pc_cmd_ad"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS1"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS2"/>
+			<referrer name="checkPlayerBan"/>
 			<referrer name="checkPanel"/>
+			<referrer name="checkAccountBanDatabase"/>
+			<referrer name="checkBanPlayer"/>
+			<referrer name="CheckIP"/>
+			<referrer name="checkAccountJail"/>
+			<referrer name="checkAccountJailo"/>
 			<referrer name="questProgress"/>
 			<referrer name="giveQuest"/>
 			<referrer name="resetQuest"/>
@@ -39046,7 +38787,6 @@
 			<referrer name="TimerTutorial"/>
 			<referrer name="PayDay"/>
 			<referrer name="pc_cmd_unwarn"/>
-			<referrer name="pc_cmd_unban"/>
 			<referrer name="pc_cmd_unmute"/>
 			<referrer name="pc_cmd_setadmin"/>
 			<referrer name="pc_cmd_sethelper"/>
@@ -39057,9 +38797,7 @@
 			<referrer name="pc_cmd_set"/>
 			<referrer name="pc_cmd_reportmute"/>
 			<referrer name="pc_cmd_unjail"/>
-			<referrer name="pc_cmd_unjailo"/>
 			<referrer name="pc_cmd_jail"/>
-			<referrer name="pc_cmd_jailo"/>
 			<referrer name="pc_cmd_buylevel"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="pc_cmd_accept"/>
@@ -39068,9 +38806,9 @@
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="InsertEmail"/>
 			<referrer name="dialog_DIALOG_EMAILS2"/>
-			<referrer name="OnPlayerRequestClass"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<referrer name="OnPlayerDeath"/>
+			<referrer name="OnPlayerText"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="OnPlayerEnterCheckpoint"/>
 			<dependency name="EOS"/>
@@ -39322,7 +39060,9 @@
 			<referrer name="pc_cmd_resetraport"/>
 			<referrer name="pc_cmd_myraport"/>
 			<referrer name="pc_cmd_createsafe"/>
+			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
+			<referrer name="checkPlayerBanIP"/>
 			<referrer name="pc_cmd_addbizgas"/>
 			<referrer name="gasTimer"/>
 			<referrer name="pc_cmd_admins"/>
@@ -39338,6 +39078,7 @@
 			<referrer name="pc_cmd_setfreq"/>
 			<referrer name="pc_cmd_wt"/>
 			<referrer name="pc_cmd_freqmembers"/>
+			<referrer name="pc_cmd_insertemail"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="YVA2_DummyPush"/>
@@ -39360,7 +39101,7 @@
 			<referrer name="pc_cmd_arrest"/>
 			<referrer name="pc_cmd_fare"/>
 			<referrer name="pc_cmd_aq"/>
-			<referrer name="pc_cmd_banoffline"/>
+			<referrer name="checkAccountBanDatabase"/>
 			<dependency name="SendClientMessageToAll"/>
 			<dependency name="YVA2_DummyPush"/>
 			<dependency name="va_return"/>

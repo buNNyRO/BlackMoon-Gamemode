@@ -1,6 +1,7 @@
 //////////////////////////////////////////////////
 //////    Variables                        //////
 ////////////////////////////////////////////////
+
 new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], Connection = MYSQL, AntiCheatWarnings, PlayerNumber[20000], Weapons[MAX_PLAYERS][47], WeaponAmmo[MAX_PLAYERS][47], gates[4],
     StoreMoney[MAX_PLAYERS], MoneyMoney[MAX_PLAYERS], Selected[MAX_PLAYERS][50][180], selName[MAX_PLAYERS][180], Questions,
 	bool: vehicle_engine[MAX_VEHICLES],
@@ -52,7 +53,6 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], Connection = MYSQL, Anti
 
     Timer:jailTime[MAX_PLAYERS],
     Timer:wantedTime[MAX_PLAYERS],
-    Timer:collision[MAX_PLAYERS],
     Timer:wantedFind[MAX_PLAYERS],
     Timer:tutorial[MAX_PLAYERS],
     Timer:carFind[MAX_PLAYERS],

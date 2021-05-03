@@ -1,3 +1,6 @@
+//////////////////////////////////////////////////
+//////    Includes                         //////
+////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BBBBBBBBBBBBBBBBB   lllllll                                       kkkkkkkk           MMMMMMMM               MMMMMMMM                                                    
 // B::::::::::::::::B  l:::::l                                       k::::::k           M:::::::M             M:::::::M                                                    
@@ -16,7 +19,7 @@
 // B::::::::::::::::B  l::::::l a::::::::::aa:::a  cc:::::::::::::::ck::::::k   k:::::k M::::::M               M::::::M oo:::::::::::oo  oo:::::::::::oo   n::::n    n::::n
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define MYSQL 0 // 0 - local | 1 - host
+#define MYSQL 1 // 0 - local | 1 - host
 
 #include <a_samp>
 #include <a_zones>
@@ -32,7 +35,6 @@
 
 #include <Pawn.CMD>
 #include <a_mysql>
-#include <a_mysql_yinline>
 #include <sscanf2>
 #include <playerprogress>
 #include <timestamptodate>
@@ -90,6 +92,7 @@ public OnQueryError(errorid, const error[], const callback[], const query[], MyS
 	print("=========================================");
 	return true;
 }
+
 public OnGameModeInit()
 {
 	MySQLLoad();
@@ -128,51 +131,7 @@ public OnPlayerRequestClass(playerid, classid)
 
 	gQuery[0] = (EOS);
 	mysql_format(SQL, gQuery, 128, "SELECT * FROM `server_bans` WHERE `Active` = '1' AND `PlayerName` = '%s' LIMIT 1", getName(playerid));
-	inline checkPlayerBan()
-	{
-		playerInfo[playerid][pLoginEnabled] = true;
-		
-		if(!cache_num_rows()) {
-			gQuery[0] = (EOS);
-			mysql_format(SQL, gQuery, 256, "SELECT * FROM `server_bans_ip` WHERE `Active` = '1' AND `PlayerIP` = '%s' LIMIT 1", getIp(playerid));
-			mysql_pquery(SQL, gQuery, "checkPlayerBanIP", "d", playerid);
-			return true;
-		}
-
-		new adminName[MAX_PLAYER_NAME], reason[64], date[32], days, playerID, permanent;
-		cache_get_value_name(0, "AdminName", adminName, MAX_PLAYER_NAME);
-		cache_get_value_name(0, "Reason", reason, 64);
-		cache_get_value_name(0, "Date", date, 32);
-		cache_get_value_name_int(0, "Permanent", permanent);
-		cache_get_value_name_int(0, "Days", days);
-		cache_get_value_name_int(0, "ID", playerID);
-		
-		if(permanent) {
-			SCM(playerid, COLOR_LIGHTRED, string_fast("System: Esti banat permanent pe acest server de catre Admin %s.", adminName));
-			SCM(playerid, COLOR_LIGHTRED, string_fast("System: Motivul banului: %s", reason));
-			SCM(playerid, COLOR_LIGHTRED, string_fast("System: Data banului: %s", date));
-			defer kickEx(playerid);
-		}
-
-		if(days >= 1)
-		{
-			SCM(playerid, COLOR_LIGHTRED, string_fast("System: Esti banat temporar pe acest server de catre Admin %s.", adminName));
-			SCM(playerid, COLOR_LIGHTRED, string_fast("System: Motivul banului: %s", reason));
-			SCM(playerid, COLOR_LIGHTRED, string_fast("System: Data banului: %s", date));
-			SCM(playerid, COLOR_LIGHTRED, string_fast("System: Banul expira in: %d zile.",days));
-			defer kickEx(playerid);
-			return true;
-		}
-
-		update("UPDATE `server_bans` SET `Active` = '0' WHERE `ID` = '%d'", playerID);
-		sendAdmin(COLOR_SERVER, "Ban System Notice: {ffffff}%s a primit unban automat.", getName(playerid));
-
-		gQuery[0] = (EOS);
-		mysql_format(SQL, gQuery, 256, "SELECT * FROM `server_bans_ip` WHERE `Active` = '1' AND `PlayerIP` = '%s' LIMIT 1", getIp(playerid));
-		mysql_pquery(SQL, gQuery, "checkPlayerBanIP", "d", playerid);
-		return true;
-	}
-	mysql_pquery_inline(SQL, gQuery, using inline checkPlayerBan, "");
+	mysql_tquery(SQL, gQuery, "checkPlayerBan", "d", playerid);
 	return true;
 }
 
@@ -394,7 +353,7 @@ public OnPlayerDeath(playerid, killerid)
 	return true;
 }
 
-new sexxx[128];
+new sexxx[144];
 public OnPlayerText(playerid, text[])
 {
 	if(strmatch(sexxx, text)) return 0;
@@ -405,10 +364,7 @@ public OnPlayerText(playerid, text[])
 		if(playerInfo[playerid][pTalkingLive] != -1) return oocNews(COLOR_LIGHTGREEN, "* %s %s: %s", playerInfo[playerid][pFaction] == 6 ? "Reporter" : "Jucator", getName(playerid), text);
 		sendNearbyMessage(playerid, COLOR_WHITE, 25.0, "%s spune: %s", getName(playerid), text);
 		SetPlayerChatBubble(playerid, text, COLOR_WHITE, 25.0, 5000);
-
-		gQuery[0] = (EOS);
-		mysql_format(SQL, gQuery, 256, "INSERT INTO `server_chat_logs` (PlayerName, PlayerID, ChatText) VALUES ('%s', '%d', '%s')", getName(playerid), playerInfo[playerid][pSQLID], string_fast("* (chat log): %s.", text));
-		mysql_pquery(SQL, gQuery, "", "");
+		update("INSERT INTO `server_chat_logs` (PlayerName, PlayerID, ChatText) VALUES ('%s', '%d', '%s')", getName(playerid), playerInfo[playerid][pSQLID], string_fast("* (chat log): %s.", text));
 		return 0;
 	}
 	return 0;
@@ -519,12 +475,14 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 	if(PRESSED(KEY_LOOK_BEHIND)) {
 		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER || !isBike(GetPlayerVehicleID(playerid)) || GetPVarInt(playerid, "engineDeelay") != gettime()) {
 			callcmd::engine(playerid, "\1");
+			// PC_EmulateCommand(playerid, "engine");
+			print("test");
 		}
 	}
 	if(PRESSED(KEY_SECONDARY_ATTACK)) {
 		new b = GetPlayerVirtualWorld(playerid);
 	    if(PRESSED(KEY_SECONDARY_ATTACK)) {
-	        if(playerInfo[playerid][areaBizz] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, bizInfo[playerInfo[playerid][areaBizz]][bizExtX], bizInfo[playerInfo[playerid][areaBizz]][bizExtY], bizInfo[playerInfo[playerid][areaBizz]][bizExtZ])) {
+	        if(playerInfo[playerid][areaBizz] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, bizInfo[playerInfo[playerid][areaBizz]][bizExtX], bizInfo[playerInfo[playerid][areaBizz]][bizExtY], bizInfo[playerInfo[playerid][areaBizz]][bizExtZ]) && bizInfo[playerInfo[playerid][areaBizz]][bizStatic] != 1 && bizInfo[playerInfo[playerid][areaBizz]][bizLocked] != 1) {
 				SetPlayerPos(playerid, bizInfo[playerInfo[playerid][areaBizz]][bizX], bizInfo[playerInfo[playerid][areaBizz]][bizY], bizInfo[playerInfo[playerid][areaBizz]][bizZ]);
 				SetPlayerInterior(playerid, bizInfo[playerInfo[playerid][areaBizz]][bizInterior]);
 				SetPlayerVirtualWorld(playerid, bizInfo[playerInfo[playerid][areaBizz]][bizID]);
@@ -735,10 +693,8 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 			playerInfo[playerid][pTaxiMoney] = 0;
 		}
 	}
-	if(oldstate == PLAYER_STATE_DRIVER) stop collision[playerid];
 	if(newstate == PLAYER_STATE_DRIVER)
 	{
-		collision[playerid] = repeat TimerCollision(playerid);
 		new vehicleid = GetPlayerVehicleID(playerid);
 		if(playerInfo[playerid][pFlyLicense] == 0 && isPlane(vehicleid))
 		{

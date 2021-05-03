@@ -363,7 +363,12 @@ stock SaveComponent(vehicleid, componentid) {
 	mysql_tquery(SQL, gQuery, "", "");
 	return true;
 }
-stock getInsurancePrice(x, y) return (x * 100) + (y / 100) + 100;
+
+stock getInsurancePrice(km, days) {
+	return (days * 100) + (km / 100) + 100;
+}
+
+
 timer TimerCar[gettime() + 900](i) { 
 	vehicle_engine[personalVehicle[i][pvSpawnedID]] = false;
 	vehicle_lights[personalVehicle[i][pvSpawnedID]] = false;
@@ -395,7 +400,6 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 	}
 	return 1;
 }
-
 
 timer TimerSpeedo[1000](playerid) { 
 	new vehicleid = GetPlayerVehicleID(playerid), Float:he, sall[5];
