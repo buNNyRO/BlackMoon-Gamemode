@@ -4940,6 +4940,10 @@
 			<referrer name="pc_cmd_closereport"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 		</member>
+		<member name="F:reverse">
+			<referrer name="@yH_OnPlayerKeyStateChange@012"/>
+			<referrer name="TimerSpeedo"/>
+		</member>
 		<member name="F:rscoop">
 			<referrer name="SaveComponent"/>
 		</member>
@@ -6477,6 +6481,18 @@
 			<param name="vehicleid">
 			</param>
 			<param name="ispassenger">
+			</param>
+		</member>
+		<member name="M:@yH_OnPlayerKeyStateChange@012" syntax="@yH_OnPlayerKeyStateChange@012(playerid, newkeys, oldkeys)">
+			<attribute name="public"/>
+			<stacksize value="3"/>
+			<dependency name="GetPlayerState"/>
+			<dependency name="reverse"/>
+			<param name="playerid">
+			</param>
+			<param name="newkeys">
+			</param>
+			<param name="oldkeys">
 			</param>
 		</member>
 		<member name="M:@yH_OnPlayerStateChange@007" syntax="@yH_OnPlayerStateChange@007(playerid, newstate, oldstate)">
@@ -10093,7 +10109,6 @@
 			<dependency name="pinHouse"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="print"/>
 			<dependency name="pvSpawnedID"/>
 			<dependency name="returnNeededPoints"/>
 			<dependency name="sendPlayerError"/>
@@ -14582,6 +14597,7 @@
 			<referrer name="OnPlayerKeyStateChange"/>
 			<referrer name="Callback_TabCheck"/>
 			<referrer name="dialog_BUY_INSURANCE"/>
+			<referrer name="@yH_OnPlayerKeyStateChange@012"/>
 			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_swapcolors"/>
 			<referrer name="pc_cmd_buyinsurance"/>
@@ -24265,7 +24281,7 @@
 			</param>
 		</member>
 		<member name="M:TimerSpeedo" syntax="TimerSpeedo(playerid)">
-			<stacksize value="19"/>
+			<stacksize value="4114"/>
 			<referrer name="TimerSpeedo@_yT"/>
 			<dependency name="operator/(Float:,_:)"/>
 			<dependency name="operator*(Float:,_:)"/>
@@ -24295,7 +24311,10 @@
 			<dependency name="pvFuel"/>
 			<dependency name="pvLock"/>
 			<dependency name="pvOdometer"/>
+			<dependency name="reverse"/>
 			<dependency name="sendNearbyMessage"/>
+			<dependency name="string_fast"/>
+			<dependency name="strlen"/>
 			<dependency name="true"/>
 			<dependency name="va_PlayerTextDrawSetString"/>
 			<dependency name="vehNames"/>
@@ -28395,15 +28414,15 @@
 			<dependency name="gettime"/>
 			<dependency name="va_format"/>
 		</member>
-		<member name="M:getInsurancePrice" syntax="getInsurancePrice(km, days)">
+		<member name="M:getInsurancePrice" syntax="getInsurancePrice(x, y)">
 			<stacksize value="1"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="dialog_BUY_INSURANCE"/>
 			<referrer name="pc_cmd_buyinsurance"/>
-			<param name="km">
+			<param name="x">
 			</param>
-			<param name="days">
+			<param name="y">
 			</param>
 		</member>
 		<member name="M:getNeedProgress" syntax="getNeedProgress(playerid, id)">
@@ -36791,7 +36810,6 @@
 			<referrer name="LoadGasCan"/>
 			<referrer name="closeGate"/>
 			<referrer name="OnQueryError"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<param name="string">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -38503,6 +38521,7 @@
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="dialog_BUY_INSURANCE"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_lock"/>
 			<referrer name="pc_cmd_carplate"/>
 			<referrer name="pc_cmd_vehicles"/>
@@ -38655,6 +38674,7 @@
 			<referrer name="pc_cmd_cinvite"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS1"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS2"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_carplate"/>
 			<referrer name="pc_cmd_unban"/>
 			<referrer name="pc_cmd_rchat"/>

@@ -300,7 +300,7 @@ stock playerTextDraws(playerid) {
 	PlayerTextDrawSetProportional(playerid, vehicleHud[7], 1);
 	PlayerTextDrawSetShadow(playerid, vehicleHud[7], 0);
 
-	vehicleHud[8] = CreatePlayerTextDraw(playerid, 519.578002, 336.151184, "VEHICLES");
+	vehicleHud[8] = CreatePlayerTextDraw(playerid, 519.578002, 336.151184, "");
 	PlayerTextDrawLetterSize(playerid, vehicleHud[8], 0.620001, 2.978841);
 	PlayerTextDrawAlignment(playerid, vehicleHud[8], 1);
 	PlayerTextDrawColor(playerid, vehicleHud[8], -138);

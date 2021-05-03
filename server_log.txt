@@ -1,0 +1,615 @@
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[21:17:28] filterscripts = ""  (string)
+[21:17:28] 
+[21:17:28] Server Plugins
+[21:17:28] --------------
+[21:17:28]  Loading plugin: crashdetect
+[21:17:28]   CrashDetect plugin 4.19.4
+[21:17:28]   Loaded.
+[21:17:28]  Loading plugin: pawncmd
+[21:17:28] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[21:17:28]   Loaded.
+[21:17:28]  Loading plugin: sscanf
+[21:17:28] 
+
+[21:17:28]  ===============================
+
+[21:17:28]       sscanf plugin loaded.     
+
+[21:17:28]          Version:  2.8.3        
+
+[21:17:28]   (c) 2018 Alex "Y_Less" Cole  
+
+[21:17:28]  ===============================
+
+[21:17:28]   Loaded.
+[21:17:28]  Loading plugin: streamer
+[21:17:28] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[21:17:28]   Loaded.
+[21:17:28]  Loading plugin: mysql
+[21:17:28]  >> plugin.mysql: R41-4 successfully loaded.
+[21:17:28]   Loaded.
+[21:17:28]  Loaded 5 plugins.
+
+[21:17:28] 
+[21:17:28] Filterscripts
+[21:17:28] ---------------
+[21:17:28]   Loaded 0 filterscripts.
+
+[21:17:28]  
+[21:17:28]  
+[21:17:28]  
+[21:17:28]  ======================================= 
+[21:17:28]  |                                     | 
+[21:17:28]  |        YSI version 4.00.0001        | 
+[21:17:28]  |        By Alex "Y_Less" Cole        | 
+[21:17:28]  |                                     | 
+[21:17:28]  ======================================= 
+[21:17:28]  
+[21:17:31] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[21:17:47] [MYSQL] Baza de date, nu s-a conectat.
+[21:17:47] Number of vehicle models: 0
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[21:19:08] filterscripts = ""  (string)
+[21:19:08] 
+[21:19:08] Server Plugins
+[21:19:08] --------------
+[21:19:08]  Loading plugin: crashdetect
+[21:19:08]   CrashDetect plugin 4.19.4
+[21:19:08]   Loaded.
+[21:19:08]  Loading plugin: pawncmd
+[21:19:08] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[21:19:08]   Loaded.
+[21:19:08]  Loading plugin: sscanf
+[21:19:08] 
+
+[21:19:08]  ===============================
+
+[21:19:08]       sscanf plugin loaded.     
+
+[21:19:08]          Version:  2.8.3        
+
+[21:19:08]   (c) 2018 Alex "Y_Less" Cole  
+
+[21:19:08]  ===============================
+
+[21:19:08]   Loaded.
+[21:19:08]  Loading plugin: streamer
+[21:19:08] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[21:19:08]   Loaded.
+[21:19:08]  Loading plugin: mysql
+[21:19:08]  >> plugin.mysql: R41-4 successfully loaded.
+[21:19:08]   Loaded.
+[21:19:08]  Loaded 5 plugins.
+
+[21:19:08] 
+[21:19:08] Filterscripts
+[21:19:08] ---------------
+[21:19:08]   Loaded 0 filterscripts.
+
+[21:19:08]  
+[21:19:08]  
+[21:19:08]  
+[21:19:08]  ======================================= 
+[21:19:08]  |                                     | 
+[21:19:08]  |        YSI version 4.00.0001        | 
+[21:19:08]  |        By Alex "Y_Less" Cole        | 
+[21:19:08]  |                                     | 
+[21:19:08]  ======================================= 
+[21:19:08]  
+[21:19:11] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[21:19:11] [MYSQL] Baza de date, s-a conectat.
+[21:19:11] Number of vehicle models: 0
+[21:19:12] Exam Checkpoints: 9 [From Database]
+[21:19:12] Jobs: 5 [From Database]
+[21:19:12] Businesses: 3 [From Database]
+[21:19:12] Houses: 0 [From Database]
+[21:19:12] Dealership models: 89 [From Database]
+[21:19:12] Factions: 10 [From Database]
+[21:19:12] Turfs: 43 [From Database]
+[21:19:12] Faction Safes: 0 [From Database]
+[21:19:12] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:19:12] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:19:12] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:19:12] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:19:12] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:19:12] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:19:12] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:19:12] Clans: 1 [From Database]
+[22:27:33] [connection] 192.168.8.137:64692 requests connection cookie.
+[22:27:34] [connection] incoming connection: 192.168.8.137:64692 id: 0
+[22:27:34] [join] mr.bunny has joined the server (0:192.168.8.137)
+[22:27:41] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[22:27:41] =========================================
+[22:27:41] Error ID: 1146, Error: Table 'from0.panel_notifications' doesn't exist
+[22:27:41] Callback: CalculateEmails
+[22:27:41] gQuery: SELECT * FROM `panel_notifications` WHERE `UserID` = '1' AND `Read` = 0
+[22:27:41] =========================================
+[22:27:41] [ACCOUNT] mr.bunny loaded 2 vehicles
+[22:33:47] test
+[22:34:13] test
+[22:36:46] test
+[22:36:46] test
+[22:36:46] test
+[22:36:46] test
+[22:36:47] test
+[22:36:47] test
+[22:36:47] test
+[22:36:48] test
+[22:36:48] test
+[22:38:37] test
+[22:38:37] test
+[22:38:38] test
+[22:38:38] test
+[22:38:38] test
+[22:38:38] test
+[22:42:18] test
+[22:42:18] test
+[22:42:18] test
+[22:42:18] test
+[22:42:19] test
+[22:42:19] test
+[00:48:22] [debug] Server received interrupt signal
+[00:48:22] [debug] Native backtrace:
+[00:48:22] [debug] #0 77d1308c in ?? () in C:\Windows\SYSTEM32\ntdll.dll
+[00:48:22] [debug] #1 7716f8cf in ?? () in C:\Windows\System32\KERNELBASE.dll
+[00:48:22] [debug] #2 0048d53c in ?? () in plugins\samp-server.exe
+[00:48:22] [debug] #3 0049b4a1 in ?? () in plugins\samp-server.exe
+[00:48:22] [debug] #4 0049b4b1 in ?? () in plugins\samp-server.exe
+[00:48:22] [debug] #5 75f685f0 in ?? () in C:\Windows\System32\windows.storage.dll
+[00:48:22] [debug] #6 75f685f0 in ?? () in C:\Windows\System32\windows.storage.dll
+[00:48:22] [debug] #7 08758b26 in ?? () in plugins\samp-server.exe
+[00:48:22] [debug] #8 4435ff56 in ?? () in plugins\samp-server.exe
+[00:48:22] --- Server Shutting Down.
+[00:48:22] [part] mr.bunny has left the server (0:0)
+[00:48:22] [Pawn.CMD] plugin v3.3.3 by urShadow unloaded
+[00:48:22] 
+
+[00:48:22]  ===============================
+
+[00:48:22]      sscanf plugin unloaded.    
+
+[00:48:22]  ===============================
+
+[00:48:22] 
+
+*** Streamer Plugin v2.9.4 by Incognito unloaded ***
+
+[00:48:22] plugin.mysql: Unloading plugin...
+[00:48:22] plugin.mysql: Plugin unloaded.
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[00:54:28] filterscripts = ""  (string)
+[00:54:28] 
+[00:54:28] Server Plugins
+[00:54:28] --------------
+[00:54:28]  Loading plugin: crashdetect
+[00:54:28]   CrashDetect plugin 4.19.4
+[00:54:28]   Loaded.
+[00:54:28]  Loading plugin: pawncmd
+[00:54:28] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[00:54:28]   Loaded.
+[00:54:28]  Loading plugin: sscanf
+[00:54:28] 
+
+[00:54:28]  ===============================
+
+[00:54:28]       sscanf plugin loaded.     
+
+[00:54:28]          Version:  2.8.3        
+
+[00:54:28]   (c) 2018 Alex "Y_Less" Cole  
+
+[00:54:28]  ===============================
+
+[00:54:28]   Loaded.
+[00:54:28]  Loading plugin: streamer
+[00:54:28] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[00:54:28]   Loaded.
+[00:54:28]  Loading plugin: mysql
+[00:54:28]  >> plugin.mysql: R41-4 successfully loaded.
+[00:54:28]   Loaded.
+[00:54:28]  Loaded 5 plugins.
+
+[00:54:28] 
+[00:54:28] Filterscripts
+[00:54:28] ---------------
+[00:54:28]   Loaded 0 filterscripts.
+
+[00:54:28]  
+[00:54:28]  
+[00:54:28]  
+[00:54:28]  ======================================= 
+[00:54:28]  |                                     | 
+[00:54:28]  |        YSI version 4.00.0001        | 
+[00:54:28]  |        By Alex "Y_Less" Cole        | 
+[00:54:28]  |                                     | 
+[00:54:28]  ======================================= 
+[00:54:28]  
+[00:54:31] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[00:54:31] [MYSQL] Baza de date, s-a conectat.
+[00:54:31] Number of vehicle models: 0
+[00:54:31] Exam Checkpoints: 9 [From Database]
+[00:54:31] Jobs: 5 [From Database]
+[00:54:31] Businesses: 3 [From Database]
+[00:54:31] Houses: 0 [From Database]
+[00:54:31] Dealership models: 89 [From Database]
+[00:54:31] Factions: 10 [From Database]
+[00:54:31] Turfs: 43 [From Database]
+[00:54:31] Faction Safes: 0 [From Database]
+[00:54:31] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[00:54:31] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[00:54:31] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[00:54:31] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[00:54:31] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[00:54:31] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[00:54:31] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[00:54:31] Clans: 1 [From Database]
+[00:54:51] [connection] 192.168.8.137:51353 requests connection cookie.
+[00:54:52] [connection] incoming connection: 192.168.8.137:51353 id: 0
+[00:54:52] [join] mr.bunny has joined the server (0:192.168.8.137)
+[00:54:55] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[00:54:55] =========================================
+[00:54:55] Error ID: 1146, Error: Table 'from0.panel_notifications' doesn't exist
+[00:54:55] Callback: CalculateEmails
+[00:54:55] gQuery: SELECT * FROM `panel_notifications` WHERE `UserID` = '1' AND `Read` = 0
+[00:54:55] =========================================
+[00:54:55] [ACCOUNT] mr.bunny loaded 2 vehicles
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[01:12:41] filterscripts = ""  (string)
+[01:12:41] 
+[01:12:41] Server Plugins
+[01:12:41] --------------
+[01:12:41]  Loading plugin: crashdetect
+[01:12:41]   CrashDetect plugin 4.19.4
+[01:12:41]   Loaded.
+[01:12:41]  Loading plugin: pawncmd
+[01:12:41] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[01:12:41]   Loaded.
+[01:12:41]  Loading plugin: sscanf
+[01:12:41] 
+
+[01:12:41]  ===============================
+
+[01:12:41]       sscanf plugin loaded.     
+
+[01:12:41]          Version:  2.8.3        
+
+[01:12:41]   (c) 2018 Alex "Y_Less" Cole  
+
+[01:12:41]  ===============================
+
+[01:12:41]   Loaded.
+[01:12:41]  Loading plugin: streamer
+[01:12:41] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[01:12:41]   Loaded.
+[01:12:41]  Loading plugin: mysql
+[01:12:41]  >> plugin.mysql: R41-4 successfully loaded.
+[01:12:41]   Loaded.
+[01:12:41]  Loaded 5 plugins.
+
+[01:12:41] 
+[01:12:41] Filterscripts
+[01:12:41] ---------------
+[01:12:41]   Loaded 0 filterscripts.
+
+[01:12:41]  
+[01:12:41]  
+[01:12:41]  
+[01:12:41]  ======================================= 
+[01:12:41]  |                                     | 
+[01:12:41]  |        YSI version 4.00.0001        | 
+[01:12:41]  |        By Alex "Y_Less" Cole        | 
+[01:12:41]  |                                     | 
+[01:12:41]  ======================================= 
+[01:12:41]  
+[01:12:44] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[01:12:44] [MYSQL] Baza de date, s-a conectat.
+[01:12:44] Number of vehicle models: 0
+[01:12:44] Exam Checkpoints: 9 [From Database]
+[01:12:44] Jobs: 5 [From Database]
+[01:12:44] Businesses: 3 [From Database]
+[01:12:44] Houses: 0 [From Database]
+[01:12:44] Dealership models: 89 [From Database]
+[01:12:44] Factions: 10 [From Database]
+[01:12:44] Turfs: 43 [From Database]
+[01:12:44] Faction Safes: 0 [From Database]
+[01:12:44] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:12:44] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:12:44] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:12:44] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:12:44] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:12:44] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:12:44] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:12:44] Clans: 1 [From Database]
+[01:12:48] [connection] 192.168.8.137:54230 requests connection cookie.
+[01:12:49] [connection] incoming connection: 192.168.8.137:54230 id: 0
+[01:12:50] [join] mr.bunny has joined the server (0:192.168.8.137)
+[01:12:53] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[01:12:53] =========================================
+[01:12:53] Error ID: 1146, Error: Table 'from0.panel_notifications' doesn't exist
+[01:12:53] Callback: CalculateEmails
+[01:12:53] gQuery: SELECT * FROM `panel_notifications` WHERE `UserID` = '1' AND `Read` = 0
+[01:12:53] =========================================
+[01:12:53] [ACCOUNT] mr.bunny loaded 2 vehicles
+Console input: gmx
+[01:13:52]  
+[01:13:52]  
+[01:13:52]  
+[01:13:52]  ======================================= 
+[01:13:52]  |                                     | 
+[01:13:52]  |        YSI version 4.00.0001        | 
+[01:13:52]  |        By Alex "Y_Less" Cole        | 
+[01:13:52]  |                                     | 
+[01:13:52]  ======================================= 
+[01:13:52]  
+[01:13:56] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[01:13:56] [MYSQL] Baza de date, s-a conectat.
+[01:13:56] Number of vehicle models: 0
+[01:13:56] Exam Checkpoints: 9 [From Database]
+[01:13:56] [part] mr.bunny has left the server (0:1)
+[01:13:56] [connection] incoming connection: 192.168.8.137:62581 id: 0
+[01:13:56] [join] mr.bunny has joined the server (0:192.168.8.137)
+[01:13:56] Jobs: 5 [From Database]
+[01:13:56] Businesses: 3 [From Database]
+[01:13:56] Houses: 0 [From Database]
+[01:13:56] Dealership models: 89 [From Database]
+[01:13:56] Factions: 10 [From Database]
+[01:13:56] Turfs: 43 [From Database]
+[01:13:56] Faction Safes: 0 [From Database]
+[01:13:56] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:13:56] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:13:56] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:13:56] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:13:56] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:13:56] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:13:56] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:13:56] Clans: 1 [From Database]
+[01:13:58] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[01:13:58] =========================================
+[01:13:58] Error ID: 1146, Error: Table 'from0.panel_notifications' doesn't exist
+[01:13:58] Callback: CalculateEmails
+[01:13:58] gQuery: SELECT * FROM `panel_notifications` WHERE `UserID` = '1' AND `Read` = 0
+[01:13:58] =========================================
+[01:13:58] [ACCOUNT] mr.bunny loaded 2 vehicles
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[01:21:14] filterscripts = ""  (string)
+[01:21:14] 
+[01:21:14] Server Plugins
+[01:21:14] --------------
+[01:21:14]  Loading plugin: crashdetect
+[01:21:14]   CrashDetect plugin 4.19.4
+[01:21:14]   Loaded.
+[01:21:14]  Loading plugin: pawncmd
+[01:21:14] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[01:21:14]   Loaded.
+[01:21:14]  Loading plugin: sscanf
+[01:21:14] 
+
+[01:21:14]  ===============================
+
+[01:21:14]       sscanf plugin loaded.     
+
+[01:21:14]          Version:  2.8.3        
+
+[01:21:14]   (c) 2018 Alex "Y_Less" Cole  
+
+[01:21:14]  ===============================
+
+[01:21:14]   Loaded.
+[01:21:14]  Loading plugin: streamer
+[01:21:14] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[01:21:14]   Loaded.
+[01:21:14]  Loading plugin: mysql
+[01:21:14]  >> plugin.mysql: R41-4 successfully loaded.
+[01:21:14]   Loaded.
+[01:21:14]  Loaded 5 plugins.
+
+[01:21:14] 
+[01:21:14] Filterscripts
+[01:21:14] ---------------
+[01:21:14]   Loaded 0 filterscripts.
+
+[01:21:14]  
+[01:21:14]  
+[01:21:14]  
+[01:21:14]  ======================================= 
+[01:21:14]  |                                     | 
+[01:21:14]  |        YSI version 4.00.0001        | 
+[01:21:14]  |        By Alex "Y_Less" Cole        | 
+[01:21:14]  |                                     | 
+[01:21:14]  ======================================= 
+[01:21:14]  
+[01:21:17] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[01:21:17] [MYSQL] Baza de date, s-a conectat.
+[01:21:17] Number of vehicle models: 0
+[01:21:17] Exam Checkpoints: 9 [From Database]
+[01:21:17] Jobs: 5 [From Database]
+[01:21:17] Businesses: 3 [From Database]
+[01:21:17] Houses: 0 [From Database]
+[01:21:17] Dealership models: 89 [From Database]
+[01:21:17] Factions: 10 [From Database]
+[01:21:17] Turfs: 43 [From Database]
+[01:21:17] Faction Safes: 0 [From Database]
+[01:21:17] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:21:17] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:21:17] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:21:17] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:21:17] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:21:17] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:21:17] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[01:21:17] Clans: 1 [From Database]
+[01:21:30] [connection] 192.168.8.137:61301 requests connection cookie.
+[01:21:31] [connection] incoming connection: 192.168.8.137:61301 id: 0
+[01:21:31] [join] mr.bunny has joined the server (0:192.168.8.137)
+[01:21:35] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[01:21:35] =========================================
+[01:21:35] Error ID: 1146, Error: Table 'from0.panel_notifications' doesn't exist
+[01:21:35] Callback: CalculateEmails
+[01:21:35] gQuery: SELECT * FROM `panel_notifications` WHERE `UserID` = '1' AND `Read` = 0
+[01:21:35] =========================================
+[01:21:35] [ACCOUNT] mr.bunny loaded 2 vehicles
+[01:29:02] [part] mr.bunny has left the server (0:0)
+[01:29:16] [connection] 192.168.8.137:63728 requests connection cookie.
+[01:29:17] [connection] incoming connection: 192.168.8.137:63728 id: 0
+[01:29:17] [join] mr.bunny has joined the server (0:192.168.8.137)
+[01:29:23] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[01:29:23] [ACCOUNT] mr.bunny loaded 2 vehicles
+[01:29:23] =========================================
+[01:29:23] Error ID: 1146, Error: Table 'from0.panel_notifications' doesn't exist
+[01:29:23] Callback: CalculateEmails
+[01:29:23] gQuery: SELECT * FROM `panel_notifications` WHERE `UserID` = '1' AND `Read` = 0
+[01:29:23] =========================================
+[01:30:42] [part] mr.bunny has left the server (0:1)
+[01:30:42] [connection] incoming connection: 192.168.8.137:52738 id: 0
+[01:30:55] [connection] incoming connection: 192.168.8.137:52741 id: 0
+[01:30:55] [join] mr.bunny has joined the server (0:192.168.8.137)
+[01:30:58] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[01:30:58] =========================================
+[01:30:58] Error ID: 1146, Error: Table 'from0.panel_notifications' doesn't exist
+[01:30:58] Callback: CalculateEmails
+[01:30:58] gQuery: SELECT * FROM `panel_notifications` WHERE `UserID` = '1' AND `Read` = 0
+[01:30:58] =========================================
+[01:30:58] [ACCOUNT] mr.bunny loaded 2 vehicles
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[09:01:46] filterscripts = ""  (string)
+[09:01:46] 
+[09:01:46] Server Plugins
+[09:01:46] --------------
+[09:01:46]  Loading plugin: crashdetect
+[09:01:46]   CrashDetect plugin 4.19.4
+[09:01:46]   Loaded.
+[09:01:46]  Loading plugin: pawncmd
+[09:01:46] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[09:01:46]   Loaded.
+[09:01:46]  Loading plugin: sscanf
+[09:01:46] 
+
+[09:01:46]  ===============================
+
+[09:01:46]       sscanf plugin loaded.     
+
+[09:01:46]          Version:  2.8.3        
+
+[09:01:46]   (c) 2018 Alex "Y_Less" Cole  
+
+[09:01:46]  ===============================
+
+[09:01:46]   Loaded.
+[09:01:46]  Loading plugin: streamer
+[09:01:46] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[09:01:46]   Loaded.
+[09:01:46]  Loading plugin: mysql
+[09:01:46]  >> plugin.mysql: R41-4 successfully loaded.
+[09:01:46]   Loaded.
+[09:01:46]  Loaded 5 plugins.
+
+[09:01:46] 
+[09:01:46] Filterscripts
+[09:01:46] ---------------
+[09:01:46]   Loaded 0 filterscripts.
+
+[09:01:46]  
+[09:01:46]  
+[09:01:46]  
+[09:01:46]  ======================================= 
+[09:01:46]  |                                     | 
+[09:01:46]  |        YSI version 4.00.0001        | 
+[09:01:46]  |        By Alex "Y_Less" Cole        | 
+[09:01:46]  |                                     | 
+[09:01:46]  ======================================= 
+[09:01:46]  
+[09:01:50] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[09:01:50] [MYSQL] Baza de date, s-a conectat.
+[09:01:50] Number of vehicle models: 0
+[09:01:50] Exam Checkpoints: 9 [From Database]
+[09:01:50] Jobs: 5 [From Database]
+[09:01:50] Businesses: 3 [From Database]
+[09:01:50] Houses: 0 [From Database]
+[09:01:50] Dealership models: 89 [From Database]
+[09:01:50] Factions: 10 [From Database]
+[09:01:50] Turfs: 43 [From Database]
+[09:01:50] Faction Safes: 0 [From Database]
+[09:01:50] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[09:01:50] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[09:01:50] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[09:01:50] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[09:01:50] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[09:01:50] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[09:01:50] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[09:01:50] Clans: 1 [From Database]
+[09:03:02] [connection] 192.168.8.137:61347 requests connection cookie.
+[09:03:03] [connection] incoming connection: 192.168.8.137:61347 id: 0
+[09:03:03] [join] mr.bunny has joined the server (0:192.168.8.137)
+[09:03:08] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[09:03:08] =========================================
+[09:03:08] Error ID: 1146, Error: Table 'from0.panel_notifications' doesn't exist
+[09:03:08] Callback: CalculateEmails
+[09:03:08] gQuery: SELECT * FROM `panel_notifications` WHERE `UserID` = '1' AND `Read` = 0
+[09:03:08] =========================================
+[09:03:08] [ACCOUNT] mr.bunny loaded 2 vehicles
