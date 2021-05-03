@@ -161,14 +161,17 @@ function onPlayerLogin(playerid)
  	cache_get_value_name_int(0, "ClanAge", playerInfo[playerid][pClanAge]);
  	cache_get_value_name_int(0, "ClanWarns", playerInfo[playerid][pClanWarns]);
 	cache_get_value_name_int(0, "ClanTag", playerInfo[playerid][pClanTag]);
+	cache_get_value_name_int(0, "Premium", playerInfo[playerid][pPremium]);
+	cache_get_value_name_int(0, "VIP", playerInfo[playerid][pVIP]);
+	cache_get_value_name_int(0, "PremiumPoints", playerInfo[playerid][pPremiumPoints]);
+	cache_get_value_name_int(0, "FPSShow", playerInfo[playerid][pFPSShow]);
 
  	new guns[32];
  	cache_get_value_name(0, "Guns", guns, 32);
 	sscanf(guns, "p<|>iiiii", playerInfo[playerid][pGuns][0], playerInfo[playerid][pGuns][1], playerInfo[playerid][pGuns][2], playerInfo[playerid][pGuns][3], playerInfo[playerid][pGuns][4]);
 
-
 	if(playerInfo[playerid][pFaction]) {
-		Iter_Add(FactionMembers[playerInfo[playerid][pFaction]], playerid);
+		Iter_Add(FactionMembers[playerInfo[playerid][pFaction]], playerid); 
 	}
 	if(playerInfo[playerid][pWantedLevel]) {
 		Iter_Add(Wanteds, playerid);

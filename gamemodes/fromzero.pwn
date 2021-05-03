@@ -82,6 +82,7 @@ alias:closereport("cr", "clreport")
 alias:reportmute("rmute", "repmute")
 alias:makeleader("setleader")
 alias:setadmin("makeadmin")
+alias:auninvite("fpk")
 
 public OnQueryError(errorid, const error[], const callback[], const query[], MySQL:handle)
 {

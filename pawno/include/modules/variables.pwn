@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////
 
 new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], Connection = MYSQL, AntiCheatWarnings, PlayerNumber[20000], Weapons[MAX_PLAYERS][47], WeaponAmmo[MAX_PLAYERS][47], gates[4],
-    StoreMoney[MAX_PLAYERS], MoneyMoney[MAX_PLAYERS], Selected[MAX_PLAYERS][50][180], selName[MAX_PLAYERS][180], Questions,
+    StoreMoney[MAX_PLAYERS], MoneyMoney[MAX_PLAYERS], Selected[MAX_PLAYERS][50][180], selName[MAX_PLAYERS][180], Questions, SelectedID[MAX_PLAYERS][50],
 	bool: vehicle_engine[MAX_VEHICLES],
 	bool: vehicle_lights[MAX_VEHICLES],
 	bool: vehicle_bonnet[MAX_VEHICLES],
@@ -61,6 +61,7 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], Connection = MYSQL, Anti
     Timer:war[MAX_TURFS],
     Timer:taxi[MAX_PLAYERS],
     Timer:getHit[MAX_PLAYERS],
+    Timer:fpsShow[MAX_PLAYERS],
 
 
 vehNames[212][] =

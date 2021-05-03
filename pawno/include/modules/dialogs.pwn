@@ -246,3 +246,47 @@ Dialog:TOG(playerid, response, listitem) {
 	SCM(playerid, COLOR_GREY, "* Tog Options: Actualizat.");
 	return true;
 }
+
+Dialog:DIALOG_SHOP(playerid, response, listitem) {
+	if(!response) return true;
+	switch(listitem) {
+		case 1: {
+			if(playerInfo[playerid][pPremium] == 0) return sendPlayerError(playerid, "Ai deja premium account.");
+			if(playerInfo[playerid][pPremiumPoints] < 50) return sendPlayerError(playerid, "Nu ai 50 premium points.");
+			playerInfo[playerid][pPremiumPoints] -= 50;
+			playerInfo[playerid][pPremium] = 1;
+			Iter_Add(PremiumPlayers, playerid);
+			update("UPDATE `server_users` SET `Premium` = '1', `PremiumPoints`=PremiumPoints-50 WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
+			sendAdmin(COLOR_SERVER, "* Notice Shop: %s a cumparat 'Premium Account' cu 50 premium points.", getName(playerid));
+			SCM(playerid, COLOR_SERVER, "* Shop: Ai cumparat 'Premium Account' cu 50 premium points.");
+		}
+		case 2: {
+			if(playerInfo[playerid][pVIP] == 0) return sendPlayerError(playerid, "Ai deja VIP account.");
+			if(playerInfo[playerid][pPremiumPoints] < 100) return sendPlayerError(playerid, "Nu ai 100 premium points.");
+			playerInfo[playerid][pPremiumPoints] -= 100;
+			playerInfo[playerid][pVIP] = 1;
+			Iter_Add(VipPlayers, playerid);
+			update("UPDATE `server_users` SET `VIP` = '1', `PremiumPoints`=PremiumPoints-100 WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
+			sendAdmin(COLOR_SERVER, "* Notice Shop: %s a cumparat 'VIP Account' cu 100 premium points.", getName(playerid));
+			SCM(playerid, COLOR_SERVER, "* Shop: Ai cumparat 'VIP Account' cu 100 premium points.");			
+		}
+	}
+	return true;
+}
+
+Dialog:DIALOG_HUD(playerid, response, listitem) {
+	if(!response) return true;
+	switch(listitem) {
+		case 1: {
+			if(playerInfo[playerid][pFPSShow]) {
+				playerInfo[playerid][pFPSShow] = 1;
+				//fpsShow[playerid] = repeat TimerFPS(playerid);
+			}
+			else {
+				playerInfo[playerid][pFPSShow] = 0;
+				//stop fpsShow[playerid];
+			}	
+		}
+	}
+	return true;
+}

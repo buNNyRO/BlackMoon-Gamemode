@@ -1092,3 +1092,15 @@ CMD:finalquest(playerid, params[]) {
 	}
 	return true;
 }
+
+CMD:shop(playerid, params[], help) {
+	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai un dialog afisat.");
+	Dialog_Show(playerid, DIALOG_SHOP, DIALOG_STYLE_TABLIST_HEADERS, "Shop - Black Moon", "Option\tPrice\nPremium Account\t50 Premium Points\nVIP Account\t100 Premium Points", "Select", "Close");
+	return true;
+}
+
+CMD:hud(playerid, parmas[], help) {
+	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai un dialog afisat.");
+	Dialog_Show(playerid, DIALOG_HUD, DIALOG_STYLE_TABLIST_HEADERS, "Hud Options", string_fast("Option\tStatus\nFPS Show\t%s", playerInfo[playerid][pFPSShow] ? "Enabled" : "Disabled"), "Select", "Cancel");
+	return true;
+}

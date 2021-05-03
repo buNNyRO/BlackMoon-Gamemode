@@ -124,6 +124,8 @@ enum playerInfoEnum
     pClanRank,
     pClanAge,
     pClanWarns,
+    pPremiumPoints,
+    pFPSShow,
 	pLoginTries,
 	pAFKSeconds,
 	bool:pLogged,
