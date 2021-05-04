@@ -880,7 +880,7 @@
 			<member name="C:SAFE" value="5">
 			</member>
 		</member>
-		<member name="T:playerInfoEnum" value="597">
+		<member name="T:playerInfoEnum" value="599">
 			<tagname value="playerInfoEnum"/>
 			<member name="C:pSQLID" value="0">
 			</member>
@@ -1053,156 +1053,160 @@
 			</member>
 			<member name="C:pClanWarns" value="330">
 			</member>
-			<member name="C:pLoginTries" value="331">
+			<member name="C:pPremiumPoints" value="331">
 			</member>
-			<member name="C:pAFKSeconds" value="332">
+			<member name="C:pFPSShow" value="332">
 			</member>
-			<member name="C:pLogged" value="333">
+			<member name="C:pLoginTries" value="333">
+			</member>
+			<member name="C:pAFKSeconds" value="334">
+			</member>
+			<member name="C:pLogged" value="335">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pLoginEnabled" value="334">
+			<member name="C:pLoginEnabled" value="336">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pLoginTimer" value="335">
+			<member name="C:pLoginTimer" value="337">
 				<tagname value="Timer"/>
 			</member>
-			<member name="C:pLastPosX" value="336">
+			<member name="C:pLastPosX" value="338">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pLastPosY" value="337">
+			<member name="C:pLastPosY" value="339">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pLastPosZ" value="338">
+			<member name="C:pLastPosZ" value="340">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pExamenVehicle" value="339">
+			<member name="C:pExamenVehicle" value="341">
 			</member>
-			<member name="C:pExamenCheckpoint" value="340">
+			<member name="C:pExamenCheckpoint" value="342">
 			</member>
-			<member name="C:pFlymode" value="341">
+			<member name="C:pFlymode" value="343">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pFreeze" value="342">
+			<member name="C:pFreeze" value="344">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pMark" value="343">
+			<member name="C:pMark" value="345">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pMarkX" value="344">
+			<member name="C:pMarkX" value="346">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pMarkY" value="345">
+			<member name="C:pMarkY" value="347">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pMarkZ" value="346">
+			<member name="C:pMarkZ" value="348">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pHealth" value="347">
+			<member name="C:pHealth" value="349">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pArmour" value="348">
+			<member name="C:pArmour" value="350">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pMarkInterior" value="349">
+			<member name="C:pMarkInterior" value="351">
 			</member>
-			<member name="C:pTutorialSeconds" value="350">
+			<member name="C:pTutorialSeconds" value="352">
 			</member>
-			<member name="C:pReportChat" value="351">
+			<member name="C:pReportChat" value="353">
 			</member>
-			<member name="C:pTutorialActive" value="352">
+			<member name="C:pTutorialActive" value="354">
 			</member>
-			<member name="C:pCheckpoint" value="353">
+			<member name="C:pCheckpoint" value="355">
 			</member>
-			<member name="C:pCheckpointID" value="354">
+			<member name="C:pCheckpointID" value="356">
 			</member>
-			<member name="C:pinBusiness" value="355">
+			<member name="C:pinBusiness" value="357">
 			</member>
-			<member name="C:pinHouse" value="356">
+			<member name="C:pinHouse" value="358">
 			</member>
-			<member name="C:pinVehicle" value="357">
+			<member name="C:pinVehicle" value="359">
 			</member>
-			<member name="C:pinDealer" value="358">
+			<member name="C:pinDealer" value="360">
 			</member>
-			<member name="C:pinFaction" value="359">
+			<member name="C:pinFaction" value="361">
 			</member>
-			<member name="C:pTintaApasata" value="360">
+			<member name="C:pTintaApasata" value="362">
 			</member>
-			<member name="C:pTransferMoney" value="361">
+			<member name="C:pTransferMoney" value="363">
 			</member>
-			<member name="C:pTransferPlayer" value="362">
+			<member name="C:pTransferPlayer" value="364">
 			</member>
-			<member name="C:pspecFaction" value="363">
+			<member name="C:pspecFaction" value="365">
 			</member>
-			<member name="C:pPhoneOnline" value="364">
+			<member name="C:pPhoneOnline" value="366">
 			</member>
-			<member name="C:pReply" value="365">
+			<member name="C:pReply" value="367">
 			</member>
-			<member name="C:pDistanceCheckpoint" value="366">
+			<member name="C:pDistanceCheckpoint" value="368">
 			</member>
-			<member name="C:pFactionDuty" value="367">
+			<member name="C:pFactionDuty" value="369">
 			</member>
-			<member name="C:pCuffed" value="368">
+			<member name="C:pCuffed" value="370">
 			</member>
-			<member name="C:pTazer" value="369">
+			<member name="C:pTazer" value="371">
 			</member>
-			<member name="C:pMDCon" value="370">
+			<member name="C:pMDCon" value="372">
 			</member>
-			<member name="C:pCollision" value="371">
+			<member name="C:pCollision" value="373">
 			</member>
-			<member name="C:pUnFreezeTime" value="372">
+			<member name="C:pUnFreezeTime" value="374">
 			</member>
-			<member name="C:pFreezed" value="373">
+			<member name="C:pFreezed" value="375">
 			</member>
-			<member name="C:pAnimLibLoaded" value="374">
+			<member name="C:pAnimLibLoaded" value="376">
 			</member>
-			<member name="C:pAnimLooping" value="375">
+			<member name="C:pAnimLooping" value="377">
 			</member>
-			<member name="C:pTaxiDuty" value="376">
+			<member name="C:pTaxiDuty" value="378">
 			</member>
-			<member name="C:pTaxiFare" value="377">
+			<member name="C:pTaxiFare" value="379">
 			</member>
-			<member name="C:pTaxiDriver" value="378">
+			<member name="C:pTaxiDriver" value="380">
 			</member>
-			<member name="C:pTaxiMoney" value="379">
+			<member name="C:pTaxiMoney" value="381">
 			</member>
-			<member name="C:pLiveOffer" value="380">
+			<member name="C:pLiveOffer" value="382">
 			</member>
-			<member name="C:pTalkingLive" value="381">
+			<member name="C:pTalkingLive" value="383">
 			</member>
-			<member name="C:pQuestionText" value="382">
+			<member name="C:pQuestionText" value="384">
 				<size value="180"/>
 			</member>
-			<member name="C:pInLesson" value="562">
+			<member name="C:pInLesson" value="564">
 			</member>
-			<member name="C:pLesson" value="563">
+			<member name="C:pLesson" value="565">
 			</member>
-			<member name="C:pLicense" value="564">
+			<member name="C:pLicense" value="566">
 			</member>
-			<member name="C:pLicenseOffer" value="565">
+			<member name="C:pLicenseOffer" value="567">
 			</member>
-			<member name="C:pShowTurfs" value="566">
+			<member name="C:pShowTurfs" value="568">
 			</member>
-			<member name="C:pSafeID" value="567">
+			<member name="C:pSafeID" value="569">
 			</member>
-			<member name="C:pSelectedItem" value="568">
+			<member name="C:pSelectedItem" value="570">
 			</member>
-			<member name="C:pOnTurf" value="569">
+			<member name="C:pOnTurf" value="571">
 			</member>
-			<member name="C:areaBizz" value="570">
+			<member name="C:areaBizz" value="572">
 			</member>
-			<member name="C:areaHouse" value="571">
+			<member name="C:areaHouse" value="573">
 			</member>
-			<member name="C:areaFaction" value="572">
+			<member name="C:areaFaction" value="574">
 			</member>
-			<member name="C:areaJob" value="573">
+			<member name="C:areaJob" value="575">
 			</member>
-			<member name="C:areaGascan" value="574">
+			<member name="C:areaGascan" value="576">
 			</member>
-			<member name="C:areaSafe" value="575">
+			<member name="C:areaSafe" value="577">
 			</member>
-			<member name="C:pEnableBoost" value="576">
+			<member name="C:pEnableBoost" value="578">
 			</member>
-			<member name="C:pSelectVehicle" value="577">
+			<member name="C:pSelectVehicle" value="579">
 				<size value="20"/>
 			</member>
 		</member>
@@ -1883,6 +1887,8 @@
 			<referrer name="dialog_GPS"/>
 			<referrer name="dialog_GPS1"/>
 			<referrer name="dialog_TOG"/>
+			<referrer name="dialog_DIALOG_SHOP"/>
+			<referrer name="dialog_DIALOG_HUD"/>
 			<referrer name="@yH_OnGameModeInit@005"/>
 			<referrer name="@yH_OnPlayerConnect@005"/>
 			<referrer name="HouseUpdate"/>
@@ -2285,6 +2291,8 @@
 			<referrer name="pc_cmd_freqmembers"/>
 			<referrer name="pc_cmd_tog"/>
 			<referrer name="pc_cmd_finalquest"/>
+			<referrer name="pc_cmd_shop"/>
+			<referrer name="pc_cmd_hud"/>
 			<referrer name="ShowCamera"/>
 			<referrer name="ShowDealerShipTD"/>
 			<referrer name="HideDealerShipTD"/>
@@ -2798,6 +2806,7 @@
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 		</member>
 		<member name="F:Iter_Single@PremiumPlayers">
+			<referrer name="dialog_DIALOG_SHOP"/>
 			<referrer name="checkPanel"/>
 		</member>
 		<member name="F:Iter_Single@RentersHouses">
@@ -2897,6 +2906,7 @@
 			<referrer name="Iter_VehicleDo"/>
 		</member>
 		<member name="F:Iter_Single@VipPlayers">
+			<referrer name="dialog_DIALOG_SHOP"/>
 			<referrer name="checkPanel"/>
 		</member>
 		<member name="F:Iter_Single@Wanteds">
@@ -3090,6 +3100,7 @@
 			<tagname value="F@z"/>
 		</member>
 		<member name="F:Iterator@PremiumPlayers">
+			<referrer name="dialog_DIALOG_SHOP"/>
 			<referrer name="checkPanel"/>
 		</member>
 		<member name="F:Iterator@Random">
@@ -3267,6 +3278,7 @@
 			<referrer name="GetClosestVehicle"/>
 		</member>
 		<member name="F:Iterator@VipPlayers">
+			<referrer name="dialog_DIALOG_SHOP"/>
 			<referrer name="checkPanel"/>
 		</member>
 		<member name="F:Iterator@Wanteds">
@@ -3563,14 +3575,16 @@
 		<member name="F:Selected">
 			<referrer name="showFactionMembers"/>
 			<referrer name="dialog_DIALOG_MEMBERS"/>
-			<referrer name="ShowEmails"/>
-			<referrer name="dialog_DIALOG_EMAILS"/>
 		</member>
 		<member name="F:SelectedCar">
 			<referrer name="ShowDealerShipTD"/>
 			<referrer name="LoadDsVehs"/>
 			<referrer name="InsertCarDS"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
+		</member>
+		<member name="F:SelectedID">
+			<referrer name="ShowEmails"/>
+			<referrer name="dialog_DIALOG_EMAILS"/>
 		</member>
 		<member name="F:SpawnPos">
 			<tagname value="Float"/>
@@ -4330,7 +4344,6 @@
 			<referrer name="gasTimer"/>
 		</member>
 		<member name="F:gates">
-			<referrer name="loadMaps"/>
 			<referrer name="Timers"/>
 			<referrer name="closeGate"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
@@ -4548,6 +4561,8 @@
 			<referrer name="dialog_SPAWNCHANGE"/>
 			<referrer name="dialog_GPS1"/>
 			<referrer name="dialog_TOG"/>
+			<referrer name="dialog_DIALOG_SHOP"/>
+			<referrer name="dialog_DIALOG_HUD"/>
 			<referrer name="OnPlayerPickUpDynamicPickup"/>
 			<referrer name="@yH_OnPlayerConnect@005"/>
 			<referrer name="dialog_SELL_HOUSE_STATE"/>
@@ -4880,6 +4895,7 @@
 			<referrer name="pc_cmd_freqmembers"/>
 			<referrer name="pc_cmd_tog"/>
 			<referrer name="pc_cmd_finalquest"/>
+			<referrer name="pc_cmd_hud"/>
 			<referrer name="InsertCarDS"/>
 			<referrer name="@yH_OnPlayerDeath@013"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
@@ -10526,6 +10542,8 @@
 			<referrer name="pc_cmd_transfer"/>
 			<referrer name="pc_cmd_spawnchange"/>
 			<referrer name="pc_cmd_gps"/>
+			<referrer name="pc_cmd_shop"/>
+			<referrer name="pc_cmd_hud"/>
 			<referrer name="pc_cmd_emails"/>
 			<param name="function">
 				<paraminfo> [] </paraminfo>
@@ -12399,6 +12417,8 @@
 			<referrer name="pc_cmd_spawnchange"/>
 			<referrer name="pc_cmd_gps"/>
 			<referrer name="pc_cmd_tog"/>
+			<referrer name="pc_cmd_shop"/>
+			<referrer name="pc_cmd_hud"/>
 			<referrer name="ShowEmails"/>
 			<referrer name="dialog_DIALOG_EMAILS"/>
 			<referrer name="OnPlayerSpawn"/>
@@ -17143,6 +17163,7 @@
 			<referrer name="dialog_DIALOG_REPORT"/>
 			<referrer name="dialog_DIALOG_REPORT_NORMAL"/>
 			<referrer name="dialog_DIALOG_REPORT_CHEATER"/>
+			<referrer name="dialog_DIALOG_SHOP"/>
 			<referrer name="@yH_OnPlayerConnect@005"/>
 			<referrer name="LoadHouses"/>
 			<referrer name="pc_cmd_rentroom"/>
@@ -19660,6 +19681,7 @@
 			<attribute name="public"/>
 			<stacksize value="5"/>
 			<dependency name="SendClientMessage"/>
+			<dependency name="printf"/>
 			<param name="playerid">
 			</param>
 			<param name="cmd">
@@ -20943,6 +20965,7 @@
 			<referrer name="pc_alias_reportmute"/>
 			<referrer name="pc_alias_makeleader"/>
 			<referrer name="pc_alias_setadmin"/>
+			<referrer name="pc_alias_auninvite"/>
 			<param name="cmd">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -22315,6 +22338,7 @@
 			<referrer name="dialog_SPAWNCHANGE"/>
 			<referrer name="dialog_GPS1"/>
 			<referrer name="dialog_TOG"/>
+			<referrer name="dialog_DIALOG_SHOP"/>
 			<referrer name="dialog_SELL_HOUSE_STATE"/>
 			<referrer name="dialog_HOUSE_OPTION_TITLE"/>
 			<referrer name="dialog_HOUSE_OPTION_DESCRIPTION"/>
@@ -23439,7 +23463,8 @@
 			<stacksize value="244"/>
 			<dependency name="Dialog_Open"/>
 			<dependency name="EOS"/>
-			<dependency name="Selected"/>
+			<dependency name="SelectedID"/>
+			<dependency name="SelectedID"/>
 			<dependency name="cache_get_value_name"/>
 			<dependency name="cache_num_rows"/>
 			<dependency name="format"/>
@@ -25336,7 +25361,7 @@
 			<param name="who">
 			</param>
 			<param name="results">
-				<paraminfo> [50] </paraminfo>
+				<paraminfo> [100] </paraminfo>
 			</param>
 			<param name="a">
 				<paraminfo> [2] </paraminfo>
@@ -26612,7 +26637,7 @@
 			<stacksize value="8437"/>
 			<dependency name="Dialog_Open"/>
 			<dependency name="SQL"/>
-			<dependency name="Selected"/>
+			<dependency name="SelectedID"/>
 			<dependency name="cache_delete"/>
 			<dependency name="cache_get_value_name"/>
 			<dependency name="format"/>
@@ -26760,6 +26785,20 @@
 			</param>
 			<param name="inputtext">
 				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:dialog_DIALOG_HUD" syntax="dialog_DIALOG_HUD(playerid, response, listitem)">
+			<attribute name="public"/>
+			<stacksize value="1"/>
+			<dependency name="pFPSShow"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="true"/>
+			<param name="playerid">
+			</param>
+			<param name="response">
+			</param>
+			<param name="listitem">
 			</param>
 		</member>
 		<member name="M:dialog_DIALOG_JOBS" syntax="dialog_DIALOG_JOBS(playerid, response, listitem, inputtext[])">
@@ -27084,6 +27123,33 @@
 			<dependency name="save_guns"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
+			<param name="playerid">
+			</param>
+			<param name="response">
+			</param>
+			<param name="listitem">
+			</param>
+		</member>
+		<member name="M:dialog_DIALOG_SHOP" syntax="dialog_DIALOG_SHOP(playerid, response, listitem)">
+			<attribute name="public"/>
+			<stacksize value="7"/>
+			<dependency name="Iter_Add_InternalC"/>
+			<dependency name="Iter_Single@PremiumPlayers"/>
+			<dependency name="Iter_Single@VipPlayers"/>
+			<dependency name="Iterator@PremiumPlayers"/>
+			<dependency name="Iterator@VipPlayers"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="pName"/>
+			<dependency name="pPremium"/>
+			<dependency name="pPremiumPoints"/>
+			<dependency name="pSQLID"/>
+			<dependency name="pVIP"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendAdmin"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="true"/>
+			<dependency name="update"/>
 			<param name="playerid">
 			</param>
 			<param name="response">
@@ -29086,7 +29152,6 @@
 			<stacksize value="16"/>
 			<referrer name="MySQLLoad"/>
 			<dependency name="CreateDynamicObject"/>
-			<dependency name="gates"/>
 			<dependency name="true"/>
 		</member>
 		<member name="M:main" syntax="main()">
@@ -29658,6 +29723,7 @@
 			<dependency name="pDrugsSkill"/>
 			<dependency name="pDrugsTimes"/>
 			<dependency name="pEMail"/>
+			<dependency name="pFPSShow"/>
 			<dependency name="pFaction"/>
 			<dependency name="pFactionAge"/>
 			<dependency name="pFactionPunish"/>
@@ -29691,6 +29757,8 @@
 			<dependency name="pPassword"/>
 			<dependency name="pPhone"/>
 			<dependency name="pPhoneBook"/>
+			<dependency name="pPremium"/>
+			<dependency name="pPremiumPoints"/>
 			<dependency name="pProgress"/>
 			<dependency name="pRent"/>
 			<dependency name="pReportMute"/>
@@ -29703,6 +29771,7 @@
 			<dependency name="pTruckSkill"/>
 			<dependency name="pTruckTimes"/>
 			<dependency name="pTutorial"/>
+			<dependency name="pVIP"/>
 			<dependency name="pVehicleSlots"/>
 			<dependency name="pWTChannel"/>
 			<dependency name="pWTalkie"/>
@@ -29775,6 +29844,11 @@
 		<member name="M:pc_alias_adminsuspendlicense" syntax="pc_alias_adminsuspendlicense()">
 			<attribute name="public"/>
 			<stacksize value="5"/>
+			<dependency name="PC_RegAlias"/>
+		</member>
+		<member name="M:pc_alias_auninvite" syntax="pc_alias_auninvite()">
+			<attribute name="public"/>
+			<stacksize value="4"/>
 			<dependency name="PC_RegAlias"/>
 		</member>
 		<member name="M:pc_alias_closereport" syntax="pc_alias_closereport()">
@@ -33473,6 +33547,24 @@
 				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
+		<member name="M:pc_cmd_hud" syntax="pc_cmd_hud(playerid, parmas[], help)">
+			<attribute name="public"/>
+			<stacksize value="4106"/>
+			<dependency name="CallRemoteFunction"/>
+			<dependency name="Dialog_Open"/>
+			<dependency name="pFPSShow"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="string_fast"/>
+			<dependency name="true"/>
+			<param name="playerid">
+			</param>
+			<param name="parmas">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="help">
+			</param>
+		</member>
 		<member name="M:pc_cmd_injured" syntax="pc_cmd_injured(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
@@ -35323,6 +35415,21 @@
 				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
+		<member name="M:pc_cmd_shop" syntax="pc_cmd_shop(playerid, params[], help)">
+			<attribute name="public"/>
+			<stacksize value="10"/>
+			<dependency name="CallRemoteFunction"/>
+			<dependency name="Dialog_Open"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="true"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="help">
+			</param>
+		</member>
 		<member name="M:pc_cmd_shouting" syntax="pc_cmd_shouting(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
@@ -36589,6 +36696,7 @@
 			<referrer name="LoadGasCan"/>
 			<referrer name="LoadDSVehicles"/>
 			<referrer name="OnQueryError"/>
+			<referrer name="OnPlayerCommandPerformed"/>
 			<param name="format">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -37024,6 +37132,7 @@
 			<referrer name="dialog_DIALOG_REPORT"/>
 			<referrer name="dialog_DIALOG_REPORT_NORMAL"/>
 			<referrer name="dialog_DIALOG_REPORT_CHEATER"/>
+			<referrer name="dialog_DIALOG_SHOP"/>
 			<referrer name="pc_cmd_makeleader"/>
 			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_fspec"/>
@@ -37241,6 +37350,7 @@
 			<referrer name="dialog_DIALOG_REPORT_NORMAL"/>
 			<referrer name="dialog_DIALOG_REPORT_CHEATER"/>
 			<referrer name="dialog_SPAWNCHANGE"/>
+			<referrer name="dialog_DIALOG_SHOP"/>
 			<referrer name="pc_cmd_buyhouse"/>
 			<referrer name="pc_cmd_sellhousestate"/>
 			<referrer name="pc_cmd_housebalance"/>
@@ -37530,6 +37640,8 @@
 			<referrer name="pc_cmd_wt"/>
 			<referrer name="pc_cmd_freqmembers"/>
 			<referrer name="pc_cmd_finalquest"/>
+			<referrer name="pc_cmd_shop"/>
+			<referrer name="pc_cmd_hud"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 			<referrer name="pc_cmd_emails"/>
@@ -38321,6 +38433,7 @@
 			<referrer name="pc_cmd_showfreq"/>
 			<referrer name="pc_cmd_number"/>
 			<referrer name="pc_cmd_accept"/>
+			<referrer name="pc_cmd_hud"/>
 			<referrer name="cancelDriveTest"/>
 			<referrer name="dialog_DIALOG_EMAILS"/>
 			<referrer name="pc_cmd_emails"/>
@@ -38743,6 +38856,7 @@
 			<referrer name="dialog_GENDER"/>
 			<referrer name="dialog_SPAWNCHANGE"/>
 			<referrer name="dialog_TOG"/>
+			<referrer name="dialog_DIALOG_SHOP"/>
 			<referrer name="dialog_SELL_HOUSE_STATE"/>
 			<referrer name="pc_cmd_buyhouse"/>
 			<referrer name="pc_cmd_rentabil"/>

@@ -61,7 +61,7 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], Connection = MYSQL, Anti
     Timer:war[MAX_TURFS],
     Timer:taxi[MAX_PLAYERS],
     Timer:getHit[MAX_PLAYERS],
-    Timer:fpsShow[MAX_PLAYERS],
+    // Timer:fpsShow[MAX_PLAYERS],
 
 
 vehNames[212][] =

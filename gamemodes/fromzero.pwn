@@ -16,7 +16,7 @@
 // B::::::::::::::::B  l::::::l a::::::::::aa:::a  cc:::::::::::::::ck::::::k   k:::::k M::::::M               M::::::M oo:::::::::::oo  oo:::::::::::oo   n::::n    n::::n//
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define MYSQL 0 // 0 - local | 1 - host
+#define MYSQL 1 // 0 - local | 1 - host
 
 #include <a_samp>
 #include <a_zones>
@@ -140,6 +140,8 @@ public OnPlayerConnect(playerid)
 {
 	resetVars(playerid);
 	removeMaps(playerid);
+	// LoadRemoveObjects(playerid);
+
 	return true;
 }
 
@@ -354,11 +356,11 @@ public OnPlayerDeath(playerid, killerid)
 	return true;
 }
 
-new sexxx[144];
+new sexxx[MAX_PLAYERS][144];
 public OnPlayerText(playerid, text[])
 {
-	if(strmatch(sexxx, text)) return 0;
-	format(sexxx, sizeof sexxx, text);
+	if(strmatch(sexxx[playerid], text)) return 0;
+	format(sexxx[playerid], 144, text);
 	if(isPlayerLogged(playerid)) {
 		if(faceReclama(text)) return Reclama(playerid, text);
 		if(playerInfo[playerid][pMute] > 0) return sendPlayerError(playerid, "Ai mute pentru inca %s %s.", playerInfo[playerid][pMute], ((playerInfo[playerid][pMute] > 60) ? ("minute") : ("secunde")));
@@ -865,9 +867,10 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 
 public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags) 
 { 
+	printf("%s", cmd);
     if(result == -1) 
     { 
-        SendClientMessage(playerid, 0xFFFFFFFF, "SERVER: Unknown command."); 
+        SendClientMessage(playerid, 0xFFFFFFFF, "SERVER: Unknown command.x"); 
 
         return 0; 
     } 

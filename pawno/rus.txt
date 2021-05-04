@@ -1,3 +1,2 @@
-C:\Users\user\Desktop\BLACKMOON\BlackMoon-Gamemode\pawno\include\modules\variables.pwn(64) : čäĺíňčôčęŕňîđ íĺ čńďîëüçóĺňń˙: "fpsShow"
 Pawn compiler 3.2.3664	 	 	Copyright (c) 1997-2017, ITB CompuPhase
 
