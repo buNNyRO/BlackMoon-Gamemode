@@ -253,7 +253,7 @@ Dialog:DIALOG_JOBS(playerid, response, listitem, inputtext[]) {
 	if(!response) return true;
 	if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) return sendPlayerError(playerid, "Ai un checkpoint activ pe harta.");
 	SetPlayerCheckpoint(playerid, jobInfo[listitem + 1][jobX], jobInfo[listitem + 1][jobY], jobInfo[listitem + 1][jobZ], 2.0);
-	SCM(playerid, COLOR_GREY, string_fast("* Ti-am plasat un job catre job-ul %s.", jobInfo[listitem + 1][jobName]));
+	SCM(playerid, COLOR_GREY, string_fast("* Ti-am plasat un checkpoint catre job-ul %s.", jobInfo[listitem + 1][jobName]));
 	playerInfo[playerid][pCheckpoint] = CHECKPOINT_JOB;
 	playerInfo[playerid][pCheckpointID] = listitem  + 1;
 	return true;
@@ -276,7 +276,7 @@ CMD:getjob(playerid, params[]) {
 	if(!Iter_Count(ServerJobs)) return sendPlayerError(playerid, "Nu sunt job-uri disponibile pe server.");
 	if(playerInfo[playerid][pJob] != 0) return sendPlayerError(playerid, "Ai deja un job, foloseste (/quitjob).");
 	if(playerInfo[playerid][areaJob] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, jobInfo[playerInfo[playerid][areaJob]][jobX], jobInfo[playerInfo[playerid][areaJob]][jobY], jobInfo[playerInfo[playerid][areaJob]][jobZ])) {
-		if(playerInfo[playerid][pLevel] < jobInfo[playerInfo[playerid][areaJob]][jobLevel]) return sendPlayerError(playerid, "Pentru a avea acest job , ai nevoie de nivel %d", jobInfo[playerInfo[playerid][areaJob]][jobLevel]);
+		if(playerInfo[playerid][pLevel] < jobInfo[playerInfo[playerid][areaJob]][jobLevel]) return sendPlayerError(playerid, "Nu ai level-ul necesar pentru acest job.");
 		playerInfo[playerid][pJob] = playerInfo[playerid][areaJob];
 		update("UPDATE `server_users` SET `Job` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pJob], playerInfo[playerid][pSQLID]);
 		SCM(playerid, COLOR_GREY, string_fast("* Job Notice: Acum ai jobul '%s'.", jobInfo[playerInfo[playerid][areaJob]][jobName]));
