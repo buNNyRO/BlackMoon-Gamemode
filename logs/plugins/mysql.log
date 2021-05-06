@@ -366,3 +366,4 @@
 [20:28:18] [ERROR] cache_get_value_name_float: invalid row index '43' (number of rows: '43') (C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\turfs.pwn:30)
 [20:28:18] [ERROR] cache_get_value_name: field 'Color' not found (C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\clans.pwn:43)
 [20:28:45] [ERROR] cache_get_value_name_int: field 'FPSShow' not found (C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\functions.pwn:167)
+[23:29:02] [ERROR] cache_get_value_name_int: field 'FPSShow' not found (C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\functions.pwn:167)

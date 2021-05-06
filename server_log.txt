@@ -5749,3 +5749,10 @@ v0.3.7-R2, (C)2005-2015 SA-MP Team
 [20:30:55] [part] [YER]Qfkxi06 has left the server (1:0)
 [20:30:55] [part] [OVO]Jdceo85 has left the server (2:0)
 [20:30:55] [part] [QFY]Kezml44 has left the server (3:0)
+[23:28:52] [connection] 192.168.8.137:55457 requests connection cookie.
+[23:28:53] [connection] incoming connection: 192.168.8.137:55457 id: 0
+[23:28:53] [join] mr.bunny has joined the server (0:192.168.8.137)
+[23:29:02] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[23:29:03] [ACCOUNT] mr.bunny loaded 20 vehicles
+[23:29:12] gotoxyz
+[23:29:14] fly

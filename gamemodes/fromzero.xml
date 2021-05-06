@@ -2090,7 +2090,6 @@
 			<referrer name="checkAccountJailo"/>
 			<referrer name="serverWeapon"/>
 			<referrer name="ProxDetectorS"/>
-			<referrer name="loadMaps"/>
 			<referrer name="SetPlayerFreeze"/>
 			<referrer name="questProgress"/>
 			<referrer name="giveQuest"/>
@@ -5676,6 +5675,7 @@
 			<referrer name="OnVehicleRespray"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
+			<referrer name="loadMaps"/>
 			<param name="oper">
 			</param>
 		</member>
@@ -9999,6 +9999,7 @@
 			<dependency name="ShowPlayerMarkers"/>
 			<dependency name="UsePlayerPedAnims"/>
 			<dependency name="false"/>
+			<dependency name="loadMaps"/>
 			<dependency name="true"/>
 		</member>
 		<member name="M:CB_OnPlayerDisconnect" syntax="CB_OnPlayerDisconnect(playerid, reason)">
@@ -11841,6 +11842,58 @@
 			<param name="priority">
 			</param>
 		</member>
+		<member name="M:CreateDynamicObjectEx" syntax="CreateDynamicObjectEx(modelid, x, y, z, rx, ry, rz, streamdistance, drawdistance, worlds[], interiors[], players[], areas[], priority, maxworlds, maxinteriors, maxplayers, maxareas)">
+			<attribute name="native"/>
+			<referrer name="loadMaps"/>
+			<param name="modelid">
+			</param>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="rx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="ry">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="rz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="streamdistance">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="drawdistance">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worlds">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="interiors">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="players">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="areas">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="priority">
+			</param>
+			<param name="maxworlds">
+			</param>
+			<param name="maxinteriors">
+			</param>
+			<param name="maxplayers">
+			</param>
+			<param name="maxareas">
+			</param>
+		</member>
 		<member name="M:CreateDynamicPickup" syntax="CreateDynamicPickup(modelid, type, x, y, z, worldid, interiorid, playerid, streamdistance, areaid, priority)">
 			<attribute name="native"/>
 			<referrer name="HouseUpdate"/>
@@ -11904,6 +11957,7 @@
 		<member name="M:CreateObject" syntax="CreateObject(modelid, X, Y, Z, rX, rY, rZ, DrawDistance)">
 			<attribute name="native"/>
 			<referrer name="dialog_DIALOG_SVF"/>
+			<referrer name="loadMaps"/>
 			<param name="modelid">
 			</param>
 			<param name="X">
@@ -19361,7 +19415,6 @@
 			<dependency name="SetGameModeText"/>
 			<dependency name="WARNING"/>
 			<dependency name="destroyServerTextDraws"/>
-			<dependency name="loadMaps"/>
 			<dependency name="mysql_close"/>
 			<dependency name="mysql_connect"/>
 			<dependency name="mysql_errno"/>
@@ -22596,6 +22649,50 @@
 			<param name="size">
 			</param>
 		</member>
+		<member name="M:SetDynamicObjectMaterial" syntax="SetDynamicObjectMaterial(objectid, materialindex, modelid, txdname[], texturename[], materialcolor)">
+			<attribute name="native"/>
+			<referrer name="loadMaps"/>
+			<param name="objectid">
+			</param>
+			<param name="materialindex">
+			</param>
+			<param name="modelid">
+			</param>
+			<param name="txdname">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="texturename">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="materialcolor">
+			</param>
+		</member>
+		<member name="M:SetDynamicObjectMaterialText" syntax="SetDynamicObjectMaterialText(objectid, materialindex, text[], materialsize, fontface[], fontsize, bold, fontcolor, backcolor, textalignment)">
+			<attribute name="native"/>
+			<referrer name="loadMaps"/>
+			<param name="objectid">
+			</param>
+			<param name="materialindex">
+			</param>
+			<param name="text">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="materialsize">
+			</param>
+			<param name="fontface">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="fontsize">
+			</param>
+			<param name="bold">
+			</param>
+			<param name="fontcolor">
+			</param>
+			<param name="backcolor">
+			</param>
+			<param name="textalignment">
+			</param>
+		</member>
 		<member name="M:SetFrameLocal" syntax="SetFrameLocal(frm_addr, param, value)">
 			<stacksize value="1"/>
 			<param name="frm_addr">
@@ -22675,6 +22772,24 @@
 			<referrer name="CB_OnGameModeInit"/>
 			<param name="distance">
 				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:SetObjectMaterial" syntax="SetObjectMaterial(objectid, materialindex, modelid, txdname[], texturename[], materialcolor)">
+			<attribute name="native"/>
+			<referrer name="loadMaps"/>
+			<param name="objectid">
+			</param>
+			<param name="materialindex">
+			</param>
+			<param name="modelid">
+			</param>
+			<param name="txdname">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="texturename">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="materialcolor">
 			</param>
 		</member>
 		<member name="M:SetObjectMaterialText" syntax="SetObjectMaterialText(objectid, text[], materialindex, materialsize, fontface[], fontsize, bold, fontcolor, backcolor, textalignment)">
@@ -29149,10 +29264,15 @@
 		</member>
 		<member name="M:loadMaps" syntax="loadMaps()">
 			<attribute name="public"/>
-			<stacksize value="16"/>
-			<referrer name="MySQLLoad"/>
+			<stacksize value="188"/>
+			<referrer name="CB_OnGameModeInit"/>
+			<dependency name="Float:operator=(_:)"/>
 			<dependency name="CreateDynamicObject"/>
-			<dependency name="true"/>
+			<dependency name="CreateDynamicObjectEx"/>
+			<dependency name="CreateObject"/>
+			<dependency name="SetDynamicObjectMaterial"/>
+			<dependency name="SetDynamicObjectMaterialText"/>
+			<dependency name="SetObjectMaterial"/>
 		</member>
 		<member name="M:main" syntax="main()">
 			<attribute name="entry"/>

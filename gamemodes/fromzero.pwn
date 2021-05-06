@@ -105,6 +105,8 @@ public OnGameModeInit()
     DisableInteriorEnterExits();
 	AllowInteriorWeapons(true);
 	UsePlayerPedAnims();
+
+	loadMaps();
 	return true;
 }
 
@@ -876,4 +878,74 @@ public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags)
     } 
 
     return 1; 
+}
+
+
+function loadMaps() {
+	#include map/spawn
+	#include map/admin_house
+	#include map/CNN
+	#include map/hospital
+	#include map/demorgan
+	#include map/cont
+	#include map/waxta
+	#include map/lspd
+	#include map/avtoscool
+	#include map/ostalnoeb
+	#include map/ferma
+	#include map/mapping
+	#include map/bank
+	#include map/kazik
+	#include map/centerrinok
+	#include map/army_ls
+	#include map/army_lv
+    #include map/army_sf
+    #include map/armylvint
+    #include map/armySF
+	#include map/map
+	#include map/map1
+	#include map/map2
+	#include map/map3
+	#include map/map4
+	#include map/kpp
+	#include map/AB
+	#include map/intaksioma
+	#include map/ostalnoe
+	#include map/pirs
+	#include map/inter
+	#include map/meria
+	#include map/russianmafia
+	#include map/bayker
+	#include map/podval
+	#include map/newyearhouse1
+	#include map/newyearhouse2
+	#include map/newyearhouse_int
+	#include map/halloweenhouse1
+	#include map/halloweenhouse2
+	#include map/halloweenhouse_int
+	#include map/viphouse1
+	#include map/door
+	#include map/24_7
+	#include map/zapravka
+	#include map/arizonashow
+	#include map/parking
+	#include map/eventsobirateli
+	#include map/radio
+	#include map/vip_house_1
+	#include map/vip_house_2
+	#include map/vip_house_3
+	#include map/vip_house_4
+	#include map/vip_house_5
+	#include map/vip_house_6
+	#include map/vip_house_7
+	#include map/vip_house_8
+	#include map/vip_house_9
+	#include map/vip_house_10
+	#include map/newhouse
+	#include map/GarageInt1
+	#include map/GarageInt2
+	#include map/GarageInt3
+	#include map/GarageInt4
+	#include map/GarageInt5
+	#include map/GarageInt6
 }
