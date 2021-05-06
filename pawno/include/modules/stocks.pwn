@@ -1167,8 +1167,8 @@ stock Add64Bit(&ammount_store, &ammount_more, value) {
 
 stock GivePlayerCash(playerid, type, money) {
 	switch(type) {
-		case 0: Add64Bit(StoreMoney[playerid], MoneyMoney[playerid], -money);/* ArataMoney(playerid, 1, money);*/
-		case 1: Add64Bit(StoreMoney[playerid], MoneyMoney[playerid], money); /*ArataMoney(playerid, 0, money);*/
+		case 0: Add64Bit(StoreMoney[playerid], MoneyMoney[playerid], -money);
+		case 1: Add64Bit(StoreMoney[playerid], MoneyMoney[playerid], money); 
  	}
  	updatePlayer(playerid);
 	return true;

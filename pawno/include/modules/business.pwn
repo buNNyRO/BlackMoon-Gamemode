@@ -49,12 +49,9 @@ function totalAds() {
 }
 
 timer advertismentTimer[totalAds() * 60000](playerid) {
-	if(AdTimer[playerid] != 0) {
-		gString[0] = (EOS);
-		va_format(gString, sizeof(gString), "{00D900}Ad by %s (phone: {FFFFFF}%d{00D900}): %s", getName(playerid), playerInfo[playerid][pPhone], AdText[playerid]);
-		sendSplitMessage(playerid, COLOR_WHITE, gString);
-		AdTimer[playerid] = -1;
-	}
+	sendSplitMessage(playerid, COLOR_WHITE, string_fast("{00D900}Ad by %s (phone: {FFFFFF}%d{00D900}): %s", getName(playerid), playerInfo[playerid][pPhone], AdText[playerid]));
+	AdText[playerid] = "";
+	AdTimer[playerid] = 0;
 	return true;
 }
 
@@ -474,7 +471,7 @@ CMD:transfer(playerid, params[]) {
 CMD:ad(playerid, params[]) {
 	if(AdTimer[playerid] != 0) return sendPlayerError(playerid, "Ai pus un anunt recent. Foloseste comanda /myad pentru a-l vedea.");
 	if(playerInfo[playerid][pMute] > 0) return sendPlayerError(playerid, "Nu pot folosi aceasta comanda deoarece ai mute.");
-	if(playerInfo[playerid][pLevel] < 3) return sendPlayerError(playerid, "Nu ai l`Moevel 3 pentru a folosi aceasta comanda.");
+	if(playerInfo[playerid][pLevel] < 3) return sendPlayerError(playerid, "Nu ai level 3+ pentru a folosi aceasta comanda.");
 	new idx, length = strlen(params), offset = idx, result[264], totalads = totalAds()+1;
 	while ((idx < length) && (params[idx] <= ' ')) idx++;
 	while ((idx < length) && ((idx - offset) < (sizeof(result) - 1))) {
@@ -498,7 +495,12 @@ CMD:ad(playerid, params[]) {
 	return true;
 }
 
-CMD:myad(playerid, params[]) return SCM(playerid, COLOR_GREY, string_fast("* AD Notice: Ad-ul tau este '%s'", AdText[playerid]));
+CMD:myad(playerid, params[]) {
+	if(AdTimer[playerid] == 0 ) return sendPlayerError(playerid, "Nu ai un anunt pus.");
+	SCMf(playerid, COLOR_GREY, "* AD Notice: Ad-ul tau este '%s'", AdText[playerid]);
+	return true;
+}
+
 CMD:deletemyad(playerid, params[]) {
 	if(AdTimer[playerid] == 0) return sendPlayerError(playerid, "Nu ai un ad pus.");
 	AdText[playerid] = "";
