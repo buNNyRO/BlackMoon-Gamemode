@@ -315,12 +315,13 @@ CMD:cancel(playerid, params[]) {
 	return true;
 }
 CMD:accept(playerid, params[]) {
-	extract params-> new player:targetid = 1001, string:item[32]; else {
+	extract params-> new player:targetid, string:item[32]; else {
 		sendPlayerSyntax(playerid, "/accept <name/id> <service>");
 		SCM(playerid, COLOR_GREY, "Available service: medic, taxi, instructor, invite, ticket, live, lesson, cinvite.");
 		return true;
 	}
-	if(!isPlayerLogged(targetid) && targetid != 1001) return sendPlayerError(playerid, "Acel player nu este connectat.");
+	if(!isPlayerLogged(targetid)) return sendPlayerError(playerid, "Jucatorul nu este conectat.");
+
 	if(strmatch(item, "medic")) {
 		if(!Iter_Contains(FactionMembers[1], playerid)) return sendPlayerError(playerid, "Nu esti in factiunea 'Paramedic Department' pentru a folosi aceasta comanda.");
 		if(MedicAcceptedCall[playerid] != -1) return sendPlayerError(playerid, "Ai deja un apel acceptat.");
