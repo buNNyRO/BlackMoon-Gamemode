@@ -1,0 +1,90 @@
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[20:01:02] filterscripts = ""  (string)
+[20:01:02] 
+[20:01:02] Server Plugins
+[20:01:02] --------------
+[20:01:02]  Loading plugin: crashdetect
+[20:01:02]   CrashDetect plugin 4.19.4
+[20:01:02]   Loaded.
+[20:01:02]  Loading plugin: pawncmd
+[20:01:02] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[20:01:02]   Loaded.
+[20:01:02]  Loading plugin: sscanf
+[20:01:02] 
+
+[20:01:02]  ===============================
+
+[20:01:02]       sscanf plugin loaded.     
+
+[20:01:02]          Version:  2.8.3        
+
+[20:01:02]   (c) 2018 Alex "Y_Less" Cole  
+
+[20:01:02]  ===============================
+
+[20:01:02]   Loaded.
+[20:01:03]  Loading plugin: streamer
+[20:01:03] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[20:01:03]   Loaded.
+[20:01:03]  Loading plugin: mysql
+[20:01:03]  >> plugin.mysql: R41-4 successfully loaded.
+[20:01:03]   Loaded.
+[20:01:03]  Loaded 5 plugins.
+
+[20:01:03] 
+[20:01:03] Filterscripts
+[20:01:03] ---------------
+[20:01:03]   Loaded 0 filterscripts.
+
+[20:01:03]  
+[20:01:03]  
+[20:01:03]  
+[20:01:03]  ======================================= 
+[20:01:03]  |                                     | 
+[20:01:03]  |        YSI version 4.00.0001        | 
+[20:01:03]  |        By Alex "Y_Less" Cole        | 
+[20:01:03]  |                                     | 
+[20:01:03]  ======================================= 
+[20:01:03]  
+[20:01:06] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[20:01:06] [MYSQL] Baza de date, s-a conectat.
+[20:01:06] Number of vehicle models: 0
+[20:01:07] Exam Checkpoints: 9 [From Database]
+[20:01:07] Jobs: 5 [From Database]
+[20:01:07] Businesses: 4 [From Database]
+[20:01:07] Houses: 0 [From Database]
+[20:01:07] Dealership models: 89 [From Database]
+[20:01:07] Factions: 10 [From Database]
+[20:01:07] Turfs: 43 [From Database]
+[20:01:07] Faction Safes: 0 [From Database]
+[20:01:07] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:01:07] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:01:07] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:01:07] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:01:07] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:01:07] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:01:07] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:01:07] Clans: 1 [From Database]
+[20:01:28] [connection] 127.0.0.1:52744 requests connection cookie.
+[20:01:29] [connection] incoming connection: 127.0.0.1:52744 id: 0
+[20:01:29] [join] mr.bunny has joined the server (0:127.0.0.1)
+[20:01:42] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[20:01:42] [ACCOUNT] mr.bunny loaded 20 vehicles
+[20:02:15] [debug] Run time error 4: "Array index out of bounds"
+[20:02:15] [debug]  Attempted to read/write array element at negative index -1
+[20:02:15] [debug] AMX backtrace:
+[20:02:15] [debug] #0 0014e8cc in public CB_OnPlayerStateChange (playerid=0, newstate=1, oldstate=3) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\gamemodes\fromzero.pwn:654
+[20:02:15] [debug] #1 0005a9f4 in OnPlayerStateChange (playerid=0, newstate=1, oldstate=3) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\callbacks.inc:1020
+[20:02:15] [debug] #2 0001df88 in public OnPlayerStateChange (0, 1, 3) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\YSI\..\YSI_Data\..\YSI_Coding\..\YSI_Internal\y_cgen.inc:114
+[20:02:26] [part] mr.bunny has left the server (0:1)

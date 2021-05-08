@@ -646,14 +646,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 public OnPlayerStateChange(playerid, newstate, oldstate)
 {
 	if(newstate == PLAYER_STATE_SPECTATING && playerInfo[playerid][pAdmin] == 0) sendAdmin(COLOR_LIGHTRED, "(*) Anti-Cheat: %s a primit kick pentru 'Invisibile Hack'.", getName(playerid)), Kick(playerid);
-	if(newstate == PLAYER_STATE_DRIVER || newstate == PLAYER_STATE_PASSENGER) {
-		if(Iter_Contains(PlayerInVehicle, playerid)) Iter_Add(PlayerInVehicle, playerid);
-
-		new vehicleid = playerInfo[playerid][pinVehicle] = GetPlayerVehicleID(playerid);
-		if(vehicle_personal[vehicleid] > -1) personalVehicle[vehicle_personal[vehicleid]][pvDespawnTime] = 0;
-		for(new i; i < 18; i++) PlayerTextDrawShow(playerid, vehicleHud[i]);
-		if(vehicle_engine[GetPlayerVehicleID(playerid)] == false) speedo[playerid] = repeat TimerSpeedo(playerid);
-	}
+	if(newstate == PLAYER_STATE_DRIVER || newstate == PLAYER_STATE_PASSENGER) if(Iter_Contains(PlayerInVehicle, playerid)) Iter_Add(PlayerInVehicle, playerid);
 	if(oldstate == PLAYER_STATE_DRIVER || oldstate == PLAYER_STATE_PASSENGER) {
 		if(Iter_Contains(PlayerInVehicle, playerid)) Iter_Remove(PlayerInVehicle, playerid);
 
@@ -664,7 +657,6 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 			update("UPDATE `server_personal_vehicles` SET  `Health` = '%f', `Fuel` = '%f', `Odometer`='%f', `DamageDoors`='%d', `DamageLights`='%d', `DamageTires`='%d' WHERE `ID`='%d' LIMIT 1", personalVehicle[i][pvHealth], personalVehicle[i][pvFuel], personalVehicle[i][pvOdometer], personalVehicle[i][pvDamagePanels], personalVehicle[i][pvDamageDoors], personalVehicle[i][pvDamageLights], personalVehicle[i][pvDamageTires],personalVehicle[i][pvID]);
 		}	
 		playerInfo[playerid][pinVehicle] = -1;
-		for(new i; i < sizeof vehicleHud; i++) PlayerTextDrawHide(playerid, vehicleHud[i]);
 		PlayerTextDrawHide(playerid, fareTD[playerid]);
 		if(playerInfo[playerid][pTaxiDriver] != -1) {
 		    if(playerInfo[playerid][pTaxiMoney] != 0) {
@@ -695,7 +687,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	}
 	if(newstate == PLAYER_STATE_DRIVER)
 	{
-		new vehicleid = GetPlayerVehicleID(playerid);
+		new vehicleid = playerInfo[playerid][pinVehicle] = GetPlayerVehicleID(playerid);
 		if(playerInfo[playerid][pFlyLicense] == 0 && isPlane(vehicleid))
 		{
 			sendPlayerError(playerid, "Nu ai licenta de pilot.");
@@ -744,12 +736,17 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 			personalVehicle[id][pvDespawnTime] = 0;
 			#pragma unused id
 		}
+
+		if(vehicle_personal[vehicleid] > -1) personalVehicle[vehicle_personal[vehicleid]][pvDespawnTime] = 0;
+		for(new i; i < 18; i++) PlayerTextDrawShow(playerid, vehicleHud[i]);
+		if(vehicle_engine[GetPlayerVehicleID(playerid)] == false) speedo[playerid] = repeat TimerSpeedo(playerid);
 	}
 	if(newstate == PLAYER_STATE_ONFOOT || oldstate == PLAYER_STATE_DRIVER) {
 		if(IsValidVehicle(playerInfo[playerid][pExamenVehicle])) examenFail(playerid);
 		if(Working[playerid]) CancelJob(playerid, Working[playerid]);
 	}
 	if(newstate == PLAYER_STATE_PASSENGER) {
+		for(new i; i < sizeof vehicleHud; i++) PlayerTextDrawHide(playerid, vehicleHud[i]);
 		foreach(new i : FactionMembers[5]) {
 			if(playerInfo[i][pTaxiDuty] == 1 && IsPlayerInAnyVehicle(i) && vehicleFaction[GetPlayerVehicleID(i)] == playerInfo[i][pFaction]) {
 				if(PlayerMoney(playerid, playerInfo[i][pTaxiFare])) {

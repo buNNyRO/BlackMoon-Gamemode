@@ -1451,11 +1451,8 @@
 			<referrer name="sendToAdmin"/>
 			<referrer name="dialog_REGISTER"/>
 			<referrer name="dialog_LOGIN"/>
-			<referrer name="HouseUpdate"/>
-			<referrer name="dialog_SELL_HOUSE_STATE"/>
 			<referrer name="pc_cmd_buyhouse"/>
 			<referrer name="pc_cmd_hlock"/>
-			<referrer name="pc_cmd_sellhouse"/>
 			<referrer name="factionLog"/>
 			<referrer name="wantedName"/>
 			<referrer name="sendFactionMessage"/>
@@ -1506,7 +1503,8 @@
 			<referrer name="CB_OnPlayerDisconnect"/>
 		</member>
 		<member name="C:E_STREAMER_EXTRA_ID" value="15">
-			<referrer name="HouseUpdate"/>
+			<referrer name="LoadHouses"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="LoadBusinesses"/>
 			<referrer name="pc_cmd_createbusiness"/>
 		</member>
@@ -1892,7 +1890,6 @@
 			<referrer name="dialog_DIALOG_HUD"/>
 			<referrer name="@yH_OnGameModeInit@004"/>
 			<referrer name="@yH_OnPlayerConnect@004"/>
-			<referrer name="HouseUpdate"/>
 			<referrer name="dialog_SELL_HOUSE_STATE"/>
 			<referrer name="dialog_HOUSE_OPTION"/>
 			<referrer name="dialog_HOUSE_OPTION_TITLE"/>
@@ -1917,6 +1914,7 @@
 			<referrer name="pc_cmd_upgradehouse"/>
 			<referrer name="pc_cmd_eat"/>
 			<referrer name="pc_cmd_armour"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="pc_cmd_turfs"/>
 			<referrer name="_GetMapZoneLoopStartIndex"/>
 			<referrer name="GetMapZoneName"/>
@@ -1993,6 +1991,7 @@
 			<referrer name="pc_cmd_contracts"/>
 			<referrer name="TimerGetHit"/>
 			<referrer name="pc_cmd_svf"/>
+			<referrer name="pc_cmd_dvf"/>
 			<referrer name="dialog_DIALOG_SVF"/>
 			<referrer name="pc_cmd_setraport"/>
 			<referrer name="pc_cmd_resetraport"/>
@@ -2863,6 +2862,7 @@
 		</member>
 		<member name="F:Iter_Single@ServerHouses">
 			<referrer name="LoadHouses"/>
+			<referrer name="pc_cmd_createhouse"/>
 		</member>
 		<member name="F:Iter_Single@ServerJobs">
 			<referrer name="LoadJobs"/>
@@ -3234,6 +3234,7 @@
 			<referrer name="LoadHouses"/>
 			<referrer name="pc_cmd_adminhouse"/>
 			<referrer name="pc_cmd_rentroom"/>
+			<referrer name="pc_cmd_createhouse"/>
 		</member>
 		<member name="F:Iterator@ServerJobs">
 			<referrer name="returnNeededPoints"/>
@@ -3476,7 +3477,8 @@
 		</member>
 		<member name="F:PickInfo">
 			<referrer name="OnPlayerPickUpDynamicPickup"/>
-			<referrer name="HouseUpdate"/>
+			<referrer name="LoadHouses"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="LoadFactions"/>
 			<referrer name="LoadSafes"/>
 			<referrer name="LoadJobs"/>
@@ -3517,17 +3519,10 @@
 			<referrer name="kickPlayer"/>
 			<referrer name="dialog_REGISTER"/>
 			<referrer name="dialog_LOGIN"/>
-			<referrer name="dialog_SELL_HOUSE_STATE"/>
-			<referrer name="dialog_HOUSE_OPTION_TITLE"/>
-			<referrer name="dialog_HOUSE_OPTION_DESCRIPTION"/>
-			<referrer name="dialog_HOUSE_OPTION_TITLEADMIN"/>
-			<referrer name="dialog_HOUSE_OPTION_DESCADMIN"/>
 			<referrer name="pc_cmd_buyhouse"/>
 			<referrer name="pc_cmd_housewithdraw"/>
 			<referrer name="pc_cmd_housedeposit"/>
 			<referrer name="pc_cmd_hlock"/>
-			<referrer name="pc_cmd_sellhouse"/>
-			<referrer name="pc_cmd_setrentprice"/>
 			<referrer name="pc_cmd_members"/>
 			<referrer name="dialog_DIALOG_MEMBERS"/>
 			<referrer name="dialog_DIALOG_MEMBERS2"/>
@@ -4003,6 +3998,13 @@
 		<member name="F:_pawncmd_version">
 			<attribute name="public"/>
 		</member>
+		<member name="F:bigInteriors">
+			<tagname value="Float"/>
+			<referrer name="pc_cmd_createhouse"/>
+		</member>
+		<member name="F:bigInteriorsID">
+			<referrer name="pc_cmd_createhouse"/>
+		</member>
 		<member name="F:bizInfo">
 			<referrer name="LoadBusinesses"/>
 			<referrer name="dialog_BIZ_OPTION_TITLE"/>
@@ -4211,16 +4213,9 @@
 			<referrer name="kickPlayer"/>
 			<referrer name="dialog_REGISTER"/>
 			<referrer name="dialog_LOGIN"/>
-			<referrer name="dialog_SELL_HOUSE_STATE"/>
-			<referrer name="dialog_HOUSE_OPTION_TITLE"/>
-			<referrer name="dialog_HOUSE_OPTION_DESCRIPTION"/>
-			<referrer name="dialog_HOUSE_OPTION_TITLEADMIN"/>
-			<referrer name="dialog_HOUSE_OPTION_DESCADMIN"/>
 			<referrer name="pc_cmd_housewithdraw"/>
 			<referrer name="pc_cmd_housedeposit"/>
 			<referrer name="pc_cmd_hlock"/>
-			<referrer name="pc_cmd_sellhouse"/>
-			<referrer name="pc_cmd_setrentprice"/>
 			<referrer name="factionLog"/>
 			<referrer name="pc_cmd_quitjob"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
@@ -4258,7 +4253,6 @@
 			<referrer name="getDateTime"/>
 			<referrer name="getWeaponName"/>
 			<referrer name="sendToAdmin"/>
-			<referrer name="HouseUpdate"/>
 			<referrer name="pc_cmd_buyhouse"/>
 			<referrer name="wantedName"/>
 			<referrer name="sendFactionMessage"/>
@@ -4354,7 +4348,6 @@
 		</member>
 		<member name="F:houseInfo">
 			<referrer name="LoadHouses"/>
-			<referrer name="HouseUpdate"/>
 			<referrer name="dialog_SELL_HOUSE_STATE"/>
 			<referrer name="dialog_HOUSE_OPTION_TITLE"/>
 			<referrer name="dialog_HOUSE_OPTION_DESCRIPTION"/>
@@ -4373,6 +4366,7 @@
 			<referrer name="pc_cmd_upgradehouse"/>
 			<referrer name="pc_cmd_eat"/>
 			<referrer name="pc_cmd_armour"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="pc_cmd_heal"/>
 			<referrer name="PayDay"/>
 			<referrer name="OnPlayerSpawn"/>
@@ -4437,6 +4431,13 @@
 		</member>
 		<member name="F:lskirt">
 			<referrer name="SaveComponent"/>
+		</member>
+		<member name="F:mediumInteriors">
+			<tagname value="Float"/>
+			<referrer name="pc_cmd_createhouse"/>
+		</member>
+		<member name="F:mediumInteriorsID">
+			<referrer name="pc_cmd_createhouse"/>
 		</member>
 		<member name="F:muteTime">
 			<tagname value="Timer"/>
@@ -4576,6 +4577,7 @@
 			<referrer name="pc_cmd_upgradehouse"/>
 			<referrer name="pc_cmd_eat"/>
 			<referrer name="pc_cmd_armour"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="pc_cmd_turfs"/>
 			<referrer name="@yH_OnPlayerConnect@006"/>
 			<referrer name="@yH_OnPlayerDeath@006"/>
@@ -4647,6 +4649,7 @@
 			<referrer name="pc_cmd_gethit"/>
 			<referrer name="pc_cmd_contracts"/>
 			<referrer name="pc_cmd_svf"/>
+			<referrer name="pc_cmd_dvf"/>
 			<referrer name="dialog_DIALOG_SVF"/>
 			<referrer name="pc_cmd_setraport"/>
 			<referrer name="pc_cmd_resetraport"/>
@@ -4930,6 +4933,7 @@
 			<referrer name="@yH_OnPlayerDisconnect@006"/>
 			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_svf"/>
+			<referrer name="pc_cmd_dvf"/>
 			<referrer name="dialog_DIALOG_SVF"/>
 			<referrer name="removeFunction"/>
 		</member>
@@ -5072,6 +5076,13 @@
 		<member name="F:size_l">
 			<remarks>  <p>Because of the strange way we manipulate the stack, this function actually  gets called twice as often as you would expect.  Essentially, for this  (psudo-)loop:</p>  <code>  for (new i = iter_func(); Iter_YieldLoop(); )                              <br />  {                                                                          <br />  }  </code>  <p>The loop is entered and <c>iter_func()</c> is called.  This indirectly  calls <c>yield</c>, which returns to the call point of that function.  The  loop check is then entered and <c>Iter_YieldLoop()</c> is called.  Depending  on if <c>yield</c> was actually used, the main loop body is entered.  At the  end of that iteration, the loop check is run again and so  <c>Iter_YieldLoop()</c> is called again.</p>  <p>This is where it gets wierd!</p>  <p><c>Iter_YieldLoop()</c> does a stack copy and a jump in to the earlier  call to <c>iter_func</c>, whose return address is earlier in the code.  When  a <c>yield</c> is done again, that return is to the first part of the  <c>for</c> loop, which then instantly enters the loop check section and calls  <c>Iter_YieldLoop()</c> again (as a side-effect, saving the iterator value in  the loop variable).</p>  <p>So for <c>N</c> iterations of the loop, <c>Iter_YieldLoop()</c> is called  <c>2N + 1</c> times, and should be made aware of which phase of its calls it  is in.</p>  <p>This is, of course, made more complicated by nested loops, but that just  means we need to store the state on our own stack.</p>  </remarks> 
 		</member>
+		<member name="F:smallInteriors">
+			<tagname value="Float"/>
+			<referrer name="pc_cmd_createhouse"/>
+		</member>
+		<member name="F:smallInteriorsID">
+			<referrer name="pc_cmd_createhouse"/>
+		</member>
 		<member name="F:speedo">
 			<tagname value="Timer"/>
 			<referrer name="TimerSpeedo"/>
@@ -5087,6 +5098,7 @@
 			<referrer name="@yH_OnVehicleDeath@006"/>
 			<referrer name="@yH_OnPlayerDisconnect@006"/>
 			<referrer name="pc_cmd_auninvite"/>
+			<referrer name="pc_cmd_dvf"/>
 			<referrer name="dialog_DIALOG_SVF"/>
 			<referrer name="removeFunction"/>
 		</member>
@@ -5163,6 +5175,7 @@
 			<referrer name="pc_cmd_fare"/>
 			<referrer name="pc_cmd_news"/>
 			<referrer name="pc_cmd_live"/>
+			<referrer name="pc_cmd_dvf"/>
 			<referrer name="dialog_DIALOG_SVF"/>
 			<referrer name="removeFunction"/>
 			<referrer name="pc_cmd_accept"/>
@@ -5180,12 +5193,14 @@
 			<referrer name="@yH_OnVehicleDeath@006"/>
 			<referrer name="@yH_OnPlayerDisconnect@006"/>
 			<referrer name="pc_cmd_auninvite"/>
+			<referrer name="pc_cmd_dvf"/>
 			<referrer name="dialog_DIALOG_SVF"/>
 			<referrer name="removeFunction"/>
 		</member>
 		<member name="F:vehicleRank">
 			<referrer name="@yH_OnPlayerStateChange@006"/>
 			<referrer name="pc_cmd_auninvite"/>
+			<referrer name="pc_cmd_dvf"/>
 			<referrer name="dialog_DIALOG_SVF"/>
 			<referrer name="removeFunction"/>
 		</member>
@@ -10115,7 +10130,6 @@
 			<dependency name="pFishSkill"/>
 			<dependency name="pFishTimes"/>
 			<dependency name="pFlymode"/>
-			<dependency name="pJob"/>
 			<dependency name="pSQLID"/>
 			<dependency name="pc_cmd_engine"/>
 			<dependency name="pc_cmd_lights"/>
@@ -11676,7 +11690,8 @@
 		<member name="M:CreateDynamic3DTextLabel" syntax="CreateDynamic3DTextLabel(text[], color, x, y, z, drawdistance, attachedplayer, attachedvehicle, testlos, worldid, interiorid, playerid, streamdistance, areaid, priority)">
 			<tagname value="Text3D"/>
 			<attribute name="native"/>
-			<referrer name="HouseUpdate"/>
+			<referrer name="LoadHouses"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="LoadFactions"/>
 			<referrer name="LoadSafes"/>
 			<referrer name="LoadJobs"/>
@@ -11722,7 +11737,8 @@
 		</member>
 		<member name="M:CreateDynamicMapIcon" syntax="CreateDynamicMapIcon(x, y, z, type, color, worldid, interiorid, playerid, streamdistance, style, areaid, priority)">
 			<attribute name="native"/>
-			<referrer name="HouseUpdate"/>
+			<referrer name="LoadHouses"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="LoadFactions"/>
 			<referrer name="LoadBusinesses"/>
 			<referrer name="pc_cmd_createbusiness"/>
@@ -11849,7 +11865,8 @@
 		</member>
 		<member name="M:CreateDynamicPickup" syntax="CreateDynamicPickup(modelid, type, x, y, z, worldid, interiorid, playerid, streamdistance, areaid, priority)">
 			<attribute name="native"/>
-			<referrer name="HouseUpdate"/>
+			<referrer name="LoadHouses"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="LoadFactions"/>
 			<referrer name="LoadSafes"/>
 			<referrer name="LoadJobs"/>
@@ -11885,7 +11902,8 @@
 		</member>
 		<member name="M:CreateDynamicSphere" syntax="CreateDynamicSphere(x, y, z, size, worldid, interiorid, playerid, priority)">
 			<attribute name="native"/>
-			<referrer name="HouseUpdate"/>
+			<referrer name="LoadHouses"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="LoadBusinesses"/>
 			<referrer name="pc_cmd_createbusiness"/>
 			<param name="x">
@@ -12283,30 +12301,12 @@
 			<param name="actorid">
 			</param>
 		</member>
-		<member name="M:DestroyDynamic3DTextLabel" syntax="DestroyDynamic3DTextLabel(id)">
-			<attribute name="native"/>
-			<referrer name="HouseUpdate"/>
-			<param name="id">
-				<paraminfo>Text3D </paraminfo>
-			</param>
-		</member>
-		<member name="M:DestroyDynamicArea" syntax="DestroyDynamicArea(areaid)">
-			<attribute name="native"/>
-			<referrer name="HouseUpdate"/>
-			<param name="areaid">
-			</param>
-		</member>
-		<member name="M:DestroyDynamicPickup" syntax="DestroyDynamicPickup(pickupid)">
-			<attribute name="native"/>
-			<referrer name="HouseUpdate"/>
-			<param name="pickupid">
-			</param>
-		</member>
 		<member name="M:DestroyObject" syntax="DestroyObject(objectid)">
 			<attribute name="native"/>
 			<referrer name="@yH_OnVehicleDeath@006"/>
 			<referrer name="@yH_OnPlayerDisconnect@006"/>
 			<referrer name="pc_cmd_auninvite"/>
+			<referrer name="pc_cmd_dvf"/>
 			<referrer name="removeFunction"/>
 			<param name="objectid">
 			</param>
@@ -14603,6 +14603,7 @@
 			<referrer name="DistanceToPlayer"/>
 			<referrer name="dialog_GPS"/>
 			<referrer name="dialog_GPS1"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="GetPlayerMapZone"/>
 			<referrer name="GetPlayerMapZone2D"/>
 			<referrer name="dialog_DIALOG_WANTEDS"/>
@@ -16019,56 +16020,6 @@
 			</param>
 			        <returns>  The number of bytes written to memory.  </returns>  <remarks>  Generate some new code, very nicely :D.  </remarks> 
 		</member>
-		<member name="M:HouseUpdate" syntax="HouseUpdate(houseid)">
-			<stacksize value="4193"/>
-			<referrer name="LoadHouses"/>
-			<referrer name="dialog_SELL_HOUSE_STATE"/>
-			<referrer name="dialog_HOUSE_OPTION_TITLE"/>
-			<referrer name="dialog_HOUSE_OPTION_DESCRIPTION"/>
-			<referrer name="dialog_HOUSE_OPTION_TITLEADMIN"/>
-			<referrer name="dialog_HOUSE_OPTION_DESCADMIN"/>
-			<referrer name="pc_cmd_buyhouse"/>
-			<referrer name="pc_cmd_sellhouse"/>
-			<referrer name="pc_cmd_rentabil"/>
-			<referrer name="pc_cmd_setrentprice"/>
-			<dependency name="CreateDynamic3DTextLabel"/>
-			<dependency name="CreateDynamicMapIcon"/>
-			<dependency name="CreateDynamicPickup"/>
-			<dependency name="CreateDynamicSphere"/>
-			<dependency name="DestroyDynamic3DTextLabel"/>
-			<dependency name="DestroyDynamicArea"/>
-			<dependency name="DestroyDynamicPickup"/>
-			<dependency name="EOS"/>
-			<dependency name="E_STREAMER_EXTRA_ID"/>
-			<dependency name="HOUSE"/>
-			<dependency name="IsValidDynamic3DTextLabel"/>
-			<dependency name="IsValidDynamicArea"/>
-			<dependency name="IsValidDynamicPickup"/>
-			<dependency name="PickInfo"/>
-			<dependency name="PickInfo"/>
-			<dependency name="Streamer_SetIntData"/>
-			<dependency name="format"/>
-			<dependency name="formatNumber"/>
-			<dependency name="formatNumber"/>
-			<dependency name="gString"/>
-			<dependency name="hArea"/>
-			<dependency name="hDescription"/>
-			<dependency name="hExtX"/>
-			<dependency name="hExtY"/>
-			<dependency name="hExtZ"/>
-			<dependency name="hID"/>
-			<dependency name="hOwner"/>
-			<dependency name="hPickup"/>
-			<dependency name="hPrice"/>
-			<dependency name="hRentPrice"/>
-			<dependency name="hText"/>
-			<dependency name="hTitle"/>
-			<dependency name="houseInfo"/>
-			<dependency name="houseInfo"/>
-			<dependency name="true"/>
-			<param name="houseid">
-			</param>
-		</member>
 		<member name="M:I@E" syntax="I@E(s[])">
 			<stacksize value="53"/>
 			<dependency name="AMX_BASE_ADDRESS"/>
@@ -16966,25 +16917,6 @@
 			<param name="actorid">
 			</param>
 		</member>
-		<member name="M:IsValidDynamic3DTextLabel" syntax="IsValidDynamic3DTextLabel(id)">
-			<attribute name="native"/>
-			<referrer name="HouseUpdate"/>
-			<param name="id">
-				<paraminfo>Text3D </paraminfo>
-			</param>
-		</member>
-		<member name="M:IsValidDynamicArea" syntax="IsValidDynamicArea(areaid)">
-			<attribute name="native"/>
-			<referrer name="HouseUpdate"/>
-			<param name="areaid">
-			</param>
-		</member>
-		<member name="M:IsValidDynamicPickup" syntax="IsValidDynamicPickup(pickupid)">
-			<attribute name="native"/>
-			<referrer name="HouseUpdate"/>
-			<param name="pickupid">
-			</param>
-		</member>
 		<member name="M:IsValidMapZone" syntax="IsValidMapZone(id)">
 			<tagname value="bool"/>
 			<stacksize value="1"/>
@@ -17002,6 +16934,7 @@
 			<referrer name="@yH_OnVehicleDeath@006"/>
 			<referrer name="@yH_OnPlayerDisconnect@006"/>
 			<referrer name="pc_cmd_auninvite"/>
+			<referrer name="pc_cmd_dvf"/>
 			<referrer name="removeFunction"/>
 			<param name="objectid">
 			</param>
@@ -17187,6 +17120,7 @@
 			<referrer name="@yH_OnPlayerConnect@004"/>
 			<referrer name="LoadHouses"/>
 			<referrer name="pc_cmd_rentroom"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="LoadTurfs"/>
 			<referrer name="LoadFactions"/>
 			<referrer name="pc_cmd_makeleader"/>
@@ -17608,6 +17542,7 @@
 			<referrer name="@yH_OnVehicleDeath@006"/>
 			<referrer name="@yH_OnPlayerDisconnect@006"/>
 			<referrer name="pc_cmd_auninvite"/>
+			<referrer name="pc_cmd_dvf"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
 			<referrer name="CancelJob"/>
 			<referrer name="removeFunction"/>
@@ -18451,7 +18386,6 @@
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="pc_cmd_park"/>
 			<referrer name="pc_cmd_getcar"/>
-			<referrer name="pc_cmd_goto"/>
 			<referrer name="pc_cmd_gethere"/>
 			<referrer name="cancelDriveTest"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
@@ -18655,15 +18589,27 @@
 		</member>
 		<member name="M:LoadHouses" syntax="LoadHouses()">
 			<attribute name="public"/>
-			<stacksize value="9"/>
-			<dependency name="HouseUpdate"/>
+			<stacksize value="8279"/>
+			<dependency name="CreateDynamic3DTextLabel"/>
+			<dependency name="CreateDynamicMapIcon"/>
+			<dependency name="CreateDynamicPickup"/>
+			<dependency name="CreateDynamicSphere"/>
+			<dependency name="E_STREAMER_EXTRA_ID"/>
+			<dependency name="HOUSE"/>
 			<dependency name="Iter_Add_InternalC"/>
 			<dependency name="Iter_Single@ServerHouses"/>
 			<dependency name="Iterator@ServerHouses"/>
+			<dependency name="PickInfo"/>
+			<dependency name="PickInfo"/>
+			<dependency name="Streamer_SetIntData"/>
 			<dependency name="cache_get_value_name"/>
 			<dependency name="cache_get_value_name_float"/>
 			<dependency name="cache_get_value_name_int"/>
 			<dependency name="cache_num_rows"/>
+			<dependency name="format"/>
+			<dependency name="formatNumber"/>
+			<dependency name="formatNumber"/>
+			<dependency name="hArea"/>
 			<dependency name="hBalance"/>
 			<dependency name="hDescription"/>
 			<dependency name="hExtX"/>
@@ -18675,10 +18621,12 @@
 			<dependency name="hOwned"/>
 			<dependency name="hOwner"/>
 			<dependency name="hOwnerID"/>
+			<dependency name="hPickup"/>
 			<dependency name="hPrice"/>
 			<dependency name="hRentPrice"/>
 			<dependency name="hRentabil"/>
 			<dependency name="hRenters"/>
+			<dependency name="hText"/>
 			<dependency name="hTitle"/>
 			<dependency name="hUpgrade"/>
 			<dependency name="hX"/>
@@ -18688,6 +18636,7 @@
 			<dependency name="houseInfo"/>
 			<dependency name="print"/>
 			<dependency name="printf"/>
+			<dependency name="string_fast"/>
 		</member>
 		<member name="M:LoadJobs" syntax="LoadJobs()">
 			<attribute name="public"/>
@@ -22414,6 +22363,7 @@
 			<referrer name="pc_cmd_unrentroom"/>
 			<referrer name="pc_cmd_setrentprice"/>
 			<referrer name="pc_cmd_upgradehouse"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="pc_cmd_turfs"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@006"/>
 			<referrer name="showMDC"/>
@@ -22426,6 +22376,8 @@
 			<referrer name="pc_cmd_givelicense"/>
 			<referrer name="TimerWar"/>
 			<referrer name="pc_cmd_gethit"/>
+			<referrer name="pc_cmd_dvf"/>
+			<referrer name="dialog_DIALOG_SVF"/>
 			<referrer name="pc_cmd_order"/>
 			<referrer name="FishingTimer"/>
 			<referrer name="dialog_DIALOG_JOBS"/>
@@ -23415,7 +23367,6 @@
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="pc_cmd_getcar"/>
 			<referrer name="pc_cmd_slapcar"/>
-			<referrer name="pc_cmd_goto"/>
 			<referrer name="pc_cmd_gethere"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
 			<param name="vehicleid">
@@ -23451,7 +23402,6 @@
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="pc_cmd_park"/>
 			<referrer name="pc_cmd_getcar"/>
-			<referrer name="pc_cmd_goto"/>
 			<referrer name="pc_cmd_gethere"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="cancelDriveTest"/>
@@ -23769,7 +23719,8 @@
 		</member>
 		<member name="M:Streamer_SetIntData" syntax="Streamer_SetIntData(type, id, data, value)">
 			<attribute name="native"/>
-			<referrer name="HouseUpdate"/>
+			<referrer name="LoadHouses"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="LoadBusinesses"/>
 			<referrer name="pc_cmd_createbusiness"/>
 			<param name="type">
@@ -24762,6 +24713,15 @@
 		</member>
 		<member name="M:Update3DTextLabelText" syntax="Update3DTextLabelText(id, color, text[])">
 			<attribute name="native"/>
+			<referrer name="dialog_SELL_HOUSE_STATE"/>
+			<referrer name="dialog_HOUSE_OPTION_TITLE"/>
+			<referrer name="dialog_HOUSE_OPTION_DESCRIPTION"/>
+			<referrer name="dialog_HOUSE_OPTION_TITLEADMIN"/>
+			<referrer name="dialog_HOUSE_OPTION_DESCADMIN"/>
+			<referrer name="pc_cmd_buyhouse"/>
+			<referrer name="pc_cmd_sellhouse"/>
+			<referrer name="pc_cmd_rentabil"/>
+			<referrer name="pc_cmd_setrentprice"/>
 			<referrer name="dialog_BIZ_OPTION_TITLE"/>
 			<referrer name="dialog_BIZ_OPTION_DESCRIPTION"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
@@ -24951,6 +24911,7 @@
 		</member>
 		<member name="M:YHash" syntax="YHash(str[], sensitive, type, len, pack)">
 			<stacksize value="5"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="MyHttpResponse"/>
 			<referrer name="pc_cmd_adminsuspendlicense"/>
@@ -27267,6 +27228,7 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="PutPlayerInVehicle"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetObjectMaterialText"/>
 			<dependency name="SetVehicleNumberPlate"/>
 			<dependency name="pFaction"/>
@@ -27431,19 +27393,26 @@
 		</member>
 		<member name="M:dialog_HOUSE_OPTION_DESCADMIN" syntax="dialog_HOUSE_OPTION_DESCADMIN(playerid, response, listitem, inputtext[])">
 			<attribute name="public"/>
-			<stacksize value="10"/>
+			<stacksize value="12301"/>
 			<dependency name="Dialog_Open"/>
-			<dependency name="HouseUpdate"/>
 			<dependency name="IDSelected"/>
-			<dependency name="SQL"/>
+			<dependency name="Update3DTextLabelText"/>
 			<dependency name="format"/>
-			<dependency name="gQuery"/>
+			<dependency name="formatNumber"/>
+			<dependency name="formatNumber"/>
 			<dependency name="hDescription"/>
+			<dependency name="hID"/>
+			<dependency name="hOwner"/>
+			<dependency name="hPrice"/>
+			<dependency name="hRentPrice"/>
+			<dependency name="hText"/>
+			<dependency name="hTitle"/>
 			<dependency name="houseInfo"/>
-			<dependency name="mysql_format"/>
-			<dependency name="mysql_tquery"/>
+			<dependency name="houseInfo"/>
+			<dependency name="string_fast"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
+			<dependency name="update"/>
 			<param name="playerid">
 			</param>
 			<param name="response">
@@ -27456,22 +27425,28 @@
 		</member>
 		<member name="M:dialog_HOUSE_OPTION_DESCRIPTION" syntax="dialog_HOUSE_OPTION_DESCRIPTION(playerid, response, listitem, inputtext[])">
 			<attribute name="public"/>
-			<stacksize value="4105"/>
+			<stacksize value="12302"/>
 			<dependency name="Dialog_Open"/>
-			<dependency name="HouseUpdate"/>
-			<dependency name="SQL"/>
 			<dependency name="SendClientMessage"/>
+			<dependency name="Update3DTextLabelText"/>
 			<dependency name="format"/>
-			<dependency name="gQuery"/>
+			<dependency name="formatNumber"/>
+			<dependency name="formatNumber"/>
 			<dependency name="hDescription"/>
+			<dependency name="hID"/>
+			<dependency name="hOwner"/>
+			<dependency name="hPrice"/>
+			<dependency name="hRentPrice"/>
+			<dependency name="hText"/>
+			<dependency name="hTitle"/>
 			<dependency name="houseInfo"/>
-			<dependency name="mysql_format"/>
-			<dependency name="mysql_tquery"/>
+			<dependency name="houseInfo"/>
 			<dependency name="pHouseID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="string_fast"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
+			<dependency name="update"/>
 			<param name="playerid">
 			</param>
 			<param name="response">
@@ -27484,22 +27459,28 @@
 		</member>
 		<member name="M:dialog_HOUSE_OPTION_TITLE" syntax="dialog_HOUSE_OPTION_TITLE(playerid, response, listitem, inputtext[])">
 			<attribute name="public"/>
-			<stacksize value="4105"/>
+			<stacksize value="12302"/>
 			<dependency name="Dialog_Open"/>
-			<dependency name="HouseUpdate"/>
-			<dependency name="SQL"/>
 			<dependency name="SendClientMessage"/>
+			<dependency name="Update3DTextLabelText"/>
 			<dependency name="format"/>
-			<dependency name="gQuery"/>
+			<dependency name="formatNumber"/>
+			<dependency name="formatNumber"/>
+			<dependency name="hDescription"/>
+			<dependency name="hID"/>
+			<dependency name="hOwner"/>
+			<dependency name="hPrice"/>
+			<dependency name="hRentPrice"/>
+			<dependency name="hText"/>
 			<dependency name="hTitle"/>
 			<dependency name="houseInfo"/>
-			<dependency name="mysql_format"/>
-			<dependency name="mysql_tquery"/>
+			<dependency name="houseInfo"/>
 			<dependency name="pHouseID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="string_fast"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
+			<dependency name="update"/>
 			<param name="playerid">
 			</param>
 			<param name="response">
@@ -27512,19 +27493,26 @@
 		</member>
 		<member name="M:dialog_HOUSE_OPTION_TITLEADMIN" syntax="dialog_HOUSE_OPTION_TITLEADMIN(playerid, response, listitem, inputtext[])">
 			<attribute name="public"/>
-			<stacksize value="10"/>
+			<stacksize value="12301"/>
 			<dependency name="Dialog_Open"/>
-			<dependency name="HouseUpdate"/>
 			<dependency name="IDSelected"/>
-			<dependency name="SQL"/>
+			<dependency name="Update3DTextLabelText"/>
 			<dependency name="format"/>
-			<dependency name="gQuery"/>
+			<dependency name="formatNumber"/>
+			<dependency name="formatNumber"/>
+			<dependency name="hDescription"/>
+			<dependency name="hID"/>
+			<dependency name="hOwner"/>
+			<dependency name="hPrice"/>
+			<dependency name="hRentPrice"/>
+			<dependency name="hText"/>
 			<dependency name="hTitle"/>
 			<dependency name="houseInfo"/>
-			<dependency name="mysql_format"/>
-			<dependency name="mysql_tquery"/>
+			<dependency name="houseInfo"/>
+			<dependency name="string_fast"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
+			<dependency name="update"/>
 			<param name="playerid">
 			</param>
 			<param name="response">
@@ -27809,24 +27797,26 @@
 		</member>
 		<member name="M:dialog_SELL_HOUSE_STATE" syntax="dialog_SELL_HOUSE_STATE(playerid, response)">
 			<attribute name="public"/>
-			<stacksize value="9"/>
-			<dependency name="EOS"/>
+			<stacksize value="12303"/>
 			<dependency name="GivePlayerCash"/>
-			<dependency name="HouseUpdate"/>
 			<dependency name="MoneyMoney"/>
-			<dependency name="SQL"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="StoreMoney"/>
+			<dependency name="Update3DTextLabelText"/>
 			<dependency name="format"/>
-			<dependency name="gQuery"/>
+			<dependency name="formatNumber"/>
+			<dependency name="formatNumber"/>
+			<dependency name="hDescription"/>
+			<dependency name="hID"/>
 			<dependency name="hOwned"/>
 			<dependency name="hOwner"/>
 			<dependency name="hOwnerID"/>
 			<dependency name="hPrice"/>
+			<dependency name="hRentPrice"/>
+			<dependency name="hText"/>
+			<dependency name="hTitle"/>
 			<dependency name="houseInfo"/>
 			<dependency name="houseInfo"/>
-			<dependency name="mysql_format"/>
-			<dependency name="mysql_tquery"/>
 			<dependency name="pHouse"/>
 			<dependency name="pHouseID"/>
 			<dependency name="pName"/>
@@ -27835,6 +27825,7 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="strcmp"/>
+			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<param name="playerid">
@@ -28425,13 +28416,14 @@
 			<referrer name="dialog_DIALOG_REPORT"/>
 			<referrer name="dialog_DIALOG_REPORT_NORMAL"/>
 			<referrer name="dialog_DIALOG_REPORT_CHEATER"/>
-			<referrer name="HouseUpdate"/>
+			<referrer name="LoadHouses"/>
 			<referrer name="dialog_SELL_HOUSE_STATE"/>
 			<referrer name="dialog_HOUSE_OPTION_TITLE"/>
 			<referrer name="dialog_HOUSE_OPTION_DESCRIPTION"/>
 			<referrer name="dialog_HOUSE_OPTION_TITLEADMIN"/>
 			<referrer name="dialog_HOUSE_OPTION_DESCADMIN"/>
 			<referrer name="pc_cmd_buyhouse"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="factionName"/>
 			<referrer name="pc_cmd_factions"/>
 			<referrer name="pc_cmd_wanteds"/>
@@ -28477,13 +28469,20 @@
 		<member name="M:formatNumber" syntax="formatNumber(number)">
 			<stacksize value="7"/>
 			<referrer name="showStats"/>
-			<referrer name="HouseUpdate"/>
+			<referrer name="LoadHouses"/>
+			<referrer name="dialog_SELL_HOUSE_STATE"/>
+			<referrer name="dialog_HOUSE_OPTION_TITLE"/>
+			<referrer name="dialog_HOUSE_OPTION_DESCRIPTION"/>
+			<referrer name="dialog_HOUSE_OPTION_TITLEADMIN"/>
+			<referrer name="dialog_HOUSE_OPTION_DESCADMIN"/>
 			<referrer name="pc_cmd_buyhouse"/>
 			<referrer name="pc_cmd_housebalance"/>
 			<referrer name="pc_cmd_housewithdraw"/>
 			<referrer name="pc_cmd_housedeposit"/>
 			<referrer name="pc_cmd_sellhouse"/>
+			<referrer name="pc_cmd_rentabil"/>
 			<referrer name="pc_cmd_setrentprice"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="@yH_OnPlayerDisconnect@006"/>
 			<referrer name="pc_cmd_heal"/>
 			<referrer name="pc_cmd_ticket"/>
@@ -29535,16 +29534,9 @@
 			<referrer name="kickPlayer"/>
 			<referrer name="dialog_REGISTER"/>
 			<referrer name="dialog_LOGIN"/>
-			<referrer name="dialog_SELL_HOUSE_STATE"/>
-			<referrer name="dialog_HOUSE_OPTION_TITLE"/>
-			<referrer name="dialog_HOUSE_OPTION_DESCRIPTION"/>
-			<referrer name="dialog_HOUSE_OPTION_TITLEADMIN"/>
-			<referrer name="dialog_HOUSE_OPTION_DESCADMIN"/>
 			<referrer name="pc_cmd_housewithdraw"/>
 			<referrer name="pc_cmd_housedeposit"/>
 			<referrer name="pc_cmd_hlock"/>
-			<referrer name="pc_cmd_sellhouse"/>
-			<referrer name="pc_cmd_setrentprice"/>
 			<referrer name="pc_cmd_quitjob"/>
 			<referrer name="MyHttpResponse"/>
 			<referrer name="checkPlayerBan"/>
@@ -29637,16 +29629,9 @@
 			<attribute name="native"/>
 			<referrer name="update"/>
 			<referrer name="dialog_REGISTER"/>
-			<referrer name="dialog_SELL_HOUSE_STATE"/>
-			<referrer name="dialog_HOUSE_OPTION_TITLE"/>
-			<referrer name="dialog_HOUSE_OPTION_DESCRIPTION"/>
-			<referrer name="dialog_HOUSE_OPTION_TITLEADMIN"/>
-			<referrer name="dialog_HOUSE_OPTION_DESCADMIN"/>
 			<referrer name="pc_cmd_housewithdraw"/>
 			<referrer name="pc_cmd_housedeposit"/>
 			<referrer name="pc_cmd_hlock"/>
-			<referrer name="pc_cmd_sellhouse"/>
-			<referrer name="pc_cmd_setrentprice"/>
 			<referrer name="pc_cmd_members"/>
 			<referrer name="pc_cmd_quitjob"/>
 			<referrer name="MySQLLoad"/>
@@ -31172,16 +31157,16 @@
 		</member>
 		<member name="M:pc_cmd_buyhouse" syntax="pc_cmd_buyhouse(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="8204"/>
+			<stacksize value="12304"/>
 			<dependency name="EOS"/>
 			<dependency name="GetPlayerID"/>
 			<dependency name="GivePlayerCash"/>
-			<dependency name="HouseUpdate"/>
 			<dependency name="IsPlayerInRangeOfPoint"/>
 			<dependency name="MoneyMoney"/>
 			<dependency name="SQL"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="StoreMoney"/>
+			<dependency name="Update3DTextLabelText"/>
 			<dependency name="areaHouse"/>
 			<dependency name="cache_delete"/>
 			<dependency name="cache_get_value_name"/>
@@ -31190,12 +31175,17 @@
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
 			<dependency name="gString"/>
+			<dependency name="hDescription"/>
 			<dependency name="hExtX"/>
 			<dependency name="hExtY"/>
 			<dependency name="hExtZ"/>
+			<dependency name="hID"/>
 			<dependency name="hOwned"/>
 			<dependency name="hOwner"/>
 			<dependency name="hPrice"/>
+			<dependency name="hRentPrice"/>
+			<dependency name="hText"/>
+			<dependency name="hTitle"/>
 			<dependency name="houseInfo"/>
 			<dependency name="houseInfo"/>
 			<dependency name="mysql_query"/>
@@ -31810,6 +31800,76 @@
 			<param name="help">
 			</param>
 		</member>
+		<member name="M:pc_cmd_createhouse" syntax="pc_cmd_createhouse(playerid, params[], help)">
+			<attribute name="public"/>
+			<stacksize value="8314"/>
+			<dependency name="CreateDynamic3DTextLabel"/>
+			<dependency name="CreateDynamicMapIcon"/>
+			<dependency name="CreateDynamicPickup"/>
+			<dependency name="CreateDynamicSphere"/>
+			<dependency name="E_STREAMER_EXTRA_ID"/>
+			<dependency name="GetPlayerPos"/>
+			<dependency name="HOUSE"/>
+			<dependency name="Iter_Add_InternalC"/>
+			<dependency name="Iter_Single@ServerHouses"/>
+			<dependency name="Iterator@ServerHouses"/>
+			<dependency name="PickInfo"/>
+			<dependency name="PickInfo"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="Streamer_SetIntData"/>
+			<dependency name="YHash"/>
+			<dependency name="bigInteriors"/>
+			<dependency name="bigInteriorsID"/>
+			<dependency name="format"/>
+			<dependency name="formatNumber"/>
+			<dependency name="formatNumber"/>
+			<dependency name="hArea"/>
+			<dependency name="hBalance"/>
+			<dependency name="hDescription"/>
+			<dependency name="hExtX"/>
+			<dependency name="hExtY"/>
+			<dependency name="hExtZ"/>
+			<dependency name="hID"/>
+			<dependency name="hInterior"/>
+			<dependency name="hLocked"/>
+			<dependency name="hOwned"/>
+			<dependency name="hOwner"/>
+			<dependency name="hOwnerID"/>
+			<dependency name="hPickup"/>
+			<dependency name="hPrice"/>
+			<dependency name="hRentPrice"/>
+			<dependency name="hRentabil"/>
+			<dependency name="hRenters"/>
+			<dependency name="hText"/>
+			<dependency name="hTitle"/>
+			<dependency name="hUpgrade"/>
+			<dependency name="hX"/>
+			<dependency name="hY"/>
+			<dependency name="hZ"/>
+			<dependency name="houseInfo"/>
+			<dependency name="houseInfo"/>
+			<dependency name="mediumInteriors"/>
+			<dependency name="mediumInteriorsID"/>
+			<dependency name="pAdmin"/>
+			<dependency name="playerInfo"/>
+			<dependency name="random"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="sendPlayerSyntax"/>
+			<dependency name="smallInteriors"/>
+			<dependency name="smallInteriorsID"/>
+			<dependency name="string_fast"/>
+			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="update"/>
+			<dependency name="va_SendClientMessage"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="help">
+			</param>
+		</member>
 		<member name="M:pc_cmd_createsafe" syntax="pc_cmd_createsafe(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="4149"/>
@@ -32181,6 +32241,28 @@
 			<dependency name="sendPlayerError"/>
 			<dependency name="serverWeapon"/>
 			<dependency name="true"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:pc_cmd_dvf" syntax="pc_cmd_dvf(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="5"/>
+			<dependency name="DestroyObject"/>
+			<dependency name="IsValidObject"/>
+			<dependency name="Iter_DestroyVehicle"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="pFaction"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerVehicle"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="svfVehicleObjects"/>
+			<dependency name="true"/>
+			<dependency name="vehicleFaction"/>
+			<dependency name="vehiclePlayerID"/>
+			<dependency name="vehicleRank"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -33154,14 +33236,11 @@
 			<dependency name="IsSeatTaked"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
-			<dependency name="LinkVehicleToInterior"/>
 			<dependency name="MaxSeats"/>
 			<dependency name="PutPlayerInVehicle"/>
 			<dependency name="SetPlayerInterior"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="SetPlayerVirtualWorld"/>
-			<dependency name="SetVehiclePos"/>
-			<dependency name="SetVehicleVirtualWorld"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
@@ -34897,14 +34976,22 @@
 		</member>
 		<member name="M:pc_cmd_rentabil" syntax="pc_cmd_rentabil(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4105"/>
+			<stacksize value="12302"/>
 			<dependency name="GetPVarInt"/>
-			<dependency name="HouseUpdate"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPVarInt"/>
+			<dependency name="Update3DTextLabelText"/>
+			<dependency name="formatNumber"/>
+			<dependency name="formatNumber"/>
 			<dependency name="gettime"/>
+			<dependency name="hDescription"/>
 			<dependency name="hID"/>
+			<dependency name="hOwner"/>
+			<dependency name="hPrice"/>
+			<dependency name="hRentPrice"/>
 			<dependency name="hRentabil"/>
+			<dependency name="hText"/>
+			<dependency name="hTitle"/>
 			<dependency name="houseInfo"/>
 			<dependency name="houseInfo"/>
 			<dependency name="isPlayerLogged"/>
@@ -35285,20 +35372,21 @@
 		</member>
 		<member name="M:pc_cmd_sellhouse" syntax="pc_cmd_sellhouse(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="8202"/>
-			<dependency name="EOS"/>
-			<dependency name="HouseUpdate"/>
-			<dependency name="SQL"/>
+			<stacksize value="12303"/>
 			<dependency name="SendClientMessage"/>
+			<dependency name="Update3DTextLabelText"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
-			<dependency name="gQuery"/>
+			<dependency name="hDescription"/>
+			<dependency name="hID"/>
+			<dependency name="hOwner"/>
 			<dependency name="hPrice"/>
+			<dependency name="hRentPrice"/>
+			<dependency name="hText"/>
+			<dependency name="hTitle"/>
 			<dependency name="houseInfo"/>
 			<dependency name="houseInfo"/>
 			<dependency name="isPlayerLogged"/>
-			<dependency name="mysql_format"/>
-			<dependency name="mysql_tquery"/>
 			<dependency name="pHouse"/>
 			<dependency name="pHouseID"/>
 			<dependency name="playerInfo"/>
@@ -35307,6 +35395,7 @@
 			<dependency name="sscanf"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="update"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -35537,20 +35626,22 @@
 		</member>
 		<member name="M:pc_cmd_setrentprice" syntax="pc_cmd_setrentprice(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="8202"/>
-			<dependency name="HouseUpdate"/>
-			<dependency name="SQL"/>
+			<stacksize value="12303"/>
 			<dependency name="SendClientMessage"/>
+			<dependency name="Update3DTextLabelText"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
-			<dependency name="gQuery"/>
+			<dependency name="hDescription"/>
+			<dependency name="hID"/>
+			<dependency name="hOwner"/>
+			<dependency name="hPrice"/>
 			<dependency name="hRentPrice"/>
 			<dependency name="hRentabil"/>
+			<dependency name="hText"/>
+			<dependency name="hTitle"/>
 			<dependency name="houseInfo"/>
 			<dependency name="houseInfo"/>
 			<dependency name="isPlayerLogged"/>
-			<dependency name="mysql_format"/>
-			<dependency name="mysql_tquery"/>
 			<dependency name="pHouse"/>
 			<dependency name="pHouseID"/>
 			<dependency name="playerInfo"/>
@@ -35559,6 +35650,7 @@
 			<dependency name="sscanf"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="update"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -36880,6 +36972,7 @@
 			<referrer name="Iter_Random_Internal"/>
 			<referrer name="Iter_RandomFree_InternalC"/>
 			<referrer name="Iter_Func@Random"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="pc_cmd_arrest"/>
 			<referrer name="FishingTimer"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
@@ -37525,6 +37618,7 @@
 			<referrer name="pc_cmd_upgradehouse"/>
 			<referrer name="pc_cmd_eat"/>
 			<referrer name="pc_cmd_armour"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="pc_cmd_turfs"/>
 			<referrer name="@yH_OnPlayerEnterVehicle@006"/>
 			<referrer name="@yH_OnPlayerStateChange@006"/>
@@ -37581,6 +37675,7 @@
 			<referrer name="pc_cmd_gethit"/>
 			<referrer name="pc_cmd_contracts"/>
 			<referrer name="pc_cmd_svf"/>
+			<referrer name="pc_cmd_dvf"/>
 			<referrer name="dialog_DIALOG_SVF"/>
 			<referrer name="pc_cmd_setraport"/>
 			<referrer name="pc_cmd_resetraport"/>
@@ -37831,6 +37926,7 @@
 			<referrer name="pc_cmd_adminhouse"/>
 			<referrer name="pc_cmd_setrentprice"/>
 			<referrer name="pc_cmd_upgradehouse"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="pc_cmd_gotofaction"/>
 			<referrer name="pc_cmd_makeleader"/>
 			<referrer name="pc_cmd_auninvite"/>
@@ -38449,8 +38545,12 @@
 			<referrer name="dialog_GENDER"/>
 			<referrer name="dialog_GPS"/>
 			<referrer name="dialog_GPS1"/>
+			<referrer name="LoadHouses"/>
+			<referrer name="dialog_SELL_HOUSE_STATE"/>
 			<referrer name="dialog_HOUSE_OPTION_TITLE"/>
 			<referrer name="dialog_HOUSE_OPTION_DESCRIPTION"/>
+			<referrer name="dialog_HOUSE_OPTION_TITLEADMIN"/>
+			<referrer name="dialog_HOUSE_OPTION_DESCADMIN"/>
 			<referrer name="pc_cmd_buyhouse"/>
 			<referrer name="pc_cmd_housebalance"/>
 			<referrer name="pc_cmd_housewithdraw"/>
@@ -38462,6 +38562,7 @@
 			<referrer name="pc_cmd_rentroom"/>
 			<referrer name="pc_cmd_setrentprice"/>
 			<referrer name="pc_cmd_upgradehouse"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="@yH_OnPlayerDeath@006"/>
 			<referrer name="LoadFactions"/>
 			<referrer name="pc_cmd_flock"/>
@@ -38863,6 +38964,7 @@
 		</member>
 		<member name="M:unformat" syntax="unformat(data[], format[], ...)">
 			<attribute name="native"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="pc_cmd_makeleader"/>
 			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_f"/>
@@ -38984,10 +39086,17 @@
 			<referrer name="dialog_TOG"/>
 			<referrer name="dialog_DIALOG_SHOP"/>
 			<referrer name="dialog_SELL_HOUSE_STATE"/>
+			<referrer name="dialog_HOUSE_OPTION_TITLE"/>
+			<referrer name="dialog_HOUSE_OPTION_DESCRIPTION"/>
+			<referrer name="dialog_HOUSE_OPTION_TITLEADMIN"/>
+			<referrer name="dialog_HOUSE_OPTION_DESCADMIN"/>
 			<referrer name="pc_cmd_buyhouse"/>
+			<referrer name="pc_cmd_sellhouse"/>
 			<referrer name="pc_cmd_rentabil"/>
 			<referrer name="pc_cmd_rentroom"/>
 			<referrer name="pc_cmd_unrentroom"/>
+			<referrer name="pc_cmd_setrentprice"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="factionLog"/>
 			<referrer name="save_guns"/>
 			<referrer name="whenPlayerLeaveFaction"/>
@@ -39309,6 +39418,7 @@
 			<referrer name="mutePlayer"/>
 			<referrer name="showStats"/>
 			<referrer name="showLicenses"/>
+			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="@yH_OnPlayerDeath@006"/>
 			<referrer name="@yH_OnPlayerDisconnect@006"/>
 			<referrer name="dialog_DIALOG_WANTEDS"/>

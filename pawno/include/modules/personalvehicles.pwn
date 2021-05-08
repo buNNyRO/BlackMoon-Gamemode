@@ -430,7 +430,7 @@ timer TimerSpeedo[1000](playerid) {
 		default: sall = "~r~6";
 	}
 	va_PlayerTextDrawSetString(playerid, vehicleHud[11], "%s", (reverse[playerid] ? "~r~R" : sall));
-	va_PlayerTextDrawSetString(playerid, vehicleHud[16], "%s", (vehicle_lights[vehicleid] ? "~y~L" : "L"));
+	va_PlayerTextDrawSetString(playerid, vehicleHud[16], "%s", (!vehicle_lights[vehicleid] ? "~y~L" : "L"));
 
 	PlayerTextDrawTextSize(playerid, vehicleHud[18], -1.000000, (-1.000000)+(-0.024000*he));
 	PlayerTextDrawShow(playerid, vehicleHud[18]);
