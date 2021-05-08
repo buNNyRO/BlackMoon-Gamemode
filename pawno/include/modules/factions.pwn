@@ -464,7 +464,7 @@ CMD:makeleader(playerid, params[]) {
 	extract params -> new player:targetid, fid; else return sendPlayerSyntax(playerid, "/makeleader <name/id> <faction id>");
 	if(!Iter_Contains(ServerFactions, fid)) return sendPlayerError(playerid, "Invalid faction id.");
 	if(!isPlayerLogged(targetid)) return sendPlayerError(playerid, "Player not connected.");
-	if(playerInfo[playerid][pFaction] > 0) return sendPlayerError(playerid, "Player has in a faction.");
+	if(playerInfo[targetid][pFaction] > 0) return sendPlayerError(playerid, "Player has in a faction.");
 	playerInfo[targetid][pFaction] = fid;
 	playerInfo[targetid][pFactionRank] = 7;
 	playerInfo[targetid][pFactionAge] = 0;
