@@ -16,7 +16,7 @@
 // B::::::::::::::::B  l::::::l a::::::::::aa:::a  cc:::::::::::::::ck::::::k   k:::::k M::::::M               M::::::M oo:::::::::::oo  oo:::::::::::oo   n::::n    n::::n//
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define MYSQL 1 // 0 - local | 1 - host
+#define MYSQL 0 // 0 - local | 1 - host
 
 #include <a_samp>
 #include <a_zones>
@@ -199,9 +199,7 @@ public OnPlayerDisconnect(playerid, reason)
 	return true;
 }
 
-public OnPlayerSpawn(playerid)
-{
-	printf("---------------%d", playerid);
+public OnPlayerSpawn(playerid) {
 	TogglePlayerControllable(playerid, true);
 	SetPlayerFacingAngle(playerid, 180.0000);
 	SetCameraBehindPlayer(playerid);
@@ -653,9 +651,8 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 
 		new vehicleid = playerInfo[playerid][pinVehicle] = GetPlayerVehicleID(playerid);
 		if(vehicle_personal[vehicleid] > -1) personalVehicle[vehicle_personal[vehicleid]][pvDespawnTime] = 0;
-		PlayerTextDrawSetPreviewModel(playerid, vehicleHud[5], GetVehicleModel(vehicleid));
-		for(new i; i < sizeof vehicleHud; i++) PlayerTextDrawShow(playerid, vehicleHud[i]);
-		speedo[playerid] = repeat TimerSpeedo(playerid);
+		for(new i; i < 18; i++) PlayerTextDrawShow(playerid, vehicleHud[i]);
+		if(vehicle_engine[GetPlayerVehicleID(playerid)] == false) speedo[playerid] = repeat TimerSpeedo(playerid);
 	}
 	if(oldstate == PLAYER_STATE_DRIVER || oldstate == PLAYER_STATE_PASSENGER) {
 		if(Iter_Contains(PlayerInVehicle, playerid)) Iter_Remove(PlayerInVehicle, playerid);
@@ -668,7 +665,6 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 		}	
 		playerInfo[playerid][pinVehicle] = -1;
 		for(new i; i < sizeof vehicleHud; i++) PlayerTextDrawHide(playerid, vehicleHud[i]);
-		stop speedo[playerid];
 		PlayerTextDrawHide(playerid, fareTD[playerid]);
 		if(playerInfo[playerid][pTaxiDriver] != -1) {
 		    if(playerInfo[playerid][pTaxiMoney] != 0) {
