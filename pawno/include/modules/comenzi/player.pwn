@@ -100,11 +100,21 @@ CMD:engine(playerid, params[]) {
 	if(vehicle_engine[GetPlayerVehicleID(playerid)] == false) {
 		vehicle_engine[GetPlayerVehicleID(playerid)] = true;
 		SetVehicleParamsEx(GetPlayerVehicleID(playerid), VEHICLE_PARAMS_ON, lights, alarm, doors, bonnet, boot, objective);
-		return true;
-	}
+		speedo[playerid] = repeat TimerSpeedo(playerid);
+	} else {
+		SetVehicleParamsEx(GetPlayerVehicleID(playerid), VEHICLE_PARAMS_OFF, lights, alarm, doors, bonnet, boot, objective);
+		vehicle_engine[GetPlayerVehicleID(playerid)] = false;
+		stop speedo[playerid];
+		PlayerTextDrawSetString(playerid, vehicleHud[10], "000");
+		PlayerTextDrawSetString(playerid, vehicleHud[11], "n");
+		PlayerTextDrawSetString(playerid, vehicleHud[14], "O");
+		PlayerTextDrawSetString(playerid, vehicleHud[15], "C");
+		PlayerTextDrawSetString(playerid, vehicleHud[16], "L");
+		PlayerTextDrawSetString(playerid, vehicleHud[17], "0000000.0");
 
-	SetVehicleParamsEx(GetPlayerVehicleID(playerid), VEHICLE_PARAMS_OFF, lights, alarm, doors, bonnet, boot, objective);
-	vehicle_engine[GetPlayerVehicleID(playerid)] = false;
+		PlayerTextDrawHide(playerid, vehicleHud[18]);
+		PlayerTextDrawHide(playerid, vehicleHud[19]);
+	}
 	return true;
 }
 

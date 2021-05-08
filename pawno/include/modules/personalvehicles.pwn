@@ -397,41 +397,54 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 }
 
 
-timer TimerSpeedo[1000](playerid) { 
+timer TimerSpeedo[1000](playerid) {
 	new vehicleid = GetPlayerVehicleID(playerid), Float:he, sall[5];
+	if(!vehicle_engine[vehicleid]) {
+		stop speedo[playerid];
+		PlayerTextDrawSetString(playerid, vehicleHud[10], "000");
+		PlayerTextDrawSetString(playerid, vehicleHud[11], "n");
+		PlayerTextDrawSetString(playerid, vehicleHud[14], "O");
+		PlayerTextDrawSetString(playerid, vehicleHud[15], "C");
+		PlayerTextDrawSetString(playerid, vehicleHud[16], "L");
+		PlayerTextDrawSetString(playerid, vehicleHud[17], "0000000.0");
+
+		PlayerTextDrawHide(playerid, vehicleHud[18]);
+		PlayerTextDrawHide(playerid, vehicleHud[19]);
+		return 1;
+	}
 	GetVehicleHealth(vehicleid, he);
 	switch(strlen(string_fast("%d", getVehicleSpeed(vehicleid)))) {
 		case 1: sall = "00";
 		case 2: sall = "0";
 		default: sall = "";
 	}
-	va_PlayerTextDrawSetString(playerid, vehicleHud[4], "%s", (getVehicleSpeed(vehicleid) >= 999 ? "999" : string_fast("%s%d", sall, getVehicleSpeed(vehicleid))));
-	va_PlayerTextDrawSetString(playerid, vehicleHud[9], "%.1f%s", he/10, "%");
+	va_PlayerTextDrawSetString(playerid, vehicleHud[10], "%s", (getVehicleSpeed(vehicleid) >= 999 ? "~r~999" : string_fast("%s~r~%d", sall, getVehicleSpeed(vehicleid))));
+
 	switch(getVehicleSpeed(vehicleid)) {
-		case 0: sall = "N";
-		case 1..35: sall = "1";
-		case 46..65: sall = "2";
-		case 66..85: sall = "3";
-		case 86..105: sall = "4";
-		case 106..125: sall = "5";
-		default: sall = "6";
+		case 0: sall = "~r~N";
+		case 1..35: sall = "~r~1";
+		case 36..65: sall = "~r~2";
+		case 66..85: sall = "~r~3";
+		case 86..105: sall = "~r~4";
+		case 106..125: sall = "~r~5";
+		default: sall = "~r~6";
 	}
-	va_PlayerTextDrawSetString(playerid, vehicleHud[12], "%s", (reverse[playerid] ? "R" : sall));
-	va_PlayerTextDrawSetString(playerid, vehicleHud[13], "Bunny manelistu'", he, "%");
-	
+	va_PlayerTextDrawSetString(playerid, vehicleHud[11], "%s", (reverse[playerid] ? "~r~R" : sall));
+	va_PlayerTextDrawSetString(playerid, vehicleHud[16], "%s", (vehicle_lights[vehicleid] ? "~y~L" : "L"));
+
+	PlayerTextDrawTextSize(playerid, vehicleHud[18], -1.000000, (-1.000000)+(-0.024000*he));
+	PlayerTextDrawShow(playerid, vehicleHud[18]);
+
 	if(vehicle_fuel[vehicleid] > 0) {
-		PlayerTextDrawLetterSize(playerid, vehicleHud[10], 0.000000, (-0.533344)+(-0.03644447*vehicle_fuel[vehicleid]));
-		PlayerTextDrawShow(playerid, vehicleHud[10]);
-	} else if(vehicle_engine[vehicleid]) {
-		new engine, lights, alarm, doors, bonnet, boot, objective;
-		sendNearbyMessage(playerid, COLOR_PURPLE, 25.0, "* %s a %s motorul unui %s", getName(playerid), (vehicle_engine[vehicleid]) ? ("oprit") : ("pornit"), getVehicleName(GetVehicleModel(vehicleid)));
-		GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
-		SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS_OFF, lights, alarm, doors, bonnet, boot, objective);
-		vehicle_engine[vehicleid] = false;	
-	}
+		PlayerTextDrawTextSize(playerid, vehicleHud[19], (1.000000)+(0.840000*vehicle_fuel[vehicleid]), -4.000000);
+		PlayerTextDrawShow(playerid, vehicleHud[19]);
+	} 
+	else if(vehicle_engine[vehicleid]) callcmd::engine(playerid, "\1");	
+
 	if(vehicle_personal[vehicleid] > -1) {
-		va_PlayerTextDrawSetString(playerid, vehicleHud[7], "%s", (!personalVehicle[vehicle_personal[vehicleid]][pvLock]) ? ("~g~UNLOCKED") : ("~r~LOCKED"));
-		va_PlayerTextDrawSetString(playerid, vehicleHud[8], "%.1f", personalVehicle[vehicle_personal[vehicleid]][pvOdometer]);
+		va_PlayerTextDrawSetString(playerid, vehicleHud[14], "%sO", (!personalVehicle[vehicle_personal[vehicleid]][pvLock]) ? ("~g~") : ("~r~"));
+		va_PlayerTextDrawSetString(playerid, vehicleHud[15], "%sC", (!personalVehicle[vehicle_personal[vehicleid]][pvLock]) ? ("~g~") : ("~r~"));
+		va_PlayerTextDrawSetString(playerid, vehicleHud[17], "%.1f", personalVehicle[vehicle_personal[vehicleid]][pvOdometer]);
 	}
 
 	if(!isPlane(vehicleid) && !isBoat(vehicleid) && !isBike(vehicleid) && vehicle_engine[vehicleid] == true && GetPlayerState(playerid) == PLAYER_STATE_DRIVER)  {

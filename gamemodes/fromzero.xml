@@ -1758,7 +1758,6 @@
 			<referrer name="IsPlayerInTurf"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerCar"/>
-			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_park"/>
 			<referrer name="pc_cmd_despawncar"/>
 			<referrer name="pc_cmd_despawncars"/>
@@ -1774,6 +1773,7 @@
 			<referrer name="OnVehicleSpawn"/>
 			<referrer name="OnVehicleDeath"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
+			<referrer name="CB_OnPlayerStateChange"/>
 			<referrer name="OnPlayerRequestSpawn"/>
 		</member>
 		<member name="C:true" value="1">
@@ -2681,6 +2681,7 @@
 			<referrer name="tazerTimer_yT@"/>
 			<referrer name="pc_cmd_respawnhere"/>
 			<referrer name="pc_cmd_jail"/>
+			<referrer name="pc_cmd_engine"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
 			<referrer name="testDriveTimer_yT@"/>
 			<referrer name="OnPlayerDeath"/>
@@ -3374,6 +3375,7 @@
 			<referrer name="tazerTimer_yT@"/>
 			<referrer name="pc_cmd_respawnhere"/>
 			<referrer name="pc_cmd_jail"/>
+			<referrer name="pc_cmd_engine"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
 			<referrer name="testDriveTimer_yT@"/>
 			<referrer name="OnPlayerDeath"/>
@@ -4743,7 +4745,6 @@
 			<referrer name="dialog_BUY_INSURANCE"/>
 			<referrer name="getVehicleOwner"/>
 			<referrer name="TimerCar"/>
-			<referrer name="TimerSpeedo"/>
 			<referrer name="@yH_OnPlayerDisconnect@011"/>
 			<referrer name="pc_cmd_swapcolors"/>
 			<referrer name="pc_cmd_carplate"/>
@@ -5073,6 +5074,8 @@
 		</member>
 		<member name="F:speedo">
 			<tagname value="Timer"/>
+			<referrer name="TimerSpeedo"/>
+			<referrer name="pc_cmd_engine"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 		</member>
 		<member name="F:spoiler">
@@ -5130,7 +5133,6 @@
 		<member name="F:vehNames">
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
-			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_lock"/>
 			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="pc_cmd_spawncar"/>
@@ -5171,6 +5173,7 @@
 			<tagname value="PlayerText"/>
 			<referrer name="playerTextDraws"/>
 			<referrer name="TimerSpeedo"/>
+			<referrer name="pc_cmd_engine"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 		</member>
 		<member name="F:vehiclePlayerID">
@@ -5248,6 +5251,7 @@
 			<tagname value="bool"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerCar"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_park"/>
 			<referrer name="pc_cmd_despawncar"/>
 			<referrer name="pc_cmd_despawncars"/>
@@ -10145,7 +10149,6 @@
 			<dependency name="CancelJob"/>
 			<dependency name="ClearAnimations"/>
 			<dependency name="GetPlayerVehicleID"/>
-			<dependency name="GetVehicleModel"/>
 			<dependency name="GetVehicleParamsEx"/>
 			<dependency name="GivePlayerCash"/>
 			<dependency name="I@"/>
@@ -10162,7 +10165,6 @@
 			<dependency name="Kick"/>
 			<dependency name="PlayerMoney"/>
 			<dependency name="PlayerTextDrawHide"/>
-			<dependency name="PlayerTextDrawSetPreviewModel"/>
 			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="RemovePlayerFromVehicle"/>
 			<dependency name="SetVehicleParamsEx"/>
@@ -10171,6 +10173,7 @@
 			<dependency name="_Timer_F"/>
 			<dependency name="addRaportPoint"/>
 			<dependency name="examenFail"/>
+			<dependency name="false"/>
 			<dependency name="fareTD"/>
 			<dependency name="fareUpdateTimer_yT@"/>
 			<dependency name="formatNumber"/>
@@ -15240,7 +15243,6 @@
 			<referrer name="isBoat"/>
 			<referrer name="isBike"/>
 			<referrer name="isMotor"/>
-			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_despawncar"/>
 			<referrer name="pc_cmd_gotocar"/>
 			<referrer name="pc_cmd_getcar"/>
@@ -15252,14 +15254,12 @@
 			<referrer name="pc_cmd_entercar"/>
 			<referrer name="pc_cmd_goto"/>
 			<referrer name="pc_cmd_engine"/>
-			<referrer name="CB_OnPlayerStateChange"/>
 			<param name="vehicleid">
 			</param>
 		</member>
 		<member name="M:GetVehicleParamsEx" syntax="GetVehicleParamsEx(vehicleid, &amp;engine, &amp;lights, &amp;alarm, &amp;doors, &amp;bonnet, &amp;boot, &amp;objective)">
 			<attribute name="native"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
-			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_lock"/>
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="pc_cmd_lights"/>
@@ -20440,7 +20440,6 @@
 			<dependency name="pinHouse"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="printf"/>
 			<dependency name="random"/>
 			<dependency name="true"/>
 			<param name="playerid">
@@ -21229,9 +21228,11 @@
 			<referrer name="pc_cmd_fare"/>
 			<referrer name="fareUpdateTimer"/>
 			<referrer name="TimerWar"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="TimerJail"/>
 			<referrer name="TimerWanted"/>
 			<referrer name="pc_cmd_unjail"/>
+			<referrer name="pc_cmd_engine"/>
 			<referrer name="HideDealerShipTD"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<referrer name="OnPlayerEnterCheckpoint"/>
@@ -21245,7 +21246,6 @@
 			<attribute name="native"/>
 			<referrer name="CreatePlayerProgressBar"/>
 			<referrer name="playerTextDraws"/>
-			<referrer name="TimerSpeedo"/>
 			<param name="playerid">
 			</param>
 			<param name="text">
@@ -21274,7 +21274,6 @@
 			<referrer name="playerTextDraws"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
 			<referrer name="pc_cmd_buycar"/>
-			<referrer name="CB_OnPlayerStateChange"/>
 			<param name="playerid">
 			</param>
 			<param name="text">
@@ -21342,6 +21341,8 @@
 		<member name="M:PlayerTextDrawSetString" syntax="PlayerTextDrawSetString(playerid, text, string[])">
 			<attribute name="native"/>
 			<referrer name="va_PlayerTextDrawSetString"/>
+			<referrer name="TimerSpeedo"/>
+			<referrer name="pc_cmd_engine"/>
 			<param name="playerid">
 			</param>
 			<param name="text">
@@ -21378,6 +21379,7 @@
 			<referrer name="CreatePlayerProgressBar"/>
 			<referrer name="SetPlayerProgressBarValue"/>
 			<referrer name="playerTextDraws"/>
+			<referrer name="TimerSpeedo"/>
 			<param name="playerid">
 			</param>
 			<param name="text">
@@ -23371,7 +23373,6 @@
 		<member name="M:SetVehicleParamsEx" syntax="SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective)">
 			<attribute name="native"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
-			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_lock"/>
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="pc_cmd_lights"/>
@@ -24308,35 +24309,31 @@
 			<dependency name="GetPlayerState"/>
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="GetVehicleHealth"/>
-			<dependency name="GetVehicleModel"/>
-			<dependency name="GetVehicleParamsEx"/>
-			<dependency name="PlayerTextDrawLetterSize"/>
+			<dependency name="PlayerTextDrawHide"/>
+			<dependency name="PlayerTextDrawSetString"/>
 			<dependency name="PlayerTextDrawShow"/>
-			<dependency name="SetVehicleParamsEx"/>
-			<dependency name="false"/>
+			<dependency name="PlayerTextDrawTextSize"/>
+			<dependency name="_Timer_F"/>
 			<dependency name="getVehicleSpeed"/>
 			<dependency name="isBike"/>
 			<dependency name="isBoat"/>
 			<dependency name="isPlane"/>
-			<dependency name="pName"/>
+			<dependency name="pc_cmd_engine"/>
 			<dependency name="personalVehicle"/>
 			<dependency name="personalVehicle"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
 			<dependency name="pvFuel"/>
 			<dependency name="pvLock"/>
 			<dependency name="pvOdometer"/>
 			<dependency name="reverse"/>
-			<dependency name="sendNearbyMessage"/>
+			<dependency name="speedo"/>
 			<dependency name="string_fast"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
 			<dependency name="va_PlayerTextDrawSetString"/>
-			<dependency name="vehNames"/>
-			<dependency name="vehNames"/>
 			<dependency name="vehicleHud"/>
 			<dependency name="vehicle_engine"/>
 			<dependency name="vehicle_fuel"/>
+			<dependency name="vehicle_lights"/>
 			<dependency name="vehicle_personal"/>
 			<param name="playerid">
 			</param>
@@ -24353,6 +24350,7 @@
 		</member>
 		<member name="M:TimerSpeedo_yT@" syntax="TimerSpeedo_yT@(playerid)">
 			<stacksize value="8"/>
+			<referrer name="pc_cmd_engine"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<dependency name="I@"/>
 			<dependency name="J@"/>
@@ -25456,6 +25454,7 @@
 			<referrer name="pc_cmd_ch"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="TimerJail"/>
 			<referrer name="TimerWanted"/>
 			<referrer name="TimerMute"/>
@@ -25463,6 +25462,7 @@
 			<referrer name="pc_cmd_acceptreport"/>
 			<referrer name="pc_cmd_closereport"/>
 			<referrer name="pc_cmd_unjail"/>
+			<referrer name="pc_cmd_engine"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<referrer name="OnPlayerEnterCheckpoint"/>
@@ -32260,6 +32260,7 @@
 		<member name="M:pc_cmd_engine" syntax="pc_cmd_engine(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="17"/>
+			<referrer name="TimerSpeedo"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<dependency name="operator&lt;(Float:,_:)"/>
 			<dependency name="GetPVarInt"/>
@@ -32267,9 +32268,15 @@
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="GetVehicleModel"/>
 			<dependency name="GetVehicleParamsEx"/>
+			<dependency name="I@"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
+			<dependency name="J@"/>
+			<dependency name="PlayerTextDrawHide"/>
+			<dependency name="PlayerTextDrawSetString"/>
 			<dependency name="SetPVarInt"/>
 			<dependency name="SetVehicleParamsEx"/>
+			<dependency name="TimerSpeedo_yT@"/>
+			<dependency name="_Timer_F"/>
 			<dependency name="false"/>
 			<dependency name="gettime"/>
 			<dependency name="isBike"/>
@@ -32280,9 +32287,11 @@
 			<dependency name="pvInsurancePoints"/>
 			<dependency name="sendNearbyMessage"/>
 			<dependency name="sendPlayerError"/>
+			<dependency name="speedo"/>
 			<dependency name="true"/>
 			<dependency name="vehNames"/>
 			<dependency name="vehNames"/>
+			<dependency name="vehicleHud"/>
 			<dependency name="vehicle_engine"/>
 			<dependency name="vehicle_fuel"/>
 			<dependency name="vehicle_personal"/>
@@ -36837,7 +36846,6 @@
 			<referrer name="LoadGasCan"/>
 			<referrer name="LoadDSVehicles"/>
 			<referrer name="OnQueryError"/>
-			<referrer name="OnPlayerSpawn"/>
 			<param name="format">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -37462,7 +37470,6 @@
 			<referrer name="pc_cmd_untie"/>
 			<referrer name="FishingTimer"/>
 			<referrer name="pc_cmd_usedrugs"/>
-			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="pc_cmd_accept"/>
 			<referrer name="OnPlayerText"/>
