@@ -140,6 +140,11 @@ hook OnPlayerEnterVehicle(playerid, vehicleid, ispassenger) {
 		slapPlayer(playerid);
 		RemovePlayerFromVehicle(playerid);
 	}
+	if(playerInfo[playerid][pFactionDuty] == 0 && vehicleFaction[vehicleid] != 0) {
+		sendPlayerError(playerid, "Nu poti intra in vehiculele de factiune, deoarece nu esti la datorie.");
+		slapPlayer(playerid);
+		RemovePlayerFromVehicle(playerid);
+	}
 	return true;
 }
 
@@ -178,7 +183,10 @@ hook OnPlayerDisconnect(playerid, reason) {
 		if(IsValidObject(svfVehicleObjects[0])) DestroyObject(svfVehicleObjects[0]); 
 		if(IsValidObject(svfVehicleObjects[1])) DestroyObject(svfVehicleObjects[1]);
 	}
-	if(playerInfo[playerid][pFaction]) Iter_Remove(FactionMembers[playerInfo[playerid][pFaction]], playerid);
+	if(playerInfo[playerid][pFaction]) {
+		Iter_Remove(FactionMembers[playerInfo[playerid][pFaction]], playerid);
+		sendFactionMessage(playerInfo[playerid][pFaction], COLOR_LIMEGREEN, "** MoonBot: %s s-a deconnectat pe server (Total members online: %d).", getName(playerid), Iter_Count(FactionMembers[playerInfo[playerid][pFaction]]));		
+	}
 	for(new x; x < 3; x++) {
 		if(Iter_Contains(ServiceCalls[x], playerid)) Iter_Remove(ServiceCalls[x], playerid);
 	}
@@ -486,6 +494,8 @@ CMD:auninvite(playerid, params[]) {
 		vehiclePlayerID[playerVehicle[targetid]] = -1;
 		vehicleRank[playerVehicle[targetid]] = 0;
 		playerVehicle[targetid] = -1;
+		if(IsValidObject(svfVehicleObjects[0])) DestroyObject(svfVehicleObjects[0]); 
+		if(IsValidObject(svfVehicleObjects[1])) DestroyObject(svfVehicleObjects[1]);
 	}
 	Iter_Remove(FactionMembers[playerInfo[targetid][pFaction]], targetid);
 	playerInfo[targetid][pSpawnChange] = 1;
@@ -614,7 +624,7 @@ CMD:heal(playerid, params[]) {
 CMD:service(playerid, params[]) {
 	if(strmatch(params, "medic")) {
 		if(Iter_Contains(FactionMembers[1], playerid)) return sendPlayerError(playerid, "You are in 'Paramedic Department' you can't use this command.");
-		if(Iter_Contains(ServiceCalls[SERVICE_PARAMEDICS], playerid) || MedicAcceptedCall[playerid] != 0) return sendPlayerError(playerid, "You already have a call for medics.");
+		if(Iter_Contains(ServiceCalls[SERVICE_PARAMEDICS], playerid) || MedicAcceptedCall[playerid] != -1) return sendPlayerError(playerid, "You already have a call for medics.");
 		new MapZone:zoneid = GetPlayerMapZone(playerid), zonename[27] = "Unknown";
 		if(IsValidMapZone(zoneid)) GetMapZoneName(zoneid, zonename, 27);
 		sendFactionMessage(1, COLOR_LIMEGREEN, "(*) %s are nevoie de un medic locatie: %s (%s), scrie /accept medic %d pentru a accepta.", getName(playerid), zonename, GetPlayerCityLocation(playerid), playerid);
@@ -624,7 +634,7 @@ CMD:service(playerid, params[]) {
 	}
 	if(strmatch(params, "taxi")) {
 		if(Iter_Contains(FactionMembers[5], playerid)) return sendPlayerError(playerid, "You are in 'Taxi Company' you can't use this command.");
-		if(Iter_Contains(ServiceCalls[SERVICE_TAXI], playerid) || TaxiAcceptedCall[playerid] != 0) return sendPlayerError(playerid, "You already have a call for taxi.");
+		if(Iter_Contains(ServiceCalls[SERVICE_TAXI], playerid) || TaxiAcceptedCall[playerid] != -1) return sendPlayerError(playerid, "You already have a call for taxi.");
 		new MapZone:zoneid = GetPlayerMapZone(playerid), zonename[27] = "Unknown";
 		if(IsValidMapZone(zoneid)) GetMapZoneName(zoneid, zonename, 27);
 		sendFactionMessage(5, COLOR_LIMEGREEN, "(*) %s are nevoie de un taxi locatie: %s (%s), scrie /accept taxi %d pentru a accepta.", getName(playerid), zonename, GetPlayerCityLocation(playerid), playerid);
@@ -634,7 +644,7 @@ CMD:service(playerid, params[]) {
 	}
 	if(strmatch(params, "instructor")) {
 		if(Iter_Contains(FactionMembers[7], playerid)) return sendPlayerError(playerid, "You are in 'School Instructors' you can't use this command.");
-		if(Iter_Contains(ServiceCalls[SERVICE_INSTRUCTOR], playerid) || InstructorAcceptedCall[playerid] != 0) return sendPlayerError(playerid, "You already have a call for taxi.");
+		if(Iter_Contains(ServiceCalls[SERVICE_INSTRUCTOR], playerid) || InstructorAcceptedCall[playerid] != -1) return sendPlayerError(playerid, "You already have a call for taxi.");
 		new MapZone:zoneid = GetPlayerMapZone(playerid), zonename[27] = "Unknown";
 		if(IsValidMapZone(zoneid)) GetMapZoneName(zoneid, zonename, 27);
 		sendFactionMessage(7, COLOR_LIMEGREEN, "(*) %s are nevoie de un instructor locatie: %s (%s), scrie /accept instructor %d pentru a accepta.", getName(playerid), zonename, GetPlayerCityLocation(playerid), playerid);
@@ -647,7 +657,7 @@ CMD:service(playerid, params[]) {
 }
 
 CMD:duty(playerid, params[]) {
-	if(playerInfo[playerid][pFaction] == 0 && Iter_Contains(FactionMembers[1], playerid) || Iter_Contains(FactionMembers[5], playerid) || Iter_Contains(FactionMembers[6], playerid) || Iter_Contains(FactionMembers[7], playerid) || Iter_Contains(FactionMembers[8], playerid)) return sendPlayerError(playerid, "Aceasta comanda, nu este valabila pentru tine.");
+	if(playerInfo[playerid][pFaction] == 0 || Iter_Contains(FactionMembers[1], playerid) || Iter_Contains(FactionMembers[5], playerid) || Iter_Contains(FactionMembers[6], playerid) || Iter_Contains(FactionMembers[7], playerid) || Iter_Contains(FactionMembers[8], playerid)) return sendPlayerError(playerid, "Aceasta comanda, nu este valabila pentru tine.");
 	if(GetPVarInt(playerid, "dutyDeelay") >= gettime()) return true;
 	if(!playerInfo[playerid][pinFaction]) return sendPlayerError(playerid, "Nu esti in HQ-ul factiunii pentru a folosi aceasta comanda.");
 	if(playerInfo[playerid][pWeaponLicense] == 0) return sendPlayerError(playerid, "Nu ai licenta de arme, pentru a folosi aceasta comanda.");
@@ -885,7 +895,7 @@ CMD:su(playerid, params[]) {
 	if(!(1 <= wantedLevel <= 6)) return sendPlayerError(playerid, "Invalid Wanted Level (1-6).");
 	if(playerInfo[userID][pWantedLevel] < 6) playerInfo[userID][pWantedLevel] = wantedLevel;
 	else if(playerInfo[userID][pWantedLevel] >= 6) playerInfo[userID][pWantedLevel] = 6;
-	playerInfo[userID][pWantedTime] += 300 * playerInfo[playerid][pWantedLevel];
+	playerInfo[userID][pWantedTime] += 300 * playerInfo[userID][pWantedLevel];
 	SetPlayerWantedLevel(userID, playerInfo[userID][pWantedLevel]);
 	Iter_Add(Wanteds, userID);
 	wantedTime[userID] = repeat TimerWanted(userID);

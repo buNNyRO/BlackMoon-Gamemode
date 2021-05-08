@@ -149,14 +149,16 @@ public OnPlayerConnect(playerid)
 
 public OnPlayerDisconnect(playerid, reason)
 {
-	if(Iter_Contains(ServerAdmins, playerid))
+	if(Iter_Contains(ServerAdmins, playerid)) 
 		Iter_Remove(ServerAdmins, playerid);
 
-	if(Iter_Contains(ServerHelpers, playerid))
+	if(Iter_Contains(ServerHelpers, playerid)) 
 		Iter_Remove(ServerHelpers, playerid);
 
-	if(Iter_Contains(ServerStaff, playerid))
+	if(Iter_Contains(ServerStaff, playerid)) {
 		Iter_Remove(ServerStaff, playerid);
+		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a deconnectat de pe server (Total Staff: %d).", getName(playerid), Iter_Count(ServerStaff));
+	}
 
 	if(Iter_Contains(MutedPlayers, playerid))
 		Iter_Remove(MutedPlayers, playerid);
@@ -164,8 +166,10 @@ public OnPlayerDisconnect(playerid, reason)
 	if(Iter_Contains(loggedPlayers, playerid))
 		Iter_Remove(loggedPlayers, playerid);
 
-	if(playerInfo[playerid][pWantedLevel]) Iter_Remove(Wanteds, playerid);
-	if(playerInfo[playerid][pWTChannel] > 0) Iter_Remove(Freqs[playerInfo[playerid][pWTChannel]], playerid);
+	if(playerInfo[playerid][pClan]) {
+		Iter_Remove(TotalClanMembers, playerid);
+		sendClanMessage(playerInfo[playerid][pClan], clanInfo[playerInfo[playerid][pClan]][cClanColor], "** MoonBot: {ffffff}%s s-a deconnectat de pe server.", getName(playerid));
+	}
 
 	foreach(new x : Reports) {
 		if(reportInfo[x][reportID] == playerid) {
@@ -180,14 +184,14 @@ public OnPlayerDisconnect(playerid, reason)
 	}
 
 	if(playerInfo[playerid][pReportChat] != INVALID_PLAYER_ID) {
-		SCM(playerid, COLOR_YELLOW, string_fast("* Conversatia a fost inchisa deoarece %s s-a deconectat.", getName(playerid)));
+		SCMf(playerid, COLOR_YELLOW, "* Conversatia a fost inchisa deoarece %s s-a deconectat.", getName(playerid));
 		playerInfo[playerInfo[playerid][pReportChat]][pReportChat] = INVALID_PLAYER_ID;
 		playerInfo[playerid][pReportChat] = INVALID_PLAYER_ID;
 	}
 	if(Working[playerid]) CancelJob(playerid, Working[playerid]);
 
 	destroyPlayerTextDraws(playerid);
-	update("UPDATE `server_users` SET `Seconds` = '%f', `Mute` = '%d', `ReportMute` = '%d', `Money` = '%d', `MStore` = '%d', `SpawnChange` = '%d', `Jailed` = '%d', `JailTime` = '%d', `WantedLevel` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pSeconds], playerInfo[playerid][pMute], (playerInfo[playerid][pReportMute] > gettime()) ? (playerInfo[playerid][pReportMute] - gettime()) : (0), MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pSpawnChange], playerInfo[playerid][pJailed], playerInfo[playerid][pJailTime], playerInfo[playerid][pWantedLevel], playerInfo[playerid][pSQLID]);
+	update("UPDATE `server_users` SET `Seconds` = '%f', `Mute` = '%d', `ReportMute` = '%d', `Money` = '%d', `MStore` = '%d', `SpawnChange` = '%d', `Jailed` = '%d', `JailTime` = '%d', `WantedLevel` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pSeconds], playerInfo[playerid][pMute], (playerInfo[playerid][pReportMute] > gettime()) ? (playerInfo[playerid][pReportMute] - gettime()) : (0), MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pSpawnChange], playerInfo[playerid][pJailed], playerInfo[playerid][pJailTime], playerInfo[playerid][pWantedLevel], playerInfo[playerid][pSQLID]);
 	return true;
 }
 
@@ -291,18 +295,18 @@ public OnPlayerDeath(playerid, killerid)
 	if(Working[playerid]) CancelJob(playerid, Working[playerid]);
 	if(playerInfo[playerid][pOnTurf] == 1) playerInfo[playerid][pOnTurf] = 0;
 	if(playerInfo[playerid][pWantedLevel] != 0) {
-		new count, names[180];	
+		new count = 0, names[180];	
 		foreach(new i : loggedPlayers) {
 			if(Iter_Contains(FactionMembers[2], i) && Iter_Contains(FactionMembers[3], i) && Iter_Contains(FactionMembers[4], i) && ProxDetectorS(75.0, playerid,i) && playerInfo[i][pFactionDuty] == 1) {
 				count = 1;
 				GameTextForPlayer(i, "catching suspect bonus!", 3000, 1);
 				GivePlayerCash(i, 1, playerInfo[playerid][pWantedLevel] * 2000);
-				SCM(i, COLOR_LIGHTRED, string_fast("* Catching suspect bonus:{ffffff} Ai primit $%d bonus pentru prinderea suspectului %s.", playerInfo[playerid][pWantedLevel] * 2000, getName(playerid)));
+				SCMf(i, COLOR_LIGHTRED, "* Catching suspect bonus:{ffffff} Ai primit $%d bonus pentru prinderea suspectului %s.", playerInfo[playerid][pWantedLevel] * 2000, getName(playerid));
 				format(names, 180, "%s %s", names, getName(i));
 			}	
 			if(count == 1) {
-				if(ProxDetectorS(30.0, i, playerid)) SCM(i, COLOR_PURPLE, string_fast("* %s is now in jail thanks to: %s.", getName(playerid), names));
-				if(killerid == INVALID_PLAYER_ID) sendPolice(3, playerid, killerid, playerInfo[playerid][pWantedLevel], "catching suspect bonus");
+				if(ProxDetectorS(30.0, i, playerid)) SCMf(i, COLOR_PURPLE, "* %s is now in jail thanks to: %s.", getName(playerid), names);
+				if(killerid != INVALID_PLAYER_ID) sendPolice(3, playerid, killerid, playerInfo[playerid][pWantedLevel], "catching suspect bonus");
 				else sendPolice(3, playerid, -1, playerInfo[playerid][pWantedLevel], "none");
 				new rand = random(6); 
 				if(playerInfo[playerid][pCuffed] == 1) {
@@ -321,15 +325,15 @@ public OnPlayerDeath(playerid, killerid)
 				playerInfo[playerid][pWantedTime] = 0;
 				playerInfo[playerid][pWantedLevel] = 0;
 				stop wantedTime[playerid];
-				update("UPDATE `server_users` SET `Jailed` = '%d', `JailTime` = '%d', `WantedTime` = '0', `WantedDeaths` = '%d', `WantedLevel` = '0' WHERE `ID` = '%d'", playerInfo[playerid][pJailed], playerInfo[playerid][pJailTime], playerInfo[playerid][pWantedDeaths], playerInfo[playerid][pSQLID]);
-				SCM(playerid, COLOR_LIGHTRED, string_fast("* Deoarece ai murit, ai pierdut $%s si vei fi dus la inchisoare. Acum nu mai esti criminal.", formatNumber(playerInfo[playerid][pWantedLevel] * 2000)));
+				update("UPDATE `server_users` SET `Jailed` = '%d', `JailTime` = '%d', `WantedTime` = '0', `WantedDeaths` = '%d', `WantedLevel` = '0' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pJailed], playerInfo[playerid][pJailTime], playerInfo[playerid][pWantedDeaths], playerInfo[playerid][pSQLID]);
+				SCMf(playerid, COLOR_LIGHTRED, "* Deoarece ai murit, ai pierdut $%s si vei fi dus la inchisoare. Acum nu mai esti criminal.", formatNumber(playerInfo[playerid][pWantedLevel] * 2000));
 				TogglePlayerControllable(playerid, 0);
 				SetPlayerFreeze(playerid, 1);
 				SetPlayerWantedLevel(playerid, 0);						
 			}			
 		}	
 		if(count == 0) { 
-			if(killerid == INVALID_PLAYER_ID) sendPolice(3, playerid, killerid, playerInfo[playerid][pWantedLevel], "catching suspect bonus");
+			if(killerid != INVALID_PLAYER_ID) sendPolice(3, playerid, killerid, playerInfo[playerid][pWantedLevel], "catching suspect bonus");
 			else sendPolice(3, playerid, -1, playerInfo[playerid][pWantedLevel], "none");
 			new rand = random(6); 
 			if(playerInfo[playerid][pCuffed] == 1) {
@@ -348,8 +352,8 @@ public OnPlayerDeath(playerid, killerid)
 			playerInfo[playerid][pWantedTime] = 0;
 			playerInfo[playerid][pWantedLevel] = 0;
 			stop wantedTime[playerid];
-			update("UPDATE `server_users` SET `Jailed` = '%d', `JailTime` = '%d', `WantedTime` = '0', `WantedDeaths` = '%d', `WantedLevel` = '0' WHERE `ID` = '%d'", playerInfo[playerid][pJailed], playerInfo[playerid][pJailTime], playerInfo[playerid][pWantedDeaths], playerInfo[playerid][pSQLID]);
-			SCM(playerid, COLOR_LIGHTRED, string_fast("* Deoarece ai murit, ai pierdut $%s si vei fi dus la inchisoare. Acum nu mai esti criminal.", formatNumber(playerInfo[playerid][pWantedLevel] * 2000)));
+			update("UPDATE `server_users` SET `Jailed` = '%d', `JailTime` = '%d', `WantedTime` = '0', `WantedDeaths` = '%d', `WantedLevel` = '0' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pJailed], playerInfo[playerid][pJailTime], playerInfo[playerid][pWantedDeaths], playerInfo[playerid][pSQLID]);
+			SCMf(playerid, COLOR_LIGHTRED, "* Deoarece ai murit, ai pierdut $%s si vei fi dus la inchisoare. Acum nu mai esti criminal.", formatNumber(playerInfo[playerid][pWantedLevel] * 2000));
 			TogglePlayerControllable(playerid, 0);
 			SetPlayerFreeze(playerid, 1);
 			SetPlayerWantedLevel(playerid, 0);				
@@ -433,7 +437,7 @@ public OnVehicleMod(playerid, vehicleid, componentid) {
 public OnVehiclePaintjob(playerid, vehicleid, paintjobid) {
 	if(vehicle_personal[vehicleid] > -1 && Iter_Contains(PlayerVehicles[playerid], vehicle_personal[vehicleid])) {
 		personalVehicle[vehicle_personal[vehicleid]][pvPaintJob] = paintjobid;
-		update("UPDATE `server_personal_vehicles` SET `PaintJob`='%d' WHERE `ID`='%d'", paintjobid, personalVehicle[vehicle_personal[vehicleid]][pvID]);
+		update("UPDATE `server_personal_vehicles` SET `PaintJob`='%d' WHERE `ID`='%d' LIMIT 1", paintjobid, personalVehicle[vehicle_personal[vehicleid]][pvID]);
 	}
 	return true;
 }
@@ -441,7 +445,7 @@ public OnVehiclePaintjob(playerid, vehicleid, paintjobid) {
 public OnVehicleRespray(playerid, vehicleid, color1, color2) {
 	if(vehicle_personal[vehicleid] > -1 && Iter_Contains(PlayerVehicles[playerid], vehicle_personal[vehicleid])) {
 		personalVehicle[vehicle_personal[vehicleid]][pvHealth] = 1000;
-		update("UPDATE `server_personal_vehicles` SET `Health`= '%f' WHERE `ID`='%d'", personalVehicle[vehicle_personal[vehicleid]][pvHealth], personalVehicle[vehicle_personal[vehicleid]][pvID]);
+		update("UPDATE `server_personal_vehicles` SET `Health`= '%f' WHERE `ID`='%d' LIMIT 1", personalVehicle[vehicle_personal[vehicleid]][pvHealth], personalVehicle[vehicle_personal[vehicleid]][pvID]);
 	}
 	return true;
 }
@@ -458,8 +462,8 @@ public OnVehicleDeath(vehicleid, killerid) {
 	if(vehicle_personal[vehicleid] > -1) {
 		new id = vehicle_personal[vehicleid];
 		personalVehicle[id][pvInsurancePoints] --;
-		update("UPDATE `server_personal_vehicles` SET `InsurancePoints`='%d' WHERE `ID`='%d'", personalVehicle[id][pvInsurancePoints], personalVehicle[id][pvID]);
-		SCM(getVehicleOwner(personalVehicle[id][pvOwnerID]), -1, string_fast("Vehiculul tau %s a pierdut un punct de asigurare.", getVehicleName(personalVehicle[id][pvModelID])));
+		update("UPDATE `server_personal_vehicles` SET `InsurancePoints`='%d' WHERE `ID`='%d' LIMIT 1", personalVehicle[id][pvInsurancePoints], personalVehicle[id][pvID]);
+		SCMf(getVehicleOwner(personalVehicle[id][pvOwnerID]), -1, "Vehiculul tau %s a pierdut un punct de asigurare.", getVehicleName(personalVehicle[id][pvModelID]));
 	}
 
 	vehicle_engine[vehicleid] = false;
@@ -492,20 +496,20 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 						SCM(playerid, -1, "Welcome in the business, commands available: /buy.");
 						if(FishWeight[playerid]) {
 							new money = FishWeight[playerid] * 115;
-							SCM(playerid, COLOR_GREY, string_fast("* Fish Notice: Ai vandut pestele , si ai castigat $%s.", formatNumber(money)));
+							SCMf(playerid, COLOR_GREY, "* Fish Notice: Ai vandut pestele , si ai castigat $%s.", formatNumber(money));
 							FishWeight[playerid] = 0;
 							playerInfo[playerid][pFishTimes] ++;
 							if(playerInfo[playerid][pFishSkill] < 5) {
 								if(playerInfo[playerid][pFishTimes] >= returnNeededPoints(playerid, JOB_FISHER)) {
 									playerInfo[playerid][pFishSkill] ++;
-									SCM(playerid, COLOR_GREY, string_fast("* Fisherman Notice: Ai avansat in %d skill. Vei castiga probabil mai multi bani", playerInfo[playerid][pFishSkill]));
+									SCMf(playerid, COLOR_GREY, "* Fisherman Notice: Ai avansat in %d skill. Vei castiga probabil mai multi bani", playerInfo[playerid][pFishSkill]);
 								}
 							}
 							GivePlayerCash(playerid, 1, money);
 							for(new m; m < 2; m++) {
 								if(playerInfo[playerid][pDailyMission][m] == 1) checkMission(playerid, m);
 							}
-							update("UPDATE `server_users` SET `Money`= '%d', `MStore` = '%d', `FishTimes` = '%d', `FishSkill` = '%d' WHERE `ID`='%d'", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pFishTimes], playerInfo[playerid][pFishSkill], playerInfo[playerid][pSQLID]);
+							update("UPDATE `server_users` SET `Money`= '%d', `MStore` = '%d', `FishTimes` = '%d', `FishSkill` = '%d' WHERE `ID`='%d' LIMIT 1", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pFishTimes], playerInfo[playerid][pFishSkill], playerInfo[playerid][pSQLID]);
 						}
 					}
 				}
@@ -528,7 +532,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 			SetPlayerInterior(playerid, houseInfo[playerInfo[playerid][areaHouse]][hInterior]);
 			SetPlayerVirtualWorld(playerid, houseInfo[playerInfo[playerid][areaHouse]][hID]);
 			playerInfo[playerid][pinHouse] = houseInfo[playerInfo[playerid][areaHouse]][hID];
-			SCM(playerid, COLOR_GREY, string_fast("* House Notice: Welcome to %s's house. Commands available: /eat, /sleep.", houseInfo[playerInfo[playerid][areaHouse]][hOwner]));
+			SCMf(playerid, COLOR_GREY, "* House Notice: Welcome to %s's house. Commands available: /eat, /sleep.", houseInfo[playerInfo[playerid][areaHouse]][hOwner]);
 			playerInfo[playerid][areaHouse] = 0;
 		}
 		else if(IsPlayerInRangeOfPoint(playerid, 3.5, houseInfo[b][hX], houseInfo[b][hY], houseInfo[b][hZ])) {
@@ -659,7 +663,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 		if(vehicle_personal[vehicleid] > -1) {
 			new i = vehicle_personal[vehicleid];
 			personalVehicle[i][pvDespawnTime] = (gettime() + 900);
-			update("UPDATE `server_personal_vehicles` SET  `Health` = '%f', `Fuel` = '%f', `Odometer`='%f', `DamageDoors`='%d', `DamageLights`='%d', `DamageTires`='%d' WHERE `ID`='%d'", personalVehicle[i][pvHealth], personalVehicle[i][pvFuel], personalVehicle[i][pvOdometer], personalVehicle[i][pvDamagePanels], personalVehicle[i][pvDamageDoors], personalVehicle[i][pvDamageLights], personalVehicle[i][pvDamageTires],personalVehicle[i][pvID]);
+			update("UPDATE `server_personal_vehicles` SET  `Health` = '%f', `Fuel` = '%f', `Odometer`='%f', `DamageDoors`='%d', `DamageLights`='%d', `DamageTires`='%d' WHERE `ID`='%d' LIMIT 1", personalVehicle[i][pvHealth], personalVehicle[i][pvFuel], personalVehicle[i][pvOdometer], personalVehicle[i][pvDamagePanels], personalVehicle[i][pvDamageDoors], personalVehicle[i][pvDamageLights], personalVehicle[i][pvDamageTires],personalVehicle[i][pvID]);
 		}	
 		for(new i; i < sizeof vehicleHud; i++) PlayerTextDrawHide(playerid, vehicleHud[i]);
 		stop speedo[playerid];
@@ -683,7 +687,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 					stop taxi[i];
 				}
 			}
-			SCM(playerid, COLOR_LIMEGREEN, string_fast("* Fare: Acum nu mai esti la datorie si ai primit $%s, banii facuti pana in acest moment.", formatNumber(playerInfo[playerid][pTaxiMoney])));
+			SCMf(playerid, COLOR_LIMEGREEN, "* Fare: Acum nu mai esti la datorie si ai primit $%s, banii facuti pana in acest moment.", formatNumber(playerInfo[playerid][pTaxiMoney]));
 			PlayerTextDrawHide(playerid, fareTD[playerid]);
 			GivePlayerCash(playerid, 1, playerInfo[playerid][pTaxiMoney]);
 			playerInfo[playerid][pTaxiFare] = 0;
@@ -750,7 +754,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 		foreach(new i : FactionMembers[5]) {
 			if(playerInfo[i][pTaxiDuty] == 1 && IsPlayerInAnyVehicle(i) && vehicleFaction[GetPlayerVehicleID(i)] == playerInfo[i][pFaction]) {
 				if(PlayerMoney(playerid, playerInfo[i][pTaxiFare])) {
-			 		SCM(playerid, COLOR_GREY, string_fast("Nu ai $%s pentru a intra in acest taxi.", formatNumber(playerInfo[i][pTaxiFare])));
+			 		SCMf(playerid, COLOR_GREY, "Nu ai $%s pentru a intra in acest taxi.", formatNumber(playerInfo[i][pTaxiFare]));
 			 		RemovePlayerFromVehicle(playerid);
 				}
 				else {
@@ -779,7 +783,7 @@ public OnPlayerEnterCheckpoint(playerid)
 		playerInfo[playerid][pExamenCheckpoint] ++;
 		if(!Iter_Contains(ExamenCheckpoints, playerInfo[playerid][pExamenCheckpoint])) {
 			playerInfo[playerid][pDrivingLicense] = 100;
-			update("UPDATE `server_users` SET `Licenses` = '%d|%d|%d|%d|%d|%d|%d|%d' WHERE `ID` = '%d'", playerInfo[playerid][pDrivingLicense], playerInfo[playerid][pDrivingLicenseSuspend], playerInfo[playerid][pWeaponLicense], playerInfo[playerid][pWeaponLicenseSuspend], playerInfo[playerid][pFlyLicense], playerInfo[playerid][pFlyLicenseSuspend], playerInfo[playerid][pBoatLicense], playerInfo[playerid][pBoatLicenseSuspend], playerInfo[playerid][pSQLID]);
+			update("UPDATE `server_users` SET `Licenses` = '%d|%d|%d|%d|%d|%d|%d|%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pDrivingLicense], playerInfo[playerid][pDrivingLicenseSuspend], playerInfo[playerid][pWeaponLicense], playerInfo[playerid][pWeaponLicenseSuspend], playerInfo[playerid][pFlyLicense], playerInfo[playerid][pFlyLicenseSuspend], playerInfo[playerid][pBoatLicense], playerInfo[playerid][pBoatLicenseSuspend], playerInfo[playerid][pSQLID]);
 			DestroyVehicle(playerInfo[playerid][pExamenVehicle]);
 			PlayerTextDrawHide(playerid, playerExamenPTD[playerid]);
 			playerInfo[playerid][pExamenVehicle] = INVALID_VEHICLE_ID;
@@ -804,7 +808,7 @@ public OnPlayerEnterCheckpoint(playerid)
 			playerInfo[playerid][pCheckpoint] = CHECKPOINT_NONE;
 			playerInfo[playerid][pCheckpointID] = -1;
 			DisablePlayerCheckpoint(playerid);		
-			SCM(playerid, COLOR_LIGHTRED, string_fast("* GPS Notice:{ffffff} Ai ajuns la locatia aleasa."));		
+			SCM(playerid, COLOR_LIGHTRED, "* GPS Notice:{ffffff} Ai ajuns la locatia aleasa.");		
 		}
 	}
 	return true;
@@ -862,21 +866,18 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
         new weaponName[25];
         GetWeaponName(weaponid, weaponName, 25);
         Contract[playerid] = -1;
-        SCM(playerid, COLOR_GOLD, string_fast("* (Contracts): {ffffff}Ti-ai indeplinit misiunea pe %s (%d) folosind arma %s de la distanta %.1f m.", getName(hitid), hitid, weaponName, GetPlayerDistanceFromPoint(playerid, x, y, z)));
+        SCMf(playerid, COLOR_GOLD, "* (Contracts): {ffffff}Ti-ai indeplinit misiunea pe %s (%d) folosind arma %s de la distanta %.1f m.", getName(hitid), hitid, weaponName, GetPlayerDistanceFromPoint(playerid, x, y, z));
     }
 	return true;
 }
 
 public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags) 
 { 
-	printf("%s", cmd);
     if(result == -1) 
     { 
-        SendClientMessage(playerid, 0xFFFFFFFF, "SERVER: Unknown command.x"); 
-
+        SCMf(playerid, COLOR_SERVER, "* Server: {ffffff}Aceasta comanda nu exista pe server, pentru a vedea comenzile disponibile tasteaza /help.");
         return 0; 
     } 
-
     return 1; 
 }
 

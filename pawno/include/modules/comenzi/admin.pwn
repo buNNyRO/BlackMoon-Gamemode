@@ -268,7 +268,7 @@ CMD:sethelper(playerid, params[])
 		Iter_Add(ServerHelpers, userID);
 
 	playerInfo[userID][pHelper] = helper;
-	update("UPDATE `server_users` SET `Helper` = '%d' WHERE `ID` = '%d'", helper, playerInfo[userID][pSQLID]);
+	update("UPDATE `server_users` SET `Helper` = '%d' WHERE `ID` = '%d' LIMIT 1", helper, playerInfo[userID][pSQLID]);
 	sendStaff(COLOR_SERVER, "Notice: {ffffff}Admin %s i-a setat lui %s helper nivel %d.", getName(playerid), getName(userID), helper);
 	SCMf(userID, COLOR_YELLOW, "* Admin %s ti-a setat helper nivel %d.", getName(playerid), helper);
 	return true;
@@ -569,10 +569,11 @@ CMD:spawncar(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(Iter_Count(AdminVehicles) >= MAX_ADMIN_VEHICLES) return sendPlayerError(playerid, "Nu poti crea un vehicul deoarece s-a atins numarul maxim de vehicule (Vehicule Existente: %d | Numar Maxim: %d)", Iter_Count(AdminVehicles), MAX_ADMIN_VEHICLES);
 	if(playerInfo[playerid][pDrivingLicense] == 0 && playerInfo[playerid][pFlyLicense] == 0 && playerInfo[playerid][pBoatLicense] == 0) return sendPlayerError(playerid, "Nu poti spawna o masina deoarece nu ai licenta de condus / navigatie / pilot.");
-	extract params -> new modelid, firstcolor, secondcolor, Float:x, Float:y, Float:z, Float:angle; else return sendPlayerSyntax(playerid, "/spawncar <model id> <first color> <second color>");
+	extract params -> new modelid, firstcolor, secondcolor; else return sendPlayerSyntax(playerid, "/spawncar <model id> <first color> <second color>");
 	if(modelid < 400 || modelid > 611) return sendPlayerError(playerid, "Invalid Model ID (400 - 611).");
 	if(firstcolor < 0 || firstcolor > 255) return sendPlayerError(playerid, "Invalid First Color (0 - 255).");
 	if(secondcolor < 0 || secondcolor > 255) return sendPlayerError(playerid, "Invalid Second Color (0 - 255).");
+	new Float:x, Float:y, Float:z, Float:angle;
 	GetPlayerPos(playerid, x, y, z);
 	GetPlayerFacingAngle(playerid, angle);
 	new carid = CreateVehicle(modelid, x, y, z, angle, firstcolor, secondcolor, -1);
@@ -851,21 +852,21 @@ CMD:set(playerid, params[]) {
 	switch(YHash(option)) {
 		case _H<money>: {
 			if(value < 0 || value > 2000000000) return sendPlayerError(playerid, "Result Invalid (0 - 2,000,000,000).");
-			if(id != INVALID_PLAYER_ID) MoneyMoney[id] = value;
-			update("UPDATE `server_users` SET `Money` = '%d' WHERE `ID` = '%d'", value, playerInfo[id][pSQLID]);
+			if(id != INVALID_PLAYER_ID) MoneyMoney[id] = value; updatePlayer(id);
+			update("UPDATE `server_users` SET `Money` = '%d' WHERE `ID` = '%d' LIMIT 1", value, playerInfo[id][pSQLID]);
 		}
 		case _H<billion>: {
 			if(value < 0 || value > 100) return sendPlayerError(playerid, "Result Invalid (0 - 100).");
-			if(id != INVALID_PLAYER_ID) StoreMoney[id] = value;
-			update("UPDATE `server_users` SET `MStore` = '%d' WHERE `ID` = '%d'", value, playerInfo[id][pSQLID]);
+			if(id != INVALID_PLAYER_ID) StoreMoney[id] = value; updatePlayer(id);
+			update("UPDATE `server_users` SET `MStore` = '%d' WHERE `ID` = '%d' LIMIT 1", value, playerInfo[id][pSQLID]);
 		}
 		case _H<bank>: {
 			if(id != INVALID_PLAYER_ID) playerInfo[id][pBank] =  value;
-			update("UPDATE `server_users` SET `Bank` = '%d' WHERE `ID` = '%d'", playerInfo[id][pBank], playerInfo[id][pSQLID]);
+			update("UPDATE `server_users` SET `Bank` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[id][pBank], playerInfo[id][pSQLID]);
 		}
 		case _H<mbank>: {
 			if(id != INVALID_PLAYER_ID) playerInfo[id][pStoreBank] =  value;
-			update("UPDATE `server_users` SET `MBank` = '%d' WHERE `ID` = '%d'", playerInfo[id][pBank], playerInfo[id][pSQLID]);
+			update("UPDATE `server_users` SET `MBank` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[id][pBank], playerInfo[id][pSQLID]);
 		}
 		case _H<health>: {
 			if(value < 0 || value > 100) return sendPlayerError(playerid, "Result Invalid (0 - 100).");
@@ -880,22 +881,26 @@ CMD:set(playerid, params[]) {
 			if(playerInfo[id][pRespectPoints] == value) return sendPlayerError(playerid, "Jucatorul are deja %d puncte de respect.", value);			
 			playerInfo[id][pRespectPoints] = value;
 			updateLevelBar(id);
-			update("UPDATE `server_users` SET `RespectPoints` = '%d' WHERE `ID` = '%d'", playerInfo[id][pRespectPoints], playerInfo[id][pSQLID]);
+			update("UPDATE `server_users` SET `RespectPoints` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[id][pRespectPoints], playerInfo[id][pSQLID]);
 		}
 		case _H<level>: {
 			if(value < 0 || value > 150) return sendPlayerError(playerid, "Result Invalid (0 - 150).");
-			if(playerInfo[id][pLevel] == value) return sendPlayerError(playerid, "Jucatorul are deja nivel %d.", value);			
+			if(playerInfo[id][pLevel] == value) return sendPlayerError(playerid, "Jucatorul are deja level %d.", value);			
 			playerInfo[id][pLevel] = value;
 			updateLevelBar(id);
 			SetPlayerScore(id, playerInfo[id][pLevel]);
-			update("UPDATE `server_users` SET `Level` = '%d' WHERE `ID` = '%d'", playerInfo[id][pLevel], playerInfo[id][pSQLID]);	
+			update("UPDATE `server_users` SET `Level` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[id][pLevel], playerInfo[id][pSQLID]);	
 		}
 		case _H<skin>: {
 			if(value < 0 || value > 311) return sendPlayerError(playerid, "Result Invalid (0 - 311).");
 			if(playerInfo[id][pSkin] == value) return sendPlayerError(playerid, "Jucatorul are deja skin %d.", value);			
 			setSkin(id, value);
-			update("UPDATE `server_users` SET `Skin` = '%d' WHERE `ID` = '%d'", playerInfo[id][pSkin], playerInfo[id][pSQLID]);					
+			update("UPDATE `server_users` SET `Skin` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[id][pSkin], playerInfo[id][pSQLID]);					
 		}	
+		default: {
+			SCM(playerid, COLOR_GREY, "Optiuni: money, billion, mbank, bank, health, armour, level, respectpoints, skin.");
+			return sendPlayerSyntax(playerid, "/set <name/id> <option> <result>");
+		}
 	}
 	sendAdmin(COLOR_SERVER, "Notice: {ffffff}Admin %s a setat '%s' lui %s in '%d'.", getName(playerid), option, getName(id), value);
 	return true;
@@ -1123,13 +1128,13 @@ CMD:reportmute(playerid, params[]) {
 	if(minutes == 0) {
 		if(playerInfo[id][pReportMute] < gettime()) return sendPlayerError(playerid, "Jucatorul nu are mute pe report.");
 		playerInfo[id][pReportMute] = 0;
-		update("UPDATE `server_users` SET `ReportMute` = '0' WHERE `ID` = '%d'", playerInfo[id][pSQLID]);
+		update("UPDATE `server_users` SET `ReportMute` = '0' WHERE `ID` = '%d' LIMIT 1", playerInfo[id][pSQLID]);
 		sendAdmin(COLOR_SERVER, "Notice Report: {ffffff}Admin %s i-a dat unmute pe report lui %s, motiv: %s.", getName(playerid), getName(id), reason);
 		SCMf(id, COLOR_GREY, "* Admin %s ti-a dat unmute pe report, motiv: %s", getName(playerid), reason);	
 		return true;
 	}
 	playerInfo[id][pReportMute] = (gettime() + (minutes * 60));
-	update("UPDATE `server_users` SET `ReportMute` = '0' WHERE `ID` = '%d'", playerInfo[id][pReportMute], playerInfo[id][pSQLID]);	
+	update("UPDATE `server_users` SET `ReportMute` = '0' WHERE `ID` = '%d' LIMIT 1", playerInfo[id][pReportMute], playerInfo[id][pSQLID]);	
 	sendAdmin(COLOR_SERVER, "Notice Report: {ffffff}Admin %s i-a dat mute %d minute pe report lui %s, motiv: %s.", getName(playerid), minutes, getName(id), reason);
 	SCMf(id, COLOR_GREY, "* Admin %s ti-a dat mute %d minute pe report, motiv: %s", getName(playerid), minutes, reason);	
 	return true;
@@ -1243,10 +1248,7 @@ CMD:ah(playerid, params[]) {
 
 CMD:gotoxyz(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
-	extract params -> new Float:x, Float:y, Float:z, vw, interior; else {
-		sendPlayerSyntax(playerid, "/gotoxyz <x> <y> <z> <virtual world> <interior>");
-		return true;
-	}
+	extract params -> new Float:x, Float:y, Float:z, vw, interior; else return sendPlayerSyntax(playerid, "/gotoxyz <x> <y> <z> <virtual world> <interior>");
 	SetPlayerPos(playerid, x, y, z);
 	SetPlayerInterior(playerid, interior);
 	SetPlayerVirtualWorld(playerid, vw);
@@ -1270,7 +1272,7 @@ CMD:unjail(playerid, params[]) {
 	Iter_Remove(JailedPlayers, userID);
 	sendAdmin(COLOR_SERVER, "Notice:{ffffff} Admin %s a eliberat pe %s din jail. Motiv: %s.", getName(playerid), getName(userID), reason);
 	SCMf(userID, COLOR_LIGHTRED, "* Jail:{ffffff} Ai fost scos din jail de catre admin %s. Motiv: %s.", getName(playerid), reason);
-	update("UPDATE `server_users` SET `Jailed` = '0', `JailTime` = '0' WHERE `ID` = '%d'", playerInfo[userID][pSQLID]);
+	update("UPDATE `server_users` SET `Jailed` = '0', `JailTime` = '0' WHERE `ID` = '%d' LIMIT 1", playerInfo[userID][pSQLID]);
 	return true;
 }
 
@@ -1311,7 +1313,7 @@ CMD:jail(playerid, params[]) {
 	SetPlayerInterior(userID, 0);
 	SetPlayerVirtualWorld(userID, 0);
 	Iter_Add(JailedPlayers, userID);
-	update("UPDATE `server_users` SET `Jailed` = '%d', `JailTime` = '%d', `WantedLevel` = '0' WHERE `ID` = '%d'", playerInfo[userID][pJailed], playerInfo[userID][pJailTime], playerInfo[userID][pSQLID]);
+	update("UPDATE `server_users` SET `Jailed` = '%d', `JailTime` = '%d', `WantedLevel` = '0' WHERE `ID` = '%d' LIMIT 1", playerInfo[userID][pJailed], playerInfo[userID][pJailTime], playerInfo[userID][pSQLID]);
 	sendAdmin(COLOR_SERVER, "Notice: {FFFFFF}%s l-a bagat in inchisoare pe %s pentru %d minute. Motiv: %s.", getName(playerid), getName(userID), minutes, reason);
 	SCMf(userID, COLOR_LIGHTRED, "* Jail:{ffffff} %s ti-a dat jail pentru %d minute. Motiv: %s.", getName(playerid), minutes, reason);
 	return true;
@@ -1344,8 +1346,7 @@ CMD:showfreq(playerid, params[]) {
 
 CMD:speed(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
-	if(playerInfo[playerid][pEnableBoost]) playerInfo[playerid][pEnableBoost] = 1;
-	else playerInfo[playerid][pEnableBoost] = 0;
+	playerInfo[playerid][pEnableBoost] = playerInfo[playerid][pEnableBoost] ? 0 : 1;
 	SCMf(playerid, COLOR_SERVER, "Notice: {ffffff}Speed Boost %s.", playerInfo[playerid][pEnableBoost] ? "activat" : "dezactivat");
 	return true;
 }

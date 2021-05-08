@@ -171,6 +171,7 @@ function onPlayerLogin(playerid)
 
 	if(playerInfo[playerid][pFaction]) {
 		Iter_Add(FactionMembers[playerInfo[playerid][pFaction]], playerid); 
+		sendFactionMessage(playerInfo[playerid][pFaction], COLOR_LIMEGREEN, "** MoonBot: {ffffff}%s s-a connectat pe server (Total members online: %d).", getName(playerid), Iter_Count(FactionMembers[playerInfo[playerid][pFaction]]));		
 	}
 	if(playerInfo[playerid][pWantedLevel]) {
 		Iter_Add(Wanteds, playerid);
@@ -178,7 +179,10 @@ function onPlayerLogin(playerid)
 		wantedTime[playerid] = repeat TimerWanted(playerid);
 		SCM(playerid, COLOR_LIGHTRED, "* Deoarece te-ai deconectat, iar acum ai intrat wanted-ul ti-a fost restaurat.");
 	}
-	if(playerInfo[playerid][pClan]) Iter_Add(TotalClanMembers, playerid);
+	if(playerInfo[playerid][pClan]) {
+		Iter_Add(TotalClanMembers, playerid);
+		sendClanMessage(playerInfo[playerid][pClan], clanInfo[playerInfo[playerid][pClan]][cClanColor], "** MoonBot: {ffffff}%s s-a connectat pe server.", getName(playerid));
+	}
 	if(playerInfo[playerid][pDailyMission][0] == -1 || playerInfo[playerid][pDailyMission][1] == -1) giveQuest(playerid);
 	if(playerInfo[playerid][pWTChannel] > 0) Iter_Add(Freqs[playerInfo[playerid][pWTChannel]], playerid);
 
@@ -196,19 +200,20 @@ function onPlayerLogin(playerid)
 
 	new ipnew[16];
 	GetPlayerIp(playerid, ipnew, 16);
-	mysql_format(SQL, gQuery, sizeof(gQuery), "UPDATE `server_users` SET `LastLogin` = '%s', `LastIP` = '%s', `IP` = '%s' WHERE `ID` = '%d'", getDateTime(), playerInfo[playerid][pIp], ipnew, playerInfo[playerid][pSQLID]);
-	mysql_pquery(SQL, gQuery, "", "");
+	update("UPDATE `server_users` SET `LastLogin` = '%s', `LastIP` = '%s', `IP` = '%s' WHERE `ID` = '%d'", getDateTime(), playerInfo[playerid][pIp], ipnew, playerInfo[playerid][pSQLID]);
 
 	if(playerInfo[playerid][pAdmin]) {
 		Iter_Add(ServerAdmins, playerid);
 		Iter_Add(ServerStaff, playerid);
 		AllowPlayerTeleport(playerid, 1);
 		TextDrawShowForPlayer(playerid, serverInfoTD);
+		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server (Total Staff: %d).", getName(playerid), Iter_Count(ServerStaff));
 	}
 
 	if(playerInfo[playerid][pHelper]) {
 		Iter_Add(ServerHelpers, playerid);
 		Iter_Add(ServerStaff, playerid);
+		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server (Total Staff: %d).", getName(playerid), Iter_Count(ServerStaff));
 	}
 
 	if(playerInfo[playerid][pMute] > 1) {
@@ -228,7 +233,7 @@ function onPlayerLogin(playerid)
 	TextDrawShowForPlayer(playerid, serverNameTD);
 
 	SetPlayerScore(playerid, playerInfo[playerid][pLevel]);
-	GivePlayerMoney(playerid, GetPlayerCash(playerid));
+	updatePlayer(playerid);
 	updateLevelBar(playerid);
 	return true;
 }

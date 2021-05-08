@@ -58,54 +58,41 @@ timer advertismentTimer[totalAds() * 60000](playerid) {
 
 function LoadBusinesses() {
 	if(!cache_num_rows()) return print("Businesses: 0 [From Database]");
-	for(new i = 1, j = cache_num_rows() + 1; i != j; i++) {	
+	for(new i = 1; i < cache_num_rows(); i++) {
 		Iter_Add(ServerBusinesses, i);
 
-		cache_get_value_name(i - 1, "Title", bizInfo[i][bizTitle], 32);
-		cache_get_value_name(i - 1, "Description", bizInfo[i][bizDescription], 64);
-		cache_get_value_name(i - 1, "Owner", bizInfo[i][bizOwner], 32);
-		cache_get_value_name_int(i - 1, "ID", bizInfo[i][bizID]);
-		cache_get_value_name_float(i - 1, "X", bizInfo[i][bizX]);
-		cache_get_value_name_float(i - 1, "Y", bizInfo[i][bizY]);
-		cache_get_value_name_float(i - 1, "Z", bizInfo[i][bizZ]);
-		cache_get_value_name_float(i - 1, "ExtX", bizInfo[i][bizExtX]);
-		cache_get_value_name_float(i - 1, "ExtY", bizInfo[i][bizExtY]);
-		cache_get_value_name_float(i - 1, "ExtZ", bizInfo[i][bizExtZ]);
-		cache_get_value_name_int(i - 1, "Fee", bizInfo[i][bizFee]);
-		cache_get_value_name_int(i - 1, "Static", bizInfo[i][bizStatic]);
-		cache_get_value_name_int(i - 1, "Type", bizInfo[i][bizType]);
-		cache_get_value_name_int(i - 1, "Interior", bizInfo[i][bizInterior]);
-		cache_get_value_name_int(i - 1, "Owned", bizInfo[i][bizOwned]);
-		cache_get_value_name_int(i - 1, "Price", bizInfo[i][bizPrice]);
-		cache_get_value_name_int(i - 1, "OwnerID", bizInfo[i][bizOwnerID]);
-		cache_get_value_name_int(i - 1, "Locked", bizInfo[i][bizLocked]);
-		cache_get_value_name_int(i - 1, "Balance", bizInfo[i][bizBalance]);
-		BusinessUpdate(i);
+		cache_get_value_name(i, "Title", bizInfo[i][bizTitle], 32);
+		cache_get_value_name(i, "Description", bizInfo[i][bizDescription], 64);
+		cache_get_value_name(i, "Owner", bizInfo[i][bizOwner], 32);
+		cache_get_value_name_int(i, "ID", bizInfo[i][bizID]);
+		cache_get_value_name_float(i, "X", bizInfo[i][bizX]);
+		cache_get_value_name_float(i, "Y", bizInfo[i][bizY]);
+		cache_get_value_name_float(i, "Z", bizInfo[i][bizZ]);
+		cache_get_value_name_float(i, "ExtX", bizInfo[i][bizExtX]);
+		cache_get_value_name_float(i, "ExtY", bizInfo[i][bizExtY]);
+		cache_get_value_name_float(i, "ExtZ", bizInfo[i][bizExtZ]);
+		cache_get_value_name_int(i, "Fee", bizInfo[i][bizFee]);
+		cache_get_value_name_int(i, "Static", bizInfo[i][bizStatic]);
+		cache_get_value_name_int(i, "Type", bizInfo[i][bizType]);
+		cache_get_value_name_int(i, "Interior", bizInfo[i][bizInterior]);
+		cache_get_value_name_int(i, "Owned", bizInfo[i][bizOwned]);
+		cache_get_value_name_int(i, "Price", bizInfo[i][bizPrice]);
+		cache_get_value_name_int(i, "OwnerID", bizInfo[i][bizOwnerID]);
+		cache_get_value_name_int(i, "Locked", bizInfo[i][bizLocked]);
+		cache_get_value_name_int(i, "Balance", bizInfo[i][bizBalance]);
+
+		bizInfo[i][bizText] = CreateDynamic3DTextLabel(string_fast("Business ID: %d\nBusiness Title: %s\nBusiness Description: %s\nBusiness Owner: %s\nBusiness Price: $%s\nBusiness Fee: $%s", bizInfo[i][bizID], bizInfo[i][bizTitle], bizInfo[i][bizDescription], bizInfo[i][bizOwner], formatNumber(bizInfo[i][bizPrice]),formatNumber(bizInfo[i][bizFee])), -1, bizInfo[i][bizExtX],bizInfo[i][bizExtY],bizInfo[i][bizExtZ], 20.0, 0xFFFF, 0xFFFF, 0, 0, 0, -1, STREAMER_3D_TEXT_LABEL_SD);
+		bizInfo[i][bizPickup] = CreateDynamicPickup(1239, 23, bizInfo[i][bizExtX],bizInfo[i][bizExtY],bizInfo[i][bizExtZ], 0, 0, -1, STREAMER_PICKUP_SD);					
+		PickInfo[bizInfo[i][bizPickup]][BIZZ] = i;
+		bizInfo[i][bizArea] = CreateDynamicSphere(bizInfo[i][bizExtX],bizInfo[i][bizExtY],bizInfo[i][bizExtZ], 2.0, 0, 0);
+		Streamer_SetIntData(STREAMER_TYPE_AREA, bizInfo[i][bizArea], E_STREAMER_EXTRA_ID, (i + BUSINESS_STREAMER_START));	
+		switch(bizInfo[i][bizType]) {
+			case 1: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],52,0,-1,-1,-1,750.0);
+			case 2: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],17,0,-1,-1,-1,750.0); 
+			case 3: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],16,0,-1,-1,-1,750.0); 
+		}
 	}
 	return printf("Businesses: %d [From Database]", Iter_Count(ServerBusinesses));
-}
-
-BusinessUpdate(businessid) {
-	if(IsValidDynamic3DTextLabel(bizInfo[businessid][bizText]))
-		DestroyDynamic3DTextLabel(bizInfo[businessid][bizText]);
-
-	if(IsValidDynamicPickup(bizInfo[businessid][bizPickup])) 
-		DestroyDynamicPickup(bizInfo[businessid][bizPickup]);
-
-	if(IsValidDynamicArea(bizInfo[businessid][bizArea])) 
-		DestroyDynamicArea(bizInfo[businessid][bizArea]);
-
-	bizInfo[businessid][bizText] = CreateDynamic3DTextLabel(string_fast("Business ID: %d\nBusiness Title: %s\nBusiness Description: %s\nBusiness Owner: %s\nBusiness Price: $%s\nBusiness Fee: $%s", bizInfo[businessid][bizID], bizInfo[businessid][bizTitle], bizInfo[businessid][bizDescription], bizInfo[businessid][bizOwner], formatNumber(bizInfo[businessid][bizPrice]),formatNumber(bizInfo[businessid][bizFee])), -1, bizInfo[businessid][bizExtX],bizInfo[businessid][bizExtY],bizInfo[businessid][bizExtZ], 20.0, 0xFFFF, 0xFFFF, 0, 0, 0, -1, STREAMER_3D_TEXT_LABEL_SD);
-	bizInfo[businessid][bizPickup] = CreateDynamicPickup(1239, 23, bizInfo[businessid][bizExtX],bizInfo[businessid][bizExtY],bizInfo[businessid][bizExtZ], 0, 0, -1, STREAMER_PICKUP_SD);					
-	PickInfo[bizInfo[businessid][bizPickup]][BIZZ] = businessid;
-	bizInfo[businessid][bizArea] = CreateDynamicSphere(bizInfo[businessid][bizExtX],bizInfo[businessid][bizExtY],bizInfo[businessid][bizExtZ], 2.0, 0, 0);
-	Streamer_SetIntData(STREAMER_TYPE_AREA, bizInfo[businessid][bizArea], E_STREAMER_EXTRA_ID, (businessid + BUSINESS_STREAMER_START));	
-	switch(bizInfo[businessid][bizType]) {
-		case 1: CreateDynamicMapIcon(bizInfo[businessid][bizExtX], bizInfo[businessid][bizExtY], bizInfo[businessid][bizExtZ],52,0,-1,-1,-1,750.0);
-		case 2: CreateDynamicMapIcon(bizInfo[businessid][bizExtX], bizInfo[businessid][bizExtY], bizInfo[businessid][bizExtZ],17,0,-1,-1,-1,750.0); 
-		case 3: CreateDynamicMapIcon(bizInfo[businessid][bizExtX], bizInfo[businessid][bizExtY], bizInfo[businessid][bizExtZ],16,0,-1,-1,-1,750.0); 
-	}
-	return true;
 }
 
 Dialog:BIZ_OPTION(playerid, response, listitem) {
@@ -123,9 +110,8 @@ Dialog:BIZ_OPTION_TITLE(playerid, response, listitem, inputtext[]) {
 	new businessid = playerInfo[playerid][pBusinessID];
 	format(bizInfo[businessid][bizTitle], 32, inputtext);
 	SCM(playerid, COLOR_GREY, string_fast("* Business Notice: Ai schimbat titlul afacerii tale, in '%s'.", inputtext));
-	mysql_format(SQL, gQuery, sizeof(gQuery),"UPDATE `server_business` SET `Title`='%s'  WHERE `ID`='%d' LIMIT 1", inputtext, businessid);
-	mysql_tquery(SQL, gQuery, "", "");	
-	BusinessUpdate(businessid);
+	update("UPDATE `server_business` SET `Title`='%s'  WHERE `ID`='%d' LIMIT 1", inputtext, businessid);
+	Update3DTextLabelText(bizInfo[businessid][bizText], COLOR_WHITE, string_fast("Business ID: %d\nBusiness Title: %s\nBusiness Description: %s\nBusiness Owner: %s\nBusiness Price: $%s\nBusiness Fee: $%s", bizInfo[businessid][bizID], bizInfo[businessid][bizTitle], bizInfo[businessid][bizDescription], bizInfo[businessid][bizOwner], formatNumber(bizInfo[businessid][bizPrice]),formatNumber(bizInfo[businessid][bizFee])));
 	return true;
 }
 
@@ -135,9 +121,8 @@ Dialog:BIZ_OPTION_DESCRIPTION(playerid, response, listitem,  inputtext[]) {
 	new businessid = playerInfo[playerid][pBusinessID];
 	format(bizInfo[businessid][bizDescription], 64, inputtext);	
 	SCM(playerid, COLOR_GREY, string_fast("* Business Notice: Ai schimbat descrierea afacerii tale, in '%s'.", inputtext));
-	mysql_format(SQL, gQuery, sizeof(gQuery),"UPDATE `server_business` SET `Description`='%s'  WHERE `ID`='%d' LIMIT 1", inputtext, businessid);
-	mysql_tquery(SQL, gQuery, "", "");
-	BusinessUpdate(businessid);
+	update("UPDATE `server_business` SET `Description`='%s'  WHERE `ID`='%d' LIMIT 1", inputtext, businessid);
+	Update3DTextLabelText(bizInfo[businessid][bizText], COLOR_WHITE, string_fast("Business ID: %d\nBusiness Title: %s\nBusiness Description: %s\nBusiness Owner: %s\nBusiness Price: $%s\nBusiness Fee: $%s", bizInfo[businessid][bizID], bizInfo[businessid][bizTitle], bizInfo[businessid][bizDescription], bizInfo[businessid][bizOwner], formatNumber(bizInfo[businessid][bizPrice]),formatNumber(bizInfo[businessid][bizFee])));
 	return true;
 }
 
@@ -150,9 +135,8 @@ Dialog:SELL_BIZ_STATE(playerid, response) {
 		bizInfo[businessid][bizPrice] = 0;
 		bizInfo[businessid][bizOwnerID] = -1;
 		format(bizInfo[businessid][bizOwner], 32, "AdmBot");
-		mysql_format(SQL, gQuery, sizeof(gQuery),"UPDATE `server_business` SET `Owned`='0',`Owner`='AdmBot',`OwnerID`='-1',`Price`='0' WHERE `ID`='%d'",businessid);
-		mysql_tquery(SQL, gQuery, "", "");	
-		BusinessUpdate(businessid);	
+		update("UPDATE `server_business` SET `Owned`='0',`Owner`='AdmBot',`OwnerID`='-1',`Price`='0' WHERE `ID`='%d' LIMIT 1",businessid);
+		Update3DTextLabelText(bizInfo[businessid][bizText], COLOR_WHITE, string_fast("Business ID: %d\nBusiness Title: %s\nBusiness Description: %s\nBusiness Owner: %s\nBusiness Price: $%s\nBusiness Fee: $%s", bizInfo[businessid][bizID], bizInfo[businessid][bizTitle], bizInfo[businessid][bizDescription], bizInfo[businessid][bizOwner], formatNumber(bizInfo[businessid][bizPrice]),formatNumber(bizInfo[businessid][bizFee])));
 		GivePlayerCash(playerid, 1, cash);
 		playerInfo[playerid][pBusiness] = 0;
 		playerInfo[playerid][pBusinessID] = -1;
@@ -164,10 +148,8 @@ Dialog:SELL_BIZ_STATE(playerid, response) {
 
 Dialog:BIZ_OPTION_ADMIN(playerid, response, listitem) {
 	if(!response) return true;
-	switch(listitem) {
-		case 0: Dialog_Show(playerid, BIZ_OPTION_TITLEADMIN, DIALOG_STYLE_INPUT, "Business: Title", "Introdu mai jos ce titlu doresti sa aiba afacerea", "Ok", "Cancel");
-		case 1: Dialog_Show(playerid, BIZ_OPTION_DESCADMIN, DIALOG_STYLE_INPUT, "Business: Description", "Introdu mai jos ce descriere doresti sa aiba afacerea", "Ok", "Cancel");
-	}
+	if(listitem == 0) Dialog_Show(playerid, BIZ_OPTION_TITLEADMIN, DIALOG_STYLE_INPUT, "Business: Title", "Introdu mai jos ce titlu doresti sa aiba afacerea", "Ok", "Cancel");
+	else if(listitem == 1) Dialog_Show(playerid, BIZ_OPTION_DESCADMIN, DIALOG_STYLE_INPUT, "Business: Description", "Introdu mai jos ce descriere doresti sa aiba afacerea", "Ok", "Cancel");
 	return true;
 }
 
@@ -175,9 +157,8 @@ Dialog:BIZ_OPTION_TITLEADMIN(playerid, response, listitem, inputtext[]) {
 	if(!response) return true;
 	if(strlen(inputtext) < 3 || strlen(inputtext) > 32) return Dialog_Show(playerid, BIZ_OPTION_TITLEADMIN, DIALOG_STYLE_INPUT, "Business: Option", "Introdu mai jos ce titlu doresti sa aiba afacerea\nMinim 3 caractere / Maxim 32 caractere.", "Ok", "Cancel");
 	format(bizInfo[IDSelected[playerid]][bizTitle], 32, inputtext);
-	mysql_format(SQL, gQuery, sizeof(gQuery),"UPDATE `server_business` SET `Title`='%s'  WHERE `ID`='%d' LIMIT 1", inputtext, IDSelected[playerid]);
-	mysql_tquery(SQL, gQuery, "", "");	
-	BusinessUpdate(IDSelected[playerid]);	
+	update("UPDATE `server_business` SET `Title`='%s'  WHERE `ID`='%d' LIMIT 1", inputtext, IDSelected[playerid]);
+	Update3DTextLabelText(bizInfo[IDSelected[playerid]][bizText], COLOR_WHITE, string_fast("Business ID: %d\nBusiness Title: %s\nBusiness Description: %s\nBusiness Owner: %s\nBusiness Price: $%s\nBusiness Fee: $%s", bizInfo[IDSelected[playerid]][bizID], bizInfo[IDSelected[playerid]][bizTitle], bizInfo[IDSelected[playerid]][bizDescription], bizInfo[IDSelected[playerid]][bizOwner], formatNumber(bizInfo[IDSelected[playerid]][bizPrice]),formatNumber(bizInfo[IDSelected[playerid]][bizFee])));
 	IDSelected[playerid] = -1;
 	return true;
 }
@@ -186,9 +167,8 @@ Dialog:BIZ_OPTION_DESCADMIN(playerid, response, listitem, inputtext[]) {
 	if(!response) return true;
 	if(strlen(inputtext) < 3 || strlen(inputtext) > 64) return Dialog_Show(playerid, BIZ_OPTION_TITLEADMIN, DIALOG_STYLE_INPUT, "Business: Option", "Introdu mai jos ce titlu doresti sa aiba afacerea\nMinim 3 caractere / Maxim 64 caractere.", "Ok", "Cancel");
 	format(bizInfo[IDSelected[playerid]][bizDescription], 64, inputtext);
-	mysql_format(SQL, gQuery, sizeof(gQuery),"UPDATE `server_business` SET `Description`='%s'  WHERE `ID`='%d' LIMIT 1", inputtext, IDSelected[playerid]);
-	mysql_tquery(SQL, gQuery, "", "");	
-	BusinessUpdate(IDSelected[playerid]);	
+	update("UPDATE `server_business` SET `Description`='%s'  WHERE `ID`='%d' LIMIT 1", inputtext, IDSelected[playerid]);
+	Update3DTextLabelText(bizInfo[IDSelected[playerid]][bizText], COLOR_WHITE, string_fast("Business ID: %d\nBusiness Title: %s\nBusiness Description: %s\nBusiness Owner: %s\nBusiness Price: $%s\nBusiness Fee: $%s", bizInfo[IDSelected[playerid]][bizID], bizInfo[IDSelected[playerid]][bizTitle], bizInfo[IDSelected[playerid]][bizDescription], bizInfo[IDSelected[playerid]][bizOwner], formatNumber(bizInfo[IDSelected[playerid]][bizPrice]),formatNumber(bizInfo[IDSelected[playerid]][bizFee])));
 	IDSelected[playerid] = -1;
 	return true;
 }
@@ -290,7 +270,7 @@ CMD:buybusiness(playerid, params[]) {
 			playerInfo[playerid][pBusinessID] = playerInfo[playerid][areaBizz];
 			bizInfo[playerInfo[playerid][areaBizz]][bizOwned] = 1;
 			bizInfo[playerInfo[playerid][areaBizz]][bizPrice] = 0;
-			BusinessUpdate(playerInfo[playerid][areaBizz]);
+			Update3DTextLabelText(bizInfo[playerInfo[playerid][areaBizz]][bizText], COLOR_WHITE, string_fast("Business ID: %d\nBusiness Title: %s\nBusiness Description: %s\nBusiness Owner: %s\nBusiness Price: $%s\nBusiness Fee: $%s", bizInfo[playerInfo[playerid][areaBizz]][bizID], bizInfo[playerInfo[playerid][areaBizz]][bizTitle], bizInfo[playerInfo[playerid][areaBizz]][bizDescription], bizInfo[playerInfo[playerid][areaBizz]][bizOwner], formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizPrice]),formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizFee])));
 			update("UPDATE `server_users` SET `Business` = '1', `BusinessID` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][areaBizz], playerInfo[playerid][pSQLID]);
 			update("UPDATE `server_business` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d'",bizInfo[playerInfo[playerid][areaBizz]][bizOwner], playerInfo[playerid][pSQLID], playerInfo[playerid][areaBizz]);
 		}
@@ -303,7 +283,7 @@ CMD:buybusiness(playerid, params[]) {
 			GivePlayerCash(playerid, 0, bizInfo[playerInfo[playerid][areaBizz]][bizPrice]);
 			bizInfo[playerInfo[playerid][areaBizz]][bizOwned] = 1;
 			bizInfo[playerInfo[playerid][areaBizz]][bizPrice] = 0;
-			BusinessUpdate(playerInfo[playerid][areaBizz]);
+			Update3DTextLabelText(bizInfo[playerInfo[playerid][areaBizz]][bizText], COLOR_WHITE, string_fast("Business ID: %d\nBusiness Title: %s\nBusiness Description: %s\nBusiness Owner: %s\nBusiness Price: $%s\nBusiness Fee: $%s", bizInfo[playerInfo[playerid][areaBizz]][bizID], bizInfo[playerInfo[playerid][areaBizz]][bizTitle], bizInfo[playerInfo[playerid][areaBizz]][bizDescription], bizInfo[playerInfo[playerid][areaBizz]][bizOwner], formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizPrice]),formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizFee])));
 			update("UPDATE `server_users` SET `Money` = '%d', `MStore` = '%d', `Business` = '1', `BusinessID` = '%d' WHERE `ID` = '%d'", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][areaBizz], playerInfo[playerid][pSQLID]);
 			update("UPDATE `server_business` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d'",bizInfo[playerInfo[playerid][areaBizz]][bizOwner],playerInfo[playerid][pSQLID], playerInfo[playerid][areaBizz]);
 		}
@@ -341,8 +321,7 @@ CMD:bizwithdraw(playerid, params[]) {
 	if(bizInfo[businessid][bizBalance] < suma) return sendPlayerError(playerid, "Nu ai suma aceasta de bani in balanta afacerii tale.");
 	bizInfo[businessid][bizBalance] -= suma;
 	GivePlayerCash(playerid, 1, suma);
-	mysql_format(SQL, gQuery, sizeof(gQuery),"UPDATE `server_business` SET `Balance`='%d'  WHERE `ID`='%d' LIMIT 1", bizInfo[businessid][bizBalance], businessid);
-	mysql_tquery(SQL, gQuery, "", "");	
+	update("UPDATE `server_business` SET `Balance`='%d'  WHERE `ID`='%d' LIMIT 1", bizInfo[businessid][bizBalance], businessid);
 	SCM(playerid, COLOR_GREY, string_fast("* Business Notice: Ai retras din balanta afacerii tale, $%s. Iar acum balanta afacerii tale este de $%s.", formatNumber(suma), formatNumber(bizInfo[businessid][bizBalance])));	
 	return true;
 }
@@ -356,8 +335,7 @@ CMD:bizdeposit(playerid, params[]) {
 	if(GetPlayerCash(playerid) < suma) return sendPlayerError(playerid, "Nu ai suma aceasta de bani, pentru a adauga in balanta afacerii tale.");
 	bizInfo[businessid][bizBalance] += suma;
 	GivePlayerCash(playerid, 0, suma);
-	mysql_format(SQL, gQuery, sizeof(gQuery),"UPDATE `server_business` SET `Balance`='%d'  WHERE `ID`='%d' LIMIT 1", bizInfo[businessid][bizBalance], businessid);
-	mysql_tquery(SQL, gQuery, "", "");	
+	update("UPDATE `server_business` SET `Balance`='%d'  WHERE `ID`='%d' LIMIT 1", bizInfo[businessid][bizBalance], businessid);
 	SCM(playerid, COLOR_GREY, string_fast("* Business Notice: Ai bagat in balanta afacerii tale, $%s. Iar acum balanta afacerii tale este de $%s.", formatNumber(suma), formatNumber(bizInfo[businessid][bizBalance])));	
 	return true;
 }
@@ -382,9 +360,7 @@ CMD:bizlock(playerid, params[]) {
 		bizInfo[businessid][bizLocked] = 0;
 		SCM(playerid, COLOR_GREY, "* Business Notice: Ai deschis afacerea ta, acum playerii pot intra.");
 	}
-	gQuery[0] = (EOS);
-	mysql_format(SQL, gQuery, sizeof(gQuery),"UPDATE `server_business` SET `Locked`='%d'  WHERE `ID`='%d' LIMIT 1", bizInfo[businessid][bizLocked], businessid);
-	mysql_tquery(SQL, gQuery, "", "");	
+	update("UPDATE `server_business` SET `Locked`='%d'  WHERE `ID`='%d' LIMIT 1", bizInfo[businessid][bizLocked], businessid);
 	return true;
 }
 
@@ -394,11 +370,9 @@ CMD:sellbiz(playerid, params[]) {
 	new businessid = playerInfo[playerid][pBusinessID], suma;
 	if(sscanf(params, "d", suma)) return sendPlayerSyntax(playerid, "/sellbiz <price>");
 	bizInfo[businessid][bizPrice] = suma;
-	SCM(playerid, COLOR_GREY, string_fast("* Business Notice: Ai pus la vanzare afacerea ta cu pretul $%s. Acum orice player iti poate cumpara afacerea.", formatNumber(suma)));
-	gQuery[0] = (EOS);
-	mysql_format(SQL, gQuery, sizeof(gQuery),"UPDATE `server_business` SET `Price`='%d'  WHERE `ID`='%d' LIMIT 1", bizInfo[businessid][bizPrice], businessid);
-	mysql_tquery(SQL, gQuery, "", "");	
-	BusinessUpdate(businessid);
+	SCMf(playerid, COLOR_GREY, "* Business Notice: Ai pus la vanzare afacerea ta cu pretul $%s. Acum orice player iti poate cumpara afacerea.", formatNumber(suma));
+	update("UPDATE `server_business` SET `Price`='%d'  WHERE `ID`='%d' LIMIT 1", bizInfo[businessid][bizPrice], businessid);
+	Update3DTextLabelText(bizInfo[businessid][bizText], COLOR_WHITE, string_fast("Business ID: %d\nBusiness Title: %s\nBusiness Description: %s\nBusiness Owner: %s\nBusiness Price: $%s\nBusiness Fee: $%s", bizInfo[businessid][bizID], bizInfo[businessid][bizTitle], bizInfo[businessid][bizDescription], bizInfo[businessid][bizOwner], formatNumber(bizInfo[businessid][bizPrice]),formatNumber(bizInfo[businessid][bizFee])));
 	return true;
 }
 
@@ -509,3 +483,74 @@ CMD:deletemyad(playerid, params[]) {
 	return true;
 }
 
+CMD:createbusiness(playerid, params[], help) {
+	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
+	if(Iter_Count(ServerBusinesses) >= MAX_BUSINESSES) return sendPlayerError(playerid, "Database:Limita de business-uri a fost atinsa !");
+	extract params -> new string:type[32], level, price, bizbalance, locked; else {
+		SCM(playerid, COLOR_GREY, "Optiuni Type: Bank, Shop, Bar, CNN. | Price: 0$ - not for sale ; > 0$ for sale");
+		return sendPlayerSyntax(playerid, "/createbusiness <type> <level> <price> <biz balance> <locked (0 - no | 1 - yes)");
+	}
+	if(!(1 <= level <= 30)) return sendPlayerError(playerid, "Invalid level (1 - 30).");
+	if(!(0 <= price <= 100000000)) return sendPlayerError(playerid, "Invalid price (0$ - 100,000,000$).");
+	if(!(0 <= locked <= 1)) return sendPlayerError(playerid, "Invalid locked (0 - no | 1 - yes).");
+	new i = Iter_Free(ServerBusinesses);
+	Iter_Add(ServerBusinesses, i);
+	bizInfo[i][bizID] = i;
+	bizInfo[i][bizLocked] = locked;
+	GetPlayerPos(playerid, bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ]);
+	switch(YHash(type)) {
+		case _H<bank>: {
+			bizInfo[i][bizType] = 1; 
+			bizInfo[i][bizX] = 2315.952880; 
+			bizInfo[i][bizY] = -1.618174; 
+			bizInfo[i][bizZ] = 26.742187; 
+			bizInfo[i][bizInterior] = 0; 
+			bizInfo[i][bizStatic] = 0;
+		}
+		case _H<shop>: {
+			bizInfo[i][bizType] = 2; 
+			bizInfo[i][bizX] = -25.884498; 
+			bizInfo[i][bizY] = -185.868988; 
+			bizInfo[i][bizZ] = 1003.546875; 
+			bizInfo[i][bizInterior] = 17; 
+			bizInfo[i][bizStatic] = 0;
+		}
+		case _H<bar>: { 
+			bizInfo[i][bizType] = 3; 
+			bizInfo[i][bizX] = 501.980987; 
+			bizInfo[i][bizY] = -69.150199; 
+			bizInfo[i][bizZ] = 998.757812;
+			bizInfo[i][bizInterior] = 11; 
+			bizInfo[i][bizStatic] = 0;
+		}
+		case _H<cnn>: { 
+			bizInfo[i][bizType] = 4; 
+			bizInfo[i][bizX] = 0; 
+			bizInfo[i][bizY] = 0; 
+			bizInfo[i][bizZ] = 0; 
+			bizInfo[i][bizInterior] = 0; 
+			bizInfo[i][bizStatic] = 1;
+		}
+		default: {
+			SCM(playerid, COLOR_GREY, "Optiuni Type: Bank, Shop, Bar, CNN. | Price: 0$ - not for sale ; > 0$ for sale");
+			return sendPlayerSyntax(playerid, "/createbusiness <type> <level> <price> <biz balance> <locked (0 - no | 1 - yes)");
+		}
+	}
+	format(bizInfo[i][bizOwner], 32, "Admbot");
+	format(bizInfo[i][bizDescription], 64, "A new business");
+	format(bizInfo[i][bizTitle], 32, "A new business %s", type);
+	bizInfo[i][bizFee] = 500; bizInfo[i][bizOwned] = 1; bizInfo[i][bizPrice] = price; bizInfo[i][bizOwnerID] = -1; bizInfo[i][bizBalance] = bizBalance; 
+	bizInfo[i][bizText] = CreateDynamic3DTextLabel(string_fast("Business ID: %d\nBusiness Title: %s\nBusiness Description: %s\nBusiness Owner: %s\nBusiness Price: $%s\nBusiness Fee: $%s", bizInfo[i][bizID], bizInfo[i][bizTitle], bizInfo[i][bizDescription], bizInfo[i][bizOwner], formatNumber(bizInfo[i][bizPrice]),formatNumber(bizInfo[i][bizFee])), -1, bizInfo[i][bizExtX],bizInfo[i][bizExtY],bizInfo[i][bizExtZ], 20.0, 0xFFFF, 0xFFFF, 0, 0, 0, -1, STREAMER_3D_TEXT_LABEL_SD);
+	bizInfo[i][bizPickup] = CreateDynamicPickup(1239, 23, bizInfo[i][bizExtX],bizInfo[i][bizExtY],bizInfo[i][bizExtZ], 0, 0, -1, STREAMER_PICKUP_SD);					
+	PickInfo[bizInfo[i][bizPickup]][BIZZ] = i;
+	bizInfo[i][bizArea] = CreateDynamicSphere(bizInfo[i][bizExtX],bizInfo[i][bizExtY],bizInfo[i][bizExtZ], 2.0, 0, 0);
+	Streamer_SetIntData(STREAMER_TYPE_AREA, bizInfo[i][bizArea], E_STREAMER_EXTRA_ID, (i + BUSINESS_STREAMER_START));	
+	switch(bizInfo[i][bizType]) {
+		case 1: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],52,0,-1,-1,-1,750.0);
+		case 2: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],17,0,-1,-1,-1,750.0); 
+		case 3: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],16,0,-1,-1,-1,750.0); 
+	}
+	update("INSERT INTO `server_business` (`Title`, `Description`, `Owner`, `X`, `Y`, `Z`, `ExtX`, `ExtY`, `ExtZ`, `Fee`, `Static`, `Type`, `Interior`, `Owned`, `Price`, `OwnerID`, `Locked`, `Balance`) VALUES('%s', '%s', '%s', '%.2f', '%.2f', '%.2f', '%.2f', '%.2f', '%.2f', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d') LIMIT 1",bizInfo[i][bizTitle], bizInfo[i][bizDescription], bizInfo[i][bizOwner], bizInfo[i][bizX], bizInfo[i][bizY], bizInfo[i][bizZ], bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ], bizInfo[i][bizFee], bizInfo[i][bizStatic], bizInfo[i][bizType], bizInfo[i][bizInterior], bizInfo[i][bizOwned], bizInfo[i][bizPrice], bizInfo[i][bizOwnerID], bizInfo[i][bizLocked], bizInfo[i][bizBalance]);
+	SCMf(playerid, COLOR_SERVER, "* Notice: {ffffff}Ai creat un business de tip '%s' (id: %d | level: %d | price: $%s | biz balance: $%s | locked: %s).", type, i, level, formatNumber(price), formatNumber(bizBalance), locked ? "yes" : "no");
+	return true;
+}
