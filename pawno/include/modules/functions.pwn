@@ -1,6 +1,6 @@
 function MySQLLoad() {
 	mysql_log(ERROR | WARNING);
-	switch(Connection) {
+	switch(MYSQL) {
 		case 0: { // LocalHost
 			SQL = mysql_connect("localhost", "root", "", "from0");
 		}
@@ -12,6 +12,7 @@ function MySQLLoad() {
 		mysql_close(SQL);
 		destroyServerTextDraws();
 		SetGameModeText("MYSQL Error");
+		SendRconCommand("password MYSQLError");
 		print("[MYSQL] Baza de date, nu s-a conectat.");
 	}
 	else {
@@ -27,10 +28,33 @@ function MySQLLoad() {
 		mysql_tquery(SQL, "SELECT * FROM `server_safes`", "LoadSafes", "");
 		mysql_tquery(SQL, "SELECT * FROM `server_clans`", "LoadClans", "");
 		print("[MYSQL] Baza de date, s-a conectat.");
-		SetGameModeText("RPG V: 1.6.26");
+		SetGameModeText("RPG V: 1.6.31");
 		serverTextDraws();
 	}
 	return true;
+}
+
+function MyHttpResponse(playerid, response_code, data[]) {
+	if(response_code == 200) {
+		switch(YHash(data)) {
+			case _H<Y>: {
+				sendAdmin(COLOR_LIGHTRED, "** MoonBot: {ffffff}%s a incercat sa se conecteze cu VPN.", getName(playerid));
+				SCM(playerid, COLOR_LIGHTRED, "** MoonBot: {ffffff}Trebuie sa scoti VPN, pentru a te putea connecta pe acest server.");
+				defer kickEx(playerid);
+			}
+			case _H<X>: sendAdmin(COLOR_LIGHTRED, "** MoonBot: {ffffff}%s posibil sa se fii conectat cu VPN.", getName(playerid));
+			case _H<E>: sendAdmin(COLOR_LIGHTRED, "** MoonBot: {ffffff}%s are un ip gresit, posibil sa se fii conectat cu VPN.", getName(playerid));
+			case _H<N>: {
+				GameTextForPlayer(playerid, "~p~YOUR ACCOUNT IT'S GOOD", 1000, 3);
+				gQuery[0] = (EOS);
+				mysql_format(SQL, gQuery, 128, "SELECT * FROM `server_bans` WHERE `Active` = '1' AND `PlayerName` = '%s' LIMIT 1", getName(playerid));
+				mysql_tquery(SQL, gQuery, "checkPlayerBan", "d", playerid);
+			}
+			default: printf("[ANTI-VPN] Eroare de request: %d", response_code);
+		}
+	}
+    else printf("[ANTI-VPN] HTTP ERROR: %d", response_code);
+	return 1;
 }
 
 function checkPlayerBan(playerid) {
@@ -91,8 +115,6 @@ function onPlayerLogin(playerid)
 	cache_get_value_name(0, "Password", playerInfo[playerid][pPassword], 65);
 	cache_get_value_name(0, "EMail", playerInfo[playerid][pEMail], 128);
 	cache_get_value_name(0, "IP", playerInfo[playerid][pIp], 16);
-	cache_get_value_name(0, "LastIP", playerInfo[playerid][pLastIp], 16);
-
 
 	cache_get_value_name_int(0, "ID", playerInfo[playerid][pSQLID]);
 	cache_get_value_name_bool(0, "Tutorial", playerInfo[playerid][pTutorial]);
@@ -235,6 +257,7 @@ function onPlayerLogin(playerid)
 	SetPlayerScore(playerid, playerInfo[playerid][pLevel]);
 	updatePlayer(playerid);
 	updateLevelBar(playerid);
+
 	return true;
 }
 

@@ -16,7 +16,7 @@
 // B::::::::::::::::B  l::::::l a::::::::::aa:::a  cc:::::::::::::::ck::::::k   k:::::k M::::::M               M::::::M oo:::::::::::oo  oo:::::::::::oo   n::::n    n::::n//
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define MYSQL 0 // 0 - local | 1 - host
+#define MYSQL 1 // 0 - local | 1 - host
 
 #include <a_samp>
 #include <a_zones>
@@ -32,6 +32,7 @@
 
 #include <Pawn.CMD>
 #include <a_mysql>
+#include <a_http>
 #include <sscanf2>
 #include <playerprogress>
 #include <timestamptodate>
@@ -43,7 +44,7 @@
 #include <modules\defines.pwn>
 #include <modules\enums.pwn>
 #include <modules\variables.pwn>
-// #include <modules\ac.pwn> // anti-cheats/
+// #include <modules\ac.pwn> // anti-cheats
 #include <easyDialog>
 #include <modules\stocks.pwn>
 #include <modules\dialogs.pwn>
@@ -131,19 +132,24 @@ public OnPlayerRequestClass(playerid, classid)
 
 	InterpolateCameraPos(playerid, 1992.012207, 486.498046, 227.473190, 1141.062500, -1813.197387, 56.129741, 15000);
 	InterpolateCameraLookAt(playerid, 1989.800537, 482.112274, 226.538528, 1139.465698, -1808.715454, 54.592548, 15000);
-
-	gQuery[0] = (EOS);
-	mysql_format(SQL, gQuery, 128, "SELECT * FROM `server_bans` WHERE `Active` = '1' AND `PlayerName` = '%s' LIMIT 1", getName(playerid));
-	mysql_tquery(SQL, gQuery, "checkPlayerBan", "d", playerid);
 	return true;
 }
 
 public OnPlayerConnect(playerid)
 {
 	resetVars(playerid);
-	removeMaps(playerid);
-	// LoadRemoveObjects(playerid);
+	removeMaps(playerid);	
+	GameTextForPlayer(playerid, "PLEASE WAIT~n~CHECKING YOUR ~p~ACCOUNT", 10000, 5);
 
+	switch(MYSQL) {
+		case 0: {
+			GameTextForPlayer(playerid, "~p~YOUR ACCOUNT IT'S GOOD", 1000, 3);
+			gQuery[0] = (EOS);
+			mysql_format(SQL, gQuery, 128, "SELECT * FROM `server_bans` WHERE `Active` = '1' AND `PlayerName` = '%s' LIMIT 1", getName(playerid));
+			mysql_tquery(SQL, gQuery, "checkPlayerBan", "d", playerid);
+		}
+		default: HTTP(playerid, HTTP_GET, string_fast("blackbox.ipinfo.app/lookup/%s", playerInfo[playerid][pLastIp]), "", "MyHttpResponse");
+	}
 	return true;
 }
 
@@ -197,6 +203,7 @@ public OnPlayerDisconnect(playerid, reason)
 
 public OnPlayerSpawn(playerid)
 {
+	printf("---------------%d", playerid);
 	TogglePlayerControllable(playerid, true);
 	SetPlayerFacingAngle(playerid, 180.0000);
 	SetCameraBehindPlayer(playerid);

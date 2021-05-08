@@ -746,6 +746,7 @@ stock isPlayerLogged(playerid)
 stock resetVars(playerid)
 {
 	GetPlayerName(playerid, playerInfo[playerid][pName], MAX_PLAYER_NAME);
+	GetPlayerIp(playerid, playerInfo[playerid][pLastIp], 16);
 		
 	playerInfo[playerid][pLogged] = false;
 	playerInfo[playerid][pLoginEnabled] = false;
