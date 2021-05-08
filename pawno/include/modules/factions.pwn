@@ -868,12 +868,14 @@ CMD:wanteds(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Trebuie sa fi logat pentru a putea folosi aceasta comanda.");
 	if(Iter_Count(Wanteds) == 0) return sendPlayerError(playerid, "Nu sunt suspecti momentan.");
 	gString[0] = (EOS);
+	new title[25];
+	format(title, sizeof title, "Player with Wanted: %d", Iter_Count(Wanteds));
 	strcat(gString, "Name (ID)\tWantedLevel\tChased by");
 	foreach(new i : Wanteds) {
 		strcat(gString, string_fast("%s\n%s (%d)\t%d\t%d cops\n", gString, getName(i), i, playerInfo[i][pWantedLevel], chasedBy(i)));
 		playerInfo[playerid][pSelectedItem] = i;
 	}
-	Dialog_Show(playerid, DIALOG_WANTEDS, DIALOG_STYLE_TABLIST_HEADERS, string_fast("Player with Wanted: %d", Iter_Count(Wanteds)), gString, "Ok", "Cancel");
+	Dialog_Show(playerid, DIALOG_WANTEDS, DIALOG_STYLE_TABLIST_HEADERS, title, gString, "Ok", "Cancel");
 	return true;
 }
 

@@ -233,11 +233,13 @@ CMD:setadmin(playerid, params[])
 
 	if(Iter_Contains(ServerAdmins, userID) && !admin) {
 		Iter_Remove(ServerAdmins, userID);
+		Iter_Remove(ServerStaff, userID);
 		AllowPlayerTeleport(playerid, 0);
 	} 
 
 	if(!Iter_Contains(ServerAdmins, userID) && admin) {
 		Iter_Add(ServerAdmins, userID);
+		Iter_Add(ServerStaff, userID);
 		AllowPlayerTeleport(playerid, 1);
 	}
 

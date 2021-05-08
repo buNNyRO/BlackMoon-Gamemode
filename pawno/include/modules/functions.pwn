@@ -27,7 +27,7 @@ function MySQLLoad() {
 		mysql_tquery(SQL, "SELECT * FROM `server_safes`", "LoadSafes", "");
 		mysql_tquery(SQL, "SELECT * FROM `server_clans`", "LoadClans", "");
 		print("[MYSQL] Baza de date, s-a conectat.");
-		SetGameModeText("RPG V: 1.6.26");
+		SetGameModeText("RPG V: 1.6.32");
 		serverTextDraws();
 	}
 	return true;
@@ -207,13 +207,13 @@ function onPlayerLogin(playerid)
 		Iter_Add(ServerStaff, playerid);
 		AllowPlayerTeleport(playerid, 1);
 		TextDrawShowForPlayer(playerid, serverInfoTD);
-		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server (Total Staff: %d).", getName(playerid), Iter_Count(ServerStaff));
+		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server (Total Staff: %d (%d admins, %d helpers)).", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
 	}
 
 	if(playerInfo[playerid][pHelper]) {
 		Iter_Add(ServerHelpers, playerid);
 		Iter_Add(ServerStaff, playerid);
-		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server (Total Staff: %d).", getName(playerid), Iter_Count(ServerStaff));
+		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server (Total Staff: %d (%d admins, %d helpers)).", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
 	}
 
 	if(playerInfo[playerid][pMute] > 1) {
@@ -897,6 +897,7 @@ function removeFunction(playerid, text[]) {
 	if(playerInfo[playerid][pAdmin] != 0) {
 		playerInfo[playerid][pAdmin] = 0;
 		Iter_Remove(ServerAdmins, playerid);
+		Iter_Remove(ServerStaff, playerid);
 		if(playerInfo[playerid][pFlymode] == true) {
 			playerInfo[playerid][pFlymode] = false;
 			StopFly(playerid);
@@ -908,6 +909,7 @@ function removeFunction(playerid, text[]) {
 	if(playerInfo[playerid][pHelper] != 0) {
 		playerInfo[playerid][pHelper] = 0;
 		Iter_Remove(ServerHelpers, playerid);
+		Iter_Remove(ServerStaff, playerid);
 		if(HelperBusy[playerid] > -1) {
 			HelperAtribut[HelperBusy[playerid]] = -1;
 			HelperBusy[playerid] = -1;
@@ -924,16 +926,16 @@ function removeFunction(playerid, text[]) {
 			vehiclePlayerID[playerVehicle[playerid]] = -1;
 			vehicleRank[playerVehicle[playerid]] = 0;
 			playerVehicle[playerid] = -1;
+			if(IsValidObject(svfVehicleObjects[0])) DestroyObject(svfVehicleObjects[0]); 
+			if(IsValidObject(svfVehicleObjects[1])) DestroyObject(svfVehicleObjects[1]);
 		}
-		playerInfo[playerid][pSpawnChange] = 1;
 		playerInfo[playerid][pFaction] = 0;
 		playerInfo[playerid][pFactionRank] = 0;
 		playerInfo[playerid][pFactionAge] = 0;
 		playerInfo[playerid][pFactionWarns] = 0;	
 		playerInfo[playerid][pFactionPunish] = 30;
 		if(playerInfo[playerid][pFactionDuty]) playerInfo[playerid][pFactionDuty] = 0;
-		update("UPDATE `server_users` SET `Faction` = '0', `FRank` = '7', `FAge` = '0', `FWarns` = '0', `FPunish` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pFactionPunish], playerInfo[playerid][pSQLID]);
-		whenPlayerLeaveFaction(playerid);
+		update("UPDATE `server_users` SET `SpawnChange` = '1', `Faction` = '0', `FRank` = '7', `FAge` = '0', `FWarns` = '0', `FPunish` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pFactionPunish], playerInfo[playerid][pSQLID]);
 		sendStaff(COLOR_LIGHTRED, "* Remove Notice: %s a facut reclama folosind intermediul functiei. Acesta a luat remove automat.", getName(playerid));
 		sendStaff(COLOR_LIGHTRED,"* Remove Notice: Text '%s'.", text);
 	}

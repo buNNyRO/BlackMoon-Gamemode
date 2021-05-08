@@ -21,6 +21,7 @@
 #include <a_samp>
 #include <a_zones>
 #include <beaZone>
+#include <mobile>
 
 #include <YSI\y_iterate>
 #include <profiler>
@@ -132,9 +133,7 @@ public OnPlayerRequestClass(playerid, classid)
 	InterpolateCameraPos(playerid, 1992.012207, 486.498046, 227.473190, 1141.062500, -1813.197387, 56.129741, 15000);
 	InterpolateCameraLookAt(playerid, 1989.800537, 482.112274, 226.538528, 1139.465698, -1808.715454, 54.592548, 15000);
 
-	gQuery[0] = (EOS);
-	mysql_format(SQL, gQuery, 128, "SELECT * FROM `server_bans` WHERE `Active` = '1' AND `PlayerName` = '%s' LIMIT 1", getName(playerid));
-	mysql_tquery(SQL, gQuery, "checkPlayerBan", "d", playerid);
+	mysql_tquery(SQL, string_fast("SELECT * FROM `server_bans` WHERE `Active` = '1' AND `PlayerName` = '%s' LIMIT 1", getName(playerid)), "checkPlayerBan", "d", playerid);
 	return true;
 }
 
@@ -157,7 +156,7 @@ public OnPlayerDisconnect(playerid, reason)
 
 	if(Iter_Contains(ServerStaff, playerid)) {
 		Iter_Remove(ServerStaff, playerid);
-		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a deconnectat de pe server (Total Staff: %d).", getName(playerid), Iter_Count(ServerStaff));
+		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a deconnectat de pe server (Total Staff: %d (%d admins, %d helpers)).", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
 	}
 
 	if(Iter_Contains(MutedPlayers, playerid))
@@ -294,6 +293,7 @@ public OnPlayerDeath(playerid, killerid)
 {
 	if(Working[playerid]) CancelJob(playerid, Working[playerid]);
 	if(playerInfo[playerid][pOnTurf] == 1) playerInfo[playerid][pOnTurf] = 0;
+	if(playerInfo[playerid][pFactionDuty]) playerInfo[playerid][pFactionDuty] = 0;
 	if(playerInfo[playerid][pWantedLevel] != 0) {
 		new count = 0, names[180];	
 		foreach(new i : loggedPlayers) {
@@ -486,7 +486,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 				SetPlayerInterior(playerid, bizInfo[playerInfo[playerid][areaBizz]][bizInterior]);
 				SetPlayerVirtualWorld(playerid, bizInfo[playerInfo[playerid][areaBizz]][bizID]);
 				GivePlayerCash(playerid, 0, bizInfo[playerInfo[playerid][areaBizz]][bizFee]);
-				GameTextForPlayer(playerid, string_fast("~r~-$%d", bizInfo[playerInfo[playerid][areaBizz]][bizFee]), 1000, 1);
+				va_GameTextForPlayer(playerid, "~r~-$%d", bizInfo[playerInfo[playerid][areaBizz]][bizFee], 1000, 1);
 				playerInfo[playerid][pinBusiness] = bizInfo[playerInfo[playerid][areaBizz]][bizID];
 				bizInfo[playerInfo[playerid][areaBizz]][bizBalance] += bizInfo[playerInfo[playerid][areaBizz]][bizFee];
 				update("UPDATE `server_business` SET `Balance`='%d' WHERE `ID`='%d' LIMIT 1",bizInfo[playerInfo[playerid][areaBizz]][bizBalance], playerInfo[playerid][areaBizz]);
@@ -621,10 +621,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 			SetVehicleParamsEx(GetPlayerVehicleID(playerid), engine, lights, alarm, doors, VEHICLE_PARAMS_ON, boot, objective);
 		}
 	}
-	if(PRESSED(KEY_NO)) {
-		callcmd::lock(playerid, "\1");
-		callcmd::finalquest(playerid, "\1");
-	}
+	if(PRESSED(KEY_NO)) callcmd::lock(playerid, "\1");
 	if(PRESSED(KEY_CROUCH)) {
 		if(Iter_Contains(FactionMembers[2], playerid) || Iter_Contains(FactionMembers[3], playerid) || Iter_Contains(FactionMembers[4], playerid)) {
 			if(IsPlayerInRangeOfPoint(playerid, 15.0, 1542.2355, -1628.0953, 13.4154)) {
@@ -648,9 +645,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 		if(Iter_Contains(PlayerInVehicle, playerid)) Iter_Add(PlayerInVehicle, playerid);
 
 		new vehicleid = playerInfo[playerid][pinVehicle] = GetPlayerVehicleID(playerid);
-		if(vehicle_personal[vehicleid] > -1) {
-			personalVehicle[vehicle_personal[vehicleid]][pvDespawnTime] = 0;
-		}
+		if(vehicle_personal[vehicleid] > -1) personalVehicle[vehicle_personal[vehicleid]][pvDespawnTime] = 0;
 		PlayerTextDrawSetPreviewModel(playerid, vehicleHud[5], GetVehicleModel(vehicleid));
 		for(new i; i < sizeof vehicleHud; i++) PlayerTextDrawShow(playerid, vehicleHud[i]);
 		speedo[playerid] = repeat TimerSpeedo(playerid);
@@ -659,12 +654,12 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 		if(Iter_Contains(PlayerInVehicle, playerid)) Iter_Remove(PlayerInVehicle, playerid);
 
 		new vehicleid = playerInfo[playerid][pinVehicle];
-		playerInfo[playerid][pinVehicle] = -1;
 		if(vehicle_personal[vehicleid] > -1) {
 			new i = vehicle_personal[vehicleid];
 			personalVehicle[i][pvDespawnTime] = (gettime() + 900);
 			update("UPDATE `server_personal_vehicles` SET  `Health` = '%f', `Fuel` = '%f', `Odometer`='%f', `DamageDoors`='%d', `DamageLights`='%d', `DamageTires`='%d' WHERE `ID`='%d' LIMIT 1", personalVehicle[i][pvHealth], personalVehicle[i][pvFuel], personalVehicle[i][pvOdometer], personalVehicle[i][pvDamagePanels], personalVehicle[i][pvDamageDoors], personalVehicle[i][pvDamageLights], personalVehicle[i][pvDamageTires],personalVehicle[i][pvID]);
 		}	
+		playerInfo[playerid][pinVehicle] = -1;
 		for(new i; i < sizeof vehicleHud; i++) PlayerTextDrawHide(playerid, vehicleHud[i]);
 		stop speedo[playerid];
 		PlayerTextDrawHide(playerid, fareTD[playerid]);
@@ -744,6 +739,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 			new id = vehicle_personal[vehicleid];
 			SCMf(playerid, COLOR_WHITE, "Acest %s (ID: %d) este detinut de %s | Age: %d zile | Kilometraj: %.02f km | Culori: %d, %d", getVehicleName(personalVehicle[id][pvModelID]), personalVehicle[id][pvID], getName(getVehicleOwner(personalVehicle[id][pvOwnerID])), personalVehicle[id][pvAge], personalVehicle[id][pvOdometer], personalVehicle[id][pvColorOne], personalVehicle[id][pvColorTwo]);
 			personalVehicle[id][pvDespawnTime] = 0;
+			#pragma unused id
 		}
 	}
 	if(newstate == PLAYER_STATE_ONFOOT || oldstate == PLAYER_STATE_DRIVER) {
@@ -814,10 +810,6 @@ public OnPlayerEnterCheckpoint(playerid)
 	return true;
 }
 	
-public OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ) {
-	return true;
-}
-
 public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY, Float:fZ)  {
 	if(weaponid != 38 && weaponid > 18 && weaponid < 34 && hittype == 1) {
 		new Float:codX, Float:codY, Float:codZ, Float:codMX, Float:codMY,  Float:codMZ, Float:DistantaAim, weaponname[25];

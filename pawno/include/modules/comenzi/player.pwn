@@ -321,168 +321,169 @@ CMD:accept(playerid, params[]) {
 		return true;
 	}
 	if(!isPlayerLogged(targetid)) return sendPlayerError(playerid, "Jucatorul nu este conectat.");
-
-	if(strmatch(item, "medic")) {
-		if(!Iter_Contains(FactionMembers[1], playerid)) return sendPlayerError(playerid, "Nu esti in factiunea 'Paramedic Department' pentru a folosi aceasta comanda.");
-		if(MedicAcceptedCall[playerid] != -1) return sendPlayerError(playerid, "Ai deja un apel acceptat.");
-		if(vehicleFaction[GetPlayerVehicleID(playerid)] != playerInfo[playerid][pFaction]) return sendPlayerError(playerid, "Nu esti intr-un vehicul al factiunii.");
-		if(!Iter_Contains(ServiceCalls[SERVICE_PARAMEDICS], targetid)) return sendPlayerError(playerid, "Acel player nu are un apel.");
-		if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) return sendPlayerError(playerid, "Ai un checkpoint activ.");
-		sendFactionMessage(1, COLOR_LIMEGREEN, "(*) %s a acceptat apelul lui %s.", getName(playerid), getName(targetid));
-		SCMf(targetid, COLOR_LIGHTRED, "* (Paramedic Call): {FFFFFF}Your call has been accepted by %s, please wait.", getName(playerid));
-		new Float:x, Float:y, Float:z;
-		GetPlayerPos(playerid, x, y, z);
-		SetPlayerCheckpoint(playerid, x, y, z, 4.0);
-		playerInfo[playerid][pCheckpoint] = CHECKPOINT_FACTION_DUTY;
-		playerInfo[playerid][pCheckpointID] = targetid;
-		Iter_Remove(ServiceCalls[SERVICE_PARAMEDICS], targetid);
-		MedicAcceptedCall[playerid] = targetid;
-		MedicAcceptedCall[targetid] = playerid;
-		return true;
-	}
-	if(strmatch(item, "taxi")) {
-		if(!Iter_Contains(FactionMembers[5], playerid)) return sendPlayerError(playerid, "Nu esti in factiunea 'Taxi Company' pentru a folosi aceasta comanda.");
-		if(TaxiAcceptedCall[playerid] != -1) return sendPlayerError(playerid, "Ai deja un apel acceptat.");
-		if(vehicleFaction[GetPlayerVehicleID(playerid)] != playerInfo[playerid][pFaction]) return sendPlayerError(playerid, "Nu esti intr-un vehicul al factiunii.");
-		if(!Iter_Contains(ServiceCalls[SERVICE_TAXI], targetid)) return sendPlayerError(playerid, "Acel player nu are un apel.");
-		if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) return sendPlayerError(playerid, "Ai un checkpoint activ.");
-		sendFactionMessage(5, COLOR_LIMEGREEN, "(*) %s a acceptat apelul lui %s.", getName(playerid), getName(targetid));
-		SCMf(targetid, COLOR_YELLOW, "* (Taxi Call): {FFFFFF}Your call has been accepted by %s, please wait.", getName(playerid));
-		new Float:x, Float:y, Float:z;
-		GetPlayerPos(playerid, x, y, z);
-		SetPlayerCheckpoint(playerid, x, y, z, 4.0);
-		playerInfo[playerid][pCheckpoint] = CHECKPOINT_FACTION_DUTY;
-		playerInfo[playerid][pCheckpointID] = targetid;
-		Iter_Remove(ServiceCalls[SERVICE_TAXI], targetid);
-		TaxiAcceptedCall[playerid] = targetid;
-		TaxiAcceptedCall[targetid] = playerid;
-		return true;
-	}
-	if(strmatch(item, "instructor")) {
-		if(!Iter_Contains(FactionMembers[7], playerid)) return sendPlayerError(playerid, "Nu esti in factiunea 'School Instructors' pentru a folosi aceasta comanda.");
-		if(InstructorAcceptedCall[playerid] != -1) return sendPlayerError(playerid, "Ai deja un apel acceptat.");
-		if(vehicleFaction[GetPlayerVehicleID(playerid)] != playerInfo[playerid][pFaction]) return sendPlayerError(playerid, "Nu esti intr-un vehicul al factiunii.");
-		if(!Iter_Contains(ServiceCalls[SERVICE_INSTRUCTOR], targetid)) return sendPlayerError(playerid, "Acel player nu are un apel.");
-		if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) return sendPlayerError(playerid, "Ai un checkpoint activ.");
-		sendFactionMessage(7, COLOR_LIMEGREEN, "(*) %s a acceptat apelul lui %s.", getName(playerid), getName(targetid));
-		SCMf(targetid, COLOR_LIGHTGREEN, "* (Instructor Call): {FFFFFF}Your call has been accepted by %s, please wait.", getName(playerid));
-		new Float:x, Float:y, Float:z;
-		GetPlayerPos(playerid, x, y, z);
-		SetPlayerCheckpoint(playerid, x, y, z, 4.0);
-		playerInfo[playerid][pCheckpoint] = CHECKPOINT_FACTION_DUTY;
-		playerInfo[playerid][pCheckpointID] = targetid;
-		Iter_Remove(ServiceCalls[SERVICE_INSTRUCTOR], targetid);
-		InstructorAcceptedCall[playerid] = targetid;
-		InstructorAcceptedCall[targetid] = playerid;
-		return true;
-	}
-	if(strmatch(item, "invite")) {
-		if(invitedByPlayer[playerid] == -1) return sendPlayerError(playerid, "Nu ai fost invitat de nimeni intr-o factiune.");
-		SCMf(invitedByPlayer[playerid], COLOR_WHITE, "{32CD32}*{ffffff} Jucatorul {32CD32}'%s'{ffffff} (%d) pe care l-ai invitat in factiunea ta a acceptat.", getName(playerid), playerid);
-		SCMf(playerid, COLOR_WHITE, "{32CD32}*{ffffff} Ai acceptat invitatia lui {32CD32}'%s'{ffffff} (%d) in factiunea lui.", getName(invitedByPlayer[playerid]), invitedByPlayer[playerid]);
-		SCMf(playerid, COLOR_WHITE, "{32CD32}*{ffffff} Deoarece ai acceptat invitatia in factiune, spawn-ul tau a fost schimbat la {32CD32}'Factiune'{ffffff}.");
-		Iter_Add(FactionMembers[playerInfo[invitedByPlayer[playerid]][pFaction]], playerid);
-		playerInfo[playerid][pFaction] = playerInfo[invitedByPlayer[playerid]][pFaction];
-		playerInfo[playerid][pFactionRank] = 1;
-		playerInfo[playerid][pFactionAge] = 0;
-		playerInfo[playerid][pFactionWarns] = 0;
-		playerInfo[playerid][pSpawnChange] = 4;
-		playerInfo[playerid][pSkin] = fSkins[playerInfo[playerid][pFaction]][playerInfo[playerid][pFactionRank]];
-		SetPlayerSkin(playerid, playerInfo[playerid][pSkin]);
-		update("UPDATE `server_users` SET `Faction` = '%d', `FRank` = '7', `FAge` = '%d', `FWarns` = '0', `SpawnChange` = '4', `Skin` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pFaction], playerInfo[playerid][pFactionAge], playerInfo[playerid][pSkin], playerInfo[playerid][pSQLID]);
-		sendFactionMessage(playerInfo[playerid][pFaction], COLOR_LIMEGREEN, "(+) %s (%d) a fost invitat de %s (%d) in factiune.", getName(playerid), playerid, getName(invitedByPlayer[playerid]), invitedByPlayer[playerid]);
-		factionLog(playerInfo[playerid][pFaction], getName(playerid), string_fast("%s a intrat in factiune invitat de %s.", getName(playerid), getName(invitedByPlayer[playerid])));
-		invitedPlayer[invitedByPlayer[playerid]] = -1;
-		invitedByPlayer[playerid] = -1;	
-		return true;
-	}
-	if(strmatch(item, "cinvite")) {
-		if(clanInvitedBy[playerid] == -1) return sendPlayerError(playerid, "Nu ai fost invitat de nimeni intr-un clan.");
-		SCMf(clanInvitedBy[playerid], COLOR_GOLD, "* (Clan): Jucatorul '%s' (%d) pe care l-ai invitat in clanul tau a acceptat.", getName(playerid), playerid);
-		SCMf(playerid, COLOR_GOLD, "* (Clan): Ai acceptat invitatia de intrare in clan oferita de %S (%d).", getName(clanInvitedBy[playerid]), clanInvitedBy[playerid]);
-		playerInfo[playerid][pClan] = playerInfo[clanInvitedBy[playerid]][pClan];
-		playerInfo[playerid][pClanRank] = 1;
-		playerInfo[playerid][pClanAge] = 0;
-		playerInfo[playerid][pClanWarns] = 0;
-		Iter_Add(TotalClanMembers, playerid);
-		clanInfo[playerInfo[clanInvitedBy[playerid]][pClan]][cTotal]++;
-		update("UPDATE `server_users` SET `Clan` = '%d', `ClanRank` = '0', `ClanAge` = '0', `Total` = Total+1, `ClanWarns` = '0' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pClan], playerInfo[playerid][pSQLID]);
-		clanInvitedBy[clanInvitedBy[playerid]] = -1;
-		clanInvitedBy[playerid] = -1;
-		return true;
-	}
-	if(strmatch(item, "ticket")) {
-		if(ticketPlayer[playerid] == -1) return sendPlayerError(playerid, "Nu ai primit o amenda.");
-		if(!ProxDetectorS(8.0, playerid, ticketPlayer[playerid])) return sendPlayerError(playerid, "Acel player nu se afla in raza ta.");
-		sendNearbyMessage(playerid, COLOR_GREY, 30.0, "*- %s i-a platit lui %s amenda. -*", getName(playerid), getName(ticketPlayer[playerid]));
-		GivePlayerCash(playerid, 0, ticketMoney[playerid]);
-		GivePlayerCash(ticketPlayer[playerid], 1, ticketMoney[playerid]);
-		addRaportPoint(ticketPlayer[playerid]);
-		ticketPlayer[ticketPlayer[playerid]] = -1;
-		ticketPlayer[playerid] = -1;
-		ticketMoney[playerid] = -1;
-		return true;
-	}
-	if(strmatch(item, "live")) {
-		if(playerInfo[playerid][pLiveOffer] == -1) return sendPlayerError(playerid, "Nu ai primit o invitatie de conversatie 'Live'.");
-		if(playerInfo[playerid][pLiveOffer] != targetid) return sendPlayerError(playerid, "Acest player nu ti-a oferit o invitatie de conversatie 'Live'.");
-		if(!IsPlayerInVehicle(playerid, GetPlayerVehicleID(playerInfo[playerid][pLiveOffer]))) return sendPlayerError(playerid, "Nu esti in masina cu acest player.");
-		SCM(playerid, COLOR_GREY, "* Ai primit freeze pana la terminarea conversatiei 'Live'.");
-		SCM(playerInfo[playerid][pLiveOffer], COLOR_GREY, "* Ai primit freeze pana la terminarea conversatiei 'Live'. Pentru a opri foloseste comanda (/endlive).");
-		TogglePlayerControllable(playerid, 0);
-		TogglePlayerControllable(playerInfo[playerid][pLiveOffer], 0);
-		playerInfo[playerid][pTalkingLive] = playerInfo[playerid][pLiveOffer];
-		playerInfo[playerInfo[playerid][pLiveOffer]][pTalkingLive] = playerid;
-		playerInfo[playerid][pLiveOffer] = -1;
-		return true;
-	}
-	if(strmatch(item, "lesson")) {
-		if(playerInfo[playerid][pInLesson] > 0) return sendPlayerError(playerid, "Esti deja intr-o lectie.");
-		if(playerInfo[targetid][pInLesson] != playerid) return sendPlayerError(playerid, "Nu ai primit o oferta");
-		if(playerInfo[targetid][pInLesson] > 0) return sendPlayerError(playerid, "Acel instructor are deja o lectie activa.");
-		if(playerInfo[targetid][pFaction] != 7) return sendPlayerError(playerid, "Acel player nu face parte din factiunea 'School Instructors'.");
-		playerInfo[playerid][pInLesson] = 0;
-		playerInfo[targetid][pInLesson] = 0;
-		playerInfo[targetid][pLesson] = 1;
-		sendFactionMessage(playerInfo[targetid][pFaction], COLOR_LIMEGREEN, "* (SI Dispatch: %s (%d) a inceput o lectie cu %s (%d).) *", getName(targetid), targetid, getName(playerid), playerid);
-		SCMf(playerid, COLOR_GREY, "* Ai acceptat o lectie oferita de instructorul %s (%d).", getName(targetid), targetid);
-		SCMf(targetid, COLOR_GREY, "* %s (%d) ti-a acceptat cererea de lectie.", getName(playerid), playerid);		
-		return true;
-	}
-	if(strmatch(item, "license")) {
-		if(playerInfo[playerid][pLicenseOffer] == -1) return sendPlayerError(playerid, "Nu ai primit o oferta.");
-		if(playerInfo[playerid][pLicenseOffer] != targetid) return sendPlayerError(playerid, "Acel player nu ti-a facut o oferta.");
-		if(playerInfo[targetid][pFaction] != 7) return sendPlayerError(playerid, "Acel player nu face parte din factiunea 'School Instructors'.");
-		switch(playerInfo[playerid][pLicense]) {
-			case 1: {
-				if(PlayerMoney(playerid, 100000)) return sendPlayerError(playerid, "Nu ai aceasta suma de bani.");
-				GivePlayerCash(playerid, 0, 100000);
-				GivePlayerCash(targetid, 1, 100000);
-				
-				playerInfo[playerid][pFlyLicense] = 50;
-				update("UPDATE `server_users` SET `Licenses` = '%d|%d|%d|%d|%d|%d|%d|%d' WHERE `ID` = '%d'", playerInfo[playerid][pDrivingLicense], playerInfo[playerid][pDrivingLicenseSuspend], playerInfo[playerid][pWeaponLicense], playerInfo[playerid][pWeaponLicenseSuspend], playerInfo[playerid][pFlyLicense], playerInfo[playerid][pFlyLicenseSuspend], playerInfo[playerid][pBoatLicense], playerInfo[playerid][pBoatLicenseSuspend], playerInfo[playerid][pSQLID]);
-				sendFactionMessage(playerInfo[targetid][pFaction], COLOR_LIMEGREEN, "* (SI Dispatch: %s (%d) i-a oferit licenta de 'Fly' lui %s (%d) pentru suma de $100,000.", getName(targetid), targetid, getName(playerid), playerid);
-			}
-			case 2: {
-				if(PlayerMoney(playerid, 200000)) return sendPlayerError(playerid, "Nu ai aceasta suma de bani.");
-				GivePlayerCash(playerid, 0, 200000);
-				GivePlayerCash(targetid, 1, 200000);
-				
-				playerInfo[playerid][pBoatLicense] = 50;
-				update("UPDATE `server_users` SET `Licenses` = '%d|%d|%d|%d|%d|%d|%d|%d' WHERE `ID` = '%d'", playerInfo[playerid][pDrivingLicense], playerInfo[playerid][pDrivingLicenseSuspend], playerInfo[playerid][pWeaponLicense], playerInfo[playerid][pWeaponLicenseSuspend], playerInfo[playerid][pFlyLicense], playerInfo[playerid][pFlyLicenseSuspend], playerInfo[playerid][pBoatLicense], playerInfo[playerid][pBoatLicenseSuspend], playerInfo[playerid][pSQLID]);
-				sendFactionMessage(playerInfo[targetid][pFaction], COLOR_LIMEGREEN, "* (SI Dispatch: %s (%d) i-a oferit licenta de 'Boat' lui %s (%d) pentru suma de $200,000.", getName(targetid), targetid, getName(playerid), playerid);
-			}
-			case 3: {
-				if(PlayerMoney(playerid, 300000)) return sendPlayerError(playerid, "Nu ai aceasta suma de bani.");
-				GivePlayerCash(playerid, 0, 300000);
-				GivePlayerCash(targetid, 1, 300000);
-				
-				playerInfo[playerid][pWeaponLicense] = 50;
-				update("UPDATE `server_users` SET `Licenses` = '%d|%d|%d|%d|%d|%d|%d|%d' WHERE `ID` = '%d'", playerInfo[playerid][pDrivingLicense], playerInfo[playerid][pDrivingLicenseSuspend], playerInfo[playerid][pWeaponLicense], playerInfo[playerid][pWeaponLicenseSuspend], playerInfo[playerid][pFlyLicense], playerInfo[playerid][pFlyLicenseSuspend], playerInfo[playerid][pBoatLicense], playerInfo[playerid][pBoatLicenseSuspend], playerInfo[playerid][pSQLID]);
-				sendFactionMessage(playerInfo[targetid][pFaction], COLOR_LIMEGREEN, "* (SI Dispatch: %s (%d) i-a oferit licenta de 'Gun' lui %s (%d) pentru suma de $300,000.", getName(targetid), targetid, getName(playerid), playerid);
-			}
+	switch(YHash(item)) {
+		case _H<medic>: {
+			if(!Iter_Contains(FactionMembers[1], playerid)) return sendPlayerError(playerid, "Nu esti in factiunea 'Paramedic Department' pentru a folosi aceasta comanda.");
+			if(MedicAcceptedCall[playerid] != -1) return sendPlayerError(playerid, "Ai deja un apel acceptat.");
+			if(vehicleFaction[GetPlayerVehicleID(playerid)] != playerInfo[playerid][pFaction]) return sendPlayerError(playerid, "Nu esti intr-un vehicul al factiunii.");
+			if(!Iter_Contains(ServiceCalls[SERVICE_PARAMEDICS], targetid)) return sendPlayerError(playerid, "Acel player nu are un apel.");
+			if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) return sendPlayerError(playerid, "Ai un checkpoint activ.");
+			sendFactionMessage(1, COLOR_LIMEGREEN, "(*) %s a acceptat apelul lui %s.", getName(playerid), getName(targetid));
+			SCMf(targetid, COLOR_LIGHTRED, "* (Paramedic Call): {FFFFFF}Your call has been accepted by %s, please wait.", getName(playerid));
+			new Float:x, Float:y, Float:z;
+			GetPlayerPos(playerid, x, y, z);
+			SetPlayerCheckpoint(playerid, x, y, z, 4.0);
+			playerInfo[playerid][pCheckpoint] = CHECKPOINT_FACTION_DUTY;
+			playerInfo[playerid][pCheckpointID] = targetid;
+			Iter_Remove(ServiceCalls[SERVICE_PARAMEDICS], targetid);
+			MedicAcceptedCall[playerid] = targetid;
+			MedicAcceptedCall[targetid] = playerid;
+			return true;		
 		}
-		return true;
+		case _H<taxi>: {
+			if(!Iter_Contains(FactionMembers[5], playerid)) return sendPlayerError(playerid, "Nu esti in factiunea 'Taxi Company' pentru a folosi aceasta comanda.");
+			if(TaxiAcceptedCall[playerid] != -1) return sendPlayerError(playerid, "Ai deja un apel acceptat.");
+			if(vehicleFaction[GetPlayerVehicleID(playerid)] != playerInfo[playerid][pFaction]) return sendPlayerError(playerid, "Nu esti intr-un vehicul al factiunii.");
+			if(!Iter_Contains(ServiceCalls[SERVICE_TAXI], targetid)) return sendPlayerError(playerid, "Acel player nu are un apel.");
+			if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) return sendPlayerError(playerid, "Ai un checkpoint activ.");
+			sendFactionMessage(5, COLOR_LIMEGREEN, "(*) %s a acceptat apelul lui %s.", getName(playerid), getName(targetid));
+			SCMf(targetid, COLOR_YELLOW, "* (Taxi Call): {FFFFFF}Your call has been accepted by %s, please wait.", getName(playerid));
+			new Float:x, Float:y, Float:z;
+			GetPlayerPos(playerid, x, y, z);
+			SetPlayerCheckpoint(playerid, x, y, z, 4.0);
+			playerInfo[playerid][pCheckpoint] = CHECKPOINT_FACTION_DUTY;
+			playerInfo[playerid][pCheckpointID] = targetid;
+			Iter_Remove(ServiceCalls[SERVICE_TAXI], targetid);
+			TaxiAcceptedCall[playerid] = targetid;
+			TaxiAcceptedCall[targetid] = playerid;
+			return true;
+		}
+		case _H<instructor>: {
+			if(!Iter_Contains(FactionMembers[7], playerid)) return sendPlayerError(playerid, "Nu esti in factiunea 'School Instructors' pentru a folosi aceasta comanda.");
+			if(InstructorAcceptedCall[playerid] != -1) return sendPlayerError(playerid, "Ai deja un apel acceptat.");
+			if(vehicleFaction[GetPlayerVehicleID(playerid)] != playerInfo[playerid][pFaction]) return sendPlayerError(playerid, "Nu esti intr-un vehicul al factiunii.");
+			if(!Iter_Contains(ServiceCalls[SERVICE_INSTRUCTOR], targetid)) return sendPlayerError(playerid, "Acel player nu are un apel.");
+			if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) return sendPlayerError(playerid, "Ai un checkpoint activ.");
+			sendFactionMessage(7, COLOR_LIMEGREEN, "(*) %s a acceptat apelul lui %s.", getName(playerid), getName(targetid));
+			SCMf(targetid, COLOR_LIGHTGREEN, "* (Instructor Call): {FFFFFF}Your call has been accepted by %s, please wait.", getName(playerid));
+			new Float:x, Float:y, Float:z;
+			GetPlayerPos(playerid, x, y, z);
+			SetPlayerCheckpoint(playerid, x, y, z, 4.0);
+			playerInfo[playerid][pCheckpoint] = CHECKPOINT_FACTION_DUTY;
+			playerInfo[playerid][pCheckpointID] = targetid;
+			Iter_Remove(ServiceCalls[SERVICE_INSTRUCTOR], targetid);
+			InstructorAcceptedCall[playerid] = targetid;
+			InstructorAcceptedCall[targetid] = playerid;
+			return true;
+		}
+		case _H<invite>: {
+			if(invitedByPlayer[playerid] == -1) return sendPlayerError(playerid, "Nu ai fost invitat de nimeni intr-o factiune.");
+			SCMf(invitedByPlayer[playerid], COLOR_WHITE, "{32CD32}*{ffffff} Jucatorul {32CD32}'%s'{ffffff} (%d) pe care l-ai invitat in factiunea ta a acceptat.", getName(playerid), playerid);
+			SCMf(playerid, COLOR_WHITE, "{32CD32}*{ffffff} Ai acceptat invitatia lui {32CD32}'%s'{ffffff} (%d) in factiunea lui.", getName(invitedByPlayer[playerid]), invitedByPlayer[playerid]);
+			SCMf(playerid, COLOR_WHITE, "{32CD32}*{ffffff} Deoarece ai acceptat invitatia in factiune, spawn-ul tau a fost schimbat la {32CD32}'Factiune'{ffffff}.");
+			Iter_Add(FactionMembers[playerInfo[invitedByPlayer[playerid]][pFaction]], playerid);
+			playerInfo[playerid][pFaction] = playerInfo[invitedByPlayer[playerid]][pFaction];
+			playerInfo[playerid][pFactionRank] = 1;
+			playerInfo[playerid][pFactionAge] = 0;
+			playerInfo[playerid][pFactionWarns] = 0;
+			playerInfo[playerid][pSpawnChange] = 4;
+			playerInfo[playerid][pSkin] = fSkins[playerInfo[playerid][pFaction]][playerInfo[playerid][pFactionRank]];
+			SetPlayerSkin(playerid, playerInfo[playerid][pSkin]);
+			update("UPDATE `server_users` SET `Faction` = '%d', `FRank` = '7', `FAge` = '%d', `FWarns` = '0', `SpawnChange` = '4', `Skin` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pFaction], playerInfo[playerid][pFactionAge], playerInfo[playerid][pSkin], playerInfo[playerid][pSQLID]);
+			sendFactionMessage(playerInfo[playerid][pFaction], COLOR_LIMEGREEN, "(+) %s (%d) a fost invitat de %s (%d) in factiune.", getName(playerid), playerid, getName(invitedByPlayer[playerid]), invitedByPlayer[playerid]);
+			factionLog(playerInfo[playerid][pFaction], getName(playerid), string_fast("%s a intrat in factiune invitat de %s.", getName(playerid), getName(invitedByPlayer[playerid])));
+			invitedPlayer[invitedByPlayer[playerid]] = -1;
+			invitedByPlayer[playerid] = -1;	
+			return true;
+		}
+		case _H<cinvite>: {
+			if(clanInvitedBy[playerid] == -1) return sendPlayerError(playerid, "Nu ai fost invitat de nimeni intr-un clan.");
+			SCMf(clanInvitedBy[playerid], COLOR_GOLD, "* (Clan): Jucatorul '%s' (%d) pe care l-ai invitat in clanul tau a acceptat.", getName(playerid), playerid);
+			SCMf(playerid, COLOR_GOLD, "* (Clan): Ai acceptat invitatia de intrare in clan oferita de %S (%d).", getName(clanInvitedBy[playerid]), clanInvitedBy[playerid]);
+			playerInfo[playerid][pClan] = playerInfo[clanInvitedBy[playerid]][pClan];
+			playerInfo[playerid][pClanRank] = 1;
+			playerInfo[playerid][pClanAge] = 0;
+			playerInfo[playerid][pClanWarns] = 0;
+			Iter_Add(TotalClanMembers, playerid);
+			clanInfo[playerInfo[clanInvitedBy[playerid]][pClan]][cTotal]++;
+			update("UPDATE `server_users` SET `Clan` = '%d', `ClanRank` = '0', `ClanAge` = '0', `Total` = Total+1, `ClanWarns` = '0' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pClan], playerInfo[playerid][pSQLID]);
+			clanInvitedBy[clanInvitedBy[playerid]] = -1;
+			clanInvitedBy[playerid] = -1;
+			return true;
+		}
+		case _H<ticket>: {
+			if(ticketPlayer[playerid] == -1) return sendPlayerError(playerid, "Nu ai primit o amenda.");
+			if(!ProxDetectorS(8.0, playerid, ticketPlayer[playerid])) return sendPlayerError(playerid, "Acel player nu se afla in raza ta.");
+			sendNearbyMessage(playerid, COLOR_GREY, 30.0, "*- %s i-a platit lui %s amenda. -*", getName(playerid), getName(ticketPlayer[playerid]));
+			GivePlayerCash(playerid, 0, ticketMoney[playerid]);
+			GivePlayerCash(ticketPlayer[playerid], 1, ticketMoney[playerid]);
+			addRaportPoint(ticketPlayer[playerid]);
+			ticketPlayer[ticketPlayer[playerid]] = -1;
+			ticketPlayer[playerid] = -1;
+			ticketMoney[playerid] = -1;
+			return true;
+		}
+		case _H<live>: {
+			if(playerInfo[playerid][pLiveOffer] == -1) return sendPlayerError(playerid, "Nu ai primit o invitatie de conversatie 'Live'.");
+			if(playerInfo[playerid][pLiveOffer] != targetid) return sendPlayerError(playerid, "Acest player nu ti-a oferit o invitatie de conversatie 'Live'.");
+			if(!IsPlayerInVehicle(playerid, GetPlayerVehicleID(playerInfo[playerid][pLiveOffer]))) return sendPlayerError(playerid, "Nu esti in masina cu acest player.");
+			SCM(playerid, COLOR_GREY, "* Ai primit freeze pana la terminarea conversatiei 'Live'.");
+			SCM(playerInfo[playerid][pLiveOffer], COLOR_GREY, "* Ai primit freeze pana la terminarea conversatiei 'Live'. Pentru a opri foloseste comanda (/endlive).");
+			TogglePlayerControllable(playerid, 0);
+			TogglePlayerControllable(playerInfo[playerid][pLiveOffer], 0);
+			playerInfo[playerid][pTalkingLive] = playerInfo[playerid][pLiveOffer];
+			playerInfo[playerInfo[playerid][pLiveOffer]][pTalkingLive] = playerid;
+			playerInfo[playerid][pLiveOffer] = -1;
+			return true;
+		}
+		case _H<lesson>: {
+			if(playerInfo[playerid][pInLesson] > 0) return sendPlayerError(playerid, "Esti deja intr-o lectie.");
+			if(playerInfo[targetid][pInLesson] != playerid) return sendPlayerError(playerid, "Nu ai primit o oferta");
+			if(playerInfo[targetid][pInLesson] > 0) return sendPlayerError(playerid, "Acel instructor are deja o lectie activa.");
+			if(playerInfo[targetid][pFaction] != 7) return sendPlayerError(playerid, "Acel player nu face parte din factiunea 'School Instructors'.");
+			playerInfo[playerid][pInLesson] = 0;
+			playerInfo[targetid][pInLesson] = 0;
+			playerInfo[targetid][pLesson] = 1;
+			sendFactionMessage(playerInfo[targetid][pFaction], COLOR_LIMEGREEN, "* (SI Dispatch: %s (%d) a inceput o lectie cu %s (%d).) *", getName(targetid), targetid, getName(playerid), playerid);
+			SCMf(playerid, COLOR_GREY, "* Ai acceptat o lectie oferita de instructorul %s (%d).", getName(targetid), targetid);
+			SCMf(targetid, COLOR_GREY, "* %s (%d) ti-a acceptat cererea de lectie.", getName(playerid), playerid);		
+			return true;
+		}
+		case _H<license>: {
+			if(playerInfo[playerid][pLicenseOffer] == -1) return sendPlayerError(playerid, "Nu ai primit o oferta.");
+			if(playerInfo[playerid][pLicenseOffer] != targetid) return sendPlayerError(playerid, "Acel player nu ti-a facut o oferta.");
+			if(playerInfo[targetid][pFaction] != 7) return sendPlayerError(playerid, "Acel player nu face parte din factiunea 'School Instructors'.");
+			switch(playerInfo[playerid][pLicense]) {
+				case 1: {
+					if(PlayerMoney(playerid, 100000)) return sendPlayerError(playerid, "Nu ai aceasta suma de bani.");
+					GivePlayerCash(playerid, 0, 100000);
+					GivePlayerCash(targetid, 1, 100000);
+					
+					playerInfo[playerid][pFlyLicense] = 50;
+					update("UPDATE `server_users` SET `Licenses` = '%d|%d|%d|%d|%d|%d|%d|%d' WHERE `ID` = '%d'", playerInfo[playerid][pDrivingLicense], playerInfo[playerid][pDrivingLicenseSuspend], playerInfo[playerid][pWeaponLicense], playerInfo[playerid][pWeaponLicenseSuspend], playerInfo[playerid][pFlyLicense], playerInfo[playerid][pFlyLicenseSuspend], playerInfo[playerid][pBoatLicense], playerInfo[playerid][pBoatLicenseSuspend], playerInfo[playerid][pSQLID]);
+					sendFactionMessage(playerInfo[targetid][pFaction], COLOR_LIMEGREEN, "* (SI Dispatch: %s (%d) i-a oferit licenta de 'Fly' lui %s (%d) pentru suma de $100,000.", getName(targetid), targetid, getName(playerid), playerid);
+				}
+				case 2: {
+					if(PlayerMoney(playerid, 200000)) return sendPlayerError(playerid, "Nu ai aceasta suma de bani.");
+					GivePlayerCash(playerid, 0, 200000);
+					GivePlayerCash(targetid, 1, 200000);
+					
+					playerInfo[playerid][pBoatLicense] = 50;
+					update("UPDATE `server_users` SET `Licenses` = '%d|%d|%d|%d|%d|%d|%d|%d' WHERE `ID` = '%d'", playerInfo[playerid][pDrivingLicense], playerInfo[playerid][pDrivingLicenseSuspend], playerInfo[playerid][pWeaponLicense], playerInfo[playerid][pWeaponLicenseSuspend], playerInfo[playerid][pFlyLicense], playerInfo[playerid][pFlyLicenseSuspend], playerInfo[playerid][pBoatLicense], playerInfo[playerid][pBoatLicenseSuspend], playerInfo[playerid][pSQLID]);
+					sendFactionMessage(playerInfo[targetid][pFaction], COLOR_LIMEGREEN, "* (SI Dispatch: %s (%d) i-a oferit licenta de 'Boat' lui %s (%d) pentru suma de $200,000.", getName(targetid), targetid, getName(playerid), playerid);
+				}
+				case 3: {
+					if(PlayerMoney(playerid, 300000)) return sendPlayerError(playerid, "Nu ai aceasta suma de bani.");
+					GivePlayerCash(playerid, 0, 300000);
+					GivePlayerCash(targetid, 1, 300000);
+					
+					playerInfo[playerid][pWeaponLicense] = 50;
+					update("UPDATE `server_users` SET `Licenses` = '%d|%d|%d|%d|%d|%d|%d|%d' WHERE `ID` = '%d'", playerInfo[playerid][pDrivingLicense], playerInfo[playerid][pDrivingLicenseSuspend], playerInfo[playerid][pWeaponLicense], playerInfo[playerid][pWeaponLicenseSuspend], playerInfo[playerid][pFlyLicense], playerInfo[playerid][pFlyLicenseSuspend], playerInfo[playerid][pBoatLicense], playerInfo[playerid][pBoatLicenseSuspend], playerInfo[playerid][pSQLID]);
+					sendFactionMessage(playerInfo[targetid][pFaction], COLOR_LIMEGREEN, "* (SI Dispatch: %s (%d) i-a oferit licenta de 'Gun' lui %s (%d) pentru suma de $300,000.", getName(targetid), targetid, getName(playerid), playerid);
+				}
+			}
+			return true;
+		}
 	}
 	return true;
 }
@@ -1010,6 +1011,7 @@ CMD:quests(playerid, params[]) {
 	SCM(playerid, COLOR_ORANGE, "--> Daily Missions <--");
 	SCMf(playerid, COLOR_ORANGE, "* -> (1) '%s' (Progres: %s).", missionName(playerid, playerInfo[playerid][pDailyMission][0], 0), status1);
 	SCMf(playerid, COLOR_ORANGE, "* -> (2) '%s' (Progres: %s).",  missionName(playerid, playerInfo[playerid][pDailyMission][1], 1), status2);
+	SCM(playerid, COLOR_ORANGE, "(*) Pentru misiunile care sunt cu locatii, odata ajuns acolo tastati /finalquest.");
 	return true;
 }
 
@@ -1070,38 +1072,38 @@ CMD:tog(playerid, params[]) {
 }
 
 CMD:finalquest(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a folosi aceasta comanda.");
+	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a folosi aceasta comanda."); 
+	if(playerInfo[playerid][pProgress][0] >= getNeedProgress(playerid, 0) || playerInfo[playerid][pProgress][1] >= getNeedProgress(playerid, 1)) return sendPlayerError(playerid, "Nu ai misiuni momentan.");
 	if(IsPlayerInRangeOfPoint(playerid, 50, -2304.2849,-1663.8442,483.6583)) {
-		for(new m; m < 2; m++) {
-			if(playerInfo[playerid][pDailyMission][m] == 2) checkMission(playerid, m);
-		}	
+		for(new m; m < 2; m++) if(playerInfo[playerid][pDailyMission][m] == 2) checkMission(playerid, m);	
 	}
-	if(IsPlayerInRangeOfPoint(playerid, 50, 1503.3143,2218.4546,10.8203)) {
-		for(new m; m < 2; m++) {
-			if(playerInfo[playerid][pDailyMission][m] == 3) checkMission(playerid, m);
-		}	
-	}
-	if(IsPlayerInRangeOfPoint(playerid, 50, 2615.9443,-2403.4568,13.5256)) {
-		for(new m; m < 2; m++) {
-			if(playerInfo[playerid][pDailyMission][m] == 4) checkMission(playerid, m);
-		}	
+	else if(IsPlayerInRangeOfPoint(playerid, 50, 1503.3143,2218.4546,10.8203)){
+		for(new m; m < 2; m++) if(playerInfo[playerid][pDailyMission][m] == 3) checkMission(playerid, m);		
 	}	
-	if(IsPlayerInRangeOfPoint(playerid, 50, 1797.5958,842.8816,10.6328)) {
-		for(new m; m < 2; m++) {
-			if(playerInfo[playerid][pDailyMission][m] == 5) checkMission(playerid, m);
-		}	
+	else if(IsPlayerInRangeOfPoint(playerid, 50, 2615.9443,-2403.4568,13.5256)) {
+		for(new m; m < 2; m++) if(playerInfo[playerid][pDailyMission][m] == 4) checkMission(playerid, m);	
+	}
+	else if(IsPlayerInRangeOfPoint(playerid, 50, 1797.5958,842.8816,10.6328)) {
+		for(new m; m < 2; m++) if(playerInfo[playerid][pDailyMission][m] == 5) checkMission(playerid, m);
 	}
 	return true;
 }
 
 CMD:shop(playerid, params[], help) {
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai un dialog afisat.");
-	Dialog_Show(playerid, DIALOG_SHOP, DIALOG_STYLE_TABLIST_HEADERS, "Shop - Black Moon", "Option\tPrice\nPremium Account\t50 Premium Points\nVIP Account\t100 Premium Points", "Select", "Close");
+	gString[0] = (EOS);
+	strcat(gString, "Item\tPrice\n");
+	strcat(gString, playerInfo[playerid][pPremium] ? "" : "Premium Account\t50 Premium Points\n");
+	strcat(gString, playerInfo[playerid][pVIP] ? "" : "VIP Account\t100 Premium Points\n");
+	Dialog_Show(playerid, DIALOG_SHOP, DIALOG_STYLE_TABLIST_HEADERS, "Shop - Blackmoon", gString, "Select", "Close");
 	return true;
 }
 
 CMD:hud(playerid, parmas[], help) {
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai un dialog afisat.");
-	Dialog_Show(playerid, DIALOG_HUD, DIALOG_STYLE_TABLIST_HEADERS, "Hud Options", string_fast("Option\tStatus\nFPS Show\t%s", playerInfo[playerid][pFPSShow] ? "Enabled" : "Disabled"), "Select", "Cancel");
+	gString[0] = (EOS);
+	strcat(gString, "Option\tStatus\n");
+	strcat(gString, playerInfo[playerid][pFPSShow] ? "Enabled" : "Disabled");
+	Dialog_Show(playerid, DIALOG_HUD, DIALOG_STYLE_TABLIST_HEADERS, "Hud Options", gString, "Select", "Cancel");
 	return true;
 }
