@@ -28,6 +28,7 @@
 #define getIp(%0) 						playerInfo[%0][pIp]
 #define getVehicleName(%0) 				vehNames[%0 - 400]
 #define getVehicleMaxSeats(%0) 			MaxSeats[%0 - 400]
+#define getVehicleMaxSpeed(%0) 			SpeedVehicle[%0 - 400]
 
 #define MAX_PLAYER_PERSONAL_VEHICLES 20
 #define MAX_PLAYERS_PERSONAL_VEHICLES (MAX_PLAYER_PERSONAL_VEHICLES * MAX_PLAYERS)

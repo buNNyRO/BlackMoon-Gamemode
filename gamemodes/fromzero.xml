@@ -3583,6 +3583,10 @@
 			<tagname value="Float"/>
 			<referrer name="OnPlayerSpawn"/>
 		</member>
+		<member name="F:SpeedVehicle">
+			<referrer name="ShowDealerShipTD"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+		</member>
 		<member name="F:StoreMoney">
 			<referrer name="GetCashStr"/>
 			<referrer name="GivePlayerCash"/>
@@ -6017,7 +6021,7 @@
 		</member>
 		<member name="M:@yH_OnPlayerClickTextDraw@012" syntax="@yH_OnPlayerClickTextDraw@012(playerid, clickedid)">
 			<attribute name="public"/>
-			<stacksize value="4106"/>
+			<stacksize value="4105"/>
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="CB_CancelSelectTextDraw"/>
 			<dependency name="CB_CreateVehicle"/>
@@ -6046,6 +6050,7 @@
 			<dependency name="SetPlayerVirtualWorld"/>
 			<dependency name="SetVehiclePos"/>
 			<dependency name="SetVehicleVirtualWorld"/>
+			<dependency name="SpeedVehicle"/>
 			<dependency name="TestingModel"/>
 			<dependency name="TogglePlayerControllable"/>
 			<dependency name="TotalDealerCars"/>
@@ -6055,7 +6060,6 @@
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
 			<dependency name="gQuery"/>
-			<dependency name="getVehicleMaxSpeed"/>
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_tquery"/>
 			<dependency name="pVehicleSlots"/>
@@ -23480,7 +23484,7 @@
 		</member>
 		<member name="M:ShowDealerShipTD" syntax="ShowDealerShipTD(playerid)">
 			<attribute name="public"/>
-			<stacksize value="4106"/>
+			<stacksize value="4105"/>
 			<referrer name="cancelDriveTest"/>
 			<referrer name="pc_cmd_buycar"/>
 			<dependency name="DSModels"/>
@@ -23489,13 +23493,13 @@
 			<dependency name="GetPlayerCash"/>
 			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="SelectedCar"/>
+			<dependency name="SpeedVehicle"/>
 			<dependency name="TextDrawShowForPlayer"/>
 			<dependency name="dModel"/>
 			<dependency name="dPrice"/>
 			<dependency name="dStock"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
-			<dependency name="getVehicleMaxSpeed"/>
 			<dependency name="serverDealerPTD"/>
 			<dependency name="serverDealerTD"/>
 			<dependency name="true"/>
@@ -28714,14 +28718,6 @@
 			<dependency name="GetVehicleHealth"/>
 			<dependency name="floatround"/>
 			<param name="vehicleid">
-			</param>
-		</member>
-		<member name="M:getVehicleMaxSpeed" syntax="getVehicleMaxSpeed(model)">
-			<attribute name="public"/>
-			<stacksize value="2"/>
-			<referrer name="ShowDealerShipTD"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
-			<param name="model">
 			</param>
 		</member>
 		<member name="M:getVehicleOwner" syntax="getVehicleOwner(id)">
