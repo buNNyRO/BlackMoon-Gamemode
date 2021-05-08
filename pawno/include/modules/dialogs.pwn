@@ -250,7 +250,7 @@ Dialog:TOG(playerid, response, listitem) {
 Dialog:DIALOG_SHOP(playerid, response, listitem) {
 	if(!response) return true;
 	switch(listitem) {
-		case 0: {
+		case 1: {
 			if(playerInfo[playerid][pPremium] == 0) return sendPlayerError(playerid, "Ai deja premium account.");
 			if(playerInfo[playerid][pPremiumPoints] < 50) return sendPlayerError(playerid, "Nu ai 50 premium points.");
 			playerInfo[playerid][pPremiumPoints] -= 50;
@@ -260,7 +260,7 @@ Dialog:DIALOG_SHOP(playerid, response, listitem) {
 			sendAdmin(COLOR_SERVER, "* Notice Shop: %s a cumparat 'Premium Account' cu 50 premium points.", getName(playerid));
 			SCM(playerid, COLOR_SERVER, "* Shop: Ai cumparat 'Premium Account' cu 50 premium points.");
 		}
-		case 1: {
+		case 2: {
 			if(playerInfo[playerid][pVIP] == 0) return sendPlayerError(playerid, "Ai deja VIP account.");
 			if(playerInfo[playerid][pPremiumPoints] < 100) return sendPlayerError(playerid, "Nu ai 100 premium points.");
 			playerInfo[playerid][pPremiumPoints] -= 100;
@@ -277,7 +277,7 @@ Dialog:DIALOG_SHOP(playerid, response, listitem) {
 Dialog:DIALOG_HUD(playerid, response, listitem) {
 	if(!response) return true;
 	switch(listitem) {
-		case 0: {
+		case 1: {
 			if(playerInfo[playerid][pFPSShow]) {
 				playerInfo[playerid][pFPSShow] = 1;
 				//fpsShow[playerid] = repeat TimerFPS(playerid);

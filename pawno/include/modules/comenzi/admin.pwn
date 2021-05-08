@@ -772,6 +772,11 @@ CMD:goto(playerid, params[]) {
 	SCMf(id, COLOR_GREY, "* Admin %s s-a teleportat la tine.", getName(playerid));
 	new Float:x, Float:y, Float:z;
 	GetPlayerPos(id, x, y, z);
+	if(GetPlayerState(id) == PLAYER_STATE_DRIVER) {
+		SetVehicleVirtualWorld(GetPlayerVehicleID(playerid), GetPlayerVirtualWorld(id));
+		LinkVehicleToInterior(GetPlayerVehicleID(playerid), GetPlayerInterior(id));
+		return SetVehiclePos(GetPlayerVehicleID(playerid), x, (y + 4), z);
+	}
 	if(GetPlayerState(id) == PLAYER_STATE_DRIVER || GetPlayerState(id) == PLAYER_STATE_PASSENGER) {
 		if(getVehicleMaxSeats(GetVehicleModel(GetPlayerVehicleID(playerid))) > 0) {
 			for(new i = 0; i < getVehicleMaxSeats(GetVehicleModel(GetPlayerVehicleID(playerid))); i++) {
