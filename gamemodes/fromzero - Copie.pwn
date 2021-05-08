@@ -21,6 +21,7 @@
 #include <a_samp>
 #include <a_zones>
 #include <beaZone>
+#include <mobile>
 
 #include <YSI\y_iterate>
 #include <profiler>
@@ -132,6 +133,11 @@ public OnPlayerRequestClass(playerid, classid)
 
 	InterpolateCameraPos(playerid, 1992.012207, 486.498046, 227.473190, 1141.062500, -1813.197387, 56.129741, 15000);
 	InterpolateCameraLookAt(playerid, 1989.800537, 482.112274, 226.538528, 1139.465698, -1808.715454, 54.592548, 15000);
+<<<<<<< HEAD
+=======
+
+	mysql_tquery(SQL, string_fast("SELECT * FROM `server_bans` WHERE `Active` = '1' AND `PlayerName` = '%s' LIMIT 1", getName(playerid)), "checkPlayerBan", "d", playerid);
+>>>>>>> d869479922030c742ad0d406e134aff4fd460fff
 	return true;
 }
 
@@ -144,7 +150,9 @@ public OnPlayerConnect(playerid)
 	switch(MYSQL) {
 		case 0: {
 			GameTextForPlayer(playerid, "~p~YOUR ACCOUNT IT'S GOOD", 1000, 3);
-			mysql_tquery(SQL, string_fast("SELECT * FROM `server_bans` WHERE `Active` = '1' AND `PlayerName` = '%s' LIMIT 1", getName(playerid)), "checkPlayerBan", "d", playerid);
+			gQuery[0] = (EOS);
+			mysql_format(SQL, gQuery, 128, "SELECT * FROM `server_bans` WHERE `Active` = '1' AND `PlayerName` = '%s' LIMIT 1", getName(playerid));
+			mysql_tquery(SQL, gQuery, "checkPlayerBan", "d", playerid);
 		}
 		default: HTTP(playerid, HTTP_GET, string_fast("blackbox.ipinfo.app/lookup/%s", playerInfo[playerid][pLastIp]), "", "MyHttpResponse");
 	}
@@ -815,7 +823,7 @@ public OnPlayerEnterCheckpoint(playerid)
 	}
 	return true;
 }
-
+	
 public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY, Float:fZ)  {
 	if(weaponid != 38 && weaponid > 18 && weaponid < 34 && hittype == 1) {
 		new Float:codX, Float:codY, Float:codZ, Float:codMX, Float:codMY,  Float:codMZ, Float:DistantaAim, weaponname[25];
