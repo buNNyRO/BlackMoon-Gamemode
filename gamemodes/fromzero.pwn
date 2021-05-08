@@ -493,7 +493,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 				SetPlayerVirtualWorld(playerid, bizInfo[playerInfo[playerid][areaBizz]][bizID]);
 				GivePlayerCash(playerid, 0, bizInfo[playerInfo[playerid][areaBizz]][bizFee]);
 				va_GameTextForPlayer(playerid, "~r~-$%d", bizInfo[playerInfo[playerid][areaBizz]][bizFee], 1000, 1);
-				playerInfo[playerid][pinBusiness] = bizInfo[playerInfo[playerid][areaBizz]][bizID];
+				playerInfo[playerid][pinBusiness] = playerInfo[playerid][areaBizz];
 				bizInfo[playerInfo[playerid][areaBizz]][bizBalance] += bizInfo[playerInfo[playerid][areaBizz]][bizFee];
 				update("UPDATE `server_business` SET `Balance`='%d' WHERE `ID`='%d' LIMIT 1",bizInfo[playerInfo[playerid][areaBizz]][bizBalance], playerInfo[playerid][areaBizz]);
 				switch(bizInfo[playerInfo[playerid][areaBizz]][bizType]) {
@@ -522,8 +522,8 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 				playerInfo[playerid][areaBizz] = 0;
 				return true;
 	        }
-	        else if(IsPlayerInRangeOfPoint(playerid, 3.0, bizInfo[b][bizX], bizInfo[b][bizY], bizInfo[b][bizZ])) {
-	        	SetPlayerPos(playerid, bizInfo[b][bizExtX], bizInfo[b][bizExtY], bizInfo[b][bizExtZ]);
+	        else if(playerInfo[playerid][pinBusiness] != 0 && IsPlayerInRangeOfPoint(playerid, 3.0, bizInfo[playerInfo[playerid][pinBusiness]][bizX], bizInfo[b][bizY], bizInfo[playerInfo[playerid][pinBusiness]][bizZ])) {
+	        	SetPlayerPos(playerid, bizInfo[playerInfo[playerid][pinBusiness]][bizExtX], bizInfo[playerInfo[playerid][pinBusiness]][bizExtY], bizInfo[playerInfo[playerid][pinBusiness]][bizExtZ]);
 	            SetPlayerInterior(playerid, 0);
 	            SetPlayerVirtualWorld(playerid, 0);
 	            playerInfo[playerid][pinBusiness] = -1;
@@ -537,13 +537,13 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 			SetPlayerPos(playerid, houseInfo[playerInfo[playerid][areaHouse]][hX], houseInfo[playerInfo[playerid][areaHouse]][hY], houseInfo[playerInfo[playerid][areaHouse]][hZ]);
 			SetPlayerInterior(playerid, houseInfo[playerInfo[playerid][areaHouse]][hInterior]);
 			SetPlayerVirtualWorld(playerid, houseInfo[playerInfo[playerid][areaHouse]][hID]);
-			playerInfo[playerid][pinHouse] = houseInfo[playerInfo[playerid][areaHouse]][hID];
+			playerInfo[playerid][pinHouse] = playerInfo[playerid][areaHouse];
 			SCMf(playerid, COLOR_GREY, "* House Notice: Welcome to %s's house. Commands available: /eat, /sleep.", houseInfo[playerInfo[playerid][areaHouse]][hOwner]);
 			playerInfo[playerid][areaHouse] = 0;
 			return true;
 		}
-		else if(IsPlayerInRangeOfPoint(playerid, 3.5, houseInfo[b][hX], houseInfo[b][hY], houseInfo[b][hZ])) {
-			SetPlayerPos(playerid, houseInfo[b][hExtX], houseInfo[b][hExtY], houseInfo[b][hExtZ]);
+		else if(playerInfo[playerid][pinHouse] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, houseInfo[playerInfo[playerid][pinHouse]][hX], houseInfo[playerInfo[playerid][pinHouse]][hY], houseInfo[playerInfo[playerid][pinHouse]][hZ])) {
+			SetPlayerPos(playerid, houseInfo[playerInfo[playerid][pinHouse]][hExtX], houseInfo[playerInfo[playerid][pinHouse]][hExtY], houseInfo[playerInfo[playerid][pinHouse]][hExtZ]);
 			SetPlayerInterior(playerid, 0);
 			SetPlayerVirtualWorld(playerid, 0);
 			playerInfo[playerid][pinHouse] = -1;
@@ -559,8 +559,8 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 			playerInfo[playerid][areaFaction] = 0;
 			return true;
 		}
-		else if(IsPlayerInRangeOfPoint(playerid, 3.5, factionInfo[b][fExitX], factionInfo[b][fExitY], factionInfo[b][fExitZ])) {
-			SetPlayerPos(playerid, factionInfo[b][fEnterX],factionInfo[b][fEnterY], factionInfo[b][fEnterZ]);
+		else if(playerInfo[playerid][pinFaction] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, factionInfo[playerInfo[playerid][pinFaction]][fExitX], factionInfo[playerInfo[playerid][pinFaction]][fExitY], factionInfo[playerInfo[playerid][pinFaction]][fExitZ])) {
+			SetPlayerPos(playerid, factionInfo[playerInfo[playerid][pinFaction]][fEnterX],factionInfo[playerInfo[playerid][pinFaction]][fEnterY], factionInfo[playerInfo[playerid][pinFaction]][fEnterZ]);
 			SetPlayerVirtualWorld(playerid, 0);
 			SetPlayerInterior(playerid, 0);
 			playerInfo[playerid][pinFaction] = 0;
@@ -572,7 +572,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 			SetPlayerHealthEx(playerid, 100);
 			StopFly(playerid);
 		}		
-		if(Working[playerid] == 2 && playerInfo[playerid][pJob] == 2 && IsPlayerInVehicle(playerid, JobVehicle[playerid])) {
+		if(Working[playerid] == 2 && IsPlayerInVehicle(playerid, JobVehicle[playerid])) {
 			if(!IsTrailerAttachedToVehicle(JobVehicle[playerid])) {
 				AttachTrailer(playerid);
 			}

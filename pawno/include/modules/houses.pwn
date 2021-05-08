@@ -396,7 +396,7 @@ CMD:unrentroom(playerid, params[]) {
 	update("UPDATE `server_houses` SET `Renters` = '%d' WHERE `ID` = '%d'", Iter_Count(RentersHouses[playerid]), houseInfo[houseid][hID]);
 	if(playerInfo[playerid][pSpawnChange] == 3) playerInfo[playerid][pSpawnChange] = 1;
 	playerInfo[playerid][pRent] = -1;
-	update("UPDATE `server_users` SET `SpawnChange` = '1', `Rent` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pRent], playerInfo[playerid][pSQLID]);
+	update("UPDATE `server_users` SET `SpawnChange` = '1', `Rent` = '-1' WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
 	SCM(playerid, COLOR_GREY, "* House Notice: Nu mai esti chirias. Acum te vei spawna la spawn.");
 	return true;
 }

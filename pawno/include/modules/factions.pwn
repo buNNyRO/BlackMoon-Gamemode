@@ -1539,7 +1539,7 @@ timer TimerGetHit[1000](playerid) {
 
 CMD:svf(playerid, params[]) {
 	if(!playerInfo[playerid][pFaction]) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda, deoarece nu esti intr-o factiune.");
-	if(Iter_Contains(FactionMembers[2], playerid) && Iter_Contains(FactionMembers[3], playerid) && Iter_Contains(FactionMembers[4], playerid) && playerInfo[playerid][pFactionDuty] == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti la datorie.");
+	if(Iter_Contains(FactionMembers[2], playerid) || Iter_Contains(FactionMembers[3], playerid) || Iter_Contains(FactionMembers[4], playerid) || playerInfo[playerid][pFactionDuty] == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti la datorie.");
 	if(playerVehicle[playerid] != -1) return sendPlayerError(playerid, "Ai deja un vehicul de factiune spawnat.");
 	new szDialog[256];
 	strcat(szDialog, "Vehicle\tRank\n");
@@ -1570,6 +1570,20 @@ CMD:svf(playerid, params[]) {
 		}
 	}
 	Dialog_Show(playerid, DIALOG_SVF, DIALOG_STYLE_TABLIST_HEADERS, "Spawn Vehicle Faction", szDialog, "Select", "Cancel");
+	return true;
+}
+
+CMD:dvf(playerid, params[]) {
+	if(!playerInfo[playerid][pFaction]) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda, deoarece nu esti intr-o factiune.");
+	if(playerVehicle[playerid] == -1) return sendPlayerError(playerid, "Nu ai un vehicul de factiune spawnat.");
+	DestroyVehicle(playerVehicle[playerid]); 
+	vehicleFaction[playerVehicle[playerid]] = 0;  
+	vehiclePlayerID[playerVehicle[playerid]] = -1;
+	vehicleRank[playerVehicle[playerid]] = 0;
+	playerVehicle[playerid] = -1;
+	if(IsValidObject(svfVehicleObjects[0])) DestroyObject(svfVehicleObjects[0]); 
+	if(IsValidObject(svfVehicleObjects[1])) DestroyObject(svfVehicleObjects[1]);
+	SCM(playerid, COLOR_LIGHTRED, "* (SVF): Ai despawnat masina de factiune spawnata.");
 	return true;
 }
 
@@ -1718,6 +1732,7 @@ Dialog:DIALOG_SVF(playerid, response, listitem) {
 	vehicle_fuel[playerVehicle[playerid]] = 100;
 	vehicleFaction[playerVehicle[playerid]] = playerInfo[playerid][pFaction];
 	vehiclePlayerID[playerVehicle[playerid]] = playerid;
+	SCM(playerid, COLOR_LIGHTRED, "* (SVF): Ai spawnat un vehicul de factiune, poti folosi comanda '/dvf' pentru a-o despawna.");
 	return true;
 }
 
