@@ -14,7 +14,7 @@ function ShowEmails(playerid) {
 		cache_get_value_name(i, "Text", text, 144);
 		cache_get_value_name(i, "From", from, MAX_PLAYER_NAME);
 		cache_get_value_name(i, "Date", date, 64);
-		SelectedID[playerid][i] = i;
+		playerInfo[playerid][pSelectedItem] = i;
 		format(gString, sizeof gString, "%s%d. %s\t%s\t%s\n", gString, id, text, from, date);
 	}
 	Dialog_Show(playerid, DIALOG_EMAILS, DIALOG_STYLE_TABLIST_HEADERS, "Emails", gString, "Select", "Cancel");
@@ -28,13 +28,15 @@ function CalculateEmails(playerid) {
 
 Dialog:DIALOG_EMAILS(playerid, response, listitem) {
 	if(!response) return true;
-	format(selName[playerid], 30, SelectedID[playerid][listitem]);		
-	new text[144], from[MAX_PLAYER_NAME], date[64], Cache: result = mysql_query(SQL, string_fast("SELECT * FROM `panel_notifications` WHERE `ID`='%s' AND `UserID` = '%d'", selName[playerid], playerInfo[playerid][pSQLID]));
+	new text[144], from[MAX_PLAYER_NAME], date[64], Cache: result = mysql_query(SQL, string_fast("SELECT * FROM `panel_notifications` WHERE `ID`='%s' AND `UserID` = '%d'", playerInfo[playerid][pSelectedItem], playerInfo[playerid][pSQLID]));
 	cache_get_value_name(0, "Text", text, 144);
 	cache_get_value_name(0, "From", from, MAX_PLAYER_NAME);
-	cache_get_value_name(0, "Date", date, 64);							
-	Dialog_Show(playerid, DIALOG_EMAILS2, DIALOG_STYLE_MSGBOX, string_fast("Email #%d", selName[playerid]), string_fast("%s\nFrom: %s\nDate: %s", text, from, date), "Ok", "");
+	cache_get_value_name(0, "Date", date, 64);			
+	gString[0] = (EOS);
+	format(gString, sizeof gString, "Email #%d", playerInfo[playerid][pSelectedItem]);				
+	Dialog_Show(playerid, DIALOG_EMAILS2, DIALOG_STYLE_MSGBOX, gString, string_fast("%s\nFrom: %s\nDate: %s", text, from, date), "Ok", "");
 	cache_delete(result);
+	playerInfo[playerid][pSelectedItem] = -1;
 	return true;
 }
 

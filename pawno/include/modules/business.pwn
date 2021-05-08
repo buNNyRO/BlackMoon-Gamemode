@@ -58,7 +58,7 @@ timer advertismentTimer[totalAds() * 60000](playerid) {
 
 function LoadBusinesses() {
 	if(!cache_num_rows()) return print("Businesses: 0 [From Database]");
-	for(new i = 1; i < cache_num_rows(); i++) {
+	for(new i = 0; i < cache_num_rows(); i++) {
 		Iter_Add(ServerBusinesses, i);
 
 		cache_get_value_name(i, "Title", bizInfo[i][bizTitle], 32);
@@ -89,7 +89,16 @@ function LoadBusinesses() {
 		switch(bizInfo[i][bizType]) {
 			case 1: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],52,0,-1,-1,-1,750.0);
 			case 2: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],17,0,-1,-1,-1,750.0); 
-			case 3: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],16,0,-1,-1,-1,750.0); 
+			case 3: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],49,0,-1,-1,-1,750.0); 
+			case 4: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],16,0,-1,-1,-1,750.0);
+			case 5: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],48,0,-1,-1,-1,750.0);
+			case 6: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],38,0,-1,-1,-1,750.0);  
+			case 7: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],63,0,-1,-1,-1,750.0); 
+			case 8: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],7,0,-1,-1,-1,750.0); 
+			case 9: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],39,0,-1,-1,-1,750.0); 
+			case 10: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],54,0,-1,-1,-1,750.0); 
+			case 11: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],45,0,-1,-1,-1,750.0); 
+			case 12: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],6,0,-1,-1,-1,750.0); 
 		}
 	}
 	return printf("Businesses: %d [From Database]", Iter_Count(ServerBusinesses));
@@ -460,7 +469,7 @@ CMD:ad(playerid, params[]) {
 		GivePlayerCash(playerid, 0, payad);
 		AdTimer[playerid] = totalads*60;
 		bizInfo[3][bizBalance] += payad;
-		GameTextForPlayer(playerid, string_fast("~r~Ai platit $%d~n~~w~Mesajul contine: %d caractere~n~Acesta va fi afisat in %d minute (%d secunde)", payad, idx, AdTimer[playerid]/60, AdTimer[playerid]), 5000, 5);
+		va_GameTextForPlayer(playerid, "~r~Ai platit $%d~n~~w~Mesajul contine: %d caractere~n~Acesta va fi afisat in %d minute (%d secunde)", payad, idx, AdTimer[playerid]/60, AdTimer[playerid], 5000, 5);
 		format(AdText[playerid], 256, result);
 		sendStaff(COLOR_SERVER, "(Ad Preview): {00D900}Ad by %s ({FFFFFF}%d{00D900}): %s", getName(playerid), playerInfo[playerid][pPhone], result);
 		defer advertismentTimer(playerid);
@@ -487,52 +496,56 @@ CMD:createbusiness(playerid, params[], help) {
 	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(Iter_Count(ServerBusinesses) >= MAX_BUSINESSES) return sendPlayerError(playerid, "Database:Limita de business-uri a fost atinsa !");
 	extract params -> new string:type[32], level, price, bizbalance, locked; else {
-		SCM(playerid, COLOR_GREY, "Optiuni Type: Bank, Shop, Bar, CNN. | Price: 0$ - not for sale ; > 0$ for sale");
+		SCM(playerid, COLOR_GREY, "Optiuni Type: bank, shop, bar, cnn, club, sexshop, pns, barber, tatoo, gym, binco, gunshop.| Price: 0$ - not for sale ; > 0$ for sale");
 		return sendPlayerSyntax(playerid, "/createbusiness <type> <level> <price> <biz balance> <locked (0 - no | 1 - yes)");
 	}
 	if(!(1 <= level <= 30)) return sendPlayerError(playerid, "Invalid level (1 - 30).");
 	if(!(0 <= price <= 100000000)) return sendPlayerError(playerid, "Invalid price (0$ - 100,000,000$).");
 	if(!(0 <= locked <= 1)) return sendPlayerError(playerid, "Invalid locked (0 - no | 1 - yes).");
-	new i = Iter_Free(ServerBusinesses);
+	new i = Iter_Count(ServerBusinesses) + 1;
 	Iter_Add(ServerBusinesses, i);
 	bizInfo[i][bizID] = i;
 	bizInfo[i][bizLocked] = locked;
 	GetPlayerPos(playerid, bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ]);
 	switch(YHash(type)) {
 		case _H<bank>: {
-			bizInfo[i][bizType] = 1; 
-			bizInfo[i][bizX] = 2315.952880; 
-			bizInfo[i][bizY] = -1.618174; 
-			bizInfo[i][bizZ] = 26.742187; 
-			bizInfo[i][bizInterior] = 0; 
-			bizInfo[i][bizStatic] = 0;
+			bizInfo[i][bizType] = 1; bizInfo[i][bizX] = 2315.952880; bizInfo[i][bizY] = -1.618174; bizInfo[i][bizZ] = 26.742187; bizInfo[i][bizInterior] = 0; bizInfo[i][bizStatic] = 0;
 		}
 		case _H<shop>: {
-			bizInfo[i][bizType] = 2; 
-			bizInfo[i][bizX] = -25.884498; 
-			bizInfo[i][bizY] = -185.868988; 
-			bizInfo[i][bizZ] = 1003.546875; 
-			bizInfo[i][bizInterior] = 17; 
-			bizInfo[i][bizStatic] = 0;
+			bizInfo[i][bizType] = 2; bizInfo[i][bizX] = -25.884498; bizInfo[i][bizY] = -185.868988; bizInfo[i][bizZ] = 1003.546875; bizInfo[i][bizInterior] = 17; bizInfo[i][bizStatic] = 0;
 		}
 		case _H<bar>: { 
-			bizInfo[i][bizType] = 3; 
-			bizInfo[i][bizX] = 501.980987; 
-			bizInfo[i][bizY] = -69.150199; 
-			bizInfo[i][bizZ] = 998.757812;
-			bizInfo[i][bizInterior] = 11; 
-			bizInfo[i][bizStatic] = 0;
+			bizInfo[i][bizType] = 3; bizInfo[i][bizX] = 501.980987; bizInfo[i][bizY] = -69.150199; bizInfo[i][bizZ] = 998.757812;bizInfo[i][bizInterior] = 11; bizInfo[i][bizStatic] = 0;
 		}
 		case _H<cnn>: { 
-			bizInfo[i][bizType] = 4; 
-			bizInfo[i][bizX] = 0; 
-			bizInfo[i][bizY] = 0; 
-			bizInfo[i][bizZ] = 0; 
-			bizInfo[i][bizInterior] = 0; 
-			bizInfo[i][bizStatic] = 1;
+			bizInfo[i][bizType] = 4; bizInfo[i][bizX] = 0; bizInfo[i][bizY] = 0; bizInfo[i][bizZ] = 0; bizInfo[i][bizInterior] = 0; bizInfo[i][bizStatic] = 1;
 		}
+		case _H<club>: { 
+			bizInfo[i][bizType] = 5;  bizInfo[i][bizX] = 493.390991; bizInfo[i][bizY] = -22.722799; bizInfo[i][bizZ] = 1000.679687; bizInfo[i][bizInterior] = 17; bizInfo[i][bizStatic] = 0;
+		}
+		case _H<sexshop>: {
+			bizInfo[i][bizType] = 6;  bizInfo[i][bizX] = -103.559165; bizInfo[i][bizY] = -24.225606; bizInfo[i][bizZ] = 1000.718750; bizInfo[i][bizInterior] = 3; bizInfo[i][bizStatic] = 0;
+		}
+		case _H<pns>: {
+			bizInfo[i][bizType] = 7;  bizInfo[i][bizX] = 0; bizInfo[i][bizY] = 0; bizInfo[i][bizZ] = 0; bizInfo[i][bizInterior] = 0; bizInfo[i][bizStatic] = 1;	
+		}
+		case _H<barber>: {
+			bizInfo[i][bizType] = 8;  bizInfo[i][bizX] = 411.625976; bizInfo[i][bizY] = -21.433298; bizInfo[i][bizZ] = 1001.804687; bizInfo[i][bizInterior] = 2; bizInfo[i][bizStatic] = 0;	
+		}
+		case _H<tatoo>: {
+			bizInfo[i][bizType] = 9;  bizInfo[i][bizX] = -204.439987; bizInfo[i][bizY] = -26.453998; bizInfo[i][bizZ] = 1002.273437; bizInfo[i][bizInterior] = 16; bizInfo[i][bizStatic] = 0;	
+		}
+		case _H<gym>: {
+			bizInfo[i][bizType] = 10;  bizInfo[i][bizX] = 773.579956; bizInfo[i][bizY] = -77.096694; bizInfo[i][bizZ] = 1000.655029; bizInfo[i][bizInterior] = 7; bizInfo[i][bizStatic] = 0;	
+		} 
+		case _H<binco>: {
+			bizInfo[i][bizType] = 11;  bizInfo[i][bizX] = 207.737991; bizInfo[i][bizY] = -109.019996; bizInfo[i][bizZ] = 1005.132812; bizInfo[i][bizInterior] = 15; bizInfo[i][bizStatic] = 0;			
+		}
+		case _H<gunshop>: {
+			bizInfo[i][bizType] = 12;  bizInfo[i][bizX] = 286.800994; bizInfo[i][bizY] = -82.547599; bizInfo[i][bizZ] = 1001.515625; bizInfo[i][bizInterior] = 4; bizInfo[i][bizStatic] = 0;					
+		} 
 		default: {
-			SCM(playerid, COLOR_GREY, "Optiuni Type: Bank, Shop, Bar, CNN. | Price: 0$ - not for sale ; > 0$ for sale");
+			SCM(playerid, COLOR_GREY, "Optiuni Type: bank, shop, bar, cnn, club, sexshop, pns, barber, tatoo, gym, binco, gunshop. | Price: 0$ - not for sale ; > 0$ for sale");
 			return sendPlayerSyntax(playerid, "/createbusiness <type> <level> <price> <biz balance> <locked (0 - no | 1 - yes)");
 		}
 	}
@@ -548,9 +561,18 @@ CMD:createbusiness(playerid, params[], help) {
 	switch(bizInfo[i][bizType]) {
 		case 1: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],52,0,-1,-1,-1,750.0);
 		case 2: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],17,0,-1,-1,-1,750.0); 
-		case 3: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],16,0,-1,-1,-1,750.0); 
+		case 3: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],49,0,-1,-1,-1,750.0); 
+		case 4: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],16,0,-1,-1,-1,750.0);
+		case 5: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],48,0,-1,-1,-1,750.0);
+		case 6: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],38,0,-1,-1,-1,750.0);  
+		case 7: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],63,0,-1,-1,-1,750.0); 
+		case 8: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],7,0,-1,-1,-1,750.0); 
+		case 9: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],39,0,-1,-1,-1,750.0); 
+		case 10: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],54,0,-1,-1,-1,750.0); 
+		case 11: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],45,0,-1,-1,-1,750.0); 
+		case 12: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],6,0,-1,-1,-1,750.0); 
 	}
-	update("INSERT INTO `server_business` (`Title`, `Description`, `Owner`, `X`, `Y`, `Z`, `ExtX`, `ExtY`, `ExtZ`, `Fee`, `Static`, `Type`, `Interior`, `Owned`, `Price`, `OwnerID`, `Locked`, `Balance`) VALUES('%s', '%s', '%s', '%.2f', '%.2f', '%.2f', '%.2f', '%.2f', '%.2f', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d') LIMIT 1",bizInfo[i][bizTitle], bizInfo[i][bizDescription], bizInfo[i][bizOwner], bizInfo[i][bizX], bizInfo[i][bizY], bizInfo[i][bizZ], bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ], bizInfo[i][bizFee], bizInfo[i][bizStatic], bizInfo[i][bizType], bizInfo[i][bizInterior], bizInfo[i][bizOwned], bizInfo[i][bizPrice], bizInfo[i][bizOwnerID], bizInfo[i][bizLocked], bizInfo[i][bizBalance]);
-	SCMf(playerid, COLOR_SERVER, "* Notice: {ffffff}Ai creat un business de tip '%s' (id: %d | level: %d | price: $%s | biz balance: $%s | locked: %s).", type, i, level, formatNumber(price), formatNumber(bizBalance), locked ? "yes" : "no");
+	update("INSERT INTO `server_business` (`Title`, `Description`, `Owner`, `X`, `Y`, `Z`, `ExtX`, `ExtY`, `ExtZ`, `Static`, `Type`, `Interior`, `Price`) VALUES('%s', '%s', '%s', '%.2f', '%.2f', '%.2f', '%.2f', '%.2f', '%.2f', '%d', '%d', '%d', '%d')", bizInfo[i][bizTitle], bizInfo[i][bizDescription], bizInfo[i][bizOwner], bizInfo[i][bizX], bizInfo[i][bizY], bizInfo[i][bizZ], bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ], bizInfo[i][bizStatic], bizInfo[i][bizType], bizInfo[i][bizInterior], bizInfo[i][bizPrice]);
+	SCMf(playerid, COLOR_SERVER, "* Notice: {ffffff}Ai creat un business de tip '%s' (id: %d | level: %d | price: $%s | biz balance: $%s | locked: %s).", type, bizInfo[i][bizID], bizInfo[i][bizPrice], formatNumber(bizInfo[i][bizPrice]), formatNumber(bizInfo[i][bizBalance]), bizInfo[i][bizLocked] ? "yes" : "no");
 	return true;
 }

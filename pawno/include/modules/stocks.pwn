@@ -716,9 +716,9 @@ stock strmatch(stringone[], stringtwo[])
 
 stock update(const text[], va_args<>)
 {
-	gQuery[0] = (EOS);
-	va_format(gQuery, 256, text, va_start<1>);
-	return mysql_tquery(SQL, gQuery);
+	gFast[0] = (EOS);
+	va_format(gFast, sizeof gFast, text, va_start<1>);
+	return mysql_tquery(SQL, gFast);
 }
 
 stock isValidEmail(const email[])
