@@ -1,4 +1,4 @@
-//new fso_map;
+new fso_map;
 CreateDynamicObject(19379, -2173.259277, -2133.776611, 1500.010498, 0.000000, 90.000000, 0.000000, -1, -1);
 fso_map = CreateDynamicObject(19366, -2169.981689, -2136.379150, 1500.014526, 0.000000, 90.000000, 0.000000, -1, -1);
 SetDynamicObjectMaterial(fso_map, 0, 15034, "genhotelsave", "HS2_2Wall4", 0);

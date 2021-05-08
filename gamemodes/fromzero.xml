@@ -1465,7 +1465,6 @@
 			<referrer name="pc_cmd_quitjob"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
-			<referrer name="advertismentTimer"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
 			<referrer name="pc_cmd_buybusiness"/>
 			<referrer name="pc_cmd_bizlock"/>
@@ -2053,6 +2052,7 @@
 			<referrer name="pc_cmd_withdraw"/>
 			<referrer name="pc_cmd_transfer"/>
 			<referrer name="pc_cmd_ad"/>
+			<referrer name="pc_cmd_myad"/>
 			<referrer name="pc_cmd_deletemyad"/>
 			<referrer name="@yH_OnPlayerConnect@010"/>
 			<referrer name="@yH_OnPlayerDisconnect@010"/>
@@ -2502,6 +2502,7 @@
 			<referrer name="totalAds"/>
 			<referrer name="advertismentTimer"/>
 			<referrer name="pc_cmd_ad"/>
+			<referrer name="pc_cmd_myad"/>
 			<referrer name="pc_cmd_deletemyad"/>
 			<referrer name="pc_cmd_deletead"/>
 		</member>
@@ -4277,7 +4278,6 @@
 			<referrer name="pc_cmd_setguns"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
-			<referrer name="advertismentTimer"/>
 			<referrer name="pc_cmd_buybusiness"/>
 			<referrer name="pc_cmd_hl"/>
 			<referrer name="sendClanMessage"/>
@@ -11957,7 +11957,6 @@
 		<member name="M:CreateObject" syntax="CreateObject(modelid, X, Y, Z, rX, rY, rZ, DrawDistance)">
 			<attribute name="native"/>
 			<referrer name="dialog_DIALOG_SVF"/>
-			<referrer name="loadMaps"/>
 			<param name="modelid">
 			</param>
 			<param name="X">
@@ -22442,7 +22441,6 @@
 			<referrer name="pc_cmd_balance"/>
 			<referrer name="pc_cmd_deposit"/>
 			<referrer name="pc_cmd_withdraw"/>
-			<referrer name="pc_cmd_myad"/>
 			<referrer name="pc_cmd_deletemyad"/>
 			<referrer name="CautaHelperNou"/>
 			<referrer name="CautaHelper"/>
@@ -22471,40 +22469,17 @@
 			<referrer name="TimerTutorial"/>
 			<referrer name="PayDay"/>
 			<referrer name="ExpirationReport"/>
-			<referrer name="pc_cmd_addexamcp"/>
-			<referrer name="pc_cmd_unwarn"/>
-			<referrer name="pc_cmd_unmute"/>
 			<referrer name="pc_cmd_mutedplayers"/>
-			<referrer name="pc_cmd_sethelper"/>
-			<referrer name="pc_cmd_givemoney"/>
 			<referrer name="pc_cmd_adminsuspendlicense"/>
 			<referrer name="pc_cmd_admingivelicense"/>
 			<referrer name="pc_cmd_admintakelicense"/>
-			<referrer name="pc_cmd_goto"/>
-			<referrer name="pc_cmd_gethere"/>
-			<referrer name="pc_cmd_slap"/>
-			<referrer name="pc_cmd_freeze"/>
-			<referrer name="pc_cmd_unfreeze"/>
 			<referrer name="pc_cmd_set"/>
-			<referrer name="pc_cmd_respawn"/>
-			<referrer name="pc_cmd_respawnhere"/>
-			<referrer name="pc_cmd_pm"/>
 			<referrer name="pc_cmd_mark"/>
 			<referrer name="pc_cmd_gotomark"/>
 			<referrer name="pc_cmd_healme"/>
 			<referrer name="pc_cmd_area"/>
-			<referrer name="pc_cmd_givegun"/>
-			<referrer name="pc_cmd_disarm"/>
 			<referrer name="pc_cmd_reports"/>
-			<referrer name="pc_cmd_acceptreport"/>
-			<referrer name="pc_cmd_rchat"/>
-			<referrer name="pc_cmd_closereport"/>
-			<referrer name="pc_cmd_reportmute"/>
 			<referrer name="pc_cmd_ah"/>
-			<referrer name="pc_cmd_gotoxyz"/>
-			<referrer name="pc_cmd_unjail"/>
-			<referrer name="pc_cmd_jail"/>
-			<referrer name="pc_cmd_showfreq"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_helpers"/>
 			<referrer name="pc_cmd_exam"/>
@@ -22545,9 +22520,6 @@
 			<referrer name="pc_cmd_ch"/>
 			<referrer name="checkPanel"/>
 			<referrer name="BanIPPlayer"/>
-			<referrer name="pc_cmd_warn"/>
-			<referrer name="pc_cmd_ban"/>
-			<referrer name="pc_cmd_mute"/>
 			<param name="color">
 			</param>
 			<param name="message">
@@ -22667,32 +22639,6 @@
 			<param name="materialcolor">
 			</param>
 		</member>
-		<member name="M:SetDynamicObjectMaterialText" syntax="SetDynamicObjectMaterialText(objectid, materialindex, text[], materialsize, fontface[], fontsize, bold, fontcolor, backcolor, textalignment)">
-			<attribute name="native"/>
-			<referrer name="loadMaps"/>
-			<param name="objectid">
-			</param>
-			<param name="materialindex">
-			</param>
-			<param name="text">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="materialsize">
-			</param>
-			<param name="fontface">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="fontsize">
-			</param>
-			<param name="bold">
-			</param>
-			<param name="fontcolor">
-			</param>
-			<param name="backcolor">
-			</param>
-			<param name="textalignment">
-			</param>
-		</member>
 		<member name="M:SetFrameLocal" syntax="SetFrameLocal(frm_addr, param, value)">
 			<stacksize value="1"/>
 			<param name="frm_addr">
@@ -22772,24 +22718,6 @@
 			<referrer name="CB_OnGameModeInit"/>
 			<param name="distance">
 				<paraminfo>Float </paraminfo>
-			</param>
-		</member>
-		<member name="M:SetObjectMaterial" syntax="SetObjectMaterial(objectid, materialindex, modelid, txdname[], texturename[], materialcolor)">
-			<attribute name="native"/>
-			<referrer name="loadMaps"/>
-			<param name="objectid">
-			</param>
-			<param name="materialindex">
-			</param>
-			<param name="modelid">
-			</param>
-			<param name="txdname">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="texturename">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="materialcolor">
 			</param>
 		</member>
 		<member name="M:SetObjectMaterialText" syntax="SetObjectMaterialText(objectid, text[], materialindex, materialsize, fontface[], fontsize, bold, fontcolor, backcolor, textalignment)">
@@ -25604,20 +25532,18 @@
 			</param>
 		</member>
 		<member name="M:advertismentTimer" syntax="advertismentTimer(playerid)">
-			<stacksize value="8"/>
+			<stacksize value="4106"/>
 			<referrer name="advertismentTimer@_yT"/>
 			<dependency name="AdText"/>
 			<dependency name="AdText"/>
 			<dependency name="AdTimer"/>
-			<dependency name="EOS"/>
-			<dependency name="gString"/>
 			<dependency name="pName"/>
 			<dependency name="pPhone"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendSplitMessage"/>
+			<dependency name="string_fast"/>
 			<dependency name="true"/>
-			<dependency name="va_format"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -28857,8 +28783,6 @@
 			<referrer name="pc_cmd_banoffline"/>
 			<referrer name="pc_cmd_unban"/>
 			<referrer name="pc_cmd_mute"/>
-			<referrer name="pc_cmd_unmute"/>
-			<referrer name="pc_cmd_mutedplayers"/>
 			<referrer name="pc_cmd_kick"/>
 			<referrer name="pc_cmd_reportmute"/>
 			<referrer name="pc_cmd_banip"/>
@@ -29264,15 +29188,12 @@
 		</member>
 		<member name="M:loadMaps" syntax="loadMaps()">
 			<attribute name="public"/>
-			<stacksize value="188"/>
+			<stacksize value="20"/>
 			<referrer name="CB_OnGameModeInit"/>
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="CreateDynamicObject"/>
 			<dependency name="CreateDynamicObjectEx"/>
-			<dependency name="CreateObject"/>
 			<dependency name="SetDynamicObjectMaterial"/>
-			<dependency name="SetDynamicObjectMaterialText"/>
-			<dependency name="SetObjectMaterial"/>
 		</member>
 		<member name="M:main" syntax="main()">
 			<attribute name="entry"/>
@@ -30111,7 +30032,7 @@
 		</member>
 		<member name="M:pc_cmd_acceptreport" syntax="pc_cmd_acceptreport(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4106"/>
+			<stacksize value="9"/>
 			<dependency name="EOS"/>
 			<dependency name="GetReportID"/>
 			<dependency name="Iter_Contains_InternalC"/>
@@ -30121,7 +30042,6 @@
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="PlayerHaveReport"/>
 			<dependency name="REPORT_TYPE_NONE"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pName"/>
@@ -30138,9 +30058,9 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -30225,14 +30145,13 @@
 		</member>
 		<member name="M:pc_cmd_addexamcp" syntax="pc_cmd_addexamcp(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4105"/>
+			<stacksize value="10"/>
 			<dependency name="EOS"/>
 			<dependency name="GetPlayerPos"/>
 			<dependency name="Iter_Free_Internal"/>
 			<dependency name="Iter_Single@ExamenCheckpoints"/>
 			<dependency name="Iterator@ExamenCheckpoints"/>
 			<dependency name="SQL"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="dmvID"/>
 			<dependency name="dmvX"/>
 			<dependency name="dmvY"/>
@@ -30245,8 +30164,8 @@
 			<dependency name="pAdmin"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -30323,7 +30242,7 @@
 		</member>
 		<member name="M:pc_cmd_admingivelicense" syntax="pc_cmd_admingivelicense(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4139"/>
+			<stacksize value="47"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="YHash"/>
 			<dependency name="isPlayerLogged"/>
@@ -30343,10 +30262,10 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
 			<dependency name="update"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -30396,7 +30315,7 @@
 		</member>
 		<member name="M:pc_cmd_adminsuspendlicense" syntax="pc_cmd_adminsuspendlicense(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4139"/>
+			<stacksize value="47"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="YHash"/>
 			<dependency name="isPlayerLogged"/>
@@ -30416,10 +30335,10 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
 			<dependency name="update"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -30428,7 +30347,7 @@
 		</member>
 		<member name="M:pc_cmd_admintakelicense" syntax="pc_cmd_admintakelicense(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4137"/>
+			<stacksize value="46"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="YHash"/>
 			<dependency name="isPlayerLogged"/>
@@ -30448,10 +30367,10 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
 			<dependency name="update"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -30557,7 +30476,7 @@
 		</member>
 		<member name="M:pc_cmd_area" syntax="pc_cmd_area(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="8239"/>
+			<stacksize value="4143"/>
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="operator&gt;(Float:,_:)"/>
 			<dependency name="operator&lt;(Float:,_:)"/>
@@ -30586,6 +30505,7 @@
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -30773,11 +30693,10 @@
 		</member>
 		<member name="M:pc_cmd_ban" syntax="pc_cmd_ban(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="8269"/>
+			<stacksize value="4172"/>
 			<dependency name="GetPVarInt"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
-			<dependency name="SendClientMessageToAll"/>
 			<dependency name="banPlayer"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
@@ -30787,10 +30706,10 @@
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
 			<dependency name="string_fast"/>
-			<dependency name="strmatch"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessageToAll"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -30818,9 +30737,9 @@
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
 			<dependency name="strmatch"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -30847,9 +30766,9 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
-			<dependency name="sscanf"/>
 			<dependency name="strmatch"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -30873,9 +30792,9 @@
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
 			<dependency name="strmatch"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -31605,7 +31524,7 @@
 		</member>
 		<member name="M:pc_cmd_closereport" syntax="pc_cmd_closereport(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4171"/>
+			<stacksize value="74"/>
 			<dependency name="EOS"/>
 			<dependency name="GetReportID"/>
 			<dependency name="Iter_Contains_InternalC"/>
@@ -31615,7 +31534,6 @@
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="PlayerHaveReport"/>
 			<dependency name="REPORT_TYPE_NONE"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pName"/>
@@ -31632,9 +31550,9 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -32089,12 +32007,11 @@
 		</member>
 		<member name="M:pc_cmd_disarm" syntax="pc_cmd_disarm(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4105"/>
+			<stacksize value="8"/>
 			<dependency name="GetPlayerWeapons"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="ResetPlayerWeapons"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
@@ -32102,9 +32019,9 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -32281,8 +32198,8 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
 			<dependency name="vehNames"/>
 			<dependency name="vehNames"/>
 			<param name="playerid">
@@ -32713,10 +32630,9 @@
 		</member>
 		<member name="M:pc_cmd_freeze" syntax="pc_cmd_freeze(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4105"/>
+			<stacksize value="8"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="TogglePlayerControllable"/>
 			<dependency name="false"/>
 			<dependency name="isPlayerLogged"/>
@@ -32727,9 +32643,9 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -32918,7 +32834,7 @@
 		</member>
 		<member name="M:pc_cmd_gethere" syntax="pc_cmd_gethere(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4108"/>
+			<stacksize value="10"/>
 			<dependency name="operator+(Float:,_:)"/>
 			<dependency name="GetPlayerInterior"/>
 			<dependency name="GetPlayerPos"/>
@@ -32928,7 +32844,6 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="LinkVehicleToInterior"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerInterior"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="SetPlayerVirtualWorld"/>
@@ -32941,9 +32856,9 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -33022,10 +32937,9 @@
 		</member>
 		<member name="M:pc_cmd_givegun" syntax="pc_cmd_givegun(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="8205"/>
+			<stacksize value="4108"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="getWeaponName"/>
 			<dependency name="getWeaponName"/>
 			<dependency name="isPlayerLogged"/>
@@ -33037,9 +32951,9 @@
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="serverWeapon"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -33079,10 +32993,9 @@
 		</member>
 		<member name="M:pc_cmd_givemoney" syntax="pc_cmd_givemoney(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4156"/>
+			<stacksize value="60"/>
 			<dependency name="CheckerBigInt"/>
 			<dependency name="MoneyMoney"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="StoreMoney"/>
 			<dependency name="Translate32Bit"/>
 			<dependency name="formatNumberss"/>
@@ -33096,10 +33009,11 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
 			<dependency name="update"/>
+			<dependency name="updatePlayer"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -33108,7 +33022,7 @@
 		</member>
 		<member name="M:pc_cmd_goto" syntax="pc_cmd_goto(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4108"/>
+			<stacksize value="10"/>
 			<dependency name="operator+(Float:,_:)"/>
 			<dependency name="GetPlayerInterior"/>
 			<dependency name="GetPlayerPos"/>
@@ -33122,7 +33036,6 @@
 			<dependency name="LinkVehicleToInterior"/>
 			<dependency name="MaxSeats"/>
 			<dependency name="PutPlayerInVehicle"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerInterior"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="SetPlayerVirtualWorld"/>
@@ -33135,9 +33048,9 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -33259,18 +33172,17 @@
 		</member>
 		<member name="M:pc_cmd_gotoxyz" syntax="pc_cmd_gotoxyz(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4110"/>
+			<stacksize value="14"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerInterior"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="SetPlayerVirtualWorld"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -33758,7 +33670,7 @@
 		</member>
 		<member name="M:pc_cmd_jail" syntax="pc_cmd_jail(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4141"/>
+			<stacksize value="44"/>
 			<dependency name="I@"/>
 			<dependency name="Iter_Add_InternalC"/>
 			<dependency name="Iter_Contains_InternalC"/>
@@ -33766,7 +33678,6 @@
 			<dependency name="Iterator@JailedPlayers"/>
 			<dependency name="J@"/>
 			<dependency name="RemovePlayerAttachedObject"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerInterior"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="SetPlayerSpecialAction"/>
@@ -33790,11 +33701,11 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="string_fast"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
 			<dependency name="update"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -33874,9 +33785,9 @@
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
 			<dependency name="strmatch"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -34396,11 +34307,10 @@
 		</member>
 		<member name="M:pc_cmd_mute" syntax="pc_cmd_mute(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4172"/>
+			<stacksize value="75"/>
 			<dependency name="GetPVarInt"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
-			<dependency name="SendClientMessageToAll"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="mutePlayer"/>
@@ -34411,10 +34321,9 @@
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
-			<dependency name="strmatch"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessageToAll"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -34423,20 +34332,19 @@
 		</member>
 		<member name="M:pc_cmd_mutedplayers" syntax="pc_cmd_mutedplayers(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4112"/>
+			<stacksize value="12"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iter_Single@MutedPlayers"/>
 			<dependency name="Iterator@MutedPlayers"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="SendClientMessage"/>
-			<dependency name="gettime"/>
 			<dependency name="pMute"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -34445,11 +34353,13 @@
 		</member>
 		<member name="M:pc_cmd_myad" syntax="pc_cmd_myad(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4104"/>
+			<stacksize value="7"/>
 			<dependency name="AdText"/>
 			<dependency name="AdText"/>
-			<dependency name="SendClientMessage"/>
-			<dependency name="string_fast"/>
+			<dependency name="AdTimer"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -34657,20 +34567,19 @@
 		</member>
 		<member name="M:pc_cmd_pm" syntax="pc_cmd_pm(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4234"/>
+			<stacksize value="137"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="Iterator@ServerHelpers"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -34845,19 +34754,18 @@
 		</member>
 		<member name="M:pc_cmd_rchat" syntax="pc_cmd_rchat(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4106"/>
+			<stacksize value="9"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="pName"/>
 			<dependency name="pReportChat"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="string_fast"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -35001,10 +34909,9 @@
 		</member>
 		<member name="M:pc_cmd_reportmute" syntax="pc_cmd_reportmute(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4172"/>
+			<stacksize value="75"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pName"/>
@@ -35015,10 +34922,10 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
 			<dependency name="update"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -35027,7 +34934,7 @@
 		</member>
 		<member name="M:pc_cmd_reports" syntax="pc_cmd_reports(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4108"/>
+			<stacksize value="11"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iter_Single@Reports"/>
 			<dependency name="Iterator@Reports"/>
@@ -35042,8 +34949,8 @@
 			<dependency name="reportInfo"/>
 			<dependency name="reportText"/>
 			<dependency name="sendPlayerError"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -35086,13 +34993,12 @@
 		</member>
 		<member name="M:pc_cmd_respawn" syntax="pc_cmd_respawn(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4105"/>
+			<stacksize value="10"/>
 			<dependency name="operator+(Float:,_:)"/>
 			<dependency name="GetPlayerPos"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="SpawnPlayer"/>
 			<dependency name="isPlayerLogged"/>
@@ -35102,9 +35008,9 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -35113,7 +35019,7 @@
 		</member>
 		<member name="M:pc_cmd_respawnhere" syntax="pc_cmd_respawnhere(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4108"/>
+			<stacksize value="13"/>
 			<dependency name="operator+(Float:,_:)"/>
 			<dependency name="GetPlayerInterior"/>
 			<dependency name="GetPlayerPos"/>
@@ -35123,7 +35029,6 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="J@"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pName"/>
@@ -35133,9 +35038,9 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -35363,8 +35268,8 @@
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="setSkin"/>
-			<dependency name="sscanf"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
 			<dependency name="update"/>
 			<dependency name="updateLevelBar"/>
 			<param name="playerid">
@@ -35394,9 +35299,8 @@
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="serverInfoTD"/>
-			<dependency name="sscanf"/>
-			<dependency name="strmatch"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
 			<dependency name="update"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
@@ -35454,13 +35358,12 @@
 		</member>
 		<member name="M:pc_cmd_sethelper" syntax="pc_cmd_sethelper(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4107"/>
+			<stacksize value="10"/>
 			<dependency name="Iter_Add_InternalC"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iter_Remove_InternalC"/>
 			<dependency name="Iter_Single@ServerHelpers"/>
 			<dependency name="Iterator@ServerHelpers"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pHelper"/>
@@ -35471,11 +35374,10 @@
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sendStaff"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
-			<dependency name="strmatch"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
 			<dependency name="update"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -35568,19 +35470,18 @@
 		</member>
 		<member name="M:pc_cmd_showfreq" syntax="pc_cmd_showfreq(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4105"/>
+			<stacksize value="8"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="pWTChannel"/>
 			<dependency name="pWTalkie"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -35668,14 +35569,13 @@
 		</member>
 		<member name="M:pc_cmd_slap" syntax="pc_cmd_slap(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4109"/>
+			<stacksize value="12"/>
 			<dependency name="operator-(Float:,_:)"/>
 			<dependency name="operator+(Float:,_:)"/>
 			<dependency name="GetPlayerHealthEx"/>
 			<dependency name="GetPlayerPos"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerHealthEx"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="isPlayerLogged"/>
@@ -35685,9 +35585,9 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -35809,8 +35709,8 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
 			<dependency name="vehNames"/>
 			<dependency name="vehNames"/>
 			<dependency name="vehicle_fuel"/>
@@ -36277,10 +36177,9 @@
 		</member>
 		<member name="M:pc_cmd_unfreeze" syntax="pc_cmd_unfreeze(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4105"/>
+			<stacksize value="8"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="TogglePlayerControllable"/>
 			<dependency name="false"/>
 			<dependency name="isPlayerLogged"/>
@@ -36291,9 +36190,9 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -36302,13 +36201,12 @@
 		</member>
 		<member name="M:pc_cmd_unjail" syntax="pc_cmd_unjail(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4138"/>
+			<stacksize value="41"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iter_Remove_InternalC"/>
 			<dependency name="Iter_Single@JailedPlayers"/>
 			<dependency name="Iterator@JailedPlayers"/>
 			<dependency name="PlayerTextDrawHide"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerVirtualWorld"/>
 			<dependency name="SpawnPlayer"/>
 			<dependency name="_Timer_F"/>
@@ -36325,11 +36223,11 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="string_fast"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
 			<dependency name="update"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -36362,14 +36260,12 @@
 		</member>
 		<member name="M:pc_cmd_unmute" syntax="pc_cmd_unmute(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4138"/>
+			<stacksize value="41"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iter_Remove_InternalC"/>
 			<dependency name="Iter_Single@MutedPlayers"/>
 			<dependency name="Iterator@MutedPlayers"/>
 			<dependency name="Iterator@ServerAdmins"/>
-			<dependency name="SendClientMessage"/>
-			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pMute"/>
 			<dependency name="pName"/>
@@ -36379,10 +36275,10 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
 			<dependency name="update"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -36441,9 +36337,8 @@
 		</member>
 		<member name="M:pc_cmd_unwarn" syntax="pc_cmd_unwarn(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4169"/>
+			<stacksize value="75"/>
 			<dependency name="GetPVarInt"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="SetPVarInt"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
@@ -36456,10 +36351,10 @@
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
 			<dependency name="update"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -36608,11 +36503,10 @@
 		</member>
 		<member name="M:pc_cmd_warn" syntax="pc_cmd_warn(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4170"/>
+			<stacksize value="73"/>
 			<dependency name="GetPVarInt"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
-			<dependency name="SendClientMessageToAll"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pName"/>
@@ -36620,9 +36514,9 @@
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessageToAll"/>
 			<dependency name="warnPlayer"/>
 			<param name="playerid">
 			</param>
@@ -37577,6 +37471,7 @@
 			<referrer name="pc_cmd_withdraw"/>
 			<referrer name="pc_cmd_transfer"/>
 			<referrer name="pc_cmd_ad"/>
+			<referrer name="pc_cmd_myad"/>
 			<referrer name="pc_cmd_deletemyad"/>
 			<referrer name="pc_cmd_helduty"/>
 			<referrer name="pc_cmd_n"/>
@@ -38251,37 +38146,6 @@
 			<referrer name="onPlayerLogin"/>
 			<referrer name="LoadPersonalVehicle"/>
 			<referrer name="pc_cmd_carcolor"/>
-			<referrer name="pc_cmd_warn"/>
-			<referrer name="pc_cmd_unwarn"/>
-			<referrer name="pc_cmd_ban"/>
-			<referrer name="pc_cmd_banoffline"/>
-			<referrer name="pc_cmd_mute"/>
-			<referrer name="pc_cmd_unmute"/>
-			<referrer name="pc_cmd_setadmin"/>
-			<referrer name="pc_cmd_sethelper"/>
-			<referrer name="pc_cmd_givemoney"/>
-			<referrer name="pc_cmd_adminsuspendlicense"/>
-			<referrer name="pc_cmd_admingivelicense"/>
-			<referrer name="pc_cmd_admintakelicense"/>
-			<referrer name="pc_cmd_kick"/>
-			<referrer name="pc_cmd_spawncar"/>
-			<referrer name="pc_cmd_entercar"/>
-			<referrer name="pc_cmd_goto"/>
-			<referrer name="pc_cmd_gethere"/>
-			<referrer name="pc_cmd_slap"/>
-			<referrer name="pc_cmd_freeze"/>
-			<referrer name="pc_cmd_unfreeze"/>
-			<referrer name="pc_cmd_set"/>
-			<referrer name="pc_cmd_respawn"/>
-			<referrer name="pc_cmd_respawnhere"/>
-			<referrer name="pc_cmd_pm"/>
-			<referrer name="pc_cmd_givegun"/>
-			<referrer name="pc_cmd_disarm"/>
-			<referrer name="pc_cmd_acceptreport"/>
-			<referrer name="pc_cmd_closereport"/>
-			<referrer name="pc_cmd_reportmute"/>
-			<referrer name="pc_cmd_banip"/>
-			<referrer name="pc_cmd_banipoffline"/>
 			<param name="data">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -38477,6 +38341,7 @@
 			<referrer name="pc_cmd_skills"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
+			<referrer name="advertismentTimer"/>
 			<referrer name="BusinessUpdate"/>
 			<referrer name="dialog_BIZ_OPTION_TITLE"/>
 			<referrer name="dialog_BIZ_OPTION_DESCRIPTION"/>
@@ -38493,7 +38358,6 @@
 			<referrer name="pc_cmd_withdraw"/>
 			<referrer name="pc_cmd_transfer"/>
 			<referrer name="pc_cmd_ad"/>
-			<referrer name="pc_cmd_myad"/>
 			<referrer name="CautaHelperNou"/>
 			<referrer name="CautaHelper"/>
 			<referrer name="pc_cmd_ar"/>
@@ -38519,38 +38383,8 @@
 			<referrer name="Timers"/>
 			<referrer name="TimerTutorial"/>
 			<referrer name="PayDay"/>
-			<referrer name="pc_cmd_addexamcp"/>
-			<referrer name="pc_cmd_warn"/>
-			<referrer name="pc_cmd_unwarn"/>
 			<referrer name="pc_cmd_ban"/>
-			<referrer name="pc_cmd_mute"/>
-			<referrer name="pc_cmd_unmute"/>
-			<referrer name="pc_cmd_mutedplayers"/>
-			<referrer name="pc_cmd_sethelper"/>
-			<referrer name="pc_cmd_givemoney"/>
-			<referrer name="pc_cmd_adminsuspendlicense"/>
-			<referrer name="pc_cmd_admingivelicense"/>
-			<referrer name="pc_cmd_admintakelicense"/>
-			<referrer name="pc_cmd_goto"/>
-			<referrer name="pc_cmd_gethere"/>
-			<referrer name="pc_cmd_slap"/>
-			<referrer name="pc_cmd_freeze"/>
-			<referrer name="pc_cmd_unfreeze"/>
-			<referrer name="pc_cmd_respawn"/>
-			<referrer name="pc_cmd_respawnhere"/>
-			<referrer name="pc_cmd_pm"/>
 			<referrer name="pc_cmd_area"/>
-			<referrer name="pc_cmd_givegun"/>
-			<referrer name="pc_cmd_disarm"/>
-			<referrer name="pc_cmd_reports"/>
-			<referrer name="pc_cmd_acceptreport"/>
-			<referrer name="pc_cmd_rchat"/>
-			<referrer name="pc_cmd_closereport"/>
-			<referrer name="pc_cmd_reportmute"/>
-			<referrer name="pc_cmd_gotoxyz"/>
-			<referrer name="pc_cmd_unjail"/>
-			<referrer name="pc_cmd_jail"/>
-			<referrer name="pc_cmd_showfreq"/>
 			<referrer name="pc_cmd_number"/>
 			<referrer name="pc_cmd_accept"/>
 			<referrer name="pc_cmd_hud"/>
@@ -38680,11 +38514,7 @@
 			<referrer name="pc_cmd_service"/>
 			<referrer name="pc_cmd_confiscate"/>
 			<referrer name="pc_cmd_givelicense"/>
-			<referrer name="pc_cmd_ban"/>
 			<referrer name="pc_cmd_banoffline"/>
-			<referrer name="pc_cmd_mute"/>
-			<referrer name="pc_cmd_setadmin"/>
-			<referrer name="pc_cmd_sethelper"/>
 			<referrer name="pc_cmd_kick"/>
 			<referrer name="pc_cmd_banip"/>
 			<referrer name="pc_cmd_banipoffline"/>
@@ -38924,7 +38754,38 @@
 			<referrer name="pc_cmd_clanchat"/>
 			<referrer name="pc_cmd_addbizgas"/>
 			<referrer name="pc_cmd_fill"/>
+			<referrer name="pc_cmd_warn"/>
+			<referrer name="pc_cmd_unwarn"/>
+			<referrer name="pc_cmd_ban"/>
+			<referrer name="pc_cmd_banoffline"/>
+			<referrer name="pc_cmd_mute"/>
+			<referrer name="pc_cmd_unmute"/>
+			<referrer name="pc_cmd_setadmin"/>
+			<referrer name="pc_cmd_sethelper"/>
+			<referrer name="pc_cmd_givemoney"/>
+			<referrer name="pc_cmd_adminsuspendlicense"/>
+			<referrer name="pc_cmd_admingivelicense"/>
+			<referrer name="pc_cmd_admintakelicense"/>
+			<referrer name="pc_cmd_kick"/>
+			<referrer name="pc_cmd_spawncar"/>
+			<referrer name="pc_cmd_entercar"/>
+			<referrer name="pc_cmd_goto"/>
+			<referrer name="pc_cmd_gethere"/>
+			<referrer name="pc_cmd_slap"/>
+			<referrer name="pc_cmd_freeze"/>
+			<referrer name="pc_cmd_unfreeze"/>
+			<referrer name="pc_cmd_set"/>
+			<referrer name="pc_cmd_respawn"/>
+			<referrer name="pc_cmd_respawnhere"/>
+			<referrer name="pc_cmd_pm"/>
 			<referrer name="pc_cmd_area"/>
+			<referrer name="pc_cmd_givegun"/>
+			<referrer name="pc_cmd_disarm"/>
+			<referrer name="pc_cmd_acceptreport"/>
+			<referrer name="pc_cmd_closereport"/>
+			<referrer name="pc_cmd_reportmute"/>
+			<referrer name="pc_cmd_banip"/>
+			<referrer name="pc_cmd_banipoffline"/>
 			<referrer name="pc_cmd_gotoxyz"/>
 			<referrer name="pc_cmd_unjail"/>
 			<referrer name="pc_cmd_unjailo"/>
@@ -39133,6 +38994,7 @@
 			<attribute name="public"/>
 			<stacksize value="4"/>
 			<referrer name="GivePlayerCash"/>
+			<referrer name="pc_cmd_givemoney"/>
 			<dependency name="GivePlayerMoney"/>
 			<dependency name="MoneyMoney"/>
 			<dependency name="ResetPlayerMoney"/>
@@ -39317,12 +39179,42 @@
 			<referrer name="pc_cmd_resetraport"/>
 			<referrer name="pc_cmd_myraport"/>
 			<referrer name="pc_cmd_createsafe"/>
+			<referrer name="pc_cmd_myad"/>
 			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPlayerBanIP"/>
 			<referrer name="pc_cmd_addbizgas"/>
 			<referrer name="gasTimer"/>
+			<referrer name="pc_cmd_addexamcp"/>
+			<referrer name="pc_cmd_unwarn"/>
+			<referrer name="pc_cmd_unmute"/>
+			<referrer name="pc_cmd_mutedplayers"/>
 			<referrer name="pc_cmd_setadmin"/>
+			<referrer name="pc_cmd_sethelper"/>
+			<referrer name="pc_cmd_givemoney"/>
+			<referrer name="pc_cmd_adminsuspendlicense"/>
+			<referrer name="pc_cmd_admingivelicense"/>
+			<referrer name="pc_cmd_admintakelicense"/>
+			<referrer name="pc_cmd_goto"/>
+			<referrer name="pc_cmd_gethere"/>
+			<referrer name="pc_cmd_slap"/>
+			<referrer name="pc_cmd_freeze"/>
+			<referrer name="pc_cmd_unfreeze"/>
+			<referrer name="pc_cmd_respawn"/>
+			<referrer name="pc_cmd_respawnhere"/>
+			<referrer name="pc_cmd_pm"/>
+			<referrer name="pc_cmd_area"/>
+			<referrer name="pc_cmd_givegun"/>
+			<referrer name="pc_cmd_disarm"/>
+			<referrer name="pc_cmd_reports"/>
+			<referrer name="pc_cmd_acceptreport"/>
+			<referrer name="pc_cmd_rchat"/>
+			<referrer name="pc_cmd_closereport"/>
+			<referrer name="pc_cmd_reportmute"/>
+			<referrer name="pc_cmd_gotoxyz"/>
+			<referrer name="pc_cmd_unjail"/>
+			<referrer name="pc_cmd_jail"/>
+			<referrer name="pc_cmd_showfreq"/>
 			<referrer name="pc_cmd_speed"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_helpers"/>
@@ -39361,6 +39253,9 @@
 			<referrer name="pc_cmd_fare"/>
 			<referrer name="pc_cmd_aq"/>
 			<referrer name="checkAccountBanDatabase"/>
+			<referrer name="pc_cmd_warn"/>
+			<referrer name="pc_cmd_ban"/>
+			<referrer name="pc_cmd_mute"/>
 			<dependency name="SendClientMessageToAll"/>
 			<dependency name="YVA2_DummyPush"/>
 			<dependency name="va_return"/>
@@ -39440,7 +39335,6 @@
 			<referrer name="pc_cmd_invite"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
-			<referrer name="advertismentTimer"/>
 			<referrer name="sendClanMessage"/>
 			<referrer name="InsertCarDS"/>
 			<param name="output">

@@ -13,3 +13,11 @@
 [14:24:53] [INFO] received Windows console close event; shutting log-core down
 [20:26:53] [INFO] received Windows console close event; shutting log-core down
 [20:27:54] [INFO] received Windows console close event; shutting log-core down
+[21:02:08] [INFO] received Windows console close event; shutting log-core down
+[22:51:39] [ERROR] exception 0XC0000094 (INTEGER_DIVIDE_BY_ZERO) from Vectored Exception Handler catched; shutting log-core down
+[22:54:30] [INFO] received Windows console close event; shutting log-core down
+[22:54:44] [INFO] received Windows console close event; shutting log-core down
+[22:55:02] [INFO] received Windows console close event; shutting log-core down
+[22:55:16] [INFO] received Windows console close event; shutting log-core down
+[22:55:41] [INFO] received Windows console close event; shutting log-core down
+[22:56:40] [INFO] received Windows console close event; shutting log-core down
