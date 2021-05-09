@@ -110,16 +110,6 @@ timer TimerPos[1000](playerid) {
 	return true;
 }
 
-timer TimerMute[1000](playerid) {
-	playerInfo[playerid][pMute] --;
-	if(playerInfo[playerid][pMute] == 0) {
-		playerInfo[playerid][pMute] = 0;
-		Iter_Remove(MutedPlayers, playerid);
-		stop muteTime[playerid];
-	}
-	return true;
-}
-
 timer TimerCarFind[5000](playerid) {
 	if(IsValidVehicle(playerInfo[playerid][pCheckpointID])) {
 		new Float:x, Float:y, Float:z;

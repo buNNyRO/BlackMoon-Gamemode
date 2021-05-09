@@ -1351,29 +1351,29 @@
 			<referrer name="GetAmxHeaderNow"/>
 		</member>
 		<member name="C:CHECKPOINT_ARMSDEALER" value="8">
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 		</member>
 		<member name="C:CHECKPOINT_ARMSDEALER2" value="9">
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 		</member>
 		<member name="C:CHECKPOINT_CARPENTER" value="10">
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 		</member>
 		<member name="C:CHECKPOINT_CARPENTER2" value="11">
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 		</member>
 		<member name="C:CHECKPOINT_DRUGSDEALER" value="6">
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 		</member>
 		<member name="C:CHECKPOINT_DRUGSDEALER2" value="7">
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 		</member>
 		<member name="C:CHECKPOINT_FACTION_DUTY" value="12">
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@006"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
 			<referrer name="pc_cmd_cancel"/>
 			<referrer name="pc_cmd_accept"/>
 		</member>
@@ -1383,7 +1383,7 @@
 			<referrer name="OnPlayerEnterCheckpoint"/>
 		</member>
 		<member name="C:CHECKPOINT_GETHIT" value="15">
-			<referrer name="@yH_OnPlayerEnterCheckpoint@006"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
 			<referrer name="pc_cmd_gethit"/>
 		</member>
 		<member name="C:CHECKPOINT_GPS" value="13">
@@ -1392,14 +1392,14 @@
 		</member>
 		<member name="C:CHECKPOINT_JOB" value="1">
 			<referrer name="dialog_DIALOG_JOBS"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 		</member>
 		<member name="C:CHECKPOINT_NONE" value="0">
 			<referrer name="resetVars"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@006"/>
-			<referrer name="dialog_DIALOG_JOBS"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="dialog_DIALOG_JOBS"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="CancelJob"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerCar"/>
@@ -1414,20 +1414,20 @@
 		<member name="C:CHECKPOINT_TRUCKERLS" value="5">
 			<referrer name="dialog_TRUCKER_SELECTTWO"/>
 			<referrer name="dialog_TRUCKER_SELECTTHREE"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 		</member>
 		<member name="C:CHECKPOINT_TRUCKERLV" value="4">
 			<referrer name="dialog_TRUCKER_SELECT"/>
 			<referrer name="dialog_TRUCKER_SELECTTWO"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 		</member>
 		<member name="C:CHECKPOINT_TRUCKERSF" value="3">
 			<referrer name="dialog_TRUCKER_SELECT"/>
 			<referrer name="dialog_TRUCKER_SELECTTHREE"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 		</member>
 		<member name="C:CHECKPOINT_WANTEDFIND" value="14">
-			<referrer name="@yH_OnPlayerEnterCheckpoint@006"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
 			<referrer name="dialog_DIALOG_WANTEDS"/>
 		</member>
 		<member name="C:EOS" value="0">
@@ -1460,7 +1460,7 @@
 			<referrer name="pc_cmd_wanteds"/>
 			<referrer name="pc_cmd_setguns"/>
 			<referrer name="pc_cmd_quitjob"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
 			<referrer name="pc_cmd_buybusiness"/>
@@ -1479,7 +1479,7 @@
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="SaveComponent"/>
 			<referrer name="TimerCar"/>
-			<referrer name="@yH_OnPlayerDisconnect@011"/>
+			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<referrer name="pc_cmd_park"/>
 			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="ExpirationReport"/>
@@ -1497,7 +1497,7 @@
 			<referrer name="pc_cmd_shop"/>
 			<referrer name="pc_cmd_hud"/>
 			<referrer name="InsertCarDS"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="ShowEmails"/>
 			<referrer name="dialog_DIALOG_EMAILS"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
@@ -1517,7 +1517,7 @@
 			<referrer name="returnNeededPoints"/>
 			<referrer name="pc_cmd_skills"/>
 			<referrer name="pc_cmd_startwork"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 			<referrer name="CancelJob"/>
 		</member>
@@ -1525,7 +1525,7 @@
 			<referrer name="returnNeededPoints"/>
 			<referrer name="pc_cmd_skills"/>
 			<referrer name="pc_cmd_startwork"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 			<referrer name="CancelJob"/>
 		</member>
@@ -1533,7 +1533,7 @@
 			<referrer name="returnNeededPoints"/>
 			<referrer name="pc_cmd_skills"/>
 			<referrer name="pc_cmd_startwork"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 			<referrer name="CancelJob"/>
 		</member>
@@ -1544,7 +1544,7 @@
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 		</member>
 		<member name="C:JOB_NONE" value="0">
-			<referrer name="@yH_OnPlayerConnect@007"/>
+			<referrer name="@yH_OnPlayerConnect@008"/>
 		</member>
 		<member name="C:JOB_TRUCKER" value="2">
 			<referrer name="returnNeededPoints"/>
@@ -1553,7 +1553,7 @@
 			<referrer name="dialog_TRUCKER_SELECTTHREE"/>
 			<referrer name="pc_cmd_skills"/>
 			<referrer name="pc_cmd_startwork"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 			<referrer name="CancelJob"/>
 		</member>
@@ -1719,6 +1719,7 @@
 			<referrer name="OnPlayerClickTextDraw"/>
 			<referrer name="Callback_HoldTimer"/>
 			<referrer name="Callback_TabCheck"/>
+			<referrer name="TrollDetect"/>
 			<referrer name="IsVehicleOccupied"/>
 			<referrer name="isPlane"/>
 			<referrer name="isBoat"/>
@@ -1736,12 +1737,12 @@
 			<referrer name="GetMapZoneName"/>
 			<referrer name="GetMapZoneSoundID"/>
 			<referrer name="GetMapZoneAreaCount"/>
-			<referrer name="@yH_OnPlayerConnect@006"/>
+			<referrer name="@yH_OnPlayerConnect@007"/>
 			<referrer name="SetPlayerToFactionColor"/>
 			<referrer name="sendFactionMessage"/>
 			<referrer name="dialog_DIALOG_SETGUN"/>
 			<referrer name="pc_cmd_gethit"/>
-			<referrer name="@yH_OnPlayerConnect@007"/>
+			<referrer name="@yH_OnPlayerConnect@008"/>
 			<referrer name="FishingTimer"/>
 			<referrer name="pc_cmd_fish"/>
 			<referrer name="pc_cmd_usedrugs"/>
@@ -1888,8 +1889,8 @@
 			<referrer name="dialog_TOG"/>
 			<referrer name="dialog_DIALOG_SHOP"/>
 			<referrer name="dialog_DIALOG_HUD"/>
-			<referrer name="@yH_OnGameModeInit@004"/>
-			<referrer name="@yH_OnPlayerConnect@004"/>
+			<referrer name="@yH_OnGameModeInit@005"/>
+			<referrer name="@yH_OnPlayerConnect@005"/>
 			<referrer name="dialog_SELL_HOUSE_STATE"/>
 			<referrer name="dialog_HOUSE_OPTION"/>
 			<referrer name="dialog_HOUSE_OPTION_TITLE"/>
@@ -1920,15 +1921,15 @@
 			<referrer name="GetMapZoneName"/>
 			<referrer name="GetMapZoneSoundID"/>
 			<referrer name="GetMapZoneAreaCount"/>
-			<referrer name="@yH_OnGameModeInit@006"/>
-			<referrer name="@yH_OnPlayerConnect@006"/>
-			<referrer name="@yH_OnPlayerDeath@006"/>
+			<referrer name="@yH_OnGameModeInit@007"/>
+			<referrer name="@yH_OnPlayerConnect@007"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="factionLog"/>
 			<referrer name="save_guns"/>
-			<referrer name="@yH_OnPlayerEnterVehicle@006"/>
-			<referrer name="@yH_OnPlayerStateChange@006"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@006"/>
+			<referrer name="@yH_OnPlayerEnterVehicle@007"/>
+			<referrer name="@yH_OnPlayerStateChange@007"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
 			<referrer name="dialog_DIALOG_WANTEDS"/>
 			<referrer name="showMDC"/>
 			<referrer name="whenPlayerLeaveFaction"/>
@@ -2006,9 +2007,9 @@
 			<referrer name="dialog_DIALOG_FWITHDRAW2"/>
 			<referrer name="dialog_DIALOG_FDEPOSIT"/>
 			<referrer name="dialog_DIALOG_FDEPOSIT2"/>
-			<referrer name="@yH_OnGameModeInit@007"/>
-			<referrer name="@yH_OnPlayerConnect@007"/>
-			<referrer name="@yH_OnPlayerDisconnect@007"/>
+			<referrer name="@yH_OnGameModeInit@008"/>
+			<referrer name="@yH_OnPlayerConnect@008"/>
+			<referrer name="@yH_OnPlayerDisconnect@008"/>
 			<referrer name="dialog_TRUCKER_SELECT"/>
 			<referrer name="dialog_TRUCKER_SELECTTWO"/>
 			<referrer name="dialog_TRUCKER_SELECTTHREE"/>
@@ -2022,11 +2023,11 @@
 			<referrer name="pc_cmd_startwork"/>
 			<referrer name="pc_cmd_usedrugs"/>
 			<referrer name="usedrugsTimer"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 			<referrer name="CancelJob"/>
-			<referrer name="@yH_OnGameModeInit@008"/>
-			<referrer name="@yH_OnPlayerConnect@008"/>
+			<referrer name="@yH_OnGameModeInit@009"/>
+			<referrer name="@yH_OnPlayerConnect@009"/>
 			<referrer name="advertismentTimer"/>
 			<referrer name="dialog_BIZ_OPTION"/>
 			<referrer name="dialog_BIZ_OPTION_TITLE"/>
@@ -2055,12 +2056,12 @@
 			<referrer name="pc_cmd_myad"/>
 			<referrer name="pc_cmd_deletemyad"/>
 			<referrer name="pc_cmd_createbusiness"/>
-			<referrer name="@yH_OnPlayerConnect@009"/>
-			<referrer name="@yH_OnPlayerDisconnect@009"/>
+			<referrer name="@yH_OnPlayerConnect@010"/>
+			<referrer name="@yH_OnPlayerDisconnect@010"/>
 			<referrer name="helpnTimer"/>
 			<referrer name="pc_cmd_helduty"/>
 			<referrer name="pc_cmd_deletead"/>
-			<referrer name="@yH_OnPlayerConnect@010"/>
+			<referrer name="@yH_OnPlayerConnect@011"/>
 			<referrer name="sendClanMessage"/>
 			<referrer name="pc_cmd_cinvite"/>
 			<referrer name="pc_cmd_clanchat"/>
@@ -2111,7 +2112,7 @@
 			<referrer name="SaveComponent"/>
 			<referrer name="TimerCar"/>
 			<referrer name="TimerSpeedo"/>
-			<referrer name="@yH_OnPlayerDisconnect@011"/>
+			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<referrer name="pc_cmd_lock"/>
 			<referrer name="pc_cmd_swapcolors"/>
 			<referrer name="pc_cmd_buyinsurance"/>
@@ -2128,7 +2129,6 @@
 			<referrer name="Timers"/>
 			<referrer name="TimersWantedFind"/>
 			<referrer name="TimerPos"/>
-			<referrer name="TimerMute"/>
 			<referrer name="TimerCarFind"/>
 			<referrer name="TimerTutorial"/>
 			<referrer name="respawnTimer"/>
@@ -2299,10 +2299,10 @@
 			<referrer name="LoadDsVehs"/>
 			<referrer name="InsertCarDS"/>
 			<referrer name="cancelDriveTest"/>
-			<referrer name="@yH_OnPlayerConnect@012"/>
-			<referrer name="@yH_OnPlayerDeath@012"/>
-			<referrer name="@yH_OnPlayerStateChange@012"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerConnect@013"/>
+			<referrer name="@yH_OnPlayerDeath@013"/>
+			<referrer name="@yH_OnPlayerStateChange@013"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 			<referrer name="InsertEmail"/>
 			<referrer name="ShowEmails"/>
@@ -2498,7 +2498,7 @@
 			<referrer name="pc_cmd_deletead"/>
 		</member>
 		<member name="F:AdTimer">
-			<referrer name="@yH_OnPlayerConnect@008"/>
+			<referrer name="@yH_OnPlayerConnect@009"/>
 			<referrer name="totalAds"/>
 			<referrer name="advertismentTimer"/>
 			<referrer name="pc_cmd_ad"/>
@@ -2512,13 +2512,13 @@
 		<member name="F:CELLMIN_ON_MATCHES">
 		</member>
 		<member name="F:Contract">
-			<referrer name="@yH_OnPlayerConnect@006"/>
+			<referrer name="@yH_OnPlayerConnect@007"/>
 			<referrer name="pc_cmd_gethit"/>
 			<referrer name="TimerGetHit"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
 		</member>
 		<member name="F:ConversationOpen">
-			<referrer name="@yH_OnPlayerConnect@009"/>
+			<referrer name="@yH_OnPlayerConnect@010"/>
 			<referrer name="CautaHelper"/>
 			<referrer name="pc_cmd_ar"/>
 			<referrer name="pc_cmd_ch"/>
@@ -2530,25 +2530,25 @@
 			<referrer name="LoadDsVehs"/>
 			<referrer name="InsertCarDS"/>
 			<referrer name="cancelDriveTest"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 		</member>
 		<member name="F:DealerCar">
 			<referrer name="InsertCarDS"/>
 			<referrer name="cancelDriveTest"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 		</member>
 		<member name="F:DealerCarType">
 			<referrer name="InsertCarDS"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 		</member>
 		<member name="F:DealerID">
 			<referrer name="ShowDealerShipTD"/>
 			<referrer name="InsertCarDS"/>
 			<referrer name="cancelDriveTest"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 		</member>
 		<member name="F:DebugVehicles">
@@ -2566,19 +2566,19 @@
 		</member>
 		<member name="F:FishTimer">
 			<tagname value="Timer"/>
-			<referrer name="@yH_OnPlayerDisconnect@007"/>
+			<referrer name="@yH_OnPlayerDisconnect@008"/>
 			<referrer name="pc_cmd_fish"/>
 			<referrer name="CancelJob"/>
 		</member>
 		<member name="F:FishWeight">
-			<referrer name="@yH_OnPlayerConnect@007"/>
+			<referrer name="@yH_OnPlayerConnect@008"/>
 			<referrer name="FishingTimer"/>
 			<referrer name="pc_cmd_fish"/>
 			<referrer name="CancelJob"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 		</member>
 		<member name="F:Fishing">
-			<referrer name="@yH_OnPlayerConnect@007"/>
+			<referrer name="@yH_OnPlayerConnect@008"/>
 			<referrer name="FishingTimer"/>
 			<referrer name="pc_cmd_fish"/>
 			<referrer name="CancelJob"/>
@@ -2591,7 +2591,7 @@
 			<referrer name="pc_cmd_order"/>
 		</member>
 		<member name="F:HelperAtribut">
-			<referrer name="@yH_OnPlayerConnect@009"/>
+			<referrer name="@yH_OnPlayerConnect@010"/>
 			<referrer name="CautaHelperNou"/>
 			<referrer name="CautaHelper"/>
 			<referrer name="pc_cmd_n"/>
@@ -2600,7 +2600,7 @@
 			<referrer name="removeFunction"/>
 		</member>
 		<member name="F:HelperBusy">
-			<referrer name="@yH_OnPlayerConnect@009"/>
+			<referrer name="@yH_OnPlayerConnect@010"/>
 			<referrer name="CautaHelperNou"/>
 			<referrer name="CautaHelper"/>
 			<referrer name="pc_cmd_ar"/>
@@ -2610,7 +2610,7 @@
 			<referrer name="removeFunction"/>
 		</member>
 		<member name="F:HelperDuty">
-			<referrer name="@yH_OnPlayerConnect@009"/>
+			<referrer name="@yH_OnPlayerConnect@010"/>
 			<referrer name="CautaHelper"/>
 			<referrer name="pc_cmd_helduty"/>
 			<referrer name="pc_cmd_helpers"/>
@@ -2627,15 +2627,14 @@
 			<referrer name="Iter_DestroyVehicle"/>
 			<referrer name="_Timer_C"/>
 			<referrer name="banPlayer"/>
-			<referrer name="mutePlayer"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="wrongPass"/>
 			<referrer name="dialog_GENDER"/>
 			<referrer name="dialog_DIALOG_REPORT"/>
 			<referrer name="dialog_DIALOG_REPORT_NORMAL"/>
 			<referrer name="dialog_DIALOG_REPORT_CHEATER"/>
-			<referrer name="@yH_OnGameModeInit@004"/>
-			<referrer name="@yH_OnGameModeInit@006"/>
+			<referrer name="@yH_OnGameModeInit@005"/>
+			<referrer name="@yH_OnGameModeInit@007"/>
 			<referrer name="dialog_DIALOG_WANTEDS"/>
 			<referrer name="pc_cmd_su"/>
 			<referrer name="pc_cmd_arrest"/>
@@ -2644,12 +2643,12 @@
 			<referrer name="TimerWar_yT@"/>
 			<referrer name="pc_cmd_gethit"/>
 			<referrer name="TimerGetHit_yT@"/>
-			<referrer name="@yH_OnGameModeInit@007"/>
+			<referrer name="@yH_OnGameModeInit@008"/>
 			<referrer name="FishingTimer_yT@"/>
 			<referrer name="pc_cmd_fish"/>
 			<referrer name="pc_cmd_usedrugs"/>
 			<referrer name="usedrugsTimer_yT@"/>
-			<referrer name="@yH_OnGameModeInit@008"/>
+			<referrer name="@yH_OnGameModeInit@009"/>
 			<referrer name="advertismentTimer_yT@"/>
 			<referrer name="pc_cmd_ad"/>
 			<referrer name="CautaHelper"/>
@@ -2671,7 +2670,6 @@
 			<referrer name="TimerWanted_yT@"/>
 			<referrer name="TimersWantedFind_yT@"/>
 			<referrer name="TimerPos_yT@"/>
-			<referrer name="TimerMute_yT@"/>
 			<referrer name="TimerCarFind_yT@"/>
 			<referrer name="TimerTutorial_yT@"/>
 			<referrer name="respawnTimer_yT@"/>
@@ -2681,19 +2679,21 @@
 			<referrer name="pc_cmd_respawnhere"/>
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="pc_cmd_engine"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="testDriveTimer_yT@"/>
 			<referrer name="OnPlayerDeath"/>
+			<referrer name="OnPlayerText"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
+			<referrer name="OnPlayerCommandPerformed"/>
 		</member>
 		<member name="F:IDSelected">
-			<referrer name="@yH_OnPlayerConnect@004"/>
+			<referrer name="@yH_OnPlayerConnect@005"/>
 			<referrer name="dialog_HOUSE_OPTION_TITLEADMIN"/>
 			<referrer name="dialog_HOUSE_OPTION_DESCADMIN"/>
 			<referrer name="pc_cmd_adminhouse"/>
-			<referrer name="@yH_OnPlayerConnect@008"/>
+			<referrer name="@yH_OnPlayerConnect@009"/>
 			<referrer name="dialog_BIZ_OPTION_TITLEADMIN"/>
 			<referrer name="dialog_BIZ_OPTION_DESCADMIN"/>
 			<referrer name="pc_cmd_adminbusiness"/>
@@ -2703,7 +2703,7 @@
 			<referrer name="TimerWar"/>
 		</member>
 		<member name="F:InstructorAcceptedCall">
-			<referrer name="@yH_OnPlayerConnect@006"/>
+			<referrer name="@yH_OnPlayerConnect@007"/>
 			<referrer name="pc_cmd_service"/>
 			<referrer name="pc_cmd_cancel"/>
 			<referrer name="pc_cmd_accept"/>
@@ -2745,7 +2745,7 @@
 			<referrer name="OnPlayerEnterCheckpoint"/>
 		</member>
 		<member name="F:Iter_Single@FactionMembers">
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="sendFactionMessage"/>
 			<referrer name="pc_cmd_makeleader"/>
 			<referrer name="pc_cmd_auninvite"/>
@@ -2781,9 +2781,7 @@
 		</member>
 		<member name="F:Iter_Single@MutedPlayers">
 			<referrer name="mutePlayer"/>
-			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
-			<referrer name="TimerMute"/>
 			<referrer name="pc_cmd_unmute"/>
 			<referrer name="pc_cmd_mutedplayers"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
@@ -2798,17 +2796,17 @@
 		</member>
 		<member name="F:Iter_Single@PlayerVehicles">
 			<referrer name="LoadPersonalVehicle"/>
-			<referrer name="@yH_OnPlayerDisconnect@011"/>
+			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="InsertCarDS"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 		</member>
 		<member name="F:Iter_Single@PremiumPlayers">
 			<referrer name="dialog_DIALOG_SHOP"/>
 			<referrer name="checkPanel"/>
 		</member>
 		<member name="F:Iter_Single@RentersHouses">
-			<referrer name="@yH_OnPlayerConnect@004"/>
+			<referrer name="@yH_OnPlayerConnect@005"/>
 			<referrer name="pc_cmd_renters"/>
 			<referrer name="pc_cmd_rentroom"/>
 			<referrer name="pc_cmd_unrentroom"/>
@@ -2881,13 +2879,13 @@
 			<referrer name="pc_cmd_attack"/>
 		</member>
 		<member name="F:Iter_Single@ServerWars">
-			<referrer name="@yH_OnPlayerDeath@006"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="pc_cmd_attack"/>
 			<referrer name="pc_cmd_wars"/>
 			<referrer name="TimerWar"/>
 		</member>
 		<member name="F:Iter_Single@ServiceCalls">
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_service"/>
 			<referrer name="pc_cmd_cancel"/>
 			<referrer name="pc_cmd_accept"/>
@@ -2901,7 +2899,7 @@
 		</member>
 		<member name="F:Iter_Single@TotalPlayerVehicles">
 			<referrer name="LoadPersonalVehicle"/>
-			<referrer name="@yH_OnPlayerDisconnect@011"/>
+			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<referrer name="InsertCarDS"/>
 		</member>
 		<member name="F:Iter_Single@Vehicle">
@@ -2963,9 +2961,9 @@
 			<referrer name="OnPlayerEnterCheckpoint"/>
 		</member>
 		<member name="F:Iterator@FactionMembers">
-			<referrer name="@yH_OnPlayerDeath@006"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@006"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
 			<referrer name="sendFactionMessage"/>
 			<referrer name="pc_cmd_makeleader"/>
 			<referrer name="pc_cmd_auninvite"/>
@@ -3054,9 +3052,7 @@
 		</member>
 		<member name="F:Iterator@MutedPlayers">
 			<referrer name="mutePlayer"/>
-			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
-			<referrer name="TimerMute"/>
 			<referrer name="pc_cmd_unmute"/>
 			<referrer name="pc_cmd_mutedplayers"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
@@ -3085,7 +3081,7 @@
 		<member name="F:Iterator@PlayerVehicles">
 			<referrer name="LoadPersonalVehicle"/>
 			<referrer name="dialog_BUY_INSURANCE"/>
-			<referrer name="@yH_OnPlayerDisconnect@011"/>
+			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<referrer name="pc_cmd_swapcolors"/>
 			<referrer name="pc_cmd_buyinsurance"/>
 			<referrer name="pc_cmd_carplate"/>
@@ -3111,7 +3107,7 @@
 			<tagname value="F@z"/>
 		</member>
 		<member name="F:Iterator@RentersHouses">
-			<referrer name="@yH_OnPlayerConnect@004"/>
+			<referrer name="@yH_OnPlayerConnect@005"/>
 			<referrer name="pc_cmd_rentroom"/>
 			<referrer name="pc_cmd_unrentroom"/>
 			<referrer name="pc_cmd_upgradehouse"/>
@@ -3257,7 +3253,7 @@
 			<referrer name="TimerWar"/>
 		</member>
 		<member name="F:Iterator@ServiceCalls">
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_service"/>
 			<referrer name="pc_cmd_cancel"/>
 			<referrer name="pc_cmd_accept"/>
@@ -3271,7 +3267,7 @@
 		</member>
 		<member name="F:Iterator@TotalPlayerVehicles">
 			<referrer name="LoadPersonalVehicle"/>
-			<referrer name="@yH_OnPlayerDisconnect@011"/>
+			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<referrer name="Timers"/>
 			<referrer name="InsertCarDS"/>
 		</member>
@@ -3327,7 +3323,6 @@
 			<referrer name="Iter_AddStaticVehicleEx"/>
 			<referrer name="Iter_DestroyVehicle"/>
 			<referrer name="banPlayer"/>
-			<referrer name="mutePlayer"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="wrongPass"/>
 			<referrer name="dialog_GENDER"/>
@@ -3367,7 +3362,6 @@
 			<referrer name="TimerWanted_yT@"/>
 			<referrer name="TimersWantedFind_yT@"/>
 			<referrer name="TimerPos_yT@"/>
-			<referrer name="TimerMute_yT@"/>
 			<referrer name="TimerCarFind_yT@"/>
 			<referrer name="TimerTutorial_yT@"/>
 			<referrer name="respawnTimer_yT@"/>
@@ -3377,24 +3371,26 @@
 			<referrer name="pc_cmd_respawnhere"/>
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="pc_cmd_engine"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="testDriveTimer_yT@"/>
 			<referrer name="OnPlayerDeath"/>
+			<referrer name="OnPlayerText"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
+			<referrer name="OnPlayerCommandPerformed"/>
 		</member>
 		<member name="F:JobMoney">
-			<referrer name="@yH_OnPlayerConnect@007"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerConnect@008"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 		</member>
 		<member name="F:JobVehicle">
-			<referrer name="@yH_OnPlayerConnect@007"/>
+			<referrer name="@yH_OnPlayerConnect@008"/>
 			<referrer name="dialog_TRUCKER_SELECT"/>
 			<referrer name="dialog_TRUCKER_SELECTTWO"/>
 			<referrer name="dialog_TRUCKER_SELECTTHREE"/>
 			<referrer name="AttachTrailer"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 			<referrer name="CancelJob"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
@@ -3416,9 +3412,9 @@
 			<referrer name="pc_cmd_goto"/>
 		</member>
 		<member name="F:MedicAcceptedCall">
-			<referrer name="@yH_OnPlayerConnect@006"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@006"/>
+			<referrer name="@yH_OnPlayerConnect@007"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
 			<referrer name="pc_cmd_service"/>
 			<referrer name="pc_cmd_cancel"/>
 			<referrer name="pc_cmd_accept"/>
@@ -3432,7 +3428,7 @@
 			<referrer name="dialog_SELL_HOUSE_STATE"/>
 			<referrer name="pc_cmd_buyhouse"/>
 			<referrer name="pc_cmd_heal"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
 			<referrer name="pc_cmd_buybusiness"/>
 			<referrer name="onPlayerLogin"/>
@@ -3497,7 +3493,7 @@
 			<referrer name="F@"/>
 		</member>
 		<member name="F:QuestionStock">
-			<referrer name="@yH_OnPlayerConnect@009"/>
+			<referrer name="@yH_OnPlayerConnect@010"/>
 			<referrer name="CautaHelper"/>
 			<referrer name="pc_cmd_n"/>
 			<referrer name="pc_cmd_ch"/>
@@ -3551,7 +3547,7 @@
 			<referrer name="pc_cmd_banipoffline"/>
 			<referrer name="pc_cmd_unjailo"/>
 			<referrer name="pc_cmd_jailo"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="dialog_DIALOG_EMAILS"/>
 			<referrer name="pc_cmd_emails"/>
 			<referrer name="ScriptInit_OnGameModeExit"/>
@@ -3574,7 +3570,7 @@
 			<referrer name="ShowDealerShipTD"/>
 			<referrer name="LoadDsVehs"/>
 			<referrer name="InsertCarDS"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 		</member>
 		<member name="F:SpawnPos">
 			<tagname value="Float"/>
@@ -3582,7 +3578,7 @@
 		</member>
 		<member name="F:SpeedVehicle">
 			<referrer name="ShowDealerShipTD"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 		</member>
 		<member name="F:StoreMoney">
 			<referrer name="GetCashStr"/>
@@ -3593,7 +3589,7 @@
 			<referrer name="dialog_SELL_HOUSE_STATE"/>
 			<referrer name="pc_cmd_buyhouse"/>
 			<referrer name="pc_cmd_heal"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
 			<referrer name="pc_cmd_buybusiness"/>
 			<referrer name="onPlayerLogin"/>
@@ -3620,32 +3616,32 @@
 			<referrer name="YVA2_DummyPush"/>
 		</member>
 		<member name="F:TaxiAcceptedCall">
-			<referrer name="@yH_OnPlayerConnect@006"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@006"/>
+			<referrer name="@yH_OnPlayerConnect@007"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
 			<referrer name="pc_cmd_service"/>
 			<referrer name="pc_cmd_cancel"/>
 			<referrer name="pc_cmd_accept"/>
 		</member>
 		<member name="F:TestingModel">
 			<referrer name="cancelDriveTest"/>
-			<referrer name="@yH_OnPlayerConnect@012"/>
-			<referrer name="@yH_OnPlayerDeath@012"/>
-			<referrer name="@yH_OnPlayerStateChange@012"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerConnect@013"/>
+			<referrer name="@yH_OnPlayerDeath@013"/>
+			<referrer name="@yH_OnPlayerStateChange@013"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 		</member>
 		<member name="F:TotalDealerCars">
 			<referrer name="LoadDsVehs"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 		</member>
 		<member name="F:Trailer">
-			<referrer name="@yH_OnPlayerConnect@007"/>
+			<referrer name="@yH_OnPlayerConnect@008"/>
 			<referrer name="dialog_TRUCKER_SELECT"/>
 			<referrer name="dialog_TRUCKER_SELECTTWO"/>
 			<referrer name="dialog_TRUCKER_SELECTTHREE"/>
 			<referrer name="AttachTrailer"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="CancelJob"/>
 		</member>
 		<member name="F:UNIQUE_SYMBOL_DOESNT_EXIST">
@@ -3674,28 +3670,30 @@
 		</member>
 		<member name="F:UNIQUE_SYMBOL_LESS_THAN_100">
 		</member>
+		<member name="F:UNIQUE_SYMBOL_LESS_THAN_100">
+		</member>
 		<member name="F:Undercover">
 			<tagname value="bool"/>
-			<referrer name="@yH_OnPlayerConnect@006"/>
+			<referrer name="@yH_OnPlayerConnect@007"/>
 			<referrer name="pc_cmd_gethit"/>
 		</member>
 		<member name="F:UsingDrugs">
-			<referrer name="@yH_OnPlayerConnect@007"/>
+			<referrer name="@yH_OnPlayerConnect@008"/>
 			<referrer name="pc_cmd_usedrugs"/>
 			<referrer name="usedrugsTimer"/>
 		</member>
 		<member name="F:WarScore">
 			<tagname value="Float"/>
-			<referrer name="@yH_OnPlayerDeath@006"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="pc_cmd_wars"/>
 			<referrer name="TimerWar"/>
 		</member>
 		<member name="F:WarScore2">
 			<tagname value="Float"/>
-			<referrer name="@yH_OnPlayerDeath@006"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 		</member>
 		<member name="F:WarSeconds">
-			<referrer name="@yH_OnPlayerConnect@006"/>
+			<referrer name="@yH_OnPlayerConnect@007"/>
 		</member>
 		<member name="F:WeaponAmmo">
 			<referrer name="resetWeapons"/>
@@ -3706,10 +3704,10 @@
 			<referrer name="serverWeapon"/>
 		</member>
 		<member name="F:Working">
-			<referrer name="@yH_OnPlayerConnect@007"/>
+			<referrer name="@yH_OnPlayerConnect@008"/>
 			<referrer name="pc_cmd_quitjob"/>
 			<referrer name="pc_cmd_startwork"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 			<referrer name="CancelJob"/>
 			<referrer name="serverWeapon"/>
@@ -3965,6 +3963,8 @@
 		</member>
 		<member name="F:Y_UNIQUE_000_to_099_CALLED">
 		</member>
+		<member name="F:Y_UNIQUE_000_to_099_CALLED">
+		</member>
 		<member name="F:_@">
 			<attribute name="public"/>
 			<referrer name="Y@"/>
@@ -3997,6 +3997,17 @@
 		</member>
 		<member name="F:_pawncmd_version">
 			<attribute name="public"/>
+		</member>
+		<member name="F:acDialog">
+			<referrer name="@yH_resetVars@005"/>
+			<referrer name="ShowPlayerDialogEx"/>
+		</member>
+		<member name="F:acTime">
+			<referrer name="@yH_OnPlayerStateChange@005"/>
+		</member>
+		<member name="F:acVelocity">
+			<tagname value="Float"/>
+			<referrer name="TrollDetect"/>
 		</member>
 		<member name="F:bigInteriors">
 			<tagname value="Float"/>
@@ -4065,7 +4076,7 @@
 			<referrer name="CB_OnPlayerDisconnect"/>
 		</member>
 		<member name="F:clanInvitedBy">
-			<referrer name="@yH_OnPlayerConnect@010"/>
+			<referrer name="@yH_OnPlayerConnect@011"/>
 			<referrer name="pc_cmd_cinvite"/>
 			<referrer name="pc_cmd_accept"/>
 		</member>
@@ -4076,7 +4087,7 @@
 			<referrer name="CB_OnPlayerWeaponShot"/>
 		</member>
 		<member name="F:decese">
-			<referrer name="@yH_OnPlayerDeath@006"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="TimerWar"/>
 		</member>
 		<member name="F:examenInfo">
@@ -4115,7 +4126,7 @@
 			<tagname value="PlayerText"/>
 			<referrer name="playerTextDraws"/>
 			<referrer name="destroyPlayerTextDraws"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_fare"/>
 			<referrer name="fareUpdateTimer"/>
 			<referrer name="updateTaxiTextdraw"/>
@@ -4148,9 +4159,6 @@
 		<member name="F:gFast">
 			<referrer name="string_fast"/>
 			<referrer name="update"/>
-			<referrer name="sendPlayerError"/>
-			<referrer name="sendPlayerSyntax"/>
-			<referrer name="va_PlayerTextDrawSetString"/>
 			<referrer name="sendAdmin"/>
 			<referrer name="sendHelper"/>
 			<referrer name="sendStaff"/>
@@ -4239,7 +4247,7 @@
 			<referrer name="pc_cmd_banipoffline"/>
 			<referrer name="pc_cmd_unjailo"/>
 			<referrer name="pc_cmd_jailo"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 		</member>
 		<member name="F:gSAZones">
 			<referrer name="GetPlayer2DZone"/>
@@ -4250,6 +4258,9 @@
 		<member name="F:gString">
 			<referrer name="sendNearbyMessage"/>
 			<referrer name="formatNumber"/>
+			<referrer name="sendPlayerError"/>
+			<referrer name="sendPlayerSyntax"/>
+			<referrer name="va_PlayerTextDrawSetString"/>
 			<referrer name="getDateTime"/>
 			<referrer name="getWeaponName"/>
 			<referrer name="sendToAdmin"/>
@@ -4259,7 +4270,7 @@
 			<referrer name="pc_cmd_invite"/>
 			<referrer name="pc_cmd_wanteds"/>
 			<referrer name="pc_cmd_setguns"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 			<referrer name="pc_cmd_buybusiness"/>
 			<referrer name="pc_cmd_hl"/>
@@ -4335,13 +4346,13 @@
 		</member>
 		<member name="F:getHit">
 			<tagname value="Timer"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@006"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
 			<referrer name="pc_cmd_gethit"/>
 		</member>
 		<member name="F:helpTimer">
 			<tagname value="Timer"/>
-			<referrer name="@yH_OnPlayerConnect@009"/>
-			<referrer name="@yH_OnPlayerDisconnect@009"/>
+			<referrer name="@yH_OnPlayerConnect@010"/>
+			<referrer name="@yH_OnPlayerDisconnect@010"/>
 			<referrer name="CautaHelper"/>
 			<referrer name="pc_cmd_ch"/>
 			<referrer name="removeFunction"/>
@@ -4382,12 +4393,12 @@
 			<referrer name="GetOpcodeInstructionRelocatable"/>
 		</member>
 		<member name="F:invitedByPlayer">
-			<referrer name="@yH_OnPlayerConnect@006"/>
+			<referrer name="@yH_OnPlayerConnect@007"/>
 			<referrer name="pc_cmd_invite"/>
 			<referrer name="pc_cmd_accept"/>
 		</member>
 		<member name="F:invitedPlayer">
-			<referrer name="@yH_OnPlayerConnect@006"/>
+			<referrer name="@yH_OnPlayerConnect@007"/>
 			<referrer name="pc_cmd_invite"/>
 			<referrer name="pc_cmd_accept"/>
 		</member>
@@ -4439,12 +4450,6 @@
 		<member name="F:mediumInteriorsID">
 			<referrer name="pc_cmd_createhouse"/>
 		</member>
-		<member name="F:muteTime">
-			<tagname value="Timer"/>
-			<referrer name="mutePlayer"/>
-			<referrer name="onPlayerLogin"/>
-			<referrer name="TimerMute"/>
-		</member>
 		<member name="F:nitro">
 			<referrer name="SaveComponent"/>
 		</member>
@@ -4488,7 +4493,7 @@
 			<referrer name="SaveComponent"/>
 			<referrer name="TimerCar"/>
 			<referrer name="TimerSpeedo"/>
-			<referrer name="@yH_OnPlayerDisconnect@011"/>
+			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<referrer name="pc_cmd_lock"/>
 			<referrer name="pc_cmd_swapcolors"/>
 			<referrer name="pc_cmd_buyinsurance"/>
@@ -4520,6 +4525,8 @@
 			<referrer name="OnPlayerEnterCheckpoint"/>
 		</member>
 		<member name="F:playerInfo">
+			<referrer name="TrollDetect"/>
+			<referrer name="@yH_OnPlayerStateChange@005"/>
 			<referrer name="warnPlayer"/>
 			<referrer name="banPlayer"/>
 			<referrer name="mutePlayer"/>
@@ -4556,7 +4563,7 @@
 			<referrer name="dialog_DIALOG_SHOP"/>
 			<referrer name="dialog_DIALOG_HUD"/>
 			<referrer name="OnPlayerPickUpDynamicPickup"/>
-			<referrer name="@yH_OnPlayerConnect@004"/>
+			<referrer name="@yH_OnPlayerConnect@005"/>
 			<referrer name="dialog_SELL_HOUSE_STATE"/>
 			<referrer name="dialog_HOUSE_OPTION_TITLE"/>
 			<referrer name="dialog_HOUSE_OPTION_DESCRIPTION"/>
@@ -4579,13 +4586,13 @@
 			<referrer name="pc_cmd_armour"/>
 			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="pc_cmd_turfs"/>
-			<referrer name="@yH_OnPlayerConnect@006"/>
-			<referrer name="@yH_OnPlayerDeath@006"/>
+			<referrer name="@yH_OnPlayerConnect@007"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="save_guns"/>
-			<referrer name="@yH_OnPlayerEnterVehicle@006"/>
-			<referrer name="@yH_OnPlayerStateChange@006"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@006"/>
+			<referrer name="@yH_OnPlayerEnterVehicle@007"/>
+			<referrer name="@yH_OnPlayerStateChange@007"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
 			<referrer name="dialog_DIALOG_WANTEDS"/>
 			<referrer name="wantedName"/>
 			<referrer name="showMDC"/>
@@ -4664,7 +4671,7 @@
 			<referrer name="dialog_DIALOG_FWITHDRAW2"/>
 			<referrer name="dialog_DIALOG_FDEPOSIT"/>
 			<referrer name="dialog_DIALOG_FDEPOSIT2"/>
-			<referrer name="@yH_OnPlayerConnect@007"/>
+			<referrer name="@yH_OnPlayerConnect@008"/>
 			<referrer name="returnNeededPoints"/>
 			<referrer name="dialog_TRUCKER_SELECT"/>
 			<referrer name="dialog_TRUCKER_SELECTTWO"/>
@@ -4677,7 +4684,7 @@
 			<referrer name="pc_cmd_skills"/>
 			<referrer name="pc_cmd_startwork"/>
 			<referrer name="pc_cmd_usedrugs"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 			<referrer name="CancelJob"/>
 			<referrer name="advertismentTimer"/>
@@ -4748,7 +4755,7 @@
 			<referrer name="dialog_BUY_INSURANCE"/>
 			<referrer name="getVehicleOwner"/>
 			<referrer name="TimerCar"/>
-			<referrer name="@yH_OnPlayerDisconnect@011"/>
+			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<referrer name="pc_cmd_swapcolors"/>
 			<referrer name="pc_cmd_carplate"/>
 			<referrer name="pc_cmd_carcolor"/>
@@ -4761,7 +4768,6 @@
 			<referrer name="TimerWanted"/>
 			<referrer name="Timers"/>
 			<referrer name="TimerPos"/>
-			<referrer name="TimerMute"/>
 			<referrer name="TimerCarFind"/>
 			<referrer name="TimerTutorial"/>
 			<referrer name="PayDay"/>
@@ -4893,8 +4899,8 @@
 			<referrer name="pc_cmd_shop"/>
 			<referrer name="pc_cmd_hud"/>
 			<referrer name="InsertCarDS"/>
-			<referrer name="@yH_OnPlayerDeath@012"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerDeath@013"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 			<referrer name="InsertEmail"/>
 			<referrer name="ShowEmails"/>
@@ -4928,9 +4934,9 @@
 			<referrer name="onPlayerLogin"/>
 		</member>
 		<member name="F:playerVehicle">
-			<referrer name="@yH_OnPlayerConnect@006"/>
-			<referrer name="@yH_OnVehicleDeath@006"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
+			<referrer name="@yH_OnPlayerConnect@007"/>
+			<referrer name="@yH_OnVehicleDeath@007"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_svf"/>
 			<referrer name="pc_cmd_dvf"/>
@@ -4956,7 +4962,7 @@
 			<referrer name="CB_OnPlayerDisconnect"/>
 		</member>
 		<member name="F:reverse">
-			<referrer name="@yH_OnPlayerKeyStateChange@011"/>
+			<referrer name="@yH_OnPlayerKeyStateChange@012"/>
 			<referrer name="TimerSpeedo"/>
 		</member>
 		<member name="F:rscoop">
@@ -5045,7 +5051,7 @@
 			<referrer name="destroyPlayerTextDraws"/>
 			<referrer name="ShowDealerShipTD"/>
 			<referrer name="HideDealerShipTD"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 		</member>
 		<member name="F:serverDealerTD">
@@ -5054,7 +5060,7 @@
 			<referrer name="destroyServerTextDraws"/>
 			<referrer name="ShowDealerShipTD"/>
 			<referrer name="HideDealerShipTD"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 		</member>
 		<member name="F:serverInfoTD">
 			<tagname value="Text"/>
@@ -5095,8 +5101,8 @@
 		<member name="F:src_l">
 		</member>
 		<member name="F:svfVehicleObjects">
-			<referrer name="@yH_OnVehicleDeath@006"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
+			<referrer name="@yH_OnVehicleDeath@007"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_dvf"/>
 			<referrer name="dialog_DIALOG_SVF"/>
@@ -5104,18 +5110,18 @@
 		</member>
 		<member name="F:taxi">
 			<tagname value="Timer"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_fare"/>
 			<referrer name="fareUpdateTimer"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 		</member>
 		<member name="F:ticketMoney">
-			<referrer name="@yH_OnPlayerConnect@006"/>
+			<referrer name="@yH_OnPlayerConnect@007"/>
 			<referrer name="pc_cmd_ticket"/>
 			<referrer name="pc_cmd_accept"/>
 		</member>
 		<member name="F:ticketPlayer">
-			<referrer name="@yH_OnPlayerConnect@006"/>
+			<referrer name="@yH_OnPlayerConnect@007"/>
 			<referrer name="pc_cmd_ticket"/>
 			<referrer name="pc_cmd_accept"/>
 		</member>
@@ -5132,7 +5138,7 @@
 			<referrer name="TimerTutorial"/>
 		</member>
 		<member name="F:ucideri">
-			<referrer name="@yH_OnPlayerDeath@006"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="TimerWar"/>
 		</member>
 		<member name="F:using_deprecated_foreach_syntax">
@@ -5160,15 +5166,15 @@
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="ShowDealerShipTD"/>
 			<referrer name="InsertCarDS"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="OnVehicleDeath"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 		</member>
 		<member name="F:vehicleFaction">
-			<referrer name="@yH_OnPlayerEnterVehicle@006"/>
-			<referrer name="@yH_OnVehicleDeath@006"/>
-			<referrer name="@yH_OnPlayerStateChange@006"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
+			<referrer name="@yH_OnPlayerEnterVehicle@007"/>
+			<referrer name="@yH_OnVehicleDeath@007"/>
+			<referrer name="@yH_OnPlayerStateChange@007"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_heal"/>
 			<referrer name="pc_cmd_arrest"/>
@@ -5190,15 +5196,15 @@
 			<referrer name="CB_OnPlayerStateChange"/>
 		</member>
 		<member name="F:vehiclePlayerID">
-			<referrer name="@yH_OnVehicleDeath@006"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
+			<referrer name="@yH_OnVehicleDeath@007"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_dvf"/>
 			<referrer name="dialog_DIALOG_SVF"/>
 			<referrer name="removeFunction"/>
 		</member>
 		<member name="F:vehicleRank">
-			<referrer name="@yH_OnPlayerStateChange@006"/>
+			<referrer name="@yH_OnPlayerStateChange@007"/>
 			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_dvf"/>
 			<referrer name="dialog_DIALOG_SVF"/>
@@ -5258,7 +5264,7 @@
 			<referrer name="pc_cmd_despawncars"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="pc_cmd_engine"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="OnVehicleSpawn"/>
 			<referrer name="OnVehicleDeath"/>
 		</member>
@@ -5295,7 +5301,7 @@
 			<referrer name="pc_cmd_spawncar"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="pc_cmd_engine"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 			<referrer name="OnVehicleSpawn"/>
 			<referrer name="OnVehicleMod"/>
@@ -5309,7 +5315,7 @@
 		</member>
 		<member name="F:wantedFind">
 			<tagname value="Timer"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@006"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
 			<referrer name="dialog_DIALOG_WANTEDS"/>
 		</member>
 		<member name="F:wantedTD">
@@ -5332,7 +5338,7 @@
 			<referrer name="TimerWar"/>
 		</member>
 		<member name="F:warInfo">
-			<referrer name="@yH_OnPlayerDeath@006"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="pc_cmd_attack"/>
 			<referrer name="pc_cmd_wars"/>
 			<referrer name="TimerWar"/>
@@ -5575,6 +5581,7 @@
 			<referrer name="SetPlayerLookAt"/>
 			<referrer name="Callback_IsVehicleInPoint"/>
 			<referrer name="OnPlayerUpdate"/>
+			<referrer name="TrollDetect"/>
 			<referrer name="GetDistancePlayerToVeh"/>
 			<referrer name="AttachTrailer"/>
 			<referrer name="ProxDetectorS"/>
@@ -5605,7 +5612,7 @@
 			<referrer name="IsPlayerSprayingVehicle"/>
 			<referrer name="getVehicleSpeed"/>
 			<referrer name="GetDistanceBetweenPoints"/>
-			<referrer name="@yH_OnPlayerDeath@006"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_fill"/>
 			<referrer name="PayDay"/>
@@ -5675,7 +5682,7 @@
 			<referrer name="pc_cmd_ad"/>
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="removeFunction"/>
-			<referrer name="@yH_OnPlayerDisconnect@011"/>
+			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<referrer name="pc_cmd_addbizgas"/>
 			<referrer name="gasTimer"/>
 			<referrer name="PayDay"/>
@@ -5687,7 +5694,7 @@
 			<referrer name="pc_cmd_jumpwater"/>
 			<referrer name="pc_cmd_finalquest"/>
 			<referrer name="InsertCarDS"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="OnVehicleRespray"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
@@ -5699,6 +5706,7 @@
 			<tagname value="bool"/>
 			<stacksize value="4"/>
 			<referrer name="Fly"/>
+			<referrer name="TrollDetect"/>
 			<referrer name="_GetMapZoneLoopStartIndex"/>
 			<referrer name="TimerWar"/>
 			<referrer name="TimerSpeedo"/>
@@ -5727,6 +5735,7 @@
 			<stacksize value="4"/>
 			<referrer name="SetPlayerProgressBarValue"/>
 			<referrer name="OnPlayerUpdate"/>
+			<referrer name="TrollDetect"/>
 			<referrer name="TimerWar"/>
 			<referrer name="ProxDetectorS"/>
 			<referrer name="PlayerToPoint"/>
@@ -5815,6 +5824,7 @@
 			<referrer name="SetPlayerProgressBarValue"/>
 			<referrer name="SetPlayerLookAt"/>
 			<referrer name="Callback_IsVehicleInPoint"/>
+			<referrer name="TrollDetect"/>
 			<referrer name="GetMapZoneAtPoint"/>
 			<referrer name="GetMapZoneAtPoint2D"/>
 			<referrer name="AttachTrailer"/>
@@ -6014,13 +6024,7 @@
 				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
-		<member name="M:@yH_OnGameModeInit@004" syntax="@yH_OnGameModeInit@004()">
-			<attribute name="public"/>
-			<stacksize value="1"/>
-			<dependency name="I@"/>
-			<dependency name="true"/>
-		</member>
-		<member name="M:@yH_OnGameModeInit@006" syntax="@yH_OnGameModeInit@006()">
+		<member name="M:@yH_OnGameModeInit@005" syntax="@yH_OnGameModeInit@005()">
 			<attribute name="public"/>
 			<stacksize value="1"/>
 			<dependency name="I@"/>
@@ -6038,7 +6042,13 @@
 			<dependency name="I@"/>
 			<dependency name="true"/>
 		</member>
-		<member name="M:@yH_OnPlayerClickTextDraw@012" syntax="@yH_OnPlayerClickTextDraw@012(playerid, clickedid)">
+		<member name="M:@yH_OnGameModeInit@009" syntax="@yH_OnGameModeInit@009()">
+			<attribute name="public"/>
+			<stacksize value="1"/>
+			<dependency name="I@"/>
+			<dependency name="true"/>
+		</member>
+		<member name="M:@yH_OnPlayerClickTextDraw@013" syntax="@yH_OnPlayerClickTextDraw@013(playerid, clickedid)">
 			<attribute name="public"/>
 			<stacksize value="4105"/>
 			<dependency name="Float:operator=(_:)"/>
@@ -6125,7 +6135,7 @@
 			<param name="playerid">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerConnect@004" syntax="@yH_OnPlayerConnect@004(playerid)">
+		<member name="M:@yH_OnPlayerConnect@005" syntax="@yH_OnPlayerConnect@005(playerid)">
 			<attribute name="public"/>
 			<stacksize value="7"/>
 			<dependency name="IDSelected"/>
@@ -6138,7 +6148,7 @@
 			<param name="playerid">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerConnect@006" syntax="@yH_OnPlayerConnect@006(playerid)">
+		<member name="M:@yH_OnPlayerConnect@007" syntax="@yH_OnPlayerConnect@007(playerid)">
 			<attribute name="public"/>
 			<stacksize value="4"/>
 			<dependency name="Contract"/>
@@ -6162,7 +6172,7 @@
 			<param name="playerid">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerConnect@007" syntax="@yH_OnPlayerConnect@007(playerid)">
+		<member name="M:@yH_OnPlayerConnect@008" syntax="@yH_OnPlayerConnect@008(playerid)">
 			<attribute name="public"/>
 			<stacksize value="13"/>
 			<dependency name="CB_ApplyAnimation"/>
@@ -6193,7 +6203,7 @@
 			<param name="playerid">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerConnect@008" syntax="@yH_OnPlayerConnect@008(playerid)">
+		<member name="M:@yH_OnPlayerConnect@009" syntax="@yH_OnPlayerConnect@009(playerid)">
 			<attribute name="public"/>
 			<stacksize value="1"/>
 			<dependency name="AdTimer"/>
@@ -6202,7 +6212,7 @@
 			<param name="playerid">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerConnect@009" syntax="@yH_OnPlayerConnect@009(playerid)">
+		<member name="M:@yH_OnPlayerConnect@010" syntax="@yH_OnPlayerConnect@010(playerid)">
 			<attribute name="public"/>
 			<stacksize value="1"/>
 			<dependency name="ConversationOpen"/>
@@ -6216,7 +6226,7 @@
 			<param name="playerid">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerConnect@010" syntax="@yH_OnPlayerConnect@010(playerid)">
+		<member name="M:@yH_OnPlayerConnect@011" syntax="@yH_OnPlayerConnect@011(playerid)">
 			<attribute name="public"/>
 			<stacksize value="1"/>
 			<dependency name="clanInvitedBy"/>
@@ -6224,7 +6234,7 @@
 			<param name="playerid">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerConnect@012" syntax="@yH_OnPlayerConnect@012(playerid)">
+		<member name="M:@yH_OnPlayerConnect@013" syntax="@yH_OnPlayerConnect@013(playerid)">
 			<attribute name="public"/>
 			<stacksize value="1"/>
 			<dependency name="TestingModel"/>
@@ -6232,7 +6242,7 @@
 			<param name="playerid">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerDeath@006" syntax="@yH_OnPlayerDeath@006(playerid, killerid)">
+		<member name="M:@yH_OnPlayerDeath@007" syntax="@yH_OnPlayerDeath@007(playerid, killerid)">
 			<attribute name="public"/>
 			<stacksize value="4143"/>
 			<dependency name="operator+(Float:,Float:)"/>
@@ -6267,7 +6277,7 @@
 			<param name="killerid">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerDeath@012" syntax="@yH_OnPlayerDeath@012(playerid)">
+		<member name="M:@yH_OnPlayerDeath@013" syntax="@yH_OnPlayerDeath@013(playerid)">
 			<attribute name="public"/>
 			<stacksize value="5"/>
 			<dependency name="TestingModel"/>
@@ -6299,7 +6309,7 @@
 			<param name="reason">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerDisconnect@006" syntax="@yH_OnPlayerDisconnect@006(playerid, reason)">
+		<member name="M:@yH_OnPlayerDisconnect@007" syntax="@yH_OnPlayerDisconnect@007(playerid, reason)">
 			<attribute name="public"/>
 			<stacksize value="4107"/>
 			<dependency name="CHECKPOINT_FACTION_DUTY"/>
@@ -6344,7 +6354,7 @@
 			<param name="reason">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerDisconnect@007" syntax="@yH_OnPlayerDisconnect@007(playerid, reason)">
+		<member name="M:@yH_OnPlayerDisconnect@008" syntax="@yH_OnPlayerDisconnect@008(playerid, reason)">
 			<attribute name="public"/>
 			<stacksize value="4"/>
 			<dependency name="FishTimer"/>
@@ -6355,7 +6365,7 @@
 			<param name="reason">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerDisconnect@009" syntax="@yH_OnPlayerDisconnect@009(playerid, reason)">
+		<member name="M:@yH_OnPlayerDisconnect@010" syntax="@yH_OnPlayerDisconnect@010(playerid, reason)">
 			<attribute name="public"/>
 			<stacksize value="4"/>
 			<dependency name="_Timer_F"/>
@@ -6366,7 +6376,7 @@
 			<param name="reason">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerDisconnect@011" syntax="@yH_OnPlayerDisconnect@011(playerid, reason)">
+		<member name="M:@yH_OnPlayerDisconnect@012" syntax="@yH_OnPlayerDisconnect@012(playerid, reason)">
 			<attribute name="public"/>
 			<stacksize value="13"/>
 			<dependency name="Float:operator=(_:)"/>
@@ -6414,7 +6424,7 @@
 			<param name="reason">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerEnterCheckpoint@006" syntax="@yH_OnPlayerEnterCheckpoint@006(playerid)">
+		<member name="M:@yH_OnPlayerEnterCheckpoint@007" syntax="@yH_OnPlayerEnterCheckpoint@007(playerid)">
 			<attribute name="public"/>
 			<stacksize value="6"/>
 			<dependency name="CHECKPOINT_FACTION_DUTY"/>
@@ -6438,7 +6448,7 @@
 			<param name="playerid">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerEnterCheckpoint@007" syntax="@yH_OnPlayerEnterCheckpoint@007(playerid)">
+		<member name="M:@yH_OnPlayerEnterCheckpoint@008" syntax="@yH_OnPlayerEnterCheckpoint@008(playerid)">
 			<attribute name="public"/>
 			<stacksize value="8201"/>
 			<dependency name="CHECKPOINT_ARMSDEALER"/>
@@ -6501,7 +6511,19 @@
 			<param name="playerid">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerEnterVehicle@006" syntax="@yH_OnPlayerEnterVehicle@006(playerid, vehicleid, ispassenger)">
+		<member name="M:@yH_OnPlayerEnterVehicle@005" syntax="@yH_OnPlayerEnterVehicle@005(playerid, vehicleid, ispassenger)">
+			<attribute name="public"/>
+			<stacksize value="5"/>
+			<dependency name="IsPlayerInAnyVehicle"/>
+			<dependency name="TrollDetect"/>
+			<param name="playerid">
+			</param>
+			<param name="vehicleid">
+			</param>
+			<param name="ispassenger">
+			</param>
+		</member>
+		<member name="M:@yH_OnPlayerEnterVehicle@007" syntax="@yH_OnPlayerEnterVehicle@007(playerid, vehicleid, ispassenger)">
 			<attribute name="public"/>
 			<stacksize value="5"/>
 			<dependency name="RemovePlayerFromVehicle"/>
@@ -6519,7 +6541,7 @@
 			<param name="ispassenger">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerKeyStateChange@011" syntax="@yH_OnPlayerKeyStateChange@011(playerid, newkeys, oldkeys)">
+		<member name="M:@yH_OnPlayerKeyStateChange@012" syntax="@yH_OnPlayerKeyStateChange@012(playerid, newkeys, oldkeys)">
 			<attribute name="public"/>
 			<stacksize value="3"/>
 			<dependency name="GetPlayerState"/>
@@ -6531,7 +6553,24 @@
 			<param name="oldkeys">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerStateChange@006" syntax="@yH_OnPlayerStateChange@006(playerid, newstate, oldstate)">
+		<member name="M:@yH_OnPlayerStateChange@005" syntax="@yH_OnPlayerStateChange@005(playerid, newstate, oldstate)">
+			<attribute name="public"/>
+			<stacksize value="10"/>
+			<dependency name="Kick"/>
+			<dependency name="acTime"/>
+			<dependency name="gettime"/>
+			<dependency name="pName"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="printf"/>
+			<param name="playerid">
+			</param>
+			<param name="newstate">
+			</param>
+			<param name="oldstate">
+			</param>
+		</member>
+		<member name="M:@yH_OnPlayerStateChange@007" syntax="@yH_OnPlayerStateChange@007(playerid, newstate, oldstate)">
 			<attribute name="public"/>
 			<stacksize value="6"/>
 			<dependency name="GetPlayerVehicleID"/>
@@ -6550,7 +6589,7 @@
 			<param name="oldstate">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerStateChange@012" syntax="@yH_OnPlayerStateChange@012(playerid, newstate, oldstate)">
+		<member name="M:@yH_OnPlayerStateChange@013" syntax="@yH_OnPlayerStateChange@013(playerid, newstate, oldstate)">
 			<attribute name="public"/>
 			<stacksize value="5"/>
 			<dependency name="TestingModel"/>
@@ -6601,7 +6640,7 @@
 			<dependency name="AMX_TABLE_PUBLICS"/>
 			<dependency name="SetTimerEx"/>
 		</member>
-		<member name="M:@yH_OnVehicleDeath@006" syntax="@yH_OnVehicleDeath@006(vehicleid, killerid)">
+		<member name="M:@yH_OnVehicleDeath@007" syntax="@yH_OnVehicleDeath@007(vehicleid, killerid)">
 			<attribute name="public"/>
 			<stacksize value="4"/>
 			<dependency name="DestroyObject"/>
@@ -6614,6 +6653,13 @@
 			<param name="vehicleid">
 			</param>
 			<param name="killerid">
+			</param>
+		</member>
+		<member name="M:@yH_resetVars@005" syntax="@yH_resetVars@005(playerid)">
+			<attribute name="public"/>
+			<stacksize value="1"/>
+			<dependency name="acDialog"/>
+			<param name="playerid">
 			</param>
 		</member>
 		<member name="M:@yT_PayDay" syntax="@yT_PayDay(g, p)">
@@ -9867,7 +9913,7 @@
 		</member>
 		<member name="M:CB_ApplyAnimation" syntax="CB_ApplyAnimation(playerid, animlib[], animname[], fDelta, loop, lockx, locky, freeze, time, forcesync)">
 			<stacksize value="13"/>
-			<referrer name="@yH_OnPlayerConnect@007"/>
+			<referrer name="@yH_OnPlayerConnect@008"/>
 			<referrer name="pc_cmd_fish"/>
 			<referrer name="pc_cmd_usedrugs"/>
 			<referrer name="OnePlayAnim"/>
@@ -9907,7 +9953,7 @@
 		</member>
 		<member name="M:CB_CancelSelectTextDraw" syntax="CB_CancelSelectTextDraw(playerid)">
 			<stacksize value="7"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<dependency name="Callback_SetFlag"/>
 			<dependency name="CancelSelectTextDraw"/>
 			<dependency name="e_bSelectTD"/>
@@ -9930,7 +9976,7 @@
 			<referrer name="pc_cmd_spawncar"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="cancelDriveTest"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 			<dependency name="CallLocalFunction"/>
 			<dependency name="Iter_CreateVehicle"/>
@@ -12288,7 +12334,7 @@
 		<member name="M:DeletePVar" syntax="DeletePVar(playerid, varname[])">
 			<attribute name="native"/>
 			<referrer name="resetVars"/>
-			<referrer name="@yH_OnPlayerConnect@006"/>
+			<referrer name="@yH_OnPlayerConnect@007"/>
 			<param name="playerid">
 			</param>
 			<param name="varname">
@@ -12303,8 +12349,8 @@
 		</member>
 		<member name="M:DestroyObject" syntax="DestroyObject(objectid)">
 			<attribute name="native"/>
-			<referrer name="@yH_OnVehicleDeath@006"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
+			<referrer name="@yH_OnVehicleDeath@007"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_dvf"/>
 			<referrer name="removeFunction"/>
@@ -12395,7 +12441,7 @@
 			<referrer name="dialog_DIALOG_FDEPOSIT"/>
 			<referrer name="dialog_DIALOG_FDEPOSIT2"/>
 			<referrer name="pc_cmd_jobs"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 			<referrer name="dialog_BIZ_OPTION"/>
 			<referrer name="dialog_BIZ_OPTION_TITLE"/>
@@ -12466,9 +12512,9 @@
 		<member name="M:DisablePlayerCheckpoint" syntax="DisablePlayerCheckpoint(playerid)">
 			<attribute name="native"/>
 			<referrer name="examenFail"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@006"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="CancelJob"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerCar"/>
@@ -12806,7 +12852,7 @@
 		</member>
 		<member name="M:DistanceToPlayer" syntax="DistanceToPlayer(playerid, targetid)">
 			<stacksize value="9"/>
-			<referrer name="@yH_OnPlayerDeath@006"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<dependency name="GetPlayerDistanceFromPoint"/>
 			<dependency name="GetPlayerPos"/>
 			<dependency name="floatround"/>
@@ -13591,7 +13637,7 @@
 			<stacksize value="4"/>
 			<referrer name="dialog_GPS"/>
 			<referrer name="dialog_GPS1"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 			<dependency name="operator+(Float:,Float:)"/>
 			<dependency name="Float:operator=(_:)"/>
@@ -14363,7 +14409,7 @@
 			<referrer name="pc_cmd_buylevel"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="ShowDealerShipTD"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<dependency name="MoneyMoney"/>
 			<dependency name="StoreMoney"/>
 			<param name="playerid">
@@ -14665,8 +14711,9 @@
 			<referrer name="OnPlayerUpdate"/>
 			<referrer name="OnPlayerKeyStateChange"/>
 			<referrer name="Callback_TabCheck"/>
+			<referrer name="TrollDetect"/>
 			<referrer name="dialog_BUY_INSURANCE"/>
-			<referrer name="@yH_OnPlayerKeyStateChange@011"/>
+			<referrer name="@yH_OnPlayerKeyStateChange@012"/>
 			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_swapcolors"/>
 			<referrer name="pc_cmd_buyinsurance"/>
@@ -14699,7 +14746,7 @@
 			<referrer name="OnPlayerUpdate"/>
 			<referrer name="OnPlayerStateChange"/>
 			<referrer name="OnPlayerTakeDamage"/>
-			<referrer name="@yH_OnPlayerStateChange@006"/>
+			<referrer name="@yH_OnPlayerStateChange@007"/>
 			<referrer name="pc_cmd_heal"/>
 			<referrer name="pc_cmd_arrest"/>
 			<referrer name="pc_cmd_fare"/>
@@ -14738,6 +14785,21 @@
 			<param name="playerid">
 			</param>
 		</member>
+		<member name="M:GetPlayerVelocity" syntax="GetPlayerVelocity(playerid, &amp;X, &amp;Y, &amp;Z)">
+			<attribute name="native"/>
+			<referrer name="TrollDetect"/>
+			<param name="playerid">
+			</param>
+			<param name="X">
+				<paraminfo>Float &amp; </paraminfo>
+			</param>
+			<param name="Y">
+				<paraminfo>Float &amp; </paraminfo>
+			</param>
+			<param name="Z">
+				<paraminfo>Float &amp; </paraminfo>
+			</param>
+		</member>
 		<member name="M:GetPlayerVirtualWorld" syntax="GetPlayerVirtualWorld(playerid)">
 			<attribute name="native"/>
 			<referrer name="sendNearbyMessage"/>
@@ -14763,7 +14825,7 @@
 			<referrer name="IsPlayerSkydiving"/>
 			<referrer name="OnPlayerUpdate"/>
 			<referrer name="OnPlayerKeyStateChange"/>
-			<referrer name="@yH_OnPlayerDeath@006"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="pc_cmd_tazer"/>
 			<param name="playerid">
 			</param>
@@ -15325,7 +15387,7 @@
 		</member>
 		<member name="M:GetVehicleTrailer" syntax="GetVehicleTrailer(vehicleid)">
 			<attribute name="native"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<param name="vehicleid">
 			</param>
 		</member>
@@ -15369,7 +15431,7 @@
 		<member name="M:GetWeaponName" syntax="GetWeaponName(weaponid, weapon[], len)">
 			<attribute name="native"/>
 			<referrer name="getWeaponName"/>
-			<referrer name="@yH_OnPlayerDeath@006"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="pc_cmd_frisk"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
 			<param name="weaponid">
@@ -15409,7 +15471,7 @@
 			<referrer name="pc_cmd_contract"/>
 			<referrer name="dialog_DIALOG_FWITHDRAW2"/>
 			<referrer name="dialog_DIALOG_FDEPOSIT2"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
 			<referrer name="dialog_BUYBIZ"/>
 			<referrer name="pc_cmd_buybusiness"/>
@@ -15429,7 +15491,7 @@
 			<referrer name="pc_cmd_buylevel"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="pc_cmd_accept"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerStateChange"/>
@@ -15514,7 +15576,7 @@
 			<attribute name="public"/>
 			<stacksize value="5"/>
 			<referrer name="cancelDriveTest"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<dependency name="PlayerTextDrawHide"/>
 			<dependency name="TextDrawHideForPlayer"/>
 			<dependency name="serverDealerPTD"/>
@@ -16513,6 +16575,7 @@
 		</member>
 		<member name="M:IsPlayerInAnyVehicle" syntax="IsPlayerInAnyVehicle(playerid)">
 			<attribute name="native"/>
+			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
 			<referrer name="pc_cmd_sellhousestate"/>
 			<referrer name="pc_cmd_confiscate"/>
 			<referrer name="pc_cmd_ticket"/>
@@ -16683,7 +16746,7 @@
 		<member name="M:IsPlayerInTurf" syntax="IsPlayerInTurf(playerid, turfid)">
 			<attribute name="public"/>
 			<stacksize value="9"/>
-			<referrer name="@yH_OnPlayerDeath@006"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="pc_cmd_attack"/>
 			<referrer name="TimerWar"/>
 			<dependency name="operator&gt;=(Float:,Float:)"/>
@@ -16906,7 +16969,7 @@
 		</member>
 		<member name="M:IsTrailerAttachedToVehicle" syntax="IsTrailerAttachedToVehicle(vehicleid)">
 			<attribute name="native"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<param name="vehicleid">
 			</param>
@@ -16931,8 +16994,8 @@
 		</member>
 		<member name="M:IsValidObject" syntax="IsValidObject(objectid)">
 			<attribute name="native"/>
-			<referrer name="@yH_OnVehicleDeath@006"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
+			<referrer name="@yH_OnVehicleDeath@007"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_dvf"/>
 			<referrer name="removeFunction"/>
@@ -17117,7 +17180,7 @@
 			<referrer name="dialog_DIALOG_REPORT_NORMAL"/>
 			<referrer name="dialog_DIALOG_REPORT_CHEATER"/>
 			<referrer name="dialog_DIALOG_SHOP"/>
-			<referrer name="@yH_OnPlayerConnect@004"/>
+			<referrer name="@yH_OnPlayerConnect@005"/>
 			<referrer name="LoadHouses"/>
 			<referrer name="pc_cmd_rentroom"/>
 			<referrer name="pc_cmd_createhouse"/>
@@ -17307,9 +17370,9 @@
 			<referrer name="dialog_DIALOG_REPORT_CHEATER"/>
 			<referrer name="pc_cmd_adminhouse"/>
 			<referrer name="pc_cmd_unrentroom"/>
-			<referrer name="@yH_OnPlayerDeath@006"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@006"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
 			<referrer name="sendFactionMessage"/>
 			<referrer name="pc_cmd_gotofaction"/>
 			<referrer name="pc_cmd_makeleader"/>
@@ -17539,22 +17602,22 @@
 			<stacksize value="7"/>
 			<referrer name="resetVars"/>
 			<referrer name="examenFail"/>
-			<referrer name="@yH_OnVehicleDeath@006"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
+			<referrer name="@yH_OnVehicleDeath@007"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_dvf"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="CancelJob"/>
 			<referrer name="removeFunction"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerCar"/>
-			<referrer name="@yH_OnPlayerDisconnect@011"/>
+			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<referrer name="pc_cmd_park"/>
 			<referrer name="pc_cmd_despawncar"/>
 			<referrer name="pc_cmd_despawncars"/>
 			<referrer name="InsertCarDS"/>
 			<referrer name="cancelDriveTest"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="OnVehicleDeath"/>
 			<referrer name="OnPlayerEnterCheckpoint"/>
 			<dependency name="DestroyVehicle"/>
@@ -18099,7 +18162,7 @@
 			<referrer name="Iter_VehicleDo"/>
 			<referrer name="Iter_DestroyVehicle"/>
 			<referrer name="pc_cmd_unrentroom"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_clear"/>
 			<referrer name="dialog_DIALOG_MEMBERS2"/>
@@ -18108,10 +18171,9 @@
 			<referrer name="pc_cmd_leaveclan"/>
 			<referrer name="checkPanel"/>
 			<referrer name="removeFunction"/>
-			<referrer name="@yH_OnPlayerDisconnect@011"/>
+			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<referrer name="TimerJail"/>
 			<referrer name="Timers"/>
-			<referrer name="TimerMute"/>
 			<referrer name="ExpirationReport"/>
 			<referrer name="pc_cmd_unmute"/>
 			<referrer name="pc_cmd_setadmin"/>
@@ -18178,7 +18240,7 @@
 		<member name="M:Iter_SafeRemove_InternalC" syntax="Iter_SafeRemove_InternalC(&amp;count, array[], size, value, &amp;last)">
 			<stacksize value="1"/>
 			<referrer name="Iter_Remove_InternalC"/>
-			<referrer name="@yH_OnPlayerDisconnect@011"/>
+			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<dependency name="cellmin"/>
 			<param name="count">
 				<paraminfo> &amp; </paraminfo>
@@ -18363,6 +18425,8 @@
 		</member>
 		<member name="M:Kick" syntax="Kick(playerid)">
 			<attribute name="native"/>
+			<referrer name="TrollDetect"/>
+			<referrer name="@yH_OnPlayerStateChange@005"/>
 			<referrer name="dialog_REGISTER"/>
 			<referrer name="dialog_LOGIN"/>
 			<referrer name="kickEx"/>
@@ -18388,7 +18452,7 @@
 			<referrer name="pc_cmd_getcar"/>
 			<referrer name="pc_cmd_gethere"/>
 			<referrer name="cancelDriveTest"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 			<param name="vehicleid">
 			</param>
@@ -19453,7 +19517,6 @@
 			<referrer name="TimerWanted_yT@"/>
 			<referrer name="TimersWantedFind_yT@"/>
 			<referrer name="TimerPos_yT@"/>
-			<referrer name="TimerMute_yT@"/>
 			<referrer name="TimerCarFind_yT@"/>
 			<referrer name="TimerTutorial_yT@"/>
 			<referrer name="respawnTimer_yT@"/>
@@ -19687,7 +19750,11 @@
 		</member>
 		<member name="M:OnPlayerCommandPerformed" syntax="OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags)">
 			<attribute name="public"/>
-			<stacksize value="6"/>
+			<stacksize value="7"/>
+			<dependency name="I@"/>
+			<dependency name="J@"/>
+			<dependency name="isPlayerLogged"/>
+			<dependency name="kickEx_yT@"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
@@ -20497,11 +20564,15 @@
 		<member name="M:OnPlayerText" syntax="OnPlayerText(playerid, text[])">
 			<attribute name="public"/>
 			<stacksize value="4105"/>
+			<dependency name="I@"/>
+			<dependency name="J@"/>
 			<dependency name="Reclama"/>
 			<dependency name="SetPlayerChatBubble"/>
 			<dependency name="faceReclama"/>
 			<dependency name="format"/>
+			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
+			<dependency name="kickEx_yT@"/>
 			<dependency name="oocNews"/>
 			<dependency name="pFaction"/>
 			<dependency name="pMute"/>
@@ -20510,13 +20581,14 @@
 			<dependency name="pTalkingLive"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
+			<dependency name="secinmin"/>
 			<dependency name="sendNearbyMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sexxx"/>
 			<dependency name="string_fast"/>
 			<dependency name="string_fast"/>
 			<dependency name="strmatch"/>
 			<dependency name="update"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="text">
@@ -21173,7 +21245,7 @@
 			<attribute name="native"/>
 			<referrer name="HidePlayerProgressBar"/>
 			<referrer name="examenFail"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_fare"/>
 			<referrer name="fareUpdateTimer"/>
 			<referrer name="TimerWar"/>
@@ -21221,7 +21293,7 @@
 		<member name="M:PlayerTextDrawSetPreviewModel" syntax="PlayerTextDrawSetPreviewModel(playerid, text, modelindex)">
 			<attribute name="native"/>
 			<referrer name="playerTextDraws"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 			<param name="playerid">
 			</param>
@@ -21314,7 +21386,7 @@
 			<referrer name="TimerWanted"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="ShowDealerShipTD"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<param name="playerid">
@@ -21537,7 +21609,7 @@
 			<referrer name="pc_cmd_entercar"/>
 			<referrer name="pc_cmd_goto"/>
 			<referrer name="pc_cmd_exam"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<param name="playerid">
 			</param>
 			<param name="vehicleid">
@@ -21683,7 +21755,7 @@
 		</member>
 		<member name="M:Reclama" syntax="Reclama(playerid, text[])">
 			<attribute name="public"/>
-			<stacksize value="7"/>
+			<stacksize value="8"/>
 			<referrer name="pc_cmd_f"/>
 			<referrer name="pc_cmd_r"/>
 			<referrer name="pc_cmd_d"/>
@@ -21692,6 +21764,7 @@
 			<referrer name="pc_cmd_wt"/>
 			<referrer name="OnPlayerText"/>
 			<dependency name="SendClientMessage"/>
+			<dependency name="gettime"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pMute"/>
 			<dependency name="pName"/>
@@ -22004,7 +22077,7 @@
 			<attribute name="native"/>
 			<referrer name="pc_cmd_uncuff"/>
 			<referrer name="pc_cmd_arrest"/>
-			<referrer name="@yH_OnPlayerConnect@007"/>
+			<referrer name="@yH_OnPlayerConnect@008"/>
 			<referrer name="FishingTimer"/>
 			<referrer name="CancelJob"/>
 			<referrer name="pc_cmd_jail"/>
@@ -22016,8 +22089,8 @@
 		</member>
 		<member name="M:RemovePlayerFromVehicle" syntax="RemovePlayerFromVehicle(playerid)">
 			<attribute name="native"/>
-			<referrer name="@yH_OnPlayerEnterVehicle@006"/>
-			<referrer name="@yH_OnPlayerStateChange@006"/>
+			<referrer name="@yH_OnPlayerEnterVehicle@007"/>
+			<referrer name="@yH_OnPlayerStateChange@007"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<param name="playerid">
 			</param>
@@ -22365,7 +22438,7 @@
 			<referrer name="pc_cmd_upgradehouse"/>
 			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="pc_cmd_turfs"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@006"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
 			<referrer name="showMDC"/>
 			<referrer name="pc_cmd_tazer"/>
 			<referrer name="pc_cmd_confiscate"/>
@@ -22385,7 +22458,7 @@
 			<referrer name="pc_cmd_quitjob"/>
 			<referrer name="pc_cmd_skills"/>
 			<referrer name="usedrugsTimer"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 			<referrer name="dialog_BIZ_OPTION_TITLE"/>
 			<referrer name="dialog_BIZ_OPTION_DESCRIPTION"/>
@@ -22531,7 +22604,7 @@
 		<member name="M:SetCameraBehindPlayer" syntax="SetCameraBehindPlayer(playerid)">
 			<attribute name="native"/>
 			<referrer name="InsertCarDS"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="OnPlayerSpawn"/>
 			<param name="playerid">
 			</param>
@@ -22877,7 +22950,7 @@
 			<referrer name="dialog_TRUCKER_SELECTTWO"/>
 			<referrer name="dialog_TRUCKER_SELECTTHREE"/>
 			<referrer name="dialog_DIALOG_JOBS"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimersWantedFind"/>
@@ -22990,7 +23063,7 @@
 			<referrer name="pc_cmd_gotoxyz"/>
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="cancelDriveTest"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 			<referrer name="OnPlayerSpawn"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
@@ -23227,7 +23300,7 @@
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="InsertCarDS"/>
 			<referrer name="cancelDriveTest"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 			<referrer name="OnPlayerRequestClass"/>
 			<referrer name="OnPlayerSpawn"/>
@@ -23368,7 +23441,7 @@
 			<referrer name="pc_cmd_getcar"/>
 			<referrer name="pc_cmd_slapcar"/>
 			<referrer name="pc_cmd_gethere"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<param name="vehicleid">
 			</param>
 			<param name="x">
@@ -23405,7 +23478,7 @@
 			<referrer name="pc_cmd_gethere"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="cancelDriveTest"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 			<param name="vehicleid">
 			</param>
@@ -23479,8 +23552,33 @@
 		</member>
 		<member name="M:ShowPlayerDialog" syntax="ShowPlayerDialog(playerid, dialogid, style, caption[], info[], button1[], button2[])">
 			<attribute name="native"/>
+			<referrer name="ShowPlayerDialogEx"/>
 			<referrer name="Dialog_Close"/>
 			<referrer name="Dialog_Open"/>
+			<param name="playerid">
+			</param>
+			<param name="dialogid">
+			</param>
+			<param name="style">
+			</param>
+			<param name="caption">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="info">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="button1">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="button2">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:ShowPlayerDialogEx" syntax="ShowPlayerDialogEx(playerid, dialogid, style, caption[], info[], button1[], button2[])">
+			<attribute name="public"/>
+			<stacksize value="9"/>
+			<dependency name="ShowPlayerDialog"/>
+			<dependency name="acDialog"/>
 			<param name="playerid">
 			</param>
 			<param name="dialogid">
@@ -24179,42 +24277,6 @@
 			<param name="i">
 			</param>
 		</member>
-		<member name="M:TimerMute" syntax="TimerMute(playerid)">
-			<stacksize value="7"/>
-			<referrer name="TimerMute@_yT"/>
-			<dependency name="Iter_Remove_InternalC"/>
-			<dependency name="Iter_Single@MutedPlayers"/>
-			<dependency name="Iterator@MutedPlayers"/>
-			<dependency name="_Timer_F"/>
-			<dependency name="muteTime"/>
-			<dependency name="pMute"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="true"/>
-			<param name="playerid">
-			</param>
-		</member>
-		<member name="M:TimerMute@_yT" syntax="TimerMute@_yT(__r, playerid)">
-			<tagname value="@Yj"/>
-			<attribute name="public"/>
-			<stacksize value="4"/>
-			<dependency name="TimerMute"/>
-			<param name="__r">
-			</param>
-			<param name="playerid">
-			</param>
-		</member>
-		<member name="M:TimerMute_yT@" syntax="TimerMute_yT@(playerid)">
-			<stacksize value="8"/>
-			<referrer name="mutePlayer"/>
-			<referrer name="onPlayerLogin"/>
-			<dependency name="I@"/>
-			<dependency name="J@"/>
-			<dependency name="O@"/>
-			<dependency name="_Timer_C"/>
-			<param name="playerid">
-			</param>
-		</member>
 		<member name="M:TimerPos" syntax="TimerPos(playerid)">
 			<stacksize value="6"/>
 			<referrer name="TimerPos@_yT"/>
@@ -24623,7 +24685,7 @@
 			<referrer name="pc_cmd_accept"/>
 			<referrer name="InsertCarDS"/>
 			<referrer name="cancelDriveTest"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 			<referrer name="OnPlayerRequestClass"/>
 			<referrer name="OnPlayerSpawn"/>
@@ -24670,6 +24732,29 @@
 				End of the substring.
 			</param>
 			      <remarks>  Modifies "start" and "end" to be tight on text in "str".  </remarks> 
+		</member>
+		<member name="M:TrollDetect" syntax="TrollDetect(playerid, hack)">
+			<stacksize value="9"/>
+			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
+			<dependency name="operator-(Float:,Float:)"/>
+			<dependency name="operator==(Float:,Float:)"/>
+			<dependency name="operator&gt;(Float:,Float:)"/>
+			<dependency name="operator&lt;(Float:,Float:)"/>
+			<dependency name="GetPlayerState"/>
+			<dependency name="GetPlayerVelocity"/>
+			<dependency name="Kick"/>
+			<dependency name="acVelocity"/>
+			<dependency name="acVelocity"/>
+			<dependency name="false"/>
+			<dependency name="pFlymode"/>
+			<dependency name="pName"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="printf"/>
+			<param name="playerid">
+			</param>
+			<param name="hack">
+			</param>
 		</member>
 		<member name="M:U@" syntax="U@(id, name[], value, string[])">
 			<attribute name="native"/>
@@ -25359,7 +25444,6 @@
 			<referrer name="TimerWanted_yT@"/>
 			<referrer name="TimersWantedFind_yT@"/>
 			<referrer name="TimerPos_yT@"/>
-			<referrer name="TimerMute_yT@"/>
 			<referrer name="TimerCarFind_yT@"/>
 			<referrer name="TimerTutorial_yT@"/>
 			<referrer name="respawnTimer_yT@"/>
@@ -25403,22 +25487,21 @@
 		<member name="M:_Timer_F" syntax="_Timer_F(slot)">
 			<stacksize value="5"/>
 			<referrer name="_Timer_H"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@006"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
 			<referrer name="pc_cmd_clear"/>
 			<referrer name="pc_cmd_fare"/>
 			<referrer name="fareUpdateTimer"/>
 			<referrer name="TimerWar"/>
-			<referrer name="@yH_OnPlayerDisconnect@007"/>
+			<referrer name="@yH_OnPlayerDisconnect@008"/>
 			<referrer name="CancelJob"/>
-			<referrer name="@yH_OnPlayerDisconnect@009"/>
+			<referrer name="@yH_OnPlayerDisconnect@010"/>
 			<referrer name="pc_cmd_ch"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerSpeedo"/>
 			<referrer name="TimerJail"/>
 			<referrer name="TimerWanted"/>
-			<referrer name="TimerMute"/>
 			<referrer name="TimerTutorial"/>
 			<referrer name="pc_cmd_acceptreport"/>
 			<referrer name="pc_cmd_closereport"/>
@@ -25503,7 +25586,7 @@
 		<member name="M:addRaportPoint" syntax="addRaportPoint(playerid)">
 			<attribute name="public"/>
 			<stacksize value="6"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_heal"/>
 			<referrer name="pc_cmd_confiscate"/>
 			<referrer name="pc_cmd_su"/>
@@ -25901,8 +25984,8 @@
 		</member>
 		<member name="M:cancelDriveTest" syntax="cancelDriveTest(playerid, reason)">
 			<stacksize value="4110"/>
-			<referrer name="@yH_OnPlayerDeath@012"/>
-			<referrer name="@yH_OnPlayerStateChange@012"/>
+			<referrer name="@yH_OnPlayerDeath@013"/>
+			<referrer name="@yH_OnPlayerStateChange@013"/>
 			<referrer name="testDriveTimer"/>
 			<dependency name="CB_CreateVehicle"/>
 			<dependency name="CB_SelectTextDraw"/>
@@ -28483,7 +28566,7 @@
 			<referrer name="pc_cmd_rentabil"/>
 			<referrer name="pc_cmd_setrentprice"/>
 			<referrer name="pc_cmd_createhouse"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_heal"/>
 			<referrer name="pc_cmd_ticket"/>
 			<referrer name="pc_cmd_arrest"/>
@@ -28499,7 +28582,7 @@
 			<referrer name="dialog_DIALOG_FWITHDRAW"/>
 			<referrer name="dialog_DIALOG_FWITHDRAW2"/>
 			<referrer name="dialog_DIALOG_FDEPOSIT2"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="LoadBusinesses"/>
 			<referrer name="dialog_BIZ_OPTION_TITLE"/>
 			<referrer name="dialog_BIZ_OPTION_DESCRIPTION"/>
@@ -28524,7 +28607,7 @@
 			<referrer name="pc_cmd_buylevel"/>
 			<referrer name="ShowDealerShipTD"/>
 			<referrer name="InsertCarDS"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerStateChange"/>
@@ -28812,6 +28895,7 @@
 		</member>
 		<member name="M:gettime" syntax="gettime(&amp;hour, &amp;minute, &amp;second)">
 			<attribute name="native"/>
+			<referrer name="@yH_OnPlayerStateChange@005"/>
 			<referrer name="warnPlayer"/>
 			<referrer name="banPlayer"/>
 			<referrer name="mutePlayer"/>
@@ -28834,6 +28918,7 @@
 			<referrer name="CheckIP"/>
 			<referrer name="BanIPOffline"/>
 			<referrer name="SetPlayerFreeze"/>
+			<referrer name="Reclama"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerCar_yT@"/>
@@ -28853,6 +28938,7 @@
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="pc_cmd_report"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
+			<referrer name="OnPlayerText"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<param name="hour">
@@ -29077,6 +29163,7 @@
 			<referrer name="InsertEmail"/>
 			<referrer name="pc_cmd_insertemail"/>
 			<referrer name="OnPlayerText"/>
+			<referrer name="OnPlayerCommandPerformed"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@Player"/>
 			<dependency name="false"/>
@@ -29209,6 +29296,8 @@
 			<referrer name="checkPlayerBan"/>
 			<referrer name="checkPanel"/>
 			<referrer name="BanIPPlayer"/>
+			<referrer name="OnPlayerText"/>
+			<referrer name="OnPlayerCommandPerformed"/>
 			<dependency name="I@"/>
 			<dependency name="J@"/>
 			<dependency name="O@"/>
@@ -29459,18 +29548,14 @@
 			<referrer name="pc_cmd_mute"/>
 			<dependency name="EOS"/>
 			<dependency name="GetPlayerName"/>
-			<dependency name="I@"/>
 			<dependency name="Iter_Add_InternalC"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iter_Single@MutedPlayers"/>
 			<dependency name="Iterator@MutedPlayers"/>
-			<dependency name="J@"/>
 			<dependency name="SQL"/>
 			<dependency name="SetPVarInt"/>
-			<dependency name="TimerMute_yT@"/>
 			<dependency name="gQuery"/>
 			<dependency name="gettime"/>
-			<dependency name="muteTime"/>
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_pquery"/>
 			<dependency name="pMute"/>
@@ -29558,7 +29643,7 @@
 			<referrer name="pc_cmd_banipoffline"/>
 			<referrer name="pc_cmd_unjailo"/>
 			<referrer name="pc_cmd_jailo"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<param name="handle">
 				<paraminfo>MySQL </paraminfo>
 			</param>
@@ -29656,7 +29741,7 @@
 			<referrer name="pc_cmd_banipoffline"/>
 			<referrer name="pc_cmd_unjailo"/>
 			<referrer name="pc_cmd_jailo"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_emails"/>
 			<referrer name="SSCANF_OnPlayerConnect"/>
 			<param name="handle">
@@ -29723,7 +29808,6 @@
 			<dependency name="Iter_Add_InternalC"/>
 			<dependency name="Iter_Single@FactionMembers"/>
 			<dependency name="Iter_Single@Freqs"/>
-			<dependency name="Iter_Single@MutedPlayers"/>
 			<dependency name="Iter_Single@ServerAdmins"/>
 			<dependency name="Iter_Single@ServerHelpers"/>
 			<dependency name="Iter_Single@ServerStaff"/>
@@ -29732,7 +29816,6 @@
 			<dependency name="Iter_Single@loggedPlayers"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="Iterator@Freqs"/>
-			<dependency name="Iterator@MutedPlayers"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="Iterator@ServerHelpers"/>
 			<dependency name="Iterator@ServerStaff"/>
@@ -29750,7 +29833,6 @@
 			<dependency name="SpawnPlayer"/>
 			<dependency name="StoreMoney"/>
 			<dependency name="TextDrawShowForPlayer"/>
-			<dependency name="TimerMute_yT@"/>
 			<dependency name="TimerWanted_yT@"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="cClanColor"/>
@@ -29768,7 +29850,6 @@
 			<dependency name="getDateTime"/>
 			<dependency name="gettime"/>
 			<dependency name="giveQuest"/>
-			<dependency name="muteTime"/>
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_pquery"/>
 			<dependency name="mysql_tquery"/>
@@ -36923,6 +37004,8 @@
 			<referrer name="ProfilerInit"/>
 			<referrer name="DumpStack"/>
 			<referrer name="PrintStackTrace"/>
+			<referrer name="TrollDetect"/>
+			<referrer name="@yH_OnPlayerStateChange@005"/>
 			<referrer name="testPlayerTextDrawShow"/>
 			<referrer name="LoadHouses"/>
 			<referrer name="LoadTurfs"/>
@@ -36975,7 +37058,7 @@
 			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="pc_cmd_arrest"/>
 			<referrer name="FishingTimer"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="dialog_BUYBIZ"/>
 			<referrer name="questProgress"/>
 			<referrer name="giveQuest"/>
@@ -37316,7 +37399,7 @@
 		<member name="M:returnNeededPoints" syntax="returnNeededPoints(playerid, job)">
 			<stacksize value="6"/>
 			<referrer name="pc_cmd_skills"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<dependency name="IsPlayerConnected"/>
 			<dependency name="Iter_Contains_InternalC"/>
@@ -37372,6 +37455,12 @@
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:secinmin" syntax="secinmin(secunde)">
+			<stacksize value="1"/>
+			<referrer name="OnPlayerText"/>
+			<param name="secunde">
 			</param>
 		</member>
 		<member name="M:sendAdmin" syntax="sendAdmin(color, text[], ...)">
@@ -37482,7 +37571,7 @@
 		</member>
 		<member name="M:sendFactionMessage" syntax="sendFactionMessage(fid, color, message[], ...)">
 			<stacksize value="15"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="sendPolice"/>
 			<referrer name="pc_cmd_blockf"/>
 			<referrer name="pc_cmd_f"/>
@@ -37550,7 +37639,7 @@
 			<stacksize value="15"/>
 			<referrer name="pc_cmd_eat"/>
 			<referrer name="pc_cmd_armour"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_duty"/>
 			<referrer name="pc_cmd_so"/>
 			<referrer name="pc_cmd_megaphone"/>
@@ -37620,8 +37709,8 @@
 			<referrer name="pc_cmd_armour"/>
 			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="pc_cmd_turfs"/>
-			<referrer name="@yH_OnPlayerEnterVehicle@006"/>
-			<referrer name="@yH_OnPlayerStateChange@006"/>
+			<referrer name="@yH_OnPlayerEnterVehicle@007"/>
+			<referrer name="@yH_OnPlayerStateChange@007"/>
 			<referrer name="dialog_DIALOG_WANTEDS"/>
 			<referrer name="showMDC"/>
 			<referrer name="pc_cmd_factions"/>
@@ -37691,7 +37780,7 @@
 			<referrer name="pc_cmd_fish"/>
 			<referrer name="pc_cmd_startwork"/>
 			<referrer name="pc_cmd_usedrugs"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="dialog_BUYBIZ"/>
 			<referrer name="dialog_TRANSFERBIZ"/>
 			<referrer name="pc_cmd_buybusiness"/>
@@ -37896,18 +37985,17 @@
 			<referrer name="pc_cmd_finalquest"/>
 			<referrer name="pc_cmd_shop"/>
 			<referrer name="pc_cmd_hud"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 			<referrer name="pc_cmd_emails"/>
 			<referrer name="pc_cmd_insertemail"/>
-			<referrer name="OnPlayerText"/>
 			<referrer name="OnPlayerEnterVehicle"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<dependency name="EOS"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="YVA2_DummyPush"/>
-			<dependency name="gFast"/>
+			<dependency name="gString"/>
 			<dependency name="va_format"/>
 			<param name="playerid">
 			</param>
@@ -38050,7 +38138,7 @@
 			<dependency name="EOS"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="YVA2_DummyPush"/>
-			<dependency name="gFast"/>
+			<dependency name="gString"/>
 			<dependency name="va_format"/>
 			<param name="playerid">
 			</param>
@@ -38091,7 +38179,7 @@
 			<referrer name="sendToAdmin"/>
 			<referrer name="sendFactionMessage"/>
 			<referrer name="pc_cmd_invite"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 			<referrer name="advertismentTimer"/>
 			<referrer name="sendClanMessage"/>
@@ -38357,7 +38445,7 @@
 		</member>
 		<member name="M:slapPlayer" syntax="slapPlayer(playerid)">
 			<stacksize value="9"/>
-			<referrer name="@yH_OnPlayerEnterVehicle@006"/>
+			<referrer name="@yH_OnPlayerEnterVehicle@007"/>
 			<dependency name="operator+(Float:,_:)"/>
 			<dependency name="GetPlayerPos"/>
 			<dependency name="SetPlayerPos"/>
@@ -38563,7 +38651,7 @@
 			<referrer name="pc_cmd_setrentprice"/>
 			<referrer name="pc_cmd_upgradehouse"/>
 			<referrer name="pc_cmd_createhouse"/>
-			<referrer name="@yH_OnPlayerDeath@006"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="LoadFactions"/>
 			<referrer name="pc_cmd_flock"/>
 			<referrer name="pc_cmd_d"/>
@@ -38589,7 +38677,7 @@
 			<referrer name="dialog_DIALOG_JOBS"/>
 			<referrer name="pc_cmd_getjob"/>
 			<referrer name="pc_cmd_skills"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 			<referrer name="advertismentTimer"/>
 			<referrer name="LoadBusinesses"/>
@@ -38915,7 +39003,7 @@
 		</member>
 		<member name="M:testDriveTimer_yT@" syntax="testDriveTimer_yT@(playerid)">
 			<stacksize value="8"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<dependency name="I@"/>
 			<dependency name="J@"/>
 			<dependency name="O@"/>
@@ -39120,7 +39208,7 @@
 			<referrer name="dialog_DIALOG_FDEPOSIT2"/>
 			<referrer name="pc_cmd_getjob"/>
 			<referrer name="pc_cmd_usedrugs"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="dialog_BIZ_OPTION_TITLE"/>
 			<referrer name="dialog_BIZ_OPTION_DESCRIPTION"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
@@ -39155,7 +39243,7 @@
 			<referrer name="Reclama"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="dialog_BUY_INSURANCE"/>
-			<referrer name="@yH_OnPlayerDisconnect@011"/>
+			<referrer name="@yH_OnPlayerDisconnect@012"/>
 			<referrer name="pc_cmd_lock"/>
 			<referrer name="pc_cmd_swapcolors"/>
 			<referrer name="pc_cmd_carplate"/>
@@ -39181,7 +39269,7 @@
 			<referrer name="pc_cmd_accept"/>
 			<referrer name="pc_cmd_setfreq"/>
 			<referrer name="InsertCarDS"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="InsertEmail"/>
 			<referrer name="dialog_DIALOG_EMAILS2"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
@@ -39392,12 +39480,12 @@
 			<referrer name="TimerWanted"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="ShowDealerShipTD"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@012"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="OnPlayerEnterCheckpoint"/>
 			<dependency name="EOS"/>
 			<dependency name="PlayerTextDrawSetString"/>
 			<dependency name="YVA2_DummyPush"/>
-			<dependency name="gFast"/>
+			<dependency name="gString"/>
 			<dependency name="va_format"/>
 			<param name="playerid">
 			</param>
@@ -39419,8 +39507,8 @@
 			<referrer name="showStats"/>
 			<referrer name="showLicenses"/>
 			<referrer name="pc_cmd_createhouse"/>
-			<referrer name="@yH_OnPlayerDeath@006"/>
-			<referrer name="@yH_OnPlayerDisconnect@006"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
+			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="dialog_DIALOG_WANTEDS"/>
 			<referrer name="showMDC"/>
 			<referrer name="pc_cmd_gotofaction"/>
@@ -39503,6 +39591,7 @@
 			<referrer name="pc_cmd_insertemail"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<referrer name="OnPlayerDeath"/>
+			<referrer name="OnPlayerText"/>
 			<referrer name="OnVehicleDeath"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerStateChange"/>
@@ -39610,7 +39699,7 @@
 			<referrer name="sendToAdmin"/>
 			<referrer name="sendFactionMessage"/>
 			<referrer name="pc_cmd_invite"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 			<referrer name="sendClanMessage"/>
 			<referrer name="InsertCarDS"/>

@@ -16,7 +16,7 @@
 // B::::::::::::::::B  l::::::l a::::::::::aa:::a  cc:::::::::::::::ck::::::k   k:::::k M::::::M               M::::::M oo:::::::::::oo  oo:::::::::::oo   n::::n    n::::n//
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define MYSQL 0 // 0 - local | 1 - host
+#define MYSQL 1 // 0 - local | 1 - host
 
 #include <a_samp>
 #include <a_zones>
@@ -44,7 +44,7 @@
 #include <modules\defines.pwn>
 #include <modules\enums.pwn>
 #include <modules\variables.pwn>
-// #include <modules\ac.pwn> // anti-cheats
+#include <modules\ac.pwn> // anti-cheats
 #include <easyDialog>
 #include <modules\stocks.pwn>
 #include <modules\dialogs.pwn>
@@ -367,19 +367,25 @@ public OnPlayerDeath(playerid, killerid)
 }
 
 new sexxx[MAX_PLAYERS][144];
-public OnPlayerText(playerid, text[])
-{
+public OnPlayerText(playerid, text[]) {
 	if(strmatch(sexxx[playerid], text)) return 0;
 	format(sexxx[playerid], 144, text);
-	if(isPlayerLogged(playerid)) {
-		if(faceReclama(text)) return Reclama(playerid, text);
-		if(playerInfo[playerid][pMute] > 0) return sendPlayerError(playerid, "Ai mute pentru inca %s %s.", playerInfo[playerid][pMute], ((playerInfo[playerid][pMute] > 60) ? ("minute") : ("secunde")));
-		if(playerInfo[playerid][pTalkingLive] != -1) return oocNews(COLOR_LIGHTGREEN, "* %s %s: %s", playerInfo[playerid][pFaction] == 6 ? "Reporter" : "Jucator", getName(playerid), text);
-		sendNearbyMessage(playerid, COLOR_WHITE, 25.0, "%s spune: %s", getName(playerid), text);
-		SetPlayerChatBubble(playerid, text, COLOR_WHITE, 25.0, 5000);
-		update("INSERT INTO `server_chat_logs` (PlayerName, PlayerID, ChatText) VALUES ('%s', '%d', '%s')", getName(playerid), playerInfo[playerid][pSQLID], string_fast("* (chat log): %s.", text));
+	if(!isPlayerLogged(playerid)) defer kickEx(playerid);
+	if(faceReclama(text)) {
+		Reclama(playerid, text);
 		return 0;
 	}
+	if(playerInfo[playerid][pMute] > gettime()) {
+		SCMf(playerid, COLOR_LIGHTRED, "[ERROR] {FFFFFF}Ai mute pentru inca %d %s.", secinmin(playerInfo[playerid][pMute]-gettime()), (playerInfo[playerid][pMute]-gettime() > 60 ? "minute" : "secunde"));
+		return 0;
+	}
+	if(playerInfo[playerid][pTalkingLive] != -1) {
+		oocNews(COLOR_LIGHTGREEN, "* %s %s: %s", playerInfo[playerid][pFaction] == 6 ? "Reporter" : "Jucator", getName(playerid), text);
+		return 0;
+	}
+	sendNearbyMessage(playerid, COLOR_WHITE, 25.0, "%s spune: %s", getName(playerid), text); 
+	SetPlayerChatBubble(playerid, text, COLOR_WHITE, 25.0, 5000);
+	update("INSERT INTO `server_chat_logs` (PlayerName, PlayerID, ChatText) VALUES ('%s', '%d', '%s')", getName(playerid), playerInfo[playerid][pSQLID], string_fast("* (chat log): %s.", text));
 	return 0;
 }
 
@@ -731,13 +737,12 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 			vehicle_engine[vehicleid] =  true;
 		}
 		if(vehicle_personal[vehicleid] > -1) {
-			new id = vehicle_personal[vehicleid];
-			SCMf(playerid, COLOR_WHITE, "Acest %s (ID: %d) este detinut de %s | Age: %d zile | Kilometraj: %.02f km | Culori: %d, %d", getVehicleName(personalVehicle[id][pvModelID]), personalVehicle[id][pvID], getName(getVehicleOwner(personalVehicle[id][pvOwnerID])), personalVehicle[id][pvAge], personalVehicle[id][pvOdometer], personalVehicle[id][pvColorOne], personalVehicle[id][pvColorTwo]);
-			personalVehicle[id][pvDespawnTime] = 0;
-			#pragma unused id
-		}
+            new id = vehicle_personal[vehicleid];
+            SCMf(playerid, COLOR_WHITE, "Acest %s (ID: %d) este detinut de %s | Age: %d zile | Kilometraj: %.02f km | Culori: %d, %d", getVehicleName(personalVehicle[id][pvModelID]), personalVehicle[id][pvID], getName(getVehicleOwner(personalVehicle[id][pvOwnerID])), personalVehicle[id][pvAge], personalVehicle[id][pvOdometer], personalVehicle[id][pvColorOne], personalVehicle[id][pvColorTwo]);
+            personalVehicle[id][pvDespawnTime] = 0;
+            #pragma unused id
+        }
 
-		if(vehicle_personal[vehicleid] > -1) personalVehicle[vehicle_personal[vehicleid]][pvDespawnTime] = 0;
 		for(new i; i < 18; i++) PlayerTextDrawShow(playerid, vehicleHud[i]);
 		if(vehicle_engine[GetPlayerVehicleID(playerid)] == false) speedo[playerid] = repeat TimerSpeedo(playerid);
 	}
@@ -863,11 +868,10 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 	return true;
 }
 
-public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags) 
-{ 
-    if(result == -1) 
-    { 
-        SCMf(playerid, COLOR_SERVER, "* Server: {ffffff}Aceasta comanda nu exista pe server, pentru a vedea comenzile disponibile tasteaza /help.");
+public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags) {
+	if(!isPlayerLogged(playerid)) defer kickEx(playerid);
+    if(result == -1) {
+        SCMf(playerid, COLOR_SERVER, "* (/%s): {ffffff}Aceasta comanda nu exista pe server.", cmd);
         return 0; 
     } 
     return 1; 

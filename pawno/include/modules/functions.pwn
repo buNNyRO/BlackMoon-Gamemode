@@ -238,11 +238,6 @@ function onPlayerLogin(playerid)
 		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server (Total Staff: %d (%d admins, %d helpers)).", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
 	}
 
-	if(playerInfo[playerid][pMute] > 1) {
-		Iter_Add(MutedPlayers, playerid);
-		muteTime[playerid] = repeat TimerMute(playerid);
-	}
-
 	playerInfo[playerid][pReportMute] += gettime();
 	playerInfo[playerid][pIp] = ipnew;
 	PlayerNumber[playerInfo[playerid][pPhone]] = playerid;
@@ -748,11 +743,11 @@ function removeFunction(playerid, text[]) {
 
 function Reclama(playerid, text[]) {
 	if(playerInfo[playerid][pAdmin] > 5) return true;
-	playerInfo[playerid][pMute] += 120;
+	playerInfo[playerid][pMute] = gettime()+120;
 	update("UPDATE `server_users` SET `Mute` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pMute], playerInfo[playerid][pSQLID]);
 	SCM(playerid, COLOR_LIGHTRED, "* Anti-Reclama: Deoarece ai facut reclama, ai primit mute timp de 2 minute.");
 	sendStaff(COLOR_LIGHTRED, "* Notice Anti-reclama: %s este posibil sa faca reclama ('%s').", getName(playerid), text);
-	return true;
+	return 1;
 }
 
 function PlayerToPoint(Float:radi, playerid, Float:x, Float:y, Float:z) {
