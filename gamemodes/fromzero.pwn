@@ -16,7 +16,7 @@
 // B::::::::::::::::B  l::::::l a::::::::::aa:::a  cc:::::::::::::::ck::::::k   k:::::k M::::::M               M::::::M oo:::::::::::oo  oo:::::::::::oo   n::::n    n::::n//
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define MYSQL 0 // 0 - local | 1 - host
+#define MYSQL 1 // 0 - local | 1 - host
 
 #include <a_samp>
 #include <a_zones>
@@ -84,6 +84,8 @@ alias:reportmute("rmute", "repmute")
 alias:makeleader("setleader")
 alias:setadmin("makeadmin")
 alias:auninvite("fpk")
+alias:announce("anno")
+alias:clearchat("cc", "cchat")
 
 public OnQueryError(errorid, const error[], const callback[], const query[], MySQL:handle)
 {
@@ -161,7 +163,7 @@ public OnPlayerDisconnect(playerid, reason)
 
 	if(Iter_Contains(ServerStaff, playerid)) {
 		Iter_Remove(ServerStaff, playerid);
-		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a deconnectat de pe server (Total Staff: %d (%d admins, %d helpers)).", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
+		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a deconnectat de pe server (Total Staff: %d [%d admins, %d helpers]).", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
 	}
 
 	if(Iter_Contains(MutedPlayers, playerid))
@@ -490,8 +492,8 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 				SetPlayerInterior(playerid, bizInfo[playerInfo[playerid][areaBizz]][bizInterior]);
 				SetPlayerVirtualWorld(playerid, bizInfo[playerInfo[playerid][areaBizz]][bizID]);
 				GivePlayerCash(playerid, 0, bizInfo[playerInfo[playerid][areaBizz]][bizFee]);
-				va_GameTextForPlayer(playerid, "~r~-$%d", bizInfo[playerInfo[playerid][areaBizz]][bizFee], 1000, 1);
-				playerInfo[playerid][pinBusiness] = playerInfo[playerid][areaBizz];
+				GameTextForPlayer(playerid, string_fast("~r~-$%d", bizInfo[playerInfo[playerid][areaBizz]][bizFee]), 1000, 1);
+				playerInfo[playerid][pinBusiness] = bizInfo[playerInfo[playerid][areaBizz]][bizID];
 				bizInfo[playerInfo[playerid][areaBizz]][bizBalance] += bizInfo[playerInfo[playerid][areaBizz]][bizFee];
 				update("UPDATE `server_business` SET `Balance`='%d' WHERE `ID`='%d' LIMIT 1",bizInfo[playerInfo[playerid][areaBizz]][bizBalance], playerInfo[playerid][areaBizz]);
 				switch(bizInfo[playerInfo[playerid][areaBizz]][bizType]) {
@@ -506,7 +508,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 							if(playerInfo[playerid][pFishSkill] < 5) {
 								if(playerInfo[playerid][pFishTimes] >= returnNeededPoints(playerid, JOB_FISHER)) {
 									playerInfo[playerid][pFishSkill] ++;
-									SCMf(playerid, COLOR_GREY, "* Fisherman Notice: Ai avansat in %d skill. Vei castiga probabil mai multi bani", playerInfo[playerid][pFishSkill]);
+									SCM(playerid, COLOR_GREY, string_fast("* Fisherman Notice: Ai avansat in %d skill. Vei castiga probabil mai multi bani", playerInfo[playerid][pFishSkill]));
 								}
 							}
 							GivePlayerCash(playerid, 1, money);
@@ -520,8 +522,8 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 				playerInfo[playerid][areaBizz] = 0;
 				return true;
 	        }
-	        else if(playerInfo[playerid][pinBusiness] != 0 && IsPlayerInRangeOfPoint(playerid, 3.0, bizInfo[playerInfo[playerid][pinBusiness]][bizX], bizInfo[b][bizY], bizInfo[playerInfo[playerid][pinBusiness]][bizZ])) {
-	        	SetPlayerPos(playerid, bizInfo[playerInfo[playerid][pinBusiness]][bizExtX], bizInfo[playerInfo[playerid][pinBusiness]][bizExtY], bizInfo[playerInfo[playerid][pinBusiness]][bizExtZ]);
+	        else if(playerInfo[playerid][pinBusiness] != 0 && IsPlayerInRangeOfPoint(playerid, 3.0, bizInfo[b][bizX], bizInfo[b][bizY], bizInfo[b][bizZ])) {
+	        	SetPlayerPos(playerid, bizInfo[b][bizExtX], bizInfo[b][bizExtY], bizInfo[b][bizExtZ]);
 	            SetPlayerInterior(playerid, 0);
 	            SetPlayerVirtualWorld(playerid, 0);
 	            playerInfo[playerid][pinBusiness] = -1;
@@ -529,19 +531,18 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 	        }
     	}
 
-		if(playerInfo[playerid][areaHouse] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, houseInfo[playerInfo[playerid][areaHouse]][hExtX], houseInfo[playerInfo[playerid][areaHouse]][hExtY], houseInfo[playerInfo[playerid][areaHouse]][hExtZ])) {
+		if(playerInfo[playerid][areaHouse] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, bizInfo[playerInfo[playerid][areaHouse]][bizExtX], bizInfo[playerInfo[playerid][areaHouse]][bizExtY], bizInfo[playerInfo[playerid][areaHouse]][bizExtZ])) {
 			if(houseInfo[playerInfo[playerid][areaHouse]][hLocked] == 1) return sendPlayerError(playerid, "Acesta casa, este inchisa.");
 			if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Esti intr-un vehicul.");
 			SetPlayerPos(playerid, houseInfo[playerInfo[playerid][areaHouse]][hX], houseInfo[playerInfo[playerid][areaHouse]][hY], houseInfo[playerInfo[playerid][areaHouse]][hZ]);
 			SetPlayerInterior(playerid, houseInfo[playerInfo[playerid][areaHouse]][hInterior]);
 			SetPlayerVirtualWorld(playerid, houseInfo[playerInfo[playerid][areaHouse]][hID]);
-			playerInfo[playerid][pinHouse] = playerInfo[playerid][areaHouse];
-			SCMf(playerid, COLOR_GREY, "* House Notice: Welcome to %s's house. Commands available: /eat, /sleep.", houseInfo[playerInfo[playerid][areaHouse]][hOwner]);
+			playerInfo[playerid][pinHouse] = houseInfo[playerInfo[playerid][areaHouse]][hID];
+			SCM(playerid, COLOR_GREY, string_fast("* House Notice: Welcome to %s's house. Commands available: /eat, /sleep.", houseInfo[playerInfo[playerid][areaHouse]][hOwner]));
 			playerInfo[playerid][areaHouse] = 0;
-			return true;
 		}
-		else if(playerInfo[playerid][pinHouse] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, houseInfo[playerInfo[playerid][pinHouse]][hX], houseInfo[playerInfo[playerid][pinHouse]][hY], houseInfo[playerInfo[playerid][pinHouse]][hZ])) {
-			SetPlayerPos(playerid, houseInfo[playerInfo[playerid][pinHouse]][hExtX], houseInfo[playerInfo[playerid][pinHouse]][hExtY], houseInfo[playerInfo[playerid][pinHouse]][hExtZ]);
+		else if(playerInfo[playerid][pinHouse] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, houseInfo[b][hX], houseInfo[b][hY], houseInfo[b][hZ])) {
+			SetPlayerPos(playerid, houseInfo[b][hExtX], houseInfo[b][hExtY], houseInfo[b][hExtZ]);
 			SetPlayerInterior(playerid, 0);
 			SetPlayerVirtualWorld(playerid, 0);
 			playerInfo[playerid][pinHouse] = -1;
@@ -557,8 +558,8 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 			playerInfo[playerid][areaFaction] = 0;
 			return true;
 		}
-		else if(playerInfo[playerid][pinFaction] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, factionInfo[playerInfo[playerid][pinFaction]][fExitX], factionInfo[playerInfo[playerid][pinFaction]][fExitY], factionInfo[playerInfo[playerid][pinFaction]][fExitZ])) {
-			SetPlayerPos(playerid, factionInfo[playerInfo[playerid][pinFaction]][fEnterX],factionInfo[playerInfo[playerid][pinFaction]][fEnterY], factionInfo[playerInfo[playerid][pinFaction]][fEnterZ]);
+		else if(IsPlayerInRangeOfPoint(playerid, 3.5, factionInfo[b][fExitX], factionInfo[b][fExitY], factionInfo[b][fExitZ])) {
+			SetPlayerPos(playerid, factionInfo[b][fEnterX],factionInfo[b][fEnterY], factionInfo[b][fEnterZ]);
 			SetPlayerVirtualWorld(playerid, 0);
 			SetPlayerInterior(playerid, 0);
 			playerInfo[playerid][pinFaction] = 0;

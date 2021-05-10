@@ -229,13 +229,13 @@ function onPlayerLogin(playerid)
 		Iter_Add(ServerStaff, playerid);
 		AllowPlayerTeleport(playerid, 1);
 		TextDrawShowForPlayer(playerid, serverInfoTD);
-		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server (Total Staff: %d (%d admins, %d helpers)).", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
+		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server (Total Staff: %d [%d admins, %d helpers]).", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
 	}
 
 	if(playerInfo[playerid][pHelper]) {
 		Iter_Add(ServerHelpers, playerid);
 		Iter_Add(ServerStaff, playerid);
-		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server (Total Staff: %d (%d admins, %d helpers)).", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
+		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server (Total Staff: %d [%d admins, %d helpers]).", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
 	}
 
 	if(playerInfo[playerid][pMute] > 1) {
@@ -257,7 +257,6 @@ function onPlayerLogin(playerid)
 	SetPlayerScore(playerid, playerInfo[playerid][pLevel]);
 	updatePlayer(playerid);
 	updateLevelBar(playerid);
-
 	return true;
 }
 

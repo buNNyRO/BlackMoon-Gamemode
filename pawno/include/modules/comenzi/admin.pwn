@@ -773,13 +773,19 @@ CMD:goto(playerid, params[]) {
 	new Float:x, Float:y, Float:z;
 	GetPlayerPos(id, x, y, z);
 	if(GetPlayerState(id) == PLAYER_STATE_DRIVER || GetPlayerState(id) == PLAYER_STATE_PASSENGER) {
-		if(getVehicleMaxSeats(GetVehicleModel(GetPlayerVehicleID(playerid))) > 0) {
-			for(new i = 0; i < getVehicleMaxSeats(GetVehicleModel(GetPlayerVehicleID(playerid))); i++) {
-				if(IsSeatTaked(GetPlayerVehicleID(id), i)) return PutPlayerInVehicle(playerid, GetPlayerVehicleID(id), i);
+		SCM(playerid, -1, "*** debug vicentzo #1 callback 'goto'");
+		for(new i = 0; i < getVehicleMaxSeats(GetVehicleModel(GetPlayerVehicleID(playerid))); i++) {
+			SCM(playerid, -1, "*** debug vicentzo #3 callback 'goto'");
+			if(!IsSeatTaked(GetPlayerVehicleID(id), i)) {
+				PutPlayerInVehicle(playerid, GetPlayerVehicleID(id), i);
+				SCM(playerid, -1, "*** debug vicentzo #4 callback 'goto'");
+				break;
 			}
+			SCM(playerid, -1, "*** debug vicentzo #5 callback 'goto'");
 		}
+		SCM(playerid, -1, "*** debug vicentzo #6 callback 'goto'");
 	}
-	SetPlayerPos(playerid, x, (y +4), z);
+	else SetPlayerPos(playerid, x, (y +4), z);
 	return true;
 }
 
@@ -842,7 +848,7 @@ CMD:unfreeze(playerid, params[]) {
 CMD:set(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	extract params -> new player:id, string:option[32], value; else {
-		SCM(playerid, COLOR_GREY, "Optiuni: Money, Billion, MBank, Bank, Health, Armour, Level, RespectPoints, Skin.");
+		SCM(playerid, COLOR_GREY, "Optiuni: money, billion, mbank, bank, health, armour, level, respectPoints, skin, premium, vip.");
 		return sendPlayerSyntax(playerid, "/set <name/id> <option> <result>");
 	}
 	if(!isPlayerLogged(id)) return sendPlayerError(playerid, "Jucatorul nu este conectat.");
@@ -894,6 +900,16 @@ CMD:set(playerid, params[]) {
 			setSkin(id, value);
 			update("UPDATE `server_users` SET `Skin` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[id][pSkin], playerInfo[id][pSQLID]);					
 		}	
+		case _H<premium>: {
+			if(value < 0 || value > 1) return sendPlayerError(playerid, "Result Invalid (0 - 1).");
+			playerInfo[id][pPremium] = value;
+			update("UPDATE `server_users` SET `Premium` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[id][pPremium], playerInfo[id][pSQLID]);						
+		}
+		case _H<vip>: {
+			if(value < 0 || value > 1) return sendPlayerError(playerid, "Result Invalid (0 - 1).");
+			playerInfo[id][pVIP] = value;
+			update("UPDATE `server_users` SET `VIP` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[id][pVIP], playerInfo[id][pSQLID]);						
+		}
 		default: {
 			SCM(playerid, COLOR_GREY, "Optiuni: money, billion, mbank, bank, health, armour, level, respectpoints, skin.");
 			return sendPlayerSyntax(playerid, "/set <name/id> <option> <result>");
@@ -1318,7 +1334,7 @@ CMD:jail(playerid, params[]) {
 
 CMD:jailo(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 3) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
-	extract params -> new string:playerName[MAX_PLAYER_NAME], minutes, string:reason[32]; else return sendPlayerSyntax(playerid, "/unjailo <name> <minutes> <reason>");
+	extract params -> new string:playerName[MAX_PLAYER_NAME], minutes, string:reason[32]; else return sendPlayerSyntax(playerid, "/jailo <name> <minutes> <reason>");
 	if(strlen(reason) < 1 || strlen(reason) > 32) return sendPlayerError(playerid, "Reason invalid, min. 1 caracter max. 32 caractere.");
 	foreach(new i : loggedPlayers) if(strmatch(getName(i), playerName)) return sendPlayerError(playerid, "Jucatorul este conectat.");
 	gQuery[0] = (EOS);
@@ -1345,5 +1361,26 @@ CMD:speed(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	playerInfo[playerid][pEnableBoost] = playerInfo[playerid][pEnableBoost] ? 0 : 1;
 	SCMf(playerid, COLOR_SERVER, "Notice: {ffffff}Speed Boost %s.", playerInfo[playerid][pEnableBoost] ? "activat" : "dezactivat");
+	return true;
+}
+
+CMD:clearchat(playerid, params[], help) {
+	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
+	foreach(new i : loggedPlayers) clearChat(i, 100);
+	sendAdmin(COLOR_SERVER, "* Notice: %s a sters chat-ul serverului.", getName(playerid));
+	return true;
+}
+
+CMD:announce(playerid, params[], help) {
+	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
+	extract params -> new type, string:text[144]; else {
+		SCM(playerid, COLOR_GREY, "* Optiuni Type: 0 - Grey Color | 1 - Red Color | 2 - Green Color");
+		return sendPlayerSyntax(playerid, "/announce <type> <text>");
+	}
+	if(type < 0 || type > 2) return sendPlayerError(playerid, "Invalid type (0 - 2).");
+	if(strlen(text) < 1 || strlen(text) > 144) return sendPlayerError(playerid, "Invalid text min. 1 caracter max. 144 caractere");
+	if(type == 0) va_SendClientMessageToAll(COLOR_GREY, "(( Admin %s: %s ))", getName(playerid), text);
+	else if(type == 1) va_SendClientMessageToAll(COLOR_LIGHTRED, "(( Admin %s: %s ))", getName(playerid), text);
+	else if(type == 2) va_SendClientMessageToAll(COLOR_LIMEGREEN, "(( Admin %s: %s ))", getName(playerid), text);	
 	return true;
 }

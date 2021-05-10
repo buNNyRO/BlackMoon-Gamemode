@@ -17,7 +17,8 @@ timer TimerJail[1000](i) {
 		SpawnPlayer(i);
 		Iter_Remove(JailedPlayers, i);
 		PlayerTextDrawHide(i, jailTimeTD[i]);
-		SCM(i, COLOR_LIGHTRED, string_fast("* Jail:{ffffff} Timpul de jail a expirat, acum esti liber."));
+		SCMf(i, COLOR_LIGHTRED, "* Jail:{ffffff} Timpul de jail a expirat, acum esti liber.");
+		update("UPDATE `server_users` SET `Jailed` = '0', `JailTime` = '0' WHERE `ID` = '%d' LIMIT 1", playerInfo[i][pSQLID]);
 	}
 	return true;
 }
@@ -53,7 +54,7 @@ task Timers[1000]()
 	getdate(year, month, day);
 	TextDrawSetString(serverDateTD, string_fast("%02d.%02d.%d~N~%02d:%02d:%02d", day, month, year, hour, minute, second));
 	TextDrawSetString(serverInfoTD, string_fast("TI: ~G~~H~~H~%d     ~W~~H~QU: ~B~%d", GetServerTickRate(), mysql_unprocessed_queries()));
-	if(hour == 12) {
+	if(hour == 12 && minute == 0 && second == 0) {
 		MoveObject(gates[1], 1160.19, 1303.31, 5.71, 0.5, 0.00, 0.00, -90.00); 
 		MoveObject(gates[2], 1160.18, 1312.26, 5.71,  0.5, 0.00, 0.00, -90.00);
 		foreach(new i : JailedPlayers) SCM(i, COLOR_LIGHTRED, string_fast("* Jail Cells:{ffffff} Deoarece ora a ajuns la '12:00:00', celule se deschid."));	

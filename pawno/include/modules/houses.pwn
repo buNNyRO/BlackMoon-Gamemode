@@ -106,6 +106,15 @@ function LoadHouses() {
 	return printf("Houses: %d [From Database]", Iter_Count(ServerHouses));
 }
 
+function buyHouseOffline(playerid, id) {
+	if(cache_num_rows() != 0) {
+		new moneys, newmoneys, money[40]; 
+		cache_get_value_name(0, "Bank", money); moneys = strval(money);
+		newmoneys = moneys + houseInfo[playerInfo[playerid][areaHouse]][hPrice];
+		update("UPDATE `server_users` SET `Bank` = '%d', `House` = '0', `HouseID` = '-1' WHERE `ID` = '%d' LIMIT 1", newmoneys, playerInfo[id][pSQLID]);
+	}
+	return true;
+}
 
 Dialog:SELL_HOUSE_STATE(playerid, response) {
 	if(!response) return true;
@@ -160,10 +169,8 @@ Dialog:HOUSE_OPTION_DESCRIPTION(playerid, response, listitem,  inputtext[]) {
 
 Dialog:HOUSE_OPTION_ADMIN(playerid, response, listitem) {
 	if(!response) return true;
-	switch(listitem) {
-		case 0: Dialog_Show(playerid, HOUSE_OPTION_TITLEADMIN, DIALOG_STYLE_INPUT, "House: Title", "Introdu mai jos ce titlu doresti sa aiba casa", "Ok", "Cancel");
-		case 1: Dialog_Show(playerid, HOUSE_OPTION_DESCADMIN, DIALOG_STYLE_INPUT, "House: Description", "Introdu mai jos ce descriere doresti sa aiba casa", "Ok", "Cancel");
-	}
+	if(listitem == 0) Dialog_Show(playerid, HOUSE_OPTION_TITLEADMIN, DIALOG_STYLE_INPUT, "House: Title", "Introdu mai jos ce titlu doresti sa aiba casa", "Ok", "Cancel");
+	else if(listitem == 1) Dialog_Show(playerid, HOUSE_OPTION_DESCADMIN, DIALOG_STYLE_INPUT, "House: Description", "Introdu mai jos ce descriere doresti sa aiba casa", "Ok", "Cancel");
 	return true;
 }
 
@@ -193,25 +200,16 @@ CMD:buyhouse(playerid, params[]) {
 	if(playerInfo[playerid][areaHouse] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, houseInfo[playerInfo[playerid][areaHouse]][hExtX], houseInfo[playerInfo[playerid][areaHouse]][hExtY], houseInfo[playerInfo[playerid][areaHouse]][hExtZ])) {
 		if(houseInfo[playerInfo[playerid][areaHouse]][hPrice] == 0) return sendPlayerError(playerid, "Aceasta casa nu este de vanzare.");
 		if(houseInfo[playerInfo[playerid][areaHouse]][hOwned] == 1) {
-			new id = GetPlayerID(houseInfo[playerInfo[playerid][areaHouse]][hOwner]), moneys, newmoneys;
-			gString[0] = (EOS);
+			new id = GetPlayerID(houseInfo[playerInfo[playerid][areaHouse]][hOwner]);
 			if(id != INVALID_PLAYER_ID) { 
 				playerInfo[id][pHouse] = 0;
 				playerInfo[id][pHouseID] = -1;
 				playerInfo[id][pBank] += houseInfo[playerInfo[playerid][areaHouse]][hPrice];
-				SCM(playerid, COLOR_GREY, string_fast("* House Notice: %s ti-a cumparat casa, si ai primit $%s, in banca.", getName(playerid), formatNumber(houseInfo[playerInfo[playerid][areaHouse]][hPrice])));
-				update("UPDATE `server_users` SET `Bank` = '%d', `House` = '0', `HouseID` = '-1' WHERE `ID` = '%d'", playerInfo[id][pBank], playerInfo[id][pSQLID]);
+				SCMf(playerid, COLOR_GREY, "* House Notice: %s ti-a cumparat casa, si ai primit $%s, in banca.", getName(playerid), formatNumber(houseInfo[playerInfo[playerid][areaHouse]][hPrice]));
+				update("UPDATE `server_users` SET `Bank` = '%d', `House` = '0', `HouseID` = '-1' WHERE `ID` = '%d' LIMIT 1", playerInfo[id][pBank], playerInfo[id][pSQLID]);
 			}
-			else {
-				new Cache: result = mysql_query(SQL, string_fast("SELECT * FROM `server_users` WHERE `Name` = '%s'", houseInfo[playerInfo[playerid][areaHouse]][hOwner]));
-				if(cache_num_rows() != 0) {
-					cache_get_value_name(0, "Bank", gString); moneys = strval(gString);
-					newmoneys = moneys + houseInfo[playerInfo[playerid][areaHouse]][hPrice];
-				}
-				cache_delete(result);
-				update("UPDATE `server_users` SET `Bank` = '%d', `House` = '0', `HouseID` = '-1' WHERE `ID` = '%d'", newmoneys, playerInfo[id][pSQLID]);
-			}
-			SCM(playerid, COLOR_GREY, string_fast("* House Notice: Felicitari ! Ai cumparat casa cu id %d, si ai platit $%s.", playerInfo[playerid][areaHouse], formatNumber(houseInfo[playerInfo[playerid][areaHouse]][hPrice])));
+			else mysql_tquery(SQL, string_fast("SELECT * FROM `server_users` WHERE `Name` = '%s'", houseInfo[playerInfo[playerid][areaHouse]][hOwner]), "buyHouseOffline", "dd", playerid, id);
+			SCMf(playerid, COLOR_GREY, "* House Notice: Felicitari ! Ai cumparat casa cu id %d, si ai platit $%s.", playerInfo[playerid][areaHouse], formatNumber(houseInfo[playerInfo[playerid][areaHouse]][hPrice]));
 			GivePlayerCash(playerid, 0, houseInfo[playerInfo[playerid][areaHouse]][hPrice]);
 			format(houseInfo[playerInfo[playerid][areaHouse]][hOwner], 32, getName(playerid));
 			playerInfo[playerid][pHouse] = 1;
@@ -220,11 +218,11 @@ CMD:buyhouse(playerid, params[]) {
 			houseInfo[playerInfo[playerid][areaHouse]][hOwned] = 1;
 			houseInfo[playerInfo[playerid][areaHouse]][hPrice] = 0;
 			Update3DTextLabelText(houseInfo[playerInfo[playerid][areaHouse]][hText], COLOR_WHITE, string_fast("House ID: %d\nHouse Title: %s\nHouse Description: %s\nOwner: %s\nPrice: $%s%s", houseInfo[playerInfo[playerid][areaHouse]][hID], houseInfo[playerInfo[playerid][areaHouse]][hTitle], houseInfo[playerInfo[playerid][areaHouse]][hDescription], houseInfo[playerInfo[playerid][areaHouse]][hOwner], formatNumber(houseInfo[playerInfo[playerid][areaHouse]][hPrice]), formatNumber(houseInfo[playerInfo[playerid][areaHouse]][hRentPrice])));
-			update("UPDATE `server_users` SET `House` = '1', `HouseID` = '%d', `SpawnChange` = '2' WHERE `ID` = '%d'", playerInfo[playerid][areaHouse], playerInfo[playerid][pSQLID]);
-			update("UPDATE `server_houses` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d'",houseInfo[playerInfo[playerid][areaHouse]][hOwner], playerInfo[playerid][pSQLID], playerInfo[playerid][areaHouse]);
+			update("UPDATE `server_users` SET `House` = '1', `HouseID` = '%d', `SpawnChange` = '2' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][areaHouse], playerInfo[playerid][pSQLID]);
+			update("UPDATE `server_houses` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d' LIMIT 1",houseInfo[playerInfo[playerid][areaHouse]][hOwner], playerInfo[playerid][pSQLID], playerInfo[playerid][areaHouse]);
 		}
 		else if(houseInfo[playerInfo[playerid][areaHouse]][hOwned] == 0) {
-			SCM(playerid, COLOR_GREY, string_fast("* House Notice: Felicitari ! Ai cumparat casa cu id %d, si ai platit $%s.", playerInfo[playerid][areaHouse], formatNumber(houseInfo[playerInfo[playerid][areaHouse]][hPrice])));
+			SCMf(playerid, COLOR_GREY, "* House Notice: Felicitari ! Ai cumparat casa cu id %d, si ai platit $%s.", playerInfo[playerid][areaHouse], formatNumber(houseInfo[playerInfo[playerid][areaHouse]][hPrice]));
 			GivePlayerCash(playerid, 0, houseInfo[playerInfo[playerid][areaHouse]][hPrice]);
 			format(houseInfo[playerInfo[playerid][areaHouse]][hOwner], 32, getName(playerid));
 			playerInfo[playerid][pHouse] = 1;
@@ -234,8 +232,8 @@ CMD:buyhouse(playerid, params[]) {
 			houseInfo[playerInfo[playerid][areaHouse]][hOwned] = 1;
 			houseInfo[playerInfo[playerid][areaHouse]][hPrice] = 0;
 			Update3DTextLabelText(houseInfo[playerInfo[playerid][areaHouse]][hText], COLOR_WHITE, string_fast("House ID: %d\nHouse Title: %s\nHouse Description: %s\nOwner: %s\nPrice: $%s%s", houseInfo[playerInfo[playerid][areaHouse]][hID], houseInfo[playerInfo[playerid][areaHouse]][hTitle], houseInfo[playerInfo[playerid][areaHouse]][hDescription], houseInfo[playerInfo[playerid][areaHouse]][hOwner], formatNumber(houseInfo[playerInfo[playerid][areaHouse]][hPrice]), formatNumber(houseInfo[playerInfo[playerid][areaHouse]][hRentPrice])));
-			update("UPDATE `server_users` SET `Money` = '%d', `MStore` = '%d' `House` = '1', `HouseID` = '%d', `SpawnChange` = '2' WHERE `ID` = '%d'", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][areaHouse], playerInfo[playerid][pSQLID]);
-			update("UPDATE `server_houses` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d'",houseInfo[playerInfo[playerid][areaHouse]][hOwner],playerInfo[playerid][pSQLID], playerInfo[playerid][areaHouse]);
+			update("UPDATE `server_users` SET `Money` = '%d', `MStore` = '%d' `House` = '1', `HouseID` = '%d', `SpawnChange` = '2' WHERE `ID` = '%d' LIMIT 1", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][areaHouse], playerInfo[playerid][pSQLID]);
+			update("UPDATE `server_houses` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d' LIMIT 1",houseInfo[playerInfo[playerid][areaHouse]][hOwner],playerInfo[playerid][pSQLID], playerInfo[playerid][areaHouse]);
 		}
 	}
 	return true;
@@ -243,6 +241,7 @@ CMD:buyhouse(playerid, params[]) {
 
 CMD:sellhousestate(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
+	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
 	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti face aceasta actiune, deoarece esti in masina.");
 	if(GetPlayerVirtualWorld(playerid) != 0 && GetPlayerInterior(playerid) != 0 && playerInfo[playerid][pinHouse] != -1) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda deoarece, esti intr-un alt virtualworld / interior / esti intr-o casa.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o afacere.");
@@ -253,49 +252,46 @@ CMD:sellhousestate(playerid, params[]) {
 CMD:housebalance(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
-	new houseid = playerInfo[playerid][pHouseID];
-	SCM(playerid, COLOR_GREY, string_fast("* House Notice: Balanta ta la afacere este de $%s.", formatNumber(houseInfo[houseid][hBalance])));
+	SCMf(playerid, COLOR_GREY, "* House Notice: Balanta ta la casa este de $%s.", formatNumber(houseInfo[playerInfo[playerid][pHouseID]][hBalance]));
 	return true;
 }
 
 CMD:housewithdraw(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
-	new houseid = playerInfo[playerid][pHouseID], suma;
-	if(playerInfo[playerid][pinHouse] != houseid) return sendPlayerError(playerid, "Poti folosi aceasta comanda doar din interiorul casei tale.");
-	if(sscanf(params, "d", suma)) {
-		sendPlayerSyntax(playerid, "/housewithdraw <Suma>");
-		SCM(playerid, COLOR_GREY, string_fast("* House Notice: Balanta ta la afacere este de $%s.", formatNumber(houseInfo[houseid][hBalance])));
-		return true;
+	if(playerInfo[playerid][pinHouse] != playerInfo[playerid][pHouseID]) return sendPlayerError(playerid, "Poti folosi aceasta comanda doar din interiorul casei tale.");
+	extract params -> new suma; else {
+		SCMf(playerid, COLOR_GREY, "* House Notice: Balanta ta la casa este de $%s.", formatNumber(houseInfo[playerInfo[playerid][pHouseID]][hBalance]));
+		return sendPlayerSyntax(playerid, "/housewithdraw <money>");
 	}
-	if(houseInfo[houseid][hBalance] < suma) return sendPlayerError(playerid, "Nu ai suma aceasta de bani in balanta casei tale.");
-	houseInfo[houseid][hBalance] -= suma;
+	if(houseInfo[playerInfo[playerid][pHouseID]][hBalance] < suma) return sendPlayerError(playerid, "Nu ai suma aceasta de bani in balanta casei tale.");
+	houseInfo[playerInfo[playerid][pHouseID]][hBalance] -= suma;
 	GivePlayerCash(playerid, 1, suma);
-	mysql_format(SQL, gQuery, sizeof(gQuery),"UPDATE `server_houses` SET `Balance`='%d'  WHERE `ID`='%d' LIMIT 1", houseInfo[houseid][hBalance], houseid);
-	mysql_tquery(SQL, gQuery, "", "");	
-	SCM(playerid, COLOR_GREY, string_fast("* House Notice: Ai retras din balanta casei tale, $%s. Iar acum balanta casei tale este de $%s.", formatNumber(suma), formatNumber(houseInfo[houseid][hBalance])));	
+	update("UPDATE `server_houses` SET `Balance`='%d'  WHERE `ID`='%d' LIMIT 1", houseInfo[playerInfo[playerid][pHouseID]][hBalance], playerInfo[playerid][pHouseID]);
+	SCMf(playerid, COLOR_GREY, "* House Notice: Ai retras din balanta casei tale, $%s. Iar acum balanta casei tale este de $%s.", formatNumber(suma), formatNumber(houseInfo[playerInfo[playerid][pHouseID]][hBalance]));	
 	return true;
 }
 
 CMD:housedeposit(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
-	new houseid = playerInfo[playerid][pHouseID], suma;
-	if(playerInfo[playerid][pinHouse] != houseid) return sendPlayerError(playerid, "Poti folosi aceasta comanda doar din interiorul casei tale.");
-	if(sscanf(params, "d", suma)) return sendPlayerSyntax(playerid, "/housedeposit <Suma>");
-	if(GetPlayerCash(playerid) < suma) return sendPlayerError(playerid, "Nu ai suma aceasta de bani, pentru a adauga in balanta casei tale.");
-	houseInfo[houseid][hBalance] += suma;
+	if(playerInfo[playerid][pinHouse] != playerInfo[playerid][pHouseID]) return sendPlayerError(playerid, "Poti folosi aceasta comanda doar din interiorul casei tale.");
+	extract params -> new suma; else {
+		SCMf(playerid, COLOR_GREY, "* House Notice: Balanta ta la casa este de $%s.", formatNumber(houseInfo[playerInfo[playerid][pHouseID]][hBalance]));
+		return sendPlayerSyntax(playerid, "/housedeposit <money>");			
+	}
+	if(!PlayerMoney(playerid, suma)) return sendPlayerError(playerid, "Nu ai suma aceasta de bani, pentru a adauga in balanta casei tale.");
+	houseInfo[playerInfo[playerid][pHouseID]][hBalance] += suma;
 	GivePlayerCash(playerid, 0, suma);
-	mysql_format(SQL, gQuery, sizeof(gQuery),"UPDATE `server_houses` SET `Balance`='%d'  WHERE `ID`='%d' LIMIT 1", houseInfo[houseid][hBalance], houseid);
-	mysql_tquery(SQL, gQuery, "", "");	
-	SCM(playerid, COLOR_GREY, string_fast("* House Notice: Ai bagat in balanta casei tale, $%s. Iar acum balanta casei tale este de $%s.", formatNumber(suma), formatNumber(houseInfo[houseid][hBalance])));	
+	update("UPDATE `server_houses` SET `Balance`='%d'  WHERE `ID`='%d' LIMIT 1", houseInfo[playerInfo[playerid][pHouseID]][hBalance], playerInfo[playerid][pHouseID]);
+	SCMf(playerid, COLOR_GREY, "* House Notice: Ai bagat in balanta casei tale, $%s. Iar acum balanta casei tale este de $%s.", formatNumber(suma), formatNumber(houseInfo[playerInfo[playerid][pHouseID]][hBalance]));	
 	return true;
 }
 
 CMD:houseoption(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
+	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
 	Dialog_Show(playerid, HOUSE_OPTION, DIALOG_STYLE_TABLIST_HEADERS, "House:", "Option Name\tOption\nTitle\tSchimba Titlul Casei\nDescription\tSchimba Descrierea Casei", "Select", "Close");	
 	return true;
 }
@@ -303,30 +299,21 @@ CMD:houseoption(playerid, params[]) {
 CMD:hlock(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
-	new houseid = playerInfo[playerid][pHouseID];
-	if(houseInfo[houseid][hLocked] == 0) {
-		houseInfo[houseid][hLocked] = 1;
-		SCM(playerid, COLOR_GREY, "* House Notice: Ai inchis casa ta, acum playerii nu mai pot intra.");
-	}
-	else if(houseInfo[houseid][hLocked] == 1) {
-		houseInfo[houseid][hLocked] = 0;
-		SCM(playerid, COLOR_GREY, "* House Notice: Ai deschis casa ta, acum playerii pot intra.");
-	}
-	gQuery[0] = (EOS);
-	mysql_format(SQL, gQuery, sizeof(gQuery),"UPDATE `server_houses` SET `Locked`='%d'  WHERE `ID`='%d' LIMIT 1", houseInfo[houseid][hLocked], houseid);
-	mysql_tquery(SQL, gQuery, "", "");	
+	houseInfo[playerInfo[playerid][pHouseID]][hLocked] = houseInfo[playerInfo[playerid][pHouseID]][hLocked] ? 0 : 1;
+	SCMf(playerid, COLOR_GREY, "* House Notice: Ai %s casa ta, acum playerii %s.", houseInfo[playerInfo[playerid][pHouseID]][hLocked] ? "inchis" : "deschis", houseInfo[playerInfo[playerid][pHouseID]][hLocked] ? "pot intra" : "nu pot intra");
+	update("UPDATE `server_houses` SET `Locked`='%d'  WHERE `ID`='%d' LIMIT 1", houseInfo[playerInfo[playerid][pHouseID]][hLocked], playerInfo[playerid][pHouseID]);
 	return true;
 }
 
 CMD:sellhouse(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
-	new houseid = playerInfo[playerid][pHouseID], suma;
-	if(sscanf(params, "d", suma)) return sendPlayerSyntax(playerid, "/sellhouse <Pret>");
-	houseInfo[houseid][hPrice] = suma;
-	SCM(playerid, COLOR_GREY, string_fast("* House Notice: Ai pus la vanzare casa ta cu pretul $%s. Acum orice player iti poate cumpara casa.", formatNumber(suma)));
-	update("UPDATE `server_houses` SET `Price`='%d'  WHERE `ID`='%d' LIMIT 1", houseInfo[houseid][hPrice], houseid);
-	Update3DTextLabelText(houseInfo[houseid][hText], COLOR_WHITE, string_fast("House ID: %d\nHouse Title: %s\nHouse Description: %s\nOwner: %s\nPrice: $%s%s", houseInfo[houseid][hID], houseInfo[houseid][hTitle], houseInfo[houseid][hDescription], houseInfo[houseid][hOwner], formatNumber(houseInfo[houseid][hPrice]), formatNumber(houseInfo[houseid][hRentPrice])));	
+	extract params -> new suma; else return sendPlayerSyntax(playerid, "/sellhouse <money>");
+	if(!(1 <= suma <= 999999999)) return sendPlayerError(playerid, "Invalid money ($1 - $999,999,999).");
+	houseInfo[playerInfo[playerid][pHouseID]][hPrice] = suma;
+	SCMf(playerid, COLOR_GREY, "* House Notice: Ai pus la vanzare casa ta cu pretul $%s. Acum orice player iti poate cumpara casa.", formatNumber(suma));
+	update("UPDATE `server_houses` SET `Price`='%d'  WHERE `ID`='%d' LIMIT 1", houseInfo[playerInfo[playerid][pHouseID]][hPrice], playerInfo[playerid][pHouseID]);
+	Update3DTextLabelText(houseInfo[playerInfo[playerid][pHouseID]][hText], COLOR_WHITE, string_fast("House ID: %d\nHouse Title: %s\nHouse Description: %s\nOwner: %s\nPrice: $%s%s", houseInfo[playerInfo[playerid][pHouseID]][hID], houseInfo[playerInfo[playerid][pHouseID]][hTitle], houseInfo[playerInfo[playerid][pHouseID]][hDescription], houseInfo[playerInfo[playerid][pHouseID]][hOwner], formatNumber(houseInfo[playerInfo[playerid][pHouseID]][hPrice]), formatNumber(houseInfo[playerInfo[playerid][pHouseID]][hRentPrice])));	
 	return true;
 }
 
@@ -334,11 +321,10 @@ CMD:adminhouse(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pAdmin] < 4) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
-	new idl;
-	if(sscanf(params, "d", idl)) return sendPlayerSyntax(playerid, "/adminhouse <House ID>");
-	if(!Iter_Contains(ServerHouses, idl)) return sendPlayerError(playerid, "Acest ID nu exista in baza de date.");
-	IDSelected[playerid] = idl;
-	Dialog_Show(playerid, HOUSE_OPTION_ADMIN, DIALOG_STYLE_TABLIST_HEADERS, string_fast("House: %d", idl), "Option Name\tOption\nTitlu\tSchimba titlul casei\nDescrierea\tSchimba descrierea casei", "Select", "Cancel");
+	extract params -> new house; else return sendPlayerSyntax(playerid, "/adminhouse <house id>");
+	if(!Iter_Contains(ServerHouses, house)) return sendPlayerError(playerid, "Acesta casa nu exista.");	
+	IDSelected[playerid] = house;
+	Dialog_Show(playerid, HOUSE_OPTION_ADMIN, DIALOG_STYLE_TABLIST_HEADERS, string_fast("House: %d", house), "Option Name\tOption\nTitlu\tSchimba titlul casei\nDescrierea\tSchimba descrierea casei", "Select", "Cancel");
 	return true;
 }
 
@@ -346,12 +332,10 @@ CMD:rentabil(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
 	if(GetPVarInt(playerid, "RentDeelay") > gettime()) return sendPlayerError(playerid, "Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "RentDeelay") - gettime()));
-	new houseid = playerInfo[playerid][pHouseID];
-	if(houseInfo[houseid][hRentabil] == 0) houseInfo[houseid][hRentabil] = 1;
-	else if(houseInfo[houseid][hRentabil] == 1) houseInfo[houseid][hRentabil] = 0;
-	Update3DTextLabelText(houseInfo[houseid][hText], COLOR_WHITE, string_fast("House ID: %d\nHouse Title: %s\nHouse Description: %s\nOwner: %s\nPrice: $%s%s", houseInfo[houseid][hID], houseInfo[houseid][hTitle], houseInfo[houseid][hDescription], houseInfo[houseid][hOwner], formatNumber(houseInfo[houseid][hPrice]), formatNumber(houseInfo[houseid][hRentPrice])));		
-	SCM(playerid, COLOR_GREY, string_fast("* House Notice: Acum casa ta este %s.", houseInfo[houseid][hRentabil] ? "Rentabila" : "Nerentabila"));
-	update("UPDATE `server_houses` SET `Rentabil` = '%d' WHERE `ID` = '%d'", houseInfo[houseid][hRentabil], houseInfo[houseid][hID]);
+	houseInfo[playerInfo[playerid][pHouseID]][hRentabil] = houseInfo[playerInfo[playerid][pHouseID]][hRentabil] ? 0 : 1;
+	Update3DTextLabelText(houseInfo[playerInfo[playerid][pHouseID]][hText], COLOR_WHITE, string_fast("House ID: %d\nHouse Title: %s\nHouse Description: %s\nOwner: %s\nPrice: $%s%s", houseInfo[playerInfo[playerid][pHouseID]][hID], houseInfo[playerInfo[playerid][pHouseID]][hTitle], houseInfo[playerInfo[playerid][pHouseID]][hDescription], houseInfo[playerInfo[playerid][pHouseID]][hOwner], formatNumber(houseInfo[playerInfo[playerid][pHouseID]][hPrice]), formatNumber(houseInfo[playerInfo[playerid][pHouseID]][hRentPrice])));		
+	SCMf(playerid, COLOR_GREY, "* House Notice: Acum casa ta este %s.", houseInfo[playerInfo[playerid][pHouseID]][hRentabil] ? "rentabila" : "nerentabila");
+	update("UPDATE `server_houses` SET `Rentabil` = '%d' WHERE `ID` = '%d' LIMIT 1", houseInfo[playerInfo[playerid][pHouseID]][hRentabil], houseInfo[playerInfo[playerid][pHouseID]][hID]);
 	SetPVarInt(playerid, "RentDeelay", (gettime() + 60));
 	return true;
 }
@@ -359,8 +343,7 @@ CMD:rentabil(playerid, params[]) {
 CMD:renters(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
-	new houseid = playerInfo[playerid][pHouseID];
-	SCM(playerid, COLOR_GREY, string_fast("* House Notice: Ai %d renteri.", Iter_Count(RentersHouses[houseid])));
+	SCMf(playerid, COLOR_GREY, "* House Notice: Ai %d renteri.", Iter_Count(RentersHouses[playerInfo[playerid][pHouseID]]));
 	return true;
 }
 
@@ -368,22 +351,20 @@ CMD:rentroom(playerid, parmas[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 1 && playerInfo[playerid][pHouseID] != -1) return sendPlayerError(playerid, "Detii deja o casa, nu poti folosi aceasta comanda.");
 	if(playerInfo[playerid][pRent] != -1) return sendPlayerError(playerid, "Ai deja rentroom la o casa, foloseste (/unrentroom).");
-	foreach(new i : ServerHouses) {
-		if(IsPlayerInRangeOfPoint(playerid, 5.0 , houseInfo[i][hExtX], houseInfo[i][hExtY], houseInfo[i][hExtZ])) {
-			if(houseInfo[i][hRentabil] == 0) return sendPlayerError(playerid, "Aceasta casa nu este rentabila.");
-			if(houseInfo[i][hPrice] > 0) return sendPlayerError(playerid, "Nu mai poti da rent, deoarece casa este de vanzare.");
-			if(houseInfo[i][hOwned] == 0) return sendPlayerError(playerid, "Nu poti da rent, deoarece aceasta casa nu detine un detinator.");
-			playerInfo[playerid][pSpawnChange] = 3;
-			playerInfo[playerid][pRent] = i;
-			Iter_Add(RentersHouses[i], playerid);
-			SetPlayerPos(playerid, houseInfo[i][hX], houseInfo[i][hY], houseInfo[i][hZ]);
-			SetPlayerInterior(playerid, houseInfo[i][hInterior]);
-			SetPlayerVirtualWorld(playerid, houseInfo[i][hID]);
-			playerInfo[playerid][pinHouse] = i;
-			update("UPDATE `server_users` SET `SpawnChange` = '3', `Rent` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pRent], playerInfo[playerid][pSQLID]);
-			update("UPDATE `server_houses` SET `Renters` = '%d' WHERE `ID` = '%d'", Iter_Count(RentersHouses[i]), i);
-			SCM(playerid, COLOR_GREY, string_fast("* House Notice: Ai fost adaugat ca chirias la casa %d, de acum te vei spawna acolo. Foloseste (/spawnchange) daca doresti la spawn.", i));
-		}
+	if(playerInfo[playerid][areaHouse] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5 , houseInfo[playerInfo[playerid][areaHouse]][hExtX], houseInfo[playerInfo[playerid][areaHouse]][hExtY], houseInfo[playerInfo[playerid][areaHouse]][hExtZ])) {
+		if(houseInfo[playerInfo[playerid][areaHouse]][hRentabil] == 0) return sendPlayerError(playerid, "Aceasta casa nu este rentabila.");
+		if(houseInfo[playerInfo[playerid][areaHouse]][hPrice] > 0) return sendPlayerError(playerid, "Nu mai poti da rent, deoarece casa este de vanzare.");
+		if(houseInfo[playerInfo[playerid][areaHouse]][hOwned] == 0) return sendPlayerError(playerid, "Nu poti da rent, deoarece aceasta casa nu detine un detinator.");
+		playerInfo[playerid][pSpawnChange] = 3;
+		playerInfo[playerid][pRent] = playerInfo[playerid][areaHouse];
+		Iter_Add(RentersHouses[playerInfo[playerid][areaHouse]], playerid);
+		SetPlayerPos(playerid, houseInfo[playerInfo[playerid][areaHouse]][hX], houseInfo[playerInfo[playerid][areaHouse]][hY], houseInfo[playerInfo[playerid][areaHouse]][hZ]);
+		SetPlayerInterior(playerid, houseInfo[playerInfo[playerid][areaHouse]][hInterior]);
+		SetPlayerVirtualWorld(playerid, houseInfo[playerInfo[playerid][areaHouse]][hID]);
+		playerInfo[playerid][pinHouse] = playerInfo[playerid][areaHouse];
+		update("UPDATE `server_users` SET `SpawnChange` = '3', `Rent` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pRent], playerInfo[playerid][pSQLID]);
+		update("UPDATE `server_houses` SET `Renters` = '%d' WHERE `ID` = '%d' LIMIT 1", Iter_Count(RentersHouses[playerInfo[playerid][areaHouse]]), playerInfo[playerid][areaHouse]);
+		SCMf(playerid, COLOR_GREY, "* House Notice: Ai fost adaugat ca chirias la casa %d, de acum te vei spawna acolo. Foloseste (/spawnchange) daca doresti la spawn.", playerInfo[playerid][areaHouse]);
 	}
 	return true;
 }
@@ -391,12 +372,11 @@ CMD:rentroom(playerid, parmas[]) {
 CMD:unrentroom(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pRent] == -1) return sendPlayerError(playerid, "Nu ai rentroom la o casa, foloseste (/rentroom).");
-	new houseid = playerInfo[playerid][pRent];
-	if(Iter_Contains(RentersHouses[houseid], playerid)) Iter_Remove(RentersHouses[houseid], playerid);            
-	update("UPDATE `server_houses` SET `Renters` = '%d' WHERE `ID` = '%d'", Iter_Count(RentersHouses[playerid]), houseInfo[houseid][hID]);
+	if(Iter_Contains(RentersHouses[playerInfo[playerid][pRent]], playerid)) Iter_Remove(RentersHouses[playerInfo[playerid][pRent]], playerid);            
+	update("UPDATE `server_houses` SET `Renters` = '%d' WHERE `ID` = '%d' LIMIT 1", Iter_Count(RentersHouses[playerid]), houseInfo[playerInfo[playerid][pRent]][hID]);
 	if(playerInfo[playerid][pSpawnChange] == 3) playerInfo[playerid][pSpawnChange] = 1;
 	playerInfo[playerid][pRent] = -1;
-	update("UPDATE `server_users` SET `SpawnChange` = '1', `Rent` = '-1' WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
+	update("UPDATE `server_users` SET `SpawnChange` = '1', `Rent` = '-1' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pSQLID]);
 	SCM(playerid, COLOR_GREY, "* House Notice: Nu mai esti chirias. Acum te vei spawna la spawn.");
 	return true;
 }
@@ -404,59 +384,56 @@ CMD:unrentroom(playerid, params[]) {
 CMD:setrentprice(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
-	new houseid = playerInfo[playerid][pHouseID], suma;
-	if(houseInfo[houseid][hRentabil] == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece casa ta nu are rent-ul activat.");
-	if(sscanf(params, "d", suma)) return sendPlayerSyntax(playerid, "/setrentprice <Suma>");
-	houseInfo[houseid][hRentPrice] = suma;
-	update("UPDATE `server_houses` SET `RentPrice`='%d'  WHERE `ID`='%d' LIMIT 1", houseInfo[houseid][hRentPrice], houseid);
-	Update3DTextLabelText(houseInfo[houseid][hText], COLOR_WHITE, string_fast("House ID: %d\nHouse Title: %s\nHouse Description: %s\nOwner: %s\nPrice: $%s%s", houseInfo[houseid][hID], houseInfo[houseid][hTitle], houseInfo[houseid][hDescription], houseInfo[houseid][hOwner], formatNumber(houseInfo[houseid][hPrice]), formatNumber(houseInfo[houseid][hRentPrice])));	
-	SCM(playerid, COLOR_GREY, string_fast("* House Notice: Ai setat rent price-ul la $%s.", formatNumber(suma)));	
+	if(houseInfo[playerInfo[playerid][pHouseID]][hRentabil] == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece casa ta nu are rent-ul activat.");
+	extract params -> new suma; else return sendPlayerSyntax(playerid, "/setrentprice <money>");
+	if(!(1 <= suma <= 5000)) return sendPlayerError(playerid, "Invalid money ($1 - $5,000).");
+	houseInfo[playerInfo[playerid][pHouseID]][hRentPrice] = suma;
+	update("UPDATE `server_houses` SET `RentPrice`='%d'  WHERE `ID`='%d' LIMIT 1", houseInfo[playerInfo[playerid][pHouseID]][hRentPrice], playerInfo[playerid][pHouseID]);
+	Update3DTextLabelText(houseInfo[playerInfo[playerid][pHouseID]][hText], COLOR_WHITE, string_fast("House ID: %d\nHouse Title: %s\nHouse Description: %s\nOwner: %s\nPrice: $%s%s", houseInfo[playerInfo[playerid][pHouseID]][hID], houseInfo[playerInfo[playerid][pHouseID]][hTitle], houseInfo[playerInfo[playerid][pHouseID]][hDescription], houseInfo[playerInfo[playerid][pHouseID]][hOwner], formatNumber(houseInfo[playerInfo[playerid][pHouseID]][hPrice]), formatNumber(houseInfo[playerInfo[playerid][pHouseID]][hRentPrice])));	
+	SCMf(playerid, COLOR_GREY, "* House Notice: Ai setat rent price-ul la $%s.", formatNumber(suma));	
 	return true;
 }
 
 CMD:upgradehouse(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
-	new houseid = playerInfo[playerid][pHouseID], upgrade;
-	if(sscanf(params, "d", upgrade)) return sendPlayerSyntax(playerid, "/upgradehouse <upgrade>"), SCM(playerid, -1, "1 - Health Upgrade | 2 - Health Armour (Cops)");
-	switch(upgrade) {
-		case 1: {
-			if(houseInfo[houseid][hUpgrade] == 1) return sendPlayerError(playerid, "Detii deja acest upgrade heal.");
-			if(GetPlayerCash(playerid) < 50000) return sendPlayerError(playerid, "Nu detii $50,000");
-			houseInfo[houseid][hUpgrade] = 1;
-			foreach(new i : RentersHouses[houseid]) {
-				SCM(i, COLOR_GREY, string_fast("* Rent Notice: Proprietarul rentului tau %s, a facut upgrade heal, acum poti tasta /heal in casa."));
-			}
-			SCM(playerid, COLOR_GREY, string_fast("* House Notice: Casa ta acum are upgrade heal, acum poti tasta /heal in casa."));
+	extract params -> new upgrade; else {
+		SCM(playerid, COLOR_GREY, "* Optiuni: 1 - Health Upgrade | 2 - Armour Upgrade (Only Cops)");
+		return sendPlayerSyntax(playerid, "/upgradehouse <upgrade>");
+	}
+	if(upgrade == 1) {
+		if(houseInfo[playerInfo[playerid][pHouseID]][hUpgrade] == 1) return sendPlayerError(playerid, "Detii deja acest upgrade heal.");
+		if(!PlayerMoney(playerid, 50000)) return sendPlayerError(playerid, "Nu detii $50,000");
+		houseInfo[playerInfo[playerid][pHouseID]][hUpgrade] = 1;
+		foreach(new i : RentersHouses[playerInfo[playerid][pHouseID]]) {
+			SCMf(i, COLOR_GREY, "* Rent Notice: Proprietarul rentului tau %s, a facut upgrade heal, acum poti tasta /heal in casa.", getName(playerid));
 		}
-		case 2: {
-			if(houseInfo[houseid][hUpgrade] == 2) return sendPlayerError(playerid, "Detii deja acest upgrade armour.");
-			if(GetPlayerCash(playerid) < 100000) return sendPlayerError(playerid, "Nu detii $100,000");
-			houseInfo[houseid][hUpgrade] = 2;
-			foreach(new i : RentersHouses[houseid]) {
-				SCM(i, COLOR_GREY, string_fast("* Rent Notice: Proprietarul rentului tau %s, a facut upgrade armour, acum toti politistii pot tasta /armour."));
-			}
-			SCM(playerid, COLOR_GREY, string_fast("* House Notice: Casa ta acum are upgrade armour, acum politistii pot tasta /armour."));
+		SCM(playerid, COLOR_GREY, "* House Notice: Casa ta acum are upgrade heal, acum poti tasta /heal in casa.");
+	}
+	else if(upgrade == 2) {
+		if(houseInfo[playerInfo[playerid][pHouseID]][hUpgrade] == 2) return sendPlayerError(playerid, "Detii deja acest upgrade armour.");
+		if(!PlayerMoney(playerid, 100000)) return sendPlayerError(playerid, "Nu detii $100,000");
+		houseInfo[playerInfo[playerid][pHouseID]][hUpgrade] = 2;
+		foreach(new i : RentersHouses[playerInfo[playerid][pHouseID]]) {
+			SCMf(i, COLOR_GREY, "* Rent Notice: Proprietarul rentului tau %s, a facut upgrade armour, acum toti politistii pot tasta /armour.", getName(playerid));
 		}
+		SCM(playerid, COLOR_GREY, "* House Notice: Casa ta acum are upgrade armour, acum politistii pot tasta /armour.");
 	}
 	return true;
 }
 
 CMD:eat(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1 && playerInfo[playerid][pRent] == -1) return sendPlayerError(playerid, "Nu detii o casa / rent.");
 	if(playerInfo[playerid][pHouse] != 0 && playerInfo[playerid][pHouseID] != -1) {
-		new houseid = playerInfo[playerid][pHouseID];
-		if(houseInfo[houseid][hUpgrade] <= 0) return sendPlayerError(playerid, "Casa ta nu detine upgrade-ul de heal.");
-		if(playerInfo[playerid][pinHouse] == houseid){
+		if(playerInfo[playerid][pinHouse] == playerInfo[playerid][pHouseID]){
+			if(houseInfo[playerInfo[playerid][pHouseID]][hUpgrade] <= 0) return sendPlayerError(playerid, "Casa ta nu detine upgrade-ul de heal.");
 			SetPlayerHealthEx(playerid, 100);
 			sendNearbyMessage(playerid, COLOR_PURPLE, 25.0, "* %s si-a dat heal.", getName(playerid));
 		}
 	}
 	else if(playerInfo[playerid][pRent] != -1) {
-		new rentid = playerInfo[playerid][pRent];
-		if(houseInfo[rentid][hUpgrade] <= 0) return sendPlayerError(playerid, "Rentul tau nu detine upgrade-ul de heal.");
-		if(GetPlayerVirtualWorld(playerid) == houseInfo[rentid][hID] && GetPlayerInterior(playerid) == houseInfo[rentid][hInterior]) {
+		if(GetPlayerVirtualWorld(playerid) == houseInfo[playerInfo[playerid][pRent]][hID] && GetPlayerInterior(playerid) == houseInfo[playerInfo[playerid][pRent]][hInterior]) {
+			if(houseInfo[playerInfo[playerid][pRent]][hUpgrade] <= 0) return sendPlayerError(playerid, "Rentul tau nu detine upgrade-ul de heal.");
 			SetPlayerHealthEx(playerid, 100);
 			sendNearbyMessage(playerid, COLOR_PURPLE, 25.0, "* %s si-a dat heal.", getName(playerid));
 		}
@@ -466,29 +443,22 @@ CMD:eat(playerid, params[]) {
 
 CMD:armour(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1 && playerInfo[playerid][pRent] == -1) return sendPlayerError(playerid, "Nu detii o casa / rent.");
+	if(playerInfo[playerid][pFaction] != 2 && playerInfo[playerid][pFaction] != 3 && playerInfo[playerid][pFaction] != 4) return sendPlayerError(playerid, "Aceasta comanda este doar pentru politsti.");
+	if(playerInfo[playerid][pFactionDuty] == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti la datorie.");
 	if(playerInfo[playerid][pHouse] != 0 && playerInfo[playerid][pHouseID] != -1) {
-		new houseid = playerInfo[playerid][pHouseID];
-		if(playerInfo[playerid][pFactionDuty] == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti la datorie.");
-		if(houseInfo[houseid][hUpgrade] <= 0) return sendPlayerError(playerid, "Casa ta nu detine upgrade-ul de armour.");
-		if(playerInfo[playerid][pinHouse] == houseid) {
-			if(playerInfo[playerid][pFaction] == 1 || playerInfo[playerid][pFaction] == 2 || playerInfo[playerid][pFaction] == 3) {			
-				SetPlayerHealthEx(playerid, 100);
-				SetPlayerArmourEx(playerid, 100);
-				sendNearbyMessage(playerid, COLOR_PURPLE, 25.0, "* %s si-a dat heal & armour.", getName(playerid));
-			}
+		if(playerInfo[playerid][pinHouse] == playerInfo[playerid][pHouseID]) {
+			if(houseInfo[playerInfo[playerid][pHouseID]][hUpgrade] <= 0) return sendPlayerError(playerid, "Casa ta nu detine upgrade-ul de armour.");
+			SetPlayerHealthEx(playerid, 100);
+			SetPlayerArmourEx(playerid, 100);
+			sendNearbyMessage(playerid, COLOR_PURPLE, 25.0, "* %s si-a dat heal & armour.", getName(playerid));
 		}
 	}
 	else if(playerInfo[playerid][pRent] != -1) {
-		new rentid = playerInfo[playerid][pRent];
-		if(playerInfo[playerid][pFactionDuty] == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti la datorie.");
-		if(houseInfo[rentid][hUpgrade] <= 0) return sendPlayerError(playerid, "Rentul tau nu detine upgrade-ul de armour.");
-		if(GetPlayerVirtualWorld(playerid) == houseInfo[rentid][hID] && GetPlayerInterior(playerid) == houseInfo[rentid][hInterior]) {
-			if(playerInfo[playerid][pFaction] == 1 || playerInfo[playerid][pFaction] == 2 || playerInfo[playerid][pFaction] == 3) {
-				SetPlayerHealthEx(playerid, 100);
-				SetPlayerArmourEx(playerid, 100);
-				sendNearbyMessage(playerid, COLOR_PURPLE, 25.0, "* %s si-a dat heal & armour.", getName(playerid));
-			}
+		if(GetPlayerVirtualWorld(playerid) == houseInfo[playerInfo[playerid][pRent]][hID] && GetPlayerInterior(playerid) == houseInfo[playerInfo[playerid][pRent]][hInterior]) {
+			if(houseInfo[playerInfo[playerid][pRent]][hUpgrade] <= 0) return sendPlayerError(playerid, "Rentul tau nu detine upgrade-ul de armour.");
+			SetPlayerHealthEx(playerid, 100);
+			SetPlayerArmourEx(playerid, 100);
+			sendNearbyMessage(playerid, COLOR_PURPLE, 25.0, "* %s si-a dat heal & armour.", getName(playerid));
 		}
 	}
 	return true;

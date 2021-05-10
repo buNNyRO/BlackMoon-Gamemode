@@ -44,7 +44,7 @@ function LoadClans() {
 		cache_get_value_name(i - 1, "Motd", clanInfo[i][cMotd], 128);
 	 	new rank[32];
 	 	cache_get_value_name(0, "Rank", rank, 32);
-		sscanf(rank, "p<|>sssssss", clanInfo[i][cRank1], clanInfo[i][cRank2], clanInfo[i][cRank3], clanInfo[i][cRank4], clanInfo[i][cRank5], clanInfo[i][cRank6], clanInfo[i][cRank7]);
+		sscanf(rank, "p<|>s[32]s[32]s[32]s[32]s[32]s[32]s[32]", clanInfo[i][cRank1], clanInfo[i][cRank2], clanInfo[i][cRank3], clanInfo[i][cRank4], clanInfo[i][cRank5], clanInfo[i][cRank6], clanInfo[i][cRank7]);
 		cache_get_value_name_int(i - 1, "ID", clanInfo[i][cID]);
 		cache_get_value_name_int(i - 1, "OwnerID", clanInfo[i][cOwnerID]);		
 		cache_get_value_name_int(i - 1, "Days", clanInfo[i][cDays]);

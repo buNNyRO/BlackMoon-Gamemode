@@ -153,6 +153,12 @@ CMD:spawnchange(playerid, params[]) {
 
 CMD:killcp(playerid, params[]) {
 	if(playerInfo[playerid][pCheckpoint] == CHECKPOINT_NONE) return sendPlayerError(playerid, "Nu ai un checkpoint activ pe mini map.");
+	if(Iter_Contains(FactionMembers[5], playerid) && TaxiAcceptedCall[playerid] != -1) {
+		SCMf(TaxiAcceptedCall[TaxiAcceptedCall[playerid]], COLOR_LIMEGREEN, "* (Taxi): Taximetristul %s (%d) a renuntat la comanda ta, acum poti folosi /service taxi.", getName(playerid), playerid);
+		SCMf(playerid, COLOR_LIMEGREEN, "* (Faction): Deoarece ai folosit comanda '/killcp' ai renuntat la comanda lui %s (%d), acum el poate plasa o alta comanda taxi.", getName(TaxiAcceptedCall[TaxiAcceptedCall[playerid]]), TaxiAcceptedCall[TaxiAcceptedCall[playerid]]);
+		TaxiAcceptedCall[TaxiAcceptedCall[playerid]] = -1;
+		TaxiAcceptedCall[playerid] = -1;
+	}
 	DisablePlayerCheckpoint(playerid);
 	playerInfo[playerid][pCheckpoint] = CHECKPOINT_NONE;
 	playerInfo[playerid][pCheckpointID] = -1;
@@ -223,12 +229,11 @@ CMD:gps(playerid, params[]) {
 }
 
 CMD:cancel(playerid, params[]) {
-	extract params -> new player:targetid = 1001, string:item[32]; else {
-		sendPlayerSyntax(playerid, "/cancel <name/id> <service>");
+	extract params -> new string:item[32]; else {
+		sendPlayerSyntax(playerid, "/cancel <service> <name/id>");
 		SCM(playerid, COLOR_GREY, "Available service: Medic, Taxi, Instructor.");
 		return true;
 	}
-	if(!isPlayerLogged(targetid) && targetid != 1001) return sendPlayerError(playerid, "Player not connected.");
 	if(strmatch(item, "medic")) {
 		if(MedicAcceptedCall[playerid] == -1 && !Iter_Contains(ServiceCalls[SERVICE_PARAMEDICS], playerid)) return sendPlayerError(playerid, "You don't have an call.");
 		if(Iter_Contains(ServiceCalls[SERVICE_PARAMEDICS], playerid)) {
@@ -325,8 +330,8 @@ CMD:cancel(playerid, params[]) {
 	return true;
 }
 CMD:accept(playerid, params[]) {
-	extract params-> new player:targetid, string:item[32]; else {
-		sendPlayerSyntax(playerid, "/accept <name/id> <service>");
+	extract params-> new string:item[32], player:targetid; else {
+		sendPlayerSyntax(playerid, "/accept <service> <name/id>");
 		SCM(playerid, COLOR_GREY, "Available service: medic, taxi, instructor, invite, ticket, live, lesson, cinvite.");
 		return true;
 	}
@@ -359,7 +364,7 @@ CMD:accept(playerid, params[]) {
 			sendFactionMessage(5, COLOR_LIMEGREEN, "(*) %s a acceptat apelul lui %s.", getName(playerid), getName(targetid));
 			SCMf(targetid, COLOR_YELLOW, "* (Taxi Call): {FFFFFF}Your call has been accepted by %s, please wait.", getName(playerid));
 			new Float:x, Float:y, Float:z;
-			GetPlayerPos(playerid, x, y, z);
+			GetPlayerPos(targetid, x, y, z);
 			SetPlayerCheckpoint(playerid, x, y, z, 4.0);
 			playerInfo[playerid][pCheckpoint] = CHECKPOINT_FACTION_DUTY;
 			playerInfo[playerid][pCheckpointID] = targetid;
@@ -463,34 +468,32 @@ CMD:accept(playerid, params[]) {
 			if(playerInfo[playerid][pLicenseOffer] == -1) return sendPlayerError(playerid, "Nu ai primit o oferta.");
 			if(playerInfo[playerid][pLicenseOffer] != targetid) return sendPlayerError(playerid, "Acel player nu ti-a facut o oferta.");
 			if(playerInfo[targetid][pFaction] != 7) return sendPlayerError(playerid, "Acel player nu face parte din factiunea 'School Instructors'.");
-			switch(playerInfo[playerid][pLicense]) {
-				case 1: {
-					if(PlayerMoney(playerid, 100000)) return sendPlayerError(playerid, "Nu ai aceasta suma de bani.");
-					GivePlayerCash(playerid, 0, 100000);
-					GivePlayerCash(targetid, 1, 100000);
-					
-					playerInfo[playerid][pFlyLicense] = 50;
-					update("UPDATE `server_users` SET `Licenses` = '%d|%d|%d|%d|%d|%d|%d|%d' WHERE `ID` = '%d'", playerInfo[playerid][pDrivingLicense], playerInfo[playerid][pDrivingLicenseSuspend], playerInfo[playerid][pWeaponLicense], playerInfo[playerid][pWeaponLicenseSuspend], playerInfo[playerid][pFlyLicense], playerInfo[playerid][pFlyLicenseSuspend], playerInfo[playerid][pBoatLicense], playerInfo[playerid][pBoatLicenseSuspend], playerInfo[playerid][pSQLID]);
-					sendFactionMessage(playerInfo[targetid][pFaction], COLOR_LIMEGREEN, "* (SI Dispatch: %s (%d) i-a oferit licenta de 'Fly' lui %s (%d) pentru suma de $100,000.", getName(targetid), targetid, getName(playerid), playerid);
-				}
-				case 2: {
-					if(PlayerMoney(playerid, 200000)) return sendPlayerError(playerid, "Nu ai aceasta suma de bani.");
-					GivePlayerCash(playerid, 0, 200000);
-					GivePlayerCash(targetid, 1, 200000);
-					
-					playerInfo[playerid][pBoatLicense] = 50;
-					update("UPDATE `server_users` SET `Licenses` = '%d|%d|%d|%d|%d|%d|%d|%d' WHERE `ID` = '%d'", playerInfo[playerid][pDrivingLicense], playerInfo[playerid][pDrivingLicenseSuspend], playerInfo[playerid][pWeaponLicense], playerInfo[playerid][pWeaponLicenseSuspend], playerInfo[playerid][pFlyLicense], playerInfo[playerid][pFlyLicenseSuspend], playerInfo[playerid][pBoatLicense], playerInfo[playerid][pBoatLicenseSuspend], playerInfo[playerid][pSQLID]);
-					sendFactionMessage(playerInfo[targetid][pFaction], COLOR_LIMEGREEN, "* (SI Dispatch: %s (%d) i-a oferit licenta de 'Boat' lui %s (%d) pentru suma de $200,000.", getName(targetid), targetid, getName(playerid), playerid);
-				}
-				case 3: {
-					if(PlayerMoney(playerid, 300000)) return sendPlayerError(playerid, "Nu ai aceasta suma de bani.");
-					GivePlayerCash(playerid, 0, 300000);
-					GivePlayerCash(targetid, 1, 300000);
-					
-					playerInfo[playerid][pWeaponLicense] = 50;
-					update("UPDATE `server_users` SET `Licenses` = '%d|%d|%d|%d|%d|%d|%d|%d' WHERE `ID` = '%d'", playerInfo[playerid][pDrivingLicense], playerInfo[playerid][pDrivingLicenseSuspend], playerInfo[playerid][pWeaponLicense], playerInfo[playerid][pWeaponLicenseSuspend], playerInfo[playerid][pFlyLicense], playerInfo[playerid][pFlyLicenseSuspend], playerInfo[playerid][pBoatLicense], playerInfo[playerid][pBoatLicenseSuspend], playerInfo[playerid][pSQLID]);
-					sendFactionMessage(playerInfo[targetid][pFaction], COLOR_LIMEGREEN, "* (SI Dispatch: %s (%d) i-a oferit licenta de 'Gun' lui %s (%d) pentru suma de $300,000.", getName(targetid), targetid, getName(playerid), playerid);
-				}
+			if(playerInfo[playerid][pLicense] == 1) {
+				if(PlayerMoney(playerid, 100000)) return sendPlayerError(playerid, "Nu ai aceasta suma de bani.");
+				GivePlayerCash(playerid, 0, 100000);
+				GivePlayerCash(targetid, 1, 100000);
+				
+				playerInfo[playerid][pFlyLicense] = 50;
+				update("UPDATE `server_users` SET `Licenses` = '%d|%d|%d|%d|%d|%d|%d|%d' WHERE `ID` = '%d'", playerInfo[playerid][pDrivingLicense], playerInfo[playerid][pDrivingLicenseSuspend], playerInfo[playerid][pWeaponLicense], playerInfo[playerid][pWeaponLicenseSuspend], playerInfo[playerid][pFlyLicense], playerInfo[playerid][pFlyLicenseSuspend], playerInfo[playerid][pBoatLicense], playerInfo[playerid][pBoatLicenseSuspend], playerInfo[playerid][pSQLID]);
+				sendFactionMessage(playerInfo[targetid][pFaction], COLOR_LIMEGREEN, "* (SI Dispatch: %s (%d) i-a oferit licenta de 'Fly' lui %s (%d) pentru suma de $100,000.", getName(targetid), targetid, getName(playerid), playerid);
+			}
+			else if(playerInfo[playerid][pLicense] == 2) {
+				if(PlayerMoney(playerid, 200000)) return sendPlayerError(playerid, "Nu ai aceasta suma de bani.");
+				GivePlayerCash(playerid, 0, 200000);
+				GivePlayerCash(targetid, 1, 200000);
+				
+				playerInfo[playerid][pBoatLicense] = 50;
+				update("UPDATE `server_users` SET `Licenses` = '%d|%d|%d|%d|%d|%d|%d|%d' WHERE `ID` = '%d'", playerInfo[playerid][pDrivingLicense], playerInfo[playerid][pDrivingLicenseSuspend], playerInfo[playerid][pWeaponLicense], playerInfo[playerid][pWeaponLicenseSuspend], playerInfo[playerid][pFlyLicense], playerInfo[playerid][pFlyLicenseSuspend], playerInfo[playerid][pBoatLicense], playerInfo[playerid][pBoatLicenseSuspend], playerInfo[playerid][pSQLID]);
+				sendFactionMessage(playerInfo[targetid][pFaction], COLOR_LIMEGREEN, "* (SI Dispatch: %s (%d) i-a oferit licenta de 'Boat' lui %s (%d) pentru suma de $200,000.", getName(targetid), targetid, getName(playerid), playerid);
+			}
+			else if(playerInfo[playerid][pLicense] == 3) {
+				if(PlayerMoney(playerid, 300000)) return sendPlayerError(playerid, "Nu ai aceasta suma de bani.");
+				GivePlayerCash(playerid, 0, 300000);
+				GivePlayerCash(targetid, 1, 300000);
+				
+				playerInfo[playerid][pWeaponLicense] = 50;
+				update("UPDATE `server_users` SET `Licenses` = '%d|%d|%d|%d|%d|%d|%d|%d' WHERE `ID` = '%d'", playerInfo[playerid][pDrivingLicense], playerInfo[playerid][pDrivingLicenseSuspend], playerInfo[playerid][pWeaponLicense], playerInfo[playerid][pWeaponLicenseSuspend], playerInfo[playerid][pFlyLicense], playerInfo[playerid][pFlyLicenseSuspend], playerInfo[playerid][pBoatLicense], playerInfo[playerid][pBoatLicenseSuspend], playerInfo[playerid][pSQLID]);
+				sendFactionMessage(playerInfo[targetid][pFaction], COLOR_LIMEGREEN, "* (SI Dispatch: %s (%d) i-a oferit licenta de 'Gun' lui %s (%d) pentru suma de $300,000.", getName(targetid), targetid, getName(playerid), playerid);
 			}
 			return true;
 		}
@@ -1099,7 +1102,7 @@ CMD:finalquest(playerid, params[]) {
 	return true;
 }
 
-CMD:shop(playerid, params[], help) {
+CMD:shop(playerid, params[]) {
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai un dialog afisat.");
 	gString[0] = (EOS);
 	strcat(gString, "Item\tPrice\n");
@@ -1109,11 +1112,43 @@ CMD:shop(playerid, params[], help) {
 	return true;
 }
 
-CMD:hud(playerid, parmas[], help) {
+CMD:hud(playerid, parmas[]) {
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai un dialog afisat.");
 	gString[0] = (EOS);
 	strcat(gString, "Option\tStatus\n");
-	strcat(gString, playerInfo[playerid][pFPSShow] ? "Enabled" : "Disabled");
+	strcat(gString, playerInfo[playerid][pFPSShow] ? "FPS Show\tEnabled\n" : "FPS Show\tDisabled\n");
 	Dialog_Show(playerid, DIALOG_HUD, DIALOG_STYLE_TABLIST_HEADERS, "Hud Options", gString, "Select", "Cancel");
+	return true;
+}
+
+CMD:help(playerid, params[]) {
+	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai un dialog afisat.");
+	Dialog_Show(playerid, DIALOG_HELP, DIALOG_STYLE_TABLIST_HEADERS, "Help Menu", "Options\tInformation\nAccount\tShow commands for account\nFaction\tShow commands for faction", "Select", "Close");
+	return true;
+}
+
+Dialog:DIALOG_HELP(playerid, response, listitem) {
+	if(!response) return true;
+	switch(listitem) {
+		case 0: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Account", "/stats -> Arata statistici despre contul tau\n/showlicenses -> Iti vezi licentele", "Ok", "");
+		case 1: {
+			switch(playerInfo[playerid][pFaction]) {
+				case 1: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/heal -> Oferi heal unui jucator\n/accept medic <id> - Accepti o comanda unui jucator", "Ok", "");
+				case 2..4: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/r -> Chatul factiunii\n/d -> Chatul departamentului\n/wanteds -> Lista jucatorilor wanted", "Ok", "");
+				case 5: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/fare -> Te pui la datorie\n/accept taxi <id> -> Accepti o comanda unui jucator", "Ok", "");
+				case 6: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/startlesson <id> -> Incepi o lectie cu un jucator\n/stoplesson -> Opresti o lectie\n/givelicense <id> -> Oferi o licenta unui jucator", "Ok", "");
+				case 7: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/news <text> -> Dai o stire pe server\n/live <id> - Oferi o invitatie live unui jucator\n/endlive -> Opresti o conversatie live\n/questions -> Pornesti/Opresti intrebarile\n/aq <id> -> Accepti o intrebare pusa de un jucator", "Ok", "");
+				case 8: {
+
+				} // grove street
+				case 9: {
+
+				} // the ballas
+				case 10: {
+
+				} // hitman
+			}
+		}
+	}
 	return true;
 }

@@ -251,7 +251,7 @@ Dialog:DIALOG_SHOP(playerid, response, listitem) {
 	if(!response) return true;
 	switch(listitem) {
 		case 0: {
-			if(playerInfo[playerid][pPremium] == 0) return sendPlayerError(playerid, "Ai deja premium account.");
+			if(playerInfo[playerid][pPremium] == 1) return sendPlayerError(playerid, "Ai deja premium account.");
 			if(playerInfo[playerid][pPremiumPoints] < 50) return sendPlayerError(playerid, "Nu ai 50 premium points.");
 			playerInfo[playerid][pPremiumPoints] -= 50;
 			playerInfo[playerid][pPremium] = 1;
@@ -261,7 +261,7 @@ Dialog:DIALOG_SHOP(playerid, response, listitem) {
 			SCM(playerid, COLOR_SERVER, "* Shop: Ai cumparat 'Premium Account' cu 50 premium points.");
 		}
 		case 1: {
-			if(playerInfo[playerid][pVIP] == 0) return sendPlayerError(playerid, "Ai deja VIP account.");
+			if(playerInfo[playerid][pVIP] == 1) return sendPlayerError(playerid, "Ai deja VIP account.");
 			if(playerInfo[playerid][pPremiumPoints] < 100) return sendPlayerError(playerid, "Nu ai 100 premium points.");
 			playerInfo[playerid][pPremiumPoints] -= 100;
 			playerInfo[playerid][pVIP] = 1;

@@ -439,11 +439,11 @@ stock sendFactionMessage(fid, color, const message[], va_args<>) {
 
 CMD:factions(playerid, params[]) {
 	if(!Iter_Count(ServerFactions)) return sendPlayerError(playerid, "Nu sunt factiuni disponibile pe server.");
-	new string[456] = "Faction Name\tFaction Applications\tFaction Min. Level\n";
+	gString[0] = (EOS);
 	foreach(new fid : ServerFactions) {
-		format(string, sizeof(string), "%s\n{FFFFFF}%s\t%s\t%d", string, factionName(fid), factionInfo[fid][fApps] ? "{4caf50}On" : "{f44336}Off", factionInfo[fid][fMinLevel]);
+		format(gString, sizeof(gString), "%s\n{FFFFFF}%s\t%s\t%d", string, factionName(fid), factionInfo[fid][fApps] ? "{4caf50}On" : "{f44336}Off", factionInfo[fid][fMinLevel]);
 	}
-	Dialog_Show(playerid, NO_DIALOG, DIALOG_STYLE_TABLIST_HEADERS, "Server: Factions", string, "Close", "");
+	Dialog_Show(playerid, NO_DIALOG, DIALOG_STYLE_TABLIST_HEADERS, "Server: Factions", gString, "Close", "");
 	return true;
 }
 
@@ -657,7 +657,7 @@ CMD:service(playerid, params[]) {
 }
 
 CMD:duty(playerid, params[]) {
-	if(playerInfo[playerid][pFaction] == 0 || Iter_Contains(FactionMembers[1], playerid) || Iter_Contains(FactionMembers[5], playerid) || Iter_Contains(FactionMembers[6], playerid) || Iter_Contains(FactionMembers[7], playerid) || Iter_Contains(FactionMembers[8], playerid)) return sendPlayerError(playerid, "Aceasta comanda, nu este valabila pentru tine.");
+	if(!Iter_Contains(FactionMembers[2], playerid) || !Iter_Contains(FactionMembers[3], playerid) || !Iter_Contains(FactionMembers[4], playerid)) return sendPlayerError(playerid, "Aceasta comanda nu este valabila pentru tine.");
 	if(GetPVarInt(playerid, "dutyDeelay") >= gettime()) return true;
 	if(!playerInfo[playerid][pinFaction]) return sendPlayerError(playerid, "Nu esti in HQ-ul factiunii pentru a folosi aceasta comanda.");
 	if(playerInfo[playerid][pWeaponLicense] == 0) return sendPlayerError(playerid, "Nu ai licenta de arme, pentru a folosi aceasta comanda.");
@@ -862,7 +862,7 @@ CMD:ticket(playerid, params[]) {
 }
 
 CMD:wanteds(playerid, params[]) {
-	if(playerInfo[playerid][pFaction] == 0 && Iter_Contains(FactionMembers[1], playerid) || Iter_Contains(FactionMembers[5], playerid) || Iter_Contains(FactionMembers[6], playerid) || Iter_Contains(FactionMembers[7], playerid) || Iter_Contains(FactionMembers[8], playerid)) return sendPlayerError(playerid, "Aceasta comanda, nu este valabila pentru tine.");
+	if(playerInfo[playerid][pFaction] == 0 || Iter_Contains(FactionMembers[1], playerid) || Iter_Contains(FactionMembers[5], playerid) || Iter_Contains(FactionMembers[6], playerid) || Iter_Contains(FactionMembers[7], playerid) || Iter_Contains(FactionMembers[8], playerid)) return sendPlayerError(playerid, "Aceasta comanda, nu este valabila pentru tine.");
 	if(playerInfo[playerid][pFactionDuty] == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti la datorie.");
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai un dialog afisat.");
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Trebuie sa fi logat pentru a putea folosi aceasta comanda.");
@@ -872,7 +872,7 @@ CMD:wanteds(playerid, params[]) {
 	format(title, sizeof title, "Player with Wanted: %d", Iter_Count(Wanteds));
 	strcat(gString, "Name (ID)\tWantedLevel\tChased by");
 	foreach(new i : Wanteds) {
-		strcat(gString, string_fast("%s\n%s (%d)\t%d\t%d cops\n", gString, getName(i), i, playerInfo[i][pWantedLevel], chasedBy(i)));
+		strcat(gString, string_fast("%s (%d)\t%d\t%d cops\n", getName(i), i, playerInfo[i][pWantedLevel], chasedBy(i)));
 		playerInfo[playerid][pSelectedItem] = i;
 	}
 	Dialog_Show(playerid, DIALOG_WANTEDS, DIALOG_STYLE_TABLIST_HEADERS, title, gString, "Ok", "Cancel");
@@ -895,9 +895,8 @@ CMD:su(playerid, params[]) {
 	if(userID == playerid) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda asupra ta.");
 	if(Iter_Contains(FactionMembers[2], userID) || Iter_Contains(FactionMembers[3], userID) || Iter_Contains(FactionMembers[4], userID)) return sendPlayerError(playerid, "Nu poti acorda wanted unui coleg.");
 	if(!(1 <= wantedLevel <= 6)) return sendPlayerError(playerid, "Invalid Wanted Level (1-6).");
-	if(playerInfo[userID][pWantedLevel] < 6) playerInfo[userID][pWantedLevel] = wantedLevel;
-	else if(playerInfo[userID][pWantedLevel] >= 6) playerInfo[userID][pWantedLevel] = 6;
-	playerInfo[userID][pWantedTime] += 300 * playerInfo[userID][pWantedLevel];
+	playerInfo[userID][pWantedLevel] += wantedLevel;
+	playerInfo[userID][pWantedTime] += playerInfo[userID][pWantedLevel] * 300;
 	SetPlayerWantedLevel(userID, playerInfo[userID][pWantedLevel]);
 	Iter_Add(Wanteds, userID);
 	wantedTime[userID] = repeat TimerWanted(userID);
@@ -965,24 +964,23 @@ CMD:members(playerid, params[]) {
 }
 
 function showFactionMembers(playerid) {
-	if(playerInfo[playerid][pFaction] == 0) return true;
-	new days, name[180], lastl[180], rank, fw, commands, tmembers, memberString[700];
 	if(!cache_num_rows()) return 1;
-	strcat(memberString, "#. Name\tRank - FW - Raport Points\tStatus\tDays\n");
-	for(new i = 1; i < cache_num_rows() +1; i++) {
-		cache_get_value_name(i, "Name", name, 125);
-		cache_get_value_name(i, "LastLogin", lastl, 125);
+	new days, name[MAX_PLAYER_NAME], lastl[32], rank, fw, commands, tmembers;
+	gString[0] = (EOS);
+	strcat(gString, "#. Name\tRank - FW - Raport Points\tStatus\tDays\n");
+	for(new i = 1; i < cache_num_rows(); i++) {
+		cache_get_value_name(i, "Name", name, MAX_PLAYER_NAME);
+		cache_get_value_name(i, "LastLogin", lastl, 32);
 		cache_get_value_name_int(i, "FRank", rank);
 		cache_get_value_name_int(i, "FWarns", fw);
 		cache_get_value_name_int(i, "FAge", days);
 		cache_get_value_name_int(i, "Commands", commands);
 		format(Selected[playerid][tmembers], MAX_PLAYER_NAME, name);
 		new userID = GetPlayerID(name);	
-		if(userID != INVALID_PLAYER_ID) strcat(memberString, string_fast("%d. %s (%d)\t%d - %d/3 - %d\tOnline\t%d\n", tmembers+1, name, userID, playerInfo[playerid][pFactionRank], fw, commands, days), sizeof(memberString));
-		else strcat(memberString, string_fast("%d. %s (%d)\t%d - %d/3 - %d\t%s\t%d\n", tmembers+1, name, userID, rank, fw, commands, lastl, days), sizeof(memberString));
-		tmembers++;
+		strcat(gString, string_fast("%d. %s (%d)\t%d - %d/3 - %d\t%s\t%d\n", tmembers+1, name, userID != INVALID_PLAYER_ID ? userID : -1, rank, fw, commands, userID != INVALID_PLAYER_ID ? "Online" : lastl, days), sizeof(gString));
+		tmembers ++;
 	}
-	Dialog_Show(playerid, DIALOG_MEMBERS, DIALOG_STYLE_TABLIST_HEADERS, string_fast("Members (%d/%d)", Iter_Count(FactionMembers[playerInfo[playerid][pFaction]]), tmembers), memberString, "Select", "Cancel");
+	Dialog_Show(playerid, DIALOG_MEMBERS, DIALOG_STYLE_TABLIST_HEADERS, string_fast("Members (%d/%d)", Iter_Count(FactionMembers[playerInfo[playerid][pFaction]]), tmembers), gString, "Select", "Cancel");
 	return true;
 }
 
@@ -991,7 +989,7 @@ Dialog:DIALOG_MEMBERS(playerid, response, listitem) {
 	if(playerInfo[playerid][pFactionRank] < 6) return sendPlayerError(playerid, "Ai nevoie de rank 6+ pentru a putea merge mai departe.");
 	format(selName[playerid], 256, Selected[playerid][listitem]);	
 	new rank, Cache: result = mysql_query(SQL, string_fast("SELECT * FROM `server_users` WHERE `Name`='%s'", selName[playerid]));
-	cache_get_value_name_int(0, "FRank", rank);
+	cache_get_value_name_int(0, "FRank", rank); 
 	if(rank == 7)  return sendPlayerError(playerid, "Nu se poate modifica ceva unui lider.");
 	cache_delete(result);						
 	Dialog_Show(playerid, DIALOG_MEMBERS2, DIALOG_STYLE_LIST, string_fast("Member: %s", selName[playerid]), "Rank\nFaction warn\nUn faction warn\nUninvite", "Ok", "Back");
@@ -1539,7 +1537,7 @@ timer TimerGetHit[1000](playerid) {
 
 CMD:svf(playerid, params[]) {
 	if(!playerInfo[playerid][pFaction]) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda, deoarece nu esti intr-o factiune.");
-	if(Iter_Contains(FactionMembers[2], playerid) || Iter_Contains(FactionMembers[3], playerid) || Iter_Contains(FactionMembers[4], playerid) || playerInfo[playerid][pFactionDuty] == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti la datorie.");
+	if(Iter_Contains(FactionMembers[2], playerid) || Iter_Contains(FactionMembers[3], playerid) || Iter_Contains(FactionMembers[4], playerid) && playerInfo[playerid][pFactionDuty] == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti la datorie.");
 	if(playerVehicle[playerid] != -1) return sendPlayerError(playerid, "Ai deja un vehicul de factiune spawnat.");
 	new szDialog[256];
 	strcat(szDialog, "Vehicle\tRank\n");
@@ -1547,7 +1545,7 @@ CMD:svf(playerid, params[]) {
 		case 1: {
 			strcat(szDialog, "Ambulance\tRank 1\nRancher\t Rank 2\n");
 		}
-		case 2,3,4: {
+		case 2..4: {
  			strcat(szDialog, "Police Car\tRank 1\nRancher\tRank 1\nInfernus\tRank 2\n");
 		}
 		case 5: {
