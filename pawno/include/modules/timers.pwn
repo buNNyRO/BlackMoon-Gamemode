@@ -47,13 +47,22 @@ timer TimerWanted[1000](x) {
 	return true;
 }
 
-task Timers[1000]() 
-{
+task TimerM[60000]() {
 	new hour, minute, second, year, month, day;
 	gettime(hour, minute, second);
 	getdate(year, month, day);
-	TextDrawSetString(serverDateTD, string_fast("%02d.%02d.%d~N~%02d:%02d:%02d", day, month, year, hour, minute, second));
-	TextDrawSetString(serverInfoTD, string_fast("TI: ~G~~H~~H~%d     ~W~~H~QU: ~B~%d", GetServerTickRate(), mysql_unprocessed_queries()));
+
+	TextDrawSetString(ClockTD[2], string_fast("%02d:%02d", hour, minute));
+	TextDrawSetString(ClockTD[1], string_fast("%02d.%02d.%d", day, month, year));
+	return 1;
+}
+
+task Timers[1000]() {
+	new hour, minute, second;
+	gettime(hour, minute, second); 
+	TextDrawSetString(ClockTD[0], string_fast("~p~PAYDAY~w~ IN: %s", secinmin(PayDayTime-gettime())));
+
+	foreach(new i : ServerAdmins) va_PlayerTextDrawSetString(i, serverHud[1], "100~n~~r~100~w~ / T~g~%d~w~ / A~b~%d~w~ / Q~p~%d", GetServerTickRate(), GetPlayerAnimationIndex(i), mysql_unprocessed_queries());
 	if(hour == 12 && minute == 0 && second == 0) {
 		MoveObject(gates[1], 1160.19, 1303.31, 5.71, 0.5, 0.00, 0.00, -90.00); 
 		MoveObject(gates[2], 1160.18, 1312.26, 5.71,  0.5, 0.00, 0.00, -90.00);
@@ -164,6 +173,7 @@ timer TimerTutorial[1000](playerid) {
 
 task PayDay[3600000]() {
 	foreach(new playerid : Player) {
+		PayDayTime = gettime()+3600;
 		SCM(playerid, COLOR_GREY, "--------------- Payday ---------------");
 
 		SCM(playerid, COLOR_WHITE, string_fast("Paycheck: $%s", formatNumber(playerInfo[playerid][pLevel] * 125)));

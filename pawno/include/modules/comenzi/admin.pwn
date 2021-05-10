@@ -226,10 +226,8 @@ CMD:setadmin(playerid, params[])
 	if(playerInfo[userID][pAdmin] == admin)
 		return sendPlayerError(playerid, "Jucatorul are deja acest nivel de admin.");
 
-	TextDrawHideForPlayer(userID, serverInfoTD);
-
-	if(admin)
-		TextDrawShowForPlayer(userID, serverInfoTD);
+	PlayerTextDrawHide(playerid, serverHud[1]);
+	if(admin) PlayerTextDrawShow(playerid, serverHud[1]);
 
 	if(Iter_Contains(ServerAdmins, userID) && !admin) {
 		Iter_Remove(ServerAdmins, userID);

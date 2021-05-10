@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////
 
 new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, PlayerNumber[20000], Weapons[MAX_PLAYERS][47], WeaponAmmo[MAX_PLAYERS][47], gates[4],
-    StoreMoney[MAX_PLAYERS], MoneyMoney[MAX_PLAYERS], Selected[MAX_PLAYERS][50][180], selName[MAX_PLAYERS][180], Questions,
+    StoreMoney[MAX_PLAYERS], MoneyMoney[MAX_PLAYERS], Selected[MAX_PLAYERS][50][180], selName[MAX_PLAYERS][180], Questions, PayDayTime,
 	bool: vehicle_engine[MAX_VEHICLES],
 	bool: vehicle_lights[MAX_VEHICLES],
 	bool: vehicle_bonnet[MAX_VEHICLES],
@@ -34,13 +34,11 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
 	/*pickupInfo[MAX_DYNAMIC_PICKUPS][pickupInfoEnum],
 	labelInfo[MAX_DYNAMIC_LABELS][labelInfoEnum],*/
 
-	Text:serverNameTD,
-	Text:serverInfoTD,
-	Text:serverDateTD,
+    Text:ClockTD[3],
     Text:serverDealerTD[9],
     
     PlayerText:jailTimeTD[MAX_PLAYERS],
-	PlayerText:playerNamePTD[MAX_PLAYERS],
+	PlayerText:serverHud[2],
 	PlayerText:playerLevelPTD[MAX_PLAYERS],
 	PlayerText:playerExamenPTD[MAX_PLAYERS],
     PlayerText:vehicleHud[20],

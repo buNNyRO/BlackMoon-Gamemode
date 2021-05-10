@@ -4302,3 +4302,2379 @@ v0.3.7-R2, (C)2005-2015 SA-MP Team
 [23:15:04] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
 [23:15:04] [ACCOUNT] mr.bunny loaded 20 vehicles
 [23:16:33] [part] mr.bunny has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:18:35] filterscripts = ""  (string)
+[22:18:35] 
+[22:18:35] Server Plugins
+[22:18:35] --------------
+[22:18:35]  Loading plugin: crashdetect
+[22:18:35]   CrashDetect plugin 4.19.4
+[22:18:35]   Loaded.
+[22:18:35]  Loading plugin: pawncmd
+[22:18:35] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[22:18:35]   Loaded.
+[22:18:35]  Loading plugin: sscanf
+[22:18:35] 
+
+[22:18:35]  ===============================
+
+[22:18:35]       sscanf plugin loaded.     
+
+[22:18:35]          Version:  2.8.3        
+
+[22:18:35]   (c) 2018 Alex "Y_Less" Cole  
+
+[22:18:35]  ===============================
+
+[22:18:35]   Loaded.
+[22:18:35]  Loading plugin: streamer
+[22:18:36] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[22:18:36]   Loaded.
+[22:18:36]  Loading plugin: mysql
+[22:18:36]  >> plugin.mysql: R41-4 successfully loaded.
+[22:18:36]   Loaded.
+[22:18:36]  Loaded 5 plugins.
+
+[22:18:36] 
+[22:18:36] Filterscripts
+[22:18:36] ---------------
+[22:18:36]   Loaded 0 filterscripts.
+
+[22:18:36]  
+[22:18:36]  
+[22:18:36]  
+[22:18:36]  ======================================= 
+[22:18:36]  |                                     | 
+[22:18:36]  |        YSI version 4.00.0001        | 
+[22:18:36]  |        By Alex "Y_Less" Cole        | 
+[22:18:36]  |                                     | 
+[22:18:36]  ======================================= 
+[22:18:36]  
+[22:18:39] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[22:18:40] [MYSQL] Baza de date, s-a conectat.
+[22:18:40] Number of vehicle models: 0
+[22:18:40] Exam Checkpoints: 9 [From Database]
+[22:18:40] Jobs: 5 [From Database]
+[22:18:40] Businesses: 4 [From Database]
+[22:18:40] Houses: 0 [From Database]
+[22:18:40] Dealership models: 89 [From Database]
+[22:18:40] Factions: 10 [From Database]
+[22:18:40] Turfs: 43 [From Database]
+[22:18:40] Faction Safes: 0 [From Database]
+[22:18:40] Clans: 1 [From Database]
+[22:19:37] [connection] 127.0.0.1:53051 requests connection cookie.
+[22:19:38] [connection] incoming connection: 127.0.0.1:53051 id: 0
+[22:19:38] [join] mr.bunny has joined the server (0:127.0.0.1)
+[22:19:43] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[22:19:43] [ACCOUNT] mr.bunny loaded 20 vehicles
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:21:27] filterscripts = ""  (string)
+[22:21:27] 
+[22:21:27] Server Plugins
+[22:21:27] --------------
+[22:21:27]  Loading plugin: crashdetect
+[22:21:27]   CrashDetect plugin 4.19.4
+[22:21:27]   Loaded.
+[22:21:27]  Loading plugin: pawncmd
+[22:21:27] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[22:21:27]   Loaded.
+[22:21:27]  Loading plugin: sscanf
+[22:21:27] 
+
+[22:21:27]  ===============================
+
+[22:21:27]       sscanf plugin loaded.     
+
+[22:21:27]          Version:  2.8.3        
+
+[22:21:27]   (c) 2018 Alex "Y_Less" Cole  
+
+[22:21:27]  ===============================
+
+[22:21:27]   Loaded.
+[22:21:27]  Loading plugin: streamer
+[22:21:27] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[22:21:27]   Loaded.
+[22:21:27]  Loading plugin: mysql
+[22:21:27]  >> plugin.mysql: R41-4 successfully loaded.
+[22:21:27]   Loaded.
+[22:21:27]  Loaded 5 plugins.
+
+[22:21:27] 
+[22:21:27] Filterscripts
+[22:21:27] ---------------
+[22:21:27]   Loaded 0 filterscripts.
+
+[22:21:27]  
+[22:21:27]  
+[22:21:27]  
+[22:21:27]  ======================================= 
+[22:21:27]  |                                     | 
+[22:21:27]  |        YSI version 4.00.0001        | 
+[22:21:27]  |        By Alex "Y_Less" Cole        | 
+[22:21:27]  |                                     | 
+[22:21:27]  ======================================= 
+[22:21:27]  
+[22:21:30] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[22:21:30] [MYSQL] Baza de date, s-a conectat.
+[22:21:30] Number of vehicle models: 0
+[22:21:30] Exam Checkpoints: 9 [From Database]
+[22:21:30] Jobs: 5 [From Database]
+[22:21:30] Businesses: 4 [From Database]
+[22:21:30] Houses: 0 [From Database]
+[22:21:30] Dealership models: 89 [From Database]
+[22:21:30] Factions: 10 [From Database]
+[22:21:31] Turfs: 43 [From Database]
+[22:21:31] Faction Safes: 0 [From Database]
+[22:21:31] Clans: 1 [From Database]
+[22:21:32] 22:21
+[22:21:32] 10.05.2021
+[22:21:33] 22:21
+[22:21:33] 10.05.2021
+[22:21:35] 22:21
+[22:21:35] 10.05.2021
+[22:21:36] 22:21
+[22:21:36] 10.05.2021
+[22:21:37] 22:21
+[22:21:37] 10.05.2021
+[22:21:38] 22:21
+[22:21:38] 10.05.2021
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:22:24] filterscripts = ""  (string)
+[22:22:24] 
+[22:22:24] Server Plugins
+[22:22:24] --------------
+[22:22:24]  Loading plugin: crashdetect
+[22:22:24]   CrashDetect plugin 4.19.4
+[22:22:24]   Loaded.
+[22:22:24]  Loading plugin: pawncmd
+[22:22:24] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[22:22:24]   Loaded.
+[22:22:24]  Loading plugin: sscanf
+[22:22:24] 
+
+[22:22:24]  ===============================
+
+[22:22:24]       sscanf plugin loaded.     
+
+[22:22:24]          Version:  2.8.3        
+
+[22:22:24]   (c) 2018 Alex "Y_Less" Cole  
+
+[22:22:24]  ===============================
+
+[22:22:24]   Loaded.
+[22:22:24]  Loading plugin: streamer
+[22:22:24] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[22:22:24]   Loaded.
+[22:22:24]  Loading plugin: mysql
+[22:22:24]  >> plugin.mysql: R41-4 successfully loaded.
+[22:22:24]   Loaded.
+[22:22:24]  Loaded 5 plugins.
+
+[22:22:24] 
+[22:22:24] Filterscripts
+[22:22:24] ---------------
+[22:22:24]   Loaded 0 filterscripts.
+
+[22:22:24]  
+[22:22:24]  
+[22:22:24]  
+[22:22:24]  ======================================= 
+[22:22:24]  |                                     | 
+[22:22:24]  |        YSI version 4.00.0001        | 
+[22:22:24]  |        By Alex "Y_Less" Cole        | 
+[22:22:24]  |                                     | 
+[22:22:24]  ======================================= 
+[22:22:24]  
+[22:22:24] [connection] 127.0.0.1:49541 requests connection cookie.
+[22:22:28] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[22:22:28] [MYSQL] Baza de date, s-a conectat.
+[22:22:28] Number of vehicle models: 0
+[22:22:28] [connection] incoming connection: 127.0.0.1:49542 id: 0
+[22:22:28] [join] mr.bunny has joined the server (0:127.0.0.1)
+[22:22:28] Exam Checkpoints: 9 [From Database]
+[22:22:28] Jobs: 5 [From Database]
+[22:22:28] Businesses: 4 [From Database]
+[22:22:28] Houses: 0 [From Database]
+[22:22:28] Dealership models: 89 [From Database]
+[22:22:28] Factions: 10 [From Database]
+[22:22:28] Turfs: 43 [From Database]
+[22:22:28] Faction Safes: 0 [From Database]
+[22:22:28] Clans: 1 [From Database]
+[22:22:30] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[22:22:30] 22:22
+[22:22:30] 10.05.2021
+[22:22:30] [ACCOUNT] mr.bunny loaded 20 vehicles
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:23:02] filterscripts = ""  (string)
+[22:23:02] 
+[22:23:02] Server Plugins
+[22:23:02] --------------
+[22:23:02]  Loading plugin: crashdetect
+[22:23:02]   CrashDetect plugin 4.19.4
+[22:23:02]   Loaded.
+[22:23:02]  Loading plugin: pawncmd
+[22:23:02] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[22:23:02]   Loaded.
+[22:23:02]  Loading plugin: sscanf
+[22:23:02] 
+
+[22:23:02]  ===============================
+
+[22:23:02]       sscanf plugin loaded.     
+
+[22:23:02]          Version:  2.8.3        
+
+[22:23:02]   (c) 2018 Alex "Y_Less" Cole  
+
+[22:23:02]  ===============================
+
+[22:23:02]   Loaded.
+[22:23:02]  Loading plugin: streamer
+[22:23:02] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[22:23:02]   Loaded.
+[22:23:02]  Loading plugin: mysql
+[22:23:02]  >> plugin.mysql: R41-4 successfully loaded.
+[22:23:02]   Loaded.
+[22:23:02]  Loaded 5 plugins.
+
+[22:23:02] 
+[22:23:02] Filterscripts
+[22:23:02] ---------------
+[22:23:02]   Loaded 0 filterscripts.
+
+[22:23:02]  
+[22:23:02]  
+[22:23:02]  
+[22:23:02]  ======================================= 
+[22:23:02]  |                                     | 
+[22:23:02]  |        YSI version 4.00.0001        | 
+[22:23:02]  |        By Alex "Y_Less" Cole        | 
+[22:23:02]  |                                     | 
+[22:23:02]  ======================================= 
+[22:23:02]  
+[22:23:06] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[22:23:06] [MYSQL] Baza de date, s-a conectat.
+[22:23:06] Number of vehicle models: 0
+[22:23:06] Exam Checkpoints: 9 [From Database]
+[22:23:06] Jobs: 5 [From Database]
+[22:23:06] Businesses: 4 [From Database]
+[22:23:06] Houses: 0 [From Database]
+[22:23:06] Dealership models: 89 [From Database]
+[22:23:06] Factions: 10 [From Database]
+[22:23:06] Turfs: 43 [From Database]
+[22:23:06] Faction Safes: 0 [From Database]
+[22:23:06] Clans: 1 [From Database]
+[22:23:15] [connection] 127.0.0.1:49548 requests connection cookie.
+[22:23:16] [connection] incoming connection: 127.0.0.1:49548 id: 0
+[22:23:17] [join] mr.bunny has joined the server (0:127.0.0.1)
+[22:23:19] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[22:23:19] 22:23
+[22:23:19] 10.05.2021
+[22:23:19] [ACCOUNT] mr.bunny loaded 20 vehicles
+[22:23:39] 1620674620
+[22:24:34] 22:24
+[22:24:34] 10.05.2021
+[22:25:40] 22:25
+[22:25:40] 10.05.2021
+[22:26:47] 22:26
+[22:26:47] 10.05.2021
+[22:27:53] 22:27
+[22:27:53] 10.05.2021
+[22:29:00] 22:29
+[22:29:00] 10.05.2021
+[22:30:07] 22:30
+[22:30:07] 10.05.2021
+[22:31:14] 22:31
+[22:31:14] 10.05.2021
+[22:32:21] 22:32
+[22:32:21] 10.05.2021
+[22:33:28] 22:33
+[22:33:28] 10.05.2021
+[22:34:35] 22:34
+[22:34:35] 10.05.2021
+[22:35:42] 22:35
+[22:35:42] 10.05.2021
+[22:36:48] 22:36
+[22:36:48] 10.05.2021
+[22:37:55] 22:37
+[22:37:55] 10.05.2021
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:38:53] filterscripts = ""  (string)
+[22:38:53] 
+[22:38:53] Server Plugins
+[22:38:53] --------------
+[22:38:53]  Loading plugin: crashdetect
+[22:38:53]   CrashDetect plugin 4.19.4
+[22:38:53]   Loaded.
+[22:38:53]  Loading plugin: pawncmd
+[22:38:53] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[22:38:53]   Loaded.
+[22:38:53]  Loading plugin: sscanf
+[22:38:53] 
+
+[22:38:53]  ===============================
+
+[22:38:53]       sscanf plugin loaded.     
+
+[22:38:53]          Version:  2.8.3        
+
+[22:38:53]   (c) 2018 Alex "Y_Less" Cole  
+
+[22:38:53]  ===============================
+
+[22:38:53]   Loaded.
+[22:38:53]  Loading plugin: streamer
+[22:38:53] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[22:38:53]   Loaded.
+[22:38:53]  Loading plugin: mysql
+[22:38:53]  >> plugin.mysql: R41-4 successfully loaded.
+[22:38:53]   Loaded.
+[22:38:53]  Loaded 5 plugins.
+
+[22:38:53] 
+[22:38:53] Filterscripts
+[22:38:53] ---------------
+[22:38:53]   Loaded 0 filterscripts.
+
+[22:38:53]  
+[22:38:53]  
+[22:38:53]  
+[22:38:53]  ======================================= 
+[22:38:53]  |                                     | 
+[22:38:53]  |        YSI version 4.00.0001        | 
+[22:38:53]  |        By Alex "Y_Less" Cole        | 
+[22:38:53]  |                                     | 
+[22:38:53]  ======================================= 
+[22:38:53]  
+[22:38:57] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[22:38:57] [MYSQL] Baza de date, s-a conectat.
+[22:38:57] Number of vehicle models: 0
+[22:38:57] Exam Checkpoints: 9 [From Database]
+[22:38:57] Jobs: 5 [From Database]
+[22:38:57] Businesses: 4 [From Database]
+[22:38:57] Houses: 0 [From Database]
+[22:38:57] Dealership models: 89 [From Database]
+[22:38:57] Factions: 10 [From Database]
+[22:38:57] Turfs: 43 [From Database]
+[22:38:57] Faction Safes: 0 [From Database]
+[22:38:57] Clans: 1 [From Database]
+[22:39:08] [connection] 127.0.0.1:55889 requests connection cookie.
+[22:39:09] [connection] incoming connection: 127.0.0.1:55889 id: 0
+[22:39:10] [join] mr.bunny has joined the server (0:127.0.0.1)
+[22:39:13] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[22:39:13] [ACCOUNT] mr.bunny loaded 20 vehicles
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:39:36] filterscripts = ""  (string)
+[22:39:36] 
+[22:39:36] Server Plugins
+[22:39:36] --------------
+[22:39:36]  Loading plugin: crashdetect
+[22:39:36]   CrashDetect plugin 4.19.4
+[22:39:36]   Loaded.
+[22:39:36]  Loading plugin: pawncmd
+[22:39:36] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[22:39:36]   Loaded.
+[22:39:36]  Loading plugin: sscanf
+[22:39:36] 
+
+[22:39:36]  ===============================
+
+[22:39:36]       sscanf plugin loaded.     
+
+[22:39:36]          Version:  2.8.3        
+
+[22:39:36]   (c) 2018 Alex "Y_Less" Cole  
+
+[22:39:36]  ===============================
+
+[22:39:36]   Loaded.
+[22:39:36]  Loading plugin: streamer
+[22:39:36] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[22:39:36]   Loaded.
+[22:39:36]  Loading plugin: mysql
+[22:39:36]  >> plugin.mysql: R41-4 successfully loaded.
+[22:39:36]   Loaded.
+[22:39:36]  Loaded 5 plugins.
+
+[22:39:36] 
+[22:39:36] Filterscripts
+[22:39:36] ---------------
+[22:39:36]   Loaded 0 filterscripts.
+
+[22:39:36]  
+[22:39:36]  
+[22:39:36]  
+[22:39:36]  ======================================= 
+[22:39:36]  |                                     | 
+[22:39:36]  |        YSI version 4.00.0001        | 
+[22:39:36]  |        By Alex "Y_Less" Cole        | 
+[22:39:36]  |                                     | 
+[22:39:36]  ======================================= 
+[22:39:36]  
+[22:39:39] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[22:39:39] [MYSQL] Baza de date, s-a conectat.
+[22:39:39] Number of vehicle models: 0
+[22:39:39] Exam Checkpoints: 9 [From Database]
+[22:39:39] Jobs: 5 [From Database]
+[22:39:39] Businesses: 4 [From Database]
+[22:39:39] Houses: 0 [From Database]
+[22:39:39] Dealership models: 89 [From Database]
+[22:39:40] Factions: 10 [From Database]
+[22:39:40] Turfs: 43 [From Database]
+[22:39:40] Faction Safes: 0 [From Database]
+[22:39:40] Clans: 1 [From Database]
+[22:39:43] [connection] 127.0.0.1:52452 requests connection cookie.
+[22:39:44] [connection] incoming connection: 127.0.0.1:52452 id: 0
+[22:39:44] [join] mr.bunny has joined the server (0:127.0.0.1)
+[22:39:47] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[22:39:47] [ACCOUNT] mr.bunny loaded 20 vehicles
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:40:51] filterscripts = ""  (string)
+[22:40:51] 
+[22:40:51] Server Plugins
+[22:40:51] --------------
+[22:40:51]  Loading plugin: crashdetect
+[22:40:51]   CrashDetect plugin 4.19.4
+[22:40:51]   Loaded.
+[22:40:51]  Loading plugin: pawncmd
+[22:40:51] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[22:40:51]   Loaded.
+[22:40:51]  Loading plugin: sscanf
+[22:40:51] 
+
+[22:40:51]  ===============================
+
+[22:40:51]       sscanf plugin loaded.     
+
+[22:40:51]          Version:  2.8.3        
+
+[22:40:51]   (c) 2018 Alex "Y_Less" Cole  
+
+[22:40:51]  ===============================
+
+[22:40:51]   Loaded.
+[22:40:51]  Loading plugin: streamer
+[22:40:51] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[22:40:51]   Loaded.
+[22:40:51]  Loading plugin: mysql
+[22:40:51]  >> plugin.mysql: R41-4 successfully loaded.
+[22:40:51]   Loaded.
+[22:40:51]  Loaded 5 plugins.
+
+[22:40:51] 
+[22:40:51] Filterscripts
+[22:40:51] ---------------
+[22:40:51]   Loaded 0 filterscripts.
+
+[22:40:51]  
+[22:40:51]  
+[22:40:51]  
+[22:40:51]  ======================================= 
+[22:40:51]  |                                     | 
+[22:40:51]  |        YSI version 4.00.0001        | 
+[22:40:51]  |        By Alex "Y_Less" Cole        | 
+[22:40:51]  |                                     | 
+[22:40:51]  ======================================= 
+[22:40:51]  
+[22:40:55] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[22:40:55] [MYSQL] Baza de date, s-a conectat.
+[22:40:55] Number of vehicle models: 0
+[22:40:55] Exam Checkpoints: 9 [From Database]
+[22:40:55] Jobs: 5 [From Database]
+[22:40:55] Businesses: 4 [From Database]
+[22:40:55] Houses: 0 [From Database]
+[22:40:55] Dealership models: 89 [From Database]
+[22:40:55] Factions: 10 [From Database]
+[22:40:55] Turfs: 43 [From Database]
+[22:40:55] Faction Safes: 0 [From Database]
+[22:40:55] Clans: 1 [From Database]
+[22:41:03] [connection] 127.0.0.1:52457 requests connection cookie.
+[22:41:04] [connection] incoming connection: 127.0.0.1:52457 id: 0
+[22:41:04] [join] mr.bunny has joined the server (0:127.0.0.1)
+[22:41:06] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[22:41:06] [ACCOUNT] mr.bunny loaded 20 vehicles
+[22:42:23] 22:42
+[22:42:23] 10.05.2021
+[22:43:30] 22:43
+[22:43:30] 10.05.2021
+[22:44:21] [part] mr.bunny has left the server (0:1)
+[22:44:37] 22:44
+[22:44:37] 10.05.2021
+[22:45:43] 22:45
+[22:45:43] 10.05.2021
+[22:46:49] 22:46
+[22:46:49] 10.05.2021
+[22:47:54] 22:47
+[22:47:54] 10.05.2021
+[22:49:00] 22:49
+[22:49:00] 10.05.2021
+[22:50:05] 22:50
+[22:50:05] 10.05.2021
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:50:44] filterscripts = ""  (string)
+[22:50:44] 
+[22:50:44] Server Plugins
+[22:50:44] --------------
+[22:50:44]  Loading plugin: crashdetect
+[22:50:44]   CrashDetect plugin 4.19.4
+[22:50:44]   Loaded.
+[22:50:44]  Loading plugin: pawncmd
+[22:50:44] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[22:50:44]   Loaded.
+[22:50:44]  Loading plugin: sscanf
+[22:50:44] 
+
+[22:50:44]  ===============================
+
+[22:50:44]       sscanf plugin loaded.     
+
+[22:50:44]          Version:  2.8.3        
+
+[22:50:44]   (c) 2018 Alex "Y_Less" Cole  
+
+[22:50:44]  ===============================
+
+[22:50:44]   Loaded.
+[22:50:44]  Loading plugin: streamer
+[22:50:44] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[22:50:44]   Loaded.
+[22:50:44]  Loading plugin: mysql
+[22:50:44]  >> plugin.mysql: R41-4 successfully loaded.
+[22:50:44]   Loaded.
+[22:50:44]  Loaded 5 plugins.
+
+[22:50:44] 
+[22:50:44] Filterscripts
+[22:50:44] ---------------
+[22:50:44]   Loaded 0 filterscripts.
+
+[22:50:44]  
+[22:50:44]  
+[22:50:44]  
+[22:50:44]  ======================================= 
+[22:50:44]  |                                     | 
+[22:50:44]  |        YSI version 4.00.0001        | 
+[22:50:44]  |        By Alex "Y_Less" Cole        | 
+[22:50:44]  |                                     | 
+[22:50:44]  ======================================= 
+[22:50:44]  
+[22:50:48] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[22:50:48] [MYSQL] Baza de date, s-a conectat.
+[22:50:48] Number of vehicle models: 0
+[22:50:48] Exam Checkpoints: 9 [From Database]
+[22:50:48] Jobs: 5 [From Database]
+[22:50:48] Businesses: 4 [From Database]
+[22:50:48] Houses: 0 [From Database]
+[22:50:48] Dealership models: 89 [From Database]
+[22:50:48] Factions: 10 [From Database]
+[22:50:48] Turfs: 43 [From Database]
+[22:50:48] Faction Safes: 0 [From Database]
+[22:50:48] Clans: 1 [From Database]
+[22:50:49] 59:59
+[22:50:50] 59:58
+[22:50:52] 59:56
+[22:50:53] 59:55
+[22:50:54] 59:54
+[22:50:55] 59:53
+[22:50:56] 59:52
+[22:50:57] 59:51
+[22:50:58] 59:50
+[22:50:59] 59:49
+[22:51:00] 59:48
+[22:51:02] 59:46
+[22:51:03] 59:45
+[22:51:04] 59:44
+[22:51:05] 59:43
+[22:51:06] 59:42
+[22:51:07] 59:41
+[22:51:08] 59:40
+[22:51:09] 59:39
+[22:51:11] 59:37
+[22:51:12] 59:36
+[22:51:13] 59:35
+[22:51:14] 59:34
+[22:51:15] 59:33
+[22:51:16] 59:32
+[22:51:17] 59:31
+[22:51:18] 59:30
+[22:51:20] 59:28
+[22:51:21] 59:27
+[22:51:22] 59:26
+[22:51:23] 59:25
+[22:51:24] 59:24
+[22:51:25] 59:23
+[22:51:26] 59:22
+[22:51:27] 59:21
+[22:51:28] 59:20
+[22:51:29] 59:19
+[22:51:31] 59:17
+[22:51:32] 59:16
+[22:51:33] 59:15
+[22:51:34] 59:14
+[22:51:35] 59:13
+[22:51:36] 59:12
+[22:51:37] 59:11
+[22:51:38] 59:10
+[22:51:39] 59:09
+[22:51:41] 59:07
+[22:51:42] 59:06
+[22:51:43] 59:05
+[22:51:44] 59:04
+[22:51:45] 59:03
+[22:51:46] 59:02
+[22:51:47] 59:01
+[22:51:48] 59:00
+[22:51:50] 58:58
+[22:51:51] 58:57
+[22:51:52] 58:56
+[22:51:53] 58:55
+[22:51:54] 58:54
+[22:51:55] 58:53
+[22:51:56] 58:52
+[22:51:57] 58:51
+[22:51:58] 58:50
+[22:52:00] 58:48
+[22:52:01] 58:47
+[22:52:02] 58:46
+[22:52:03] 58:45
+[22:52:04] 58:44
+[22:52:05] 58:43
+[22:52:06] 58:42
+[22:52:07] 58:41
+[22:52:08] 58:40
+[22:52:10] 58:38
+[22:52:11] 58:37
+[22:52:12] 58:36
+[22:52:13] 58:35
+[22:52:14] 58:34
+[22:52:15] 58:33
+[22:52:16] 58:32
+[22:52:17] 22:52
+[22:52:17] 10.05.2021
+[22:52:17] 58:31
+[22:52:18] 58:30
+[22:52:20] 58:28
+[22:52:21] 58:27
+[22:52:22] 58:26
+[22:52:23] 58:25
+[22:52:24] 58:24
+[22:52:25] 58:23
+[22:52:26] 58:22
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:52:33] filterscripts = ""  (string)
+[22:52:33] 
+[22:52:33] Server Plugins
+[22:52:33] --------------
+[22:52:33]  Loading plugin: crashdetect
+[22:52:33]   CrashDetect plugin 4.19.4
+[22:52:33]   Loaded.
+[22:52:33]  Loading plugin: pawncmd
+[22:52:33] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[22:52:33]   Loaded.
+[22:52:33]  Loading plugin: sscanf
+[22:52:33] 
+
+[22:52:33]  ===============================
+
+[22:52:33]       sscanf plugin loaded.     
+
+[22:52:33]          Version:  2.8.3        
+
+[22:52:33]   (c) 2018 Alex "Y_Less" Cole  
+
+[22:52:33]  ===============================
+
+[22:52:33]   Loaded.
+[22:52:33]  Loading plugin: streamer
+[22:52:33] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[22:52:33]   Loaded.
+[22:52:33]  Loading plugin: mysql
+[22:52:33]  >> plugin.mysql: R41-4 successfully loaded.
+[22:52:33]   Loaded.
+[22:52:33]  Loaded 5 plugins.
+
+[22:52:33] 
+[22:52:33] Filterscripts
+[22:52:33] ---------------
+[22:52:33]   Loaded 0 filterscripts.
+
+[22:52:33]  
+[22:52:33]  
+[22:52:33]  
+[22:52:33]  ======================================= 
+[22:52:33]  |                                     | 
+[22:52:33]  |        YSI version 4.00.0001        | 
+[22:52:33]  |        By Alex "Y_Less" Cole        | 
+[22:52:33]  |                                     | 
+[22:52:33]  ======================================= 
+[22:52:33]  
+[22:52:36] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[22:52:36] [MYSQL] Baza de date, s-a conectat.
+[22:52:36] Number of vehicle models: 0
+[22:52:36] Exam Checkpoints: 9 [From Database]
+[22:52:36] Jobs: 5 [From Database]
+[22:52:36] Businesses: 4 [From Database]
+[22:52:36] Houses: 0 [From Database]
+[22:52:36] Dealership models: 89 [From Database]
+[22:52:36] Factions: 10 [From Database]
+[22:52:36] Turfs: 43 [From Database]
+[22:52:36] Faction Safes: 0 [From Database]
+[22:52:36] Clans: 1 [From Database]
+[22:52:38] [connection] 127.0.0.1:59150 requests connection cookie.
+[22:52:38] [debug] Run time error 5: "Invalid memory access"
+[22:52:38] [debug] AMX backtrace:
+[22:52:38] [debug] #0 0006d1a4 in secinmin (secunde=3598) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:52:38] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:52:39] [connection] incoming connection: 127.0.0.1:59150 id: 0
+[22:52:39] [join] mr.bunny has joined the server (0:127.0.0.1)
+[22:52:39] [debug] Run time error 5: "Invalid memory access"
+[22:52:39] [debug] AMX backtrace:
+[22:52:39] [debug] #0 0006d1a4 in secinmin (secunde=3597) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:52:39] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:52:40] [debug] Run time error 5: "Invalid memory access"
+[22:52:40] [debug] AMX backtrace:
+[22:52:40] [debug] #0 0006d1a4 in secinmin (secunde=3596) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:52:40] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:52:42] [debug] Run time error 5: "Invalid memory access"
+[22:52:42] [debug] AMX backtrace:
+[22:52:42] [debug] #0 0006d1a4 in secinmin (secunde=3594) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:52:42] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:52:43] [debug] Run time error 5: "Invalid memory access"
+[22:52:43] [debug] AMX backtrace:
+[22:52:43] [debug] #0 0006d1a4 in secinmin (secunde=3593) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:52:43] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:52:44] [debug] Run time error 5: "Invalid memory access"
+[22:52:44] [debug] AMX backtrace:
+[22:52:44] [debug] #0 0006d1a4 in secinmin (secunde=3592) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:52:44] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:52:45] [debug] Run time error 5: "Invalid memory access"
+[22:52:45] [debug] AMX backtrace:
+[22:52:45] [debug] #0 0006d1a4 in secinmin (secunde=3591) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:52:45] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:52:46] [debug] Run time error 5: "Invalid memory access"
+[22:52:46] [debug] AMX backtrace:
+[22:52:46] [debug] #0 0006d1a4 in secinmin (secunde=3590) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:52:46] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:52:47] [debug] Run time error 5: "Invalid memory access"
+[22:52:47] [debug] AMX backtrace:
+[22:52:47] [debug] #0 0006d1a4 in secinmin (secunde=3589) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:52:47] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:52:48] [debug] Run time error 5: "Invalid memory access"
+[22:52:48] [debug] AMX backtrace:
+[22:52:48] [debug] #0 0006d1a4 in secinmin (secunde=3588) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:52:48] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:52:49] [debug] Run time error 5: "Invalid memory access"
+[22:52:49] [debug] AMX backtrace:
+[22:52:49] [debug] #0 0006d1a4 in secinmin (secunde=3587) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:52:49] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:52:50] [debug] Run time error 5: "Invalid memory access"
+[22:52:50] [debug] AMX backtrace:
+[22:52:50] [debug] #0 0006d1a4 in secinmin (secunde=3586) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:52:50] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:52:51] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[22:52:51] [ACCOUNT] mr.bunny loaded 20 vehicles
+[22:52:51] [debug] Run time error 5: "Invalid memory access"
+[22:52:51] [debug] AMX backtrace:
+[22:52:51] [debug] #0 0006d1a4 in secinmin (secunde=3585) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:52:51] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:52:53] [debug] Run time error 5: "Invalid memory access"
+[22:52:53] [debug] AMX backtrace:
+[22:52:53] [debug] #0 0006d1a4 in secinmin (secunde=3583) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:52:53] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:52:54] [debug] Run time error 5: "Invalid memory access"
+[22:52:54] [debug] AMX backtrace:
+[22:52:54] [debug] #0 0006d1a4 in secinmin (secunde=3582) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:52:54] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:52:55] [debug] Run time error 5: "Invalid memory access"
+[22:52:55] [debug] AMX backtrace:
+[22:52:55] [debug] #0 0006d1a4 in secinmin (secunde=3581) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:52:55] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:52:56] [debug] Run time error 5: "Invalid memory access"
+[22:52:56] [debug] AMX backtrace:
+[22:52:56] [debug] #0 0006d1a4 in secinmin (secunde=3580) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:52:56] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:52:57] [debug] Run time error 5: "Invalid memory access"
+[22:52:57] [debug] AMX backtrace:
+[22:52:57] [debug] #0 0006d1a4 in secinmin (secunde=3579) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:52:57] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:52:58] [debug] Run time error 5: "Invalid memory access"
+[22:52:58] [debug] AMX backtrace:
+[22:52:58] [debug] #0 0006d1a4 in secinmin (secunde=3578) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:52:58] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:52:59] [debug] Run time error 5: "Invalid memory access"
+[22:52:59] [debug] AMX backtrace:
+[22:52:59] [debug] #0 0006d1a4 in secinmin (secunde=3577) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:52:59] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:00] [debug] Run time error 5: "Invalid memory access"
+[22:53:00] [debug] AMX backtrace:
+[22:53:00] [debug] #0 0006d1a4 in secinmin (secunde=3576) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:00] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:01] [debug] Run time error 5: "Invalid memory access"
+[22:53:01] [debug] AMX backtrace:
+[22:53:01] [debug] #0 0006d1a4 in secinmin (secunde=3575) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:01] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:03] [debug] Run time error 5: "Invalid memory access"
+[22:53:03] [debug] AMX backtrace:
+[22:53:03] [debug] #0 0006d1a4 in secinmin (secunde=3573) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:03] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:04] [debug] Run time error 5: "Invalid memory access"
+[22:53:04] [debug] AMX backtrace:
+[22:53:04] [debug] #0 0006d1a4 in secinmin (secunde=3572) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:04] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:05] [debug] Run time error 5: "Invalid memory access"
+[22:53:05] [debug] AMX backtrace:
+[22:53:05] [debug] #0 0006d1a4 in secinmin (secunde=3571) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:05] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:06] [debug] Run time error 5: "Invalid memory access"
+[22:53:06] [debug] AMX backtrace:
+[22:53:06] [debug] #0 0006d1a4 in secinmin (secunde=3570) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:06] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:07] [debug] Run time error 5: "Invalid memory access"
+[22:53:07] [debug] AMX backtrace:
+[22:53:07] [debug] #0 0006d1a4 in secinmin (secunde=3569) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:07] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:08] [debug] Run time error 5: "Invalid memory access"
+[22:53:08] [debug] AMX backtrace:
+[22:53:08] [debug] #0 0006d1a4 in secinmin (secunde=3568) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:08] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:09] [debug] Run time error 5: "Invalid memory access"
+[22:53:09] [debug] AMX backtrace:
+[22:53:09] [debug] #0 0006d1a4 in secinmin (secunde=3567) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:09] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:10] [debug] Run time error 5: "Invalid memory access"
+[22:53:10] [debug] AMX backtrace:
+[22:53:10] [debug] #0 0006d1a4 in secinmin (secunde=3566) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:10] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:12] [debug] Run time error 5: "Invalid memory access"
+[22:53:12] [debug] AMX backtrace:
+[22:53:12] [debug] #0 0006d1a4 in secinmin (secunde=3564) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:12] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:13] [debug] Run time error 5: "Invalid memory access"
+[22:53:13] [debug] AMX backtrace:
+[22:53:13] [debug] #0 0006d1a4 in secinmin (secunde=3563) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:13] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:14] [debug] Run time error 5: "Invalid memory access"
+[22:53:14] [debug] AMX backtrace:
+[22:53:14] [debug] #0 0006d1a4 in secinmin (secunde=3562) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:14] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:15] [debug] Run time error 5: "Invalid memory access"
+[22:53:15] [debug] AMX backtrace:
+[22:53:15] [debug] #0 0006d1a4 in secinmin (secunde=3561) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:15] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:16] [debug] Run time error 5: "Invalid memory access"
+[22:53:16] [debug] AMX backtrace:
+[22:53:16] [debug] #0 0006d1a4 in secinmin (secunde=3560) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:16] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:17] [debug] Run time error 5: "Invalid memory access"
+[22:53:17] [debug] AMX backtrace:
+[22:53:17] [debug] #0 0006d1a4 in secinmin (secunde=3559) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:17] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:18] [debug] Run time error 5: "Invalid memory access"
+[22:53:18] [debug] AMX backtrace:
+[22:53:18] [debug] #0 0006d1a4 in secinmin (secunde=3558) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:18] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:19] [debug] Run time error 5: "Invalid memory access"
+[22:53:19] [debug] AMX backtrace:
+[22:53:19] [debug] #0 0006d1a4 in secinmin (secunde=3557) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:19] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:20] [debug] Run time error 5: "Invalid memory access"
+[22:53:20] [debug] AMX backtrace:
+[22:53:20] [debug] #0 0006d1a4 in secinmin (secunde=3556) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:20] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:22] [debug] Run time error 5: "Invalid memory access"
+[22:53:22] [debug] AMX backtrace:
+[22:53:22] [debug] #0 0006d1a4 in secinmin (secunde=3554) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:22] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:23] [debug] Run time error 5: "Invalid memory access"
+[22:53:23] [debug] AMX backtrace:
+[22:53:23] [debug] #0 0006d1a4 in secinmin (secunde=3553) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:23] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:24] [debug] Run time error 5: "Invalid memory access"
+[22:53:24] [debug] AMX backtrace:
+[22:53:24] [debug] #0 0006d1a4 in secinmin (secunde=3552) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:24] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:25] [debug] Run time error 5: "Invalid memory access"
+[22:53:25] [debug] AMX backtrace:
+[22:53:25] [debug] #0 0006d1a4 in secinmin (secunde=3551) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:25] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:26] [debug] Run time error 5: "Invalid memory access"
+[22:53:26] [debug] AMX backtrace:
+[22:53:26] [debug] #0 0006d1a4 in secinmin (secunde=3550) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:26] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:27] [debug] Run time error 5: "Invalid memory access"
+[22:53:27] [debug] AMX backtrace:
+[22:53:27] [debug] #0 0006d1a4 in secinmin (secunde=3549) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:27] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:28] [debug] Run time error 5: "Invalid memory access"
+[22:53:28] [debug] AMX backtrace:
+[22:53:28] [debug] #0 0006d1a4 in secinmin (secunde=3548) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:28] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:29] [debug] Run time error 5: "Invalid memory access"
+[22:53:29] [debug] AMX backtrace:
+[22:53:29] [debug] #0 0006d1a4 in secinmin (secunde=3547) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:29] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:31] [debug] Run time error 5: "Invalid memory access"
+[22:53:31] [debug] AMX backtrace:
+[22:53:31] [debug] #0 0006d1a4 in secinmin (secunde=3545) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:31] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:32] [debug] Run time error 5: "Invalid memory access"
+[22:53:32] [debug] AMX backtrace:
+[22:53:32] [debug] #0 0006d1a4 in secinmin (secunde=3544) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:32] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:33] [debug] Run time error 5: "Invalid memory access"
+[22:53:33] [debug] AMX backtrace:
+[22:53:33] [debug] #0 0006d1a4 in secinmin (secunde=3543) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:33] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:34] [debug] Run time error 5: "Invalid memory access"
+[22:53:34] [debug] AMX backtrace:
+[22:53:34] [debug] #0 0006d1a4 in secinmin (secunde=3542) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:34] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:35] [debug] Run time error 5: "Invalid memory access"
+[22:53:35] [debug] AMX backtrace:
+[22:53:35] [debug] #0 0006d1a4 in secinmin (secunde=3541) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:35] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:36] [debug] Run time error 5: "Invalid memory access"
+[22:53:36] [debug] AMX backtrace:
+[22:53:36] [debug] #0 0006d1a4 in secinmin (secunde=3540) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:36] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:37] [debug] Run time error 5: "Invalid memory access"
+[22:53:37] [debug] AMX backtrace:
+[22:53:37] [debug] #0 0006d1a4 in secinmin (secunde=3539) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:37] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:38] [debug] Run time error 5: "Invalid memory access"
+[22:53:38] [debug] AMX backtrace:
+[22:53:38] [debug] #0 0006d1a4 in secinmin (secunde=3538) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:38] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:39] [debug] Run time error 5: "Invalid memory access"
+[22:53:39] [debug] AMX backtrace:
+[22:53:39] [debug] #0 0006d1a4 in secinmin (secunde=3537) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:39] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:41] [debug] Run time error 5: "Invalid memory access"
+[22:53:41] [debug] AMX backtrace:
+[22:53:41] [debug] #0 0006d1a4 in secinmin (secunde=3535) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:41] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:42] [debug] Run time error 5: "Invalid memory access"
+[22:53:42] [debug] AMX backtrace:
+[22:53:42] [debug] #0 0006d1a4 in secinmin (secunde=3534) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:42] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:43] [debug] Run time error 5: "Invalid memory access"
+[22:53:43] [debug] AMX backtrace:
+[22:53:43] [debug] #0 0006d1a4 in secinmin (secunde=3533) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:43] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:44] [debug] Run time error 5: "Invalid memory access"
+[22:53:44] [debug] AMX backtrace:
+[22:53:44] [debug] #0 0006d1a4 in secinmin (secunde=3532) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:44] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:45] [debug] Run time error 5: "Invalid memory access"
+[22:53:45] [debug] AMX backtrace:
+[22:53:45] [debug] #0 0006d1a4 in secinmin (secunde=3531) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:45] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:46] [debug] Run time error 5: "Invalid memory access"
+[22:53:46] [debug] AMX backtrace:
+[22:53:46] [debug] #0 0006d1a4 in secinmin (secunde=3530) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:46] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:47] [debug] Run time error 5: "Invalid memory access"
+[22:53:47] [debug] AMX backtrace:
+[22:53:47] [debug] #0 0006d1a4 in secinmin (secunde=3529) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:47] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:48] [debug] Run time error 5: "Invalid memory access"
+[22:53:48] [debug] AMX backtrace:
+[22:53:48] [debug] #0 0006d1a4 in secinmin (secunde=3528) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:48] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:50] [debug] Run time error 5: "Invalid memory access"
+[22:53:50] [debug] AMX backtrace:
+[22:53:50] [debug] #0 0006d1a4 in secinmin (secunde=3526) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:50] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:51] [debug] Run time error 5: "Invalid memory access"
+[22:53:51] [debug] AMX backtrace:
+[22:53:51] [debug] #0 0006d1a4 in secinmin (secunde=3525) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:51] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:52] [debug] Run time error 5: "Invalid memory access"
+[22:53:52] [debug] AMX backtrace:
+[22:53:52] [debug] #0 0006d1a4 in secinmin (secunde=3524) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:52] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:53] [debug] Run time error 5: "Invalid memory access"
+[22:53:53] [debug] AMX backtrace:
+[22:53:53] [debug] #0 0006d1a4 in secinmin (secunde=3523) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:53] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:54] [debug] Run time error 5: "Invalid memory access"
+[22:53:54] [debug] AMX backtrace:
+[22:53:54] [debug] #0 0006d1a4 in secinmin (secunde=3522) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:54] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:55] [debug] Run time error 5: "Invalid memory access"
+[22:53:55] [debug] AMX backtrace:
+[22:53:55] [debug] #0 0006d1a4 in secinmin (secunde=3521) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:55] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:56] [debug] Run time error 5: "Invalid memory access"
+[22:53:56] [debug] AMX backtrace:
+[22:53:56] [debug] #0 0006d1a4 in secinmin (secunde=3520) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:56] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:57] [debug] Run time error 5: "Invalid memory access"
+[22:53:57] [debug] AMX backtrace:
+[22:53:57] [debug] #0 0006d1a4 in secinmin (secunde=3519) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:57] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:53:58] [debug] Run time error 5: "Invalid memory access"
+[22:53:58] [debug] AMX backtrace:
+[22:53:58] [debug] #0 0006d1a4 in secinmin (secunde=3518) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:53:58] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:54:00] [debug] Run time error 5: "Invalid memory access"
+[22:54:00] [debug] AMX backtrace:
+[22:54:00] [debug] #0 0006d1a4 in secinmin (secunde=3516) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:54:00] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:54:01] [debug] Run time error 5: "Invalid memory access"
+[22:54:01] [debug] AMX backtrace:
+[22:54:01] [debug] #0 0006d1a4 in secinmin (secunde=3515) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:54:01] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:54:02] [debug] Run time error 5: "Invalid memory access"
+[22:54:02] [debug] AMX backtrace:
+[22:54:02] [debug] #0 0006d1a4 in secinmin (secunde=3514) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:54:02] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:54:03] [debug] Run time error 5: "Invalid memory access"
+[22:54:03] [debug] AMX backtrace:
+[22:54:03] [debug] #0 0006d1a4 in secinmin (secunde=3513) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:54:03] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:54:04] [debug] Run time error 5: "Invalid memory access"
+[22:54:04] [debug] AMX backtrace:
+[22:54:04] [debug] #0 0006d1a4 in secinmin (secunde=3512) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:54:04] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:54:05] [debug] Run time error 5: "Invalid memory access"
+[22:54:05] [debug] AMX backtrace:
+[22:54:05] [debug] #0 0006d1a4 in secinmin (secunde=3511) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:54:05] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:54:06] 22:54
+[22:54:06] 10.05.2021
+[22:54:06] [debug] Run time error 5: "Invalid memory access"
+[22:54:06] [debug] AMX backtrace:
+[22:54:06] [debug] #0 0006d1a4 in secinmin (secunde=3510) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:54:06] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:54:07] [debug] Run time error 5: "Invalid memory access"
+[22:54:07] [debug] AMX backtrace:
+[22:54:07] [debug] #0 0006d1a4 in secinmin (secunde=3509) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:54:07] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:54:08] [debug] Run time error 5: "Invalid memory access"
+[22:54:08] [debug] AMX backtrace:
+[22:54:08] [debug] #0 0006d1a4 in secinmin (secunde=3508) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:54:08] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:54:10] [debug] Run time error 5: "Invalid memory access"
+[22:54:10] [debug] AMX backtrace:
+[22:54:10] [debug] #0 0006d1a4 in secinmin (secunde=3506) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:54:10] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:54:11] [debug] Run time error 5: "Invalid memory access"
+[22:54:11] [debug] AMX backtrace:
+[22:54:11] [debug] #0 0006d1a4 in secinmin (secunde=3505) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:54:11] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:54:12] [debug] Run time error 5: "Invalid memory access"
+[22:54:12] [debug] AMX backtrace:
+[22:54:12] [debug] #0 0006d1a4 in secinmin (secunde=3504) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:54:12] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+[22:54:13] [debug] Run time error 5: "Invalid memory access"
+[22:54:13] [debug] AMX backtrace:
+[22:54:13] [debug] #0 0006d1a4 in secinmin (secunde=3503) at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\stocks.pwn:925
+[22:54:13] [debug] #1 001062dc in public Timers () at C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn:67
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:54:43] filterscripts = ""  (string)
+[22:54:43] 
+[22:54:43] Server Plugins
+[22:54:43] --------------
+[22:54:43]  Loading plugin: crashdetect
+[22:54:43]   CrashDetect plugin 4.19.4
+[22:54:43]   Loaded.
+[22:54:43]  Loading plugin: pawncmd
+[22:54:43] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[22:54:43]   Loaded.
+[22:54:43]  Loading plugin: sscanf
+[22:54:43] 
+
+[22:54:43]  ===============================
+
+[22:54:43]       sscanf plugin loaded.     
+
+[22:54:43]          Version:  2.8.3        
+
+[22:54:43]   (c) 2018 Alex "Y_Less" Cole  
+
+[22:54:43]  ===============================
+
+[22:54:43]   Loaded.
+[22:54:43]  Loading plugin: streamer
+[22:54:43] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[22:54:43]   Loaded.
+[22:54:43]  Loading plugin: mysql
+[22:54:43]  >> plugin.mysql: R41-4 successfully loaded.
+[22:54:43]   Loaded.
+[22:54:43]  Loaded 5 plugins.
+
+[22:54:43] [connection] 127.0.0.1:58553 requests connection cookie.
+[22:54:43] 
+[22:54:43] Filterscripts
+[22:54:43] ---------------
+[22:54:43]   Loaded 0 filterscripts.
+
+[22:54:43]  
+[22:54:43]  
+[22:54:43]  
+[22:54:43]  ======================================= 
+[22:54:43]  |                                     | 
+[22:54:43]  |        YSI version 4.00.0001        | 
+[22:54:43]  |        By Alex "Y_Less" Cole        | 
+[22:54:43]  |                                     | 
+[22:54:43]  ======================================= 
+[22:54:43]  
+[22:54:47] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[22:54:47] [MYSQL] Baza de date, s-a conectat.
+[22:54:47] Number of vehicle models: 0
+[22:54:47] [connection] incoming connection: 127.0.0.1:58553 id: 0
+[22:54:47] [join] mr.bunny has joined the server (0:127.0.0.1)
+[22:54:47] Exam Checkpoints: 9 [From Database]
+[22:54:47] Jobs: 5 [From Database]
+[22:54:47] Businesses: 4 [From Database]
+[22:54:47] Houses: 0 [From Database]
+[22:54:47] Dealership models: 89 [From Database]
+[22:54:47] Factions: 10 [From Database]
+[22:54:47] Turfs: 43 [From Database]
+[22:54:47] Faction Safes: 0 [From Database]
+[22:54:47] Clans: 1 [From Database]
+[22:54:48] 59:59
+[22:54:50] 59:57
+[22:54:51] 59:56
+[22:54:52] 59:55
+[22:54:53] 59:54
+[22:54:54] 59:53
+[22:54:55] 59:52
+[22:54:56] 59:51
+[22:54:57] 59:50
+[22:54:59] 59:48
+[22:55:00] 59:47
+[22:55:01] 59:46
+[22:55:02] 59:45
+[22:55:03] 59:44
+[22:55:04] 59:43
+[22:55:05] 59:42
+[22:55:06] 59:41
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:55:20] filterscripts = ""  (string)
+[22:55:20] 
+[22:55:20] Server Plugins
+[22:55:20] --------------
+[22:55:20]  Loading plugin: crashdetect
+[22:55:20]   CrashDetect plugin 4.19.4
+[22:55:20]   Loaded.
+[22:55:20]  Loading plugin: pawncmd
+[22:55:20] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[22:55:20]   Loaded.
+[22:55:20]  Loading plugin: sscanf
+[22:55:20] 
+
+[22:55:20]  ===============================
+
+[22:55:20]       sscanf plugin loaded.     
+
+[22:55:20]          Version:  2.8.3        
+
+[22:55:20]   (c) 2018 Alex "Y_Less" Cole  
+
+[22:55:20]  ===============================
+
+[22:55:20]   Loaded.
+[22:55:20]  Loading plugin: streamer
+[22:55:20] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[22:55:20]   Loaded.
+[22:55:20]  Loading plugin: mysql
+[22:55:20]  >> plugin.mysql: R41-4 successfully loaded.
+[22:55:20]   Loaded.
+[22:55:20]  Loaded 5 plugins.
+
+[22:55:20] 
+[22:55:20] Filterscripts
+[22:55:20] ---------------
+[22:55:20]   Loaded 0 filterscripts.
+
+[22:55:20]  
+[22:55:20]  
+[22:55:20]  
+[22:55:20]  ======================================= 
+[22:55:20]  |                                     | 
+[22:55:20]  |        YSI version 4.00.0001        | 
+[22:55:20]  |        By Alex "Y_Less" Cole        | 
+[22:55:20]  |                                     | 
+[22:55:20]  ======================================= 
+[22:55:20]  
+[22:55:24] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[22:55:24] [MYSQL] Baza de date, s-a conectat.
+[22:55:24] Number of vehicle models: 0
+[22:55:24] Exam Checkpoints: 9 [From Database]
+[22:55:24] Jobs: 5 [From Database]
+[22:55:24] Businesses: 4 [From Database]
+[22:55:24] Houses: 0 [From Database]
+[22:55:24] Dealership models: 89 [From Database]
+[22:55:24] Factions: 10 [From Database]
+[22:55:24] Turfs: 43 [From Database]
+[22:55:24] Faction Safes: 0 [From Database]
+[22:55:24] Clans: 1 [From Database]
+[22:55:26] 01:38
+[22:55:27] 01:37
+[22:55:28] 01:36
+[22:55:29] 01:35
+[22:55:30] 01:34
+[22:55:31] 01:33
+[22:55:32] [connection] 127.0.0.1:53149 requests connection cookie.
+[22:55:33] 01:31
+[22:55:33] [connection] incoming connection: 127.0.0.1:53149 id: 0
+[22:55:33] [join] mr.bunny has joined the server (0:127.0.0.1)
+[22:55:34] 01:30
+[22:55:35] 01:29
+[22:55:36] 01:28
+[22:55:37] 01:27
+[22:55:38] 01:26
+[22:55:39] 01:25
+[22:55:40] 01:24
+[22:55:41] 01:23
+[22:55:43] 01:21
+[22:55:44] 01:20
+[22:55:45] 01:19
+[22:55:46] 01:18
+[22:55:47] 01:17
+[22:55:48] 01:16
+[22:55:49] 01:15
+[22:55:50] 01:14
+[22:55:52] 01:12
+[22:55:53] 01:11
+[22:55:54] 01:10
+[22:55:55] 01:09
+[22:55:56] 01:08
+[22:55:57] 01:07
+[22:55:58] 01:06
+[22:55:59] 01:05
+[22:56:01] 01:03
+[22:56:02] 01:02
+[22:56:03] 01:01
+[22:56:04] 01:00
+[22:56:05] 00:59
+[22:56:06] 00:58
+[22:56:07] 00:57
+[22:56:08] 00:56
+[22:56:10] 00:54
+[22:56:11] 00:53
+[22:56:12] 00:52
+[22:56:13] 00:51
+[22:56:14] 00:50
+[22:56:15] 00:49
+[22:56:16] 00:48
+[22:56:17] 00:47
+[22:56:18] 00:46
+[22:56:20] 00:44
+[22:56:21] 00:43
+[22:56:22] 00:42
+[22:56:23] 00:41
+[22:56:24] 00:40
+[22:56:25] 00:39
+[22:56:26] 00:38
+[22:56:27] 00:37
+[22:56:29] 00:35
+[22:56:30] 00:34
+[22:56:31] 00:33
+[22:56:32] 00:32
+[22:56:33] 00:31
+[22:56:34] 00:30
+[22:56:35] 00:29
+[22:56:36] 00:28
+[22:56:37] 00:27
+[22:56:39] 00:25
+[22:56:40] 00:24
+[22:56:41] 00:23
+[22:56:42] 00:22
+[22:56:43] 00:21
+[22:56:44] 00:20
+[22:56:45] 00:19
+[22:56:46] 00:18
+[22:56:48] 00:16
+[22:56:49] 00:15
+[22:56:50] 00:14
+[22:56:51] 00:13
+[22:56:52] 00:12
+[22:56:53] 00:11
+[22:56:54] 22:56
+[22:56:54] 10.05.2021
+[22:56:54] 00:10
+[22:56:55] 00:09
+[22:56:56] 00:08
+[22:56:58] 00:06
+[22:56:59] 00:05
+[22:57:00] 00:04
+[22:57:01] 00:03
+[22:57:02] 00:02
+[22:57:03] 00:01
+[22:57:04] 00:00
+[22:57:05] 59:59
+[22:57:07] 59:57
+[22:57:08] 59:56
+[22:57:09] 59:55
+[22:57:10] 59:54
+[22:57:11] 59:53
+[22:57:12] 59:52
+[22:57:13] 59:51
+[22:57:14] 59:50
+[22:57:15] 59:49
+[22:57:17] 59:47
+[22:57:18] 59:46
+[22:57:19] 59:45
+[22:57:20] 59:44
+[22:57:21] 59:43
+[22:57:22] 59:42
+[22:57:23] 59:41
+[22:57:24] 59:40
+[22:57:26] 59:38
+[22:57:27] 59:37
+[22:57:28] 59:36
+[22:57:29] 59:35
+[22:57:30] 59:34
+[22:57:31] 59:33
+[22:57:32] 59:32
+[22:57:33] 59:31
+[22:57:34] 59:30
+[22:57:36] 59:28
+[22:57:37] 59:27
+[22:57:38] 59:26
+[22:57:39] 59:25
+[22:57:40] 59:24
+[22:57:41] 59:23
+[22:57:42] 59:22
+[22:57:43] 59:21
+[22:57:45] 59:19
+[22:57:46] 59:18
+[22:57:47] 59:17
+[22:57:48] 59:16
+[22:57:49] 59:15
+[22:57:50] 59:14
+[22:57:51] 59:13
+[22:57:52] 59:12
+[22:57:53] 59:11
+[22:57:55] 59:09
+[22:57:56] 59:08
+[22:57:57] 59:07
+[22:57:58] 59:06
+[22:57:59] 59:05
+[22:58:00] 59:04
+[22:58:01] 22:58
+[22:58:01] 10.05.2021
+[22:58:01] 59:03
+[22:58:02] 59:02
+[22:58:03] 59:01
+[22:58:05] 58:59
+[22:58:06] 58:58
+[22:58:07] 58:57
+[22:58:08] 58:56
+[22:58:09] 58:55
+[22:58:10] 58:54
+[22:58:11] 58:53
+[22:58:12] 58:52
+[22:58:14] 58:50
+[22:58:15] 58:49
+[22:58:16] 58:48
+[22:58:17] 58:47
+[22:58:18] 58:46
+[22:58:19] 58:45
+[22:58:20] 58:44
+[22:58:21] 58:43
+[22:58:22] 58:42
+[22:58:24] 58:40
+[22:58:25] 58:39
+[22:58:26] 58:38
+[22:58:27] 58:37
+[22:58:28] 58:36
+[22:58:29] 58:35
+[22:58:30] 58:34
+[22:58:31] 58:33
+[22:58:33] 58:31
+[22:58:34] 58:30
+[22:58:35] 58:29
+[22:58:36] 58:28
+[22:58:37] 58:27
+[22:58:38] 58:26
+[22:58:39] 58:25
+[22:58:40] 58:24
+[22:58:41] 58:23
+[22:58:43] 58:21
+[22:58:44] 58:20
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:58:47] filterscripts = ""  (string)
+[22:58:47] 
+[22:58:47] Server Plugins
+[22:58:47] --------------
+[22:58:47]  Loading plugin: crashdetect
+[22:58:47]   CrashDetect plugin 4.19.4
+[22:58:47]   Loaded.
+[22:58:47]  Loading plugin: pawncmd
+[22:58:47] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[22:58:47]   Loaded.
+[22:58:47]  Loading plugin: sscanf
+[22:58:47] 
+
+[22:58:47]  ===============================
+
+[22:58:47]       sscanf plugin loaded.     
+
+[22:58:47]          Version:  2.8.3        
+
+[22:58:47]   (c) 2018 Alex "Y_Less" Cole  
+
+[22:58:47]  ===============================
+
+[22:58:47]   Loaded.
+[22:58:47]  Loading plugin: streamer
+[22:58:47] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[22:58:47]   Loaded.
+[22:58:47]  Loading plugin: mysql
+[22:58:47]  >> plugin.mysql: R41-4 successfully loaded.
+[22:58:47]   Loaded.
+[22:58:47]  Loaded 5 plugins.
+
+[22:58:47] 
+[22:58:47] Filterscripts
+[22:58:47] ---------------
+[22:58:47]   Loaded 0 filterscripts.
+
+[22:58:47]  
+[22:58:47]  
+[22:58:47]  
+[22:58:47]  ======================================= 
+[22:58:47]  |                                     | 
+[22:58:47]  |        YSI version 4.00.0001        | 
+[22:58:47]  |        By Alex "Y_Less" Cole        | 
+[22:58:47]  |                                     | 
+[22:58:47]  ======================================= 
+[22:58:47]  
+[22:58:50] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[22:58:50] [MYSQL] Baza de date, s-a conectat.
+[22:58:50] Number of vehicle models: 0
+[22:58:50] Exam Checkpoints: 9 [From Database]
+[22:58:50] Jobs: 5 [From Database]
+[22:58:50] Businesses: 4 [From Database]
+[22:58:50] Houses: 0 [From Database]
+[22:58:50] Dealership models: 89 [From Database]
+[22:58:50] Factions: 10 [From Database]
+[22:58:50] Turfs: 43 [From Database]
+[22:58:50] Faction Safes: 0 [From Database]
+[22:58:50] Clans: 1 [From Database]
+[22:58:52] 61:01.38
+[22:58:53] 61:01.37
+[22:58:55] 61:01.35
+[22:58:56] 61:01.34
+[22:58:57] 61:01.33
+[22:58:58] 61:01.32
+[22:58:59] 61:01.31
+[22:59:00] 61:01.30
+[22:59:01] 61:01.29
+[22:59:02] 61:01.28
+[22:59:03] [connection] 127.0.0.1:64564 requests connection cookie.
+[22:59:03] 61:01.27
+[22:59:04] [connection] incoming connection: 127.0.0.1:64564 id: 0
+[22:59:04] [join] mr.bunny has joined the server (0:127.0.0.1)
+[22:59:05] 61:01.25
+[22:59:06] 61:01.24
+[22:59:07] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[22:59:07] [ACCOUNT] mr.bunny loaded 20 vehicles
+[22:59:07] 61:01.23
+[22:59:08] 61:01.22
+[22:59:09] 61:01.21
+[22:59:10] 61:01.20
+[22:59:11] 61:01.19
+[22:59:12] 61:01.18
+[22:59:13] 61:01.17
+[22:59:14] 61:01.16
+[22:59:16] 61:01.14
+[22:59:17] 61:01.13
+[22:59:18] 61:01.12
+[22:59:19] 61:01.11
+[22:59:20] 61:01.10
+[22:59:21] 61:01.9
+[22:59:22] 61:01.8
+[22:59:23] 61:01.7
+[22:59:24] 61:01.6
+[22:59:25] 61:01.5
+[22:59:27] 61:01.3
+[22:59:28] 61:01.2
+[22:59:29] 61:01.1
+[22:59:30] 61:01.0
+[22:59:31] 60:00.59
+[22:59:32] 60:00.58
+[22:59:33] 60:00.57
+[22:59:34] 60:00.56
+[22:59:35] 60:00.55
+[22:59:37] 60:00.53
+[22:59:38] 60:00.52
+[22:59:39] 60:00.51
+[22:59:40] 60:00.50
+[22:59:41] 60:00.49
+[22:59:42] 60:00.48
+[22:59:43] 60:00.47
+[22:59:44] 60:00.46
+[22:59:45] 60:00.45
+[22:59:46] 60:00.44
+[22:59:48] 60:00.42
+[22:59:49] 60:00.41
+[22:59:50] 60:00.40
+[22:59:51] 60:00.39
+[22:59:52] 60:00.38
+[22:59:53] 60:00.37
+[22:59:54] 60:00.36
+[22:59:55] 60:00.35
+[22:59:56] 60:00.34
+[22:59:58] 60:00.32
+[22:59:59] 60:00.31
+[23:00:00] 60:00.30
+[23:00:01] 60:00.29
+[23:00:02] 60:00.28
+[23:00:03] 60:00.27
+[23:00:04] 60:00.26
+[23:00:05] 60:00.25
+[23:00:06] 60:00.24
+[23:00:07] 60:00.23
+[23:00:09] 60:00.21
+[23:00:10] 60:00.20
+[23:00:11] 60:00.19
+[23:00:12] 60:00.18
+[23:00:13] 60:00.17
+[23:00:14] 60:00.16
+[23:00:15] 60:00.15
+[23:00:16] 60:00.14
+[23:00:17] 60:00.13
+[23:00:18] 60:00.12
+[23:00:19] 23:00
+[23:00:19] 10.05.2021
+[23:00:20] 60:00.10
+[23:00:21] 60:00.9
+[23:00:22] 60:00.8
+[23:00:23] 60:00.7
+[23:00:24] 60:00.6
+[23:00:25] 60:00.5
+[23:00:26] 60:00.4
+[23:00:27] 60:00.3
+[23:00:28] 60:00.2
+[23:00:30] 00:00
+[23:00:31] 59:59
+[23:00:32] 59:58
+[23:00:33] 59:57
+[23:00:34] 59:56
+[23:00:35] 59:55
+[23:00:36] 59:54
+[23:00:37] 59:53
+[23:00:38] 59:52
+[23:00:39] 59:51
+[23:00:41] 59:49
+[23:00:42] 59:48
+[23:00:43] 59:47
+[23:00:44] 59:46
+[23:00:45] 59:45
+[23:00:46] 59:44
+[23:00:47] 59:43
+[23:00:48] 59:42
+[23:00:50] 59:40
+[23:00:51] 59:39
+[23:00:52] 59:38
+[23:00:53] 59:37
+[23:00:54] 59:36
+[23:00:55] 59:35
+[23:00:56] 59:34
+[23:00:57] 59:33
+[23:00:59] 59:31
+[23:01:00] 59:30
+[23:01:01] 59:29
+[23:01:02] 59:28
+[23:01:03] 59:27
+[23:01:04] 59:26
+[23:01:05] 59:25
+[23:01:06] 59:24
+[23:01:08] 59:22
+[23:01:09] 59:21
+[23:01:10] 59:20
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[23:01:43] filterscripts = ""  (string)
+[23:01:43] 
+[23:01:43] Server Plugins
+[23:01:43] --------------
+[23:01:43]  Loading plugin: crashdetect
+[23:01:43]   CrashDetect plugin 4.19.4
+[23:01:43]   Loaded.
+[23:01:43]  Loading plugin: pawncmd
+[23:01:43] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[23:01:43]   Loaded.
+[23:01:43]  Loading plugin: sscanf
+[23:01:43] 
+
+[23:01:43]  ===============================
+
+[23:01:43]       sscanf plugin loaded.     
+
+[23:01:43]          Version:  2.8.3        
+
+[23:01:43]   (c) 2018 Alex "Y_Less" Cole  
+
+[23:01:43]  ===============================
+
+[23:01:43]   Loaded.
+[23:01:43]  Loading plugin: streamer
+[23:01:43] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[23:01:43]   Loaded.
+[23:01:43]  Loading plugin: mysql
+[23:01:43]  >> plugin.mysql: R41-4 successfully loaded.
+[23:01:43]   Loaded.
+[23:01:43]  Loaded 5 plugins.
+
+[23:01:43] 
+[23:01:43] Filterscripts
+[23:01:43] ---------------
+[23:01:43]   Loaded 0 filterscripts.
+
+[23:01:43]  
+[23:01:43]  
+[23:01:43]  
+[23:01:43]  ======================================= 
+[23:01:43]  |                                     | 
+[23:01:43]  |        YSI version 4.00.0001        | 
+[23:01:43]  |        By Alex "Y_Less" Cole        | 
+[23:01:43]  |                                     | 
+[23:01:43]  ======================================= 
+[23:01:43]  
+[23:01:46] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[23:01:46] [MYSQL] Baza de date, s-a conectat.
+[23:01:46] Number of vehicle models: 0
+[23:01:46] Exam Checkpoints: 9 [From Database]
+[23:01:46] Jobs: 5 [From Database]
+[23:01:46] Businesses: 4 [From Database]
+[23:01:46] Houses: 0 [From Database]
+[23:01:46] Dealership models: 89 [From Database]
+[23:01:46] Factions: 10 [From Database]
+[23:01:46] Turfs: 43 [From Database]
+[23:01:46] Faction Safes: 0 [From Database]
+[23:01:46] Clans: 1 [From Database]
+[23:01:48] 60:00.8
+[23:01:49] 60:00.7
+[23:01:50] 60:00.6
+[23:01:52] 60:00.4
+[23:01:53] 60:00.3
+[23:01:54] 60:00.2
+[23:01:55] 60:00.1
+[23:01:56] 00:00
+[23:01:56] [connection] 127.0.0.1:57151 requests connection cookie.
+[23:01:57] [connection] incoming connection: 127.0.0.1:57151 id: 0
+[23:01:57] 59:59
+[23:01:57] [join] mr.bunny has joined the server (0:127.0.0.1)
+[23:01:58] 59:58
+[23:01:59] 59:57
+[23:02:01] 59:55
+[23:02:02] 59:54
+[23:02:03] 59:53
+[23:02:04] 59:52
+[23:02:05] 59:51
+[23:02:06] 59:50
+[23:02:07] 59:49
+[23:02:08] 59:48
+[23:02:09] 59:47
+[23:02:11] 59:45
+[23:02:12] 59:44
+[23:02:13] 59:43
+[23:02:14] 59:42
+[23:02:15] 59:41
+[23:02:16] 59:40
+[23:02:17] 59:39
+[23:02:18] 59:38
+[23:02:20] 59:36
+[23:02:21] 59:35
+[23:02:22] 59:34
+[23:02:23] 59:33
+[23:02:24] 59:32
+[23:02:25] 59:31
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[23:02:30] filterscripts = ""  (string)
+[23:02:30] 
+[23:02:30] Server Plugins
+[23:02:30] --------------
+[23:02:30]  Loading plugin: crashdetect
+[23:02:30]   CrashDetect plugin 4.19.4
+[23:02:30]   Loaded.
+[23:02:30]  Loading plugin: pawncmd
+[23:02:30] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[23:02:30]   Loaded.
+[23:02:30]  Loading plugin: sscanf
+[23:02:30] 
+
+[23:02:30]  ===============================
+
+[23:02:30]       sscanf plugin loaded.     
+
+[23:02:30]          Version:  2.8.3        
+
+[23:02:30]   (c) 2018 Alex "Y_Less" Cole  
+
+[23:02:30]  ===============================
+
+[23:02:30]   Loaded.
+[23:02:30]  Loading plugin: streamer
+[23:02:30] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[23:02:30]   Loaded.
+[23:02:30]  Loading plugin: mysql
+[23:02:30]  >> plugin.mysql: R41-4 successfully loaded.
+[23:02:30]   Loaded.
+[23:02:30]  Loaded 5 plugins.
+
+[23:02:30] 
+[23:02:30] Filterscripts
+[23:02:30] ---------------
+[23:02:30]   Loaded 0 filterscripts.
+
+[23:02:30]  
+[23:02:30]  
+[23:02:30]  
+[23:02:30]  ======================================= 
+[23:02:30]  |                                     | 
+[23:02:30]  |        YSI version 4.00.0001        | 
+[23:02:30]  |        By Alex "Y_Less" Cole        | 
+[23:02:30]  |                                     | 
+[23:02:30]  ======================================= 
+[23:02:30]  
+[23:02:34] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[23:02:34] [MYSQL] Baza de date, s-a conectat.
+[23:02:34] Number of vehicle models: 0
+[23:02:34] Exam Checkpoints: 9 [From Database]
+[23:02:34] Jobs: 5 [From Database]
+[23:02:34] Businesses: 4 [From Database]
+[23:02:34] Houses: 0 [From Database]
+[23:02:34] Dealership models: 89 [From Database]
+[23:02:34] Factions: 10 [From Database]
+[23:02:34] Turfs: 43 [From Database]
+[23:02:34] Faction Safes: 0 [From Database]
+[23:02:34] Clans: 1 [From Database]
+[23:02:36] 60:00.8
+[23:02:37] 60:00.7
+[23:02:38] 60:00.6
+[23:02:39] 60:00.5
+[23:02:40] 60:00.4
+[23:02:41] 60:00.3
+[23:02:42] 60:00.2
+[23:02:42] [connection] 127.0.0.1:57154 requests connection cookie.
+[23:02:43] 60:00.1
+[23:02:43] [connection] incoming connection: 127.0.0.1:57154 id: 0
+[23:02:44] [join] mr.bunny has joined the server (0:127.0.0.1)
+[23:02:45] 59:59
+[23:02:46] 59:58
+[23:02:47] 59:57
+[23:02:48] 59:56
+[23:02:49] 59:55
+[23:02:50] 59:54
+[23:02:51] 59:53
+[23:02:52] 59:52
+[23:02:53] 59:51
+[23:02:55] 59:49
+[23:02:56] 59:48
+[23:02:57] 59:47
+[23:02:58] 59:46
+[23:02:59] 59:45
+[23:03:00] 59:44
+[23:03:00] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[23:03:00] [ACCOUNT] mr.bunny loaded 20 vehicles
+[23:03:01] 59:43
+[23:03:02] 59:42
+[23:03:03] 59:41
+[23:03:05] 59:39
+[23:03:06] 59:38
+[23:03:07] 59:37
+[23:03:08] 59:36
+[23:03:08] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[23:03:09] 59:35
+[23:03:10] 59:34
+[23:03:11] 59:33
+[23:03:12] 59:32
+[23:03:13] 59:31
+[23:03:14] 59:30
+[23:03:16] 59:28
+[23:03:17] 59:27
+[23:03:18] 59:26
+[23:03:19] 59:25
+[23:03:20] 59:24
+[23:03:21] 59:23
+[23:03:22] 59:22
+[23:03:23] 59:21
+[23:03:24] 59:20
+[23:03:25] 59:19
+[23:03:27] 59:17
+[23:03:28] 59:16
+[23:03:29] 59:15
+[23:03:30] 59:14
+[23:03:31] 59:13
+[23:03:32] 59:12
+[23:03:33] 59:11
+[23:03:34] 59:10
+[23:03:35] 59:09
+[23:03:36] 59:08
+[23:03:38] 59:06
+[23:03:39] 59:05
+[23:03:40] 59:04
+[23:03:40] 01:58
+[23:03:41] 59:03
+[23:03:41] 01:57
+[23:03:42] 59:02
+[23:03:43] 01:55
+[23:03:43] 59:01
+[23:03:44] 59:00
+[23:03:45] 01:53
+[23:03:45] 58:59
+[23:03:46] 58:58
+[23:03:48] 58:56
+[23:03:49] 58:55
+[23:03:50] 58:54
+[23:03:51] 58:53
+[23:03:52] 58:52
+[23:03:53] 58:51
+[23:03:54] 58:50
+[23:03:55] 58:49
+[23:03:57] 58:47
+[23:03:58] 58:46
+[23:03:59] 58:45
+[23:04:00] 58:44
+[23:04:01] 58:43
+[23:04:02] 58:42
+[23:04:03] 23:04
+[23:04:03] 10.05.2021
+[23:04:03] 58:41
+[23:04:04] 58:40
+[23:04:05] 58:39
+[23:04:07] 58:37
+[23:04:08] 58:36
+[23:04:09] 58:35
+[23:04:10] 58:34
+[23:04:11] 58:33
+[23:04:12] 58:32
+[23:04:13] 58:31
+[23:04:14] 58:30
+[23:04:15] 58:29
+[23:04:17] 58:27
+[23:04:18] 58:26
+[23:04:19] 58:25
+[23:04:20] 58:24
+[23:04:21] 58:23
+[23:04:22] 58:22
+[23:04:23] 58:21
+[23:04:24] 58:20
+[23:04:25] 58:19
+[23:04:27] 58:17
+[23:04:28] 58:16
+[23:04:29] 58:15
+[23:04:30] 58:14
+[23:04:31] 58:13
+[23:04:32] 58:12
+[23:04:33] 58:11
+[23:04:34] 58:10
+[23:04:35] 58:09
+[23:04:37] 58:07
+[23:04:38] 58:06
+[23:04:39] 58:05
+[23:04:40] 58:04
+[23:04:41] 58:03
+[23:04:42] 58:02
+[23:04:43] 58:01
+[23:04:44] 58:00
+[23:04:46] 57:58
+[23:04:47] 57:57
+[23:04:48] 57:56
+[23:04:49] 57:55
+[23:04:50] 57:54
+[23:04:51] 57:53
+[23:04:52] 57:52
+[23:04:53] 57:51
+[23:04:54] 57:50
+[23:04:56] 57:48
+[23:04:57] 57:47
+[23:04:58] 57:46
+[23:04:59] 57:45
+[23:05:00] 57:44
+[23:05:01] 57:43
+[23:05:02] 57:42
+[23:05:03] 57:41
+[23:05:05] 57:39
+[23:05:06] 57:38
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[23:05:13] filterscripts = ""  (string)
+[23:05:13] 
+[23:05:13] Server Plugins
+[23:05:13] --------------
+[23:05:13]  Loading plugin: crashdetect
+[23:05:13]   CrashDetect plugin 4.19.4
+[23:05:13]   Loaded.
+[23:05:13]  Loading plugin: pawncmd
+[23:05:13] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[23:05:13]   Loaded.
+[23:05:13]  Loading plugin: sscanf
+[23:05:13] 
+
+[23:05:13]  ===============================
+
+[23:05:13]       sscanf plugin loaded.     
+
+[23:05:13]          Version:  2.8.3        
+
+[23:05:13]   (c) 2018 Alex "Y_Less" Cole  
+
+[23:05:13]  ===============================
+
+[23:05:13]   Loaded.
+[23:05:13]  Loading plugin: streamer
+[23:05:13] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[23:05:13]   Loaded.
+[23:05:13]  Loading plugin: mysql
+[23:05:13]  >> plugin.mysql: R41-4 successfully loaded.
+[23:05:13]   Loaded.
+[23:05:13]  Loaded 5 plugins.
+
+[23:05:13] 
+[23:05:13] Filterscripts
+[23:05:13] ---------------
+[23:05:13]   Loaded 0 filterscripts.
+
+[23:05:13]  
+[23:05:13]  
+[23:05:13]  
+[23:05:13]  ======================================= 
+[23:05:13]  |                                     | 
+[23:05:13]  |        YSI version 4.00.0001        | 
+[23:05:13]  |        By Alex "Y_Less" Cole        | 
+[23:05:13]  |                                     | 
+[23:05:13]  ======================================= 
+[23:05:13]  
+[23:05:17] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[23:05:17] [MYSQL] Baza de date, s-a conectat.
+[23:05:17] Number of vehicle models: 0
+[23:05:17] Exam Checkpoints: 9 [From Database]
+[23:05:17] Jobs: 5 [From Database]
+[23:05:17] Businesses: 4 [From Database]
+[23:05:17] Houses: 0 [From Database]
+[23:05:17] Dealership models: 89 [From Database]
+[23:05:17] Factions: 10 [From Database]
+[23:05:17] Turfs: 43 [From Database]
+[23:05:17] Faction Safes: 0 [From Database]
+[23:05:17] Clans: 1 [From Database]
+[23:05:30] [connection] 127.0.0.1:65219 requests connection cookie.
+[23:05:31] [connection] incoming connection: 127.0.0.1:65219 id: 0
+[23:05:31] [join] mr.bunny has joined the server (0:127.0.0.1)
+[23:05:34] [ACCOUNT] mr.bunny loaded 20 vehicles
+[23:06:45] 23:06
+[23:06:45] 10.05.2021
+[23:07:36] [part] mr.bunny has left the server (0:0)
+[23:07:52] 23:07
+[23:07:52] 10.05.2021
+[23:08:57] 23:08
+[23:08:57] 10.05.2021
+[23:10:02] 23:10
+[23:10:02] 10.05.2021
+[23:11:08] 23:11
+[23:11:08] 10.05.2021
+[23:12:13] 23:12
+[23:12:13] 10.05.2021
+[23:13:18] 23:13
+[23:13:18] 10.05.2021
+[23:14:23] 23:14
+[23:14:23] 10.05.2021
+[23:15:29] 23:15
+[23:15:29] 10.05.2021
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[23:16:26] filterscripts = ""  (string)
+[23:16:26] 
+[23:16:26] Server Plugins
+[23:16:26] --------------
+[23:16:26]  Loading plugin: crashdetect
+[23:16:26]   CrashDetect plugin 4.19.4
+[23:16:26]   Loaded.
+[23:16:26]  Loading plugin: pawncmd
+[23:16:26] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[23:16:26]   Loaded.
+[23:16:26]  Loading plugin: sscanf
+[23:16:26] 
+
+[23:16:26]  ===============================
+
+[23:16:26]       sscanf plugin loaded.     
+
+[23:16:26]          Version:  2.8.3        
+
+[23:16:26]   (c) 2018 Alex "Y_Less" Cole  
+
+[23:16:26]  ===============================
+
+[23:16:26]   Loaded.
+[23:16:26]  Loading plugin: streamer
+[23:16:26] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[23:16:26]   Loaded.
+[23:16:26]  Loading plugin: mysql
+[23:16:26]  >> plugin.mysql: R41-4 successfully loaded.
+[23:16:26]   Loaded.
+[23:16:26]  Loaded 5 plugins.
+
+[23:16:26] 
+[23:16:26] Filterscripts
+[23:16:26] ---------------
+[23:16:26]   Loaded 0 filterscripts.
+
+[23:16:26]  
+[23:16:26]  
+[23:16:26]  
+[23:16:26]  ======================================= 
+[23:16:26]  |                                     | 
+[23:16:26]  |        YSI version 4.00.0001        | 
+[23:16:26]  |        By Alex "Y_Less" Cole        | 
+[23:16:26]  |                                     | 
+[23:16:26]  ======================================= 
+[23:16:26]  
+[23:16:29] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[23:16:29] [MYSQL] Baza de date, s-a conectat.
+[23:16:29] Number of vehicle models: 0
+[23:16:29] Exam Checkpoints: 9 [From Database]
+[23:16:29] Jobs: 5 [From Database]
+[23:16:29] Businesses: 4 [From Database]
+[23:16:29] Houses: 0 [From Database]
+[23:16:29] Dealership models: 89 [From Database]
+[23:16:29] Factions: 10 [From Database]
+[23:16:29] Turfs: 43 [From Database]
+[23:16:29] Faction Safes: 0 [From Database]
+[23:16:29] Clans: 1 [From Database]
+[23:16:40] [connection] 127.0.0.1:50611 requests connection cookie.
+[23:16:41] [connection] incoming connection: 127.0.0.1:50611 id: 0
+[23:16:41] [join] mr.bunny has joined the server (0:127.0.0.1)
+[23:16:44] [ACCOUNT] mr.bunny loaded 20 vehicles
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[23:19:03] filterscripts = ""  (string)
+[23:19:03] 
+[23:19:03] Server Plugins
+[23:19:03] --------------
+[23:19:03]  Loading plugin: crashdetect
+[23:19:03]   CrashDetect plugin 4.19.4
+[23:19:03]   Loaded.
+[23:19:03]  Loading plugin: pawncmd
+[23:19:03] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[23:19:03]   Loaded.
+[23:19:03]  Loading plugin: sscanf
+[23:19:03] 
+
+[23:19:03]  ===============================
+
+[23:19:03]       sscanf plugin loaded.     
+
+[23:19:03]          Version:  2.8.3        
+
+[23:19:03]   (c) 2018 Alex "Y_Less" Cole  
+
+[23:19:03]  ===============================
+
+[23:19:03]   Loaded.
+[23:19:03]  Loading plugin: streamer
+[23:19:03] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[23:19:03]   Loaded.
+[23:19:03]  Loading plugin: mysql
+[23:19:03]  >> plugin.mysql: R41-4 successfully loaded.
+[23:19:03]   Loaded.
+[23:19:03]  Loaded 5 plugins.
+
+[23:19:03] 
+[23:19:03] Filterscripts
+[23:19:03] ---------------
+[23:19:03]   Loaded 0 filterscripts.
+
+[23:19:03]  
+[23:19:03]  
+[23:19:03]  
+[23:19:03]  ======================================= 
+[23:19:03]  |                                     | 
+[23:19:03]  |        YSI version 4.00.0001        | 
+[23:19:03]  |        By Alex "Y_Less" Cole        | 
+[23:19:03]  |                                     | 
+[23:19:03]  ======================================= 
+[23:19:03]  
+[23:19:07] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[23:19:07] [MYSQL] Baza de date, s-a conectat.
+[23:19:07] Number of vehicle models: 0
+[23:19:07] Exam Checkpoints: 9 [From Database]
+[23:19:07] Jobs: 5 [From Database]
+[23:19:07] Businesses: 4 [From Database]
+[23:19:07] Houses: 0 [From Database]
+[23:19:07] Dealership models: 89 [From Database]
+[23:19:07] Factions: 10 [From Database]
+[23:19:07] Turfs: 43 [From Database]
+[23:19:07] Faction Safes: 0 [From Database]
+[23:19:07] Clans: 1 [From Database]
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[23:19:42] filterscripts = ""  (string)
+[23:19:42] 
+[23:19:42] Server Plugins
+[23:19:42] --------------
+[23:19:42]  Loading plugin: crashdetect
+[23:19:42]   CrashDetect plugin 4.19.4
+[23:19:42]   Loaded.
+[23:19:42]  Loading plugin: pawncmd
+[23:19:42] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[23:19:42]   Loaded.
+[23:19:42]  Loading plugin: sscanf
+[23:19:42] 
+
+[23:19:42]  ===============================
+
+[23:19:42]       sscanf plugin loaded.     
+
+[23:19:42]          Version:  2.8.3        
+
+[23:19:42]   (c) 2018 Alex "Y_Less" Cole  
+
+[23:19:42]  ===============================
+
+[23:19:42]   Loaded.
+[23:19:42]  Loading plugin: streamer
+[23:19:42] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[23:19:42]   Loaded.
+[23:19:42]  Loading plugin: mysql
+[23:19:42]  >> plugin.mysql: R41-4 successfully loaded.
+[23:19:42]   Loaded.
+[23:19:42]  Loaded 5 plugins.
+
+[23:19:42] 
+[23:19:42] Filterscripts
+[23:19:42] ---------------
+[23:19:42]   Loaded 0 filterscripts.
+
+[23:19:42]  
+[23:19:42]  
+[23:19:42]  
+[23:19:42]  ======================================= 
+[23:19:42]  |                                     | 
+[23:19:42]  |        YSI version 4.00.0001        | 
+[23:19:42]  |        By Alex "Y_Less" Cole        | 
+[23:19:42]  |                                     | 
+[23:19:42]  ======================================= 
+[23:19:42]  
+[23:19:42] [connection] 127.0.0.1:64525 requests connection cookie.
+[23:19:45] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[23:19:45] [MYSQL] Baza de date, s-a conectat.
+[23:19:45] Number of vehicle models: 0
+[23:19:45] [connection] incoming connection: 127.0.0.1:64525 id: 0
+[23:19:45] [join] mr.bunny has joined the server (0:127.0.0.1)
+[23:19:45] Exam Checkpoints: 9 [From Database]
+[23:19:45] Jobs: 5 [From Database]
+[23:19:45] Businesses: 4 [From Database]
+[23:19:45] Houses: 0 [From Database]
+[23:19:45] Dealership models: 89 [From Database]
+[23:19:45] Factions: 10 [From Database]
+[23:19:45] Turfs: 43 [From Database]
+[23:19:45] Faction Safes: 0 [From Database]
+[23:19:45] Clans: 1 [From Database]
+[23:19:49] [ACCOUNT] mr.bunny loaded 20 vehicles
+[23:20:00] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[23:20:18] [part] mr.bunny has left the server (0:1)
+[23:20:29] [connection] 127.0.0.1:56579 requests connection cookie.
+[23:20:30] [connection] incoming connection: 127.0.0.1:56579 id: 0
+[23:20:30] [join] mr.bunny has joined the server (0:127.0.0.1)
+[23:20:35] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[23:20:35] [ACCOUNT] mr.bunny loaded 20 vehicles
+[23:23:48] [part] mr.bunny has left the server (0:1)
+[23:24:22] [connection] 127.0.0.1:50420 requests connection cookie.
+[23:24:23] [connection] incoming connection: 127.0.0.1:50420 id: 0
+[23:24:23] [join] mr.bunny has joined the server (0:127.0.0.1)
+[23:24:30] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[23:24:30] [ACCOUNT] mr.bunny loaded 20 vehicles
+[23:24:53] [part] mr.bunny has left the server (0:1)

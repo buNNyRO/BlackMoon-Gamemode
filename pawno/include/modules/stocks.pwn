@@ -425,16 +425,27 @@ stock playerTextDraws(playerid) {
 	PlayerTextDrawSetProportional(playerid, vehicleHud[19], 0);
 	PlayerTextDrawSetShadow(playerid, vehicleHud[19], 0);
 
-	playerNamePTD[playerid] = CreatePlayerTextDraw(playerid, 639.499511, 422.266052, "");
-	PlayerTextDrawLetterSize(playerid, playerNamePTD[playerid], 0.202001, 1.320000);
-	PlayerTextDrawAlignment(playerid, playerNamePTD[playerid], 3);
-	PlayerTextDrawColor(playerid, playerNamePTD[playerid], -1);
-	PlayerTextDrawSetShadow(playerid, playerNamePTD[playerid], 0);
-	PlayerTextDrawSetOutline(playerid, playerNamePTD[playerid], 1);
-	PlayerTextDrawBackgroundColor(playerid, playerNamePTD[playerid], 255);
-	PlayerTextDrawFont(playerid, playerNamePTD[playerid], 2);
-	PlayerTextDrawSetProportional(playerid, playerNamePTD[playerid], 1);
-	PlayerTextDrawSetShadow(playerid, playerNamePTD[playerid], 0);
+	serverHud[0] = CreatePlayerTextDraw(playerid, 638.145263, 433.010986, "RPG.BLACK~p~MOON~w~.RO");
+	PlayerTextDrawLetterSize(playerid, serverHud[0], 0.269333, 1.560178);
+	PlayerTextDrawAlignment(playerid, serverHud[0], 3);
+	PlayerTextDrawColor(playerid, serverHud[0], -1);
+	PlayerTextDrawSetShadow(playerid, serverHud[0], 0);
+	PlayerTextDrawSetOutline(playerid, serverHud[0], 1);
+	PlayerTextDrawBackgroundColor(playerid, serverHud[0], 59);
+	PlayerTextDrawFont(playerid, serverHud[0], 2);
+	PlayerTextDrawSetProportional(playerid, serverHud[0], 1);
+	PlayerTextDrawSetShadow(playerid, serverHud[0], 0);
+
+	serverHud[1] = CreatePlayerTextDraw(playerid, 3.289494, 418.393127, "100~n~~r~100~w~ / T~g~198~w~ / A~b~1002~w~ / Q~p~23");
+	PlayerTextDrawLetterSize(playerid, serverHud[1], 0.257777, 1.505422);
+	PlayerTextDrawAlignment(playerid, serverHud[1], 1);
+	PlayerTextDrawColor(playerid, serverHud[1], -65281);
+	PlayerTextDrawSetShadow(playerid, serverHud[1], 0);
+	PlayerTextDrawSetOutline(playerid, serverHud[1], 1);
+	PlayerTextDrawBackgroundColor(playerid, serverHud[1], 59);
+	PlayerTextDrawFont(playerid, serverHud[1], 2);
+	PlayerTextDrawSetProportional(playerid, serverHud[1], 1);
+	PlayerTextDrawSetShadow(playerid, serverHud[1], 0);
 
 	playerLevelPTD[playerid] = CreatePlayerTextDraw(playerid, 86.600028, 287.592864, "");
 	PlayerTextDrawLetterSize(playerid, playerLevelPTD[playerid], 0.159666, 1.131777);
@@ -563,7 +574,8 @@ stock updateLevelBar(playerid)
 
 stock destroyPlayerTextDraws(playerid)
 {
-	PlayerTextDrawDestroy(playerid, playerNamePTD[playerid]);
+	PlayerTextDrawDestroy(playerid, serverHud[0]);
+	PlayerTextDrawDestroy(playerid, serverHud[1]);
 	PlayerTextDrawDestroy(playerid, playerLevelPTD[playerid]);
 	PlayerTextDrawDestroy(playerid, serverDealerPTD[playerid][0]);
 	PlayerTextDrawDestroy(playerid, serverDealerPTD[playerid][1]);
@@ -577,38 +589,38 @@ stock destroyPlayerTextDraws(playerid)
 
 stock serverTextDraws()
 {
-	serverNameTD = TextDrawCreate(638.899658, 433.266723, "rpg.fromzero.ro");
-	TextDrawLetterSize(serverNameTD, 0.363000, 1.490000);
-	TextDrawAlignment(serverNameTD, 3);
-	TextDrawColor(serverNameTD, -1);
-	TextDrawSetShadow(serverNameTD, 0);
-	TextDrawSetOutline(serverNameTD, 1);
-	TextDrawBackgroundColor(serverNameTD, 255);
-	TextDrawFont(serverNameTD, 3);
-	TextDrawSetProportional(serverNameTD, 1);
-	TextDrawSetShadow(serverNameTD, 0);
+	ClockTD[0] = TextDrawCreate(544.358215, 19.871158, "~p~PAYDAY~w~ IN: 12:00");
+	TextDrawLetterSize(ClockTD[0], 0.174222, 1.127111);
+	TextDrawAlignment(ClockTD[0], 1);
+	TextDrawColor(ClockTD[0], -1);
+	TextDrawSetShadow(ClockTD[0], 0);
+	TextDrawSetOutline(ClockTD[0], 1);
+	TextDrawBackgroundColor(ClockTD[0], 59);
+	TextDrawFont(ClockTD[0], 2);
+	TextDrawSetProportional(ClockTD[0], 1);
+	TextDrawSetShadow(ClockTD[0], 0);
 
-	serverDateTD = TextDrawCreate(576.333557, 9.599999, "");
-	TextDrawLetterSize(serverDateTD, 0.355333, 1.467259);
-	TextDrawAlignment(serverDateTD, 2);
-	TextDrawColor(serverDateTD, -1);
-	TextDrawSetShadow(serverDateTD, 0);
-	TextDrawSetOutline(serverDateTD, 1);
-	TextDrawBackgroundColor(serverDateTD, 255);
-	TextDrawFont(serverDateTD, 3);
-	TextDrawSetProportional(serverDateTD, 1);
-	TextDrawSetShadow(serverDateTD, 0);
+	ClockTD[1] = TextDrawCreate(576.577941, 46.157867, "12.12.1212");
+	TextDrawLetterSize(ClockTD[1], 0.263999, 1.445689);
+	TextDrawAlignment(ClockTD[1], 2);
+	TextDrawColor(ClockTD[1], -1);
+	TextDrawSetShadow(ClockTD[1], 0);
+	TextDrawSetOutline(ClockTD[1], 1);
+	TextDrawBackgroundColor(ClockTD[1], 59);
+	TextDrawFont(ClockTD[1], 2);
+	TextDrawSetProportional(ClockTD[1], 1);
+	TextDrawSetShadow(ClockTD[1], 0);
 
-	serverInfoTD = TextDrawCreate(399.333038, 11.629631, "");
-	TextDrawLetterSize(serverInfoTD, 0.250666, 1.128592);
-	TextDrawAlignment(serverInfoTD, 2);
-	TextDrawColor(serverInfoTD, -1);
-	TextDrawSetShadow(serverInfoTD, 0);
-	TextDrawSetOutline(serverInfoTD, 1);
-	TextDrawBackgroundColor(serverInfoTD, 255);
-	TextDrawFont(serverInfoTD, 1);
-	TextDrawSetProportional(serverInfoTD, 1);
-	TextDrawSetShadow(serverInfoTD, 0);
+	ClockTD[2] = TextDrawCreate(577.011352, 26.313432, "24:00");
+	TextDrawLetterSize(ClockTD[2], 0.509777, 2.555733);
+	TextDrawAlignment(ClockTD[2], 2);
+	TextDrawColor(ClockTD[2], -1);
+	TextDrawSetShadow(ClockTD[2], 0);
+	TextDrawSetOutline(ClockTD[2], 1);
+	TextDrawBackgroundColor(ClockTD[2], 59);
+	TextDrawFont(ClockTD[2], 3);
+	TextDrawSetProportional(ClockTD[2], 1);
+	TextDrawSetShadow(ClockTD[2], 0);
 
 	serverDealerTD[0] = TextDrawCreate(319.866424, 316.933319, "box");
 	TextDrawLetterSize(serverDealerTD[0], 0.000000, 9.213327);
@@ -745,9 +757,7 @@ stock serverTextDraws()
 
 stock destroyServerTextDraws()
 {
-	TextDrawDestroy(serverNameTD);
-	TextDrawDestroy(serverDateTD);
-	TextDrawDestroy(serverInfoTD);
+	for(new i = 0; i < sizeof ClockTD; i++) TextDrawDestroy(ClockTD[i]);
 	for(new i = 0; i < 8; i++) TextDrawDestroy(serverDealerTD[i]);
 	return true;
 }
@@ -896,8 +906,10 @@ stock sendPlayerError(playerid, const text[], va_args<>) {
 }
 
 stock secinmin(secunde) {
-	if(secunde < 60) return secunde;
-	else return secunde = secunde/60;
+	new hour = secunde / 60, minutes = secunde / 60 % 60, seconds = secunde % 60, secs[10];
+	if(secunde >= 3600) format(secs, sizeof secs, "%02d:%02d.%d", hour, minutes, seconds);
+	else format(secs, sizeof secs, "%02d:%02d", minutes, seconds);
+	return secs;
 }
 
 stock sendPlayerSyntax(playerid, const text[], va_args<>) {

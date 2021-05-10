@@ -16,7 +16,7 @@
 // B::::::::::::::::B  l::::::l a::::::::::aa:::a  cc:::::::::::::::ck::::::k   k:::::k M::::::M               M::::::M oo:::::::::::oo  oo:::::::::::oo   n::::n    n::::n//
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define MYSQL 1 // 0 - local | 1 - host
+#define MYSQL 0 // 0 - local | 1 - host
 
 #include <a_samp>
 #include <a_zones>
@@ -99,6 +99,7 @@ public OnQueryError(errorid, const error[], const callback[], const query[], MyS
 
 public OnGameModeInit()
 {
+	PayDayTime = gettime()+3600;
 	MySQLLoad();
 
 	SetNameTagDrawDistance(20.0);
@@ -378,7 +379,7 @@ public OnPlayerText(playerid, text[]) {
 		return 0;
 	}
 	if(playerInfo[playerid][pMute] > gettime()) {
-		SCMf(playerid, COLOR_LIGHTRED, "[ERROR] {FFFFFF}Ai mute pentru inca %d %s.", secinmin(playerInfo[playerid][pMute]-gettime()), (playerInfo[playerid][pMute]-gettime() > 60 ? "minute" : "secunde"));
+		SCMf(playerid, COLOR_LIGHTRED, "[ERROR] {FFFFFF}Ai mute pentru inca %s.", secinmin(playerInfo[playerid][pMute]-gettime()));
 		return 0;
 	}
 	if(playerInfo[playerid][pTalkingLive] != -1) {

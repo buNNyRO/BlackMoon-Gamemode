@@ -228,7 +228,9 @@ function onPlayerLogin(playerid)
 		Iter_Add(ServerAdmins, playerid);
 		Iter_Add(ServerStaff, playerid);
 		AllowPlayerTeleport(playerid, 1);
-		TextDrawShowForPlayer(playerid, serverInfoTD);
+
+		PlayerTextDrawSetString(playerid, serverHud[1], "");
+		PlayerTextDrawShow(playerid, serverHud[1]);
 		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server (Total Staff: %d [%d admins, %d helpers]).", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
 	}
 
@@ -243,11 +245,19 @@ function onPlayerLogin(playerid)
 	PlayerNumber[playerInfo[playerid][pPhone]] = playerid;
 	Iter_Add(loggedPlayers, playerid);
 
-	va_PlayerTextDrawSetString(playerid, playerNamePTD[playerid], "%s ~R~(%d)", getName(playerid), playerid);
-	PlayerTextDrawShow(playerid, playerNamePTD[playerid]);
+	va_PlayerTextDrawSetString(playerid, serverHud[0], "%s/RPG.BLACK~p~MOON~w~.RO", getName(playerid));
+	PlayerTextDrawShow(playerid, serverHud[0]);
 
-	TextDrawShowForPlayer(playerid, serverDateTD);
-	TextDrawShowForPlayer(playerid, serverNameTD);
+	TextDrawShowForPlayer(playerid, ClockTD[0]);
+	TextDrawShowForPlayer(playerid, ClockTD[1]);
+	TextDrawShowForPlayer(playerid, ClockTD[2]);
+
+	new hour, minute, second, year, month, day;
+	gettime(hour, minute, second);
+	getdate(year, month, day);
+
+	TextDrawSetString(ClockTD[2], string_fast("%02d:%02d", hour, minute));
+	TextDrawSetString(ClockTD[1], string_fast("%02d.%02d.%d", day, month, year));
 
 	SetPlayerScore(playerid, playerInfo[playerid][pLevel]);
 	updatePlayer(playerid);

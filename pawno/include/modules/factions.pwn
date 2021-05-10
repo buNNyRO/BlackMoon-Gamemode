@@ -441,7 +441,7 @@ CMD:factions(playerid, params[]) {
 	if(!Iter_Count(ServerFactions)) return sendPlayerError(playerid, "Nu sunt factiuni disponibile pe server.");
 	gString[0] = (EOS);
 	foreach(new fid : ServerFactions) {
-		format(gString, sizeof(gString), "%s\n{FFFFFF}%s\t%s\t%d", string, factionName(fid), factionInfo[fid][fApps] ? "{4caf50}On" : "{f44336}Off", factionInfo[fid][fMinLevel]);
+		format(gString, sizeof(gString), "%s\n{FFFFFF}%s\t%s\t%d", gString, factionName(fid), factionInfo[fid][fApps] ? "{4caf50}On" : "{f44336}Off", factionInfo[fid][fMinLevel]);
 	}
 	Dialog_Show(playerid, NO_DIALOG, DIALOG_STYLE_TABLIST_HEADERS, "Server: Factions", gString, "Close", "");
 	return true;

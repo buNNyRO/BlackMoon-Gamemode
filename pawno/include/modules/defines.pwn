@@ -8,6 +8,7 @@
 #define SCMf 							va_SendClientMessage
 #define ResetMoneyBar    				ResetPlayerMoney
 #define UpdateMoneyBar   				GivePlayerMoney
+#define fast_string		   				string_fast
 #define SPECIAL_ACTION_PISSING   		68	
 
 #define MAX_EXAM_CHECKPOINTS 			20
