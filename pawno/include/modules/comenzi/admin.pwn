@@ -213,8 +213,8 @@ CMD:helperchat(playerid, params[])
 
 CMD:setadmin(playerid, params[])
 {
-	if(playerInfo[playerid][pAdmin] < 6)
-		return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
+	// if(playerInfo[playerid][pAdmin] < 6)
+		// return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 
 	extract params -> new player:userID, admin; else return sendPlayerSyntax(playerid, "/setadmin <name/id> <admin level (0 - 7)>");
 	

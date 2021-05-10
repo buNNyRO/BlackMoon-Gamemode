@@ -93,8 +93,7 @@ stock mutePlayer(playerid, adminid, minutes, const reason[])
 	}
 	
 	SCMf(playerid, COLOR_GREY, "* Ai primit mute %d minute de la administratorul %s.", minutes, adminName);
-	playerInfo[playerid][pMute] = (minutes * 60);
-	muteTime[playerid] = repeat TimerMute(playerid);
+	playerInfo[playerid][pMute] = gettime()+(minutes * 60);
 	update("UPDATE `server_users` SET `Mute` = '%d' WHERE `ID` = '%d'", (minutes * 60), playerInfo[playerid][pSQLID]);
 
 	if(!Iter_Contains(MutedPlayers, playerid))
@@ -890,29 +889,30 @@ stock getVehicleSpeed(vehicleid,mode = 1) {
     return floatround(((floatsqroot(((x*x)+(y*y)+(z*z)))*(!mode ? 105.0 : 170.0 )))*0.98);
 }
 
-stock sendPlayerError(playerid, const text[], va_args<>)
-{
-	gFast[0] = (EOS);
-	va_format(gFast, sizeof gFast, "[ERROR] {FFFFFF}%s", text, va_start<2>);
-	return SCM(playerid, COLOR_ERROR, gFast);
+stock sendPlayerError(playerid, const text[], va_args<>) {
+	gString[0] = (EOS);
+	va_format(gString, sizeof gString, "[ERROR] {FFFFFF}%s", text, va_start<2>);
+	return SCM(playerid, COLOR_ERROR, gString);
 }
 
-stock sendPlayerSyntax(playerid, const text[], va_args<>)
-{
-	gFast[0] = (EOS);
-	va_format(gFast, sizeof gFast, "Command: {FFFFFF}%s", text, va_start<2>);
-	return SCM(playerid, COLOR_SYNTAX, gFast);
+stock secinmin(secunde) {
+	if(secunde < 60) return secunde;
+	else return secunde = secunde/60;
 }
 
-stock va_PlayerTextDrawSetString(playerid, PlayerText:text, const string[], va_args<>)
-{
-	gFast[0] = (EOS);
-	va_format(gFast, sizeof gFast, string, va_start<3>);
-	return PlayerTextDrawSetString(playerid, text, gFast);
+stock sendPlayerSyntax(playerid, const text[], va_args<>) {
+	gString[0] = (EOS);
+	va_format(gString, sizeof gString, "Command: {FFFFFF}%s", text, va_start<2>);
+	return SCM(playerid, COLOR_SYNTAX, gString);
 }
 
-stock clearChat(playerid, lines = 20)
-{
+stock va_PlayerTextDrawSetString(playerid, PlayerText:text, const string[], va_args<>) {
+	gString[0] = (EOS);
+	va_format(gString, sizeof gString, string, va_start<3>);
+	return PlayerTextDrawSetString(playerid, text, gString);
+}
+
+stock clearChat(playerid, lines = 20) {
 	for(new i = 0; i < lines; i++) SCM(playerid, -1, "");
 	return true;
 }
