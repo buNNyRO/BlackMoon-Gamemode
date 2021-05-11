@@ -2,7 +2,7 @@
 // BBBBBBBBBBBBBBBBB   lllllll                                       kkkkkkkk           MMMMMMMM               MMMMMMMM                                                    //
 // B::::::::::::::::B  l:::::l                                       k::::::k           M:::::::M             M:::::::M                                                    //
 // B::::::BBBBBB:::::B l:::::l                                       k::::::k           M::::::::M           M::::::::M                                                    //
-// BB:::::B     B:::::Bl:::::l                                       k::::::k           M:::::::::M         M:::::::::M                                                    //
+// BB:::::B     B:::::Bl:::::l   secinmin                                    k::::::k           M:::::::::M         M:::::::::M                                                    //
 //   B::::B     B:::::B l::::l   aaaaaaaaaaaaa       cccccccccccccccc k:::::k    kkkkkkkM::::::::::M       M::::::::::M   ooooooooooo      ooooooooooo   nnnn  nnnnnnnn    //
 //   B::::B     B:::::B l::::l   a::::::::::::a    cc:::::::::::::::c k:::::k   k:::::k M:::::::::::M     M:::::::::::M oo:::::::::::oo  oo:::::::::::oo n:::nn::::::::nn  //
 //   B::::BBBBBB:::::B  l::::l   aaaaaaaaa:::::a  c:::::::::::::::::c k:::::k  k:::::k  M:::::::M::::M   M::::M:::::::Mo:::::::::::::::oo:::::::::::::::on::::::::::::::nn //
@@ -16,7 +16,7 @@
 // B::::::::::::::::B  l::::::l a::::::::::aa:::a  cc:::::::::::::::ck::::::k   k:::::k M::::::M               M::::::M oo:::::::::::oo  oo:::::::::::oo   n::::n    n::::n//
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define MYSQL 0 // 0 - local | 1 - host
+#define MYSQL 1 // 0 - local | 1 - host
 
 #include <a_samp>
 #include <a_zones>
@@ -54,6 +54,7 @@
 #include <modules\factions.pwn>
 #include <modules\safes.pwn>
 #include <modules\jobs.pwn>
+#include <modules\paintball.pwn>
 #include <modules\business.pwn>
 #include <modules\comenzi\helper.pwn>
 #include <modules\clans.pwn>
@@ -499,8 +500,8 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 				SetPlayerInterior(playerid, bizInfo[playerInfo[playerid][areaBizz]][bizInterior]);
 				SetPlayerVirtualWorld(playerid, bizInfo[playerInfo[playerid][areaBizz]][bizID]);
 				GivePlayerCash(playerid, 0, bizInfo[playerInfo[playerid][areaBizz]][bizFee]);
-				GameTextForPlayer(playerid, string_fast("~r~-$%d", bizInfo[playerInfo[playerid][areaBizz]][bizFee]), 1000, 1);
-				playerInfo[playerid][pinBusiness] = bizInfo[playerInfo[playerid][areaBizz]][bizID];
+				va_GameTextForPlayer(playerid, "~r~-$%d", bizInfo[playerInfo[playerid][areaBizz]][bizFee], 1000, 1);
+				playerInfo[playerid][pinBusiness] = playerInfo[playerid][areaBizz];
 				bizInfo[playerInfo[playerid][areaBizz]][bizBalance] += bizInfo[playerInfo[playerid][areaBizz]][bizFee];
 				update("UPDATE `server_business` SET `Balance`='%d' WHERE `ID`='%d' LIMIT 1",bizInfo[playerInfo[playerid][areaBizz]][bizBalance], playerInfo[playerid][areaBizz]);
 				switch(bizInfo[playerInfo[playerid][areaBizz]][bizType]) {
@@ -509,7 +510,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 						SCM(playerid, -1, "Welcome in the business, commands available: /buy.");
 						if(FishWeight[playerid]) {
 							new money = FishWeight[playerid] * 115;
-							SCMf(playerid, COLOR_GREY, "* Fish Notice: Ai vandut pestele , si ai castigat $%s.", formatNumber(money));
+							SCM(playerid, COLOR_GREY, string_fast("* Fish Notice: Ai vandut pestele , si ai castigat $%s.", formatNumber(money)));
 							FishWeight[playerid] = 0;
 							playerInfo[playerid][pFishTimes] ++;
 							if(playerInfo[playerid][pFishSkill] < 5) {
@@ -522,14 +523,16 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 							for(new m; m < 2; m++) {
 								if(playerInfo[playerid][pDailyMission][m] == 1) checkMission(playerid, m);
 							}
-							update("UPDATE `server_users` SET `Money`= '%d', `MStore` = '%d', `FishTimes` = '%d', `FishSkill` = '%d' WHERE `ID`='%d' LIMIT 1", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pFishTimes], playerInfo[playerid][pFishSkill], playerInfo[playerid][pSQLID]);
+							gQuery[0] = (EOS);
+							mysql_format(SQL, gQuery, sizeof(gQuery), "UPDATE `server_users` SET `Money`= '%d', `MStore` = '%d', `FishTimes` = '%d', `FishSkill` = '%d' WHERE `ID`='%d'", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pFishTimes], playerInfo[playerid][pFishSkill], playerInfo[playerid][pSQLID]);
+							mysql_tquery(SQL, gQuery);
 						}
 					}
 				}
 				playerInfo[playerid][areaBizz] = 0;
 				return true;
 	        }
-	        else if(playerInfo[playerid][pinBusiness] != 0 && IsPlayerInRangeOfPoint(playerid, 3.0, bizInfo[b][bizX], bizInfo[b][bizY], bizInfo[b][bizZ])) {
+	        else if(IsPlayerInRangeOfPoint(playerid, 3.0, bizInfo[b][bizX], bizInfo[b][bizY], bizInfo[b][bizZ])) {
 	        	SetPlayerPos(playerid, bizInfo[b][bizExtX], bizInfo[b][bizExtY], bizInfo[b][bizExtZ]);
 	            SetPlayerInterior(playerid, 0);
 	            SetPlayerVirtualWorld(playerid, 0);
@@ -544,11 +547,12 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 			SetPlayerPos(playerid, houseInfo[playerInfo[playerid][areaHouse]][hX], houseInfo[playerInfo[playerid][areaHouse]][hY], houseInfo[playerInfo[playerid][areaHouse]][hZ]);
 			SetPlayerInterior(playerid, houseInfo[playerInfo[playerid][areaHouse]][hInterior]);
 			SetPlayerVirtualWorld(playerid, houseInfo[playerInfo[playerid][areaHouse]][hID]);
-			playerInfo[playerid][pinHouse] = houseInfo[playerInfo[playerid][areaHouse]][hID];
-			SCM(playerid, COLOR_GREY, string_fast("* House Notice: Welcome to %s's house. Commands available: /eat, /sleep.", houseInfo[playerInfo[playerid][areaHouse]][hOwner]));
+			playerInfo[playerid][pinHouse] = playerInfo[playerid][areaHouse];
+			SCMf(playerid, COLOR_GREY, "* House Notice: Welcome to %s's house. Commands available: /eat, /sleep.", houseInfo[playerInfo[playerid][areaHouse]][hOwner]);
 			playerInfo[playerid][areaHouse] = 0;
+			return true;
 		}
-		else if(playerInfo[playerid][pinHouse] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, houseInfo[b][hX], houseInfo[b][hY], houseInfo[b][hZ])) {
+		else if(IsPlayerInRangeOfPoint(playerid, 3.5, houseInfo[b][hX], houseInfo[b][hY], houseInfo[b][hZ])) {
 			SetPlayerPos(playerid, houseInfo[b][hExtX], houseInfo[b][hExtY], houseInfo[b][hExtZ]);
 			SetPlayerInterior(playerid, 0);
 			SetPlayerVirtualWorld(playerid, 0);
@@ -811,7 +815,7 @@ public OnPlayerEnterCheckpoint(playerid)
 			playerInfo[playerid][pCheckpoint] = CHECKPOINT_NONE;
 			playerInfo[playerid][pCheckpointID] = -1;
 			DisablePlayerCheckpoint(playerid);		
-			SCM(playerid, COLOR_LIGHTRED, "* GPS Notice:{ffffff} Ai ajuns la locatia aleasa.");		
+			SCM(playerid, COLOR_SERVER, "* (GPS): {ffffff}Ai ajuns la locatia aleasa.");		
 		}
 	}
 	return true;

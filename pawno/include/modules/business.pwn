@@ -58,28 +58,28 @@ timer advertismentTimer[totalAds() * 60000](playerid) {
 
 function LoadBusinesses() {
 	if(!cache_num_rows()) return print("Businesses: 0 [From Database]");
-	for(new i = 0; i < cache_num_rows(); i++) {
+	for(new i = 1, j = cache_num_rows() + 1; i != j; i++) {
 		Iter_Add(ServerBusinesses, i);
 
-		cache_get_value_name(i, "Title", bizInfo[i][bizTitle], 32);
-		cache_get_value_name(i, "Description", bizInfo[i][bizDescription], 64);
-		cache_get_value_name(i, "Owner", bizInfo[i][bizOwner], 32);
-		cache_get_value_name_int(i, "ID", bizInfo[i][bizID]);
-		cache_get_value_name_float(i, "X", bizInfo[i][bizX]);
-		cache_get_value_name_float(i, "Y", bizInfo[i][bizY]);
-		cache_get_value_name_float(i, "Z", bizInfo[i][bizZ]);
-		cache_get_value_name_float(i, "ExtX", bizInfo[i][bizExtX]);
-		cache_get_value_name_float(i, "ExtY", bizInfo[i][bizExtY]);
-		cache_get_value_name_float(i, "ExtZ", bizInfo[i][bizExtZ]);
-		cache_get_value_name_int(i, "Fee", bizInfo[i][bizFee]);
-		cache_get_value_name_int(i, "Static", bizInfo[i][bizStatic]);
-		cache_get_value_name_int(i, "Type", bizInfo[i][bizType]);
-		cache_get_value_name_int(i, "Interior", bizInfo[i][bizInterior]);
-		cache_get_value_name_int(i, "Owned", bizInfo[i][bizOwned]);
-		cache_get_value_name_int(i, "Price", bizInfo[i][bizPrice]);
-		cache_get_value_name_int(i, "OwnerID", bizInfo[i][bizOwnerID]);
-		cache_get_value_name_int(i, "Locked", bizInfo[i][bizLocked]);
-		cache_get_value_name_int(i, "Balance", bizInfo[i][bizBalance]);
+		cache_get_value_name(i - 1, "Title", bizInfo[i][bizTitle], 32);
+		cache_get_value_name(i - 1, "Description", bizInfo[i][bizDescription], 64);
+		cache_get_value_name(i - 1, "Owner", bizInfo[i][bizOwner], 32);
+		cache_get_value_name_int(i - 1, "ID", bizInfo[i][bizID]);
+		cache_get_value_name_float(i - 1, "X", bizInfo[i][bizX]);
+		cache_get_value_name_float(i - 1, "Y", bizInfo[i][bizY]);
+		cache_get_value_name_float(i - 1, "Z", bizInfo[i][bizZ]);
+		cache_get_value_name_float(i - 1, "ExtX", bizInfo[i][bizExtX]);
+		cache_get_value_name_float(i - 1, "ExtY", bizInfo[i][bizExtY]);
+		cache_get_value_name_float(i - 1, "ExtZ", bizInfo[i][bizExtZ]);
+		cache_get_value_name_int(i - 1, "Fee", bizInfo[i][bizFee]);
+		cache_get_value_name_int(i - 1, "Static", bizInfo[i][bizStatic]);
+		cache_get_value_name_int(i - 1, "Type", bizInfo[i][bizType]);
+		cache_get_value_name_int(i - 1, "Interior", bizInfo[i][bizInterior]);
+		cache_get_value_name_int(i - 1, "Owned", bizInfo[i][bizOwned]);
+		cache_get_value_name_int(i - 1, "Price", bizInfo[i][bizPrice]);
+		cache_get_value_name_int(i - 1, "OwnerID", bizInfo[i][bizOwnerID]);
+		cache_get_value_name_int(i - 1, "Locked", bizInfo[i][bizLocked]);
+		cache_get_value_name_int(i - 1, "Balance", bizInfo[i][bizBalance]);
 
 		bizInfo[i][bizText] = CreateDynamic3DTextLabel(string_fast("Business ID: %d\nBusiness Title: %s\nBusiness Description: %s\nBusiness Owner: %s\nBusiness Price: $%s\nBusiness Fee: $%s", bizInfo[i][bizID], bizInfo[i][bizTitle], bizInfo[i][bizDescription], bizInfo[i][bizOwner], formatNumber(bizInfo[i][bizPrice]),formatNumber(bizInfo[i][bizFee])), -1, bizInfo[i][bizExtX],bizInfo[i][bizExtY],bizInfo[i][bizExtZ], 20.0, 0xFFFF, 0xFFFF, 0, 0, 0, -1, STREAMER_3D_TEXT_LABEL_SD);
 		bizInfo[i][bizPickup] = CreateDynamicPickup(1239, 23, bizInfo[i][bizExtX],bizInfo[i][bizExtY],bizInfo[i][bizExtZ], 0, 0, -1, STREAMER_PICKUP_SD);					
@@ -452,6 +452,7 @@ CMD:transfer(playerid, params[]) {
 }
 
 CMD:ad(playerid, params[]) {
+	if(strlen(playerInfo[playerid][pPhone]) == 0) return sendPlayerError(playerid, "Nu ai un telefon.");
 	if(AdTimer[playerid] != 0) return sendPlayerError(playerid, "Ai pus un anunt recent. Foloseste comanda /myad pentru a-l vedea.");
 	if(playerInfo[playerid][pMute] > 0) return sendPlayerError(playerid, "Nu pot folosi aceasta comanda deoarece ai mute.");
 	if(playerInfo[playerid][pLevel] < 3) return sendPlayerError(playerid, "Nu ai level 3+ pentru a folosi aceasta comanda.");
@@ -465,7 +466,7 @@ CMD:ad(playerid, params[]) {
 	if(IsPlayerInRangeOfPoint(playerid, 10, 1170.6370, -1489.7297, 22.7018)) {
 		if(!strlen(result)) return sendPlayerSyntax(playerid, "/ad <text>");
 		new payad = bizInfo[3][bizFee];
-		if(GetPlayerCash(playerid) < payad) return sendPlayerError(playerid, "Nu ai bani necesari pentru a da un ad. Ai folosit %d caractere si anuntul costa $%s.", offset, formatNumber(payad));
+		if(!PlayerMoney(playerid, payad)) return sendPlayerError(playerid, "Nu ai bani necesari pentru a da un ad. Ai folosit %d caractere si anuntul costa $%s.", offset, formatNumber(payad));
 		GivePlayerCash(playerid, 0, payad);
 		AdTimer[playerid] = totalads*60;
 		bizInfo[3][bizBalance] += payad;

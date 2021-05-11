@@ -140,7 +140,7 @@ hook OnPlayerEnterVehicle(playerid, vehicleid, ispassenger) {
 		slapPlayer(playerid);
 		RemovePlayerFromVehicle(playerid);
 	}
-	if(playerInfo[playerid][pFactionDuty] == 0 && vehicleFaction[vehicleid] != 0) {
+	if(playerInfo[playerid][pFaction] == 2 || playerInfo[playerid][pFaction] == 3 || playerInfo[playerid][pFaction] == 4 && playerInfo[playerid][pFactionDuty] == 0 && vehicleFaction[vehicleid] != 0) {
 		sendPlayerError(playerid, "Nu poti intra in vehiculele de factiune, deoarece nu esti la datorie.");
 		slapPlayer(playerid);
 		RemovePlayerFromVehicle(playerid);
@@ -440,8 +440,9 @@ stock sendFactionMessage(fid, color, const message[], va_args<>) {
 CMD:factions(playerid, params[]) {
 	if(!Iter_Count(ServerFactions)) return sendPlayerError(playerid, "Nu sunt factiuni disponibile pe server.");
 	gString[0] = (EOS);
+	strcat(gString, "Faction\tAplications\nMin. Level");
 	foreach(new fid : ServerFactions) {
-		format(gString, sizeof(gString), "%s\n{FFFFFF}%s\t%s\t%d", gString, factionName(fid), factionInfo[fid][fApps] ? "{4caf50}On" : "{f44336}Off", factionInfo[fid][fMinLevel]);
+		format(gString, sizeof(gString), "%s\n{FFFFFF}%s\t%s\t%d\n", gString, factionName(fid), factionInfo[fid][fApps] ? "{4caf50}On" : "{f44336}Off", factionInfo[fid][fMinLevel]);
 	}
 	Dialog_Show(playerid, NO_DIALOG, DIALOG_STYLE_TABLIST_HEADERS, "Server: Factions", gString, "Close", "");
 	return true;
@@ -609,15 +610,15 @@ CMD:heal(playerid, params[]) {
 	if(playerInfo[targetid][pHealth] >= 95.00) return sendPlayerError(playerid, "Player has enough health.");
 	if(playerInfo[targetid][pAFKSeconds] > 0) return sendPlayerError(playerid, "Player is AFK.");
 	SetPlayerHealthEx(targetid, 100.00);
-	GameTextForPlayer(targetid, string_fast("~r~-$%d", money), 10, 1);
-	GameTextForPlayer(playerid, string_fast("~g~+$%d", money), 10, 1);
+	va_GameTextForPlayer(targetid, "~r~-$%d", money, 10, 1);
+	va_GameTextForPlayer(playerid, "~g~+$%d", money, 10, 1);
 	GivePlayerCash(targetid, 0, money);
 	GivePlayerCash(playerid, 1, money);
 	addRaportPoint(playerid);
-	update("UPDATE `server_users` SET `Money` = '%d', `MStore` = '%d' WHERE `ID` = '%d'", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pSQLID]);
-	update("UPDATE `server_users` SET `Money` = '%d', `MStore` = '%d' WHERE `ID` = '%d'", MoneyMoney[targetid], StoreMoney[targetid], playerInfo[targetid][pSQLID]);
-	SCMf(playerid, -1, "{FF6347}(Paramedic): {FFFFFF}You healed %s for $%s.", getName(targetid), formatNumber(money));
-	SCMf(targetid, -1, "{FF6347}(Paramedic %s): {FFFFFF}You receoved health for $%s.", getName(playerid), formatNumber(money));
+	update("UPDATE `server_users` SET `Money` = '%d', `MStore` = '%d' WHERE `ID` = '%d' LIMIT 1", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pSQLID]);
+	update("UPDATE `server_users` SET `Money` = '%d', `MStore` = '%d' WHERE `ID` = '%d' LIMIT 1", MoneyMoney[targetid], StoreMoney[targetid], playerInfo[targetid][pSQLID]);
+	SCMf(playerid, COLOR_LIGHTRED, "{FF6347}(Paramedic): {FFFFFF}You healed %s for $%s.", getName(targetid), formatNumber(money));
+	SCMf(targetid, COLOR_LIGHTRED, "{FF6347}(Paramedic %s): {FFFFFF}You receoved health for $%s.", getName(playerid), formatNumber(money));
 	return true;
 }
 

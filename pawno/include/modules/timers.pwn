@@ -90,6 +90,10 @@ task Timers[1000]() {
         }
         mysql_tquery(SQL, "UPDATE `server_clans` SET `Days` = Days-1 WHERE `Days` > 0"); 		
 	}
+	if(CountTime > 0) {
+		CountTime --;
+		va_GameTextForAll("%d", 100, 3, CountTime);
+	}
 	foreach(new playerid : loggedPlayers) {
 		if(IsPlayerInRangeOfPoint(playerid, 1.0, playerInfo[playerid][pLastPosX], playerInfo[playerid][pLastPosY], playerInfo[playerid][pLastPosZ]) || IsPlayerPaused(playerid))
 		playerInfo[playerid][pAFKSeconds] ++;
