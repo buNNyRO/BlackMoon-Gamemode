@@ -226,19 +226,19 @@ CMD:setadmin(playerid, params[])
 	if(playerInfo[userID][pAdmin] == admin)
 		return sendPlayerError(playerid, "Jucatorul are deja acest nivel de admin.");
 
-	PlayerTextDrawHide(playerid, serverHud[1]);
-	if(admin) PlayerTextDrawShow(playerid, serverHud[1]);
+	PlayerTextDrawHide(userID, serverHud[1]);
+	if(admin) PlayerTextDrawShow(userID, serverHud[1]);
 
 	if(Iter_Contains(ServerAdmins, userID) && !admin) {
 		Iter_Remove(ServerAdmins, userID);
 		Iter_Remove(ServerStaff, userID);
-		AllowPlayerTeleport(playerid, 0);
+		AllowPlayerTeleport(userID, 0);
 	} 
 
 	if(!Iter_Contains(ServerAdmins, userID) && admin) {
 		Iter_Add(ServerAdmins, userID);
 		Iter_Add(ServerStaff, userID);
-		AllowPlayerTeleport(playerid, 1);
+		AllowPlayerTeleport(userID, 1);
 	}
 
 	playerInfo[userID][pAdmin] = admin;
