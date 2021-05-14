@@ -187,7 +187,7 @@ stock showLicenses(playerid, userID)
 }
 
 stock playerTextDraws(playerid) {
-	vehicleHud[0] = CreatePlayerTextDraw(playerid, 528.143859, 365.262207, "LD_CARD:cd1s");
+	vehicleHud[0] = CreatePlayerTextDraw(playerid, 528.143859, 365.662231, "LD_CARD:cd1s");
 	PlayerTextDrawLetterSize(playerid, vehicleHud[0], 0.000000, 0.000000);
 	PlayerTextDrawTextSize(playerid, vehicleHud[0], 28.000000, 47.000000);
 	PlayerTextDrawAlignment(playerid, vehicleHud[0], 1);
@@ -589,9 +589,10 @@ stock playerTextDraws(playerid) {
 
 stock updateLevelBar(playerid) {
 	new Float:level;
+	if(playerInfo[playerid][pLevel] <= 0) return 1;
 	if(float((playerInfo[playerid][pRespectPoints]*100)/(playerInfo[playerid][pLevel] * 3)) > 100) level = 100.0;
 	else level = float((playerInfo[playerid][pRespectPoints]*100)/(playerInfo[playerid][pLevel] * 3));
-	
+
 	PlayerTextDrawTextSize(playerid, levelBar[1], (1.000000)+(1.990000 * level), 8.000000);
 	va_PlayerTextDrawSetString(playerid, levelBar[2], "LEVEL %d ~p~(%d%s)", playerInfo[playerid][pLevel], (playerInfo[playerid][pRespectPoints]*100)/(playerInfo[playerid][pLevel] * 3), "%");
 	for(new i = 0; i < sizeof levelBar; i++) PlayerTextDrawShow(playerid, levelBar[i]);

@@ -16,7 +16,7 @@
 // B::::::::::::::::B  l::::::l a::::::::::aa:::a  cc:::::::::::::::ck::::::k   k:::::k M::::::M               M::::::M oo:::::::::::oo  oo:::::::::::oo   n::::n    n::::n//
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define MYSQL 0 // 0 - local | 1 - host
+#define MYSQL 1 // 0 - local | 1 - host
 
 #include <a_samp>
 #include <a_zones>
@@ -38,6 +38,8 @@
 #include <fly>
 #include <callbacks>
 #include <streamer>
+
+#include <discord>
 
 #include <modules\natives.pwn>
 #include <modules\defines.pwn>
@@ -95,6 +97,7 @@ public OnQueryError(errorid, const error[], const callback[], const query[], MyS
 	print("=========================================");
 	return true;
 }
+
 
 public OnGameModeInit()
 {
@@ -370,11 +373,10 @@ public OnPlayerDeath(playerid, killerid)
 	return true;
 }
 
-new sexxx[MAX_PLAYERS][144];
 public OnPlayerText(playerid, text[]) {
-	if(strmatch(sexxx[playerid], text)) return 0;
-	format(sexxx[playerid], 144, text);
 	if(!isPlayerLogged(playerid)) defer kickEx(playerid);
+	if(strmatch(Diley[playerid], text)) return 0;
+	format(Diley[playerid], 144, text);
 	if(faceReclama(text)) {
 		Reclama(playerid, text);
 		return 0;
@@ -387,6 +389,9 @@ public OnPlayerText(playerid, text[]) {
 		oocNews(COLOR_LIGHTGREEN, "* %s %s: %s", playerInfo[playerid][pFaction] == 6 ? "Reporter" : "Jucator", getName(playerid), text);
 		return 0;
 	}
+	if (_:MoonBot == 0) MoonBot = DCC_FindChannelById("842858866973737020");
+	DCC_SendChannelMessage(MoonBot, string_fast("**%s** spune: %s", getName(playerid), text));
+
 	sendNearbyMessage(playerid, COLOR_WHITE, 25.0, "%s spune: %s", getName(playerid), text); 
 	SetPlayerChatBubble(playerid, text, COLOR_WHITE, 25.0, 5000);
 	update("INSERT INTO `server_chat_logs` (PlayerName, PlayerID, ChatText) VALUES ('%s', '%d', '%s')", getName(playerid), playerInfo[playerid][pSQLID], string_fast("* (chat log): %s.", text));
@@ -876,6 +881,8 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 
 public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags) {
 	if(!isPlayerLogged(playerid)) defer kickEx(playerid);
+	if(DileyCMD[playerid] > gettime()) return SCMf(playerid, COLOR_SERVER, "* (Deelay): {ffffff}Poti folosi o comanda peste %d secunde.", DileyCMD[playerid]-gettime());
+	DileyCMD[playerid] = gettime()+3;
     if(result == -1) {
         SCMf(playerid, COLOR_SERVER, "* (/%s): {ffffff}Aceasta comanda nu exista pe server.", cmd);
         return 0; 
@@ -886,66 +893,66 @@ public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags) {
 
 function loadMaps() {
 	#include map/other
-	#include map/spawn
-	#include map/admin_house
-	#include map/CNN
-	#include map/hospital
-	#include map/demorgan
-	#include map/cont
-	#include map/waxta
-	#include map/lspd
-	#include map/avtoscool
-	#include map/ostalnoeb
-	#include map/ferma
-	#include map/mapping
-	#include map/bank
-	#include map/kazik
-	#include map/centerrinok
-	#include map/army_lv
-	#include map/armylvint
-	#include map/armySF
-	#include map/map
-	#include map/map1
-	#include map/map2
-	#include map/map3
-	#include map/map4
-	#include map/kpp
-	#include map/intaksioma
-	#include map/pirs
-	#include map/inter
-	#include map/meria
-	#include map/russianmafia
-	#include map/bayker
-	#include map/podval
-	#include map/newyearhouse1
-	#include map/newyearhouse2
-	#include map/newyearhouse_int
-	#include map/halloweenhouse1
-	#include map/halloweenhouse2
-	#include map/halloweenhouse_int
-	#include map/viphouse1
-	#include map/door
-	#include map/24_7
-	#include map/zapravka
-	#include map/arizonashow
-	#include map/parking
-	#include map/eventsobirateli
-	#include map/radio
-	#include map/vip_house_1
-	#include map/vip_house_2
-	#include map/vip_house_3
-	#include map/vip_house_4
-	#include map/vip_house_5
-	#include map/vip_house_6
-	#include map/vip_house_7
-	#include map/vip_house_8
-	#include map/vip_house_9
-	#include map/vip_house_10
-	#include map/newhouse
-	#include map/GarageInt1
-	#include map/GarageInt2
-	#include map/GarageInt3
-	#include map/GarageInt4
-	#include map/GarageInt5
-	#include map/GarageInt6
+	// #include map/spawn
+	// #include map/admin_house
+	// #include map/CNN
+	// #include map/hospital
+	// #include map/demorgan
+	// #include map/cont
+	// #include map/waxta
+	// #include map/lspd
+	// #include map/avtoscool
+	// #include map/ostalnoeb
+	// #include map/ferma
+	// #include map/mapping
+	// #include map/bank
+	// #include map/kazik
+	// #include map/centerrinok
+	// #include map/army_lv
+	// #include map/armylvint
+	// #include map/armySF
+	// #include map/map
+	// #include map/map1
+	// #include map/map2
+	// #include map/map3
+	// #include map/map4
+	// #include map/kpp
+	// #include map/intaksioma
+	// #include map/pirs
+	// #include map/inter
+	// #include map/meria
+	// #include map/russianmafia
+	// #include map/bayker
+	// #include map/podval
+	// #include map/newyearhouse1
+	// #include map/newyearhouse2
+	// #include map/newyearhouse_int
+	// #include map/halloweenhouse1
+	// #include map/halloweenhouse2
+	// #include map/halloweenhouse_int
+	// #include map/viphouse1
+	// #include map/door
+	// #include map/24_7
+	// #include map/zapravka
+	// #include map/arizonashow
+	// #include map/parking
+	// #include map/eventsobirateli
+	// #include map/radio
+	// #include map/vip_house_1
+	// #include map/vip_house_2
+	// #include map/vip_house_3
+	// #include map/vip_house_4
+	// #include map/vip_house_5
+	// #include map/vip_house_6
+	// #include map/vip_house_7
+	// #include map/vip_house_8
+	// #include map/vip_house_9
+	// #include map/vip_house_10
+	// #include map/newhouse
+	// #include map/GarageInt1
+	// #include map/GarageInt2
+	// #include map/GarageInt3
+	// #include map/GarageInt4
+	// #include map/GarageInt5
+	// #include map/GarageInt6
 }

@@ -1167,9 +1167,8 @@ CMD:findhouse(playerid, params[]) {
 }
 
 CMD:id(playerid, params[]) {
-	extract params -> new player:userID; else return sendPlayerSyntax(playerid, "/id <name/id>");
-	if(!isPlayerLogged(userID)) return sendPlayerError(playerid, "Acel jucator nu este logat.");
-	SCMf(playerid, -1, "* Nume: %s (%d) | Level: %d | Faction: %s", getName(userID), userID, playerInfo[playerid][pFaction] == 0 ? "None" : factionName(playerInfo[playerid][pFaction]));
-	SCMf(playerid, -1, "debug faction %s | %d faction %s faction name", playerInfo[playerid][pFaction] == 0 ? "None" : factionName(playerInfo[playerid][pFaction]), playerInfo[playerid][pFaction], factionName(playerInfo[playerid][pFaction]));
-	return true;
+    extract params -> new player:userID; else return sendPlayerSyntax(playerid, "/id <name/id>");
+    if(!isPlayerLogged(userID)) return sendPlayerError(playerid, "Acel jucator nu este logat.");
+    SCMf(playerid, -1, "* Nume: %s (%d) | Level: %d | Faction: %s | FPS: %d | Ping: %d", getName(userID), userID, playerInfo[userID][pFaction] > 0 ? factionName(playerInfo[userID][pFaction]) : "None", playerInfo[userID][pFPS], GetPlayerPing(userID));
+    return true;
 }

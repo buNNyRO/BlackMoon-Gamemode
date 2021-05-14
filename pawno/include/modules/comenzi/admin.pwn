@@ -366,6 +366,23 @@ CMD:adminsuspendlicense(playerid, params[])
 	return true;
 }
 
+CMD:ip(playerid, params[]) {
+	if(playerInfo[playerid][pAdmin] < 2)
+		return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");	
+	extract params -> new player:userID; else {
+		return sendPlayerSyntax(playerid, "/ip <name/id>");
+	}
+	SCM(playerid, -1, "------------------");
+	if(!isPlayerLogged(userID)) SCM(playerid, -1, "NOT LOGGED");	
+	new ip[100];
+	GetPlayerIp(userID, ip, sizeof ip);
+	SCMf(playerid, -1, "IP: %s", ip);
+	gpci(userID, ip, sizeof ip);
+	SCMf(playerid, -1, "HWID: %s", ip);
+	SCM(playerid, -1, "------------------");
+	return 1;
+}
+
 CMD:admingivelicense(playerid, params[])
 {
 	if(playerInfo[playerid][pAdmin] < 4)

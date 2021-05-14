@@ -11,6 +11,10 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
     Float: vehicle_fuel[MAX_VEHICLES],
     vehicle_personal[MAX_VEHICLES],
 
+    Diley[MAX_PLAYERS][144],
+    DileyCMD[MAX_PLAYERS],
+    DCC_Channel:MoonBot,
+
 	Iterator:ServerAdmins<MAX_PLAYERS>,
     Iterator:ServerHelpers<MAX_PLAYERS>,
     Iterator:ServerStaff<MAX_PLAYERS>,

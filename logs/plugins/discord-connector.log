@@ -1,0 +1,14 @@
+[05/14/21 23:13:59] [ERROR] Discord terminated websocket connection; reason: Disallowed intent(s). (4014)
+[05/14/21 23:13:59] [ERROR] Can't write to Discord websocket gateway: The I/O operation has been aborted because of either a thread exit or an application request (995)
+[05/14/21 23:14:23] [ERROR] DCC_SendChannelMessage: invalid channel id '0'
+[05/14/21 23:14:40] [ERROR] Can't write to Discord websocket gateway: The I/O operation has been aborted because of either a thread exit or an application request (995)
+[05/14/21 23:15:21] [ERROR] Discord terminated websocket connection; reason: Disallowed intent(s). (4014)
+[05/14/21 23:15:21] [ERROR] Can't write to Discord websocket gateway: The I/O operation has been aborted because of either a thread exit or an application request (995)
+[05/14/21 23:16:02] [ERROR] Can't write to Discord websocket gateway: The I/O operation has been aborted because of either a thread exit or an application request (995)
+[05/14/21 23:17:10] [ERROR] Can't write to Discord websocket gateway: The I/O operation has been aborted because of either a thread exit or an application request (995)
+[05/14/21 23:30:24] [ERROR] DCC_SendChannelMessage: could not prepare callback
+[05/14/21 23:30:47] [ERROR] DCC_SendChannelMessage: could not prepare callback
+[05/14/21 23:34:00] [ERROR] DCC_SendChannelMessage: could not prepare callback
+[05/14/21 23:34:55] [ERROR] Can't write to Discord websocket gateway: The I/O operation has been aborted because of either a thread exit or an application request (995)
+[05/14/21 23:38:52] [ERROR] Discord terminated websocket connection; reason:  (0)
+[05/14/21 23:38:52] [ERROR] Can't write to Discord websocket gateway: The I/O operation has been aborted because of either a thread exit or an application request (995)

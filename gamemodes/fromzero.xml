@@ -2554,6 +2554,12 @@
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="InsertCarDS"/>
 		</member>
+		<member name="F:Diley">
+			<referrer name="OnPlayerText"/>
+		</member>
+		<member name="F:DileyCMD">
+			<referrer name="OnPlayerCommandPerformed"/>
+		</member>
 		<member name="F:F@o">
 		</member>
 		<member name="F:FALSE">
@@ -3456,6 +3462,10 @@
 		<member name="F:MonthTimes">
 			<referrer name="TimestampToDate"/>
 			<referrer name="DateToTimestamp"/>
+		</member>
+		<member name="F:MoonBot">
+			<tagname value="DCC_Channel"/>
+			<referrer name="OnPlayerText"/>
 		</member>
 		<member name="F:NULL">
 			<referrer name="_@_y_inline_@_"/>
@@ -4783,6 +4793,7 @@
 			<referrer name="pc_cmd_sethelper"/>
 			<referrer name="pc_cmd_givemoney"/>
 			<referrer name="pc_cmd_adminsuspendlicense"/>
+			<referrer name="pc_cmd_ip"/>
 			<referrer name="pc_cmd_admingivelicense"/>
 			<referrer name="pc_cmd_admintakelicense"/>
 			<referrer name="pc_cmd_kick"/>
@@ -5061,9 +5072,6 @@
 			<referrer name="Timers"/>
 			<referrer name="pc_cmd_setadmin"/>
 			<referrer name="pc_cmd_acover"/>
-		</member>
-		<member name="F:sexxx">
-			<referrer name="OnPlayerText"/>
 		</member>
 		<member name="F:size_l">
 			<remarks>  <p>Because of the strange way we manipulate the stack, this function actually  gets called twice as often as you would expect.  Essentially, for this  (psudo-)loop:</p>  <code>  for (new i = iter_func(); Iter_YieldLoop(); )                              <br />  {                                                                          <br />  }  </code>  <p>The loop is entered and <c>iter_func()</c> is called.  This indirectly  calls <c>yield</c>, which returns to the call point of that function.  The  loop check is then entered and <c>Iter_YieldLoop()</c> is called.  Depending  on if <c>yield</c> was actually used, the main loop body is entered.  At the  end of that iteration, the loop check is run again and so  <c>Iter_YieldLoop()</c> is called again.</p>  <p>This is where it gets wierd!</p>  <p><c>Iter_YieldLoop()</c> does a stack copy and a jump in to the earlier  call to <c>iter_func</c>, whose return address is earlier in the code.  When  a <c>yield</c> is done again, that return is to the first part of the  <c>for</c> loop, which then instantly enters the loop check section and calls  <c>Iter_YieldLoop()</c> again (as a side-effect, saving the iterator value in  the loop variable).</p>  <p>So for <c>N</c> iterations of the loop, <c>Iter_YieldLoop()</c> is called  <c>2N + 1</c> times, and should be made aware of which phase of its calls it  is in.</p>  <p>This is, of course, made more complicated by nested loops, but that just  means we need to store the state on our own stack.</p>  </remarks> 
@@ -11970,7 +11978,6 @@
 		<member name="M:CreateObject" syntax="CreateObject(modelid, X, Y, Z, rX, rY, rZ, DrawDistance)">
 			<attribute name="native"/>
 			<referrer name="dialog_DIALOG_SVF"/>
-			<referrer name="loadMaps"/>
 			<param name="modelid">
 			</param>
 			<param name="X">
@@ -12036,6 +12043,196 @@
 			<param name="respawn_delay">
 			</param>
 			<param name="addsiren">
+			</param>
+		</member>
+		<member name="M:DCC_ClearBotActivity" syntax="DCC_ClearBotActivity()">
+			<stacksize value="3"/>
+			<dependency name="DCC_SetBotActivity"/>
+		</member>
+		<member name="M:DCC_ClearBotNickname" syntax="DCC_ClearBotNickname(guild)">
+			<stacksize value="4"/>
+			<dependency name="DCC_SetBotNickname"/>
+			<param name="guild">
+				<paraminfo>DCC_Guild </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_FindChannelById" syntax="DCC_FindChannelById(channel_id[])">
+			<tagname value="DCC_Channel"/>
+			<attribute name="native"/>
+			<referrer name="OnPlayerText"/>
+			<param name="channel_id">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_OnChannelCreate" syntax="DCC_OnChannelCreate(channel)">
+			<stacksize value="1"/>
+			<param name="channel">
+				<paraminfo>DCC_Channel </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_OnChannelDelete" syntax="DCC_OnChannelDelete(channel)">
+			<stacksize value="1"/>
+			<param name="channel">
+				<paraminfo>DCC_Channel </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_OnChannelUpdate" syntax="DCC_OnChannelUpdate(channel)">
+			<stacksize value="1"/>
+			<param name="channel">
+				<paraminfo>DCC_Channel </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_OnGuildCreate" syntax="DCC_OnGuildCreate(guild)">
+			<stacksize value="1"/>
+			<param name="guild">
+				<paraminfo>DCC_Guild </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_OnGuildDelete" syntax="DCC_OnGuildDelete(guild)">
+			<stacksize value="1"/>
+			<param name="guild">
+				<paraminfo>DCC_Guild </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_OnGuildMemberAdd" syntax="DCC_OnGuildMemberAdd(guild, user)">
+			<stacksize value="1"/>
+			<param name="guild">
+				<paraminfo>DCC_Guild </paraminfo>
+			</param>
+			<param name="user">
+				<paraminfo>DCC_User </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_OnGuildMemberRemove" syntax="DCC_OnGuildMemberRemove(guild, user)">
+			<stacksize value="1"/>
+			<param name="guild">
+				<paraminfo>DCC_Guild </paraminfo>
+			</param>
+			<param name="user">
+				<paraminfo>DCC_User </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_OnGuildMemberUpdate" syntax="DCC_OnGuildMemberUpdate(guild, user)">
+			<stacksize value="1"/>
+			<param name="guild">
+				<paraminfo>DCC_Guild </paraminfo>
+			</param>
+			<param name="user">
+				<paraminfo>DCC_User </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_OnGuildMemberVoiceUpdate" syntax="DCC_OnGuildMemberVoiceUpdate(guild, user, channel)">
+			<stacksize value="1"/>
+			<param name="guild">
+				<paraminfo>DCC_Guild </paraminfo>
+			</param>
+			<param name="user">
+				<paraminfo>DCC_User </paraminfo>
+			</param>
+			<param name="channel">
+				<paraminfo>DCC_Channel </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_OnGuildRoleCreate" syntax="DCC_OnGuildRoleCreate(guild, role)">
+			<stacksize value="1"/>
+			<param name="guild">
+				<paraminfo>DCC_Guild </paraminfo>
+			</param>
+			<param name="role">
+				<paraminfo>DCC_Role </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_OnGuildRoleDelete" syntax="DCC_OnGuildRoleDelete(guild, role)">
+			<stacksize value="1"/>
+			<param name="guild">
+				<paraminfo>DCC_Guild </paraminfo>
+			</param>
+			<param name="role">
+				<paraminfo>DCC_Role </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_OnGuildRoleUpdate" syntax="DCC_OnGuildRoleUpdate(guild, role)">
+			<stacksize value="1"/>
+			<param name="guild">
+				<paraminfo>DCC_Guild </paraminfo>
+			</param>
+			<param name="role">
+				<paraminfo>DCC_Role </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_OnGuildUpdate" syntax="DCC_OnGuildUpdate(guild)">
+			<stacksize value="1"/>
+			<param name="guild">
+				<paraminfo>DCC_Guild </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_OnMessageCreate" syntax="DCC_OnMessageCreate(message)">
+			<stacksize value="1"/>
+			<param name="message">
+				<paraminfo>DCC_Message </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_OnMessageDelete" syntax="DCC_OnMessageDelete(message)">
+			<stacksize value="1"/>
+			<param name="message">
+				<paraminfo>DCC_Message </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_OnMessageReaction" syntax="DCC_OnMessageReaction(message, reaction_user, emoji, reaction_type)">
+			<stacksize value="1"/>
+			<param name="message">
+				<paraminfo>DCC_Message </paraminfo>
+			</param>
+			<param name="reaction_user">
+				<paraminfo>DCC_User </paraminfo>
+			</param>
+			<param name="emoji">
+				<paraminfo>DCC_Emoji </paraminfo>
+			</param>
+			<param name="reaction_type">
+				<paraminfo>DCC_MessageReactionType </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_OnUserUpdate" syntax="DCC_OnUserUpdate(user)">
+			<stacksize value="1"/>
+			<param name="user">
+				<paraminfo>DCC_User </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_SendChannelMessage" syntax="DCC_SendChannelMessage(channel, message[], callback[], format[], ...)">
+			<attribute name="native"/>
+			<referrer name="OnPlayerText"/>
+			<param name="channel">
+				<paraminfo>DCC_Channel </paraminfo>
+			</param>
+			<param name="message">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="callback">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="format">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="...">
+				<paraminfo> {Float,_} </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_SetBotActivity" syntax="DCC_SetBotActivity(name[])">
+			<attribute name="native"/>
+			<referrer name="DCC_ClearBotActivity"/>
+			<param name="name">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:DCC_SetBotNickname" syntax="DCC_SetBotNickname(guild, nickname[])">
+			<attribute name="native"/>
+			<referrer name="DCC_ClearBotNickname"/>
+			<param name="guild">
+				<paraminfo>DCC_Guild </paraminfo>
+			</param>
+			<param name="nickname">
+				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
 		<member name="M:DateToTimestamp" syntax="DateToTimestamp(str[])">
@@ -14439,6 +14636,7 @@
 			<referrer name="OnPlayerConnect"/>
 			<referrer name="resetVars"/>
 			<referrer name="onPlayerLogin"/>
+			<referrer name="pc_cmd_ip"/>
 			<param name="playerid">
 			</param>
 			<param name="name">
@@ -14549,6 +14747,7 @@
 		<member name="M:GetPlayerPing" syntax="GetPlayerPing(playerid)">
 			<attribute name="native"/>
 			<referrer name="Timers"/>
+			<referrer name="pc_cmd_id"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -19651,9 +19850,11 @@
 		</member>
 		<member name="M:OnPlayerCommandPerformed" syntax="OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags)">
 			<attribute name="public"/>
-			<stacksize value="7"/>
+			<stacksize value="11"/>
+			<dependency name="DileyCMD"/>
 			<dependency name="I@"/>
 			<dependency name="J@"/>
+			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="kickEx_yT@"/>
 			<dependency name="va_SendClientMessage"/>
@@ -20465,8 +20666,12 @@
 		<member name="M:OnPlayerText" syntax="OnPlayerText(playerid, text[])">
 			<attribute name="public"/>
 			<stacksize value="4105"/>
+			<dependency name="DCC_FindChannelById"/>
+			<dependency name="DCC_SendChannelMessage"/>
+			<dependency name="Diley"/>
 			<dependency name="I@"/>
 			<dependency name="J@"/>
+			<dependency name="MoonBot"/>
 			<dependency name="Reclama"/>
 			<dependency name="SetPlayerChatBubble"/>
 			<dependency name="faceReclama"/>
@@ -20485,7 +20690,6 @@
 			<dependency name="secinmin"/>
 			<dependency name="secinmin"/>
 			<dependency name="sendNearbyMessage"/>
-			<dependency name="sexxx"/>
 			<dependency name="string_fast"/>
 			<dependency name="string_fast"/>
 			<dependency name="strmatch"/>
@@ -22390,6 +22594,7 @@
 			<referrer name="ExpirationReport"/>
 			<referrer name="pc_cmd_mutedplayers"/>
 			<referrer name="pc_cmd_adminsuspendlicense"/>
+			<referrer name="pc_cmd_ip"/>
 			<referrer name="pc_cmd_admingivelicense"/>
 			<referrer name="pc_cmd_admintakelicense"/>
 			<referrer name="pc_cmd_set"/>
@@ -22560,32 +22765,6 @@
 			<param name="materialcolor">
 			</param>
 		</member>
-		<member name="M:SetDynamicObjectMaterialText" syntax="SetDynamicObjectMaterialText(objectid, materialindex, text[], materialsize, fontface[], fontsize, bold, fontcolor, backcolor, textalignment)">
-			<attribute name="native"/>
-			<referrer name="loadMaps"/>
-			<param name="objectid">
-			</param>
-			<param name="materialindex">
-			</param>
-			<param name="text">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="materialsize">
-			</param>
-			<param name="fontface">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="fontsize">
-			</param>
-			<param name="bold">
-			</param>
-			<param name="fontcolor">
-			</param>
-			<param name="backcolor">
-			</param>
-			<param name="textalignment">
-			</param>
-		</member>
 		<member name="M:SetFrameLocal" syntax="SetFrameLocal(frm_addr, param, value)">
 			<stacksize value="1"/>
 			<param name="frm_addr">
@@ -22665,24 +22844,6 @@
 			<referrer name="CB_OnGameModeInit"/>
 			<param name="distance">
 				<paraminfo>Float </paraminfo>
-			</param>
-		</member>
-		<member name="M:SetObjectMaterial" syntax="SetObjectMaterial(objectid, materialindex, modelid, txdname[], texturename[], materialcolor)">
-			<attribute name="native"/>
-			<referrer name="loadMaps"/>
-			<param name="objectid">
-			</param>
-			<param name="materialindex">
-			</param>
-			<param name="modelid">
-			</param>
-			<param name="txdname">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="texturename">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="materialcolor">
 			</param>
 		</member>
 		<member name="M:SetObjectMaterialText" syntax="SetObjectMaterialText(objectid, text[], materialindex, materialsize, fontface[], fontsize, bold, fontcolor, backcolor, textalignment)">
@@ -28839,6 +29000,7 @@
 			<referrer name="OnPlayerText"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerStateChange"/>
+			<referrer name="OnPlayerCommandPerformed"/>
 			<param name="hour">
 				<paraminfo> &amp; </paraminfo>
 			</param>
@@ -28862,6 +29024,17 @@
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:gpci" syntax="gpci(playerid, serial[], len)">
+			<attribute name="native"/>
+			<referrer name="pc_cmd_ip"/>
+			<param name="playerid">
+			</param>
+			<param name="serial">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="len">
 			</param>
 		</member>
 		<member name="M:haveWeapons" syntax="haveWeapons(playerid)">
@@ -29029,6 +29202,7 @@
 			<referrer name="pc_cmd_sethelper"/>
 			<referrer name="pc_cmd_givemoney"/>
 			<referrer name="pc_cmd_adminsuspendlicense"/>
+			<referrer name="pc_cmd_ip"/>
 			<referrer name="pc_cmd_admingivelicense"/>
 			<referrer name="pc_cmd_admintakelicense"/>
 			<referrer name="pc_cmd_kick"/>
@@ -29239,15 +29413,12 @@
 		</member>
 		<member name="M:loadMaps" syntax="loadMaps()">
 			<attribute name="public"/>
-			<stacksize value="183"/>
+			<stacksize value="20"/>
 			<referrer name="CB_OnGameModeInit"/>
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="CreateDynamicObject"/>
 			<dependency name="CreateDynamicObjectEx"/>
-			<dependency name="CreateObject"/>
 			<dependency name="SetDynamicObjectMaterial"/>
-			<dependency name="SetDynamicObjectMaterialText"/>
-			<dependency name="SetObjectMaterial"/>
 			<dependency name="gates"/>
 		</member>
 		<member name="M:main" syntax="main()">
@@ -33946,10 +34117,12 @@
 		</member>
 		<member name="M:pc_cmd_id" syntax="pc_cmd_id(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="81"/>
+			<stacksize value="46"/>
+			<dependency name="GetPlayerPing"/>
 			<dependency name="factionName"/>
 			<dependency name="factionName"/>
 			<dependency name="isPlayerLogged"/>
+			<dependency name="pFPS"/>
 			<dependency name="pFaction"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
@@ -34030,6 +34203,25 @@
 			<dependency name="unformat"/>
 			<dependency name="va_SendClientMessage"/>
 			<dependency name="va_format"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:pc_cmd_ip" syntax="pc_cmd_ip(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="108"/>
+			<dependency name="GetPlayerIp"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="gpci"/>
+			<dependency name="isPlayerLogged"/>
+			<dependency name="pAdmin"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="sendPlayerSyntax"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -37951,6 +38143,7 @@
 			<referrer name="pc_cmd_sethelper"/>
 			<referrer name="pc_cmd_givemoney"/>
 			<referrer name="pc_cmd_adminsuspendlicense"/>
+			<referrer name="pc_cmd_ip"/>
 			<referrer name="pc_cmd_admingivelicense"/>
 			<referrer name="pc_cmd_admintakelicense"/>
 			<referrer name="pc_cmd_kick"/>
@@ -38195,6 +38388,7 @@
 			<referrer name="pc_cmd_sethelper"/>
 			<referrer name="pc_cmd_givemoney"/>
 			<referrer name="pc_cmd_adminsuspendlicense"/>
+			<referrer name="pc_cmd_ip"/>
 			<referrer name="pc_cmd_admingivelicense"/>
 			<referrer name="pc_cmd_admintakelicense"/>
 			<referrer name="pc_cmd_kick"/>
@@ -39197,6 +39391,7 @@
 			<referrer name="pc_cmd_sethelper"/>
 			<referrer name="pc_cmd_givemoney"/>
 			<referrer name="pc_cmd_adminsuspendlicense"/>
+			<referrer name="pc_cmd_ip"/>
 			<referrer name="pc_cmd_admingivelicense"/>
 			<referrer name="pc_cmd_admintakelicense"/>
 			<referrer name="pc_cmd_kick"/>
@@ -39686,6 +39881,7 @@
 			<referrer name="pc_cmd_sethelper"/>
 			<referrer name="pc_cmd_givemoney"/>
 			<referrer name="pc_cmd_adminsuspendlicense"/>
+			<referrer name="pc_cmd_ip"/>
 			<referrer name="pc_cmd_admingivelicense"/>
 			<referrer name="pc_cmd_admintakelicense"/>
 			<referrer name="pc_cmd_goto"/>
