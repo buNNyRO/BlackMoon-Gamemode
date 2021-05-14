@@ -107,8 +107,6 @@ stock Dialog_Open(playerid, function[], style, caption[], info[], button1[], but
 
 public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 
-	// if(acDialog[playerid] == -1) { SendClientMessageToAll(COLOR_MAROON, string_fast("(AdmBot){FFFFFF} %s has been kicked, reason: possible dialog-hack.", getName(playerid))); Kick(playerid); return 1; }
-	// acDialog[playerid] = -1;
 	static
 		s_Public = cellmax;
 

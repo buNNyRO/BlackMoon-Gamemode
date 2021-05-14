@@ -1077,10 +1077,7 @@ CMD:freqmembers(playerid, params[]) {
 }
 
 CMD:tog(playerid, params[]) {
-	gString[0] = (EOS);
-	strcat(gString, "Function\tStatus\n");
-	strcat(gString, playerInfo[playerid][pLiveToggle] ? "Live Conversation\t{3BBF0B}Enabled\n" : "Live Conversation\t{FF0000}Disabled\n");
-	Dialog_Show(playerid, TOG, DIALOG_STYLE_TABLIST_HEADERS, "Tog Option", gString, "Select", "Close");
+	Dialog_Show(playerid, TOG, DIALOG_STYLE_TABLIST_HEADERS, "Tog Option", "Function\tStatus\n%s", "Select", "Close", playerInfo[playerid][pLiveToggle] ? "Live Conversation\t{3BBF0B}Enabled\n" : "Live Conversation\t{FF0000}Disabled\n");
 	return true;
 }
 

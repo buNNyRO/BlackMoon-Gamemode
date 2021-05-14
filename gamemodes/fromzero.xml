@@ -1493,7 +1493,6 @@
 			<referrer name="pc_cmd_banipoffline"/>
 			<referrer name="pc_cmd_unjailo"/>
 			<referrer name="pc_cmd_jailo"/>
-			<referrer name="pc_cmd_tog"/>
 			<referrer name="pc_cmd_shop"/>
 			<referrer name="pc_cmd_hud"/>
 			<referrer name="InsertCarDS"/>
@@ -4298,7 +4297,6 @@
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="pc_cmd_vehicles"/>
-			<referrer name="pc_cmd_tog"/>
 			<referrer name="pc_cmd_shop"/>
 			<referrer name="pc_cmd_hud"/>
 			<referrer name="InsertCarDS"/>
@@ -36476,13 +36474,10 @@
 		</member>
 		<member name="M:pc_cmd_tog" syntax="pc_cmd_tog(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="10"/>
+			<stacksize value="11"/>
 			<dependency name="Dialog_Open"/>
-			<dependency name="EOS"/>
-			<dependency name="gString"/>
 			<dependency name="pLiveToggle"/>
 			<dependency name="playerInfo"/>
-			<dependency name="strcat"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -38654,7 +38649,6 @@
 			<referrer name="showFactionMembers"/>
 			<referrer name="pc_cmd_setguns"/>
 			<referrer name="pc_cmd_svf"/>
-			<referrer name="pc_cmd_tog"/>
 			<referrer name="pc_cmd_shop"/>
 			<referrer name="pc_cmd_hud"/>
 			<referrer name="ShowEmails"/>
