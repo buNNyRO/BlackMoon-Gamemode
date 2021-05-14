@@ -207,44 +207,6 @@
 			<referrer name="I@F"/>
 			<referrer name="I@L"/>
 		</member>
-		<member name="T:E_BAR_DATA" value="8">
-			<tagname value="E_BAR_DATA"/>
-			<member name="C:pbar_x" value="0">
-				<tagname value="Float"/>
-			</member>
-			<member name="C:pbar_y" value="1">
-				<tagname value="Float"/>
-			</member>
-			<member name="C:pbar_w" value="2">
-				<tagname value="Float"/>
-			</member>
-			<member name="C:pbar_h" value="3">
-				<tagname value="Float"/>
-			</member>
-			<member name="C:pbar_m" value="4">
-				<tagname value="Float"/>
-			</member>
-			<member name="C:pbar_v" value="5">
-				<tagname value="Float"/>
-			</member>
-			<member name="C:pbar_colour" value="6">
-			</member>
-			<member name="C:pbar_valid" value="7">
-				<tagname value="bool"/>
-			</member>
-		</member>
-		<member name="T:E_BAR_TEXT_DRAW" value="3">
-			<tagname value="E_BAR_TEXT_DRAW"/>
-			<member name="C:pbar_textdraw1" value="0">
-				<tagname value="PlayerText"/>
-			</member>
-			<member name="C:pbar_textdraw2" value="1">
-				<tagname value="PlayerText"/>
-			</member>
-			<member name="C:pbar_textdraw3" value="2">
-				<tagname value="PlayerText"/>
-			</member>
-		</member>
 		<member name="T:E_CALLBACK_DATA" value="5">
 			<tagname value="E_CALLBACK_DATA"/>
 			<member name="C:E_CALLBACK_DATA_ALLOC" value="0">
@@ -880,7 +842,7 @@
 			<member name="C:SAFE" value="5">
 			</member>
 		</member>
-		<member name="T:playerInfoEnum" value="604">
+		<member name="T:playerInfoEnum" value="625">
 			<tagname value="playerInfoEnum"/>
 			<member name="C:pSQLID" value="0">
 			</member>
@@ -1057,166 +1019,163 @@
 			</member>
 			<member name="C:pFPSShow" value="332">
 			</member>
-			<member name="C:pPaintballKills" value="333">
+			<member name="C:pLoginTries" value="333">
 			</member>
-			<member name="C:pPaintballDeaths" value="334">
+			<member name="C:pAFKSeconds" value="334">
 			</member>
-			<member name="C:pLoginTries" value="335">
-			</member>
-			<member name="C:pAFKSeconds" value="336">
-			</member>
-			<member name="C:pLogged" value="337">
+			<member name="C:pLogged" value="335">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pLoginEnabled" value="338">
+			<member name="C:pLoginEnabled" value="336">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pLoginTimer" value="339">
+			<member name="C:pLoginTimer" value="337">
 				<tagname value="Timer"/>
 			</member>
-			<member name="C:pLastPosX" value="340">
+			<member name="C:pLastPosX" value="338">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pLastPosY" value="341">
+			<member name="C:pLastPosY" value="339">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pLastPosZ" value="342">
+			<member name="C:pLastPosZ" value="340">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pExamenVehicle" value="343">
+			<member name="C:pExamenVehicle" value="341">
 			</member>
-			<member name="C:pExamenCheckpoint" value="344">
+			<member name="C:pExamenCheckpoint" value="342">
 			</member>
-			<member name="C:pFlymode" value="345">
+			<member name="C:pFlymode" value="343">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pFreeze" value="346">
+			<member name="C:pFreeze" value="344">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pMark" value="347">
+			<member name="C:pMark" value="345">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pMarkX" value="348">
+			<member name="C:pMarkX" value="346">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pMarkY" value="349">
+			<member name="C:pMarkY" value="347">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pMarkZ" value="350">
+			<member name="C:pMarkZ" value="348">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pHealth" value="351">
+			<member name="C:pHealth" value="349">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pArmour" value="352">
+			<member name="C:pArmour" value="350">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pMarkInterior" value="353">
+			<member name="C:pMarkInterior" value="351">
 			</member>
-			<member name="C:pTutorialSeconds" value="354">
+			<member name="C:pTutorialSeconds" value="352">
 			</member>
-			<member name="C:pReportChat" value="355">
+			<member name="C:pReportChat" value="353">
 			</member>
-			<member name="C:pTutorialActive" value="356">
+			<member name="C:pTutorialActive" value="354">
 			</member>
-			<member name="C:pCheckpoint" value="357">
+			<member name="C:pCheckpoint" value="355">
 			</member>
-			<member name="C:pCheckpointID" value="358">
+			<member name="C:pCheckpointID" value="356">
 			</member>
-			<member name="C:pinBusiness" value="359">
+			<member name="C:pinBusiness" value="357">
 			</member>
-			<member name="C:pinHouse" value="360">
+			<member name="C:pinHouse" value="358">
 			</member>
-			<member name="C:pinVehicle" value="361">
+			<member name="C:pinVehicle" value="359">
 			</member>
-			<member name="C:pinDealer" value="362">
+			<member name="C:pinDealer" value="360">
 			</member>
-			<member name="C:pinFaction" value="363">
+			<member name="C:pinFaction" value="361">
 			</member>
-			<member name="C:pinPaintball" value="364">
+			<member name="C:pTintaApasata" value="362">
 			</member>
-			<member name="C:pTintaApasata" value="365">
+			<member name="C:pTransferMoney" value="363">
 			</member>
-			<member name="C:pTransferMoney" value="366">
+			<member name="C:pTransferPlayer" value="364">
 			</member>
-			<member name="C:pTransferPlayer" value="367">
+			<member name="C:pspecFaction" value="365">
 			</member>
-			<member name="C:pspecFaction" value="368">
+			<member name="C:pPhoneOnline" value="366">
 			</member>
-			<member name="C:pPhoneOnline" value="369">
+			<member name="C:pReply" value="367">
 			</member>
-			<member name="C:pReply" value="370">
+			<member name="C:pDistanceCheckpoint" value="368">
 			</member>
-			<member name="C:pDistanceCheckpoint" value="371">
+			<member name="C:pFactionDuty" value="369">
 			</member>
-			<member name="C:pFactionDuty" value="372">
+			<member name="C:pCuffed" value="370">
 			</member>
-			<member name="C:pCuffed" value="373">
+			<member name="C:pTazer" value="371">
 			</member>
-			<member name="C:pTazer" value="374">
+			<member name="C:pMDCon" value="372">
 			</member>
-			<member name="C:pMDCon" value="375">
+			<member name="C:pCollision" value="373">
 			</member>
-			<member name="C:pCollision" value="376">
+			<member name="C:pUnFreezeTime" value="374">
 			</member>
-			<member name="C:pUnFreezeTime" value="377">
+			<member name="C:pFreezed" value="375">
 			</member>
-			<member name="C:pFreezed" value="378">
+			<member name="C:pAnimLibLoaded" value="376">
 			</member>
-			<member name="C:pAnimLibLoaded" value="379">
+			<member name="C:pAnimLooping" value="377">
 			</member>
-			<member name="C:pAnimLooping" value="380">
+			<member name="C:pTaxiDuty" value="378">
 			</member>
-			<member name="C:pTaxiDuty" value="381">
+			<member name="C:pTaxiFare" value="379">
 			</member>
-			<member name="C:pTaxiFare" value="382">
+			<member name="C:pTaxiDriver" value="380">
 			</member>
-			<member name="C:pTaxiDriver" value="383">
+			<member name="C:pTaxiMoney" value="381">
 			</member>
-			<member name="C:pTaxiMoney" value="384">
+			<member name="C:pLiveOffer" value="382">
 			</member>
-			<member name="C:pLiveOffer" value="385">
+			<member name="C:pTalkingLive" value="383">
 			</member>
-			<member name="C:pTalkingLive" value="386">
-			</member>
-			<member name="C:pQuestionText" value="387">
+			<member name="C:pQuestionText" value="384">
 				<size value="180"/>
 			</member>
-			<member name="C:pInLesson" value="567">
+			<member name="C:pInLesson" value="564">
 			</member>
-			<member name="C:pLesson" value="568">
+			<member name="C:pLesson" value="565">
 			</member>
-			<member name="C:pLicense" value="569">
+			<member name="C:pLicense" value="566">
 			</member>
-			<member name="C:pLicenseOffer" value="570">
+			<member name="C:pLicenseOffer" value="567">
 			</member>
-			<member name="C:pShowTurfs" value="571">
+			<member name="C:pShowTurfs" value="568">
 			</member>
-			<member name="C:pSafeID" value="572">
+			<member name="C:pSafeID" value="569">
 			</member>
-			<member name="C:pSelectedItem" value="573">
+			<member name="C:pSelectedItem" value="570">
 			</member>
-			<member name="C:pOnTurf" value="574">
+			<member name="C:pOnTurf" value="571">
 			</member>
-			<member name="C:areaBizz" value="575">
+			<member name="C:areaBizz" value="572">
 			</member>
-			<member name="C:areaHouse" value="576">
+			<member name="C:areaHouse" value="573">
 			</member>
-			<member name="C:areaFaction" value="577">
+			<member name="C:areaFaction" value="574">
 			</member>
-			<member name="C:areaJob" value="578">
+			<member name="C:areaJob" value="575">
 			</member>
-			<member name="C:areaGascan" value="579">
+			<member name="C:areaGascan" value="576">
 			</member>
-			<member name="C:areaSafe" value="580">
+			<member name="C:areaSafe" value="577">
 			</member>
-			<member name="C:pEnableBoost" value="581">
+			<member name="C:pEnableBoost" value="578">
 			</member>
-			<member name="C:pPaintBallK" value="582">
+			<member name="C:pAdminCover" value="579">
+				<size value="24"/>
 			</member>
-			<member name="C:pPaintBallD" value="583">
+			<member name="C:pDrunkLevel" value="603">
 			</member>
-			<member name="C:pSelectVehicle" value="584">
+			<member name="C:pFPS" value="604">
+			</member>
+			<member name="C:pSelectVehicle" value="605">
 				<size value="20"/>
 			</member>
 		</member>
@@ -1452,6 +1411,7 @@
 			<referrer name="mutePlayer"/>
 			<referrer name="formatNumber"/>
 			<referrer name="update"/>
+			<referrer name="resetVars"/>
 			<referrer name="sendPlayerError"/>
 			<referrer name="sendPlayerSyntax"/>
 			<referrer name="va_PlayerTextDrawSetString"/>
@@ -1476,11 +1436,9 @@
 			<referrer name="pc_cmd_quitjob"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
-			<referrer name="sendPaintballMapMsg"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
 			<referrer name="pc_cmd_buybusiness"/>
 			<referrer name="pc_cmd_ad"/>
-			<referrer name="pc_cmd_hl"/>
 			<referrer name="sendClanMessage"/>
 			<referrer name="MyHttpResponse"/>
 			<referrer name="checkPlayerBan"/>
@@ -1508,6 +1466,7 @@
 			<referrer name="pc_cmd_banipoffline"/>
 			<referrer name="pc_cmd_unjailo"/>
 			<referrer name="pc_cmd_jailo"/>
+			<referrer name="pc_cmd_acover"/>
 			<referrer name="pc_cmd_shop"/>
 			<referrer name="pc_cmd_hud"/>
 			<referrer name="InsertCarDS"/>
@@ -1722,7 +1681,6 @@
 			<referrer name="_Master_Get"/>
 			<referrer name="Master_GetCurrentMaster"/>
 			<referrer name="Callback_Get"/>
-			<referrer name="DestroyPlayerProgressBar"/>
 			<referrer name="InitFly"/>
 			<referrer name="StartFly"/>
 			<referrer name="Fly"/>
@@ -1832,7 +1790,6 @@
 			<referrer name="PawnCmd_OnGameModeInit"/>
 			<referrer name="sscanf_weapon"/>
 			<referrer name="sscanf_vehicle"/>
-			<referrer name="CreatePlayerProgressBar"/>
 			<referrer name="StartFly"/>
 			<referrer name="StopFly"/>
 			<referrer name="CB_SelectTextDraw"/>
@@ -1954,6 +1911,8 @@
 			<referrer name="sendFactionMessage"/>
 			<referrer name="pc_cmd_factions"/>
 			<referrer name="pc_cmd_makeleader"/>
+			<referrer name="pc_cmd_auninvite"/>
+			<referrer name="pc_cmd_flock"/>
 			<referrer name="pc_cmd_fapps"/>
 			<referrer name="pc_cmd_fspec"/>
 			<referrer name="pc_cmd_blockf"/>
@@ -2042,11 +2001,6 @@
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 			<referrer name="CancelJob"/>
-			<referrer name="sendPaintballMapMsg"/>
-			<referrer name="timerPaintballMap"/>
-			<referrer name="dialog_DIALOG_PAINTBALL"/>
-			<referrer name="pc_cmd_enterpaint"/>
-			<referrer name="pc_cmd_leavepaint"/>
 			<referrer name="@yH_OnGameModeInit@009"/>
 			<referrer name="@yH_OnPlayerConnect@009"/>
 			<referrer name="advertismentTimer"/>
@@ -2079,6 +2033,7 @@
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="@yH_OnPlayerConnect@010"/>
 			<referrer name="@yH_OnPlayerDisconnect@010"/>
+			<referrer name="CautaHelper"/>
 			<referrer name="helpnTimer"/>
 			<referrer name="pc_cmd_helduty"/>
 			<referrer name="pc_cmd_deletead"/>
@@ -2223,6 +2178,7 @@
 			<referrer name="pc_cmd_announce"/>
 			<referrer name="pc_cmd_count"/>
 			<referrer name="pc_cmd_aaa2"/>
+			<referrer name="pc_cmd_acover"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_helpers"/>
 			<referrer name="pc_cmd_showlicenses"/>
@@ -2322,6 +2278,7 @@
 			<referrer name="dialog_DIALOG_HELP"/>
 			<referrer name="pc_cmd_findbusiness"/>
 			<referrer name="pc_cmd_findhouse"/>
+			<referrer name="pc_cmd_id"/>
 			<referrer name="ShowCamera"/>
 			<referrer name="ShowDealerShipTD"/>
 			<referrer name="HideDealerShipTD"/>
@@ -2689,8 +2646,6 @@
 			<referrer name="pc_cmd_fish"/>
 			<referrer name="pc_cmd_usedrugs"/>
 			<referrer name="usedrugsTimer_yT@"/>
-			<referrer name="timerPaintballMap_yT@"/>
-			<referrer name="dialog_DIALOG_PAINTBALL"/>
 			<referrer name="@yH_OnGameModeInit@009"/>
 			<referrer name="advertismentTimer_yT@"/>
 			<referrer name="pc_cmd_ad"/>
@@ -2829,13 +2784,6 @@
 			<referrer name="pc_cmd_mutedplayers"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 		</member>
-		<member name="F:Iter_Single@PaintballMap">
-			<referrer name="sendPaintballMapMsg"/>
-			<referrer name="timerPaintballMap"/>
-			<referrer name="dialog_DIALOG_PAINTBALL"/>
-			<referrer name="pc_cmd_enterpaint"/>
-			<referrer name="pc_cmd_leavepaint"/>
-		</member>
 		<member name="F:Iter_Single@Player">
 			<referrer name="@yH_OnScriptInit@002"/>
 			<referrer name="@yH_OnPlayerConnect@002"/>
@@ -2873,6 +2821,7 @@
 			<referrer name="CB_OnPlayerDisconnect"/>
 		</member>
 		<member name="F:Iter_Single@ServerAdmins">
+			<referrer name="showStats"/>
 			<referrer name="dialog_DIALOG_REPORT"/>
 			<referrer name="dialog_DIALOG_REPORT_NORMAL"/>
 			<referrer name="dialog_DIALOG_REPORT_CHEATER"/>
@@ -2901,6 +2850,7 @@
 			<referrer name="pc_cmd_addbizgas"/>
 		</member>
 		<member name="F:Iter_Single@ServerHelpers">
+			<referrer name="showStats"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
 			<referrer name="removeFunction"/>
@@ -3059,7 +3009,6 @@
 			<referrer name="dialog_DIALOG_SVF"/>
 			<referrer name="pc_cmd_resetraport"/>
 			<referrer name="pc_cmd_order"/>
-			<referrer name="timerPaintballMap"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="pc_cmd_killcp"/>
 			<referrer name="pc_cmd_cancel"/>
@@ -3114,12 +3063,6 @@
 		</member>
 		<member name="F:Iterator@Null">
 			<tagname value="F@z"/>
-		</member>
-		<member name="F:Iterator@PaintballMap">
-			<referrer name="sendPaintballMapMsg"/>
-			<referrer name="timerPaintballMap"/>
-			<referrer name="dialog_DIALOG_PAINTBALL"/>
-			<referrer name="pc_cmd_leavepaint"/>
 		</member>
 		<member name="F:Iterator@Player">
 			<referrer name="@yH_OnScriptInit@002"/>
@@ -3406,8 +3349,6 @@
 			<referrer name="pc_cmd_fish"/>
 			<referrer name="pc_cmd_usedrugs"/>
 			<referrer name="usedrugsTimer_yT@"/>
-			<referrer name="timerPaintballMap_yT@"/>
-			<referrer name="dialog_DIALOG_PAINTBALL"/>
 			<referrer name="advertismentTimer_yT@"/>
 			<referrer name="pc_cmd_ad"/>
 			<referrer name="CautaHelper"/>
@@ -3496,7 +3437,6 @@
 			<referrer name="pc_cmd_buyhouse"/>
 			<referrer name="pc_cmd_heal"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="timerPaintballMap"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
 			<referrer name="pc_cmd_buybusiness"/>
 			<referrer name="onPlayerLogin"/>
@@ -3538,11 +3478,6 @@
 			<referrer name="StartFly"/>
 			<referrer name="Fly"/>
 			<referrer name="StopFly"/>
-		</member>
-		<member name="F:PaintballTime">
-			<referrer name="timerPaintballMap"/>
-			<referrer name="dialog_DIALOG_PAINTBALL"/>
-			<referrer name="pc_cmd_enterpaint"/>
 		</member>
 		<member name="F:PayDayTime">
 			<referrer name="Timers"/>
@@ -3666,7 +3601,6 @@
 			<referrer name="pc_cmd_buyhouse"/>
 			<referrer name="pc_cmd_heal"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="timerPaintballMap"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
 			<referrer name="pc_cmd_buybusiness"/>
 			<referrer name="onPlayerLogin"/>
@@ -4109,6 +4043,7 @@
 			<referrer name="pc_cmd_bizdeposit"/>
 			<referrer name="pc_cmd_bizlock"/>
 			<referrer name="pc_cmd_sellbiz"/>
+			<referrer name="pc_cmd_buy"/>
 			<referrer name="pc_cmd_ad"/>
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="pc_cmd_addbizgas"/>
@@ -4350,9 +4285,7 @@
 			<referrer name="pc_cmd_setguns"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
-			<referrer name="sendPaintballMapMsg"/>
 			<referrer name="pc_cmd_buybusiness"/>
-			<referrer name="pc_cmd_hl"/>
 			<referrer name="sendClanMessage"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="LoadPersonalVehicle"/>
@@ -4430,7 +4363,6 @@
 		</member>
 		<member name="F:helpTimer">
 			<tagname value="Timer"/>
-			<referrer name="@yH_OnPlayerConnect@010"/>
 			<referrer name="@yH_OnPlayerDisconnect@010"/>
 			<referrer name="CautaHelper"/>
 			<referrer name="pc_cmd_ch"/>
@@ -4521,6 +4453,11 @@
 			<referrer name="pc_cmd_startwork"/>
 			<referrer name="pc_cmd_gotojob"/>
 		</member>
+		<member name="F:levelBar">
+			<tagname value="PlayerText"/>
+			<referrer name="playerTextDraws"/>
+			<referrer name="updateLevelBar"/>
+		</member>
 		<member name="F:lskirt">
 			<referrer name="SaveComponent"/>
 		</member>
@@ -4545,29 +4482,6 @@
 			<referrer name="InitOpcodeTable"/>
 			<referrer name="RelocateOpcode"/>
 			<referrer name="UnrelocateOpcode"/>
-		</member>
-		<member name="F:paint">
-			<tagname value="Timer"/>
-			<referrer name="timerPaintballMap"/>
-			<referrer name="dialog_DIALOG_PAINTBALL"/>
-		</member>
-		<member name="F:pbar_Data">
-			<referrer name="CreatePlayerProgressBar"/>
-			<referrer name="DestroyPlayerProgressBar"/>
-			<referrer name="ShowPlayerProgressBar"/>
-			<referrer name="HidePlayerProgressBar"/>
-			<referrer name="SetPlayerProgressBarValue"/>
-			<referrer name="GetPlayerProgressBarValue"/>
-			<referrer name="SetPlayerProgressBarMaxValue"/>
-			<referrer name="SetPlayerProgressBarColor"/>
-		</member>
-		<member name="F:pbar_TextDraw">
-			<referrer name="CreatePlayerProgressBar"/>
-			<referrer name="DestroyPlayerProgressBar"/>
-			<referrer name="ShowPlayerProgressBar"/>
-			<referrer name="HidePlayerProgressBar"/>
-			<referrer name="SetPlayerProgressBarValue"/>
-			<referrer name="SetPlayerProgressBarColor"/>
 		</member>
 		<member name="F:personalVehicle">
 			<referrer name="LoadPersonalVehicle"/>
@@ -4597,11 +4511,6 @@
 			<referrer name="OnVehicleDeath"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerStateChange"/>
-		</member>
-		<member name="F:playerBarPTD">
-			<tagname value="PlayerBar"/>
-			<referrer name="updateLevelBar"/>
-			<referrer name="destroyPlayerTextDraws"/>
 		</member>
 		<member name="F:playerExamenPTD">
 			<tagname value="PlayerText"/>
@@ -4774,11 +4683,6 @@
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 			<referrer name="CancelJob"/>
-			<referrer name="getPaintballRank"/>
-			<referrer name="timerPaintballMap"/>
-			<referrer name="dialog_DIALOG_PAINTBALL"/>
-			<referrer name="pc_cmd_enterpaint"/>
-			<referrer name="pc_cmd_leavepaint"/>
 			<referrer name="advertismentTimer"/>
 			<referrer name="dialog_BIZ_OPTION_TITLE"/>
 			<referrer name="dialog_BIZ_OPTION_DESCRIPTION"/>
@@ -4929,6 +4833,7 @@
 			<referrer name="pc_cmd_announce"/>
 			<referrer name="pc_cmd_count"/>
 			<referrer name="pc_cmd_aaa2"/>
+			<referrer name="pc_cmd_acover"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_helpers"/>
 			<referrer name="pc_cmd_showlicenses"/>
@@ -4997,6 +4902,7 @@
 			<referrer name="dialog_DIALOG_HELP"/>
 			<referrer name="pc_cmd_findbusiness"/>
 			<referrer name="pc_cmd_findhouse"/>
+			<referrer name="pc_cmd_id"/>
 			<referrer name="InsertCarDS"/>
 			<referrer name="@yH_OnPlayerDeath@013"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
@@ -5023,7 +4929,6 @@
 		<member name="F:playerLevelPTD">
 			<tagname value="PlayerText"/>
 			<referrer name="playerTextDraws"/>
-			<referrer name="updateLevelBar"/>
 			<referrer name="destroyPlayerTextDraws"/>
 		</member>
 		<member name="F:playerVehicle">
@@ -5155,6 +5060,7 @@
 			<referrer name="onPlayerLogin"/>
 			<referrer name="Timers"/>
 			<referrer name="pc_cmd_setadmin"/>
+			<referrer name="pc_cmd_acover"/>
 		</member>
 		<member name="F:sexxx">
 			<referrer name="OnPlayerText"/>
@@ -5544,7 +5450,6 @@
 		<member name="M:operator-(Float:,_:)" syntax="operator-(Float:,_:)(oper1, oper2)">
 			<tagname value="Float"/>
 			<stacksize value="4"/>
-			<referrer name="SetPlayerProgressBarValue"/>
 			<referrer name="gasTimer"/>
 			<referrer name="pc_cmd_slap"/>
 			<dependency name="float"/>
@@ -5558,7 +5463,6 @@
 		<member name="M:operator+(Float:,_:)" syntax="operator+(Float:,_:)(oper1, oper2)">
 			<tagname value="Float"/>
 			<stacksize value="4"/>
-			<referrer name="SetPlayerProgressBarValue"/>
 			<referrer name="slapPlayer"/>
 			<referrer name="dialog_TRUCKER_SELECT"/>
 			<referrer name="dialog_TRUCKER_SELECTTWO"/>
@@ -5595,7 +5499,6 @@
 			<tagname value="Float"/>
 			<stacksize value="4"/>
 			<referrer name="GangZoneCreateEx"/>
-			<referrer name="CreatePlayerProgressBar"/>
 			<referrer name="TimerSpeedo"/>
 			<referrer name="PayDay"/>
 			<dependency name="float"/>
@@ -5656,8 +5559,6 @@
 			<referrer name="GangZoneCreateNumber"/>
 			<referrer name="GangZoneCreateNumber2"/>
 			<referrer name="RandomFloat"/>
-			<referrer name="CreatePlayerProgressBar"/>
-			<referrer name="SetPlayerProgressBarValue"/>
 			<referrer name="SetPlayerLookAt"/>
 			<referrer name="Callback_IsVehicleInPoint"/>
 			<referrer name="OnPlayerUpdate"/>
@@ -5683,13 +5584,12 @@
 			<referrer name="GangZoneCreateNumber"/>
 			<referrer name="GangZoneCreateNumber2"/>
 			<referrer name="RandomFloat"/>
-			<referrer name="CreatePlayerProgressBar"/>
-			<referrer name="SetPlayerProgressBarValue"/>
 			<referrer name="StartFly"/>
 			<referrer name="Fly"/>
 			<referrer name="Callback_GetSpeed"/>
 			<referrer name="Callback_IsVehicleInPoint"/>
 			<referrer name="IsPlayerSprayingVehicle"/>
+			<referrer name="updateLevelBar"/>
 			<referrer name="getVehicleSpeed"/>
 			<referrer name="GetDistanceBetweenPoints"/>
 			<referrer name="@yH_OnPlayerDeath@007"/>
@@ -5708,8 +5608,6 @@
 			<attribute name="native"/>
 			<referrer name="__TU"/>
 			<referrer name="RandomFloat"/>
-			<referrer name="CreatePlayerProgressBar"/>
-			<referrer name="SetPlayerProgressBarValue"/>
 			<referrer name="Fly"/>
 			<referrer name="SetPlayerLookAt"/>
 			<param name="oper1">
@@ -5726,12 +5624,11 @@
 			<referrer name="GangZoneCreateNumber"/>
 			<referrer name="GangZoneCreateNumber2"/>
 			<referrer name="RandomFloat"/>
-			<referrer name="CreatePlayerProgressBar"/>
-			<referrer name="SetPlayerProgressBarValue"/>
 			<referrer name="Fly"/>
 			<referrer name="Callback_GetSpeed"/>
 			<referrer name="Callback_IsVehicleInPoint"/>
 			<referrer name="IsPlayerSprayingVehicle"/>
+			<referrer name="updateLevelBar"/>
 			<referrer name="getVehicleSpeed"/>
 			<referrer name="GetDistancePlayerToVeh"/>
 			<referrer name="TimerSpeedo"/>
@@ -5746,7 +5643,6 @@
 		<member name="M:Float:operator=(_:)" syntax="Float:operator=(_:)(oper)">
 			<tagname value="Float"/>
 			<attribute name="native"/>
-			<referrer name="updateLevelBar"/>
 			<referrer name="resetVars"/>
 			<referrer name="GetClosestVehicle"/>
 			<referrer name="GetDistanceBetweenPoints"/>
@@ -5813,7 +5709,6 @@
 		<member name="M:operator&gt;(Float:,Float:)" syntax="operator&gt;(Float:,Float:)(oper1, oper2)">
 			<tagname value="bool"/>
 			<stacksize value="4"/>
-			<referrer name="SetPlayerProgressBarValue"/>
 			<referrer name="OnPlayerUpdate"/>
 			<referrer name="TrollDetect"/>
 			<referrer name="TimerWar"/>
@@ -5830,6 +5725,7 @@
 		<member name="M:operator&gt;(Float:,_:)" syntax="operator&gt;(Float:,_:)(oper1, oper2)">
 			<tagname value="bool"/>
 			<stacksize value="4"/>
+			<referrer name="updateLevelBar"/>
 			<referrer name="GetClosestVehicle"/>
 			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_area"/>
@@ -5901,7 +5797,6 @@
 			<tagname value="bool"/>
 			<stacksize value="4"/>
 			<referrer name="RandomFloat"/>
-			<referrer name="SetPlayerProgressBarValue"/>
 			<referrer name="SetPlayerLookAt"/>
 			<referrer name="Callback_IsVehicleInPoint"/>
 			<referrer name="TrollDetect"/>
@@ -6301,7 +6196,6 @@
 			<dependency name="HelperDuty"/>
 			<dependency name="QuestionStock"/>
 			<dependency name="QuestionStock"/>
-			<dependency name="helpTimer"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -10159,6 +10053,7 @@
 			<dependency name="reportType"/>
 			<dependency name="sendAdmin"/>
 			<dependency name="sendClanMessage"/>
+			<dependency name="sendNearbyMessage"/>
 			<dependency name="sendStaff"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
@@ -11013,7 +10908,7 @@
 			</param>
 		</member>
 		<member name="M:CautaHelper" syntax="CautaHelper(playerid)">
-			<stacksize value="4108"/>
+			<stacksize value="11"/>
 			<referrer name="CautaHelperNou"/>
 			<referrer name="pc_cmd_n"/>
 			<dependency name="ConversationOpen"/>
@@ -11031,22 +10926,22 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="string_fast"/>
+			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 		</member>
 		<member name="M:CautaHelperNou" syntax="CautaHelperNou(playerid, reason)">
-			<stacksize value="4106"/>
+			<stacksize value="9"/>
 			<referrer name="helpnTimer"/>
 			<referrer name="pc_cmd_skipn"/>
 			<dependency name="CautaHelper"/>
 			<dependency name="HelperAtribut"/>
 			<dependency name="HelperBusy"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="string_fast"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="reason">
@@ -12075,6 +11970,7 @@
 		<member name="M:CreateObject" syntax="CreateObject(modelid, X, Y, Z, rX, rY, rZ, DrawDistance)">
 			<attribute name="native"/>
 			<referrer name="dialog_DIALOG_SVF"/>
+			<referrer name="loadMaps"/>
 			<param name="modelid">
 			</param>
 			<param name="X">
@@ -12099,61 +11995,10 @@
 				<paraminfo>Float </paraminfo>
 			</param>
 		</member>
-		<member name="M:CreatePlayerProgressBar" syntax="CreatePlayerProgressBar(playerid, x, y, width, height, color, max)">
-			<tagname value="PlayerBar"/>
-			<stacksize value="7"/>
-			<referrer name="updateLevelBar"/>
-			<dependency name="operator/(Float:,_:)"/>
-			<dependency name="operator-(Float:,Float:)"/>
-			<dependency name="operator+(Float:,Float:)"/>
-			<dependency name="operator/(Float:,Float:)"/>
-			<dependency name="operator*(Float:,Float:)"/>
-			<dependency name="CreatePlayerTextDraw"/>
-			<dependency name="PlayerTextDrawBoxColor"/>
-			<dependency name="PlayerTextDrawLetterSize"/>
-			<dependency name="PlayerTextDrawTextSize"/>
-			<dependency name="PlayerTextDrawUseBox"/>
-			<dependency name="pbar_Data"/>
-			<dependency name="pbar_Data"/>
-			<dependency name="pbar_TextDraw"/>
-			<dependency name="pbar_TextDraw"/>
-			<dependency name="pbar_colour"/>
-			<dependency name="pbar_h"/>
-			<dependency name="pbar_m"/>
-			<dependency name="pbar_textdraw1"/>
-			<dependency name="pbar_textdraw2"/>
-			<dependency name="pbar_textdraw3"/>
-			<dependency name="pbar_valid"/>
-			<dependency name="pbar_w"/>
-			<dependency name="pbar_x"/>
-			<dependency name="pbar_y"/>
-			<dependency name="true"/>
-			<param name="playerid">
-			</param>
-			<param name="x">
-				<paraminfo>Float </paraminfo>
-			</param>
-			<param name="y">
-				<paraminfo>Float </paraminfo>
-			</param>
-			<param name="width">
-				<paraminfo>Float </paraminfo>
-			</param>
-			<param name="height">
-				<paraminfo>Float </paraminfo>
-			</param>
-			<param name="color">
-			</param>
-			<param name="max">
-				<paraminfo>Float </paraminfo>
-			</param>
-			Progress Bar 1.3.1.0  Copyright 2007-2010 Infernus' Group,  Flávio Toribio (flavio_toibio@hotmail.com)  Updated by Southclaw for use with the PlayerTextDraws of 0.3e 
-		</member>
 		<member name="M:CreatePlayerTextDraw" syntax="CreatePlayerTextDraw(playerid, x, y, text[])">
 			<tagname value="PlayerText"/>
 			<attribute name="native"/>
 			<referrer name="va_CreatePlayerTextDraw"/>
-			<referrer name="CreatePlayerProgressBar"/>
 			<referrer name="playerTextDraws"/>
 			<param name="playerid">
 			</param>
@@ -12456,32 +12301,6 @@
 			<param name="objectid">
 			</param>
 		</member>
-		<member name="M:DestroyPlayerProgressBar" syntax="DestroyPlayerProgressBar(playerid, barid)">
-			<stacksize value="4"/>
-			<referrer name="updateLevelBar"/>
-			<referrer name="destroyPlayerTextDraws"/>
-			<dependency name="PlayerTextDrawDestroy"/>
-			<dependency name="false"/>
-			<dependency name="pbar_Data"/>
-			<dependency name="pbar_Data"/>
-			<dependency name="pbar_TextDraw"/>
-			<dependency name="pbar_colour"/>
-			<dependency name="pbar_h"/>
-			<dependency name="pbar_m"/>
-			<dependency name="pbar_textdraw1"/>
-			<dependency name="pbar_textdraw2"/>
-			<dependency name="pbar_textdraw3"/>
-			<dependency name="pbar_v"/>
-			<dependency name="pbar_valid"/>
-			<dependency name="pbar_w"/>
-			<dependency name="pbar_x"/>
-			<dependency name="pbar_y"/>
-			<param name="playerid">
-			</param>
-			<param name="barid">
-				<paraminfo>PlayerBar </paraminfo>
-			</param>
-		</member>
 		<member name="M:DestroyVehicle" syntax="DestroyVehicle(vehicleid)">
 			<attribute name="native"/>
 			<referrer name="Iter_DestroyVehicle"/>
@@ -12542,7 +12361,6 @@
 			<referrer name="pc_cmd_jobs"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
-			<referrer name="pc_cmd_enterpaint"/>
 			<referrer name="dialog_BIZ_OPTION"/>
 			<referrer name="dialog_BIZ_OPTION_TITLE"/>
 			<referrer name="dialog_BIZ_OPTION_DESCRIPTION"/>
@@ -14338,10 +14156,8 @@
 		<member name="M:GetPVarInt" syntax="GetPVarInt(playerid, varname[])">
 			<attribute name="native"/>
 			<referrer name="pc_cmd_rentabil"/>
-			<referrer name="pc_cmd_duty"/>
 			<referrer name="pc_cmd_invite"/>
 			<referrer name="pc_cmd_so"/>
-			<referrer name="pc_cmd_helduty"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimersWantedFind"/>
@@ -14497,7 +14313,6 @@
 		<member name="M:GetPlayerCash" syntax="GetPlayerCash(playerid)">
 			<stacksize value="2"/>
 			<referrer name="PlayerMoney"/>
-			<referrer name="pc_cmd_heal"/>
 			<referrer name="dialog_BUYBIZ"/>
 			<referrer name="pc_cmd_bizdeposit"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
@@ -14544,6 +14359,7 @@
 		<member name="M:GetPlayerDrunkLevel" syntax="GetPlayerDrunkLevel(playerid)">
 			<attribute name="native"/>
 			<referrer name="OnPlayerUpdate"/>
+			<referrer name="Timers"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -14583,6 +14399,7 @@
 			<referrer name="dialog_DIALOG_MEMBERSRANK"/>
 			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_buybusiness"/>
+			<referrer name="pc_cmd_acover"/>
 			<dependency name="IsPlayerConnected"/>
 			<dependency name="Iterator@loggedPlayers"/>
 			<dependency name="pLogged"/>
@@ -14603,7 +14420,6 @@
 			<referrer name="pc_cmd_armour"/>
 			<referrer name="pc_cmd_clear"/>
 			<referrer name="pc_cmd_sellbizstate"/>
-			<referrer name="pc_cmd_buy"/>
 			<referrer name="pc_cmd_balance"/>
 			<referrer name="pc_cmd_deposit"/>
 			<referrer name="pc_cmd_withdraw"/>
@@ -14730,6 +14546,12 @@
 			<param name="playerid">
 			</param>
 		</member>
+		<member name="M:GetPlayerPing" syntax="GetPlayerPing(playerid)">
+			<attribute name="native"/>
+			<referrer name="Timers"/>
+			<param name="playerid">
+			</param>
+		</member>
 		<member name="M:GetPlayerPoolSize" syntax="GetPlayerPoolSize()">
 			<attribute name="native"/>
 			<referrer name="Callback_GetDriver"/>
@@ -14792,18 +14614,6 @@
 			</param>
 			<param name="z">
 				<paraminfo>Float &amp; </paraminfo>
-			</param>
-		</member>
-		<member name="M:GetPlayerProgressBarValue" syntax="GetPlayerProgressBarValue(playerid, barid)">
-			<tagname value="Float"/>
-			<stacksize value="1"/>
-			<dependency name="pbar_Data"/>
-			<dependency name="pbar_v"/>
-			<dependency name="pbar_valid"/>
-			<param name="playerid">
-			</param>
-			<param name="barid">
-				<paraminfo>PlayerBar </paraminfo>
 			</param>
 		</member>
 		<member name="M:GetPlayerState" syntax="GetPlayerState(playerid)">
@@ -15573,7 +15383,6 @@
 			<referrer name="dialog_DIALOG_FWITHDRAW2"/>
 			<referrer name="dialog_DIALOG_FDEPOSIT2"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="timerPaintballMap"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
 			<referrer name="dialog_BUYBIZ"/>
 			<referrer name="pc_cmd_buybusiness"/>
@@ -15685,22 +15494,6 @@
 			<dependency name="serverDealerTD"/>
 			<dependency name="true"/>
 			<param name="playerid">
-			</param>
-		</member>
-		<member name="M:HidePlayerProgressBar" syntax="HidePlayerProgressBar(playerid, barid)">
-			<stacksize value="4"/>
-			<dependency name="IsPlayerConnected"/>
-			<dependency name="PlayerTextDrawHide"/>
-			<dependency name="pbar_Data"/>
-			<dependency name="pbar_TextDraw"/>
-			<dependency name="pbar_textdraw1"/>
-			<dependency name="pbar_textdraw2"/>
-			<dependency name="pbar_textdraw3"/>
-			<dependency name="pbar_valid"/>
-			<param name="playerid">
-			</param>
-			<param name="barid">
-				<paraminfo>PlayerBar </paraminfo>
 			</param>
 		</member>
 		<member name="M:HookChain_OnScriptInit" syntax="HookChain_OnScriptInit()">
@@ -16664,8 +16457,6 @@
 			<referrer name="Iter_OPDCInternal"/>
 			<referrer name="ScriptInit_OnFilterScriptInit"/>
 			<referrer name="PawnCmd_OnGameModeInit"/>
-			<referrer name="ShowPlayerProgressBar"/>
-			<referrer name="HidePlayerProgressBar"/>
 			<referrer name="Fly"/>
 			<referrer name="GetPlayerID"/>
 			<referrer name="SetPlayerToFactionColor"/>
@@ -16818,7 +16609,6 @@
 			<referrer name="FishingTimer"/>
 			<referrer name="pc_cmd_getjob"/>
 			<referrer name="pc_cmd_startwork"/>
-			<referrer name="pc_cmd_enterpaint"/>
 			<referrer name="pc_cmd_buybusiness"/>
 			<referrer name="pc_cmd_ad"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
@@ -17297,7 +17087,6 @@
 			<referrer name="pc_cmd_contract"/>
 			<referrer name="LoadSafes"/>
 			<referrer name="LoadJobs"/>
-			<referrer name="dialog_DIALOG_PAINTBALL"/>
 			<referrer name="LoadBusinesses"/>
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="LoadClans"/>
@@ -17523,8 +17312,6 @@
 			<referrer name="pc_cmd_createsafe"/>
 			<referrer name="pc_cmd_order"/>
 			<referrer name="returnNeededPoints"/>
-			<referrer name="timerPaintballMap"/>
-			<referrer name="pc_cmd_leavepaint"/>
 			<referrer name="pc_cmd_adminbusiness"/>
 			<referrer name="pc_cmd_helduty"/>
 			<referrer name="pc_cmd_ar"/>
@@ -18281,8 +18068,6 @@
 			<referrer name="dialog_DIALOG_MEMBERS2"/>
 			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="TimerWar"/>
-			<referrer name="timerPaintballMap"/>
-			<referrer name="pc_cmd_leavepaint"/>
 			<referrer name="pc_cmd_leaveclan"/>
 			<referrer name="checkPanel"/>
 			<referrer name="removeFunction"/>
@@ -19623,7 +19408,6 @@
 			<referrer name="TimerGetHit_yT@"/>
 			<referrer name="FishingTimer_yT@"/>
 			<referrer name="usedrugsTimer_yT@"/>
-			<referrer name="timerPaintballMap_yT@"/>
 			<referrer name="advertismentTimer_yT@"/>
 			<referrer name="helpnTimer_yT@"/>
 			<referrer name="TimerCar_yT@"/>
@@ -21263,6 +21047,7 @@
 			<stacksize value="4"/>
 			<referrer name="pc_cmd_housedeposit"/>
 			<referrer name="pc_cmd_upgradehouse"/>
+			<referrer name="pc_cmd_heal"/>
 			<referrer name="fareUpdateTimer"/>
 			<referrer name="pc_cmd_givelicense"/>
 			<referrer name="dialog_DIALOG_FDEPOSIT2"/>
@@ -21323,8 +21108,6 @@
 		</member>
 		<member name="M:PlayerTextDrawBoxColor" syntax="PlayerTextDrawBoxColor(playerid, text, color)">
 			<attribute name="native"/>
-			<referrer name="CreatePlayerProgressBar"/>
-			<referrer name="SetPlayerProgressBarColor"/>
 			<referrer name="playerTextDraws"/>
 			<param name="playerid">
 			</param>
@@ -21347,7 +21130,6 @@
 		</member>
 		<member name="M:PlayerTextDrawDestroy" syntax="PlayerTextDrawDestroy(playerid, text)">
 			<attribute name="native"/>
-			<referrer name="DestroyPlayerProgressBar"/>
 			<referrer name="destroyPlayerTextDraws"/>
 			<param name="playerid">
 			</param>
@@ -21368,7 +21150,6 @@
 		</member>
 		<member name="M:PlayerTextDrawHide" syntax="PlayerTextDrawHide(playerid, text)">
 			<attribute name="native"/>
-			<referrer name="HidePlayerProgressBar"/>
 			<referrer name="examenFail"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_fare"/>
@@ -21391,7 +21172,6 @@
 		</member>
 		<member name="M:PlayerTextDrawLetterSize" syntax="PlayerTextDrawLetterSize(playerid, text, x, y)">
 			<attribute name="native"/>
-			<referrer name="CreatePlayerProgressBar"/>
 			<referrer name="playerTextDraws"/>
 			<param name="playerid">
 			</param>
@@ -21502,8 +21282,6 @@
 		</member>
 		<member name="M:PlayerTextDrawShow" syntax="PlayerTextDrawShow(playerid, text)">
 			<attribute name="native"/>
-			<referrer name="ShowPlayerProgressBar"/>
-			<referrer name="testPlayerTextDrawShow"/>
 			<referrer name="updateLevelBar"/>
 			<referrer name="updateTaxiTextdraw"/>
 			<referrer name="TimerWar"/>
@@ -21512,6 +21290,7 @@
 			<referrer name="TimerJail"/>
 			<referrer name="TimerWanted"/>
 			<referrer name="pc_cmd_setadmin"/>
+			<referrer name="pc_cmd_acover"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="ShowDealerShipTD"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
@@ -21525,9 +21304,8 @@
 		</member>
 		<member name="M:PlayerTextDrawTextSize" syntax="PlayerTextDrawTextSize(playerid, text, x, y)">
 			<attribute name="native"/>
-			<referrer name="CreatePlayerProgressBar"/>
-			<referrer name="SetPlayerProgressBarValue"/>
 			<referrer name="playerTextDraws"/>
+			<referrer name="updateLevelBar"/>
 			<referrer name="TimerSpeedo"/>
 			<param name="playerid">
 			</param>
@@ -21543,8 +21321,6 @@
 		</member>
 		<member name="M:PlayerTextDrawUseBox" syntax="PlayerTextDrawUseBox(playerid, text, use)">
 			<attribute name="native"/>
-			<referrer name="CreatePlayerProgressBar"/>
-			<referrer name="SetPlayerProgressBarValue"/>
 			<referrer name="playerTextDraws"/>
 			<param name="playerid">
 			</param>
@@ -22541,12 +22317,10 @@
 			<referrer name="examenFail"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="dialog_EMAIL"/>
-			<referrer name="dialog_GENDER"/>
 			<referrer name="dialog_DIALOG_REPORT"/>
 			<referrer name="dialog_DIALOG_REPORT_NORMAL"/>
 			<referrer name="dialog_DIALOG_REPORT_CHEATER"/>
 			<referrer name="dialog_SPAWNCHANGE"/>
-			<referrer name="dialog_GPS1"/>
 			<referrer name="dialog_TOG"/>
 			<referrer name="dialog_DIALOG_SHOP"/>
 			<referrer name="dialog_SELL_HOUSE_STATE"/>
@@ -22588,17 +22362,11 @@
 			<referrer name="pc_cmd_bizwithdraw"/>
 			<referrer name="pc_cmd_bizdeposit"/>
 			<referrer name="pc_cmd_bizlock"/>
-			<referrer name="pc_cmd_balance"/>
 			<referrer name="pc_cmd_deposit"/>
 			<referrer name="pc_cmd_withdraw"/>
 			<referrer name="pc_cmd_deletemyad"/>
 			<referrer name="pc_cmd_createbusiness"/>
-			<referrer name="CautaHelperNou"/>
 			<referrer name="CautaHelper"/>
-			<referrer name="pc_cmd_ar"/>
-			<referrer name="pc_cmd_ch"/>
-			<referrer name="pc_cmd_hl"/>
-			<referrer name="pc_cmd_deletead"/>
 			<referrer name="pc_cmd_cinvite"/>
 			<referrer name="pc_cmd_leaveclan"/>
 			<referrer name="dialog_DIALOG_CLAN"/>
@@ -22664,7 +22432,6 @@
 		<member name="M:SendClientMessageToAll" syntax="SendClientMessageToAll(color, message[])">
 			<attribute name="native"/>
 			<referrer name="va_SendClientMessageToAll"/>
-			<referrer name="pc_cmd_ch"/>
 			<referrer name="checkPanel"/>
 			<referrer name="BanIPPlayer"/>
 			<param name="color">
@@ -22793,6 +22560,32 @@
 			<param name="materialcolor">
 			</param>
 		</member>
+		<member name="M:SetDynamicObjectMaterialText" syntax="SetDynamicObjectMaterialText(objectid, materialindex, text[], materialsize, fontface[], fontsize, bold, fontcolor, backcolor, textalignment)">
+			<attribute name="native"/>
+			<referrer name="loadMaps"/>
+			<param name="objectid">
+			</param>
+			<param name="materialindex">
+			</param>
+			<param name="text">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="materialsize">
+			</param>
+			<param name="fontface">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="fontsize">
+			</param>
+			<param name="bold">
+			</param>
+			<param name="fontcolor">
+			</param>
+			<param name="backcolor">
+			</param>
+			<param name="textalignment">
+			</param>
+		</member>
 		<member name="M:SetFrameLocal" syntax="SetFrameLocal(frm_addr, param, value)">
 			<stacksize value="1"/>
 			<param name="frm_addr">
@@ -22874,6 +22667,24 @@
 				<paraminfo>Float </paraminfo>
 			</param>
 		</member>
+		<member name="M:SetObjectMaterial" syntax="SetObjectMaterial(objectid, materialindex, modelid, txdname[], texturename[], materialcolor)">
+			<attribute name="native"/>
+			<referrer name="loadMaps"/>
+			<param name="objectid">
+			</param>
+			<param name="materialindex">
+			</param>
+			<param name="modelid">
+			</param>
+			<param name="txdname">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="texturename">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="materialcolor">
+			</param>
+		</member>
 		<member name="M:SetObjectMaterialText" syntax="SetObjectMaterialText(objectid, text[], materialindex, materialsize, fontface[], fontsize, bold, fontcolor, backcolor, textalignment)">
 			<attribute name="native"/>
 			<referrer name="dialog_DIALOG_SVF"/>
@@ -22907,10 +22718,8 @@
 			<referrer name="mutePlayer"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="pc_cmd_rentabil"/>
-			<referrer name="pc_cmd_duty"/>
 			<referrer name="pc_cmd_invite"/>
 			<referrer name="pc_cmd_so"/>
-			<referrer name="pc_cmd_helduty"/>
 			<referrer name="checkAccountBanDatabase"/>
 			<referrer name="checkBanPlayer"/>
 			<referrer name="BanIPPlayer"/>
@@ -23106,6 +22915,7 @@
 		<member name="M:SetPlayerDrunkLevel" syntax="SetPlayerDrunkLevel(playerid, level)">
 			<attribute name="native"/>
 			<referrer name="OnPlayerUpdate"/>
+			<referrer name="Timers"/>
 			<param name="playerid">
 			</param>
 			<param name="level">
@@ -23180,6 +22990,7 @@
 			<referrer name="pc_cmd_gotocar"/>
 			<referrer name="pc_cmd_goto"/>
 			<referrer name="pc_cmd_gethere"/>
+			<referrer name="pc_cmd_set"/>
 			<referrer name="pc_cmd_gotomark"/>
 			<referrer name="pc_cmd_gotoxyz"/>
 			<referrer name="pc_cmd_jail"/>
@@ -23220,6 +23031,7 @@
 		<member name="M:SetPlayerName" syntax="SetPlayerName(playerid, name[])">
 			<attribute name="native"/>
 			<referrer name="SetClanTag"/>
+			<referrer name="pc_cmd_acover"/>
 			<param name="playerid">
 			</param>
 			<param name="name">
@@ -23262,75 +23074,6 @@
 				<paraminfo>Float </paraminfo>
 			</param>
 			<param name="z">
-				<paraminfo>Float </paraminfo>
-			</param>
-		</member>
-		<member name="M:SetPlayerProgressBarColor" syntax="SetPlayerProgressBarColor(playerid, barid, color)">
-			<stacksize value="5"/>
-			<dependency name="PlayerTextDrawBoxColor"/>
-			<dependency name="pbar_Data"/>
-			<dependency name="pbar_Data"/>
-			<dependency name="pbar_TextDraw"/>
-			<dependency name="pbar_colour"/>
-			<dependency name="pbar_textdraw1"/>
-			<dependency name="pbar_textdraw2"/>
-			<dependency name="pbar_textdraw3"/>
-			<dependency name="pbar_valid"/>
-			<param name="playerid">
-			</param>
-			<param name="barid">
-				<paraminfo>PlayerBar </paraminfo>
-			</param>
-			<param name="color">
-			</param>
-		</member>
-		<member name="M:SetPlayerProgressBarMaxValue" syntax="SetPlayerProgressBarMaxValue(playerid, barid, max)">
-			<stacksize value="6"/>
-			<referrer name="updateLevelBar"/>
-			<dependency name="SetPlayerProgressBarValue"/>
-			<dependency name="pbar_Data"/>
-			<dependency name="pbar_Data"/>
-			<dependency name="pbar_m"/>
-			<dependency name="pbar_v"/>
-			<dependency name="pbar_valid"/>
-			<param name="playerid">
-			</param>
-			<param name="barid">
-				<paraminfo>PlayerBar </paraminfo>
-			</param>
-			<param name="max">
-				<paraminfo>Float </paraminfo>
-			</param>
-		</member>
-		<member name="M:SetPlayerProgressBarValue" syntax="SetPlayerProgressBarValue(playerid, barid, value)">
-			<stacksize value="6"/>
-			<referrer name="SetPlayerProgressBarMaxValue"/>
-			<referrer name="updateLevelBar"/>
-			<dependency name="operator-(Float:,_:)"/>
-			<dependency name="operator+(Float:,_:)"/>
-			<dependency name="operator-(Float:,Float:)"/>
-			<dependency name="operator+(Float:,Float:)"/>
-			<dependency name="operator/(Float:,Float:)"/>
-			<dependency name="operator*(Float:,Float:)"/>
-			<dependency name="operator&gt;(Float:,Float:)"/>
-			<dependency name="operator&lt;(Float:,Float:)"/>
-			<dependency name="PlayerTextDrawTextSize"/>
-			<dependency name="PlayerTextDrawUseBox"/>
-			<dependency name="pbar_Data"/>
-			<dependency name="pbar_Data"/>
-			<dependency name="pbar_TextDraw"/>
-			<dependency name="pbar_m"/>
-			<dependency name="pbar_textdraw3"/>
-			<dependency name="pbar_v"/>
-			<dependency name="pbar_valid"/>
-			<dependency name="pbar_w"/>
-			<dependency name="pbar_x"/>
-			<param name="playerid">
-			</param>
-			<param name="barid">
-				<paraminfo>PlayerBar </paraminfo>
-			</param>
-			<param name="value">
 				<paraminfo>Float </paraminfo>
 			</param>
 		</member>
@@ -23417,6 +23160,7 @@
 			<referrer name="pc_cmd_gotocar"/>
 			<referrer name="pc_cmd_goto"/>
 			<referrer name="pc_cmd_gethere"/>
+			<referrer name="pc_cmd_set"/>
 			<referrer name="pc_cmd_gotoxyz"/>
 			<referrer name="pc_cmd_unjail"/>
 			<referrer name="pc_cmd_jail"/>
@@ -23739,24 +23483,6 @@
 			<param name="showplayerid">
 			</param>
 			<param name="show">
-			</param>
-		</member>
-		<member name="M:ShowPlayerProgressBar" syntax="ShowPlayerProgressBar(playerid, barid)">
-			<stacksize value="4"/>
-			<referrer name="UpdatePlayerProgressBar"/>
-			<referrer name="updateLevelBar"/>
-			<dependency name="IsPlayerConnected"/>
-			<dependency name="PlayerTextDrawShow"/>
-			<dependency name="pbar_Data"/>
-			<dependency name="pbar_TextDraw"/>
-			<dependency name="pbar_textdraw1"/>
-			<dependency name="pbar_textdraw2"/>
-			<dependency name="pbar_textdraw3"/>
-			<dependency name="pbar_valid"/>
-			<param name="playerid">
-			</param>
-			<param name="barid">
-				<paraminfo>PlayerBar </paraminfo>
 			</param>
 		</member>
 		<member name="M:SkipWhitespace" syntax="SkipWhitespace(str[], pos)">
@@ -24687,6 +24413,8 @@
 			<dependency name="ClockTD"/>
 			<dependency name="CountTime"/>
 			<dependency name="GetPlayerAnimationIndex"/>
+			<dependency name="GetPlayerDrunkLevel"/>
+			<dependency name="GetPlayerPing"/>
 			<dependency name="GetServerTickRate"/>
 			<dependency name="IsPlayerInRangeOfPoint"/>
 			<dependency name="IsPlayerPaused"/>
@@ -24701,6 +24429,7 @@
 			<dependency name="PayDayTime"/>
 			<dependency name="SQL"/>
 			<dependency name="SendClientMessage"/>
+			<dependency name="SetPlayerDrunkLevel"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="SetPlayerVirtualWorld"/>
 			<dependency name="TextDrawSetString"/>
@@ -24713,6 +24442,8 @@
 			<dependency name="mysql_tquery"/>
 			<dependency name="mysql_unprocessed_queries"/>
 			<dependency name="pAFKSeconds"/>
+			<dependency name="pDrunkLevel"/>
+			<dependency name="pFPS"/>
 			<dependency name="pLastPosX"/>
 			<dependency name="pLastPosY"/>
 			<dependency name="pLastPosZ"/>
@@ -24976,15 +24707,6 @@
 			</param>
 			<param name="text">
 				<paraminfo> [] </paraminfo>
-			</param>
-		</member>
-		<member name="M:UpdatePlayerProgressBar" syntax="UpdatePlayerProgressBar(playerid, barid)">
-			<stacksize value="5"/>
-			<dependency name="ShowPlayerProgressBar"/>
-			<param name="playerid">
-			</param>
-			<param name="barid">
-				<paraminfo>PlayerBar </paraminfo>
 			</param>
 		</member>
 		<member name="M:UpdateVehicleDamageStatus" syntax="UpdateVehicleDamageStatus(vehicleid, panels, doors, lights, tires)">
@@ -25281,7 +25003,6 @@
 			<referrer name="oocNews"/>
 			<referrer name="sendToAdmin"/>
 			<referrer name="sendFactionMessage"/>
-			<referrer name="sendPaintballMapMsg"/>
 			<referrer name="sendClanMessage"/>
 			<dependency name="Debug_Print0"/>
 			<dependency name="TRUE"/>
@@ -25578,7 +25299,6 @@
 			<referrer name="TimerGetHit_yT@"/>
 			<referrer name="FishingTimer_yT@"/>
 			<referrer name="usedrugsTimer_yT@"/>
-			<referrer name="timerPaintballMap_yT@"/>
 			<referrer name="advertismentTimer_yT@"/>
 			<referrer name="helpnTimer_yT@"/>
 			<referrer name="TimerCar_yT@"/>
@@ -25640,7 +25360,6 @@
 			<referrer name="TimerWar"/>
 			<referrer name="@yH_OnPlayerDisconnect@008"/>
 			<referrer name="CancelJob"/>
-			<referrer name="timerPaintballMap"/>
 			<referrer name="@yH_OnPlayerDisconnect@010"/>
 			<referrer name="pc_cmd_ch"/>
 			<referrer name="onPlayerLogin"/>
@@ -26590,12 +26309,10 @@
 			</param>
 		</member>
 		<member name="M:destroyPlayerTextDraws" syntax="destroyPlayerTextDraws(playerid)">
-			<stacksize value="5"/>
+			<stacksize value="4"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
-			<dependency name="DestroyPlayerProgressBar"/>
 			<dependency name="PlayerTextDrawDestroy"/>
 			<dependency name="fareTD"/>
-			<dependency name="playerBarPTD"/>
 			<dependency name="playerLevelPTD"/>
 			<dependency name="serverDealerPTD"/>
 			<dependency name="serverHud"/>
@@ -26772,7 +26489,7 @@
 		</member>
 		<member name="M:dialog_BUYBIZ" syntax="dialog_BUYBIZ(playerid, response, listitem)">
 			<attribute name="public"/>
-			<stacksize value="4105"/>
+			<stacksize value="8"/>
 			<dependency name="GetPlayerCash"/>
 			<dependency name="GivePlayerCash"/>
 			<dependency name="PlayerPlaySound"/>
@@ -26788,10 +26505,10 @@
 			<dependency name="playerInfo"/>
 			<dependency name="random"/>
 			<dependency name="sendPlayerError"/>
-			<dependency name="string_fast"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="response">
@@ -27309,33 +27026,6 @@
 				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
-		<member name="M:dialog_DIALOG_PAINTBALL" syntax="dialog_DIALOG_PAINTBALL(playerid, response, listitem)">
-			<attribute name="public"/>
-			<stacksize value="37"/>
-			<dependency name="I@"/>
-			<dependency name="Iter_Add_InternalC"/>
-			<dependency name="Iter_Single@PaintballMap"/>
-			<dependency name="Iterator@PaintballMap"/>
-			<dependency name="J@"/>
-			<dependency name="PaintballTime"/>
-			<dependency name="mapName"/>
-			<dependency name="mapName"/>
-			<dependency name="pName"/>
-			<dependency name="paint"/>
-			<dependency name="pinPaintball"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="sendPaintballMapMsg"/>
-			<dependency name="sendPlayerError"/>
-			<dependency name="timerPaintballMap_yT@"/>
-			<dependency name="true"/>
-			<param name="playerid">
-			</param>
-			<param name="response">
-			</param>
-			<param name="listitem">
-			</param>
-		</member>
 		<member name="M:dialog_DIALOG_REPORT" syntax="dialog_DIALOG_REPORT(playerid, response, listitem)">
 			<attribute name="public"/>
 			<stacksize value="10"/>
@@ -27589,12 +27279,11 @@
 		</member>
 		<member name="M:dialog_GENDER" syntax="dialog_GENDER(playerid, response, listitem, inputtext[])">
 			<attribute name="public"/>
-			<stacksize value="4104"/>
+			<stacksize value="8"/>
 			<dependency name="FEMALE_GENDER"/>
 			<dependency name="I@"/>
 			<dependency name="J@"/>
 			<dependency name="MALE_GENDER"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerSkin"/>
 			<dependency name="TimerTutorial_yT@"/>
 			<dependency name="pEMail"/>
@@ -27605,10 +27294,10 @@
 			<dependency name="pTutorialSeconds"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="tutorial"/>
 			<dependency name="update"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="response">
@@ -27621,11 +27310,10 @@
 		</member>
 		<member name="M:dialog_GPS" syntax="dialog_GPS(playerid, response, listitem)">
 			<attribute name="public"/>
-			<stacksize value="4115"/>
+			<stacksize value="21"/>
 			<dependency name="Dialog_Open"/>
 			<dependency name="GetDistanceBetweenPoints"/>
 			<dependency name="GetPlayerPos"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -27636,18 +27324,17 @@
 		</member>
 		<member name="M:dialog_GPS1" syntax="dialog_GPS1(playerid, response, listitem)">
 			<attribute name="public"/>
-			<stacksize value="4111"/>
+			<stacksize value="15"/>
 			<dependency name="CHECKPOINT_GPS"/>
 			<dependency name="GetDistanceBetweenPoints"/>
 			<dependency name="GetPlayerPos"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerCheckpoint"/>
 			<dependency name="pCheckpoint"/>
 			<dependency name="pCheckpointID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="response">
@@ -27821,7 +27508,7 @@
 			<dependency name="SQL"/>
 			<dependency name="gQuery"/>
 			<dependency name="mysql_format"/>
-			<dependency name="mysql_pquery"/>
+			<dependency name="mysql_tquery"/>
 			<dependency name="pLogged"/>
 			<dependency name="pName"/>
 			<dependency name="pPassword"/>
@@ -28385,6 +28072,7 @@
 		</member>
 		<member name="M:factionName" syntax="factionName(fid)">
 			<stacksize value="41"/>
+			<referrer name="showStats"/>
 			<referrer name="pc_cmd_factions"/>
 			<referrer name="pc_cmd_gotofaction"/>
 			<referrer name="pc_cmd_makeleader"/>
@@ -28401,6 +28089,7 @@
 			<referrer name="pc_cmd_myraport"/>
 			<referrer name="LoadSafes"/>
 			<referrer name="pc_cmd_createsafe"/>
+			<referrer name="pc_cmd_id"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<dependency name="fName"/>
 			<dependency name="factionInfo"/>
@@ -28494,6 +28183,7 @@
 			<referrer name="operator&lt;=(_:,Float:)"/>
 			<referrer name="__TU"/>
 			<referrer name="RandomFloat"/>
+			<referrer name="updateLevelBar"/>
 			<param name="value">
 			</param>
 		</member>
@@ -28789,7 +28479,6 @@
 			<referrer name="dialog_DIALOG_FWITHDRAW2"/>
 			<referrer name="dialog_DIALOG_FDEPOSIT2"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="timerPaintballMap"/>
 			<referrer name="LoadBusinesses"/>
 			<referrer name="dialog_BIZ_OPTION_TITLE"/>
 			<referrer name="dialog_BIZ_OPTION_DESCRIPTION"/>
@@ -29001,14 +28690,6 @@
 			<param name="id">
 			</param>
 		</member>
-		<member name="M:getPaintballRank" syntax="getPaintballRank(playerid)">
-			<stacksize value="26"/>
-			<dependency name="getPaintballRank"/>
-			<dependency name="pPaintballKills"/>
-			<dependency name="playerInfo"/>
-			<param name="playerid">
-			</param>
-		</member>
 		<member name="M:getVehicleHealth" syntax="getVehicleHealth(vehicleid)">
 			<stacksize value="5"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
@@ -29121,12 +28802,10 @@
 			<referrer name="dialog_DIALOG_REPORT_NORMAL"/>
 			<referrer name="dialog_DIALOG_REPORT_CHEATER"/>
 			<referrer name="pc_cmd_rentabil"/>
-			<referrer name="pc_cmd_duty"/>
 			<referrer name="pc_cmd_invite"/>
 			<referrer name="pc_cmd_so"/>
 			<referrer name="pc_cmd_news"/>
 			<referrer name="pc_cmd_live"/>
-			<referrer name="pc_cmd_helduty"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkAccountBanDatabase"/>
 			<referrer name="checkBanPlayer"/>
@@ -29370,6 +29049,7 @@
 			<referrer name="pc_cmd_banip"/>
 			<referrer name="pc_cmd_unjail"/>
 			<referrer name="pc_cmd_jail"/>
+			<referrer name="pc_cmd_acover"/>
 			<referrer name="pc_cmd_showlicenses"/>
 			<referrer name="pc_cmd_spawnchange"/>
 			<referrer name="pc_cmd_sms"/>
@@ -29378,6 +29058,7 @@
 			<referrer name="pc_cmd_gps"/>
 			<referrer name="pc_cmd_accept"/>
 			<referrer name="pc_cmd_finalquest"/>
+			<referrer name="pc_cmd_id"/>
 			<referrer name="InsertEmail"/>
 			<referrer name="pc_cmd_insertemail"/>
 			<referrer name="OnPlayerText"/>
@@ -29558,12 +29239,15 @@
 		</member>
 		<member name="M:loadMaps" syntax="loadMaps()">
 			<attribute name="public"/>
-			<stacksize value="20"/>
+			<stacksize value="183"/>
 			<referrer name="CB_OnGameModeInit"/>
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="CreateDynamicObject"/>
 			<dependency name="CreateDynamicObjectEx"/>
+			<dependency name="CreateObject"/>
 			<dependency name="SetDynamicObjectMaterial"/>
+			<dependency name="SetDynamicObjectMaterialText"/>
+			<dependency name="SetObjectMaterial"/>
 			<dependency name="gates"/>
 		</member>
 		<member name="M:main" syntax="main()">
@@ -29578,16 +29262,6 @@
 				Size of memory to allocate.
 			</param>
 			  <returns>  0 on fail or a data handle on sucess.  </returns>  <remarks>  Displays errors in secure mode.  </remarks> 
-		</member>
-		<member name="M:mapName" syntax="mapName(map)">
-			<stacksize value="26"/>
-			<referrer name="timerPaintballMap"/>
-			<referrer name="dialog_DIALOG_PAINTBALL"/>
-			<referrer name="pc_cmd_enterpaint"/>
-			<referrer name="pc_cmd_leavepaint"/>
-			<dependency name="mapName"/>
-			<param name="map">
-			</param>
 		</member>
 		<member name="M:max" syntax="max(value1, value2)">
 			<attribute name="native"/>
@@ -29899,7 +29573,6 @@
 			<referrer name="banPlayer"/>
 			<referrer name="mutePlayer"/>
 			<referrer name="kickPlayer"/>
-			<referrer name="dialog_LOGIN"/>
 			<referrer name="onPlayerLogin"/>
 			<param name="handle">
 				<paraminfo>MySQL </paraminfo>
@@ -29940,6 +29613,7 @@
 			<attribute name="native"/>
 			<referrer name="update"/>
 			<referrer name="dialog_REGISTER"/>
+			<referrer name="dialog_LOGIN"/>
 			<referrer name="pc_cmd_buyhouse"/>
 			<referrer name="pc_cmd_members"/>
 			<referrer name="pc_cmd_quitjob"/>
@@ -30136,8 +29810,6 @@
 			<dependency name="pMute"/>
 			<dependency name="pName"/>
 			<dependency name="pNeedProgress"/>
-			<dependency name="pPaintballDeaths"/>
-			<dependency name="pPaintballKills"/>
 			<dependency name="pPassword"/>
 			<dependency name="pPhone"/>
 			<dependency name="pPhoneBook"/>
@@ -30438,6 +30110,34 @@
 			<dependency name="true"/>
 			<dependency name="unformat"/>
 			<dependency name="va_SendClientMessage"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:pc_cmd_acover" syntax="pc_cmd_acover(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="31"/>
+			<dependency name="EOS"/>
+			<dependency name="GetPlayerID"/>
+			<dependency name="PlayerTextDrawShow"/>
+			<dependency name="SetPlayerName"/>
+			<dependency name="isPlayerLogged"/>
+			<dependency name="pAdmin"/>
+			<dependency name="pAdminCover"/>
+			<dependency name="pName"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendAdmin"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="sendPlayerSyntax"/>
+			<dependency name="serverHud"/>
+			<dependency name="strlen"/>
+			<dependency name="strmatch"/>
+			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_PlayerTextDrawSetString"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -30857,14 +30557,13 @@
 		</member>
 		<member name="M:pc_cmd_ar" syntax="pc_cmd_ar(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4104"/>
+			<stacksize value="6"/>
 			<dependency name="ConversationOpen"/>
 			<dependency name="HelperBusy"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerHelpers"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="sendPlayerError"/>
-			<dependency name="string_fast"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -31060,6 +30759,7 @@
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="svfVehicleObjects"/>
+			<dependency name="true"/>
 			<dependency name="unformat"/>
 			<dependency name="update"/>
 			<dependency name="va_SendClientMessage"/>
@@ -31075,16 +30775,15 @@
 		</member>
 		<member name="M:pc_cmd_balance" syntax="pc_cmd_balance(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4168"/>
+			<stacksize value="72"/>
 			<dependency name="GetBankMoney"/>
 			<dependency name="GetBankMoney"/>
 			<dependency name="GetPlayerInterior"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="pinBusiness"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -31418,7 +31117,8 @@
 			<stacksize value="10"/>
 			<dependency name="CallRemoteFunction"/>
 			<dependency name="Dialog_Open"/>
-			<dependency name="GetPlayerInterior"/>
+			<dependency name="bizInfo"/>
+			<dependency name="bizType"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pinBusiness"/>
 			<dependency name="playerInfo"/>
@@ -31738,7 +31438,7 @@
 		</member>
 		<member name="M:pc_cmd_ch" syntax="pc_cmd_ch(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4235"/>
+			<stacksize value="154"/>
 			<dependency name="ConversationOpen"/>
 			<dependency name="HelperAtribut"/>
 			<dependency name="HelperBusy"/>
@@ -31746,8 +31446,6 @@
 			<dependency name="Iterator@ServerHelpers"/>
 			<dependency name="QuestionStock"/>
 			<dependency name="QuestionStock"/>
-			<dependency name="SendClientMessage"/>
-			<dependency name="SendClientMessageToAll"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="helpTimer"/>
 			<dependency name="pName"/>
@@ -31755,8 +31453,9 @@
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
+			<dependency name="va_SendClientMessageToAll"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -32350,13 +32049,12 @@
 		</member>
 		<member name="M:pc_cmd_d" syntax="pc_cmd_d(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4353"/>
+			<stacksize value="4247"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="Reclama"/>
 			<dependency name="SetPlayerChatBubble"/>
 			<dependency name="faceReclama"/>
-			<dependency name="factionName"/>
 			<dependency name="factionName"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pFaction"/>
@@ -32367,7 +32065,6 @@
 			<dependency name="sendFactionMessage"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sendToAdmin"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -32441,24 +32138,23 @@
 		</member>
 		<member name="M:pc_cmd_deletead" syntax="pc_cmd_deletead(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4139"/>
+			<stacksize value="42"/>
 			<dependency name="AdText"/>
 			<dependency name="AdText"/>
 			<dependency name="AdTimer"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="Iterator@ServerHelpers"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sendStaff"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -32613,17 +32309,14 @@
 		</member>
 		<member name="M:pc_cmd_duty" syntax="pc_cmd_duty(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="10"/>
+			<stacksize value="8"/>
 			<dependency name="Float:operator=(_:)"/>
-			<dependency name="GetPVarInt"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
-			<dependency name="SetPVarInt"/>
 			<dependency name="SetPlayerArmourEx"/>
 			<dependency name="SetPlayerHealthEx"/>
 			<dependency name="SetPlayerSkin"/>
 			<dependency name="SetPlayerToFactionColor"/>
-			<dependency name="gettime"/>
 			<dependency name="pFactionDuty"/>
 			<dependency name="pName"/>
 			<dependency name="pSkin"/>
@@ -32805,31 +32498,6 @@
 				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
-		<member name="M:pc_cmd_enterpaint" syntax="pc_cmd_enterpaint(playerid, params[])">
-			<attribute name="public"/>
-			<stacksize value="4145"/>
-			<dependency name="Dialog_Open"/>
-			<dependency name="IsPlayerInRangeOfPoint"/>
-			<dependency name="Iter_Single@PaintballMap"/>
-			<dependency name="PaintballTime"/>
-			<dependency name="mapName"/>
-			<dependency name="mapName"/>
-			<dependency name="pLevel"/>
-			<dependency name="pWeaponLicense"/>
-			<dependency name="pWeaponLicenseSuspend"/>
-			<dependency name="pinPaintball"/>
-			<dependency name="playerInfo"/>
-			<dependency name="secinmin"/>
-			<dependency name="secinmin"/>
-			<dependency name="sendPlayerError"/>
-			<dependency name="string_fast"/>
-			<dependency name="true"/>
-			<param name="playerid">
-			</param>
-			<param name="params">
-				<paraminfo> [] </paraminfo>
-			</param>
-		</member>
 		<member name="M:pc_cmd_exam" syntax="pc_cmd_exam(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
@@ -32934,7 +32602,7 @@
 		</member>
 		<member name="M:pc_cmd_factions" syntax="pc_cmd_factions(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="45"/>
+			<stacksize value="44"/>
 			<dependency name="Dialog_Open"/>
 			<dependency name="EOS"/>
 			<dependency name="Iter_Single@ServerFactions"/>
@@ -33283,6 +32951,7 @@
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="string_fast"/>
 			<dependency name="strval"/>
+			<dependency name="true"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -33937,13 +33606,13 @@
 			<stacksize value="4107"/>
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="operator&gt;=(Float:,Float:)"/>
-			<dependency name="GetPlayerCash"/>
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="GivePlayerCash"/>
 			<dependency name="IsPlayerInVehicle"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="MoneyMoney"/>
+			<dependency name="PlayerMoney"/>
 			<dependency name="SetPlayerHealthEx"/>
 			<dependency name="StoreMoney"/>
 			<dependency name="addRaportPoint"/>
@@ -33993,13 +33662,10 @@
 		</member>
 		<member name="M:pc_cmd_helduty" syntax="pc_cmd_helduty(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="10"/>
-			<dependency name="GetPVarInt"/>
+			<stacksize value="7"/>
 			<dependency name="HelperDuty"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerHelpers"/>
-			<dependency name="SetPVarInt"/>
-			<dependency name="gettime"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
@@ -34113,21 +33779,18 @@
 		</member>
 		<member name="M:pc_cmd_hl" syntax="pc_cmd_hl(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4235"/>
+			<stacksize value="154"/>
 			<dependency name="ConversationOpen"/>
-			<dependency name="EOS"/>
 			<dependency name="HelperAtribut"/>
 			<dependency name="HelperBusy"/>
-			<dependency name="SendClientMessage"/>
-			<dependency name="gString"/>
 			<dependency name="pHelper"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
-			<dependency name="string_fast"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -34278,6 +33941,27 @@
 			<param name="playerid">
 			</param>
 			<param name="parmas">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:pc_cmd_id" syntax="pc_cmd_id(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="81"/>
+			<dependency name="factionName"/>
+			<dependency name="factionName"/>
+			<dependency name="isPlayerLogged"/>
+			<dependency name="pFaction"/>
+			<dependency name="pName"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="sendPlayerSyntax"/>
+			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
 				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
@@ -34683,28 +34367,6 @@
 				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
-		<member name="M:pc_cmd_leavepaint" syntax="pc_cmd_leavepaint(playerid, params[])">
-			<attribute name="public"/>
-			<stacksize value="38"/>
-			<dependency name="Iter_Contains_InternalC"/>
-			<dependency name="Iter_Remove_InternalC"/>
-			<dependency name="Iter_Single@PaintballMap"/>
-			<dependency name="Iterator@PaintballMap"/>
-			<dependency name="mapName"/>
-			<dependency name="mapName"/>
-			<dependency name="pName"/>
-			<dependency name="pinPaintball"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="sendPaintballMapMsg"/>
-			<dependency name="sendPlayerError"/>
-			<dependency name="true"/>
-			<param name="playerid">
-			</param>
-			<param name="params">
-				<paraminfo> [] </paraminfo>
-			</param>
-		</member>
 		<member name="M:pc_cmd_leftslap" syntax="pc_cmd_leftslap(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
@@ -35101,14 +34763,14 @@
 		</member>
 		<member name="M:pc_cmd_n" syntax="pc_cmd_n(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="133"/>
+			<stacksize value="149"/>
 			<dependency name="CautaHelper"/>
 			<dependency name="HelperAtribut"/>
 			<dependency name="QuestionStock"/>
 			<dependency name="QuestionStock"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
-			<dependency name="sscanf"/>
+			<dependency name="unformat"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -35973,7 +35635,9 @@
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerArmourEx"/>
 			<dependency name="SetPlayerHealthEx"/>
+			<dependency name="SetPlayerInterior"/>
 			<dependency name="SetPlayerScore"/>
+			<dependency name="SetPlayerVirtualWorld"/>
 			<dependency name="StoreMoney"/>
 			<dependency name="YHash"/>
 			<dependency name="isPlayerLogged"/>
@@ -36292,7 +35956,7 @@
 		</member>
 		<member name="M:pc_cmd_skipn" syntax="pc_cmd_skipn(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="7"/>
+			<stacksize value="6"/>
 			<dependency name="CautaHelperNou"/>
 			<dependency name="HelperBusy"/>
 			<dependency name="Iter_Contains_InternalC"/>
@@ -37388,6 +37052,7 @@
 			<dependency name="PlayerTextDrawUseBox"/>
 			<dependency name="fareTD"/>
 			<dependency name="jailTimeTD"/>
+			<dependency name="levelBar"/>
 			<dependency name="playerExamenPTD"/>
 			<dependency name="playerLevelPTD"/>
 			<dependency name="serverDealerPTD"/>
@@ -37435,7 +37100,6 @@
 			<referrer name="PrintStackTrace"/>
 			<referrer name="TrollDetect"/>
 			<referrer name="@yH_OnPlayerStateChange@005"/>
-			<referrer name="testPlayerTextDrawShow"/>
 			<referrer name="LoadHouses"/>
 			<referrer name="LoadTurfs"/>
 			<referrer name="LoadFactions"/>
@@ -37488,7 +37152,6 @@
 			<referrer name="pc_cmd_arrest"/>
 			<referrer name="FishingTimer"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="timerPaintballMap"/>
 			<referrer name="dialog_BUYBIZ"/>
 			<referrer name="questProgress"/>
 			<referrer name="giveQuest"/>
@@ -37671,6 +37334,7 @@
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="CHECKPOINT_NONE"/>
 			<dependency name="DeletePVar"/>
+			<dependency name="EOS"/>
 			<dependency name="GetPlayerIp"/>
 			<dependency name="GetPlayerName"/>
 			<dependency name="InitFly"/>
@@ -37681,6 +37345,7 @@
 			<dependency name="format"/>
 			<dependency name="pAFKSeconds"/>
 			<dependency name="pAdmin"/>
+			<dependency name="pAdminCover"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="pBank"/>
 			<dependency name="pBoatLicense"/>
@@ -37690,9 +37355,11 @@
 			<dependency name="pCuffed"/>
 			<dependency name="pDrivingLicense"/>
 			<dependency name="pDrivingLicenseSuspend"/>
+			<dependency name="pDrunkLevel"/>
 			<dependency name="pEnableBoost"/>
 			<dependency name="pExamenCheckpoint"/>
 			<dependency name="pExamenVehicle"/>
+			<dependency name="pFPS"/>
 			<dependency name="pFactionDuty"/>
 			<dependency name="pFlyLicense"/>
 			<dependency name="pFlyLicenseSuspend"/>
@@ -37721,8 +37388,6 @@
 			<dependency name="pMute"/>
 			<dependency name="pName"/>
 			<dependency name="pOnTurf"/>
-			<dependency name="pPaintBallD"/>
-			<dependency name="pPaintBallK"/>
 			<dependency name="pQuestionText"/>
 			<dependency name="pReportChat"/>
 			<dependency name="pRespectPoints"/>
@@ -37739,7 +37404,6 @@
 			<dependency name="pWarn"/>
 			<dependency name="pWeaponLicense"/>
 			<dependency name="pWeaponLicenseSuspend"/>
-			<dependency name="pinPaintball"/>
 			<dependency name="pinVehicle"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
@@ -37892,7 +37556,6 @@
 		</member>
 		<member name="M:secinmin" syntax="secinmin(secunde)">
 			<stacksize value="21"/>
-			<referrer name="pc_cmd_enterpaint"/>
 			<referrer name="Timers"/>
 			<referrer name="OnPlayerText"/>
 			<dependency name="format"/>
@@ -37956,6 +37619,7 @@
 			<referrer name="pc_cmd_unjail"/>
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="pc_cmd_clearchat"/>
+			<referrer name="pc_cmd_acover"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
@@ -38092,6 +37756,7 @@
 			<referrer name="pc_cmd_usedrugs"/>
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="pc_cmd_accept"/>
+			<referrer name="CB_OnPlayerDisconnect"/>
 			<referrer name="OnPlayerText"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
@@ -38114,29 +37779,6 @@
 				<paraminfo>Float </paraminfo>
 			</param>
 			<param name="text">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="...">
-				<paraminfo> {_,Language,Bit,Text,Menu,Style,XML,Bintree,Group,Timer,Float,File,Text3D} </paraminfo>
-			</param>
-		</member>
-		<member name="M:sendPaintballMapMsg" syntax="sendPaintballMapMsg(map, color, message[], ...)">
-			<stacksize value="15"/>
-			<referrer name="dialog_DIALOG_PAINTBALL"/>
-			<referrer name="pc_cmd_leavepaint"/>
-			<dependency name="EOS"/>
-			<dependency name="Iter_Single@PaintballMap"/>
-			<dependency name="Iterator@PaintballMap"/>
-			<dependency name="YVA2_DummyPush"/>
-			<dependency name="gString"/>
-			<dependency name="sendSplitMessage"/>
-			<dependency name="true"/>
-			<dependency name="va_format"/>
-			<param name="map">
-			</param>
-			<param name="color">
-			</param>
-			<param name="message">
 				<paraminfo> [] </paraminfo>
 			</param>
 			<param name="...">
@@ -38242,9 +37884,6 @@
 			<referrer name="pc_cmd_startwork"/>
 			<referrer name="pc_cmd_usedrugs"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="dialog_DIALOG_PAINTBALL"/>
-			<referrer name="pc_cmd_enterpaint"/>
-			<referrer name="pc_cmd_leavepaint"/>
 			<referrer name="dialog_BUYBIZ"/>
 			<referrer name="dialog_TRANSFERBIZ"/>
 			<referrer name="pc_cmd_buybusiness"/>
@@ -38363,6 +38002,7 @@
 			<referrer name="pc_cmd_announce"/>
 			<referrer name="pc_cmd_count"/>
 			<referrer name="pc_cmd_aaa2"/>
+			<referrer name="pc_cmd_acover"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_helpers"/>
 			<referrer name="pc_cmd_showlicenses"/>
@@ -38456,6 +38096,7 @@
 			<referrer name="pc_cmd_help"/>
 			<referrer name="pc_cmd_findbusiness"/>
 			<referrer name="pc_cmd_findhouse"/>
+			<referrer name="pc_cmd_id"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 			<referrer name="pc_cmd_emails"/>
@@ -38593,6 +38234,7 @@
 			<referrer name="pc_cmd_showfreq"/>
 			<referrer name="pc_cmd_announce"/>
 			<referrer name="pc_cmd_count"/>
+			<referrer name="pc_cmd_acover"/>
 			<referrer name="pc_cmd_showlicenses"/>
 			<referrer name="pc_cmd_sms"/>
 			<referrer name="pc_cmd_number"/>
@@ -38609,6 +38251,7 @@
 			<referrer name="pc_cmd_setfreq"/>
 			<referrer name="pc_cmd_findbusiness"/>
 			<referrer name="pc_cmd_findhouse"/>
+			<referrer name="pc_cmd_id"/>
 			<referrer name="pc_cmd_insertemail"/>
 			<dependency name="EOS"/>
 			<dependency name="SendClientMessage"/>
@@ -38656,7 +38299,6 @@
 			<referrer name="pc_cmd_invite"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
-			<referrer name="sendPaintballMapMsg"/>
 			<referrer name="advertismentTimer"/>
 			<referrer name="sendClanMessage"/>
 			<referrer name="InsertCarDS"/>
@@ -38702,7 +38344,6 @@
 		</member>
 		<member name="M:sendToAdmin" syntax="sendToAdmin(playerid, color, text[], &amp;level, ...)">
 			<stacksize value="15"/>
-			<referrer name="pc_cmd_d"/>
 			<referrer name="pc_cmd_sms"/>
 			<referrer name="pc_cmd_reply"/>
 			<dependency name="EOS"/>
@@ -38889,24 +38530,33 @@
 			</param>
 		</member>
 		<member name="M:showStats" syntax="showStats(playerid, userID)">
-			<stacksize value="16"/>
+			<stacksize value="17"/>
 			<referrer name="pc_cmd_stats"/>
 			<dependency name="GetBankMoney"/>
 			<dependency name="GetCashStr"/>
 			<dependency name="GetPlayerInterior"/>
 			<dependency name="GetPlayerVirtualWorld"/>
+			<dependency name="Iter_Single@ServerAdmins"/>
+			<dependency name="Iter_Single@ServerHelpers"/>
 			<dependency name="SendClientMessage"/>
+			<dependency name="factionName"/>
 			<dependency name="formatNumber"/>
 			<dependency name="pAFKSeconds"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pDrugs"/>
+			<dependency name="pFaction"/>
+			<dependency name="pFactionRank"/>
 			<dependency name="pHours"/>
 			<dependency name="pLevel"/>
 			<dependency name="pMats"/>
 			<dependency name="pName"/>
 			<dependency name="pPhone"/>
+			<dependency name="pPremium"/>
+			<dependency name="pPremiumPoints"/>
 			<dependency name="pRespectPoints"/>
+			<dependency name="pSQLID"/>
 			<dependency name="pSeconds"/>
+			<dependency name="pVIP"/>
 			<dependency name="pWarn"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
@@ -38937,10 +38587,6 @@
 			<referrer name="pc_cmd_deposit"/>
 			<referrer name="pc_cmd_withdraw"/>
 			<referrer name="pc_cmd_transfer"/>
-			<referrer name="pc_cmd_n"/>
-			<referrer name="pc_cmd_ch"/>
-			<referrer name="pc_cmd_hl"/>
-			<referrer name="pc_cmd_deletead"/>
 			<referrer name="LoadClans"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="LoadPersonalVehicle"/>
@@ -39098,9 +38744,6 @@
 			<stacksize value="15"/>
 			<referrer name="Calculate"/>
 			<referrer name="dialog_EMAIL"/>
-			<referrer name="dialog_GENDER"/>
-			<referrer name="dialog_GPS"/>
-			<referrer name="dialog_GPS1"/>
 			<referrer name="LoadHouses"/>
 			<referrer name="dialog_SELL_HOUSE_STATE"/>
 			<referrer name="dialog_HOUSE_OPTION_TITLE"/>
@@ -39140,7 +38783,6 @@
 			<referrer name="pc_cmd_skills"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
-			<referrer name="pc_cmd_enterpaint"/>
 			<referrer name="advertismentTimer"/>
 			<referrer name="LoadBusinesses"/>
 			<referrer name="dialog_BIZ_OPTION_TITLE"/>
@@ -39148,7 +38790,6 @@
 			<referrer name="dialog_SELL_BIZ_STATE"/>
 			<referrer name="dialog_BIZ_OPTION_TITLEADMIN"/>
 			<referrer name="dialog_BIZ_OPTION_DESCADMIN"/>
-			<referrer name="dialog_BUYBIZ"/>
 			<referrer name="dialog_TRANSFERBIZ"/>
 			<referrer name="pc_cmd_buybusiness"/>
 			<referrer name="pc_cmd_bizbalance"/>
@@ -39156,17 +38797,10 @@
 			<referrer name="pc_cmd_bizdeposit"/>
 			<referrer name="pc_cmd_sellbiz"/>
 			<referrer name="pc_cmd_adminbusiness"/>
-			<referrer name="pc_cmd_balance"/>
 			<referrer name="pc_cmd_deposit"/>
 			<referrer name="pc_cmd_withdraw"/>
 			<referrer name="pc_cmd_transfer"/>
 			<referrer name="pc_cmd_createbusiness"/>
-			<referrer name="CautaHelperNou"/>
-			<referrer name="CautaHelper"/>
-			<referrer name="pc_cmd_ar"/>
-			<referrer name="pc_cmd_ch"/>
-			<referrer name="pc_cmd_hl"/>
-			<referrer name="pc_cmd_deletead"/>
 			<referrer name="pc_cmd_cinvite"/>
 			<referrer name="dialog_DIALOG_CLAN"/>
 			<referrer name="SetClanTag"/>
@@ -39300,6 +38934,7 @@
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="pc_cmd_jailo"/>
 			<referrer name="pc_cmd_announce"/>
+			<referrer name="pc_cmd_acover"/>
 			<referrer name="pc_cmd_reply"/>
 			<referrer name="pc_cmd_wt"/>
 			<referrer name="pc_cmd_insertemail"/>
@@ -39318,6 +38953,7 @@
 			<referrer name="pc_cmd_banipoffline"/>
 			<referrer name="pc_cmd_unjailo"/>
 			<referrer name="pc_cmd_jailo"/>
+			<referrer name="pc_cmd_acover"/>
 			<referrer name="pc_cmd_cancel"/>
 			<referrer name="OnPlayerText"/>
 			<dependency name="false"/>
@@ -39475,70 +39111,6 @@
 			<param name="playerid">
 			</param>
 		</member>
-		<member name="M:testPlayerTextDrawShow" syntax="testPlayerTextDrawShow(playerid, text, nr)">
-			<stacksize value="4"/>
-			<dependency name="PlayerTextDrawShow"/>
-			<dependency name="printf"/>
-			<param name="playerid">
-			</param>
-			<param name="text">
-				<paraminfo>PlayerText </paraminfo>
-			</param>
-			<param name="nr">
-			</param>
-		</member>
-		<member name="M:timerPaintballMap" syntax="timerPaintballMap(map)">
-			<stacksize value="4133"/>
-			<referrer name="timerPaintballMap@_yT"/>
-			<dependency name="GivePlayerCash"/>
-			<dependency name="Iter_Contains_InternalC"/>
-			<dependency name="Iter_Remove_InternalC"/>
-			<dependency name="Iter_Single@PaintballMap"/>
-			<dependency name="Iterator@FactionMembers"/>
-			<dependency name="Iterator@PaintballMap"/>
-			<dependency name="MoneyMoney"/>
-			<dependency name="PaintballTime"/>
-			<dependency name="StoreMoney"/>
-			<dependency name="_Timer_F"/>
-			<dependency name="formatNumber"/>
-			<dependency name="formatNumber"/>
-			<dependency name="mapName"/>
-			<dependency name="mapName"/>
-			<dependency name="pDrugs"/>
-			<dependency name="pMats"/>
-			<dependency name="pRespectPoints"/>
-			<dependency name="pSQLID"/>
-			<dependency name="paint"/>
-			<dependency name="pinPaintball"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="random"/>
-			<dependency name="true"/>
-			<dependency name="update"/>
-			<dependency name="va_SendClientMessage"/>
-			<param name="map">
-			</param>
-		</member>
-		<member name="M:timerPaintballMap@_yT" syntax="timerPaintballMap@_yT(__r, map)">
-			<tagname value="@Yj"/>
-			<attribute name="public"/>
-			<stacksize value="4"/>
-			<dependency name="timerPaintballMap"/>
-			<param name="__r">
-			</param>
-			<param name="map">
-			</param>
-		</member>
-		<member name="M:timerPaintballMap_yT@" syntax="timerPaintballMap_yT@(map)">
-			<stacksize value="8"/>
-			<referrer name="dialog_DIALOG_PAINTBALL"/>
-			<dependency name="I@"/>
-			<dependency name="J@"/>
-			<dependency name="O@"/>
-			<dependency name="_Timer_C"/>
-			<param name="map">
-			</param>
-		</member>
 		<member name="M:tolower" syntax="tolower(c)">
 			<attribute name="native"/>
 			<referrer name="StrToLower"/>
@@ -39607,6 +39179,10 @@
 			<referrer name="pc_cmd_setraport"/>
 			<referrer name="pc_cmd_createsafe"/>
 			<referrer name="pc_cmd_createbusiness"/>
+			<referrer name="pc_cmd_n"/>
+			<referrer name="pc_cmd_ch"/>
+			<referrer name="pc_cmd_hl"/>
+			<referrer name="pc_cmd_deletead"/>
 			<referrer name="pc_cmd_cinvite"/>
 			<referrer name="pc_cmd_clanchat"/>
 			<referrer name="pc_cmd_addbizgas"/>
@@ -39651,6 +39227,7 @@
 			<referrer name="pc_cmd_showfreq"/>
 			<referrer name="pc_cmd_announce"/>
 			<referrer name="pc_cmd_count"/>
+			<referrer name="pc_cmd_acover"/>
 			<referrer name="pc_cmd_showlicenses"/>
 			<referrer name="pc_cmd_sms"/>
 			<referrer name="pc_cmd_number"/>
@@ -39668,6 +39245,7 @@
 			<referrer name="pc_cmd_wt"/>
 			<referrer name="pc_cmd_findbusiness"/>
 			<referrer name="pc_cmd_findhouse"/>
+			<referrer name="pc_cmd_id"/>
 			<referrer name="pc_cmd_insertemail"/>
 			<param name="data">
 				<paraminfo> [] </paraminfo>
@@ -39739,7 +39317,6 @@
 			<referrer name="pc_cmd_getjob"/>
 			<referrer name="pc_cmd_usedrugs"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="timerPaintballMap"/>
 			<referrer name="dialog_BIZ_OPTION_TITLE"/>
 			<referrer name="dialog_BIZ_OPTION_DESCRIPTION"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
@@ -39857,18 +39434,16 @@
 			<referrer name="PayDay"/>
 			<referrer name="pc_cmd_set"/>
 			<referrer name="pc_cmd_buylevel"/>
-			<dependency name="Float:operator=(_:)"/>
-			<dependency name="CreatePlayerProgressBar"/>
-			<dependency name="DestroyPlayerProgressBar"/>
+			<dependency name="operator+(Float:,Float:)"/>
+			<dependency name="operator*(Float:,Float:)"/>
+			<dependency name="operator&gt;(Float:,_:)"/>
 			<dependency name="PlayerTextDrawShow"/>
-			<dependency name="SetPlayerProgressBarMaxValue"/>
-			<dependency name="SetPlayerProgressBarValue"/>
-			<dependency name="ShowPlayerProgressBar"/>
+			<dependency name="PlayerTextDrawTextSize"/>
+			<dependency name="float"/>
+			<dependency name="levelBar"/>
 			<dependency name="pLevel"/>
 			<dependency name="pRespectPoints"/>
-			<dependency name="playerBarPTD"/>
 			<dependency name="playerInfo"/>
-			<dependency name="playerLevelPTD"/>
 			<dependency name="true"/>
 			<dependency name="va_PlayerTextDrawSetString"/>
 			<param name="playerid">
@@ -40014,6 +39589,7 @@
 			<referrer name="TimerJail"/>
 			<referrer name="TimerWanted"/>
 			<referrer name="Timers"/>
+			<referrer name="pc_cmd_acover"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="ShowDealerShipTD"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
@@ -40042,6 +39618,8 @@
 			<referrer name="mutePlayer"/>
 			<referrer name="showStats"/>
 			<referrer name="showLicenses"/>
+			<referrer name="dialog_GENDER"/>
+			<referrer name="dialog_GPS1"/>
 			<referrer name="pc_cmd_buyhouse"/>
 			<referrer name="pc_cmd_housebalance"/>
 			<referrer name="pc_cmd_housewithdraw"/>
@@ -40083,10 +39661,17 @@
 			<referrer name="pc_cmd_resetraport"/>
 			<referrer name="pc_cmd_myraport"/>
 			<referrer name="pc_cmd_createsafe"/>
-			<referrer name="timerPaintballMap"/>
+			<referrer name="dialog_BUYBIZ"/>
 			<referrer name="pc_cmd_sellbiz"/>
+			<referrer name="pc_cmd_balance"/>
 			<referrer name="pc_cmd_myad"/>
 			<referrer name="pc_cmd_createbusiness"/>
+			<referrer name="CautaHelperNou"/>
+			<referrer name="CautaHelper"/>
+			<referrer name="pc_cmd_ar"/>
+			<referrer name="pc_cmd_ch"/>
+			<referrer name="pc_cmd_hl"/>
+			<referrer name="pc_cmd_deletead"/>
 			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPlayerBanIP"/>
@@ -40140,6 +39725,7 @@
 			<referrer name="pc_cmd_freqmembers"/>
 			<referrer name="pc_cmd_findbusiness"/>
 			<referrer name="pc_cmd_findhouse"/>
+			<referrer name="pc_cmd_id"/>
 			<referrer name="pc_cmd_insertemail"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<referrer name="OnPlayerDeath"/>
@@ -40170,6 +39756,7 @@
 			<referrer name="pc_cmd_arrest"/>
 			<referrer name="pc_cmd_fare"/>
 			<referrer name="pc_cmd_aq"/>
+			<referrer name="pc_cmd_ch"/>
 			<referrer name="checkAccountBanDatabase"/>
 			<referrer name="pc_cmd_warn"/>
 			<referrer name="pc_cmd_ban"/>
@@ -40254,7 +39841,6 @@
 			<referrer name="pc_cmd_invite"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
-			<referrer name="sendPaintballMapMsg"/>
 			<referrer name="sendClanMessage"/>
 			<referrer name="InsertCarDS"/>
 			<param name="output">

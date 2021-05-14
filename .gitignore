@@ -5,3 +5,6 @@ logs/plugins/mysql.log
 logs/errors.log
 gamemodes/fromzero.xml
 gamemodes/fromzero.amx
+*.xml
+*.amx
+server_log.txt

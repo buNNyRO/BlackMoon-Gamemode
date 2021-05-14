@@ -39,6 +39,7 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
     
     PlayerText:jailTimeTD[MAX_PLAYERS],
 	PlayerText:serverHud[2],
+    PlayerText:levelBar[3],
 	PlayerText:playerLevelPTD[MAX_PLAYERS],
 	PlayerText:playerExamenPTD[MAX_PLAYERS],
     PlayerText:vehicleHud[20],
@@ -46,8 +47,6 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
     PlayerText:wantedTD[MAX_PLAYERS],
     PlayerText:fareTD[MAX_PLAYERS],
     PlayerText:warTD[MAX_PLAYERS],
-
-	PlayerBar:playerBarPTD[MAX_PLAYERS],
 
     Timer:jailTime[MAX_PLAYERS],
     Timer:wantedTime[MAX_PLAYERS],

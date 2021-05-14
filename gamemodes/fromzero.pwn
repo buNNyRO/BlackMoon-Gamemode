@@ -2,7 +2,7 @@
 // BBBBBBBBBBBBBBBBB   lllllll                                       kkkkkkkk           MMMMMMMM               MMMMMMMM                                                    //
 // B::::::::::::::::B  l:::::l                                       k::::::k           M:::::::M             M:::::::M                                                    //
 // B::::::BBBBBB:::::B l:::::l                                       k::::::k           M::::::::M           M::::::::M                                                    //
-// BB:::::B     B:::::Bl:::::l   secinmin                                    k::::::k           M:::::::::M         M:::::::::M                                                    //
+// BB:::::B     B:::::Bl:::::l                                       k::::::k           M:::::::::M         M:::::::::M                                                    //
 //   B::::B     B:::::B l::::l   aaaaaaaaaaaaa       cccccccccccccccc k:::::k    kkkkkkkM::::::::::M       M::::::::::M   ooooooooooo      ooooooooooo   nnnn  nnnnnnnn    //
 //   B::::B     B:::::B l::::l   a::::::::::::a    cc:::::::::::::::c k:::::k   k:::::k M:::::::::::M     M:::::::::::M oo:::::::::::oo  oo:::::::::::oo n:::nn::::::::nn  //
 //   B::::BBBBBB:::::B  l::::l   aaaaaaaaa:::::a  c:::::::::::::::::c k:::::k  k:::::k  M:::::::M::::M   M::::M:::::::Mo:::::::::::::::oo:::::::::::::::on::::::::::::::nn //
@@ -16,7 +16,7 @@
 // B::::::::::::::::B  l::::::l a::::::::::aa:::a  cc:::::::::::::::ck::::::k   k:::::k M::::::M               M::::::M oo:::::::::::oo  oo:::::::::::oo   n::::n    n::::n//
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define MYSQL 1 // 0 - local | 1 - host
+#define MYSQL 0 // 0 - local | 1 - host
 
 #include <a_samp>
 #include <a_zones>
@@ -34,7 +34,6 @@
 #include <a_mysql>
 #include <a_http>
 #include <sscanf2>
-#include <playerprogress>
 #include <timestamptodate>
 #include <fly>
 #include <callbacks>
@@ -66,7 +65,7 @@
 #include <modules\dealership.pwn>
 #include <modules\emails.pwn>
 
-main() {}
+main() { }
 
 alias:adminchat("a", "ac")
 alias:helperchat("h", "hc")

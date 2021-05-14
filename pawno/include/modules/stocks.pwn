@@ -549,21 +549,52 @@ stock playerTextDraws(playerid) {
 	PlayerTextDrawFont(playerid, jailTimeTD[playerid], 2);
 	PlayerTextDrawSetProportional(playerid, jailTimeTD[playerid], 1);
 	PlayerTextDrawSetShadow(playerid, jailTimeTD[playerid], 0);
+
+	levelBar[0] = CreatePlayerTextDraw(playerid, 219.222122, 435.248931, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, levelBar[0], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, levelBar[0], 201.000000, 9.000000);
+	PlayerTextDrawAlignment(playerid, levelBar[0], 1);
+	PlayerTextDrawColor(playerid, levelBar[0], 149);
+	PlayerTextDrawSetShadow(playerid, levelBar[0], 0);
+	PlayerTextDrawSetOutline(playerid, levelBar[0], 0);
+	PlayerTextDrawBackgroundColor(playerid, levelBar[0], 255);
+	PlayerTextDrawFont(playerid, levelBar[0], 4);
+	PlayerTextDrawSetProportional(playerid, levelBar[0], 0);
+	PlayerTextDrawSetShadow(playerid, levelBar[0], 0);
+
+	levelBar[1] = CreatePlayerTextDraw(playerid, 219.722152, 435.748962, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, levelBar[1], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, levelBar[1], 200.000000, 8.000000);
+	PlayerTextDrawAlignment(playerid, levelBar[1], 1);
+	PlayerTextDrawColor(playerid, levelBar[1], -2139062180);
+	PlayerTextDrawSetShadow(playerid, levelBar[1], 0);
+	PlayerTextDrawSetOutline(playerid, levelBar[1], 0);
+	PlayerTextDrawBackgroundColor(playerid, levelBar[1], 255);
+	PlayerTextDrawFont(playerid, levelBar[1], 4);
+	PlayerTextDrawSetProportional(playerid, levelBar[1], 0);
+	PlayerTextDrawSetShadow(playerid, levelBar[1], 0);
+
+	levelBar[2] = CreatePlayerTextDraw(playerid, 287.313537, 424.523834, "LEVEL 0 ~p~(0/0)");
+	PlayerTextDrawLetterSize(playerid, levelBar[2], 0.174222, 1.127111);
+	PlayerTextDrawAlignment(playerid, levelBar[2], 1);
+	PlayerTextDrawColor(playerid, levelBar[2], -1);
+	PlayerTextDrawSetShadow(playerid, levelBar[2], 0);
+	PlayerTextDrawSetOutline(playerid, levelBar[2], 1);
+	PlayerTextDrawBackgroundColor(playerid, levelBar[2], 59);
+	PlayerTextDrawFont(playerid, levelBar[2], 2);
+	PlayerTextDrawSetProportional(playerid, levelBar[2], 1);
+	PlayerTextDrawSetShadow(playerid, levelBar[2], 0);	
 	return true;
 }
 
-stock updateLevelBar(playerid)
-{
-	if(playerBarPTD[playerid] != INVALID_PLAYER_BAR_ID)
-		DestroyPlayerProgressBar(playerid, playerBarPTD[playerid]);
-
-	playerBarPTD[playerid] = CreatePlayerProgressBar(playerid, 38.0000, 302.0000, 97.5000, 3.2000, -65281, 1000);
-	SetPlayerProgressBarMaxValue(playerid, playerBarPTD[playerid], (playerInfo[playerid][pLevel] * 3));
-	SetPlayerProgressBarValue(playerid, playerBarPTD[playerid], playerInfo[playerid][pRespectPoints]);
-	ShowPlayerProgressBar(playerid, playerBarPTD[playerid]);
-
-	va_PlayerTextDrawSetString(playerid, playerLevelPTD[playerid], "Nivel %d (%d/%d RP)", playerInfo[playerid][pLevel], playerInfo[playerid][pRespectPoints], (playerInfo[playerid][pLevel] * 3));
-	PlayerTextDrawShow(playerid, playerLevelPTD[playerid]);
+stock updateLevelBar(playerid) {
+	new Float:level;
+	if(float((playerInfo[playerid][pRespectPoints]*100)/(playerInfo[playerid][pLevel] * 3)) > 100) level = 100.0;
+	else level = float((playerInfo[playerid][pRespectPoints]*100)/(playerInfo[playerid][pLevel] * 3));
+	
+	PlayerTextDrawTextSize(playerid, levelBar[1], (1.000000)+(1.990000 * level), 8.000000);
+	va_PlayerTextDrawSetString(playerid, levelBar[2], "LEVEL %d ~p~(%d%s)", playerInfo[playerid][pLevel], (playerInfo[playerid][pRespectPoints]*100)/(playerInfo[playerid][pLevel] * 3), "%");
+	for(new i = 0; i < sizeof levelBar; i++) PlayerTextDrawShow(playerid, levelBar[i]);
 	return true;
 }
 
@@ -578,7 +609,6 @@ stock destroyPlayerTextDraws(playerid)
 	PlayerTextDrawDestroy(playerid, wantedTD[playerid]);
 	PlayerTextDrawDestroy(playerid, fareTD[playerid]);
 	PlayerTextDrawDestroy(playerid, warTD[playerid]);
-	DestroyPlayerProgressBar(playerid, playerBarPTD[playerid]);
 	return true;
 }
 
