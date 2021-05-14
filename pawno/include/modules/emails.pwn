@@ -14,7 +14,7 @@ function ShowEmails(playerid) {
 		cache_get_value_name(i, "Text", text, 144);
 		cache_get_value_name(i, "From", from, MAX_PLAYER_NAME);
 		cache_get_value_name(i, "Date", date, 64);
-		playerInfo[playerid][pSelectedItem] = i;
+		playerInfo[playerid][pSelectedItem] = id;
 		format(gString, sizeof gString, "%s%d. %s\t%s\t%s\n", gString, id, text, from, date);
 	}
 	Dialog_Show(playerid, DIALOG_EMAILS, DIALOG_STYLE_TABLIST_HEADERS, "Emails", gString, "Select", "Cancel");

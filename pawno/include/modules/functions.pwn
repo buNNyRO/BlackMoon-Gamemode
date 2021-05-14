@@ -186,8 +186,6 @@ function onPlayerLogin(playerid)
 	cache_get_value_name_int(0, "VIP", playerInfo[playerid][pVIP]);
 	cache_get_value_name_int(0, "PremiumPoints", playerInfo[playerid][pPremiumPoints]);
 	cache_get_value_name_int(0, "FPSShow", playerInfo[playerid][pFPSShow]);
-	cache_get_value_name_int(0, "PaintballKills", playerInfo[playerid][pPaintballKills]);
-	cache_get_value_name_int(0, "PaintballDeaths", playerInfo[playerid][pPaintballDeaths]);
 
  	new guns[32];
  	cache_get_value_name(0, "Guns", guns, 32);
@@ -233,13 +231,13 @@ function onPlayerLogin(playerid)
 
 		PlayerTextDrawSetString(playerid, serverHud[1], "");
 		PlayerTextDrawShow(playerid, serverHud[1]);
-		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server (Total Staff: %d [%d admins, %d helpers]).", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
+		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server | Total Staff: %d [%d admins, %d helpers].", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
 	}
 
 	if(playerInfo[playerid][pHelper]) {
 		Iter_Add(ServerHelpers, playerid);
 		Iter_Add(ServerStaff, playerid);
-		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server (Total Staff: %d [%d admins, %d helpers]).", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
+		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server | Total Staff: %d [%d admins, %d helpers].", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
 	}
 
 	playerInfo[playerid][pReportMute] += gettime();

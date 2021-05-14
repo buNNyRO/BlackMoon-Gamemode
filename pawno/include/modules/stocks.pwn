@@ -150,15 +150,15 @@ stock setSkin(playerid, skin)
 
 stock showStats(playerid, userID)
 {
-	SCMf(playerid, COLOR_GREY, "------------------|%s's stats|----------------------", getName(playerid));
-	SCMf(playerid, COLOR_WHITE, "(%d) %s | Ore Jucate: %.2f | Warn-uri: %d/3", userID, getName(userID), playerInfo[userID][pHours], playerInfo[userID][pWarn]);
-	SCMf(playerid, COLOR_WHITE, "Nivel: %d | Puncte de Respect: %d/%d | Urmatorul nivel: $%s | Bani: $%s | Banca: $%s", playerInfo[userID][pLevel], playerInfo[userID][pRespectPoints], (playerInfo[userID][pLevel] * 3), formatNumber(playerInfo[userID][pLevel] * 250), GetCashStr(userID), GetBankMoney(userID));
-	SCMf(playerid, COLOR_WHITE, "Droguri: %d | Materiale: %d | Phone: %d", playerInfo[userID][pDrugs], playerInfo[userID][pMats], playerInfo[userID][pPhone]);
-	if(playerInfo[playerid][pAdmin]) {
-		SCM(playerid, COLOR_GREY, "------------------admin statistics----------------------");
-		SCMf(playerid, COLOR_LIGHTRED, "Secunde: %.0f | Secunde AFK: %d | Virtual World: %d | Interior: %d", playerInfo[userID][pSeconds], playerInfo[userID][pAFKSeconds], GetPlayerVirtualWorld(userID), GetPlayerInterior(userID));
+	SCMf(playerid, COLOR_SERVER, "------------------|{ffffff}%s's stats{cc66ff}|----------------------", getName(userID));
+	SCMf(playerid, COLOR_SERVER, "Account: {ffffff}%s (%d) | Level: %d | Puncte de respect: %d/%d | Ore jucate: %2.f | Warn-uri: %d/3 | Faction: %s (rank %d)", getName(userID), userID, playerInfo[userID][pLevel], playerInfo[userID][pRespectPoints], (playerInfo[userID][pLevel] * 3), playerInfo[userID][pHours], playerInfo[userID][pWarn], playerInfo[userID][pFaction] ? factionName(playerInfo[userID][pFaction]) : "None", playerInfo[userID][pFactionRank]);
+	SCMf(playerid, COLOR_SERVER, "Economy: {ffffff}Cash:$%s | Banca:$%s | Urmatorul nivel: $%s | Premium Points: %d", GetCashStr(userID), GetBankMoney(userID), formatNumber(playerInfo[userID][pLevel] * 250), playerInfo[userID][pPremiumPoints]);
+	SCMf(playerid, COLOR_SERVER, "Other: {ffffff}Drugs:%d | Materiale:%s | Phone: %d | VIP: %s | Premium: %s", playerInfo[userID][pDrugs], formatNumber(playerInfo[userID][pMats]), playerInfo[userID][pPhone], playerInfo[userID][pVIP] ? "yes" : "no", playerInfo[userID][pPremium] ? "yes" : "no");
+	if(playerInfo[userID][pAdmin]) {
+		SCM(playerid, COLOR_SERVER, "------------------|{ffffff}Admin Statistics{cc66ff}|----------------------");
+		SCMf(playerid, COLOR_SERVER, "Seconds: {ffffff}%0.f | Seconds AFK: %d | Virtual World: %d | Interior: %d | SQLID: %d | Admins: %d | Helpers: %d", playerInfo[userID][pSeconds], playerInfo[userID][pAFKSeconds], GetPlayerVirtualWorld(userID), GetPlayerInterior(userID), playerInfo[userID][pSQLID], Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
 	}
-	SCM(playerid, COLOR_GREY, "--------------------------------------------------------------");
+	SCM(playerid, COLOR_SERVER, "----------------------------------------------------------------------------");
 	return true;
 }
 
@@ -184,11 +184,6 @@ stock showLicenses(playerid, userID)
 	
 	SCM(playerid, COLOR_GREY, "----------------------------------------");
 	return true;
-}
-
-stock testPlayerTextDrawShow(playerid, PlayerText:text, nr=1) {
-	printf("td %d", nr);
-	return PlayerTextDrawShow(playerid, text);
 }
 
 stock playerTextDraws(playerid) {
@@ -867,9 +862,9 @@ stock resetVars(playerid)
 	playerInfo[playerid][pOnTurf] = 0;
 	playerInfo[playerid][pFactionDuty] = 0;
 	playerInfo[playerid][pEnableBoost] = 0;
-	playerInfo[playerid][pinPaintball] = 0;
-	playerInfo[playerid][pPaintBallK] = 0;
-	playerInfo[playerid][pPaintBallD] = 0;
+	playerInfo[playerid][pAdminCover] = (EOS);
+	playerInfo[playerid][pDrunkLevel] = 0;
+	playerInfo[playerid][pFPS] = 0;	
 
 	if(IsValidVehicle(playerInfo[playerid][pExamenVehicle])) DestroyVehicle(playerInfo[playerid][pExamenVehicle]);
 

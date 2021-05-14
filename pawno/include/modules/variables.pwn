@@ -58,7 +58,6 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
     Timer:war[MAX_TURFS],
     Timer:taxi[MAX_PLAYERS],
     Timer:getHit[MAX_PLAYERS],
-    Timer:paint[3],
     // Timer:fpsShow[MAX_PLAYERS],
 
 

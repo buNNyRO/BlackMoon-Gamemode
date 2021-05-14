@@ -442,7 +442,7 @@ CMD:factions(playerid, params[]) {
 	gString[0] = (EOS);
 	strcat(gString, "Faction\tAplications\nMin. Level");
 	foreach(new fid : ServerFactions) {
-		format(gString, sizeof(gString), "%s\n{FFFFFF}%s\t%s\t%d\n", gString, factionName(fid), factionInfo[fid][fApps] ? "{4caf50}On" : "{f44336}Off", factionInfo[fid][fMinLevel]);
+		format(gString, sizeof(gString), "%s\t%s\t%d\n", factionName(fid), factionInfo[fid][fApps] ? "{4caf50}On" : "{f44336}Off", factionInfo[fid][fMinLevel]);
 	}
 	Dialog_Show(playerid, NO_DIALOG, DIALOG_STYLE_TABLIST_HEADERS, "Server: Factions", gString, "Close", "");
 	return true;
@@ -470,9 +470,9 @@ CMD:makeleader(playerid, params[]) {
 	playerInfo[targetid][pFactionRank] = 7;
 	playerInfo[targetid][pFactionAge] = 0;
 	playerInfo[targetid][pFactionWarns] = 0;
-	playerInfo[targetid][pSkin] = fSkins[playerInfo[playerid][pFaction]][playerInfo[targetid][pFactionRank]];
+	playerInfo[targetid][pSkin] = fSkins[playerInfo[targetid][pFaction]][playerInfo[targetid][pFactionRank]];
 	playerInfo[targetid][pSpawnChange] = 4;
-	SetPlayerSkin(targetid, playerInfo[playerid][pSkin]);
+	SetPlayerSkin(targetid, playerInfo[targetid][pSkin]);
 	SpawnPlayer(targetid);
 	update("UPDATE `server_users` SET `Faction` = '%d', `FRank` = '7', `FAge` = '%d', `FWarns` = '0', `SpawnChange` = '4', `Skin` = '%d' WHERE `ID` = '%d'", playerInfo[targetid][pFaction], playerInfo[targetid][pFactionAge], playerInfo[targetid][pSkin], playerInfo[targetid][pSQLID]);
 	Iter_Add(FactionMembers[fid], targetid);
@@ -505,10 +505,11 @@ CMD:auninvite(playerid, params[]) {
 	playerInfo[targetid][pFactionAge] = 0;
 	playerInfo[targetid][pFactionWarns] = 0;	
 	playerInfo[targetid][pFactionPunish] = fp;
-	if(playerInfo[playerid][pFactionDuty]) playerInfo[playerid][pFactionDuty] = 0;
+	if(playerInfo[targetid][pFactionDuty]) playerInfo[targetid][pFactionDuty] = 0;
 	update("UPDATE `server_users` SET `Faction` = '0', `FRank` = '7', `FAge` = '0', `FWarns` = '0', `FPunish` = '%d' WHERE `ID` = '%d'", playerInfo[targetid][pFactionPunish], playerInfo[targetid][pSQLID]);
 	whenPlayerLeaveFaction(targetid);
-	return SCMf(targetid, COLOR_YELLOW, "* Admin %s te-a demis din factiunea %s cu %d faction punish.", getName(playerid), factionName(fid), fp);
+	SCMf(targetid, COLOR_YELLOW, "* Admin %s te-a demis din factiunea %s cu %d faction punish.", getName(playerid), factionName(fid), fp);
+	return true;
 }
 
 CMD:flock(playerid, params[]) {
@@ -517,7 +518,8 @@ CMD:flock(playerid, params[]) {
 	new fid = strval(params);
 	if(!Iter_Contains(ServerFactions, fid)) return sendPlayerError(playerid, "Invalid faction id.");
 	factionInfo[fid][fLocked] = !factionInfo[fid][fLocked];
-	return UpdateDynamic3DTextLabelText(factionInfo[fid][fText], -1, string_fast("Faction ID: %d\nFaction Name: %s\nFaction Locked: %s", factionInfo[fid][fID], factionName(fid), factionInfo[fid][fLocked] ? "Yes" : "No"));
+	UpdateDynamic3DTextLabelText(factionInfo[fid][fText], -1, string_fast("Faction ID: %d\nFaction Name: %s\nFaction Locked: %s", factionInfo[fid][fID], factionName(fid), factionInfo[fid][fLocked] ? "Yes" : "No"));
+	return true;
 }
 
 CMD:fapps(playerid, params[]) {
@@ -542,10 +544,7 @@ CMD:fspec(playerid, params[]) {
 CMD:blockf(playerid, params[]) {
 	if(playerInfo[playerid][pFaction] == 0) return sendPlayerError(playerid, "Nu ai vreo factiune.");
 	if(playerInfo[playerid][pFactionRank] < 6) return sendPlayerError(playerid, "Nu ai rank 6, pentru a folosi aceasta comanda.");
-	switch(factionChat[playerInfo[playerid][pFaction]]) {
-		case 0: factionChat[playerInfo[playerid][pFaction]] = 1;
-		case 1: factionChat[playerInfo[playerid][pFaction]] = 0;
-	}
+	factionChat[playerInfo[playerid][pFaction]] = factionChat[playerInfo[playerid][pFaction]] ? 0 : 1;
 	sendFactionMessage(playerInfo[playerid][pFaction], COLOR_LIMEGREEN, "(-) %s a %s chatul factiunii.", getName(playerid), factionChat[playerInfo[playerid][pFaction]] ? "activat" : "dezactivat");
 	return true;
 }
@@ -583,14 +582,13 @@ CMD:r(playerid, params[]) {
 CMD:d(playerid, params[]) {
 	if(playerInfo[playerid][pFaction] == 0 || playerInfo[playerid][pAdmin] == 0) return sendPlayerError(playerid, "Nu ai vreo factiune.");
 	if(Iter_Contains(FactionMembers[1], playerid) || Iter_Contains(FactionMembers[5], playerid) || Iter_Contains(FactionMembers[6], playerid) || Iter_Contains(FactionMembers[7], playerid) || Iter_Contains(FactionMembers[8], playerid)) return sendPlayerError(playerid, "Pentru a folosi aceasta comanda, trebuie sa fii intr-un departament.");
-	extract params -> new string:result[250]; else return sendPlayerSyntax(playerid, "/d <text>");
+	extract params -> new string:result[144]; else return sendPlayerSyntax(playerid, "/d <text>");
 	if(faceReclama(result)) return removeFunction(playerid, result);
     if(faceReclama(result)) return Reclama(playerid, result);
-	sendFactionMessage(1, COLOR_LIGHTRED, "* (%s) %s: %s, over", factionName(playerInfo[playerid][pFaction]), getName(playerid), result);
-	sendFactionMessage(2, COLOR_LIGHTRED, "* (%s) %s: %s, over", factionName(playerInfo[playerid][pFaction]), getName(playerid), result);
-	sendFactionMessage(3, COLOR_LIGHTRED, "* (%s) %s: %s, over", factionName(playerInfo[playerid][pFaction]), getName(playerid), result);
-	if(playerInfo[playerid][pAdmin]) sendToAdmin(playerid, COLOR_LIGHTRED, "* Admin %s: %s, over", getName(playerid), result);
-	SetPlayerChatBubble(playerid, string_fast("'%s'", result), COLOR_WHITE, 25.0, 5000);
+	sendFactionMessage(1, COLOR_LIGHTRED, "* (%s) %s: %s, over", playerInfo[playerid][pAdmin] > 0 ? "Admin" : factionName(playerInfo[playerid][pFaction]), getName(playerid), result);
+	sendFactionMessage(2, COLOR_LIGHTRED, "* (%s) %s: %s, over", playerInfo[playerid][pAdmin] > 0 ? "Admin" : factionName(playerInfo[playerid][pFaction]), getName(playerid), result);
+	sendFactionMessage(3, COLOR_LIGHTRED, "* (%s) %s: %s, over", playerInfo[playerid][pAdmin] > 0 ? "Admin" : factionName(playerInfo[playerid][pFaction]), getName(playerid), result);
+	SetPlayerChatBubble(playerid, string_fast("'%s'", result), COLOR_LIGHTRED, 25.0, 5000);
 	return true;
 }
 
@@ -601,17 +599,17 @@ CMD:heal(playerid, params[]) {
 	if(playerInfo[playerid][pinFaction] == playerInfo[playerid][pFaction]) SetPlayerHealthEx(playerid, 100);
 	if(!Iter_Contains(FactionMembers[1], playerid)) return sendPlayerError(playerid, "Nu esti in factiunea 'Paramedic Department' pentru a folosi aceasta comanda.");
 	extract params -> new player:targetid, money; else return sendPlayerSyntax(playerid, "/heal <name/id> <money>");
-	if(!(1 <= money <= 500)) return sendPlayerError(playerid, "Invalid money (1$ - 500$).");
-	if(vehicleFaction[GetPlayerVehicleID(playerid)] != playerInfo[playerid][pFaction]) return sendPlayerError(playerid, "You are not in a vehicle of your faction.");
-	if(!isPlayerLogged(targetid)) return sendPlayerError(playerid, "Player not connected.");
-	if(!IsPlayerInVehicle(targetid, GetPlayerVehicleID(playerid))) return sendPlayerError(playerid, "Player is not in your car.");
-	if(GetPlayerCash(targetid) < money) return sendPlayerError(playerid, "Player does dosen't have this money");
 	if(playerid == targetid) return sendPlayerError(playerid, "Invalid player id.");
+	if(!isPlayerLogged(targetid)) return sendPlayerError(playerid, "Player not connected.");
 	if(playerInfo[targetid][pHealth] >= 95.00) return sendPlayerError(playerid, "Player has enough health.");
 	if(playerInfo[targetid][pAFKSeconds] > 0) return sendPlayerError(playerid, "Player is AFK.");
+	if(!PlayerMoney(targetid, money)) return sendPlayerError(playerid, "Player does dosen't have this money");
+	if(!(1 <= money <= 500)) return sendPlayerError(playerid, "Invalid money (1$ - 500$).");
+	if(vehicleFaction[GetPlayerVehicleID(playerid)] != playerInfo[playerid][pFaction]) return sendPlayerError(playerid, "You are not in a vehicle of your faction.");
+	if(!IsPlayerInVehicle(targetid, GetPlayerVehicleID(playerid))) return sendPlayerError(playerid, "Player is not in your car.");
 	SetPlayerHealthEx(targetid, 100.00);
-	va_GameTextForPlayer(targetid, "~r~-$%d", money, 10, 1);
-	va_GameTextForPlayer(playerid, "~g~+$%d", money, 10, 1);
+	va_GameTextForPlayer(targetid, "~r~-$%d", money, 3000, 1);
+	va_GameTextForPlayer(playerid, "~g~+$%d", money, 3000, 1);
 	GivePlayerCash(targetid, 0, money);
 	GivePlayerCash(playerid, 1, money);
 	addRaportPoint(playerid);
@@ -658,34 +656,29 @@ CMD:service(playerid, params[]) {
 }
 
 CMD:duty(playerid, params[]) {
-	if(!Iter_Contains(FactionMembers[2], playerid) || !Iter_Contains(FactionMembers[3], playerid) || !Iter_Contains(FactionMembers[4], playerid)) return sendPlayerError(playerid, "Aceasta comanda nu este valabila pentru tine.");
-	if(GetPVarInt(playerid, "dutyDeelay") >= gettime()) return true;
+	if(Iter_Contains(FactionMembers[1], playerid) || Iter_Contains(FactionMembers[5], playerid) || Iter_Contains(FactionMembers[6], playerid) || Iter_Contains(FactionMembers[7], playerid) || Iter_Contains(FactionMembers[8], playerid) || Iter_Contains(FactionMembers[9], playerid) || Iter_Contains(FactionMembers[10], playerid)) return sendPlayerError(playerid, "Aceasta comanda nu este valabila pentru tine.");
 	if(!playerInfo[playerid][pinFaction]) return sendPlayerError(playerid, "Nu esti in HQ-ul factiunii pentru a folosi aceasta comanda.");
 	if(playerInfo[playerid][pWeaponLicense] == 0) return sendPlayerError(playerid, "Nu ai licenta de arme, pentru a folosi aceasta comanda.");
-	switch(playerInfo[playerid][pFactionDuty]) {
-		case 0: {
-			SetPlayerToFactionColor(playerid);
-			playerInfo[playerid][pFactionDuty] = 1;
-			serverWeapon(playerid, 24, 500);
-			serverWeapon(playerid, 3, 0);
-			serverWeapon(playerid, 41, 500);
-			serverWeapon(playerid, 29, 1000);
-			serverWeapon(playerid, 31, 1000);
-			SetPlayerArmourEx(playerid, 100);
-			SetPlayerHealthEx(playerid, 100);	
-			SetPVarInt(playerid, "dutyDeelay", gettime() + 5);
-			sendNearbyMessage(playerid, COLOR_PURPLE, 25.0, "%s si-a luat armele in vestiar.", getName(playerid));
-		}	
-		case 1: {
-			playerInfo[playerid][pFactionDuty] = 0;
-			resetWeapons(playerid);
-			SetPlayerArmourEx(playerid, 0);
-			SetPlayerHealthEx(playerid, 100);
-			SetPlayerToFactionColor(playerid);
-			SetPlayerSkin(playerid, playerInfo[playerid][pSkin]);
-			SetPVarInt(playerid, "dutyDeelay", gettime() + 5);
-			sendNearbyMessage(playerid, COLOR_PURPLE, 25.0, "%s si-a pus armele in vestiar.", getName(playerid));
-		}
+	if(playerInfo[playerid][pFactionDuty] == 0) {
+		SetPlayerToFactionColor(playerid);
+		playerInfo[playerid][pFactionDuty] = 1;
+		serverWeapon(playerid, 24, 500);
+		serverWeapon(playerid, 3, 0);
+		serverWeapon(playerid, 41, 500);
+		serverWeapon(playerid, 29, 1000);
+		serverWeapon(playerid, 31, 1000);
+		SetPlayerArmourEx(playerid, 100);
+		SetPlayerHealthEx(playerid, 100);	
+		sendNearbyMessage(playerid, COLOR_PURPLE, 25.0, "%s si-a luat armele si echipamentul din vestiar.", getName(playerid));
+	}
+	else if(playerInfo[playerid][pFactionDuty] == 1) {
+		playerInfo[playerid][pFactionDuty] = 0;
+		resetWeapons(playerid);
+		SetPlayerArmourEx(playerid, 0);
+		SetPlayerHealthEx(playerid, 100);
+		SetPlayerToFactionColor(playerid);
+		SetPlayerSkin(playerid, playerInfo[playerid][pSkin]);
+		sendNearbyMessage(playerid, COLOR_PURPLE, 25.0, "%s si-a pus armele si echipamentul in vestiar.", getName(playerid));
 	}
 	return true;
 }

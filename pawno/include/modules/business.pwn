@@ -184,10 +184,8 @@ Dialog:BIZ_OPTION_DESCADMIN(playerid, response, listitem, inputtext[]) {
 
 Dialog:BUYBIZ(playerid, response, listitem) { 
 	if(!response) return true;
-	SCM(playerid, -1, "smeker 999");
 	switch(listitem) {
 		case 0: {
-			SCM(playerid, -1, "smeker 1");
 			if(GetPlayerCash(playerid) < 1500) return sendPlayerError(playerid, "Nu ai $1500.");
 			if(playerInfo[playerid][pPhone] > 0) return sendPlayerError(playerid, "Ai deja telefon.");
 			if(strlen(playerInfo[playerid][pPhone]) == 4) return sendPlayerError(playerid, "Nu poti cumpara alt telefon deoarece ai un iPhone.");
@@ -196,36 +194,33 @@ Dialog:BUYBIZ(playerid, response, listitem) {
 			PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
 			bizInfo[2][bizBalance] += 1500;
 			playerInfo[playerid][pPhone] = randphone;
-			update("UPDATE `server_users` SET `Phone` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pPhone], playerInfo[playerid][pSQLID]);
-			update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '2'", bizInfo[2][bizBalance]);
-			SCM(playerid, COLOR_GREY, string_fast("* Buy Notice: Ai cumparat un telefon, iar numarul tau este %d.", randphone));
+			update("UPDATE `server_users` SET `Phone` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pPhone], playerInfo[playerid][pSQLID]);
+			update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '2' LIMIT 1", bizInfo[2][bizBalance]);
+			SCMf(playerid, COLOR_GREY, "* Buy Notice: Ai cumparat un telefon, iar numarul tau este %d.", randphone);
 		}
 		case 1: {
-			SCM(playerid, -1, "smeker 2");
 			if(GetPlayerCash(playerid) < 3500) return sendPlayerError(playerid, "Nu ai $3500.");
 			if(playerInfo[playerid][pPhoneBook] > 0) return sendPlayerError(playerid, "Ai deja agenda telefonica.");
 			GivePlayerCash(playerid, 0, 3500);
 			PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
 			playerInfo[playerid][pPhoneBook] = 1;
 			bizInfo[2][bizBalance] += 3500;
-			update("UPDATE `server_users` SET `PhoneBook` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pPhoneBook], playerInfo[playerid][pSQLID]);
-			update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '2'", bizInfo[2][bizBalance]);
+			update("UPDATE `server_users` SET `PhoneBook` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pPhoneBook], playerInfo[playerid][pSQLID]);
+			update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '2' LIMIT 1", bizInfo[2][bizBalance]);
 			SCM(playerid, COLOR_GREY, "* Buy Notice: Ai cumparat o agenda telefonica.");
 		}
 		case 2: {
-			SCM(playerid, -1, "smeker 3");
 			if(GetPlayerCash(playerid) < 5000) return sendPlayerError(playerid, "Nu ai $5000.");
 			if(playerInfo[playerid][pWTalkie] == 1) return sendPlayerError(playerid, "Ai deja un walkie talkie.");
 			GivePlayerCash(playerid, 0, 5000);
 			PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
 			playerInfo[playerid][pWTalkie] = 1;
 			bizInfo[2][bizBalance] += 5000;
-			update("UPDATE `server_users` SET `WTalkie` = '1' WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
-			update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '2'", bizInfo[2][bizBalance]);
+			update("UPDATE `server_users` SET `WTalkie` = '1' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pSQLID]);
+			update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '2' LIMIT 1", bizInfo[2][bizBalance]);
 			SCM(playerid, COLOR_GREY, "* Buy Notice: Ai cumparat un walkie talkie.");			
 		}
 	}
-	SCM(playerid, -1, "smeker 4");
 	return true;
 }
 
@@ -242,9 +237,9 @@ Dialog:TRANSFERBIZ(playerid, response) {
 	SCM(playerid, COLOR_GREY, string_fast("* Bank Notice: Ai transferat in contul lui %s (%d) suma de $%s. In contul tau mai ai $%s. Taxa: $%s.", getName(playerInfo[playerid][pTransferPlayer]), playerInfo[playerid][pTransferPlayer], formatNumber(playerInfo[playerid][pTransferMoney]), formatNumber(playerInfo[playerid][pBank]), taxBank));
 	SCM(playerInfo[playerid][pTransferPlayer], COLOR_GREY, string_fast("* Bank Notice: Ai primit in contul tau bancar suma de $%s de la %s (%d).", formatNumber(playerInfo[playerid][pTransferMoney]), getName(playerid), playerid));
 	sendStaff(COLOR_SERVER, string_fast("(-$+) Transfer:{ffffff} %s a transferat $%s lui %s. [Last Bank Money: $%S].", getName(playerid), formatNumber(playerInfo[playerid][pTransferMoney]), getName(playerInfo[playerid][pTransferPlayer]), LastMoney));
-	update("UPDATE `server_users` SET `Bank` = '%d', `MBank` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pBank], playerInfo[playerid][pStoreBank], playerInfo[playerid][pSQLID]);
-	update("UPDATE `server_users` SET `Bank` = '%d', `MBank` = '%d' WHERE `ID` = '%d'", playerInfo[playerInfo[playerid][pTransferPlayer]][pBank], playerInfo[playerInfo[playerid][pTransferPlayer]][pStoreBank], playerInfo[playerInfo[playerid][pTransferPlayer]][pSQLID]);
-	update("UPDATE `server_business` SET `Balance`='%d' WHERE `ID`='1'", bizInfo[1][bizBalance]);
+	update("UPDATE `server_users` SET `Bank` = '%d', `MBank` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pBank], playerInfo[playerid][pStoreBank], playerInfo[playerid][pSQLID]);
+	update("UPDATE `server_users` SET `Bank` = '%d', `MBank` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerInfo[playerid][pTransferPlayer]][pBank], playerInfo[playerInfo[playerid][pTransferPlayer]][pStoreBank], playerInfo[playerInfo[playerid][pTransferPlayer]][pSQLID]);
+	update("UPDATE `server_business` SET `Balance`='%d' WHERE `ID`='1' LIMIT 1", bizInfo[1][bizBalance]);
 	return true;
 }
 
@@ -261,7 +256,7 @@ CMD:buybusiness(playerid, params[]) {
 				playerInfo[id][pBusinessID] = -1;
 				playerInfo[id][pBank] += bizInfo[playerInfo[playerid][areaBizz]][bizPrice];
 				SCM(playerid, COLOR_GREY, string_fast("* %s ti-a cumparat afacerea, si ai primit $%s, in banca.", getName(playerid), formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizPrice])));
-				update("UPDATE `server_users` SET `Bank` = '%d', `Business` = '0', `BusinessID` = '-1' WHERE `ID` = '%d'", playerInfo[id][pBank], playerInfo[id][pSQLID]);
+				update("UPDATE `server_users` SET `Bank` = '%d', `Business` = '0', `BusinessID` = '-1' WHERE `ID` = '%d' LIMIT 1", playerInfo[id][pBank], playerInfo[id][pSQLID]);
 			}
 			else {
 				new Cache: result = mysql_query(SQL, string_fast("SELECT * FROM `server_users` WHERE `Name` = '%s'", bizInfo[playerInfo[playerid][areaBizz]][bizOwner]));
@@ -270,7 +265,7 @@ CMD:buybusiness(playerid, params[]) {
 					newmoneys = moneys + bizInfo[playerInfo[playerid][areaBizz]][bizPrice];
 				}
 				cache_delete(result);
-				update("UPDATE `server_users` SET `Bank` = '%d', `Business` = '0', `BusinessID` = '-1' WHERE `ID` = '%d'", newmoneys, playerInfo[id][pSQLID]);
+				update("UPDATE `server_users` SET `Bank` = '%d', `Business` = '0', `BusinessID` = '-1' WHERE `ID` = '%d' LIMIT 1", newmoneys, playerInfo[id][pSQLID]);
 			}
 			SCM(playerid, COLOR_GREY, string_fast("* Business Notice: Felicitari ! Ai cumparat afacerea cu id %d, si ai platit $%s.", playerInfo[playerid][areaBizz], formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizPrice])));
 			GivePlayerCash(playerid, 0, bizInfo[playerInfo[playerid][areaBizz]][bizPrice]);
@@ -280,8 +275,8 @@ CMD:buybusiness(playerid, params[]) {
 			bizInfo[playerInfo[playerid][areaBizz]][bizOwned] = 1;
 			bizInfo[playerInfo[playerid][areaBizz]][bizPrice] = 0;
 			Update3DTextLabelText(bizInfo[playerInfo[playerid][areaBizz]][bizText], COLOR_WHITE, string_fast("Business ID: %d\nBusiness Title: %s\nBusiness Description: %s\nBusiness Owner: %s\nBusiness Price: $%s\nBusiness Fee: $%s", bizInfo[playerInfo[playerid][areaBizz]][bizID], bizInfo[playerInfo[playerid][areaBizz]][bizTitle], bizInfo[playerInfo[playerid][areaBizz]][bizDescription], bizInfo[playerInfo[playerid][areaBizz]][bizOwner], formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizPrice]),formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizFee])));
-			update("UPDATE `server_users` SET `Business` = '1', `BusinessID` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][areaBizz], playerInfo[playerid][pSQLID]);
-			update("UPDATE `server_business` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d'",bizInfo[playerInfo[playerid][areaBizz]][bizOwner], playerInfo[playerid][pSQLID], playerInfo[playerid][areaBizz]);
+			update("UPDATE `server_users` SET `Business` = '1', `BusinessID` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][areaBizz], playerInfo[playerid][pSQLID]);
+			update("UPDATE `server_business` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d' LIMIT 1",bizInfo[playerInfo[playerid][areaBizz]][bizOwner], playerInfo[playerid][pSQLID], playerInfo[playerid][areaBizz]);
 		}
 		else if(bizInfo[playerInfo[playerid][areaBizz]][bizOwned] == 0) {
 			SCM(playerid, COLOR_GREY, string_fast("* Business Notice: Felicitari ! Ai cumparat afacerea cu id %d, si ai platit $%s.", playerInfo[playerid][areaBizz], formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizPrice])));
@@ -293,8 +288,8 @@ CMD:buybusiness(playerid, params[]) {
 			bizInfo[playerInfo[playerid][areaBizz]][bizOwned] = 1;
 			bizInfo[playerInfo[playerid][areaBizz]][bizPrice] = 0;
 			Update3DTextLabelText(bizInfo[playerInfo[playerid][areaBizz]][bizText], COLOR_WHITE, string_fast("Business ID: %d\nBusiness Title: %s\nBusiness Description: %s\nBusiness Owner: %s\nBusiness Price: $%s\nBusiness Fee: $%s", bizInfo[playerInfo[playerid][areaBizz]][bizID], bizInfo[playerInfo[playerid][areaBizz]][bizTitle], bizInfo[playerInfo[playerid][areaBizz]][bizDescription], bizInfo[playerInfo[playerid][areaBizz]][bizOwner], formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizPrice]),formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizFee])));
-			update("UPDATE `server_users` SET `Money` = '%d', `MStore` = '%d', `Business` = '1', `BusinessID` = '%d' WHERE `ID` = '%d'", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][areaBizz], playerInfo[playerid][pSQLID]);
-			update("UPDATE `server_business` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d'",bizInfo[playerInfo[playerid][areaBizz]][bizOwner],playerInfo[playerid][pSQLID], playerInfo[playerid][areaBizz]);
+			update("UPDATE `server_users` SET `Money` = '%d', `MStore` = '%d', `Business` = '1', `BusinessID` = '%d' WHERE `ID` = '%d' LIMIT 1", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][areaBizz], playerInfo[playerid][pSQLID]);
+			update("UPDATE `server_business` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d' LIMIT 1",bizInfo[playerInfo[playerid][areaBizz]][bizOwner],playerInfo[playerid][pSQLID], playerInfo[playerid][areaBizz]);
 		}
 	}
 	return true;
@@ -400,14 +395,14 @@ CMD:adminbusiness(playerid, params[]) {
 CMD:buy(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
-	if(playerInfo[playerid][pinBusiness] != 2 && GetPlayerInterior(playerid) == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti intr-un biz de tip 24/7.");	
+	if(playerInfo[playerid][pinBusiness] == 0 && bizInfo[playerInfo[playerid][pinBusiness]][bizType] != 2) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti intr-un biz de tip 24/7.");	
 	Dialog_Show(playerid, BUYBIZ, DIALOG_STYLE_TABLIST_HEADERS, "SERVER: Buy", "Item\tPrice\nPhone\t$1,500\nPhone Book\t$3,500\nWalkie Talkie\t$5,000\n", "Select", "Close");
 	return true;
 }
 
 CMD:balance(playerid, params[]) {
 	if(playerInfo[playerid][pinBusiness] != 1 && GetPlayerInterior(playerid) == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti intr-un biz de tip banca.");	
-	SCM(playerid, COLOR_GREY, string_fast("* Bank Notice: Ai $%s bani in contul tau bancar.", GetBankMoney(playerid)));
+	SCMf(playerid, COLOR_GREY, "* Bank Notice: Ai $%s bani in contul tau bancar.", GetBankMoney(playerid));
 	return true;
 }
 
@@ -419,7 +414,7 @@ CMD:deposit(playerid, params[]) {
 	GivePlayerCash(playerid, 0, depositMoney);
 	GivePlayerBank(playerid, depositMoney);
 	SCM(playerid, COLOR_GREY, string_fast("* Bank Notice: Ai depositat $%s in contul tau. Acum ai in contul bancar: $%s.", formatNumbers(depositMoney), GetBankMoney(playerid)));
-	update("UPDATE `server_users` SET `Bank` = '%d', `Money` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pBank], playerInfo[playerid][pMoney], playerInfo[playerid][pSQLID]);
+	update("UPDATE `server_users` SET `Bank` = '%d', `Money` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pBank], playerInfo[playerid][pMoney], playerInfo[playerid][pSQLID]);
 	return true;
 }
 
@@ -472,9 +467,9 @@ CMD:ad(playerid, params[]) {
 		bizInfo[3][bizBalance] += payad;
 		va_GameTextForPlayer(playerid, "~r~Ai platit $%d~n~~w~Mesajul contine: %d caractere~n~Acesta va fi afisat in %d minute (%d secunde)", payad, idx, AdTimer[playerid]/60, AdTimer[playerid], 5000, 5);
 		format(AdText[playerid], 256, result);
-		sendStaff(COLOR_SERVER, "(Ad Preview): {00D900}Ad by %s ({FFFFFF}%d{00D900}): %s", getName(playerid), playerInfo[playerid][pPhone], result);
+		sendStaff(COLOR_SERVER, "(Ad Preview): {ffffff}Ad by %s (%d): %s", getName(playerid), playerInfo[playerid][pPhone], result);
 		defer advertismentTimer(playerid);
-		update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '3'", bizInfo[3][bizBalance]);	
+		update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '3' LIMIT 1", bizInfo[3][bizBalance]);	
 	}
 	return true;
 }

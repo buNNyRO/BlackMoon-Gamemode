@@ -89,7 +89,7 @@ CMD:createsafe(playerid, params[]) {
 CMD:order(playerid, params[]) {
 	if(playerInfo[playerid][pWeaponLicense] == 0) return sendPlayerError(playerid, "Nu ai licenta de 'Gun'.");
 	if(playerInfo[playerid][pinFaction] != playerInfo[playerid][pFaction]) return sendPlayerError(playerid, "Nu esti in HQ-ul factiunii tale.");
-	if(Iter_Contains(FactionMembers[8], playerid) && Iter_Contains(FactionMembers[9], playerid)) {
+	if(Iter_Contains(FactionMembers[8], playerid) || Iter_Contains(FactionMembers[9], playerid)) {
 		new x = playerInfo[playerid][pFaction], y[3];
 		for(new i = 0; i < 5; i++) {
 			if(safeInfo[x][sMaterials] < GunOrder[i][2] && safeInfo[x][sMoney] < GunOrder[i][1] || !playerInfo[playerid][pGuns][i]) return true;
@@ -102,6 +102,7 @@ CMD:order(playerid, params[]) {
 		}
 		saveSafe(x);
 		SCM(playerid, COLOR_LIGHTRED, string_fast("* (Order Guns):{ffffff} Ai primit '%d' arme si ai dat '%s' materiale si '$%s'.", y[0], formatNumber(y[1]), formatNumber(y[2])));
+		return true;
 	}
 	else if(Iter_Contains(FactionMembers[10], playerid)) {
 		new y = playerInfo[playerid][pFaction];
@@ -111,6 +112,7 @@ CMD:order(playerid, params[]) {
 		serverWeapon(playerid, 34, 100);
 		serverWeapon(playerid, 4, 1);
 		saveSafe(y);
+		return true;
 	}
 	return true;
 }

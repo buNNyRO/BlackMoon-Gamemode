@@ -1113,7 +1113,7 @@ CMD:shop(playerid, params[]) {
 }
 
 CMD:hud(playerid, parmas[]) {
-	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai un dialog afisat.");
+	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda deoarece ai un dialog afisat.");
 	gString[0] = (EOS);
 	strcat(gString, "Option\tStatus\n");
 	strcat(gString, playerInfo[playerid][pFPSShow] ? "FPS Show\tEnabled\n" : "FPS Show\tDisabled\n");
@@ -1122,7 +1122,7 @@ CMD:hud(playerid, parmas[]) {
 }
 
 CMD:help(playerid, params[]) {
-	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai un dialog afisat.");
+	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda deoarece ai un dialog afisat.");
 	Dialog_Show(playerid, DIALOG_HELP, DIALOG_STYLE_TABLIST_HEADERS, "Help Menu", "Options\tInformation\nAccount\tShow commands for account\nFaction\tShow commands for faction", "Select", "Close");
 	return true;
 }
@@ -1154,7 +1154,7 @@ CMD:findbusiness(playerid, params[]) {
 	playerInfo[playerid][pCheckpoint] = CHECKPOINT_GPS;
 	playerInfo[playerid][pCheckpointID] = businessID;
 	SetPlayerCheckpoint(playerid, bizInfo[businessID][bizExtX], bizInfo[businessID][bizExtY], bizInfo[businessID][bizExtZ], 3.5);
-	SCMf(playerid, COLOR_SERVER, "* (GPS): {ffffff}Ti-a fost setat un checkpoint la biz-ul %d, distanta pana la locatie: %dm.", businessID, GetPlayerDistanceFromPoint(playerid, bizInfo[businessID][bizExtX], bizInfo[businessID][bizExtY], bizInfo[businessID][bizExtZ]));
+	SCMf(playerid, COLOR_SERVER, "* (GPS): {ffffff}Ti-a fost setat un checkpoint la biz-ul %d, distanta pana la locatie: %.2fm.", businessID, GetPlayerDistanceFromPoint(playerid, bizInfo[businessID][bizExtX], bizInfo[businessID][bizExtY], bizInfo[businessID][bizExtZ]));
 	return true;
 }
 
@@ -1165,6 +1165,14 @@ CMD:findhouse(playerid, params[]) {
 	playerInfo[playerid][pCheckpoint] = CHECKPOINT_GPS;
 	playerInfo[playerid][pCheckpointID] = houseID;
 	SetPlayerCheckpoint(playerid, houseInfo[houseID][hExtX], houseInfo[houseID][hExtY], houseInfo[houseID][hExtZ], 3.5);
-	SCMf(playerid, COLOR_SERVER, "* (GPS): {ffffff}Ti-a fost setat un checkpoint la biz-ul %d, distanta pana la locatie: %dm.", houseID, GetPlayerDistanceFromPoint(playerid, houseInfo[houseID][hExtX], houseInfo[houseID][hExtY], houseInfo[houseID][hExtZ]));
+	SCMf(playerid, COLOR_SERVER, "* (GPS): {ffffff}Ti-a fost setat un checkpoint la casa %d, distanta pana la locatie: %.2fm.", houseID, GetPlayerDistanceFromPoint(playerid, houseInfo[houseID][hExtX], houseInfo[houseID][hExtY], houseInfo[houseID][hExtZ]));
+	return true;
+}
+
+CMD:id(playerid, params[]) {
+	extract params -> new player:userID; else return sendPlayerSyntax(playerid, "/id <name/id>");
+	if(!isPlayerLogged(userID)) return sendPlayerError(playerid, "Acel jucator nu este logat.");
+	SCMf(playerid, -1, "* Nume: %s (%d) | Level: %d | Faction: %s", getName(userID), userID, playerInfo[playerid][pFaction] == 0 ? "None" : factionName(playerInfo[playerid][pFaction]));
+	SCMf(playerid, -1, "debug faction %s | %d faction %s faction name", playerInfo[playerid][pFaction] == 0 ? "None" : factionName(playerInfo[playerid][pFaction]), playerInfo[playerid][pFaction], factionName(playerInfo[playerid][pFaction]));
 	return true;
 }

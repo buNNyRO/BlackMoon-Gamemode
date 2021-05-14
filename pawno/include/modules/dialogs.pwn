@@ -32,18 +32,14 @@ stock wrongPass(playerid)
 
 Dialog:GENDER(playerid, response, listitem, inputtext[])
 {
-	playerInfo[playerid][pGender] = FEMALE_GENDER;
-	playerInfo[playerid][pSkin] = 12;
+	if(!response) { playerInfo[playerid][pGender] = MALE_GENDER; playerInfo[playerid][pSkin] = 250; }
+	else { playerInfo[playerid][pGender] = FEMALE_GENDER; playerInfo[playerid][pSkin] = 12; }
 	playerInfo[playerid][pTutorialSeconds] = 4;
 	playerInfo[playerid][pTutorialActive] = 1;
 	tutorial[playerid] = repeat TimerTutorial(playerid);
 
-	if(!response) {
-		playerInfo[playerid][pGender] = MALE_GENDER;
-		playerInfo[playerid][pSkin] = 250;
-	}
 	SetPlayerSkin(playerid, playerInfo[playerid][pSkin]);
-	SCM(playerid, COLOR_YELLOWGREEN, string_fast("REGISTER: {ffffff}Sex-ul caracterului tau este: %s", (response) ? ("Feminin") : ("Masculin")));
+	SCMf(playerid, COLOR_YELLOWGREEN, "REGISTER: {ffffff}Sex-ul caracterului tau este: %s", (response) ? ("Feminin") : ("Masculin"));
 	update("UPDATE `server_users` SET `EMail` = '%s', `Gender` = '%d', `Skin` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pEMail], playerInfo[playerid][pGender], playerInfo[playerid][pSkin], playerInfo[playerid][pSQLID]);
 	return true;
 }
@@ -77,7 +73,7 @@ Dialog:LOGIN(playerid, response, listitem, inputtext[])
 	gQuery[0] = (EOS);
 	SHA256_PassHash(inputtext, "fez9yGgHWUqF5hEw", playerInfo[playerid][pPassword], 65);
 	mysql_format(SQL, gQuery, sizeof(gQuery), "SELECT * FROM `server_users` WHERE `Name` = '%s' AND `Password` = '%s' LIMIT 1", getName(playerid), playerInfo[playerid][pPassword]);
-	mysql_pquery(SQL, gQuery, "onPlayerLogin", "d", playerid);
+	mysql_tquery(SQL, gQuery, "onPlayerLogin", "d", playerid);
 	return true;
 }
 
@@ -207,7 +203,7 @@ Dialog:GPS(playerid, response, listitem) {
 	new Float:X, Float:Y, Float:Z;
 	GetPlayerPos(playerid, X, Y, Z);
 	switch(listitem) {
-		case 0: Dialog_Show(playerid, GPS1, DIALOG_STYLE_TABLIST_HEADERS, "SERVER: Locations - Los Santos", string_fast("Location\tDistance\nDMV\t%dm\nCNN\t%dm", GetDistanceBetweenPoints(X, Y, Z, 1111.0055,-1795.5551,16.5938), GetDistanceBetweenPoints(X, Y, Z, 1170.5859,-1489.6923,22.7554)), "Ok", "Cancel");
+		case 0: Dialog_Show(playerid, GPS1, DIALOG_STYLE_TABLIST_HEADERS, "SERVER: Locations - Los Santos", "Location\tDistance\nDMV\t%dm\nCNN\t%.2fm", "Ok", "Cancel", GetDistanceBetweenPoints(X, Y, Z, 1111.0055,-1795.5551,16.5938), GetDistanceBetweenPoints(X, Y, Z, 1170.5859,-1489.6923,22.7554));
 		case 1: Dialog_Show(playerid, GPS2, DIALOG_STYLE_TABLIST_HEADERS, "SERVER: Locations - Las Venturas", "Coming Soon ! Stay with us", "Ok", "Cancel");
 		case 2: Dialog_Show(playerid, GPS3, DIALOG_STYLE_TABLIST_HEADERS, "SERVER: Locations - San Fierro", "Coming Soon ! Stay with us", "Ok", "Cancel");
 		case 3: Dialog_Show(playerid, GPS4, DIALOG_STYLE_TABLIST_HEADERS, "SERVER: Locations - Special Locations", "Coming Soon ! Stay with us", "Ok", "Cancel");
@@ -222,11 +218,11 @@ Dialog:GPS1(playerid, response, listitem) {
 	switch(listitem) {
 		case 0: {
 			SetPlayerCheckpoint(playerid, 1111.0055,-1795.5551,16.5938, 4.5);
-			SCM(playerid, COLOR_LIGHTRED, string_fast("* GPS Notice:{ffffff} Locatia aleasa a fost {FF6347}'DMV'{ffffff}, distanta pana la checkpoint {FF6347}'%dm'{ffffff}.", GetDistanceBetweenPoints(X, Y, Z, 1111.0055,-1795.5551,16.5938)));
+			SCMf(playerid, COLOR_LIGHTRED, "* GPS Notice:{ffffff} Locatia aleasa a fost {FF6347}'DMV'{ffffff}, distanta pana la checkpoint {FF6347}'%.2fm'{ffffff}.", GetDistanceBetweenPoints(X, Y, Z, 1111.0055,-1795.5551,16.5938));
 		}
 		case 1: {
 			SetPlayerCheckpoint(playerid, 1170.5859,-1489.6923,22.7554, 4.5);
-			SCM(playerid, COLOR_LIGHTRED, string_fast("* GPS Notice:{ffffff} Locatia aleasa a fost {FF6347}'CNN'{ffffff}, distanta pana la checkpoint {FF6347}'%dm'{ffffff}.", GetDistanceBetweenPoints(X, Y, Z, 1170.5859,-1489.6923,22.7554)));
+			SCMf(playerid, COLOR_LIGHTRED, "* GPS Notice:{ffffff} Locatia aleasa a fost {FF6347}'CNN'{ffffff}, distanta pana la checkpoint {FF6347}'%.2fm'{ffffff}.", GetDistanceBetweenPoints(X, Y, Z, 1170.5859,-1489.6923,22.7554));
 		}
 	}
 	playerInfo[playerid][pCheckpoint] = CHECKPOINT_GPS;

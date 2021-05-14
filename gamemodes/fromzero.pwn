@@ -54,7 +54,6 @@
 #include <modules\factions.pwn>
 #include <modules\safes.pwn>
 #include <modules\jobs.pwn>
-#include <modules\paintball.pwn>
 #include <modules\business.pwn>
 #include <modules\comenzi\helper.pwn>
 #include <modules\clans.pwn>
@@ -165,7 +164,7 @@ public OnPlayerDisconnect(playerid, reason)
 
 	if(Iter_Contains(ServerStaff, playerid)) {
 		Iter_Remove(ServerStaff, playerid);
-		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a deconnectat de pe server (Total Staff: %d [%d admins, %d helpers]).", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
+		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a deconnectat de pe server | Total Staff: %d [%d admins, %d helpers].", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
 	}
 
 	if(Iter_Contains(MutedPlayers, playerid))
@@ -197,7 +196,9 @@ public OnPlayerDisconnect(playerid, reason)
 		playerInfo[playerid][pReportChat] = INVALID_PLAYER_ID;
 	}
 	if(Working[playerid]) CancelJob(playerid, Working[playerid]);
-
+    if(reason == 0) sendNearbyMessage(playerid, COLOR_SERVER, 20.0, "(*) {ffffff}%s a iesit de pe server (Crash).", getName(playerid));
+    else if(reason == 1) sendNearbyMessage(playerid, COLOR_SERVER, 20.0, "(*) {ffffff}%s a iesit de pe server (Quit).", getName(playerid));
+    else if(reason == 2) sendNearbyMessage(playerid, COLOR_SERVER, 20.0, "(*) {ffffff}%s a iesit de pe server (Kicked/Banned).", getName(playerid));
 	destroyPlayerTextDraws(playerid);
 	update("UPDATE `server_users` SET `Seconds` = '%f', `Mute` = '%d', `ReportMute` = '%d', `Money` = '%d', `MStore` = '%d', `SpawnChange` = '%d', `Jailed` = '%d', `JailTime` = '%d', `WantedLevel` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pSeconds], playerInfo[playerid][pMute], (playerInfo[playerid][pReportMute] > gettime()) ? (playerInfo[playerid][pReportMute] - gettime()) : (0), MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pSpawnChange], playerInfo[playerid][pJailed], playerInfo[playerid][pJailTime], playerInfo[playerid][pWantedLevel], playerInfo[playerid][pSQLID]);
 	return true;
@@ -886,66 +887,66 @@ public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags) {
 
 function loadMaps() {
 	#include map/other
-	// #include map/spawn
-	// #include map/admin_house
-	// #include map/CNN
-	// #include map/hospital
-	// #include map/demorgan
-	// #include map/cont
-	// #include map/waxta
-	// #include map/lspd
-	// #include map/avtoscool
-	// #include map/ostalnoeb
-	// #include map/ferma
-	// #include map/mapping
-	// #include map/bank
-	// #include map/kazik
-	// #include map/centerrinok
-	// #include map/army_lv
- //    #include map/armylvint
- //    #include map/armySF
-	// #include map/map
-	// #include map/map1
-	// #include map/map2
-	// #include map/map3
-	// #include map/map4
-	// #include map/kpp
-	// #include map/intaksioma
-	// #include map/pirs
-	// #include map/inter
-	// #include map/meria
-	// #include map/russianmafia
-	// #include map/bayker
-	// #include map/podval
-	// #include map/newyearhouse1
-	// #include map/newyearhouse2
-	// #include map/newyearhouse_int
-	// #include map/halloweenhouse1
-	// #include map/halloweenhouse2
-	// #include map/halloweenhouse_int
-	// #include map/viphouse1
-	// #include map/door
-	// #include map/24_7
-	// #include map/zapravka
-	// #include map/arizonashow
-	// #include map/parking
-	// #include map/eventsobirateli
-	// #include map/radio
-	// #include map/vip_house_1
-	// #include map/vip_house_2
-	// #include map/vip_house_3
-	// #include map/vip_house_4
-	// #include map/vip_house_5
-	// #include map/vip_house_6
-	// #include map/vip_house_7
-	// #include map/vip_house_8
-	// #include map/vip_house_9
-	// #include map/vip_house_10
-	// #include map/newhouse
-	// #include map/GarageInt1
-	// #include map/GarageInt2
-	// #include map/GarageInt3
-	// #include map/GarageInt4
-	// #include map/GarageInt5
-	// #include map/GarageInt6
+	#include map/spawn
+	#include map/admin_house
+	#include map/CNN
+	#include map/hospital
+	#include map/demorgan
+	#include map/cont
+	#include map/waxta
+	#include map/lspd
+	#include map/avtoscool
+	#include map/ostalnoeb
+	#include map/ferma
+	#include map/mapping
+	#include map/bank
+	#include map/kazik
+	#include map/centerrinok
+	#include map/army_lv
+	#include map/armylvint
+	#include map/armySF
+	#include map/map
+	#include map/map1
+	#include map/map2
+	#include map/map3
+	#include map/map4
+	#include map/kpp
+	#include map/intaksioma
+	#include map/pirs
+	#include map/inter
+	#include map/meria
+	#include map/russianmafia
+	#include map/bayker
+	#include map/podval
+	#include map/newyearhouse1
+	#include map/newyearhouse2
+	#include map/newyearhouse_int
+	#include map/halloweenhouse1
+	#include map/halloweenhouse2
+	#include map/halloweenhouse_int
+	#include map/viphouse1
+	#include map/door
+	#include map/24_7
+	#include map/zapravka
+	#include map/arizonashow
+	#include map/parking
+	#include map/eventsobirateli
+	#include map/radio
+	#include map/vip_house_1
+	#include map/vip_house_2
+	#include map/vip_house_3
+	#include map/vip_house_4
+	#include map/vip_house_5
+	#include map/vip_house_6
+	#include map/vip_house_7
+	#include map/vip_house_8
+	#include map/vip_house_9
+	#include map/vip_house_10
+	#include map/newhouse
+	#include map/GarageInt1
+	#include map/GarageInt2
+	#include map/GarageInt3
+	#include map/GarageInt4
+	#include map/GarageInt5
+	#include map/GarageInt6
 }

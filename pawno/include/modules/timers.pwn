@@ -62,7 +62,7 @@ task Timers[1000]() {
 	gettime(hour, minute, second); 
 	TextDrawSetString(ClockTD[0], string_fast("~p~PAYDAY~w~ IN: %s", secinmin(PayDayTime-gettime())));
 
-	foreach(new i : ServerAdmins) va_PlayerTextDrawSetString(i, serverHud[1], "100~n~~r~100~w~ / T~g~%d~w~ / A~b~%d~w~ / Q~p~%d", GetServerTickRate(), GetPlayerAnimationIndex(i), mysql_unprocessed_queries());
+	foreach(new i : ServerAdmins) va_PlayerTextDrawSetString(i, serverHud[1], "%d~n~~r~%d~w~ / T~g~%d~w~ / A~b~%d~w~ / Q~p~%d", playerInfo[i][pFPS], GetPlayerPing(i), GetServerTickRate(), GetPlayerAnimationIndex(i), mysql_unprocessed_queries());
 	if(hour == 12 && minute == 0 && second == 0) {
 		MoveObject(gates[1], 1160.19, 1303.31, 5.71, 0.5, 0.00, 0.00, -90.00); 
 		MoveObject(gates[2], 1160.18, 1312.26, 5.71,  0.5, 0.00, 0.00, -90.00);
@@ -92,7 +92,7 @@ task Timers[1000]() {
 	}
 	if(CountTime > 0) {
 		CountTime --;
-		va_GameTextForAll("%d", 100, 3, CountTime);
+		va_GameTextForAll("%d", 2500, 3, CountTime);
 	}
 	foreach(new playerid : loggedPlayers) {
 		if(IsPlayerInRangeOfPoint(playerid, 1.0, playerInfo[playerid][pLastPosX], playerInfo[playerid][pLastPosY], playerInfo[playerid][pLastPosZ]) || IsPlayerPaused(playerid))
@@ -102,6 +102,15 @@ task Timers[1000]() {
 
 		if(playerInfo[playerid][pAFKSeconds] < 10)
 			playerInfo[playerid][pSeconds] ++;
+
+		if(GetPlayerDrunkLevel(playerid) < 100) SetPlayerDrunkLevel(playerid, 2000);
+		else { 
+			if(playerInfo[playerid][pDrunkLevel] != GetPlayerDrunkLevel(playerid)) {
+				new playerFPS = playerInfo[playerid][pDrunkLevel] - GetPlayerDrunkLevel(playerid);
+				if((playerFPS > 0) && (playerFPS < 200)) playerInfo[playerid][pFPS] = playerFPS;
+				playerInfo[playerid][pDrunkLevel] = GetPlayerDrunkLevel(playerid);
+			}
+		}
 	}
 	return true;
 }

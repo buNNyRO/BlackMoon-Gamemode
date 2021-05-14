@@ -502,7 +502,6 @@ hook OnPlayerDisconnect(playerid, reason) {
 
 			Iter_Remove(TotalPlayerVehicles, i);
 			Iter_SafeRemove(PlayerVehicles[playerid], i, i);
-			// Iter_Clear(PlayerVehicles[playerid]);
 		}
 	}
 	return true;

@@ -848,7 +848,7 @@ CMD:unfreeze(playerid, params[]) {
 CMD:set(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	extract params -> new player:id, string:option[32], value; else {
-		SCM(playerid, COLOR_GREY, "Optiuni: money, billion, mbank, bank, health, armour, level, respectPoints, skin, premium, vip, premiumpoints.");
+		SCM(playerid, COLOR_GREY, "Optiuni: money, billion, mbank, bank, health, armour, level, respectpoints, skin, premium, vip, premiumpoints, virtualworld, interior.");
 		return sendPlayerSyntax(playerid, "/set <name/id> <option> <result>");
 	}
 	if(!isPlayerLogged(id)) return sendPlayerError(playerid, "Jucatorul nu este conectat.");
@@ -914,6 +914,14 @@ CMD:set(playerid, params[]) {
 			if(value < 0 || value > 100000) return sendPlayerError(playerid, "Result Invalid (0 - 100,000).");
 			playerInfo[id][pPremiumPoints] = value;
 			update("UPDATE `server_users` SET `PremiumPoints` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[id][pPremiumPoints], playerInfo[id][pSQLID]);								
+		}
+		case _H<virtualworld>: {
+			if(value < 0 || value > 2147483647) return sendPlayerError(playerid, "Result Invalid (0 - 2,147,483,647).");
+			SetPlayerVirtualWorld(id, value);			
+		}
+		case _H<interior>: {
+			if(value < 0 || value > 256) return sendPlayerError(playerid, "Result invalid (0 - 256).");
+			SetPlayerInterior(id, value);
 		}
 		default: {
 			SCM(playerid, COLOR_GREY, "Optiuni: money, billion, mbank, bank, health, armour, level, respectPoints, skin, premium, vip, premiumpoints.");
@@ -1042,7 +1050,7 @@ CMD:area(playerid, params[]) {
 			}
 		}
 	}
-	sendAdmin(COLOR_SERVER, "Area Notice: {ffffff}Admin %s a folosit optiunea '%s' %s si raza de '%0.fm'", getName(playerid), option, value1 ? (string_fast("cu valoarea '%d'", value1)) : ("fara valoare"), value);
+	sendAdmin(COLOR_SERVER, "Area Notice: {ffffff}Admin %s a folosit optiunea '%s' %s si raza de '%im'", getName(playerid), option, value1 ? (string_fast("cu valoarea '%d'", value1)) : ("fara valoare"), value);
 	return true;
 }
 
@@ -1395,7 +1403,7 @@ CMD:count(playerid, params[], help) {
 	extract params -> new count; else return sendPlayerSyntax(playerid, "/count <count>");
 	if(!(1 <= count <= 30)) return sendPlayerError(playerid, "Invalid count (1 - 30).");
 	CountTime = count;
-	va_GameTextForAll("Admin %s~n~%d", 1000, 3, getName(playerid), CountTime);
+	va_GameTextForAll("Admin %s~n~%d", 2500, 3, getName(playerid), CountTime);
 	return true;
 }
 
@@ -1411,4 +1419,25 @@ CMD:aaa2(playerid, parmas[]) {
 	return true;
 }
 
-
+CMD:acover(playerid, params[]) {
+	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
+	if(strlen(playerInfo[playerid][pAdminCover]) > 0) {
+		SetPlayerName(playerid, playerInfo[playerid][pAdminCover]);
+		playerInfo[playerid][pName] = playerInfo[playerid][pAdminCover];
+		playerInfo[playerid][pAdminCover] = (EOS);
+		sendAdmin(COLOR_SERVER, "* Notice: {ffffff}Admin %s s-a scos de sub acoperire.", getName(playerid));
+		va_PlayerTextDrawSetString(playerid, serverHud[0], "%s/RPG.BLACK~p~MOON~w~.RO", getName(playerid));
+		PlayerTextDrawShow(playerid, serverHud[0]);
+		return true;
+	}
+	extract params -> new string:name[MAX_PLAYER_NAME]; else return sendPlayerSyntax(playerid, "/acover <name>");
+	if(isPlayerLogged(GetPlayerID(name))) return sendPlayerError(playerid, "Acest jucator este connectat.");
+	if(strmatch(name, "Vicentzo") || strmatch(name, "mr.bunny")) return sendPlayerError(playerid, "Nu poti pune acest nume");
+	sendAdmin(COLOR_SERVER, "* Notice: {ffffff}Admin %s s-a pus sub acoperire cu numele de '%s'.", getName(playerid), name);
+	playerInfo[playerid][pAdminCover] = name;
+	SetPlayerName(playerid, name);
+	playerInfo[playerid][pName] = name;
+	va_PlayerTextDrawSetString(playerid, serverHud[0], "%s/RPG.BLACK~p~MOON~w~.RO", getName(playerid));
+	PlayerTextDrawShow(playerid, serverHud[0]);
+	return true;
+}
