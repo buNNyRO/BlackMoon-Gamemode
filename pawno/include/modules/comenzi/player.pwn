@@ -224,7 +224,7 @@ CMD:gps(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti conectat.");
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi comanda, deoarece ai un dialog afisat.");
 	if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) return sendPlayerError(playerid, "Ai un checkpoint activ pe harta.");
-	Dialog_Show(playerid, GPS, DIALOG_STYLE_LIST, "SERVER: Locations", "Los Santos\nLas Venturas\nSan Fierro\nSpecial Locations", "Ok", "Cancel");
+	Dialog_Show(playerid, GPS, DIALOG_STYLE_TABLIST_HEADERS, "Server Locations", "City\tInclude\nLas Venturas\tLocations from Las Venturas\nSpecial Locations\tSpeical Locations for special systems", "Ok", "Cancel");
 	return true;
 }
 
@@ -1130,22 +1130,38 @@ Dialog:DIALOG_HELP(playerid, response, listitem) {
 		case 0: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Account", "/stats -> Arata statistici despre contul tau\n/showlicenses -> Iti vezi licentele", "Ok", "");
 		case 1: {
 			switch(playerInfo[playerid][pFaction]) {
-				case 1: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/heal -> Oferi heal unui jucator\n/accept medic <id> - Accepti o comanda unui jucator", "Ok", "");
+				case 1: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/heal -> Oferi heal unui jucator\n/accept medic <name/id> -> Accepti o comanda unui jucator", "Ok", "");
 				case 2..4: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/r -> Chatul factiunii\n/d -> Chatul departamentului\n/wanteds -> Lista jucatorilor wanted", "Ok", "");
-				case 5: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/fare -> Te pui la datorie\n/accept taxi <id> -> Accepti o comanda unui jucator", "Ok", "");
-				case 6: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/startlesson <id> -> Incepi o lectie cu un jucator\n/stoplesson -> Opresti o lectie\n/givelicense <id> -> Oferi o licenta unui jucator", "Ok", "");
-				case 7: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/news <text> -> Dai o stire pe server\n/live <id> - Oferi o invitatie live unui jucator\n/endlive -> Opresti o conversatie live\n/questions -> Pornesti/Opresti intrebarile\n/aq <id> -> Accepti o intrebare pusa de un jucator", "Ok", "");
-				case 8: {
-
-				} // grove street
-				case 9: {
-
-				} // the ballas
-				case 10: {
-
-				} // hitman
+				case 5: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/fare -> Te pui la datorie\n/accept taxi <name/id> -> Accepti o comanda unui jucator", "Ok", "");
+				case 6: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/startlesson <name/id> -> Incepi o lectie cu un jucator\n/stoplesson -> Opresti o lectie\n/givelicense <name/id> -> Oferi o licenta unui jucator", "Ok", "");
+				case 7: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/news <text> -> Dai o stire pe server\n/live <name/id> -> Oferi o invitatie live unui jucator\n/endlive -> Opresti o conversatie live\n/questions -> Pornesti/Opresti intrebarile\n/aq <name/id> -> Accepti o intrebare pusa de un jucator", "Ok", "");
+				case 8: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/setguns -> Iti setezi armele la '/order'\n/tie <name/id> -> Legi un jucator\n/untie <name/id> -> Dezlegi un jucator\n/attack -> Incepi un razboi pe un teritoriu", "Ok", "");
+				case 9: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/setguns -> Iti setezi armele la '/order'\n/tie <name/id> -> Legi un jucator\n/untie <name/id> -> Dezlegi un jucator\n/attack -> Incepi un razboi pe un teritoriu", "Ok", "");
+				case 10: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/gethit -> Iei un contract\n/contracts -> Vezi contractele valabile", "Ok", "");
 			}
 		}
 	}
+	return true;
+}
+
+CMD:findbusiness(playerid, params[]) {
+	if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) return sendPlayerError(playerid, "Ai un checkpoint activ pe minimap.");
+	extract params -> new businessID; else return sendPlayerSyntax(playerid, "/findbusiness <business id>");
+	if(!Iter_Contains(ServerBusinesses, businessID)) return sendPlayerError(playerid, "Acest business nu exista.");
+	playerInfo[playerid][pCheckpoint] = CHECKPOINT_GPS;
+	playerInfo[playerid][pCheckpointID] = businessID;
+	SetPlayerCheckpoint(playerid, bizInfo[businessID][bizExtX], bizInfo[businessID][bizExtY], bizInfo[businessID][bizExtZ], 3.5);
+	SCMf(playerid, COLOR_SERVER, "* (GPS): {ffffff}Ti-a fost setat un checkpoint la biz-ul %d, distanta pana la locatie: %dm.", businessID, GetPlayerDistanceFromPoint(playerid, bizInfo[businessID][bizExtX], bizInfo[businessID][bizExtY], bizInfo[businessID][bizExtZ]));
+	return true;
+}
+
+CMD:findhouse(playerid, params[]) {
+	if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) return sendPlayerError(playerid, "Ai un checkpoint activ pe minimap.");
+	extract params -> new houseID; else return sendPlayerSyntax(playerid, "/findhouse <house id>");
+	if(!Iter_Contains(ServerHouses, houseID)) return sendPlayerError(playerid, "Acesta casa nu exista.");
+	playerInfo[playerid][pCheckpoint] = CHECKPOINT_GPS;
+	playerInfo[playerid][pCheckpointID] = houseID;
+	SetPlayerCheckpoint(playerid, houseInfo[houseID][hExtX], houseInfo[houseID][hExtY], houseInfo[houseID][hExtZ], 3.5);
+	SCMf(playerid, COLOR_SERVER, "* (GPS): {ffffff}Ti-a fost setat un checkpoint la biz-ul %d, distanta pana la locatie: %dm.", houseID, GetPlayerDistanceFromPoint(playerid, houseInfo[houseID][hExtX], houseInfo[houseID][hExtY], houseInfo[houseID][hExtZ]));
 	return true;
 }

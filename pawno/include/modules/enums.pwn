@@ -126,6 +126,8 @@ enum playerInfoEnum
     pClanWarns,
     pPremiumPoints,
     pFPSShow,
+    pPaintballKills,
+    pPaintballDeaths,
 	pLoginTries,
 	pAFKSeconds,
 	bool:pLogged,
@@ -155,6 +157,7 @@ enum playerInfoEnum
     pinVehicle,
     pinDealer,
     pinFaction,
+    pinPaintball,
     pTintaApasata,
     pTransferMoney,
     pTransferPlayer,
@@ -193,6 +196,8 @@ enum playerInfoEnum
     areaGascan,
     areaSafe,
     pEnableBoost,
+    pPaintBallK,
+    pPaintBallD,
     pSelectVehicle[MAX_PLAYER_PERSONAL_VEHICLES]
 };
 /*

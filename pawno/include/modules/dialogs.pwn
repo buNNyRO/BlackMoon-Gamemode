@@ -207,7 +207,7 @@ Dialog:GPS(playerid, response, listitem) {
 	new Float:X, Float:Y, Float:Z;
 	GetPlayerPos(playerid, X, Y, Z);
 	switch(listitem) {
-		case 0: Dialog_Show(playerid, GPS1, DIALOG_STYLE_TABLIST_HEADERS, "SERVER: Locations - Los Santos", string_fast("Location\tDistance\nDMV\t%0.fm\nCNN\t%0.fm", GetDistanceBetweenPoints(X, Y, Z, 1111.0055,-1795.5551,16.5938), GetDistanceBetweenPoints(X, Y, Z, 1170.5859,-1489.6923,22.7554)), "Ok", "Cancel");
+		case 0: Dialog_Show(playerid, GPS1, DIALOG_STYLE_TABLIST_HEADERS, "SERVER: Locations - Los Santos", string_fast("Location\tDistance\nDMV\t%dm\nCNN\t%dm", GetDistanceBetweenPoints(X, Y, Z, 1111.0055,-1795.5551,16.5938), GetDistanceBetweenPoints(X, Y, Z, 1170.5859,-1489.6923,22.7554)), "Ok", "Cancel");
 		case 1: Dialog_Show(playerid, GPS2, DIALOG_STYLE_TABLIST_HEADERS, "SERVER: Locations - Las Venturas", "Coming Soon ! Stay with us", "Ok", "Cancel");
 		case 2: Dialog_Show(playerid, GPS3, DIALOG_STYLE_TABLIST_HEADERS, "SERVER: Locations - San Fierro", "Coming Soon ! Stay with us", "Ok", "Cancel");
 		case 3: Dialog_Show(playerid, GPS4, DIALOG_STYLE_TABLIST_HEADERS, "SERVER: Locations - Special Locations", "Coming Soon ! Stay with us", "Ok", "Cancel");
@@ -222,11 +222,11 @@ Dialog:GPS1(playerid, response, listitem) {
 	switch(listitem) {
 		case 0: {
 			SetPlayerCheckpoint(playerid, 1111.0055,-1795.5551,16.5938, 4.5);
-			SCM(playerid, COLOR_LIGHTRED, string_fast("* GPS Notice:{ffffff} Locatia aleasa a fost {FF6347}'DMV'{ffffff}, distanta pana la checkpoint {FF6347}'%.2fm'{ffffff}.", GetDistanceBetweenPoints(X, Y, Z, 1111.0055,-1795.5551,16.5938)));
+			SCM(playerid, COLOR_LIGHTRED, string_fast("* GPS Notice:{ffffff} Locatia aleasa a fost {FF6347}'DMV'{ffffff}, distanta pana la checkpoint {FF6347}'%dm'{ffffff}.", GetDistanceBetweenPoints(X, Y, Z, 1111.0055,-1795.5551,16.5938)));
 		}
 		case 1: {
 			SetPlayerCheckpoint(playerid, 1170.5859,-1489.6923,22.7554, 4.5);
-			SCM(playerid, COLOR_LIGHTRED, string_fast("* GPS Notice:{ffffff} Locatia aleasa a fost {FF6347}'CNN'{ffffff}, distanta pana la checkpoint {FF6347}'%.2fm'{ffffff}.", GetDistanceBetweenPoints(X, Y, Z, 1170.5859,-1489.6923,22.7554)));
+			SCM(playerid, COLOR_LIGHTRED, string_fast("* GPS Notice:{ffffff} Locatia aleasa a fost {FF6347}'CNN'{ffffff}, distanta pana la checkpoint {FF6347}'%dm'{ffffff}.", GetDistanceBetweenPoints(X, Y, Z, 1170.5859,-1489.6923,22.7554)));
 		}
 	}
 	playerInfo[playerid][pCheckpoint] = CHECKPOINT_GPS;

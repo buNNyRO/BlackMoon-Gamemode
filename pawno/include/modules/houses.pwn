@@ -71,28 +71,28 @@ hook OnPlayerConnect(playerid) {
 function LoadHouses() {
 	if(!cache_num_rows()) return print("Houses: 0 [From Database]");
 
-	for(new i = 0; i < cache_num_rows(); i++) {	
+	for(new i = 1, j = cache_num_rows() + 1; i != j; i++) {	
 		Iter_Add(ServerHouses, i);
-		cache_get_value_name(i, "Title", houseInfo[i][hTitle], 32);
-		cache_get_value_name(i, "Description", houseInfo[i][hDescription], 64);
-		cache_get_value_name(i, "Owner", houseInfo[i][hOwner], 32);	
-		cache_get_value_name_int(i, "ID", houseInfo[i][hID]);	
-		cache_get_value_name_float(i, "ExtX", houseInfo[i][hExtX]);	
-		cache_get_value_name_float(i, "ExtY", houseInfo[i][hExtY]);
-		cache_get_value_name_float(i, "ExtZ", houseInfo[i][hExtZ]);
-		cache_get_value_name_float(i, "X", houseInfo[i][hX]);
-		cache_get_value_name_float(i, "Y", houseInfo[i][hY]);
-		cache_get_value_name_float(i, "Z", houseInfo[i][hZ]);
-		cache_get_value_name_int(i, "Interior", houseInfo[i][hInterior]);
-		cache_get_value_name_int(i, "Locked", houseInfo[i][hLocked]);
-		cache_get_value_name_int(i, "Price", houseInfo[i][hPrice]);
-		cache_get_value_name_int(i, "Balance", houseInfo[i][hBalance]);
-		cache_get_value_name_int(i, "OwnerID", houseInfo[i][hOwnerID]);
-		cache_get_value_name_int(i, "Owned", houseInfo[i][hOwned]);
-		cache_get_value_name_int(i, "Rentabil", houseInfo[i][hRentabil]);
-		cache_get_value_name_int(i, "Renters", houseInfo[i][hRenters]);
-		cache_get_value_name_int(i, "Upgrade", houseInfo[i][hUpgrade]);
-		cache_get_value_name_int(i, "RentPrice", houseInfo[i][hRentPrice]);
+		cache_get_value_name(i - 1, "Title", houseInfo[i][hTitle], 32);
+		cache_get_value_name(i - 1, "Description", houseInfo[i][hDescription], 64);
+		cache_get_value_name(i - 1, "Owner", houseInfo[i][hOwner], 32);	
+		cache_get_value_name_int(i - 1, "ID", houseInfo[i][hID]);	
+		cache_get_value_name_float(i - 1, "ExtX", houseInfo[i][hExtX]);	
+		cache_get_value_name_float(i - 1, "ExtY", houseInfo[i][hExtY]);
+		cache_get_value_name_float(i - 1, "ExtZ", houseInfo[i][hExtZ]);
+		cache_get_value_name_float(i - 1, "X", houseInfo[i][hX]);
+		cache_get_value_name_float(i - 1, "Y", houseInfo[i][hY]);
+		cache_get_value_name_float(i - 1, "Z", houseInfo[i][hZ]);
+		cache_get_value_name_int(i - 1, "Interior", houseInfo[i][hInterior]);
+		cache_get_value_name_int(i - 1, "Locked", houseInfo[i][hLocked]);
+		cache_get_value_name_int(i - 1, "Price", houseInfo[i][hPrice]);
+		cache_get_value_name_int(i - 1, "Balance", houseInfo[i][hBalance]);
+		cache_get_value_name_int(i - 1, "OwnerID", houseInfo[i][hOwnerID]);
+		cache_get_value_name_int(i - 1, "Owned", houseInfo[i][hOwned]);
+		cache_get_value_name_int(i - 1, "Rentabil", houseInfo[i][hRentabil]);
+		cache_get_value_name_int(i - 1, "Renters", houseInfo[i][hRenters]);
+		cache_get_value_name_int(i - 1, "Upgrade", houseInfo[i][hUpgrade]);
+		cache_get_value_name_int(i - 1, "RentPrice", houseInfo[i][hRentPrice]);
 
 		new rent[75];
 		format(rent, sizeof(rent), "\nRent Price: $%s\nType '/rentroom' to rent a room", formatNumber(houseInfo[i][hRentPrice]));
