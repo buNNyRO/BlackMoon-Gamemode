@@ -39,12 +39,14 @@ stock TrollDetect(playerid, hack=0){
 hook OnPlayerStateChange(playerid, newstate, oldstate) {
     if(newstate == PLAYER_STATE_DRIVER) {
         if(oldstate == PLAYER_STATE_PASSENGER) {
-            va_SendClientMessageToAll(COLOR_LIGHTRED, "(AC) %s a primit kick pentru 'Troll-Hack #1'.", getName(playerid));
+            va_SendClientMessageToAll(COLOR_LIGHTRED, "(AC) %s a primit kick pentru 'Vehicle Jacker'.", getName(playerid));
+            SendDiscordAC("%s a primit kick pentru **'Vehicle Jacker'**", getName(playerid));
             Kick(playerid);
             return 1;
         }
         if(GetTickCount() < acTime[playerid]) {
-            va_SendClientMessageToAll(COLOR_LIGHTRED, "(AC) %s a primit kick pentru 'Troll-Hack #2'.", getName(playerid));
+            va_SendClientMessageToAll(COLOR_LIGHTRED, "(AC) %s a primit kick pentru 'Troll Hack'.", getName(playerid));
+            SendDiscordAC("%s a primit kick pentru **'Troll Hack'**", getName(playerid));
             Kick(playerid);
             return 1;
         }

@@ -3005,3 +3005,83 @@ v0.3.7-R2, (C)2005-2015 SA-MP Team
 [16:05:41] [join] mr.bunny has joined the server (0:127.0.0.1)
 [16:05:51] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
 [16:05:51] [ACCOUNT] mr.bunny loaded 20 vehicles
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:15:32] filterscripts = ""  (string)
+[16:15:32] 
+[16:15:32] Server Plugins
+[16:15:32] --------------
+[16:15:32]  Loading plugin: crashdetect
+[16:15:32]   CrashDetect plugin 4.19.4
+[16:15:32]   Loaded.
+[16:15:32]  Loading plugin: discord-connector
+[16:15:34]  >> plugin.dc-connector: v0.3.5 successfully loaded.
+[16:15:34]   Loaded.
+[16:15:34]  Loading plugin: pawncmd
+[16:15:34] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[16:15:34]   Loaded.
+[16:15:34]  Loading plugin: sscanf
+[16:15:34] 
+
+[16:15:34]  ===============================
+
+[16:15:34]       sscanf plugin loaded.     
+
+[16:15:34]          Version:  2.8.3        
+
+[16:15:34]   (c) 2018 Alex "Y_Less" Cole  
+
+[16:15:34]  ===============================
+
+[16:15:34]   Loaded.
+[16:15:34]  Loading plugin: streamer
+[16:15:34] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:15:34]   Loaded.
+[16:15:34]  Loading plugin: mysql
+[16:15:34]  >> plugin.mysql: R41-4 successfully loaded.
+[16:15:34]   Loaded.
+[16:15:34]  Loaded 6 plugins.
+
+[16:15:34] 
+[16:15:34] Filterscripts
+[16:15:34] ---------------
+[16:15:34]   Loaded 0 filterscripts.
+
+[16:15:34]  
+[16:15:34]  
+[16:15:34]  
+[16:15:34]  ======================================= 
+[16:15:34]  |                                     | 
+[16:15:34]  |        YSI version 4.00.0001        | 
+[16:15:34]  |        By Alex "Y_Less" Cole        | 
+[16:15:34]  |                                     | 
+[16:15:34]  ======================================= 
+[16:15:34]  
+[16:15:37] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[16:15:37] [MYSQL] Baza de date, s-a conectat.
+[16:15:37] Number of vehicle models: 0
+[16:15:37] Exam Checkpoints: 9 [From Database]
+[16:15:37] Jobs: 5 [From Database]
+[16:15:37] Businesses: 4 [From Database]
+[16:15:37] Houses: 0 [From Database]
+[16:15:37] Dealership models: 89 [From Database]
+[16:15:37] Factions: 10 [From Database]
+[16:15:37] Turfs: 43 [From Database]
+[16:15:37] Faction Safes: 0 [From Database]
+[16:15:37] Clans: 1 [From Database]
+[16:15:43] [connection] 127.0.0.1:60518 requests connection cookie.
+[16:15:44] [connection] incoming connection: 127.0.0.1:60518 id: 0
+[16:15:44] [join] mr.bunny has joined the server (0:127.0.0.1)
+[16:15:46] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[16:15:46] [ACCOUNT] mr.bunny loaded 20 vehicles
+[16:18:48] [part] mr.bunny has left the server (0:1)

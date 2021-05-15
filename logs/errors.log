@@ -8,3 +8,7 @@
 [16:15:37] [plugins/mysql] cache_get_value_name_float: invalid row index '43' (number of rows: '43') (C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\turfs.pwn:30)
 [16:15:37] [plugins/mysql] cache_get_value_name: field 'Color' not found (C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\clans.pwn:43)
 [16:15:46] [plugins/mysql] cache_get_value_name_int: field 'FPSShow' not found (C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\functions.pwn:188)
+[05/15/21 18:08:33] [plugins/discord-connector] Can't read from Discord websocket gateway: The semaphore timeout period has expired (121)
+[05/15/21 18:08:33] [plugins/discord-connector] Can't write to Discord websocket gateway: The I/O operation has been aborted because of either a thread exit or an application request (995)
+[05/15/21 19:00:30] [plugins/discord-connector] can't update guild member presence: user id "610958450419302450" not cached
+[05/15/21 19:00:32] [plugins/discord-connector] can't update guild member presence: user id "610958450419302450" not cached

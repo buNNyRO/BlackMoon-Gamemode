@@ -50,8 +50,14 @@ function totalAds() {
 
 timer advertismentTimer[totalAds() * 60000](playerid) {
 	sendSplitMessage(playerid, COLOR_WHITE, string_fast("{00D900}Ad by %s (phone: {FFFFFF}%d{00D900}): %s", getName(playerid), playerInfo[playerid][pPhone], AdText[playerid]));
+	switch(MYSQL) {
+		case 1: {
+			if (_:MoonBot == 0) MoonBot = DCC_FindChannelById("842858866973737020");
+			DCC_SendChannelMessage(MoonBot, string_fast(":newspaper: Ad by **%s[%d]** (phone: **%d**): %s", getName(playerid), playerid, playerInfo[playerid][pPhone], AdText[playerid]));
+		}
+	}
 	AdText[playerid] = "";
-	AdTimer[playerid] = 0;
+	AdTimer[playerid] = 0;	
 	return true;
 }
 

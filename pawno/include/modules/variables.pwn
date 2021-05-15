@@ -14,6 +14,7 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
     Diley[MAX_PLAYERS][144],
     DileyCMD[MAX_PLAYERS],
     DCC_Channel:MoonBot,
+    DCC_Channel:MoonBotAC,
 
 	Iterator:ServerAdmins<MAX_PLAYERS>,
     Iterator:ServerHelpers<MAX_PLAYERS>,

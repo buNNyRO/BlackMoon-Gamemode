@@ -16,3 +16,7 @@
 [05/15/21 16:05:19] [ERROR] Can't write to Discord websocket gateway: The I/O operation has been aborted because of either a thread exit or an application request (995)
 [05/15/21 16:07:11] [WARNING] Unknown gateway event 'GUILD_JOIN_REQUEST_DELETE'
 [05/15/21 16:07:44] [WARNING] Unknown gateway event 'GUILD_JOIN_REQUEST_DELETE'
+[05/15/21 18:08:33] [ERROR] Can't read from Discord websocket gateway: The semaphore timeout period has expired (121)
+[05/15/21 18:08:33] [ERROR] Can't write to Discord websocket gateway: The I/O operation has been aborted because of either a thread exit or an application request (995)
+[05/15/21 19:00:30] [ERROR] can't update guild member presence: user id "610958450419302450" not cached
+[05/15/21 19:00:32] [ERROR] can't update guild member presence: user id "610958450419302450" not cached

@@ -776,3 +776,16 @@ function IsPlayerInTurf(playerid, turfid) {
 	if(x >= turfInfo[turfid][tMinX] && x < turfInfo[turfid][tMaxX] && y >= turfInfo[turfid][tMinY] && y < turfInfo[turfid][tMaxY]) return true;
 	return false;
 }
+
+function SendDiscordAC(const text[], va_args<>) {
+	switch(MYSQL) {
+		case 1: {
+			if (_:MoonBotAC == 0) MoonBotAC = DCC_FindChannelById("843145109977825310");
+
+			new Discord[100];
+			va_format(Discord, sizeof Discord, text, va_start<1>);
+			DCC_SendChannelMessage(MoonBotAC, string_fast(":warning: %s", Discord));
+		}
+	}
+	return 1;
+}

@@ -16,7 +16,7 @@
 // B::::::::::::::::B  l::::::l a::::::::::aa:::a  cc:::::::::::::::ck::::::k   k:::::k M::::::M               M::::::M oo:::::::::::oo  oo:::::::::::oo   n::::n    n::::n//
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define MYSQL 0 // 0 - local | 1 - host
+#define MYSQL 1 // 0 - local | 1 - host
 
 #include <discord>
 
@@ -82,6 +82,7 @@ alias:flipveh("flip", "flipvehicle")
 alias:acceptreport("acr", "areport")
 alias:closereport("cr", "clreport")
 alias:reportmute("rmute", "repmute")
+alias:set("setstats", "setstat")
 alias:makeleader("setleader")
 alias:setadmin("makeadmin")
 alias:auninvite("fpk")
@@ -394,12 +395,6 @@ public OnPlayerText(playerid, text[]) {
 	if(playerInfo[playerid][pTalkingLive] != -1) {
 		oocNews(COLOR_LIGHTGREEN, "* %s %s: %s", playerInfo[playerid][pFaction] == 6 ? "Reporter" : "Jucator", getName(playerid), text);
 		return 0;
-	}
-	switch(MYSQL) {
-		case 1: {
-			if (_:MoonBot == 0) MoonBot = DCC_FindChannelById("842858866973737020");
-			DCC_SendChannelMessage(MoonBot, string_fast("**%s** spune: %s", getName(playerid), text));
-		}
 	}
 	sendNearbyMessage(playerid, COLOR_WHITE, 25.0, "%s spune: %s", getName(playerid), text); 
 	SetPlayerChatBubble(playerid, text, COLOR_WHITE, 25.0, 5000);

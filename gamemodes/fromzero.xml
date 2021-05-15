@@ -3466,7 +3466,11 @@
 		</member>
 		<member name="F:MoonBot">
 			<tagname value="DCC_Channel"/>
-			<referrer name="OnPlayerText"/>
+			<referrer name="advertismentTimer"/>
+		</member>
+		<member name="F:MoonBotAC">
+			<tagname value="DCC_Channel"/>
+			<referrer name="SendDiscordAC"/>
 		</member>
 		<member name="F:NULL">
 			<referrer name="_@_y_inline_@_"/>
@@ -6529,6 +6533,7 @@
 			<stacksize value="6"/>
 			<dependency name="GetTickCount"/>
 			<dependency name="Kick"/>
+			<dependency name="SendDiscordAC"/>
 			<dependency name="acTime"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
@@ -12059,7 +12064,8 @@
 		<member name="M:DCC_FindChannelById" syntax="DCC_FindChannelById(channel_id[])">
 			<tagname value="DCC_Channel"/>
 			<attribute name="native"/>
-			<referrer name="OnPlayerText"/>
+			<referrer name="advertismentTimer"/>
+			<referrer name="SendDiscordAC"/>
 			<param name="channel_id">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -12208,7 +12214,8 @@
 		</member>
 		<member name="M:DCC_SendChannelMessage" syntax="DCC_SendChannelMessage(channel, message[], callback[], format[], ...)">
 			<attribute name="native"/>
-			<referrer name="OnPlayerText"/>
+			<referrer name="advertismentTimer"/>
+			<referrer name="SendDiscordAC"/>
 			<param name="channel">
 				<paraminfo>DCC_Channel </paraminfo>
 			</param>
@@ -20702,12 +20709,9 @@
 		<member name="M:OnPlayerText" syntax="OnPlayerText(playerid, text[])">
 			<attribute name="public"/>
 			<stacksize value="4105"/>
-			<dependency name="DCC_FindChannelById"/>
-			<dependency name="DCC_SendChannelMessage"/>
 			<dependency name="Diley"/>
 			<dependency name="I@"/>
 			<dependency name="J@"/>
-			<dependency name="MoonBot"/>
 			<dependency name="Reclama"/>
 			<dependency name="SetPlayerChatBubble"/>
 			<dependency name="faceReclama"/>
@@ -21174,6 +21178,7 @@
 			<referrer name="pc_alias_acceptreport"/>
 			<referrer name="pc_alias_closereport"/>
 			<referrer name="pc_alias_reportmute"/>
+			<referrer name="pc_alias_set"/>
 			<referrer name="pc_alias_makeleader"/>
 			<referrer name="pc_alias_setadmin"/>
 			<referrer name="pc_alias_auninvite"/>
@@ -22680,6 +22685,23 @@
 			</param>
 			<param name="message">
 				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:SendDiscordAC" syntax="SendDiscordAC(text[], ...)">
+			<attribute name="public"/>
+			<stacksize value="4203"/>
+			<referrer name="@yH_OnPlayerStateChange@005"/>
+			<dependency name="DCC_FindChannelById"/>
+			<dependency name="DCC_SendChannelMessage"/>
+			<dependency name="MoonBotAC"/>
+			<dependency name="YVA2_DummyPush"/>
+			<dependency name="string_fast"/>
+			<dependency name="va_format"/>
+			<param name="text">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="...">
+				<paraminfo> {_,Language,Bit,Text,Menu,Style,XML,Bintree,Group,Timer,Float,File,Text3D} </paraminfo>
 			</param>
 		</member>
 		<member name="M:SendPlayerMessageToAll" syntax="SendPlayerMessageToAll(senderid, message[])">
@@ -24653,7 +24675,6 @@
 			<dependency name="random"/>
 			<dependency name="resetQuest"/>
 			<dependency name="secinmin"/>
-			<dependency name="secinmin"/>
 			<dependency name="serverHud"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
@@ -25201,6 +25222,7 @@
 			<referrer name="sendToAdmin"/>
 			<referrer name="sendFactionMessage"/>
 			<referrer name="sendClanMessage"/>
+			<referrer name="SendDiscordAC"/>
 			<dependency name="Debug_Print0"/>
 			<dependency name="TRUE"/>
 			<dependency name="YSI_g_sInitialised"/>
@@ -25675,6 +25697,9 @@
 			<dependency name="AdText"/>
 			<dependency name="AdText"/>
 			<dependency name="AdTimer"/>
+			<dependency name="DCC_FindChannelById"/>
+			<dependency name="DCC_SendChannelMessage"/>
+			<dependency name="MoonBot"/>
 			<dependency name="pName"/>
 			<dependency name="pPhone"/>
 			<dependency name="playerInfo"/>
@@ -30166,6 +30191,11 @@
 			<dependency name="PC_RegAlias"/>
 		</member>
 		<member name="M:pc_alias_reportmute" syntax="pc_alias_reportmute()">
+			<attribute name="public"/>
+			<stacksize value="5"/>
+			<dependency name="PC_RegAlias"/>
+		</member>
+		<member name="M:pc_alias_set" syntax="pc_alias_set()">
 			<attribute name="public"/>
 			<stacksize value="5"/>
 			<dependency name="PC_RegAlias"/>
@@ -39052,6 +39082,7 @@
 			<referrer name="checkPanel"/>
 			<referrer name="BanIPPlayer"/>
 			<referrer name="checkMission"/>
+			<referrer name="SendDiscordAC"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="dialog_BUY_INSURANCE"/>
@@ -40093,6 +40124,7 @@
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
 			<referrer name="sendClanMessage"/>
+			<referrer name="SendDiscordAC"/>
 			<referrer name="InsertCarDS"/>
 			<param name="output">
 				<paraminfo> [] </paraminfo>
