@@ -34164,13 +34164,14 @@
 		</member>
 		<member name="M:pc_cmd_id" syntax="pc_cmd_id(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="46"/>
+			<stacksize value="51"/>
 			<dependency name="GetPlayerPing"/>
 			<dependency name="factionName"/>
 			<dependency name="factionName"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pFPS"/>
 			<dependency name="pFaction"/>
+			<dependency name="pLevel"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>

@@ -1169,6 +1169,6 @@ CMD:findhouse(playerid, params[]) {
 CMD:id(playerid, params[]) {
     extract params -> new player:userID; else return sendPlayerSyntax(playerid, "/id <name/id>");
     if(!isPlayerLogged(userID)) return sendPlayerError(playerid, "Acel jucator nu este logat.");
-    SCMf(playerid, -1, "* Nume: %s (%d) | Level: %d | Faction: %s | FPS: %d | Ping: %d", getName(userID), userID, playerInfo[userID][pFaction] > 0 ? factionName(playerInfo[userID][pFaction]) : "None", playerInfo[userID][pFPS], GetPlayerPing(userID));
+    SCMf(playerid, -1, "* Nume: %s (%d) | Level: %d | FPS: %d | Device: %s | Ping: %d | Faction: %s", getName(userID), userID, playerInfo[userID][pLevel], playerInfo[userID][pFPS], playerInfo[userID][pFPS] > 1 ? "PC" : "Android", GetPlayerPing(userID), factionName(playerInfo[userID][pFaction]));
     return true;
 }
