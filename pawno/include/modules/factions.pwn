@@ -1172,7 +1172,7 @@ CMD:news(playerid, params[]) {
 	new hour, minute, second;
 	gettime(hour, minute, second);
 	if(minute < 50 || minute > 59) return sendPlayerError(playerid, "Poti pune anunturi doar la %d:50 pana la %d:00", hour, hour+1);
-	if(playerInfo[playerid][pMute] > 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai mute inca %d secunde.", playerInfo[playerid][pMute]);
+	if(playerInfo[playerid][pMute] > gettime()) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai mute inca %d secunde.", playerInfo[playerid][pMute]-gettime());
 	extract params -> new string:result[250]; else return sendPlayerSyntax(playerid, "/news <text>");
 	if(strlen(result) < 1 || strlen(result) > 250) return sendPlayerError(playerid, "Invalid text, min. 1 caracter max. 250 caractere.");
 	oocNews(COLOR_NEWS, "(*) News %s: %s.", getName(playerid), result);

@@ -16,7 +16,9 @@
 // B::::::::::::::::B  l::::::l a::::::::::aa:::a  cc:::::::::::::::ck::::::k   k:::::k M::::::M               M::::::M oo:::::::::::oo  oo:::::::::::oo   n::::n    n::::n//
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define MYSQL 1 // 0 - local | 1 - host
+#define MYSQL 0 // 0 - local | 1 - host
+
+#include <discord>
 
 #include <a_samp>
 #include <a_zones>
@@ -38,8 +40,6 @@
 #include <fly>
 #include <callbacks>
 #include <streamer>
-
-#include <discord>
 
 #include <modules\natives.pwn>
 #include <modules\defines.pwn>
@@ -113,6 +113,9 @@ public OnGameModeInit()
 	UsePlayerPedAnims();
 
 	loadMaps();
+
+	DCC_SetBotActivity(string_fast("0 / %d", MAX_PLAYERS));
+	if(DCC_GetBotPresenceStatus() != DCC_BotPresenceStatus:IDLE) DCC_SetBotPresenceStatus(IDLE);	
 	return true;
 }
 
@@ -203,6 +206,9 @@ public OnPlayerDisconnect(playerid, reason)
     else if(reason == 2) sendNearbyMessage(playerid, COLOR_SERVER, 20.0, "(*) {ffffff}%s a iesit de pe server (Kicked/Banned).", getName(playerid));
 	destroyPlayerTextDraws(playerid);
 	update("UPDATE `server_users` SET `Seconds` = '%f', `Mute` = '%d', `ReportMute` = '%d', `Money` = '%d', `MStore` = '%d', `SpawnChange` = '%d', `Jailed` = '%d', `JailTime` = '%d', `WantedLevel` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pSeconds], playerInfo[playerid][pMute], (playerInfo[playerid][pReportMute] > gettime()) ? (playerInfo[playerid][pReportMute] - gettime()) : (0), MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pSpawnChange], playerInfo[playerid][pJailed], playerInfo[playerid][pJailTime], playerInfo[playerid][pWantedLevel], playerInfo[playerid][pSQLID]);
+	
+	DCC_SetBotActivity(string_fast("%d / %d", Iter_Count(Player), MAX_PLAYERS));
+	if(DCC_GetBotPresenceStatus() != DCC_BotPresenceStatus:IDLE) DCC_SetBotPresenceStatus(IDLE);
 	return true;
 }
 
@@ -389,9 +395,12 @@ public OnPlayerText(playerid, text[]) {
 		oocNews(COLOR_LIGHTGREEN, "* %s %s: %s", playerInfo[playerid][pFaction] == 6 ? "Reporter" : "Jucator", getName(playerid), text);
 		return 0;
 	}
-	if (_:MoonBot == 0) MoonBot = DCC_FindChannelById("842858866973737020");
-	DCC_SendChannelMessage(MoonBot, string_fast("**%s** spune: %s", getName(playerid), text));
-
+	switch(MYSQL) {
+		case 1: {
+			if (_:MoonBot == 0) MoonBot = DCC_FindChannelById("842858866973737020");
+			DCC_SendChannelMessage(MoonBot, string_fast("**%s** spune: %s", getName(playerid), text));
+		}
+	}
 	sendNearbyMessage(playerid, COLOR_WHITE, 25.0, "%s spune: %s", getName(playerid), text); 
 	SetPlayerChatBubble(playerid, text, COLOR_WHITE, 25.0, 5000);
 	update("INSERT INTO `server_chat_logs` (PlayerName, PlayerID, ChatText) VALUES ('%s', '%d', '%s')", getName(playerid), playerInfo[playerid][pSQLID], string_fast("* (chat log): %s.", text));
@@ -660,9 +669,9 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 	return true;
 }
 
-public OnPlayerStateChange(playerid, newstate, oldstate)
-{
-	if(newstate == PLAYER_STATE_SPECTATING && playerInfo[playerid][pAdmin] == 0) sendAdmin(COLOR_LIGHTRED, "(*) Anti-Cheat: %s a primit kick pentru 'Invisibile Hack'.", getName(playerid)), Kick(playerid);
+public OnPlayerStateChange(playerid, newstate, oldstate) {
+	if(newstate == 2 && oldstate == 3) return 1;
+	if(newstate == PLAYER_STATE_SPECTATING && playerInfo[playerid][pAdmin] == 0) return va_SendClientMessageToAll(COLOR_LIGHTRED, "(AC) %s a primit kick pentru 'Invisibile Hack'.", getName(playerid)), Kick(playerid);
 	if(newstate == PLAYER_STATE_DRIVER || newstate == PLAYER_STATE_PASSENGER) if(Iter_Contains(PlayerInVehicle, playerid)) Iter_Add(PlayerInVehicle, playerid);
 	if(oldstate == PLAYER_STATE_DRIVER || oldstate == PLAYER_STATE_PASSENGER) {
 		if(Iter_Contains(PlayerInVehicle, playerid)) Iter_Remove(PlayerInVehicle, playerid);
@@ -701,6 +710,18 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 			playerInfo[playerid][pTaxiDuty] = 0;
 			playerInfo[playerid][pTaxiMoney] = 0;
 		}
+	}
+	if(newstate == PLAYER_STATE_ONFOOT)
+	{	
+		stop speedo[playerid];
+		PlayerTextDrawSetString(playerid, vehicleHud[10], "000");
+		PlayerTextDrawSetString(playerid, vehicleHud[11], "n");
+		PlayerTextDrawSetString(playerid, vehicleHud[14], "O");
+		PlayerTextDrawSetString(playerid, vehicleHud[15], "C");
+		PlayerTextDrawSetString(playerid, vehicleHud[16], "L");
+		PlayerTextDrawSetString(playerid, vehicleHud[17], "0000000.0");
+
+		for(new i; i < sizeof vehicleHud; i++) PlayerTextDrawHide(playerid, vehicleHud[i]);
 	}
 	if(newstate == PLAYER_STATE_DRIVER)
 	{
@@ -754,15 +775,14 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
             #pragma unused id
         }
 
+		if(vehicle_engine[GetPlayerVehicleID(playerid)] == true) speedo[playerid] = repeat TimerSpeedo(playerid);
 		for(new i; i < 18; i++) PlayerTextDrawShow(playerid, vehicleHud[i]);
-		if(vehicle_engine[GetPlayerVehicleID(playerid)] == false) speedo[playerid] = repeat TimerSpeedo(playerid);
 	}
 	if(newstate == PLAYER_STATE_ONFOOT || oldstate == PLAYER_STATE_DRIVER) {
 		if(IsValidVehicle(playerInfo[playerid][pExamenVehicle])) examenFail(playerid);
 		if(Working[playerid]) CancelJob(playerid, Working[playerid]);
 	}
 	if(newstate == PLAYER_STATE_PASSENGER) {
-		for(new i; i < sizeof vehicleHud; i++) PlayerTextDrawHide(playerid, vehicleHud[i]);
 		foreach(new i : FactionMembers[5]) {
 			if(playerInfo[i][pTaxiDuty] == 1 && IsPlayerInAnyVehicle(i) && vehicleFaction[GetPlayerVehicleID(i)] == playerInfo[i][pFaction]) {
 				if(PlayerMoney(playerid, playerInfo[i][pTaxiFare])) {
@@ -879,14 +899,21 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 	return true;
 }
 
-public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags) {
+public OnPlayerCommandReceived(playerid, cmd[], params[], flags) {
 	if(!isPlayerLogged(playerid)) defer kickEx(playerid);
-	if(DileyCMD[playerid] > gettime()) return SCMf(playerid, COLOR_SERVER, "* (Deelay): {ffffff}Poti folosi o comanda peste %d secunde.", DileyCMD[playerid]-gettime());
-	DileyCMD[playerid] = gettime()+3;
+	if(DileyCMD[playerid] > gettime()) {
+		SCMf(playerid, COLOR_SERVER, "* (Deelay): {ffffff}Poti folosi o comanda peste %d secunde.", DileyCMD[playerid]-gettime());
+		return 0;
+	}
+    return 1; 
+}
+
+public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags) {
     if(result == -1) {
         SCMf(playerid, COLOR_SERVER, "* (/%s): {ffffff}Aceasta comanda nu exista pe server.", cmd);
         return 0; 
-    } 
+    }
+    DileyCMD[playerid] = gettime()+1;
     return 1; 
 }
 

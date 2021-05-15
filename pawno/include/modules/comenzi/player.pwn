@@ -167,7 +167,7 @@ CMD:killcp(playerid, params[]) {
 }
 
 CMD:sms(playerid, params[]) {
-	if(playerInfo[playerid][pMute] > 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai mute inca %d secunde.", playerInfo[playerid][pMute]);
+	if(playerInfo[playerid][pMute] > gettime()) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai mute inca %d secunde.", playerInfo[playerid][pMute]-gettime()-gettime());
 	extract params -> new phonenumber, string:smstext[180]; else return sendPlayerSyntax(playerid, "/sms <number> <text>");	
 	if(playerInfo[playerid][pPhone] == 0) return sendPlayerError(playerid, "Nu ai un telefon.");
 	if(playerInfo[playerid][pPhoneOnline] == 0) return sendPlayerError(playerid, "Telefonul tau este inchis.");
@@ -199,7 +199,7 @@ CMD:number(playerid, params[]) {
 }
 
 CMD:reply(playerid, params[]) {
-	if(playerInfo[playerid][pMute] > 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai mute inca %d secunde.", playerInfo[playerid][pMute]);
+	if(playerInfo[playerid][pMute] > gettime()) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai mute inca %d secunde.", playerInfo[playerid][pMute]-gettime());
 	extract params -> new string:smstext[180]; else return sendPlayerSyntax(playerid, "/reply <text>");	
 	if(playerInfo[playerid][pPhone] == 0) return sendPlayerError(playerid, "Nu ai un telefon.");
 	if(strlen(playerInfo[playerid][pPhone]) != 4) return sendPlayerError(playerid, "Nu ai un iPhone.");
@@ -1053,7 +1053,7 @@ CMD:setfreq(playerid, params[]) {
 
 CMD:wt(playerid, params[]) {
 	if(playerInfo[playerid][pWTalkie] == 0) return sendPlayerError(playerid, "Nu ai un walkie talkie.");
-	if(playerInfo[playerid][pMute] > 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai mute inca %d secunde.", playerInfo[playerid][pMute]);
+	if(playerInfo[playerid][pMute] > gettime()) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai mute inca %d secunde.", playerInfo[playerid][pMute]-gettime());
     extract params -> new string:msg[128];
     if(faceReclama(msg)) return removeFunction(playerid, msg);
     if(faceReclama(msg)) return Reclama(playerid, msg);

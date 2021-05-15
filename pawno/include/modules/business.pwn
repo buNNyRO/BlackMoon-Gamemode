@@ -449,28 +449,22 @@ CMD:transfer(playerid, params[]) {
 CMD:ad(playerid, params[]) {
 	if(strlen(playerInfo[playerid][pPhone]) == 0) return sendPlayerError(playerid, "Nu ai un telefon.");
 	if(AdTimer[playerid] != 0) return sendPlayerError(playerid, "Ai pus un anunt recent. Foloseste comanda /myad pentru a-l vedea.");
-	if(playerInfo[playerid][pMute] > 0) return sendPlayerError(playerid, "Nu pot folosi aceasta comanda deoarece ai mute.");
+	if(playerInfo[playerid][pMute] > gettime()) return sendPlayerError(playerid, "Nu pot folosi aceasta comanda deoarece ai mute.");
 	if(playerInfo[playerid][pLevel] < 3) return sendPlayerError(playerid, "Nu ai level 3+ pentru a folosi aceasta comanda.");
-	new idx, length = strlen(params), offset = idx, result[264], totalads = totalAds()+1;
-	while ((idx < length) && (params[idx] <= ' ')) idx++;
-	while ((idx < length) && ((idx - offset) < (sizeof(result) - 1))) {
-		result[idx - offset] = params[idx];
-		idx++;
-	}
-	result[idx - offset] = (EOS);
-	if(IsPlayerInRangeOfPoint(playerid, 10, 1170.6370, -1489.7297, 22.7018)) {
-		if(!strlen(result)) return sendPlayerSyntax(playerid, "/ad <text>");
-		new payad = bizInfo[3][bizFee];
-		if(!PlayerMoney(playerid, payad)) return sendPlayerError(playerid, "Nu ai bani necesari pentru a da un ad. Ai folosit %d caractere si anuntul costa $%s.", offset, formatNumber(payad));
-		GivePlayerCash(playerid, 0, payad);
-		AdTimer[playerid] = totalads*60;
-		bizInfo[3][bizBalance] += payad;
-		va_GameTextForPlayer(playerid, "~r~Ai platit $%d~n~~w~Mesajul contine: %d caractere~n~Acesta va fi afisat in %d minute (%d secunde)", payad, idx, AdTimer[playerid]/60, AdTimer[playerid], 5000, 5);
-		format(AdText[playerid], 256, result);
-		sendStaff(COLOR_SERVER, "(Ad Preview): {ffffff}Ad by %s (%d): %s", getName(playerid), playerInfo[playerid][pPhone], result);
-		defer advertismentTimer(playerid);
-		update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '3' LIMIT 1", bizInfo[3][bizBalance]);	
-	}
+	if(!IsPlayerInRangeOfPoint(playerid, 10, 1170.6370, -1489.7297, 22.7018)) return sendPlayerError(playerid, "Nu te afli in fata unui CNN.");
+	if(!strlen(params)) return sendPlayerSyntax(playerid, "/ad <text>");
+	if(PlayerMoney(playerid, bizInfo[3][bizFee])) return sendPlayerError(playerid, "Trebuie sa ai minim $%s pentru a pune un anunt.", formatNumber(bizInfo[3][bizFee]));
+	new totalads = totalAds()+1;
+	AdTimer[playerid] = totalads*60;
+	va_GameTextForPlayer(playerid, "Ai platit ~g~$%s~w~~n~Mesajul contine: ~p~%d~w~ caractere~n~Acesta va fi afisat in ~p~%s", 5000, 5, formatNumber(bizInfo[3][bizFee]), strlen(params), secinmin(AdTimer[playerid]));
+	format(AdText[playerid], 256, params);
+	sendStaff(COLOR_SERVER, "(Ad Preview): {ffffff}Ad by %s (%d): %s", getName(playerid), playerInfo[playerid][pPhone], params);
+	defer advertismentTimer(playerid);
+
+	GivePlayerCash(playerid, 0, bizInfo[3][bizFee]);
+	bizInfo[3][bizBalance] += bizInfo[3][bizFee];
+
+	update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '3' LIMIT 1", bizInfo[3][bizBalance]);	
 	return true;
 }
 

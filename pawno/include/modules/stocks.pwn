@@ -1205,7 +1205,6 @@ stock removeMaps(playerid) {
 function Float:GetDistanceBetweenPoints(Float:x1,Float:y1,Float:z1,Float:x2,Float:y2,Float:z2) return floatsqroot(floatpower(floatabs(floatsub(x2,x1)),2)+floatpower(floatabs(floatsub(y2,y1)),2)+floatpower(floatabs(floatsub(z2,z1)),2));
 
 stock PlayerMoney(playerid, amount) return GetPlayerCash(playerid) < amount ? (true) : (false);
-
 stock Value64Bit(ammount_store, ammount_more, value[]) {
 	if(ammount_store == 0) format(value, 128, "#%d", ammount_more);
 	else format(value, 128, "#%d%09d", ammount_store, ammount_more);

@@ -5,7 +5,7 @@
 #include <YSI\y_hooks>
 
 new Float:acVelocity[MAX_PLAYERS][3],
-	acTime[MAX_PLAYERS],
+    acTime[MAX_PLAYERS],
 	acDialog[MAX_PLAYERS];
 
 hook resetVars(playerid) { acDialog[playerid] = -1; return 1;}
@@ -38,20 +38,26 @@ stock TrollDetect(playerid, hack=0){
 
 hook OnPlayerStateChange(playerid, newstate, oldstate) {
     if(newstate == PLAYER_STATE_DRIVER) {
-        acTime[playerid] = gettime()+1;
-        printf("%d", acTime[playerid]);
-    }
-    if(oldstate == PLAYER_STATE_DRIVER) {
-        printf("%d si gettime = %d", acTime[playerid], gettime());
-        if(acTime[playerid] > gettime()) { printf("%s lasa ceatu ratatulee!",getName(playerid)); Kick(playerid); }
+        if(oldstate == PLAYER_STATE_PASSENGER) {
+            va_SendClientMessageToAll(COLOR_LIGHTRED, "(AC) %s a primit kick pentru 'Troll-Hack #1'.", getName(playerid));
+            Kick(playerid);
+            return 1;
+        }
+        if(GetTickCount() < acTime[playerid]) {
+            va_SendClientMessageToAll(COLOR_LIGHTRED, "(AC) %s a primit kick pentru 'Troll-Hack #2'.", getName(playerid));
+            Kick(playerid);
+            return 1;
+        }
+        acTime[playerid] = GetTickCount()+500;
     }
 	return 1;
 }
 
-hook OnPlayerEnterVehicle(playerid, vehicleid, ispassenger) {
-    if(IsPlayerInAnyVehicle(playerid)) return TrollDetect(playerid, 1);
-    return 1;
-}
+// hook OnPlayerEnterVehicle(playerid, vehicleid, ispassenger) {
+//     if(IsPlayerInAnyVehicle(playerid)) return TrollDetect(playerid, 1);
+//     return 1;
+// }
+
 // public OnPlayerUpdate(playerid) {
 //     TrollDetect(playerid);
 //     return 1;
