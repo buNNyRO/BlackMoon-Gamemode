@@ -448,7 +448,8 @@ CMD:ad(playerid, params[]) {
 	if(strlen(playerInfo[playerid][pAdText]) > 0) return sendPlayerError(playerid, "Ai pus un anunt recent. Foloseste comanda /myad pentru a-l vedea.");
 	if(playerInfo[playerid][pMute] > gettime()) return sendPlayerError(playerid, "Nu pot folosi aceasta comanda deoarece ai mute.");
 	if(playerInfo[playerid][pLevel] < 3) return sendPlayerError(playerid, "Nu ai level 3+ pentru a folosi aceasta comanda.");
-	if(!PlayerMoney(playerid, bizInfo[3][bizFee])) return sendPlayerError(playerid, "Trebuie sa ai minim $%s pentru a pune un anunt.", formatNumber(bizInfo[3][bizFee]));
+	printf("are atat %d si trebuie %d bani", GetPlayerCash(playerid), bizInfo[3][bizFee]);
+	if(!PlayerMoney(playerid, bizInfo[3][bizFee])) return SCMf(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Trebuie sa ai minim $%s pentru a pune un anunt.", formatNumber(bizInfo[3][bizFee]));
 	if(!strlen(params)) return sendPlayerSyntax(playerid, "/ad <text>");
 	format(playerInfo[playerid][pAdText], 256, params);
 	sendStaff(COLOR_SERVER, "(Ad Preview): {ffffff}Ad by %s (%d): %s", getName(playerid), playerInfo[playerid][pPhone], params);

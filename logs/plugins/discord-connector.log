@@ -20,3 +20,4 @@
 [05/15/21 18:08:33] [ERROR] Can't write to Discord websocket gateway: The I/O operation has been aborted because of either a thread exit or an application request (995)
 [05/15/21 19:00:30] [ERROR] can't update guild member presence: user id "610958450419302450" not cached
 [05/15/21 19:00:32] [ERROR] can't update guild member presence: user id "610958450419302450" not cached
+[05/16/21 23:01:53] [ERROR] Can't write to Discord websocket gateway: The I/O operation has been aborted because of either a thread exit or an application request (995)

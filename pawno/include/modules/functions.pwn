@@ -28,7 +28,7 @@ function MySQLLoad() {
 		mysql_tquery(SQL, "SELECT * FROM `server_safes`", "LoadSafes", "");
 		mysql_tquery(SQL, "SELECT * FROM `server_clans`", "LoadClans", "");
 		print("[MYSQL] Baza de date, s-a conectat.");
-		SetGameModeText("RPG V: 1.6.34");
+		SetGameModeText("RPG "VERSION);
 		serverTextDraws();
 	}
 	return true;

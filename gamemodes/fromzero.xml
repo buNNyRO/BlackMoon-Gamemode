@@ -2084,6 +2084,7 @@
 			<referrer name="Reclama"/>
 			<referrer name="PlayerToPoint"/>
 			<referrer name="IsPlayerInTurf"/>
+			<referrer name="showNotification"/>
 			<referrer name="LoadPersonalVehicle"/>
 			<referrer name="dialog_MY_GARAGE"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
@@ -2660,6 +2661,7 @@
 			<referrer name="checkPanel"/>
 			<referrer name="BanIPPlayer"/>
 			<referrer name="removeFunction"/>
+			<referrer name="showNotification"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerCar_yT@"/>
@@ -2677,6 +2679,7 @@
 			<referrer name="ExpirationReport_yT@"/>
 			<referrer name="closeGate_yT@"/>
 			<referrer name="tazerTimer_yT@"/>
+			<referrer name="notificationTimer_yT@"/>
 			<referrer name="pc_cmd_respawnhere"/>
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="pc_cmd_engine"/>
@@ -3384,6 +3387,7 @@
 			<referrer name="checkPanel"/>
 			<referrer name="BanIPPlayer"/>
 			<referrer name="removeFunction"/>
+			<referrer name="showNotification"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerCar_yT@"/>
@@ -3401,6 +3405,7 @@
 			<referrer name="ExpirationReport_yT@"/>
 			<referrer name="closeGate_yT@"/>
 			<referrer name="tazerTimer_yT@"/>
+			<referrer name="notificationTimer_yT@"/>
 			<referrer name="pc_cmd_respawnhere"/>
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="pc_cmd_engine"/>
@@ -4516,6 +4521,13 @@
 		</member>
 		<member name="F:nitro">
 			<referrer name="SaveComponent"/>
+		</member>
+		<member name="F:notificationTD">
+			<tagname value="PlayerText"/>
+			<referrer name="playerTextDraws"/>
+			<referrer name="destroyPlayerTextDraws"/>
+			<referrer name="showNotification"/>
+			<referrer name="notificationTimer"/>
 		</member>
 		<member name="F:opcode_table">
 			<tagname value="Opcode"/>
@@ -10508,9 +10520,9 @@
 		</member>
 		<member name="M:CalculateEmails" syntax="CalculateEmails(playerid)">
 			<attribute name="public"/>
-			<stacksize value="5"/>
-			<dependency name="SendClientMessage"/>
+			<stacksize value="6"/>
 			<dependency name="cache_num_rows"/>
+			<dependency name="showNotification"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -14602,10 +14614,11 @@
 			</param>
 		</member>
 		<member name="M:GetPlayerCash" syntax="GetPlayerCash(playerid)">
-			<stacksize value="2"/>
+			<stacksize value="1"/>
 			<referrer name="PlayerMoney"/>
 			<referrer name="dialog_BUYBIZ"/>
 			<referrer name="pc_cmd_bizdeposit"/>
+			<referrer name="pc_cmd_ad"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="dialog_BUY_INSURANCE"/>
 			<referrer name="pc_cmd_swapcolors"/>
@@ -14613,6 +14626,7 @@
 			<referrer name="pc_cmd_carcolor"/>
 			<referrer name="pc_cmd_buylevel"/>
 			<referrer name="pc_cmd_exam"/>
+			<referrer name="pc_cmd_xnxx"/>
 			<referrer name="ShowDealerShipTD"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<dependency name="MoneyMoney"/>
@@ -16599,11 +16613,11 @@
 			<attribute name="public"/>
 			<stacksize value="8"/>
 			<referrer name="pc_cmd_insertemail"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
+			<dependency name="showNotification"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<param name="playerid">
@@ -19733,6 +19747,7 @@
 			<referrer name="ExpirationReport_yT@"/>
 			<referrer name="closeGate_yT@"/>
 			<referrer name="tazerTimer_yT@"/>
+			<referrer name="notificationTimer_yT@"/>
 			<referrer name="testDriveTimer_yT@"/>
 			<param name="function">
 				<paraminfo> [] </paraminfo>
@@ -21247,6 +21262,7 @@
 			<referrer name="pc_alias_auninvite"/>
 			<referrer name="pc_alias_announce"/>
 			<referrer name="pc_alias_clearchat"/>
+			<referrer name="pc_alias_fly"/>
 			<param name="cmd">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -21467,6 +21483,7 @@
 			<referrer name="TimerSpeedo"/>
 			<referrer name="TimerJail"/>
 			<referrer name="TimerWanted"/>
+			<referrer name="notificationTimer"/>
 			<referrer name="pc_cmd_setadmin"/>
 			<referrer name="pc_cmd_unjail"/>
 			<referrer name="pc_cmd_engine"/>
@@ -21596,6 +21613,7 @@
 			<referrer name="updateTaxiTextdraw"/>
 			<referrer name="TimerWar"/>
 			<referrer name="onPlayerLogin"/>
+			<referrer name="showNotification"/>
 			<referrer name="TimerSpeedo"/>
 			<referrer name="TimerJail"/>
 			<referrer name="TimerWanted"/>
@@ -22727,8 +22745,6 @@
 			<referrer name="pc_cmd_wthelp"/>
 			<referrer name="pc_cmd_setfreq"/>
 			<referrer name="cancelDriveTest"/>
-			<referrer name="InsertEmail"/>
-			<referrer name="CalculateEmails"/>
 			<referrer name="OnPlayerSpawn"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
@@ -23696,7 +23712,7 @@
 		</member>
 		<member name="M:ShowEmails" syntax="ShowEmails(playerid)">
 			<attribute name="public"/>
-			<stacksize value="244"/>
+			<stacksize value="210"/>
 			<dependency name="Dialog_Open"/>
 			<dependency name="EOS"/>
 			<dependency name="cache_get_value_name"/>
@@ -25585,6 +25601,7 @@
 			<referrer name="ExpirationReport_yT@"/>
 			<referrer name="closeGate_yT@"/>
 			<referrer name="tazerTimer_yT@"/>
+			<referrer name="notificationTimer_yT@"/>
 			<referrer name="testDriveTimer_yT@"/>
 			<dependency name="I@"/>
 			<dependency name="Timer_GetSingleSlot"/>
@@ -26572,7 +26589,6 @@
 			<referrer name="closeGate@_yT"/>
 			<dependency name="MoveDynamicObject"/>
 			<dependency name="gates"/>
-			<dependency name="print"/>
 			<dependency name="true"/>
 			<param name="gate">
 			</param>
@@ -26644,6 +26660,7 @@
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<dependency name="PlayerTextDrawDestroy"/>
 			<dependency name="fareTD"/>
+			<dependency name="notificationTD"/>
 			<dependency name="playerLevelPTD"/>
 			<dependency name="serverDealerPTD"/>
 			<dependency name="serverHud"/>
@@ -30078,6 +30095,34 @@
 			<param name="code_start">
 			</param>
 		</member>
+		<member name="M:notificationTimer" syntax="notificationTimer(playerid)">
+			<stacksize value="4"/>
+			<referrer name="notificationTimer@_yT"/>
+			<dependency name="PlayerTextDrawHide"/>
+			<dependency name="notificationTD"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:notificationTimer@_yT" syntax="notificationTimer@_yT(__r, playerid)">
+			<tagname value="@Yj"/>
+			<attribute name="public"/>
+			<stacksize value="4"/>
+			<dependency name="notificationTimer"/>
+			<param name="__r">
+			</param>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:notificationTimer_yT@" syntax="notificationTimer_yT@(playerid)">
+			<stacksize value="8"/>
+			<referrer name="showNotification"/>
+			<dependency name="I@"/>
+			<dependency name="J@"/>
+			<dependency name="O@"/>
+			<dependency name="_Timer_C"/>
+			<param name="playerid">
+			</param>
+		</member>
 		<member name="M:numargs" syntax="numargs()">
 			<attribute name="native"/>
 			<referrer name="refabs"/>
@@ -30343,6 +30388,11 @@
 			<stacksize value="5"/>
 			<dependency name="PC_RegAlias"/>
 		</member>
+		<member name="M:pc_alias_fly" syntax="pc_alias_fly()">
+			<attribute name="public"/>
+			<stacksize value="4"/>
+			<dependency name="PC_RegAlias"/>
+		</member>
 		<member name="M:pc_alias_helperchat" syntax="pc_alias_helperchat()">
 			<attribute name="public"/>
 			<stacksize value="5"/>
@@ -30558,6 +30608,7 @@
 			<attribute name="public"/>
 			<stacksize value="4118"/>
 			<dependency name="Float:operator=(_:)"/>
+			<dependency name="GetPlayerCash"/>
 			<dependency name="GivePlayerCash"/>
 			<dependency name="I@"/>
 			<dependency name="IsPlayerInRangeOfPoint"/>
@@ -30585,6 +30636,7 @@
 			<dependency name="pPhone"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
+			<dependency name="printf"/>
 			<dependency name="secinmin"/>
 			<dependency name="secinmin"/>
 			<dependency name="sendPlayerError"/>
@@ -30594,6 +30646,7 @@
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<dependency name="va_GameTextForPlayer"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -35334,6 +35387,16 @@
 				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
+		<member name="M:pc_cmd_notificare" syntax="pc_cmd_notificare(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="6"/>
+			<dependency name="showNotification"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
 		<member name="M:pc_cmd_number" syntax="pc_cmd_number(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="4107"/>
@@ -37580,6 +37643,17 @@
 				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
+		<member name="M:pc_cmd_xnxx" syntax="pc_cmd_xnxx(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="5"/>
+			<dependency name="GetPlayerCash"/>
+			<dependency name="printf"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
 		<member name="M:playerTextDraws" syntax="playerTextDraws(playerid)">
 			<stacksize value="8"/>
 			<referrer name="resetVars"/>
@@ -37601,6 +37675,7 @@
 			<dependency name="fareTD"/>
 			<dependency name="jailTimeTD"/>
 			<dependency name="levelBar"/>
+			<dependency name="notificationTD"/>
 			<dependency name="playerExamenPTD"/>
 			<dependency name="playerLevelPTD"/>
 			<dependency name="serverDealerPTD"/>
@@ -37631,7 +37706,6 @@
 			<referrer name="MySQLLoad"/>
 			<referrer name="LoadExamCheckpoints"/>
 			<referrer name="LoadGasCan"/>
-			<referrer name="closeGate"/>
 			<referrer name="OnQueryError"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<param name="string">
@@ -37654,12 +37728,14 @@
 			<referrer name="LoadSafes"/>
 			<referrer name="LoadJobs"/>
 			<referrer name="LoadBusinesses"/>
+			<referrer name="pc_cmd_ad"/>
 			<referrer name="LoadClans"/>
 			<referrer name="MyHttpResponse"/>
 			<referrer name="LoadExamCheckpoints"/>
 			<referrer name="assignSQLID"/>
 			<referrer name="LoadPersonalVehicle"/>
 			<referrer name="LoadGasCan"/>
+			<referrer name="pc_cmd_xnxx"/>
 			<referrer name="LoadDSVehicles"/>
 			<referrer name="OnQueryError"/>
 			<param name="format">
@@ -39102,8 +39178,30 @@
 			<param name="targetid">
 			</param>
 		</member>
+		<member name="M:showNotification" syntax="showNotification(playerid, from[], text[])">
+			<attribute name="public"/>
+			<stacksize value="8"/>
+			<referrer name="pc_cmd_notificare"/>
+			<referrer name="InsertEmail"/>
+			<referrer name="CalculateEmails"/>
+			<dependency name="I@"/>
+			<dependency name="J@"/>
+			<dependency name="PlayerTextDrawShow"/>
+			<dependency name="notificationTD"/>
+			<dependency name="notificationTimer_yT@"/>
+			<dependency name="true"/>
+			<dependency name="va_PlayerTextDrawSetString"/>
+			<param name="playerid">
+			</param>
+			<param name="from">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="text">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
 		<member name="M:showStats" syntax="showStats(playerid, userID)">
-			<stacksize value="17"/>
+			<stacksize value="15"/>
 			<referrer name="pc_cmd_stats"/>
 			<dependency name="GetBankMoney"/>
 			<dependency name="GetCashStr"/>
@@ -40160,6 +40258,7 @@
 			<referrer name="updateTaxiTextdraw"/>
 			<referrer name="TimerWar"/>
 			<referrer name="onPlayerLogin"/>
+			<referrer name="showNotification"/>
 			<referrer name="TimerSpeedo"/>
 			<referrer name="TimerJail"/>
 			<referrer name="TimerWanted"/>
@@ -40240,6 +40339,7 @@
 			<referrer name="dialog_BUYBIZ"/>
 			<referrer name="pc_cmd_sellbiz"/>
 			<referrer name="pc_cmd_balance"/>
+			<referrer name="pc_cmd_ad"/>
 			<referrer name="pc_cmd_myad"/>
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="CautaHelperNou"/>

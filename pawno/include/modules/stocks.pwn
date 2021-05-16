@@ -1214,7 +1214,7 @@ stock removeMaps(playerid) {
 }
 function Float:GetDistanceBetweenPoints(Float:x1,Float:y1,Float:z1,Float:x2,Float:y2,Float:z2) return floatsqroot(floatpower(floatabs(floatsub(x2,x1)),2)+floatpower(floatabs(floatsub(y2,y1)),2)+floatpower(floatabs(floatsub(z2,z1)),2));
 
-stock PlayerMoney(playerid, amount) return GetPlayerCash(playerid) < amount ? (true) : (false);
+stock PlayerMoney(playerid, amount) return GetPlayerCash(playerid) > amount ? (true) : (false);
 stock Value64Bit(ammount_store, ammount_more, value[]) {
 	if(ammount_store == 0) format(value, 128, "#%d", ammount_more);
 	else format(value, 128, "#%d%09d", ammount_store, ammount_more);
@@ -1290,13 +1290,8 @@ function updatePlayer(playerid) {
 }
 
 stock GetPlayerCash(playerid) {
-	new money;
-	switch(StoreMoney[playerid]) {
-		case 0: money = MoneyMoney[playerid];
-		case 1: money = MoneyMoney[playerid] + 1000000000;
-		default: money = 2147483647;
-	}
-	return money;
+	if(StoreMoney[playerid] > 0) return MoneyMoney[playerid] + (StoreMoney[playerid] * 1000000000);
+	else return MoneyMoney[playerid];
 }
 GivePlayerBank(playerid, amount) return Add64Bit(playerInfo[playerid][pStoreBank], playerInfo[playerid][pBank], amount);
 GetPlayerBank(playerid) {

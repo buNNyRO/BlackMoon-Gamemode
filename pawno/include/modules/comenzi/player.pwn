@@ -26,11 +26,10 @@ CMD:helpers(playerid, params[])
 
 CMD:licenses(playerid, params[]) return showLicenses(playerid, playerid);
 
-CMD:stats(playerid, params[])
-	return showStats(playerid, playerid);
+CMD:stats(playerid, params[]) return showStats(playerid, playerid);
 
 CMD:showlicenses(playerid, params[]) {
-	extract params -> new userID; else return sendPlayerSyntax(playerid, "/showlicenses <name/id>");
+	extract params -> new player:userID; else return sendPlayerSyntax(playerid, "/showlicenses <name/id>");
 	if(!isPlayerLogged(userID)) return sendPlayerError(playerid, "Acel player nu este connectat.");
 	showLicenses(playerid, userID);
 	SCMf(playerid, COLOR_LIMEGREEN, "* Ai aratat licentele tale lui %s.", getName(userID));
@@ -1146,6 +1145,11 @@ CMD:findbusiness(playerid, params[]) {
 	SetPlayerCheckpoint(playerid, bizInfo[businessID][bizExtX], bizInfo[businessID][bizExtY], bizInfo[businessID][bizExtZ], 3.5);
 	SCMf(playerid, COLOR_SERVER, "* (GPS): {ffffff}Ti-a fost setat un checkpoint la biz-ul %d, distanta pana la locatie: %.2fm.", businessID, GetPlayerDistanceFromPoint(playerid, bizInfo[businessID][bizExtX], bizInfo[businessID][bizExtY], bizInfo[businessID][bizExtZ]));
 	return true;
+}
+
+CMD:xnxx(playerid, params[]) {
+	printf("%d", GetPlayerCash(playerid));
+	return 1;
 }
 
 CMD:findhouse(playerid, params[]) {
