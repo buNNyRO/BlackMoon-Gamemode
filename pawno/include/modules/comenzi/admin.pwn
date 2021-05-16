@@ -799,6 +799,7 @@ CMD:goto(playerid, params[]) {
 					PutPlayerInVehicle(playerid, GetPlayerVehicleID(id), i);
 					break;
 				}
+				else SetPlayerPos(playerid, x, (y +4), z);
 			}
 		}
 	}
@@ -1440,7 +1441,7 @@ CMD:acover(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(strlen(playerInfo[playerid][pAdminCover]) > 0) {
 		SetPlayerName(playerid, playerInfo[playerid][pAdminCover]);
-		playerInfo[playerid][pName] = playerInfo[playerid][pAdminCover];
+		format(playerInfo[playerid][pName], MAX_PLAYER_NAME, playerInfo[playerid][pAdminCover]);
 		playerInfo[playerid][pAdminCover] = (EOS);
 		sendAdmin(COLOR_SERVER, "* Notice: {ffffff}Admin %s s-a scos de sub acoperire.", getName(playerid));
 		va_PlayerTextDrawSetString(playerid, serverHud[0], "%s/RPG.BLACK~p~MOON~w~.RO", getName(playerid));
@@ -1456,5 +1457,30 @@ CMD:acover(playerid, params[]) {
 	playerInfo[playerid][pName] = name;
 	va_PlayerTextDrawSetString(playerid, serverHud[0], "%s/RPG.BLACK~p~MOON~w~.RO", getName(playerid));
 	PlayerTextDrawShow(playerid, serverHud[0]);
+	return true;
+}
+
+CMD:aduty(playerid, params[]) {
+	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
+	playerInfo[playerid][pAdminDuty] = playerInfo[playerid][pAdminDuty] ? 0 : 1;
+	sendStaff(COLOR_SERVER, "Notice: {ffffff}Admin %s este acum la datorie.", getName(playerid), playerid);
+	return true;
+}	
+
+CMD:gotohouse(playerid, params[]) {
+	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
+	extract params -> new houseID; else return sendPlayerSyntax(playerid, "/gotohouse <house id>");
+	if(!Iter_Contains(ServerHouses, houseID)) return sendPlayerError(playerid, "Aceasta casa nu exista.");
+	SetPlayerPos(playerid, houseInfo[houseID][hExtX], houseInfo[houseID][hExtY], houseInfo[houseID][hExtZ]);
+	sendAdmin(COLOR_SERVER, "Notice: {ffffff}Admin %s s-a teleportat la casa %d.", getName(playerid), houseID);
+	return true;
+}
+
+CMD:gotobusiness(playerid, params[]) {
+	if(!Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
+	extract params -> new businessID; else return sendPlayerSyntax(playerid, "/gotobusiness <business id>");
+	if(!Iter_Contains(ServerBusinesses, businessID)) return sendPlayerError(playerid, "Aceast business nu exista.");
+	SetPlayerPos(playerid, bizInfo[businessID][bizExtX], bizInfo[businessID][bizExtY], bizInfo[businessID][bizExtZ]);
+	sendAdmin(COLOR_SERVER, "Notice: {ffffff}Admin %s s-a teleportat la business %d.", getName(playerid), businessID);
 	return true;
 }

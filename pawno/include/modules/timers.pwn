@@ -61,8 +61,6 @@ task Timers[1000]() {
 	new hour, minute, second;
 	gettime(hour, minute, second); 
 	TextDrawSetString(ClockTD[0], string_fast("~p~PAYDAY~w~ IN: %s", PayDayTime-gettime() <= 0 ? "~p~PAYDAY~w~ SENDING..." : secinmin(PayDayTime-gettime())));
-
-	foreach(new i : ServerAdmins) va_PlayerTextDrawSetString(i, serverHud[1], "%d~n~~r~%d~w~ / T~g~%d~w~ / A~b~%d~w~ / Q~p~%d", playerInfo[i][pFPS], GetPlayerPing(i), GetServerTickRate(), GetPlayerAnimationIndex(i), mysql_unprocessed_queries());
 	if(hour == 12 && minute == 0 && second == 0) {
 		MoveObject(gates[1], 1160.19, 1303.31, 5.71, 0.5, 0.00, 0.00, -90.00); 
 		MoveObject(gates[2], 1160.18, 1312.26, 5.71,  0.5, 0.00, 0.00, -90.00);
@@ -102,6 +100,8 @@ task Timers[1000]() {
 
 		if(playerInfo[playerid][pAFKSeconds] < 10)
 			playerInfo[playerid][pSeconds] ++;
+																				 
+		if(playerInfo[playerid][pFPSShow] > 0) va_PlayerTextDrawSetString(playerid, serverHud[1], "%s", playerInfo[playerid][pAdmin] ? string_fast("%d~n~~r~%d~w~ / T~g~%d~w~ / A~b~%d~w~ / Q~p~%d", playerInfo[playerid][pFPS], GetPlayerPing(playerid), GetServerTickRate(), GetPlayerAnimationIndex(playerid), mysql_unprocessed_queries()) : string_fast("%d~n~~r~%d~w~", playerInfo[playerid][pFPS], GetPlayerPing(playerid)));
 
 		if(GetPlayerDrunkLevel(playerid) < 100) SetPlayerDrunkLevel(playerid, 2000);
 		else { 

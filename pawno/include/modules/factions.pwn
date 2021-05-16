@@ -140,7 +140,7 @@ hook OnPlayerEnterVehicle(playerid, vehicleid, ispassenger) {
 		slapPlayer(playerid);
 		RemovePlayerFromVehicle(playerid);
 	}
-	if(playerInfo[playerid][pFaction] == 2 || playerInfo[playerid][pFaction] == 3 || playerInfo[playerid][pFaction] == 4 && playerInfo[playerid][pFactionDuty] == 0 && vehicleFaction[vehicleid] != 0) {
+	if(vehicleFaction[vehicleid] != 0 && playerInfo[playerid][pFactionDuty] == 0 && playerInfo[playerid][pFaction] == 2 || playerInfo[playerid][pFaction] == 3 || playerInfo[playerid][pFaction] == 4) {
 		sendPlayerError(playerid, "Nu poti intra in vehiculele de factiune, deoarece nu esti la datorie.");
 		slapPlayer(playerid);
 		RemovePlayerFromVehicle(playerid);
@@ -422,7 +422,7 @@ stock SetPlayerToFactionColor(playerid) {
 		case 7: return SetPlayerColor(playerid, COLOR_PURPLE);
 		case 8: return SetPlayerColor(playerid, COLOR_LAWNGREEN);
 		case 9: return SetPlayerColor(playerid, COLOR_PURPLE2);
-		case 10: return SetPlayerColor(playerid, COLOR_RED);
+		case 10: return SetPlayerColor(playerid, COLOR_RED); 
 		default: return SetPlayerColor(playerid, COLOR_WHITE);
 	}
 	return true;
@@ -439,12 +439,11 @@ stock sendFactionMessage(fid, color, const message[], va_args<>) {
 
 CMD:factions(playerid, params[]) {
 	if(!Iter_Count(ServerFactions)) return sendPlayerError(playerid, "Nu sunt factiuni disponibile pe server.");
-	gString[0] = (EOS);
-	strcat(gString, "Faction\tAplications\nMin. Level");
+	new string[456] = "Faction\tApplications\tMin. Level";
 	foreach(new fid : ServerFactions) {
-		format(gString, sizeof(gString), "%s\t%s\t%d\n", factionName(fid), factionInfo[fid][fApps] ? "{4caf50}On" : "{f44336}Off", factionInfo[fid][fMinLevel]);
+		format(string, sizeof(string), "%s%s\t%s\t%d\n", string, factionName(fid), factionInfo[fid][fApps] ? "{4caf50}On" : "{f44336}Off", factionInfo[fid][fMinLevel]);
 	}
-	Dialog_Show(playerid, NO_DIALOG, DIALOG_STYLE_TABLIST_HEADERS, "Server: Factions", gString, "Close", "");
+	Dialog_Show(playerid, NO_DIALOG, DIALOG_STYLE_TABLIST_HEADERS, "Server: Factions", string, "Close", "");
 	return true;
 }
 
@@ -497,6 +496,18 @@ CMD:auninvite(playerid, params[]) {
 		playerVehicle[targetid] = -1;
 		if(IsValidObject(svfVehicleObjects[0])) DestroyObject(svfVehicleObjects[0]); 
 		if(IsValidObject(svfVehicleObjects[1])) DestroyObject(svfVehicleObjects[1]);
+	}
+	if(Contract[playerid] > -1) {
+		if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) {
+        	DisablePlayerCheckpoint(playerid);
+        	playerInfo[playerid][pCheckpoint] = CHECKPOINT_NONE;
+        	playerInfo[playerid][pCheckpointID] = -1;
+        }
+        Iter_Remove(Contracts, contractInfo[Contract[playerid]][cID]);
+        ShowPlayerNameTagForPlayer(contractInfo[Contract[playerid]][cAgainst], playerid, true);
+        contractInfo[Contract[playerid]][cID] = -1;
+        contractInfo[Contract[playerid]][cAgainst] = -1;
+        contractInfo[Contract[playerid]][cMoney] = -1;
 	}
 	Iter_Remove(FactionMembers[playerInfo[targetid][pFaction]], targetid);
 	playerInfo[targetid][pSpawnChange] = 1;
@@ -953,7 +964,7 @@ CMD:arrest(playerid, params[]) {
 
 CMD:members(playerid, params[]) {
 	if(playerInfo[playerid][pFaction] == 0) return true;
-	mysql_tquery(SQL, string_fast("SELECT * FROM `server_users` WHERE `Faction` = '%d' ORDER BY `FRank` DESC LIMIT 20", playerInfo[playerid][pFaction]), "showFactionMembers", "");
+	mysql_tquery(SQL, string_fast("SELECT * FROM `server_users` WHERE `Faction` = '%d' ORDER BY `FRank` DESC LIMIT 20", playerInfo[playerid][pFaction]), "showFactionMembers", "d", playerid);
 	return 1;
 }
 

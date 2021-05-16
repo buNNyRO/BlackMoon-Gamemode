@@ -28,21 +28,23 @@ function CalculateEmails(playerid) {
 
 Dialog:DIALOG_EMAILS(playerid, response, listitem) {
 	if(!response) return true;
-	new text[144], from[MAX_PLAYER_NAME], date[64], Cache: result = mysql_query(SQL, string_fast("SELECT * FROM `panel_notifications` WHERE `ID`='%s' AND `UserID` = '%d'", playerInfo[playerid][pSelectedItem], playerInfo[playerid][pSQLID]));
+	mysql_tquery(SQL, string_fast("SELECT * FROM `panel_notifications` WHERE `ID`='%s' AND `UserID` = '%d' LIMIT 1", playerInfo[playerid][pSelectedItem], playerInfo[playerid][pSQLID]), "showEmail", "dd", playerid, playerInfo[playerid][pSelectedItem]);
+	playerInfo[playerid][pSelectedItem] = -1;
+	return true;
+}
+
+function showEmail(playerid, id) {
+	new text[144], from[MAX_PLAYER_NAME], date[30];
 	cache_get_value_name(0, "Text", text, 144);
 	cache_get_value_name(0, "From", from, MAX_PLAYER_NAME);
-	cache_get_value_name(0, "Date", date, 64);			
-	gString[0] = (EOS);
-	format(gString, sizeof gString, "Email #%d", playerInfo[playerid][pSelectedItem]);				
-	Dialog_Show(playerid, DIALOG_EMAILS2, DIALOG_STYLE_MSGBOX, gString, string_fast("%s\nFrom: %s\nDate: %s", text, from, date), "Ok", "");
-	cache_delete(result);
-	playerInfo[playerid][pSelectedItem] = -1;
+	cache_get_value_name(0, "Date", date, 30);	
+	Dialog_Show(playerid, DIALOG_EMAIL2, DIALOG_STYLE_MSGBOX, string_fast("Email #%d", id), "%s\nFrom: %s\nDate: %s","Ok", "", text, from, date);
 	return true;
 }
 
 Dialog:DIALOG_EMAILS2(playerid, response, listitem) {
 	if(response) return true;		
-	update("UPDATE `panel_notifications` SET `Read` = '1' WHERE `ID` = '%d' AND `UserID` = '%d'", selName[playerid], playerInfo[playerid][pSQLID]);	
+	update("UPDATE `panel_notifications` SET `Read` = '1' WHERE `ID` = '%d' AND `UserID` = '%d' LIMTI 1", selName[playerid], playerInfo[playerid][pSQLID]);	
 	return true;
 }
 
@@ -54,9 +56,9 @@ CMD:emails(playerid, params[]) {
 
 CMD:insertemail(playerid, params[], help) {
 	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
-	extract params -> new player:userID, string:text[120]; else return sendPlayerSyntax(playerid, "/insertemail <name/id> <text>");
+	extract params -> new player:userID, string:text[144]; else return sendPlayerSyntax(playerid, "/insertemail <name/id> <text>");
 	if(!isPlayerLogged(userID)) return sendPlayerError(playerid, "Acel player nu este connectat.");
-	if(strlen(text) < 1 || strlen(text) > 120) return sendPlayerError(playerid, "Invalid text, min. 1 caracter max. 120 caractere");
+	if(strlen(text) < 1 || strlen(text) > 144) return sendPlayerError(playerid, "Invalid text, min. 1 caracter max. 144 caractere");
 	InsertEmail(userID, getName(playerid), text, 0);
 	SCMf(playerid, COLOR_SERVER, "* Ai trimis un email catre %s (%d, %d sqlid) text '%s'.", getName(userID), userID, playerInfo[userID][pSQLID], text);
 	return true;

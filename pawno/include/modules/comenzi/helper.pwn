@@ -10,15 +10,14 @@ hook OnPlayerConnect(playerid) {
 	return true;
 }
 
-hook OnPlayerDisconnect(playerid, reason) {
+hook OnPlayerDisconnect(playerid) {
 	if(helpTimer[playerid] != Timer:-1) {
 		stop helpTimer[playerid];
 		helpTimer[playerid] = Timer:-1;
 	}
 	return true;
 }
-stock CautaHelperNou(playerid, reason)
-{
+stock CautaHelperNou(playerid, reason) {
 	new HelperAtribuit = HelperAtribut[playerid];
 	if(reason == 0) {
 		SCMf(playerid, COLOR_LIME, "Helperul %s (%d) a tastat /skipn. Se cauta un nou helper", getName(HelperAtribuit), HelperAtribuit);
@@ -33,8 +32,7 @@ stock CautaHelperNou(playerid, reason)
 	HelperAtribut[playerid] = -1;
 }
 
-stock CautaHelper(playerid)
-{
+stock CautaHelper(playerid) {
 	new gasit = 0;
 	foreach(new i : ServerHelpers)
 	{
@@ -68,8 +66,7 @@ CMD:helduty(playerid, params[]) {
 	return true;
 }
 
-CMD:n(playerid, params[])
-{
+CMD:n(playerid, params[]) {
 	if(HelperAtribut[playerid] != -1) return sendPlayerError(playerid, "Ai deja un helper atribuit.");
 	extract params -> new string:message[144]; else return sendPlayerSyntax(playerid, "/n <message>");
 	QuestionStock[playerid] = message;
@@ -77,8 +74,7 @@ CMD:n(playerid, params[])
 	return 1;
 }
 
-CMD:ar(playerid, params[])
-{
+CMD:ar(playerid, params[]) {
 	if(!Iter_Contains(ServerHelpers, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(HelperBusy[playerid] == -1) return sendPlayerError(playerid, "Nu ai atribuit nici un jucator.");
 	if(ConversationOpen[playerid] == 1) return sendPlayerError(playerid, "Ai acceptat deja cererea.");
@@ -88,8 +84,7 @@ CMD:ar(playerid, params[])
 	return 1;
 }
 
-CMD:ch(playerid, params[])
-{
+CMD:ch(playerid, params[]) {
 	if(!Iter_Contains(ServerHelpers, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(HelperBusy[playerid] == -1) return sendPlayerError(playerid, "Nu ai atribuit nici un jucator.");
 	extract params -> new string:message[144]; else return sendPlayerSyntax(playerid, "/ch <reason>");
@@ -111,8 +106,7 @@ CMD:ch(playerid, params[])
 	return 1;
 }
 
-CMD:hl(playerid, params[])
-{
+CMD:hl(playerid, params[]) {
 	if(HelperBusy[playerid] == -1 && playerInfo[playerid][pHelper] > 0) return sendPlayerError(playerid, "Niciun jucator nu ti-a fost atribuit.");
 	if(HelperAtribut[playerid] == -1 && playerInfo[playerid][pHelper] == 0) return sendPlayerError(playerid, "Niciun helper nu ti-a fost atribuit.");
 	if(playerInfo[playerid][pHelper] == 0 && ConversationOpen[HelperAtribut[playerid]] == 0) return sendPlayerError(playerid, "Helperul nu a deschis conversatia cu tine.");
@@ -133,8 +127,7 @@ CMD:hl(playerid, params[])
 	return 1;
 }
 
-CMD:skipn(playerid, params[])
-{
+CMD:skipn(playerid, params[]) {
 	if(!Iter_Contains(ServerHelpers, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	if(HelperBusy[playerid] == -1) return sendPlayerError(playerid, "Nu ai atribuit nici un jucator.");
 	CautaHelperNou(HelperBusy[playerid], 0);
@@ -144,11 +137,12 @@ CMD:skipn(playerid, params[])
 CMD:deletead(playerid, params[]) {
 	if(!Iter_Contains(ServerHelpers, playerid) && !Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
 	extract params -> new player:deletePlayer, string:reason[32]; else return sendPlayerSyntax(playerid, "/deletead <name/id> <reason>");
-	if(strlen(reason) < 1 || strlen(reason) > 32) return sendPlayerError(playerid, "Reason invalid.");
-	if(AdTimer[deletePlayer] == 0) return sendPlayerError(playerid, "Acel player nu are un ad.");
-	AdText[deletePlayer] = "";
-	AdTimer[deletePlayer] = 0;
-	SCMf(deletePlayer, COLOR_GREY, "* AD Notice: Ad-ul tau a fost sters de %s (%d), motiv: %s.", getName(playerid), playerid, reason);
-	sendStaff(COLOR_SERVER, "Notice: {ffffff}%s a sters ad-ul lui %s, motiv: %s.", getName(playerid), getName(deletePlayer), reason);	
+	if(!isPlayerLogged(deletePlayer)) return sendPlayerError(playerid, "Acel jucator nu este connectat.");
+	if(strlen(reason) < 1 || strlen(reason) > 32) return sendPlayerError(playerid, "Reason invalid, min. 1 caracter max. 32 caractere.");
+	if(strlen(playerInfo[deletePlayer][pAdText]) == 0) return sendPlayerError(playerid, "Acel jucator nu are un advertisment pus.");
+	playerInfo[deletePlayer][pAdText] = (EOS);
+	stop advertismentTimer(deletePlayer);
+	SCMf(deletePlayer, COLOR_SERVER, "* (Advertisment): {ffffff}Advertisment-ul tau a fost sters de %s (%d), motiv: %s.", getName(playerid), playerid, reason);
+	sendStaff(COLOR_SERVER, "Notice: {ffffff}%s (%d) a sters advertisment-ul lui %s (%d), motiv: %s.", getName(playerid), playerid, getName(deletePlayer), deletePlayer, reason);
 	return true;
 }
