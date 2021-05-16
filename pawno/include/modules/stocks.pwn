@@ -151,7 +151,7 @@ stock setSkin(playerid, skin)
 stock showStats(playerid, userID)
 {
 	SCMf(playerid, COLOR_SERVER, "------------------|{ffffff}%s's stats{cc66ff}|----------------------", getName(userID));
-	SCMf(playerid, COLOR_SERVER, "Account: {ffffff}%s (%d) | Level: %d | Ore jucate: %2.f | Warn-uri: %d/3 | Faction: %s (rank %d)", getName(userID), userID, playerInfo[userID][pLevel], playerInfo[userID][pRespectPoints], (playerInfo[userID][pLevel] * 3), playerInfo[userID][pHours], playerInfo[userID][pWarn], playerInfo[userID][pFaction] ? factionName(playerInfo[userID][pFaction]) : "None", playerInfo[userID][pFactionRank]);
+	SCMf(playerid, COLOR_SERVER, "Account: {ffffff}%s (%d) | Level: %d | Ore jucate: %2.f | Warn-uri: %d/3 | Faction: %s (rank %d)", getName(userID), userID, playerInfo[userID][pLevel], playerInfo[userID][pHours], playerInfo[userID][pWarn], playerInfo[userID][pFaction] ? factionName(playerInfo[userID][pFaction]) : "None", playerInfo[userID][pFactionRank] ? playerInfo[userID][pFactionRank] : -1);
 	SCMf(playerid, COLOR_SERVER, "Economy: {ffffff}Cash: %s$ | Banca: %s$ | Urmatorul nivel: $%s", GetCashStr(userID), GetBankMoney(userID), formatNumber(playerInfo[userID][pLevel] * 250));
 	SCMf(playerid, COLOR_SERVER, "Points: {ffffff}Premium Points: %d | Puncte de respect: %d/%d", playerInfo[userID][pPremiumPoints], playerInfo[userID][pRespectPoints], (playerInfo[userID][pLevel] * 3));
 	SCMf(playerid, COLOR_SERVER, "Other: {ffffff}Drugs:%d | Materiale:%s | Phone: %d | VIP: %s | Premium: %s", playerInfo[userID][pDrugs], formatNumber(playerInfo[userID][pMats]), playerInfo[userID][pPhone], playerInfo[userID][pVIP] ? "Yes" : "No", playerInfo[userID][pPremium] ? "Yes" : "No");
@@ -188,40 +188,16 @@ stock showLicenses(playerid, userID)
 }
 
 stock playerTextDraws(playerid) {
-	notificationTD[playerid][0] = CreatePlayerTextDraw(playerid, -48.333347, 151.017700, "LD_SPAC:white");
-	PlayerTextDrawLetterSize(playerid, notificationTD[playerid][0], 0.000000, 0.000000);
-	PlayerTextDrawTextSize(playerid, notificationTD[playerid][0], 332.000000, 33.000000);
-	PlayerTextDrawAlignment(playerid, notificationTD[playerid][0], 1);
-	PlayerTextDrawColor(playerid, notificationTD[playerid][0], 220);
-	PlayerTextDrawSetShadow(playerid, notificationTD[playerid][0], 0);
-	PlayerTextDrawSetOutline(playerid, notificationTD[playerid][0], 0);
-	PlayerTextDrawBackgroundColor(playerid, notificationTD[playerid][0], 255);
-	PlayerTextDrawFont(playerid, notificationTD[playerid][0], 4);
-	PlayerTextDrawSetProportional(playerid, notificationTD[playerid][0], 0);
-	PlayerTextDrawSetShadow(playerid, notificationTD[playerid][0], 0);
-
-	notificationTD[playerid][1] = CreatePlayerTextDraw(playerid, 283.743865, 150.920074, "particle:coronamoon");
-	PlayerTextDrawLetterSize(playerid, notificationTD[playerid][0], 0.000000, 0.000000);
-	PlayerTextDrawTextSize(playerid, notificationTD[playerid][0], 28.000000, 33.000000);
-	PlayerTextDrawAlignment(playerid, notificationTD[playerid][0], 1);
-	PlayerTextDrawColor(playerid, notificationTD[playerid][0], -36);
-	PlayerTextDrawSetShadow(playerid, notificationTD[playerid][0], 0);
-	PlayerTextDrawSetOutline(playerid, notificationTD[playerid][0], 0);
-	PlayerTextDrawBackgroundColor(playerid, notificationTD[playerid][0], 255);
-	PlayerTextDrawFont(playerid, notificationTD[playerid][0], 4);
-	PlayerTextDrawSetProportional(playerid, notificationTD[playerid][0], 0);
-	PlayerTextDrawSetShadow(playerid, notificationTD[playerid][0], 0);
-
-	notificationTD[playerid][2] = CreatePlayerTextDraw(playerid, 1.999951, 154.162368, "A fost odata ca niciodataA fost odata ca~n~ciodataA fost odata ca niciodata~n~A fost odata ca niciodataA fost odata ca niciodat");
-	PlayerTextDrawLetterSize(playerid, notificationTD[playerid][0], 0.170663, 0.932976);
-	PlayerTextDrawAlignment(playerid, notificationTD[playerid][0], 1);
-	PlayerTextDrawColor(playerid, notificationTD[playerid][0], -1);
-	PlayerTextDrawSetShadow(playerid, notificationTD[playerid][0], 0);
-	PlayerTextDrawSetOutline(playerid, notificationTD[playerid][0], 1);
-	PlayerTextDrawBackgroundColor(playerid, notificationTD[playerid][0], 53);
-	PlayerTextDrawFont(playerid, notificationTD[playerid][0], 2);
-	PlayerTextDrawSetProportional(playerid, notificationTD[playerid][0], 1);
-	PlayerTextDrawSetShadow(playerid, notificationTD[playerid][0], 0);
+	notificationTD[playerid]= CreatePlayerTextDraw(playerid, 322.444519, 390.115509, "Stiu casdadsaStiu casdadsaxx~n~Stiu casdadsaStiu casdadsaxx~n~Stiu casdadsaStiu casdadsaxx");
+	PlayerTextDrawLetterSize(playerid, notificationTD[playerid], 0.198666, 1.186844);
+	PlayerTextDrawAlignment(playerid, notificationTD[playerid], 2);
+	PlayerTextDrawColor(playerid, notificationTD[playerid], -1);
+	PlayerTextDrawSetShadow(playerid, notificationTD[playerid], 0);
+	PlayerTextDrawSetOutline(playerid, notificationTD[playerid], 1);
+	PlayerTextDrawBackgroundColor(playerid, notificationTD[playerid], 95);
+	PlayerTextDrawFont(playerid, notificationTD[playerid], 2);
+	PlayerTextDrawSetProportional(playerid, notificationTD[playerid], 1);
+	PlayerTextDrawSetShadow(playerid, notificationTD[playerid], 0);
 
 	vehicleHud[0] = CreatePlayerTextDraw(playerid, 528.143859, 365.662231, "LD_CARD:cd1s");
 	PlayerTextDrawLetterSize(playerid, vehicleHud[0], 0.000000, 0.000000);
@@ -646,9 +622,7 @@ stock destroyPlayerTextDraws(playerid)
 	PlayerTextDrawDestroy(playerid, wantedTD[playerid]);
 	PlayerTextDrawDestroy(playerid, fareTD[playerid]);
 	PlayerTextDrawDestroy(playerid, warTD[playerid]);
-	PlayerTextDrawDestroy(playerid, notificationTD[playerid][0]);
-	PlayerTextDrawDestroy(playerid, notificationTD[playerid][1]);
-	PlayerTextDrawDestroy(playerid, notificationTD[playerid][2]);	
+	PlayerTextDrawDestroy(playerid, notificationTD[playerid]);	
 	return true;
 }
 

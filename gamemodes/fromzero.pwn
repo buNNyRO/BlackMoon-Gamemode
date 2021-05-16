@@ -401,7 +401,7 @@ public OnPlayerText(playerid, text[]) {
 		sendNearbyMessage(playerid, COLOR_YELLOW, 50.0, "** Administrator %s spune: %s **", getName(playerid), text); 
 		return 0;
 	}
-	sendNearbyMessage(playerid, GetPlayerColor(playerid), 25.0, "%s spune: %s", getName(playerid), text); 
+	sendNearbyMessage(playerid, GetPlayerColor(playerid), 25.0, "%s {ffffff}spune: %s", getName(playerid), text); 
 	SetPlayerChatBubble(playerid, text, COLOR_WHITE, 25.0, 5000);
 	update("INSERT INTO `server_chat_logs` (PlayerName, PlayerID, ChatText) VALUES ('%s', '%d', '%s')", getName(playerid), playerInfo[playerid][pSQLID], string_fast("* (chat log): %s.", text));
 	return 0;

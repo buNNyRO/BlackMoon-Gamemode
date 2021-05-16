@@ -898,8 +898,7 @@ CMD:set(playerid, params[]) {
 			SetPlayerArmourEx(id, value);
 		}
 		case _H<respectpoints>, _H<rp>: {
-			if(value < 0 || value > 150) return sendPlayerError(playerid, "Result Invalid (0 - 150).");
-			if(playerInfo[id][pRespectPoints] == value) return sendPlayerError(playerid, "Jucatorul are deja %d puncte de respect.", value);			
+			if(value < 0 || value > 500) return sendPlayerError(playerid, "Result Invalid (0 - 500).");
 			playerInfo[id][pRespectPoints] = value;
 			updateLevelBar(id);
 			update("UPDATE `server_users` SET `RespectPoints` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[id][pRespectPoints], playerInfo[id][pSQLID]);

@@ -294,4 +294,4 @@ timer tazerTimer[10000](playerid) {
 	return true;
 }
 
-timer notificationTimer[10000](playerid) for(new i = 0; i < 3; i++) PlayerTextDrawHide(playerid, notificationTD[playerid][i]);
+timer notificationTimer[10000](playerid) PlayerTextDrawHide(playerid, notificationTD[playerid]);

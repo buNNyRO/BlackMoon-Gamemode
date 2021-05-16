@@ -791,8 +791,8 @@ function SendDiscordAC(const text[], va_args<>) {
 }
 
 function showNotification(playerid, from[], const text[]) {
-	va_PlayerTextDrawSetString(playerid, notificationTD[playerid][2], "%s~n~From: %s", text, from);
-	for(new i = 0; i < 3; i++) PlayerTextDrawShow(playerid, notificationTD[playerid][i]);
+	va_PlayerTextDrawSetString(playerid, notificationTD[playerid], "%s~n~From: %s", text, from);
+	PlayerTextDrawShow(playerid, notificationTD[playerid]);
 	defer notificationTimer(playerid);
 	return true;
 }
