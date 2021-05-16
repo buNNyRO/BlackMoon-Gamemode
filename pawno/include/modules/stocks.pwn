@@ -420,8 +420,8 @@ stock playerTextDraws(playerid) {
 	PlayerTextDrawSetProportional(playerid, vehicleHud[19], 0);
 	PlayerTextDrawSetShadow(playerid, vehicleHud[19], 0);
 
-	serverHud[0] = CreatePlayerTextDraw(playerid, 638.145263, 433.010986, "RPG.BLACK~p~MOON~w~.RO");
-	PlayerTextDrawLetterSize(playerid, serverHud[0], 0.269333, 1.560178);
+	serverHud[0] = CreatePlayerTextDraw(playerid, 638.755981, 436.022460, "RPG.BLACK~p~MOON~w~.RO");
+	PlayerTextDrawLetterSize(playerid, serverHud[0], 0.202221, 1.311288);
 	PlayerTextDrawAlignment(playerid, serverHud[0], 3);
 	PlayerTextDrawColor(playerid, serverHud[0], -1);
 	PlayerTextDrawSetShadow(playerid, serverHud[0], 0);
@@ -431,8 +431,8 @@ stock playerTextDraws(playerid) {
 	PlayerTextDrawSetProportional(playerid, serverHud[0], 1);
 	PlayerTextDrawSetShadow(playerid, serverHud[0], 0);
 
-	serverHud[1] = CreatePlayerTextDraw(playerid, 3.289494, 418.393127, "100~n~~r~100~w~ / T~g~198~w~ / A~b~1002~w~ / Q~p~23");
-	PlayerTextDrawLetterSize(playerid, serverHud[1], 0.257777, 1.505422);
+	serverHud[1] = CreatePlayerTextDraw(playerid, 1.211715, 426.077789, "100~n~~r~100~w~ / T~g~198~w~ / A~b~1002~w~ / Q~p~23");
+	PlayerTextDrawLetterSize(playerid, serverHud[1], 0.209332, 1.147019);
 	PlayerTextDrawAlignment(playerid, serverHud[1], 1);
 	PlayerTextDrawColor(playerid, serverHud[1], -65281);
 	PlayerTextDrawSetShadow(playerid, serverHud[1], 0);
@@ -993,7 +993,7 @@ stock sendStaff(color, const text[], va_args<>)
 stock oocNews(color, const text[], va_args<>) {
 	gFast[0] = (EOS);
 	va_format(gFast, 256, text, va_start<2>);
-	foreach(new playerid : Player) {
+	foreach(new playerid : loggedPlayers) {
 		if(playerInfo[playerid][pLiveToggle] == 0) SCM(playerid, color, gFast);
 	}
 	return true;
@@ -1037,12 +1037,7 @@ stock Calculate(seconds)
 	return string_fast("%02d:%02d:%02d", hour, minute, second);
 }
 
-stock IsNumeric(const string[]) {
-    for (new i = 0, j = strlen(string); i < j; i++) {
-        if (string[i] > '9' || string[i] < '0') return 0;
-    }
-    return true;
-}
+stock IsNumeric(const string:str[]) return !sscanf(str, "{i}");
 
 stock examenFail(playerid) {
 	if(IsValidVehicle(playerInfo[playerid][pExamenVehicle])) DestroyVehicle(playerInfo[playerid][pExamenVehicle]);

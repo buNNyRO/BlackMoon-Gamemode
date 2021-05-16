@@ -1166,6 +1166,19 @@ CMD:findhouse(playerid, params[]) {
 	return true;
 }
 
+CMD:xnxx(playerid, params[]) {
+	if(IsNumeric("11321321")) print("este");
+	else print("nueste");
+	return 1;
+}
+
+CMD:xnxx2(playerid, params[]) {
+	if(IsNumeric("11a321321")) print("este");
+	else print("nueste");
+	return 1;
+}
+
+
 CMD:id(playerid, params[]) {
     extract params -> new player:userID; else return sendPlayerSyntax(playerid, "/id <name/id>");
     if(!isPlayerLogged(userID)) return sendPlayerError(playerid, "Acel jucator nu este logat.");

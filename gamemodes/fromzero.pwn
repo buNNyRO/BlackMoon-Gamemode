@@ -665,6 +665,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 }
 
 public OnPlayerStateChange(playerid, newstate, oldstate) {
+    print("merge cehats u 2");
 	if(newstate == 2 && oldstate == 3) return 1;
 	if(newstate == PLAYER_STATE_SPECTATING && playerInfo[playerid][pAdmin] == 0) return va_SendClientMessageToAll(COLOR_LIGHTRED, "(AC) %s a primit kick pentru 'Invisibile Hack'.", getName(playerid)), Kick(playerid);
 	if(newstate == PLAYER_STATE_DRIVER || newstate == PLAYER_STATE_PASSENGER) if(Iter_Contains(PlayerInVehicle, playerid)) Iter_Add(PlayerInVehicle, playerid);

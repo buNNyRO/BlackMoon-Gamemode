@@ -1826,7 +1826,6 @@
 			<referrer name="sendHelper"/>
 			<referrer name="sendStaff"/>
 			<referrer name="oocNews"/>
-			<referrer name="IsNumeric"/>
 			<referrer name="examenFail"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="IsSeatTaked"/>
@@ -3077,9 +3076,7 @@
 			<referrer name="Iter_OPDCInternal"/>
 			<referrer name="_Timer_D"/>
 			<referrer name="isPlayerLogged"/>
-			<referrer name="oocNews"/>
 			<referrer name="IsSeatTaked"/>
-			<referrer name="PayDay"/>
 			Create the internal iterators. 
 		</member>
 		<member name="F:Iterator@PlayerInVehicle">
@@ -3306,6 +3303,7 @@
 		</member>
 		<member name="F:Iterator@loggedPlayers">
 			<referrer name="sendNearbyMessage"/>
+			<referrer name="oocNews"/>
 			<referrer name="GetPlayerID"/>
 			<referrer name="pc_cmd_fare"/>
 			<referrer name="pc_cmd_endlive"/>
@@ -3315,6 +3313,7 @@
 			<referrer name="resetQuest"/>
 			<referrer name="getVehicleOwner"/>
 			<referrer name="Timers"/>
+			<referrer name="PayDay"/>
 			<referrer name="pc_cmd_banoffline"/>
 			<referrer name="pc_cmd_area"/>
 			<referrer name="pc_cmd_banipoffline"/>
@@ -4032,6 +4031,9 @@
 		<member name="F:acTime">
 			<referrer name="@yH_OnPlayerStateChange@005"/>
 		</member>
+		<member name="F:acTimeCrash">
+			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
+		</member>
 		<member name="F:acVelocity">
 			<tagname value="Float"/>
 			<referrer name="TrollDetect"/>
@@ -4537,6 +4539,7 @@
 		<member name="F:playerInfo">
 			<referrer name="TrollDetect"/>
 			<referrer name="@yH_OnPlayerStateChange@005"/>
+			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
 			<referrer name="warnPlayer"/>
 			<referrer name="banPlayer"/>
 			<referrer name="mutePlayer"/>
@@ -6498,6 +6501,26 @@
 			<param name="playerid">
 			</param>
 		</member>
+		<member name="M:@yH_OnPlayerEnterVehicle@005" syntax="@yH_OnPlayerEnterVehicle@005(playerid, vehicleid, ispassenger)">
+			<attribute name="public"/>
+			<stacksize value="6"/>
+			<dependency name="GetTickCount"/>
+			<dependency name="IsPlayerInAnyVehicle"/>
+			<dependency name="Kick"/>
+			<dependency name="SendDiscordAC"/>
+			<dependency name="acTimeCrash"/>
+			<dependency name="pAdmin"/>
+			<dependency name="pName"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="va_SendClientMessageToAll"/>
+			<param name="playerid">
+			</param>
+			<param name="vehicleid">
+			</param>
+			<param name="ispassenger">
+			</param>
+		</member>
 		<member name="M:@yH_OnPlayerEnterVehicle@007" syntax="@yH_OnPlayerEnterVehicle@007(playerid, vehicleid, ispassenger)">
 			<attribute name="public"/>
 			<stacksize value="5"/>
@@ -6538,6 +6561,7 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
+			<dependency name="print"/>
 			<dependency name="va_SendClientMessageToAll"/>
 			<param name="playerid">
 			</param>
@@ -10264,6 +10288,7 @@
 			<dependency name="pinVehicle"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
+			<dependency name="print"/>
 			<dependency name="pvAge"/>
 			<dependency name="pvColorOne"/>
 			<dependency name="pvColorTwo"/>
@@ -10301,6 +10326,13 @@
 			<param name="newstate">
 			</param>
 			<param name="oldstate">
+			</param>
+		</member>
+		<member name="M:CB_OnPlayerUpdate" syntax="CB_OnPlayerUpdate(playerid)">
+			<attribute name="public"/>
+			<stacksize value="4"/>
+			<dependency name="TrollDetect"/>
+			<param name="playerid">
 			</param>
 		</member>
 		<member name="M:CB_OnPlayerWeaponShot" syntax="CB_OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, fX, fY, fZ)">
@@ -14515,12 +14547,14 @@
 		<member name="M:GetPlayerCameraMode" syntax="GetPlayerCameraMode(playerid)">
 			<attribute name="native"/>
 			<referrer name="OnPlayerUpdate"/>
+			<referrer name="TrollDetect"/>
 			<param name="playerid">
 			</param>
 		</member>
 		<member name="M:GetPlayerCameraPos" syntax="GetPlayerCameraPos(playerid, &amp;x, &amp;y, &amp;z)">
 			<attribute name="native"/>
 			<referrer name="Fly"/>
+			<referrer name="TrollDetect"/>
 			<param name="playerid">
 			</param>
 			<param name="x">
@@ -15382,6 +15416,7 @@
 			<referrer name="exit_public"/>
 			<referrer name="enter_public"/>
 			<referrer name="@yH_OnPlayerStateChange@005"/>
+			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
 		</member>
 		<member name="M:GetVehicleDamageStatus" syntax="GetVehicleDamageStatus(vehicleid, &amp;panels, &amp;doors, &amp;lights, &amp;tires)">
 			<attribute name="native"/>
@@ -16633,8 +16668,8 @@
 			<dependency name="GetOS"/>
 			<dependency name="OS_LINUX"/>
 		</member>
-		<member name="M:IsNumeric" syntax="IsNumeric(string[])">
-			<stacksize value="5"/>
+		<member name="M:IsNumeric" syntax="IsNumeric(str[])">
+			<stacksize value="4"/>
 			<referrer name="CheckerBigInt"/>
 			<referrer name="pc_cmd_gotofaction"/>
 			<referrer name="pc_cmd_flock"/>
@@ -16647,9 +16682,10 @@
 			<referrer name="pc_cmd_addnos"/>
 			<referrer name="pc_cmd_flipveh"/>
 			<referrer name="pc_cmd_gotojob"/>
-			<dependency name="strlen"/>
-			<dependency name="true"/>
-			<param name="string">
+			<referrer name="pc_cmd_xnxx"/>
+			<referrer name="pc_cmd_xnxx2"/>
+			<dependency name="sscanf"/>
+			<param name="str">
 				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
@@ -16694,6 +16730,7 @@
 		</member>
 		<member name="M:IsPlayerInAnyVehicle" syntax="IsPlayerInAnyVehicle(playerid)">
 			<attribute name="native"/>
+			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
 			<referrer name="pc_cmd_sellhousestate"/>
 			<referrer name="pc_cmd_confiscate"/>
 			<referrer name="pc_cmd_ticket"/>
@@ -18552,6 +18589,7 @@
 			<attribute name="native"/>
 			<referrer name="TrollDetect"/>
 			<referrer name="@yH_OnPlayerStateChange@005"/>
+			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
 			<referrer name="dialog_REGISTER"/>
 			<referrer name="dialog_LOGIN"/>
 			<referrer name="kickEx"/>
@@ -21214,7 +21252,7 @@
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="GivePlayerBank"/>
 			<dependency name="GivePlayerCash"/>
-			<dependency name="Iterator@Player"/>
+			<dependency name="Iterator@loggedPlayers"/>
 			<dependency name="MoneyMoney"/>
 			<dependency name="PayDayTime"/>
 			<dependency name="SendClientMessage"/>
@@ -22690,7 +22728,9 @@
 		<member name="M:SendDiscordAC" syntax="SendDiscordAC(text[], ...)">
 			<attribute name="public"/>
 			<stacksize value="4203"/>
+			<referrer name="TrollDetect"/>
 			<referrer name="@yH_OnPlayerStateChange@005"/>
+			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
 			<dependency name="DCC_FindChannelById"/>
 			<dependency name="DCC_SendChannelMessage"/>
 			<dependency name="MoonBotAC"/>
@@ -24826,15 +24866,19 @@
 			</param>
 			      <remarks>  Modifies "start" and "end" to be tight on text in "str".  </remarks> 
 		</member>
-		<member name="M:TrollDetect" syntax="TrollDetect(playerid, hack)">
-			<stacksize value="9"/>
+		<member name="M:TrollDetect" syntax="TrollDetect(playerid)">
+			<stacksize value="11"/>
+			<referrer name="CB_OnPlayerUpdate"/>
 			<dependency name="operator-(Float:,Float:)"/>
 			<dependency name="operator==(Float:,Float:)"/>
 			<dependency name="operator&gt;(Float:,Float:)"/>
 			<dependency name="operator&lt;(Float:,Float:)"/>
+			<dependency name="GetPlayerCameraMode"/>
+			<dependency name="GetPlayerCameraPos"/>
 			<dependency name="GetPlayerState"/>
 			<dependency name="GetPlayerVelocity"/>
 			<dependency name="Kick"/>
+			<dependency name="SendDiscordAC"/>
 			<dependency name="acVelocity"/>
 			<dependency name="acVelocity"/>
 			<dependency name="false"/>
@@ -24842,10 +24886,8 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="printf"/>
+			<dependency name="va_SendClientMessageToAll"/>
 			<param name="playerid">
-			</param>
-			<param name="hack">
 			</param>
 		</member>
 		<member name="M:U@" syntax="U@(id, name[], value, string[])">
@@ -30103,7 +30145,7 @@
 			<referrer name="pc_cmd_news"/>
 			<referrer name="OnPlayerText"/>
 			<dependency name="EOS"/>
-			<dependency name="Iterator@Player"/>
+			<dependency name="Iterator@loggedPlayers"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="YVA2_DummyPush"/>
 			<dependency name="gFast"/>
@@ -37305,6 +37347,28 @@
 				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
+		<member name="M:pc_cmd_xnxx" syntax="pc_cmd_xnxx(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="4"/>
+			<dependency name="IsNumeric"/>
+			<dependency name="print"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:pc_cmd_xnxx2" syntax="pc_cmd_xnxx2(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="4"/>
+			<dependency name="IsNumeric"/>
+			<dependency name="print"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
 		<member name="M:playerTextDraws" syntax="playerTextDraws(playerid)">
 			<stacksize value="8"/>
 			<referrer name="resetVars"/>
@@ -37345,6 +37409,7 @@
 			<referrer name="DumpStack"/>
 			<referrer name="PrintStackTrace"/>
 			<referrer name="va_print"/>
+			<referrer name="@yH_OnPlayerStateChange@005"/>
 			<referrer name="LoadHouses"/>
 			<referrer name="LoadTurfs"/>
 			<referrer name="LoadFactions"/>
@@ -37356,7 +37421,10 @@
 			<referrer name="LoadExamCheckpoints"/>
 			<referrer name="LoadGasCan"/>
 			<referrer name="closeGate"/>
+			<referrer name="pc_cmd_xnxx"/>
+			<referrer name="pc_cmd_xnxx2"/>
 			<referrer name="OnQueryError"/>
+			<referrer name="CB_OnPlayerStateChange"/>
 			<param name="string">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -37371,7 +37439,6 @@
 			<referrer name="ProfilerInit"/>
 			<referrer name="DumpStack"/>
 			<referrer name="PrintStackTrace"/>
-			<referrer name="TrollDetect"/>
 			<referrer name="LoadHouses"/>
 			<referrer name="LoadTurfs"/>
 			<referrer name="LoadFactions"/>
@@ -38853,6 +38920,7 @@
 		<member name="M:sscanf" syntax="sscanf(data[], format[], ...)">
 			<attribute name="native"/>
 			<referrer name="DateToTimestamp"/>
+			<referrer name="IsNumeric"/>
 			<referrer name="dialog_DIALOG_REPORT_CHEATER"/>
 			<referrer name="pc_cmd_bizwithdraw"/>
 			<referrer name="pc_cmd_bizdeposit"/>
@@ -39173,7 +39241,6 @@
 			<referrer name="formatNumber"/>
 			<referrer name="strmatch"/>
 			<referrer name="isValidEmail"/>
-			<referrer name="IsNumeric"/>
 			<referrer name="Translate32Bit"/>
 			<referrer name="formatNumbers"/>
 			<referrer name="formatNumbers2"/>
@@ -40031,7 +40098,9 @@
 		</member>
 		<member name="M:va_SendClientMessageToAll" syntax="va_SendClientMessageToAll(colour, fmat[], ...)">
 			<stacksize value="144"/>
+			<referrer name="TrollDetect"/>
 			<referrer name="@yH_OnPlayerStateChange@005"/>
+			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
 			<referrer name="warnPlayer"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="pc_cmd_arrest"/>

@@ -185,7 +185,7 @@ timer TimerTutorial[1000](playerid) {
 }
 
 task PayDay[3600000]() {
-	foreach(new playerid : Player) {
+	foreach(new playerid : loggedPlayers) {
 		PayDayTime = gettime()+3600;
 		SCM(playerid, COLOR_GREY, "--------------- Payday ---------------");
 
