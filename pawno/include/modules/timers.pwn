@@ -60,7 +60,7 @@ task TimerM[60000]() {
 task Timers[1000]() {
 	new hour, minute, second;
 	gettime(hour, minute, second); 
-	TextDrawSetString(ClockTD[0], string_fast("~p~PAYDAY~w~ IN: %s", PayDayTime-gettime() <= 0 ? "~p~PAYDAY~w~ SENDING..." : secinmin(PayDayTime-gettime())));
+	TextDrawSetString(ClockTD[0], string_fast("PAYDAY IN: ~p~%s", PayDayTime-gettime() <= 0 ? "SENDING..." : secinmin(PayDayTime-gettime())));
 	if(hour == 12 && minute == 0 && second == 0) {
 		MoveObject(gates[1], 1160.19, 1303.31, 5.71, 0.5, 0.00, 0.00, -90.00); 
 		MoveObject(gates[2], 1160.18, 1312.26, 5.71,  0.5, 0.00, 0.00, -90.00);

@@ -842,7 +842,7 @@
 			<member name="C:SAFE" value="5">
 			</member>
 		</member>
-		<member name="T:playerInfoEnum" value="625">
+		<member name="T:playerInfoEnum" value="882">
 			<tagname value="playerInfoEnum"/>
 			<member name="C:pSQLID" value="0">
 			</member>
@@ -1175,7 +1175,12 @@
 			</member>
 			<member name="C:pFPS" value="604">
 			</member>
-			<member name="C:pSelectVehicle" value="605">
+			<member name="C:pAdText" value="605">
+				<size value="256"/>
+			</member>
+			<member name="C:pAdminDuty" value="861">
+			</member>
+			<member name="C:pSelectVehicle" value="862">
 				<size value="20"/>
 			</member>
 		</member>
@@ -1369,6 +1374,7 @@
 			<referrer name="resetVars"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="dialog_DIALOG_JOBS"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="CancelJob"/>
@@ -1428,7 +1434,6 @@
 			<referrer name="factionLog"/>
 			<referrer name="wantedName"/>
 			<referrer name="sendFactionMessage"/>
-			<referrer name="pc_cmd_factions"/>
 			<referrer name="pc_cmd_invite"/>
 			<referrer name="pc_cmd_wanteds"/>
 			<referrer name="showFactionMembers"/>
@@ -1436,8 +1441,11 @@
 			<referrer name="pc_cmd_quitjob"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
+			<referrer name="advertismentTimer"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
 			<referrer name="pc_cmd_buybusiness"/>
+			<referrer name="pc_cmd_deletemyad"/>
+			<referrer name="pc_cmd_deletead"/>
 			<referrer name="sendClanMessage"/>
 			<referrer name="MyHttpResponse"/>
 			<referrer name="checkPlayerBan"/>
@@ -1466,12 +1474,9 @@
 			<referrer name="pc_cmd_unjailo"/>
 			<referrer name="pc_cmd_jailo"/>
 			<referrer name="pc_cmd_acover"/>
-			<referrer name="pc_cmd_shop"/>
-			<referrer name="pc_cmd_hud"/>
 			<referrer name="InsertCarDS"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="ShowEmails"/>
-			<referrer name="dialog_DIALOG_EMAILS"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 		</member>
@@ -2180,6 +2185,9 @@
 			<referrer name="pc_cmd_count"/>
 			<referrer name="pc_cmd_aaa2"/>
 			<referrer name="pc_cmd_acover"/>
+			<referrer name="pc_cmd_aduty"/>
+			<referrer name="pc_cmd_gotohouse"/>
+			<referrer name="pc_cmd_gotobusiness"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_helpers"/>
 			<referrer name="pc_cmd_showlicenses"/>
@@ -2280,6 +2288,7 @@
 			<referrer name="pc_cmd_findbusiness"/>
 			<referrer name="pc_cmd_findhouse"/>
 			<referrer name="pc_cmd_id"/>
+			<referrer name="pc_cmd_serverinfo"/>
 			<referrer name="ShowCamera"/>
 			<referrer name="ShowDealerShipTD"/>
 			<referrer name="HideDealerShipTD"/>
@@ -2294,6 +2303,7 @@
 			<referrer name="InsertEmail"/>
 			<referrer name="ShowEmails"/>
 			<referrer name="dialog_DIALOG_EMAILS"/>
+			<referrer name="showEmail"/>
 			<referrer name="dialog_DIALOG_EMAILS2"/>
 			<referrer name="pc_cmd_emails"/>
 			<referrer name="pc_cmd_insertemail"/>
@@ -2477,22 +2487,6 @@
 		</member>
 		<member name="F:ASM_RETURN_ADDR_OFFSET">
 		</member>
-		<member name="F:AdText">
-			<referrer name="advertismentTimer"/>
-			<referrer name="pc_cmd_ad"/>
-			<referrer name="pc_cmd_myad"/>
-			<referrer name="pc_cmd_deletemyad"/>
-			<referrer name="pc_cmd_deletead"/>
-		</member>
-		<member name="F:AdTimer">
-			<referrer name="@yH_OnPlayerConnect@009"/>
-			<referrer name="totalAds"/>
-			<referrer name="advertismentTimer"/>
-			<referrer name="pc_cmd_ad"/>
-			<referrer name="pc_cmd_myad"/>
-			<referrer name="pc_cmd_deletemyad"/>
-			<referrer name="pc_cmd_deletead"/>
-		</member>
 		<member name="F:AntiCheatWarnings">
 			<referrer name="CB_OnPlayerWeaponShot"/>
 		</member>
@@ -2508,6 +2502,7 @@
 		</member>
 		<member name="F:Contract">
 			<referrer name="@yH_OnPlayerConnect@007"/>
+			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_gethit"/>
 			<referrer name="TimerGetHit"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
@@ -2738,6 +2733,7 @@
 			<referrer name="Iter_OPDCInternal"/>
 		</member>
 		<member name="F:Iter_Single@Contracts">
+			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_contract"/>
 			<referrer name="pc_cmd_gethit"/>
 			<referrer name="pc_cmd_contracts"/>
@@ -2841,7 +2837,14 @@
 			<referrer name="pc_cmd_setadmin"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_report"/>
+			<referrer name="pc_cmd_serverinfo"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
+		</member>
+		<member name="F:Iter_Single@ServerAds">
+			<referrer name="advertismentTimer_yT@"/>
+			<referrer name="advertismentTimer"/>
+			<referrer name="pc_cmd_ad"/>
+			<referrer name="pc_cmd_deletemyad"/>
 		</member>
 		<member name="F:Iter_Single@ServerBusinesses">
 			<referrer name="LoadBusinesses"/>
@@ -2866,6 +2869,7 @@
 			<referrer name="removeFunction"/>
 			<referrer name="pc_cmd_sethelper"/>
 			<referrer name="pc_cmd_helpers"/>
+			<referrer name="pc_cmd_serverinfo"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 		</member>
 		<member name="F:Iter_Single@ServerHouses">
@@ -2881,6 +2885,7 @@
 			<referrer name="onPlayerLogin"/>
 			<referrer name="removeFunction"/>
 			<referrer name="pc_cmd_setadmin"/>
+			<referrer name="pc_cmd_serverinfo"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 		</member>
 		<member name="F:Iter_Single@ServerTurfs">
@@ -2928,6 +2933,7 @@
 		</member>
 		<member name="F:Iter_Single@loggedPlayers">
 			<referrer name="onPlayerLogin"/>
+			<referrer name="pc_cmd_serverinfo"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 		</member>
 		<member name="F:Iter_Single@serverModelsDS">
@@ -2958,6 +2964,7 @@
 			<referrer name="Iter_OPDCInternal"/>
 		</member>
 		<member name="F:Iterator@Contracts">
+			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_contract"/>
 			<referrer name="pc_cmd_gethit"/>
 			<referrer name="pc_cmd_contracts"/>
@@ -3144,7 +3151,6 @@
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
 			<referrer name="removeFunction"/>
-			<referrer name="Timers"/>
 			<referrer name="pc_cmd_warn"/>
 			<referrer name="pc_cmd_ban"/>
 			<referrer name="pc_cmd_banoffline"/>
@@ -3193,15 +3199,24 @@
 			<referrer name="pc_cmd_announce"/>
 			<referrer name="pc_cmd_count"/>
 			<referrer name="pc_cmd_aaa2"/>
+			<referrer name="pc_cmd_aduty"/>
+			<referrer name="pc_cmd_gotohouse"/>
+			<referrer name="pc_cmd_gotobusiness"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_report"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
+		</member>
+		<member name="F:Iterator@ServerAds">
+			<referrer name="advertismentTimer"/>
+			<referrer name="pc_cmd_ad"/>
+			<referrer name="pc_cmd_deletemyad"/>
 		</member>
 		<member name="F:Iterator@ServerBusinesses">
 			<referrer name="LoadBusinesses"/>
 			<referrer name="pc_cmd_adminbusiness"/>
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="pc_cmd_addbizgas"/>
+			<referrer name="pc_cmd_gotobusiness"/>
 			<referrer name="pc_cmd_findbusiness"/>
 		</member>
 		<member name="F:Iterator@ServerClans">
@@ -3245,6 +3260,7 @@
 			<referrer name="LoadHouses"/>
 			<referrer name="pc_cmd_adminhouse"/>
 			<referrer name="pc_cmd_createhouse"/>
+			<referrer name="pc_cmd_gotohouse"/>
 			<referrer name="pc_cmd_findhouse"/>
 		</member>
 		<member name="F:Iterator@ServerJobs">
@@ -3312,7 +3328,6 @@
 			<referrer name="pc_cmd_fare"/>
 			<referrer name="pc_cmd_endlive"/>
 			<referrer name="TimerWar"/>
-			<referrer name="totalAds"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="resetQuest"/>
 			<referrer name="getVehicleOwner"/>
@@ -3508,6 +3523,7 @@
 			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="LoadFactions"/>
 			<referrer name="LoadSafes"/>
+			<referrer name="pc_cmd_createsafe"/>
 			<referrer name="LoadJobs"/>
 			<referrer name="LoadBusinesses"/>
 			<referrer name="pc_cmd_createbusiness"/>
@@ -4064,6 +4080,7 @@
 			<referrer name="pc_cmd_ad"/>
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="pc_cmd_addbizgas"/>
+			<referrer name="pc_cmd_gotobusiness"/>
 			<referrer name="pc_cmd_findbusiness"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 		</member>
@@ -4126,6 +4143,7 @@
 			<referrer name="pc_cmd_accept"/>
 		</member>
 		<member name="F:contractInfo">
+			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_contract"/>
 			<referrer name="pc_cmd_gethit"/>
 			<referrer name="pc_cmd_contracts"/>
@@ -4309,7 +4327,6 @@
 			<referrer name="sendToAdmin"/>
 			<referrer name="wantedName"/>
 			<referrer name="sendFactionMessage"/>
-			<referrer name="pc_cmd_factions"/>
 			<referrer name="pc_cmd_invite"/>
 			<referrer name="pc_cmd_wanteds"/>
 			<referrer name="showFactionMembers"/>
@@ -4323,11 +4340,8 @@
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="pc_cmd_vehicles"/>
-			<referrer name="pc_cmd_shop"/>
-			<referrer name="pc_cmd_hud"/>
 			<referrer name="InsertCarDS"/>
 			<referrer name="ShowEmails"/>
-			<referrer name="dialog_DIALOG_EMAILS"/>
 		</member>
 		<member name="F:g_args">
 			<referrer name="Push"/>
@@ -4423,6 +4437,7 @@
 			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="pc_cmd_heal"/>
 			<referrer name="PayDay"/>
+			<referrer name="pc_cmd_gotohouse"/>
 			<referrer name="pc_cmd_findhouse"/>
 			<referrer name="OnPlayerSpawn"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
@@ -4737,6 +4752,8 @@
 			<referrer name="pc_cmd_withdraw"/>
 			<referrer name="pc_cmd_transfer"/>
 			<referrer name="pc_cmd_ad"/>
+			<referrer name="pc_cmd_myad"/>
+			<referrer name="pc_cmd_deletemyad"/>
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="CautaHelperNou"/>
 			<referrer name="CautaHelper"/>
@@ -4868,6 +4885,9 @@
 			<referrer name="pc_cmd_count"/>
 			<referrer name="pc_cmd_aaa2"/>
 			<referrer name="pc_cmd_acover"/>
+			<referrer name="pc_cmd_aduty"/>
+			<referrer name="pc_cmd_gotohouse"/>
+			<referrer name="pc_cmd_gotobusiness"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_helpers"/>
 			<referrer name="pc_cmd_showlicenses"/>
@@ -5091,6 +5111,7 @@
 			<tagname value="PlayerText"/>
 			<referrer name="playerTextDraws"/>
 			<referrer name="destroyPlayerTextDraws"/>
+			<referrer name="dialog_DIALOG_HUD"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="Timers"/>
 			<referrer name="pc_cmd_setadmin"/>
@@ -6212,7 +6233,6 @@
 		<member name="M:@yH_OnPlayerConnect@009" syntax="@yH_OnPlayerConnect@009(playerid)">
 			<attribute name="public"/>
 			<stacksize value="1"/>
-			<dependency name="AdTimer"/>
 			<dependency name="IDSelected"/>
 			<dependency name="true"/>
 			<param name="playerid">
@@ -6370,15 +6390,13 @@
 			<param name="reason">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerDisconnect@010" syntax="@yH_OnPlayerDisconnect@010(playerid, reason)">
+		<member name="M:@yH_OnPlayerDisconnect@010" syntax="@yH_OnPlayerDisconnect@010(playerid)">
 			<attribute name="public"/>
 			<stacksize value="4"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="helpTimer"/>
 			<dependency name="true"/>
 			<param name="playerid">
-			</param>
-			<param name="reason">
 			</param>
 		</member>
 		<member name="M:@yH_OnPlayerDisconnect@012" syntax="@yH_OnPlayerDisconnect@012(playerid, reason)">
@@ -10366,6 +10384,7 @@
 			<dependency name="Iterator@Contracts"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="J@"/>
+			<dependency name="SetPlayerHealthEx"/>
 			<dependency name="ShowPlayerNameTagForPlayer"/>
 			<dependency name="TogglePlayerControllable"/>
 			<dependency name="addRaportPoint"/>
@@ -10604,6 +10623,7 @@
 			<referrer name="pc_cmd_shop"/>
 			<referrer name="pc_cmd_hud"/>
 			<referrer name="pc_cmd_help"/>
+			<referrer name="pc_cmd_serverinfo"/>
 			<referrer name="pc_cmd_emails"/>
 			<param name="function">
 				<paraminfo> [] </paraminfo>
@@ -11788,6 +11808,7 @@
 			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="LoadFactions"/>
 			<referrer name="LoadSafes"/>
+			<referrer name="pc_cmd_createsafe"/>
 			<referrer name="LoadJobs"/>
 			<referrer name="LoadBusinesses"/>
 			<referrer name="pc_cmd_createbusiness"/>
@@ -11963,6 +11984,7 @@
 			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="LoadFactions"/>
 			<referrer name="LoadSafes"/>
+			<referrer name="pc_cmd_createsafe"/>
 			<referrer name="LoadJobs"/>
 			<referrer name="LoadBusinesses"/>
 			<referrer name="pc_cmd_createbusiness"/>
@@ -12656,8 +12678,9 @@
 			<referrer name="pc_cmd_hud"/>
 			<referrer name="pc_cmd_help"/>
 			<referrer name="dialog_DIALOG_HELP"/>
+			<referrer name="pc_cmd_serverinfo"/>
 			<referrer name="ShowEmails"/>
-			<referrer name="dialog_DIALOG_EMAILS"/>
+			<referrer name="showEmail"/>
 			<referrer name="OnPlayerSpawn"/>
 			<dependency name="Hooks_NumArgs"/>
 			<dependency name="ShowPlayerDialog"/>
@@ -12699,6 +12722,7 @@
 			<referrer name="examenFail"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="CancelJob"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
@@ -14601,6 +14625,12 @@
 			<referrer name="pc_cmd_service"/>
 			<dependency name="GetPlayerCityLocation"/>
 			<dependency name="IsPlayerInArea"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:GetPlayerColor" syntax="GetPlayerColor(playerid)">
+			<attribute name="native"/>
+			<referrer name="OnPlayerText"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -16693,8 +16723,6 @@
 			<referrer name="pc_cmd_addnos"/>
 			<referrer name="pc_cmd_flipveh"/>
 			<referrer name="pc_cmd_gotojob"/>
-			<referrer name="pc_cmd_xnxx"/>
-			<referrer name="pc_cmd_xnxx2"/>
 			<dependency name="sscanf"/>
 			<param name="str">
 				<paraminfo> [] </paraminfo>
@@ -17361,6 +17389,7 @@
 			<referrer name="LoadSafes"/>
 			<referrer name="LoadJobs"/>
 			<referrer name="LoadBusinesses"/>
+			<referrer name="pc_cmd_ad"/>
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="LoadClans"/>
 			<referrer name="onPlayerLogin"/>
@@ -17649,6 +17678,9 @@
 			<referrer name="pc_cmd_announce"/>
 			<referrer name="pc_cmd_count"/>
 			<referrer name="pc_cmd_aaa2"/>
+			<referrer name="pc_cmd_aduty"/>
+			<referrer name="pc_cmd_gotohouse"/>
+			<referrer name="pc_cmd_gotobusiness"/>
 			<referrer name="pc_cmd_report"/>
 			<referrer name="pc_cmd_killcp"/>
 			<referrer name="pc_cmd_cancel"/>
@@ -18341,6 +18373,8 @@
 			<referrer name="dialog_DIALOG_MEMBERS2"/>
 			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="TimerWar"/>
+			<referrer name="advertismentTimer"/>
+			<referrer name="pc_cmd_deletemyad"/>
 			<referrer name="pc_cmd_leaveclan"/>
 			<referrer name="checkPanel"/>
 			<referrer name="removeFunction"/>
@@ -20737,6 +20771,7 @@
 			<attribute name="public"/>
 			<stacksize value="4105"/>
 			<dependency name="Diley"/>
+			<dependency name="GetPlayerColor"/>
 			<dependency name="I@"/>
 			<dependency name="J@"/>
 			<dependency name="Reclama"/>
@@ -20747,6 +20782,7 @@
 			<dependency name="isPlayerLogged"/>
 			<dependency name="kickEx_yT@"/>
 			<dependency name="oocNews"/>
+			<dependency name="pAdminDuty"/>
 			<dependency name="pFaction"/>
 			<dependency name="pMute"/>
 			<dependency name="pName"/>
@@ -21423,6 +21459,7 @@
 		<member name="M:PlayerTextDrawHide" syntax="PlayerTextDrawHide(playerid, text)">
 			<attribute name="native"/>
 			<referrer name="examenFail"/>
+			<referrer name="dialog_DIALOG_HUD"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_fare"/>
 			<referrer name="fareUpdateTimer"/>
@@ -23222,6 +23259,7 @@
 			<referrer name="pc_cmd_area"/>
 			<referrer name="OnPlayerSpawn"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
+			<referrer name="CB_OnPlayerWeaponShot"/>
 			<dependency name="SetPlayerHealth"/>
 			<dependency name="pHealth"/>
 			<dependency name="playerInfo"/>
@@ -23311,6 +23349,8 @@
 			<referrer name="pc_cmd_gotoxyz"/>
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="pc_cmd_aaa2"/>
+			<referrer name="pc_cmd_gotohouse"/>
+			<referrer name="pc_cmd_gotobusiness"/>
 			<referrer name="cancelDriveTest"/>
 			<referrer name="OnPlayerSpawn"/>
 			<referrer name="OnPlayerDeath"/>
@@ -23702,6 +23742,7 @@
 		</member>
 		<member name="M:ShowPlayerNameTagForPlayer" syntax="ShowPlayerNameTagForPlayer(playerid, showplayerid, show)">
 			<attribute name="native"/>
+			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_gethit"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
 			<param name="playerid">
@@ -24647,7 +24688,6 @@
 			<dependency name="Iter_Remove_InternalC"/>
 			<dependency name="Iter_Single@ServerClans"/>
 			<dependency name="Iterator@JailedPlayers"/>
-			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="Iterator@ServerClans"/>
 			<dependency name="Iterator@TotalPlayerVehicles"/>
 			<dependency name="Iterator@loggedPlayers"/>
@@ -24668,8 +24708,10 @@
 			<dependency name="mysql_tquery"/>
 			<dependency name="mysql_unprocessed_queries"/>
 			<dependency name="pAFKSeconds"/>
+			<dependency name="pAdmin"/>
 			<dependency name="pDrunkLevel"/>
 			<dependency name="pFPS"/>
+			<dependency name="pFPSShow"/>
 			<dependency name="pLastPosX"/>
 			<dependency name="pLastPosY"/>
 			<dependency name="pLastPosZ"/>
@@ -24682,6 +24724,7 @@
 			<dependency name="resetQuest"/>
 			<dependency name="secinmin"/>
 			<dependency name="serverHud"/>
+			<dependency name="string_fast"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="va_GameTextForAll"/>
@@ -25587,8 +25630,10 @@
 			<referrer name="TimerWar"/>
 			<referrer name="@yH_OnPlayerDisconnect@008"/>
 			<referrer name="CancelJob"/>
+			<referrer name="pc_cmd_deletemyad"/>
 			<referrer name="@yH_OnPlayerDisconnect@010"/>
 			<referrer name="pc_cmd_ch"/>
+			<referrer name="pc_cmd_deletead"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerSpeedo"/>
@@ -25702,12 +25747,16 @@
 		<member name="M:advertismentTimer" syntax="advertismentTimer(playerid)">
 			<stacksize value="4106"/>
 			<referrer name="advertismentTimer@_yT"/>
-			<dependency name="AdText"/>
-			<dependency name="AdText"/>
-			<dependency name="AdTimer"/>
+			<referrer name="pc_cmd_deletemyad"/>
+			<referrer name="pc_cmd_deletead"/>
 			<dependency name="DCC_FindChannelById"/>
 			<dependency name="DCC_SendChannelMessage"/>
+			<dependency name="EOS"/>
+			<dependency name="Iter_Remove_InternalC"/>
+			<dependency name="Iter_Single@ServerAds"/>
+			<dependency name="Iterator@ServerAds"/>
 			<dependency name="MoonBot"/>
+			<dependency name="pAdText"/>
 			<dependency name="pName"/>
 			<dependency name="pPhone"/>
 			<dependency name="playerInfo"/>
@@ -25732,10 +25781,10 @@
 			<stacksize value="8"/>
 			<referrer name="pc_cmd_ad"/>
 			<dependency name="I@"/>
+			<dependency name="Iter_Single@ServerAds"/>
 			<dependency name="J@"/>
 			<dependency name="O@"/>
 			<dependency name="_Timer_C"/>
-			<dependency name="totalAds"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -25894,7 +25943,6 @@
 			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_buybusiness"/>
 			<referrer name="checkPanel"/>
-			<referrer name="dialog_DIALOG_EMAILS"/>
 			<param name="cache_id">
 				<paraminfo>Cache </paraminfo>
 			</param>
@@ -25960,7 +26008,7 @@
 			<referrer name="checkBanPlayer"/>
 			<referrer name="LoadPersonalVehicle"/>
 			<referrer name="ShowEmails"/>
-			<referrer name="dialog_DIALOG_EMAILS"/>
+			<referrer name="showEmail"/>
 			<param name="row_idx">
 			</param>
 			<param name="column_name">
@@ -26940,15 +26988,9 @@
 		</member>
 		<member name="M:dialog_DIALOG_EMAILS" syntax="dialog_DIALOG_EMAILS(playerid, response, listitem)">
 			<attribute name="public"/>
-			<stacksize value="4341"/>
-			<dependency name="Dialog_Open"/>
-			<dependency name="EOS"/>
+			<stacksize value="4104"/>
 			<dependency name="SQL"/>
-			<dependency name="cache_delete"/>
-			<dependency name="cache_get_value_name"/>
-			<dependency name="format"/>
-			<dependency name="gString"/>
-			<dependency name="mysql_query"/>
+			<dependency name="mysql_tquery"/>
 			<dependency name="pSQLID"/>
 			<dependency name="pSelectedItem"/>
 			<dependency name="playerInfo"/>
@@ -27034,7 +27076,7 @@
 		</member>
 		<member name="M:dialog_DIALOG_FWITHDRAW" syntax="dialog_DIALOG_FWITHDRAW(playerid, response, listitem)">
 			<attribute name="public"/>
-			<stacksize value="8202"/>
+			<stacksize value="4108"/>
 			<dependency name="Dialog_Open"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
@@ -27046,7 +27088,6 @@
 			<dependency name="sMaterials"/>
 			<dependency name="sMoney"/>
 			<dependency name="safeInfo"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -27057,7 +27098,7 @@
 		</member>
 		<member name="M:dialog_DIALOG_FWITHDRAW2" syntax="dialog_DIALOG_FWITHDRAW2(playerid, response, listitem, inputtext[])">
 			<attribute name="public"/>
-			<stacksize value="16396"/>
+			<stacksize value="12302"/>
 			<dependency name="Dialog_Open"/>
 			<dependency name="GivePlayerCash"/>
 			<dependency name="formatNumber"/>
@@ -27079,7 +27120,6 @@
 			<dependency name="saveSafe"/>
 			<dependency name="sendFactionMessage"/>
 			<dependency name="sendPlayerError"/>
-			<dependency name="string_fast"/>
 			<dependency name="strval"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
@@ -27109,11 +27149,16 @@
 		</member>
 		<member name="M:dialog_DIALOG_HUD" syntax="dialog_DIALOG_HUD(playerid, response, listitem)">
 			<attribute name="public"/>
-			<stacksize value="1"/>
+			<stacksize value="7"/>
+			<dependency name="PlayerTextDrawHide"/>
 			<dependency name="pFPSShow"/>
+			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
+			<dependency name="serverHud"/>
 			<dependency name="true"/>
+			<dependency name="update"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="response">
@@ -28756,9 +28801,9 @@
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="pc_cmd_carplate"/>
 			<referrer name="pc_cmd_vehicles"/>
+			<referrer name="pc_cmd_acover"/>
 			<referrer name="pc_cmd_quests"/>
 			<referrer name="ShowEmails"/>
-			<referrer name="dialog_DIALOG_EMAILS"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="OnPlayerText"/>
 			<param name="output">
@@ -29363,6 +29408,7 @@
 			<referrer name="pc_cmd_adminbusiness"/>
 			<referrer name="pc_cmd_buy"/>
 			<referrer name="pc_cmd_transfer"/>
+			<referrer name="pc_cmd_deletead"/>
 			<referrer name="pc_cmd_cinvite"/>
 			<referrer name="checkPanel"/>
 			<referrer name="pc_cmd_warn"/>
@@ -29941,7 +29987,6 @@
 			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_buybusiness"/>
 			<referrer name="checkPanel"/>
-			<referrer name="dialog_DIALOG_EMAILS"/>
 			<param name="handle">
 				<paraminfo>MySQL </paraminfo>
 			</param>
@@ -29983,6 +30028,7 @@
 			<referrer name="pc_cmd_unjailo"/>
 			<referrer name="pc_cmd_jailo"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
+			<referrer name="dialog_DIALOG_EMAILS"/>
 			<referrer name="pc_cmd_emails"/>
 			<referrer name="SSCANF_OnPlayerConnect"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
@@ -30486,6 +30532,7 @@
 			<dependency name="GetPlayerID"/>
 			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="SetPlayerName"/>
+			<dependency name="format"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pAdminCover"/>
@@ -30509,17 +30556,21 @@
 		</member>
 		<member name="M:pc_cmd_ad" syntax="pc_cmd_ad(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4119"/>
+			<stacksize value="4118"/>
 			<dependency name="Float:operator=(_:)"/>
-			<dependency name="AdText"/>
-			<dependency name="AdTimer"/>
 			<dependency name="GivePlayerCash"/>
 			<dependency name="I@"/>
 			<dependency name="IsPlayerInRangeOfPoint"/>
+			<dependency name="Iter_Add_InternalC"/>
+			<dependency name="Iter_Single@ServerAds"/>
+			<dependency name="Iterator@ServerAds"/>
 			<dependency name="J@"/>
 			<dependency name="PlayerMoney"/>
 			<dependency name="advertismentTimer_yT@"/>
 			<dependency name="bizBalance"/>
+			<dependency name="bizExtX"/>
+			<dependency name="bizExtY"/>
+			<dependency name="bizExtZ"/>
 			<dependency name="bizFee"/>
 			<dependency name="bizInfo"/>
 			<dependency name="bizInfo"/>
@@ -30527,6 +30578,7 @@
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
 			<dependency name="gettime"/>
+			<dependency name="pAdText"/>
 			<dependency name="pLevel"/>
 			<dependency name="pMute"/>
 			<dependency name="pName"/>
@@ -30539,7 +30591,6 @@
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sendStaff"/>
 			<dependency name="strlen"/>
-			<dependency name="totalAds"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<dependency name="va_GameTextForPlayer"/>
@@ -30812,6 +30863,24 @@
 			<dependency name="unformat"/>
 			<dependency name="update"/>
 			<dependency name="va_SendClientMessage"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:pc_cmd_aduty" syntax="pc_cmd_aduty(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="7"/>
+			<dependency name="Iter_Contains_InternalC"/>
+			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="pAdminDuty"/>
+			<dependency name="pName"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="sendStaff"/>
+			<dependency name="true"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -31098,16 +31167,29 @@
 		<member name="M:pc_cmd_auninvite" syntax="pc_cmd_auninvite(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="49"/>
+			<dependency name="CHECKPOINT_NONE"/>
+			<dependency name="Contract"/>
 			<dependency name="DestroyObject"/>
+			<dependency name="DisablePlayerCheckpoint"/>
 			<dependency name="IsValidObject"/>
 			<dependency name="Iter_DestroyVehicle"/>
 			<dependency name="Iter_Remove_InternalC"/>
+			<dependency name="Iter_Single@Contracts"/>
 			<dependency name="Iter_Single@FactionMembers"/>
+			<dependency name="Iterator@Contracts"/>
 			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="ShowPlayerNameTagForPlayer"/>
+			<dependency name="cAgainst"/>
+			<dependency name="cID"/>
+			<dependency name="cMoney"/>
+			<dependency name="contractInfo"/>
+			<dependency name="contractInfo"/>
 			<dependency name="factionName"/>
 			<dependency name="factionName"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pAdmin"/>
+			<dependency name="pCheckpoint"/>
+			<dependency name="pCheckpointID"/>
 			<dependency name="pFaction"/>
 			<dependency name="pFactionAge"/>
 			<dependency name="pFactionDuty"/>
@@ -32333,12 +32415,17 @@
 		<member name="M:pc_cmd_createsafe" syntax="pc_cmd_createsafe(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="4149"/>
+			<dependency name="CreateDynamic3DTextLabel"/>
+			<dependency name="CreateDynamicPickup"/>
 			<dependency name="GetPlayerPos"/>
 			<dependency name="GetPlayerVirtualWorld"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iter_Free_Internal"/>
 			<dependency name="Iterator@FactionSafes"/>
 			<dependency name="Iterator@ServerFactions"/>
+			<dependency name="PickInfo"/>
+			<dependency name="PickInfo"/>
+			<dependency name="SAFE"/>
 			<dependency name="factionName"/>
 			<dependency name="factionName"/>
 			<dependency name="formatNumber"/>
@@ -32350,14 +32437,17 @@
 			<dependency name="sID"/>
 			<dependency name="sMaterials"/>
 			<dependency name="sMoney"/>
+			<dependency name="sPickup"/>
 			<dependency name="sPosX"/>
 			<dependency name="sPosY"/>
 			<dependency name="sPosZ"/>
+			<dependency name="sText"/>
 			<dependency name="sVirtualID"/>
 			<dependency name="safeInfo"/>
 			<dependency name="safeInfo"/>
 			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
+			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
 			<dependency name="update"/>
@@ -32503,13 +32593,15 @@
 		</member>
 		<member name="M:pc_cmd_deletead" syntax="pc_cmd_deletead(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="42"/>
-			<dependency name="AdText"/>
-			<dependency name="AdText"/>
-			<dependency name="AdTimer"/>
+			<stacksize value="43"/>
+			<dependency name="EOS"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="Iterator@ServerHelpers"/>
+			<dependency name="_Timer_F"/>
+			<dependency name="advertismentTimer"/>
+			<dependency name="isPlayerLogged"/>
+			<dependency name="pAdText"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
@@ -32528,12 +32620,19 @@
 		</member>
 		<member name="M:pc_cmd_deletemyad" syntax="pc_cmd_deletemyad(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="5"/>
-			<dependency name="AdText"/>
-			<dependency name="AdText"/>
-			<dependency name="AdTimer"/>
+			<stacksize value="7"/>
+			<dependency name="EOS"/>
+			<dependency name="Iter_Remove_InternalC"/>
+			<dependency name="Iter_Single@ServerAds"/>
+			<dependency name="Iterator@ServerAds"/>
 			<dependency name="SendClientMessage"/>
+			<dependency name="_Timer_F"/>
+			<dependency name="advertismentTimer"/>
+			<dependency name="pAdText"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
+			<dependency name="strlen"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -32967,9 +33066,8 @@
 		</member>
 		<member name="M:pc_cmd_factions" syntax="pc_cmd_factions(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="44"/>
+			<stacksize value="501"/>
 			<dependency name="Dialog_Open"/>
-			<dependency name="EOS"/>
 			<dependency name="Iter_Single@ServerFactions"/>
 			<dependency name="Iterator@ServerFactions"/>
 			<dependency name="fApps"/>
@@ -32979,9 +33077,7 @@
 			<dependency name="factionName"/>
 			<dependency name="factionName"/>
 			<dependency name="format"/>
-			<dependency name="gString"/>
 			<dependency name="sendPlayerError"/>
-			<dependency name="strcat"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -33738,7 +33834,7 @@
 		</member>
 		<member name="M:pc_cmd_goto" syntax="pc_cmd_goto(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="10"/>
+			<stacksize value="11"/>
 			<dependency name="operator+(Float:,_:)"/>
 			<dependency name="GetPlayerInterior"/>
 			<dependency name="GetPlayerPos"/>
@@ -33767,6 +33863,31 @@
 			<dependency name="true"/>
 			<dependency name="unformat"/>
 			<dependency name="va_SendClientMessage"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:pc_cmd_gotobusiness" syntax="pc_cmd_gotobusiness(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="8"/>
+			<dependency name="Iter_Contains_InternalC"/>
+			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="Iterator@ServerBusinesses"/>
+			<dependency name="SetPlayerPos"/>
+			<dependency name="bizExtX"/>
+			<dependency name="bizExtY"/>
+			<dependency name="bizExtZ"/>
+			<dependency name="bizInfo"/>
+			<dependency name="pName"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendAdmin"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="sendPlayerSyntax"/>
+			<dependency name="true"/>
+			<dependency name="unformat"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -33827,6 +33948,31 @@
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strval"/>
 			<dependency name="va_SendClientMessage"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:pc_cmd_gotohouse" syntax="pc_cmd_gotohouse(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="8"/>
+			<dependency name="Iter_Contains_InternalC"/>
+			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="Iterator@ServerHouses"/>
+			<dependency name="SetPlayerPos"/>
+			<dependency name="hExtX"/>
+			<dependency name="hExtY"/>
+			<dependency name="hExtZ"/>
+			<dependency name="houseInfo"/>
+			<dependency name="pName"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendAdmin"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="sendPlayerSyntax"/>
+			<dependency name="true"/>
+			<dependency name="unformat"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -34293,15 +34439,12 @@
 		</member>
 		<member name="M:pc_cmd_hud" syntax="pc_cmd_hud(playerid, parmas[])">
 			<attribute name="public"/>
-			<stacksize value="10"/>
+			<stacksize value="11"/>
 			<dependency name="CallRemoteFunction"/>
 			<dependency name="Dialog_Open"/>
-			<dependency name="EOS"/>
-			<dependency name="gString"/>
 			<dependency name="pFPSShow"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
-			<dependency name="strcat"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34351,7 +34494,7 @@
 		</member>
 		<member name="M:pc_cmd_insertemail" syntax="pc_cmd_insertemail(playerid, params[], help)">
 			<attribute name="public"/>
-			<stacksize value="131"/>
+			<stacksize value="155"/>
 			<dependency name="InsertEmail"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pAdmin"/>
@@ -35114,10 +35257,11 @@
 		<member name="M:pc_cmd_myad" syntax="pc_cmd_myad(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="7"/>
-			<dependency name="AdText"/>
-			<dependency name="AdText"/>
-			<dependency name="AdTimer"/>
+			<dependency name="pAdText"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
+			<dependency name="strlen"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
@@ -35981,6 +36125,23 @@
 				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
+		<member name="M:pc_cmd_serverinfo" syntax="pc_cmd_serverinfo(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="14"/>
+			<dependency name="CallRemoteFunction"/>
+			<dependency name="Dialog_Open"/>
+			<dependency name="Iter_Single@ServerAdmins"/>
+			<dependency name="Iter_Single@ServerHelpers"/>
+			<dependency name="Iter_Single@ServerStaff"/>
+			<dependency name="Iter_Single@loggedPlayers"/>
+			<dependency name="sendPlayerError"/>
+			<dependency name="true"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
 		<member name="M:pc_cmd_service" syntax="pc_cmd_service(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="46"/>
@@ -36224,16 +36385,13 @@
 		</member>
 		<member name="M:pc_cmd_shop" syntax="pc_cmd_shop(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="10"/>
+			<stacksize value="12"/>
 			<dependency name="CallRemoteFunction"/>
 			<dependency name="Dialog_Open"/>
-			<dependency name="EOS"/>
-			<dependency name="gString"/>
 			<dependency name="pPremium"/>
 			<dependency name="pVIP"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerError"/>
-			<dependency name="strcat"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -37422,28 +37580,6 @@
 				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
-		<member name="M:pc_cmd_xnxx" syntax="pc_cmd_xnxx(playerid, params[])">
-			<attribute name="public"/>
-			<stacksize value="4"/>
-			<dependency name="IsNumeric"/>
-			<dependency name="print"/>
-			<param name="playerid">
-			</param>
-			<param name="params">
-				<paraminfo> [] </paraminfo>
-			</param>
-		</member>
-		<member name="M:pc_cmd_xnxx2" syntax="pc_cmd_xnxx2(playerid, params[])">
-			<attribute name="public"/>
-			<stacksize value="4"/>
-			<dependency name="IsNumeric"/>
-			<dependency name="print"/>
-			<param name="playerid">
-			</param>
-			<param name="params">
-				<paraminfo> [] </paraminfo>
-			</param>
-		</member>
 		<member name="M:playerTextDraws" syntax="playerTextDraws(playerid)">
 			<stacksize value="8"/>
 			<referrer name="resetVars"/>
@@ -37496,8 +37632,6 @@
 			<referrer name="LoadExamCheckpoints"/>
 			<referrer name="LoadGasCan"/>
 			<referrer name="closeGate"/>
-			<referrer name="pc_cmd_xnxx"/>
-			<referrer name="pc_cmd_xnxx2"/>
 			<referrer name="OnQueryError"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<param name="string">
@@ -37758,8 +37892,10 @@
 			<dependency name="false"/>
 			<dependency name="format"/>
 			<dependency name="pAFKSeconds"/>
+			<dependency name="pAdText"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pAdminCover"/>
+			<dependency name="pAdminDuty"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="pBank"/>
 			<dependency name="pBoatLicense"/>
@@ -38035,6 +38171,8 @@
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="pc_cmd_clearchat"/>
 			<referrer name="pc_cmd_acover"/>
+			<referrer name="pc_cmd_gotohouse"/>
+			<referrer name="pc_cmd_gotobusiness"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
 			<dependency name="EOS"/>
@@ -38418,6 +38556,9 @@
 			<referrer name="pc_cmd_count"/>
 			<referrer name="pc_cmd_aaa2"/>
 			<referrer name="pc_cmd_acover"/>
+			<referrer name="pc_cmd_aduty"/>
+			<referrer name="pc_cmd_gotohouse"/>
+			<referrer name="pc_cmd_gotobusiness"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_helpers"/>
 			<referrer name="pc_cmd_showlicenses"/>
@@ -38512,6 +38653,7 @@
 			<referrer name="pc_cmd_findbusiness"/>
 			<referrer name="pc_cmd_findhouse"/>
 			<referrer name="pc_cmd_id"/>
+			<referrer name="pc_cmd_serverinfo"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
 			<referrer name="pc_cmd_emails"/>
@@ -38651,6 +38793,8 @@
 			<referrer name="pc_cmd_announce"/>
 			<referrer name="pc_cmd_count"/>
 			<referrer name="pc_cmd_acover"/>
+			<referrer name="pc_cmd_gotohouse"/>
+			<referrer name="pc_cmd_gotobusiness"/>
 			<referrer name="pc_cmd_showlicenses"/>
 			<referrer name="pc_cmd_sms"/>
 			<referrer name="pc_cmd_number"/>
@@ -38741,6 +38885,7 @@
 			<referrer name="Reclama"/>
 			<referrer name="pc_cmd_helperchat"/>
 			<referrer name="pc_cmd_sethelper"/>
+			<referrer name="pc_cmd_aduty"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<dependency name="EOS"/>
 			<dependency name="Iterator@ServerStaff"/>
@@ -38876,6 +39021,18 @@
 			</param>
 			<param name="string">
 				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:showEmail" syntax="showEmail(playerid, id)">
+			<attribute name="public"/>
+			<stacksize value="4307"/>
+			<dependency name="Dialog_Open"/>
+			<dependency name="cache_get_value_name"/>
+			<dependency name="string_fast"/>
+			<dependency name="true"/>
+			<param name="playerid">
+			</param>
+			<param name="id">
 			</param>
 		</member>
 		<member name="M:showFactionMembers" syntax="showFactionMembers(playerid)">
@@ -39052,13 +39209,10 @@
 			<referrer name="_@_y_inline_@_"/>
 			<referrer name="OnDialogResponse"/>
 			<referrer name="OnPlayerEnterCheckpoint"/>
-			<referrer name="pc_cmd_factions"/>
 			<referrer name="pc_cmd_wanteds"/>
 			<referrer name="showFactionMembers"/>
 			<referrer name="pc_cmd_setguns"/>
 			<referrer name="pc_cmd_svf"/>
-			<referrer name="pc_cmd_shop"/>
-			<referrer name="pc_cmd_hud"/>
 			<referrer name="ShowEmails"/>
 			<param name="dest">
 				<paraminfo> [] </paraminfo>
@@ -39191,9 +39345,8 @@
 			<referrer name="dialog_DIALOG_SVF"/>
 			<referrer name="LoadSafes"/>
 			<referrer name="pc_cmd_fwithdraw"/>
+			<referrer name="pc_cmd_createsafe"/>
 			<referrer name="pc_cmd_order"/>
-			<referrer name="dialog_DIALOG_FWITHDRAW"/>
-			<referrer name="dialog_DIALOG_FWITHDRAW2"/>
 			<referrer name="LoadJobs"/>
 			<referrer name="FishingTimer"/>
 			<referrer name="dialog_DIALOG_JOBS"/>
@@ -39245,6 +39398,7 @@
 			<referrer name="pc_cmd_accept"/>
 			<referrer name="cancelDriveTest"/>
 			<referrer name="dialog_DIALOG_EMAILS"/>
+			<referrer name="showEmail"/>
 			<referrer name="pc_cmd_emails"/>
 			<referrer name="CB_OnGameModeInit"/>
 			<referrer name="SSCANF_OnPlayerConnect"/>
@@ -39342,6 +39496,8 @@
 			<referrer name="dialog_BIZ_OPTION_DESCADMIN"/>
 			<referrer name="dialog_BUYBIZ"/>
 			<referrer name="pc_cmd_ad"/>
+			<referrer name="pc_cmd_myad"/>
+			<referrer name="pc_cmd_deletemyad"/>
 			<referrer name="pc_cmd_deletead"/>
 			<referrer name="pc_cmd_cinvite"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS1"/>
@@ -39540,14 +39696,6 @@
 			<param name="c">
 			</param>
 		</member>
-		<member name="M:totalAds" syntax="totalAds()">
-			<attribute name="public"/>
-			<stacksize value="3"/>
-			<referrer name="advertismentTimer_yT@"/>
-			<referrer name="pc_cmd_ad"/>
-			<dependency name="AdTimer"/>
-			<dependency name="Iterator@loggedPlayers"/>
-		</member>
 		<member name="M:toupper" syntax="toupper(c)">
 			<attribute name="native"/>
 			<referrer name="StrToUpper"/>
@@ -39652,6 +39800,8 @@
 			<referrer name="pc_cmd_announce"/>
 			<referrer name="pc_cmd_count"/>
 			<referrer name="pc_cmd_acover"/>
+			<referrer name="pc_cmd_gotohouse"/>
+			<referrer name="pc_cmd_gotobusiness"/>
 			<referrer name="pc_cmd_showlicenses"/>
 			<referrer name="pc_cmd_sms"/>
 			<referrer name="pc_cmd_number"/>
@@ -39701,6 +39851,7 @@
 			<referrer name="dialog_SPAWNCHANGE"/>
 			<referrer name="dialog_TOG"/>
 			<referrer name="dialog_DIALOG_SHOP"/>
+			<referrer name="dialog_DIALOG_HUD"/>
 			<referrer name="buyHouseOffline"/>
 			<referrer name="dialog_SELL_HOUSE_STATE"/>
 			<referrer name="dialog_HOUSE_OPTION_TITLE"/>
@@ -40044,6 +40195,7 @@
 			<referrer name="showLicenses"/>
 			<referrer name="dialog_GENDER"/>
 			<referrer name="dialog_GPS1"/>
+			<referrer name="dialog_DIALOG_HUD"/>
 			<referrer name="pc_cmd_buyhouse"/>
 			<referrer name="pc_cmd_housebalance"/>
 			<referrer name="pc_cmd_housewithdraw"/>
