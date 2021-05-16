@@ -27,7 +27,7 @@ enum businessInfoEnum {
 	bizPickup,
 	bizArea
 };
-new bizInfo[MAX_BUSINESSES + 1][businessInfoEnum], Iterator:ServerBusinesses<MAX_BUSINESSES + 1>, AdTimer[MAX_PLAYERS], AdText[MAX_PLAYERS][180];
+new bizInfo[MAX_BUSINESSES + 1][businessInfoEnum], Iterator:ServerBusinesses<MAX_BUSINESSES + 1>, Iterator:ServerAds<MAX_PLAYERS>;
 
 hook OnGameModeInit() {
 	Iter_Init(ServerBusinesses);
@@ -36,31 +36,21 @@ hook OnGameModeInit() {
 
 hook OnPlayerConnect(playerid) {
 	IDSelected[playerid] = -1;
-	AdTimer[playerid] = 0;
 	return true;
 }
 
-function totalAds() {
-	new x;
-	foreach(new i : loggedPlayers) {
-		if(AdTimer[i] != 0) x++;
-	}	
-	return x;
-}
-
-timer advertismentTimer[totalAds() * 60000](playerid) {
-	sendSplitMessage(playerid, COLOR_WHITE, string_fast("{00D900}Ad by %s (phone: {FFFFFF}%d{00D900}): %s", getName(playerid), playerInfo[playerid][pPhone], AdText[playerid]));
+timer advertismentTimer[Iter_Count(ServerAds) * 60000](playerid) {
+	sendSplitMessage(playerid, COLOR_SERVER, string_fast("Advertisment by {ffffff}%s{cc66ff}(phone: {ffffff}%d{cc66ff}): '{ffffff}%s{cc66ff}'", getName(playerid), playerInfo[playerid][pPhone], playerInfo[playerid][pAdText]));
 	switch(MYSQL) {
 		case 1: {
 			if (_:MoonBot == 0) MoonBot = DCC_FindChannelById("842858866973737020");
-			DCC_SendChannelMessage(MoonBot, string_fast(":newspaper: Ad by **%s[%d]** (phone: **%d**): %s", getName(playerid), playerid, playerInfo[playerid][pPhone], AdText[playerid]));
+			DCC_SendChannelMessage(MoonBot, string_fast(":newspaper: Ad by **%s[%d]** (phone: **%d**): %s", getName(playerid), playerid, playerInfo[playerid][pPhone], playerInfo[playerid][pAdText]));
 		}
 	}
-	AdText[playerid] = "";
-	AdTimer[playerid] = 0;	
+	Iter_Remove(ServerAds, playerid);
+	playerInfo[playerid][pAdText] = (EOS);
 	return true;
 }
-
 
 function LoadBusinesses() {
 	if(!cache_num_rows()) return print("Businesses: 0 [From Database]");
@@ -453,38 +443,36 @@ CMD:transfer(playerid, params[]) {
 }
 
 CMD:ad(playerid, params[]) {
+	if(!IsPlayerInRangeOfPoint(playerid, 10, bizInfo[3][bizExtX],bizInfo[3][bizExtY],bizInfo[3][bizExtZ])) return sendPlayerError(playerid, "Nu te afli in fata unui CNN.");
 	if(strlen(playerInfo[playerid][pPhone]) == 0) return sendPlayerError(playerid, "Nu ai un telefon.");
-	if(AdTimer[playerid] != 0) return sendPlayerError(playerid, "Ai pus un anunt recent. Foloseste comanda /myad pentru a-l vedea.");
+	if(strlen(playerInfo[playerid][pAdText]) > 0) return sendPlayerError(playerid, "Ai pus un anunt recent. Foloseste comanda /myad pentru a-l vedea.");
 	if(playerInfo[playerid][pMute] > gettime()) return sendPlayerError(playerid, "Nu pot folosi aceasta comanda deoarece ai mute.");
 	if(playerInfo[playerid][pLevel] < 3) return sendPlayerError(playerid, "Nu ai level 3+ pentru a folosi aceasta comanda.");
-	if(!IsPlayerInRangeOfPoint(playerid, 10, 1170.6370, -1489.7297, 22.7018)) return sendPlayerError(playerid, "Nu te afli in fata unui CNN.");
+	if(!PlayerMoney(playerid, bizInfo[3][bizFee])) return sendPlayerError(playerid, "Trebuie sa ai minim $%s pentru a pune un anunt.", formatNumber(bizInfo[3][bizFee]));
 	if(!strlen(params)) return sendPlayerSyntax(playerid, "/ad <text>");
-	if(PlayerMoney(playerid, bizInfo[3][bizFee])) return sendPlayerError(playerid, "Trebuie sa ai minim $%s pentru a pune un anunt.", formatNumber(bizInfo[3][bizFee]));
-	new totalads = totalAds()+1;
-	AdTimer[playerid] = totalads*60;
-	va_GameTextForPlayer(playerid, "Ai platit ~g~$%s~w~~n~Mesajul contine: ~p~%d~w~ caractere~n~Acesta va fi afisat in ~p~%s", 5000, 5, formatNumber(bizInfo[3][bizFee]), strlen(params), secinmin(AdTimer[playerid]));
-	format(AdText[playerid], 256, params);
+	format(playerInfo[playerid][pAdText], 256, params);
 	sendStaff(COLOR_SERVER, "(Ad Preview): {ffffff}Ad by %s (%d): %s", getName(playerid), playerInfo[playerid][pPhone], params);
+	va_GameTextForPlayer(playerid, "Ai platit ~p~$%s~w~~n~Mesajul contine: ~p~%d~w~ caractere~n~Acesta va fi afisat in ~p~%s", 10000, 5, formatNumber(bizInfo[3][bizFee]), strlen(params), secinmin(Iter_Count(ServerAds) * 60));
 	defer advertismentTimer(playerid);
-
+	Iter_Add(ServerAds, playerid);
 	GivePlayerCash(playerid, 0, bizInfo[3][bizFee]);
 	bizInfo[3][bizBalance] += bizInfo[3][bizFee];
-
-	update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '3' LIMIT 1", bizInfo[3][bizBalance]);	
+	update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '3' LIMIT 1", bizInfo[3][bizBalance]);
 	return true;
 }
 
 CMD:myad(playerid, params[]) {
-	if(AdTimer[playerid] == 0 ) return sendPlayerError(playerid, "Nu ai un anunt pus.");
-	SCMf(playerid, COLOR_GREY, "* AD Notice: Ad-ul tau este '%s'", AdText[playerid]);
+	if(strlen(playerInfo[playerid][pAdText]) == 0) return sendPlayerError(playerid, "Nu ai un advertisment pus.");
+	SCMf(playerid, COLOR_SERVER, "* (Advertisment): {ffffff}Advertisment-ul tau este '%s'.", playerInfo[playerid][pAdText]);
 	return true;
 }
 
 CMD:deletemyad(playerid, params[]) {
-	if(AdTimer[playerid] == 0) return sendPlayerError(playerid, "Nu ai un ad pus.");
-	AdText[playerid] = "";
-	AdTimer[playerid] = 0;
-	SCM(playerid, COLOR_GREY, "* AD Notice: Ad-ul tau a fost sters.");
+	if(strlen(playerInfo[playerid][pAdText]) == 0) return sendPlayerError(playerid, "Nu ai un advertisment pus.");
+	playerInfo[playerid][pAdText] = (EOS);
+	stop advertismentTimer(playerid);
+	Iter_Remove(ServerAds, playerid);
+	SCM(playerid, COLOR_SERVER, "* (Advertisment): {ffffff}Advertisment-ul tau a fost sters.");
 	return true;
 }
 

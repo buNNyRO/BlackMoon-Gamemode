@@ -397,7 +397,11 @@ public OnPlayerText(playerid, text[]) {
 		oocNews(COLOR_LIGHTGREEN, "* %s %s: %s", playerInfo[playerid][pFaction] == 6 ? "Reporter" : "Jucator", getName(playerid), text);
 		return 0;
 	}
-	sendNearbyMessage(playerid, COLOR_WHITE, 25.0, "%s spune: %s", getName(playerid), text); 
+	if(playerInfo[playerid][pAdminDuty] != 0) {
+		sendNearbyMessage(playerid, COLOR_YELLOW, 50.0, "** Administrator %s spune: %s **", getName(playerid), text); 
+		return 0;
+	}
+	sendNearbyMessage(playerid, GetPlayerColor(playerid), 25.0, "%s spune: %s", getName(playerid), text); 
 	SetPlayerChatBubble(playerid, text, COLOR_WHITE, 25.0, 5000);
 	update("INSERT INTO `server_chat_logs` (PlayerName, PlayerID, ChatText) VALUES ('%s', '%d', '%s')", getName(playerid), playerInfo[playerid][pSQLID], string_fast("* (chat log): %s.", text));
 	return 0;
@@ -873,6 +877,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 	if(Iter_Contains(FactionMembers[10], playerid) && Contract[playerid] == hitid) {
         new Float:x, Float:y, Float:z;
         GetPlayerPos(hitid, x, y, z);
+        SetPlayerHealthEx(hitid, 0);
         switch(playerInfo[playerid][pFactionRank]) {
             case 1..3: if(weaponid == 34 && GetPlayerDistanceFromPoint(playerid, x, y, z) < 50) return true;
             default: if(weaponid == 34 && GetPlayerDistanceFromPoint(playerid, x, y, z) < 100) return true;

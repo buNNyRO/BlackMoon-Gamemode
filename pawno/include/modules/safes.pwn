@@ -71,18 +71,13 @@ CMD:createsafe(playerid, params[]) {
 	if(!Iter_Contains(ServerFactions, factionID)) return sendPlayerError(playerid, "Aceasta factiune nu exista.");
 	if(!(0 <= money <= 100000000) && !(0 <= mats <= 1000000) && !(0 <= drugs <= 1000)) return sendPlayerError(playerid, "Invalid money or materials or drugs (Max: $100.000.000 | Materials: 1.000.000 | Drugs: 1.000).");
 	new id = Iter_Free(FactionSafes), Float:x, Float:y, Float:z;
-	GetPlayerPos(playerid, x, y, z);
-	safeInfo[id][sID] = id;
-	safeInfo[id][sFactionID] = factionID;
-	safeInfo[id][sPosX] = x;
-	safeInfo[id][sPosY] = y;
-	safeInfo[id][sPosZ] = z;
-	safeInfo[id][sMoney] = money;
-	safeInfo[id][sDrugs] = drugs;
-	safeInfo[id][sMaterials] = mats;
-	safeInfo[id][sVirtualID] = GetPlayerVirtualWorld(playerid);
+	GetPlayerPos(playerid, safeInfo[id][sPosX], safeInfo[id][sPosY], safeInfo[id][sPosZ]);
+	safeInfo[id][sID] = id; safeInfo[id][sFactionID] = factionID; safeInfo[id][sMoney] = money; safeInfo[id][sDrugs] = drugs; safeInfo[id][sMaterials] = mats; safeInfo[id][sVirtualID] = GetPlayerVirtualWorld(playerid);
+	safeInfo[id][sPickup] = CreateDynamicPickup(1274, 23, safeInfo[id][sPosX], safeInfo[id][sPosY], safeInfo[id][sPosZ], safeInfo[id][sVirtualID]);
+    safeInfo[id][sText] = CreateDynamic3DTextLabel(string_fast("Safe Faction %s\n/fdeposit - /fwithdraw", factionName(id-1)), 0xFFEA00FF, safeInfo[id][sPosX],safeInfo[id][sPosY], safeInfo[id][sPosZ], 25.0, 0xFFFF, 0xFFFF, 0, 0, 0, -1, STREAMER_3D_TEXT_LABEL_SD);
+	PickInfo[safeInfo[id][sPickup]][SAFE] = id;
 	SCMf(playerid, COLOR_SERVER, "* Ai adaugat un seif factiunii %s cu $%s, %d materiale si %d drugs.", factionName(factionID), formatNumber(money), mats, drugs);
-	update("INSERT INTO `server_safes` (`Faction`, `Money`, `Drugs`, `Materials`, `VirtualWorld`, `X`, `Y`, `Z`) VALUES ('%d', '%d', '%d', '%d', '%d', '%.2f', '%.2f', '%.2f'", factionID, money, drugs, mats, GetPlayerVirtualWorld(playerid), x, y, z);
+	update("INSERT INTO `server_safes` (`Faction`, `Money`, `Drugs`, `Materials`, `VirtualWorld`, `X`, `Y`, `Z`) VALUES ('%d', '%d', '%d', '%d', '%d', '%.2f', '%.2f', '%.2f')", factionID, money, drugs, mats, GetPlayerVirtualWorld(playerid), x, y, z);
 	return true;
 }
 
@@ -120,9 +115,9 @@ CMD:order(playerid, params[]) {
 Dialog:DIALOG_FWITHDRAW(playerid, response, listitem) {
 	if(!response) return true;
 	switch(listitem) {
-		case 0: Dialog_Show(playerid, DIALOG_FWITHDRAW2, DIALOG_STYLE_INPUT, "Faction Withdraw", string_fast("Seiful factiunii are in total: $%s.\nScrie suma pe care vrei sa o scoti mai jos.", formatNumber(safeInfo[playerInfo[playerid][pSafeID]][sMoney])), "Ok", "Back");
-		case 1: Dialog_Show(playerid, DIALOG_FWITHDRAW2, DIALOG_STYLE_INPUT, "Faction Withdraw", string_fast("Seiful factiunii are in total: %s materiale.\nScrie suma pe care vrei sa o scoti mai jos.", formatNumber(safeInfo[playerInfo[playerid][pSafeID]][sMaterials])), "Ok", "Back");
-		case 2: Dialog_Show(playerid, DIALOG_FWITHDRAW2, DIALOG_STYLE_INPUT, "Faction Withdraw", string_fast("Seiful factiunii are in total: %s droguri.\nScrie suma pe care vrei sa o scoti mai jos.", formatNumber(safeInfo[playerInfo[playerid][pSafeID]][sDrugs])), "Ok", "Back");
+		case 0: Dialog_Show(playerid, DIALOG_FWITHDRAW2, DIALOG_STYLE_INPUT, "Faction Withdraw", "Seiful factiunii are in total: $%s.\nScrie suma pe care vrei sa o scoti mai jos.", "Ok", "Back", formatNumber(safeInfo[playerInfo[playerid][pSafeID]][sMoney]));
+		case 1: Dialog_Show(playerid, DIALOG_FWITHDRAW2, DIALOG_STYLE_INPUT, "Faction Withdraw", "Seiful factiunii are in total: %s materiale.\nScrie suma pe care vrei sa o scoti mai jos.", "Ok", "Back", formatNumber(safeInfo[playerInfo[playerid][pSafeID]][sMaterials]));
+		case 2: Dialog_Show(playerid, DIALOG_FWITHDRAW2, DIALOG_STYLE_INPUT, "Faction Withdraw", "Seiful factiunii are in total: %s droguri.\nScrie suma pe care vrei sa o scoti mai jos.", "Ok", "Back", formatNumber(safeInfo[playerInfo[playerid][pSafeID]][sDrugs]));
 	}
 	playerInfo[playerid][pSelectedItem] = listitem;
 	return true;
@@ -130,7 +125,7 @@ Dialog:DIALOG_FWITHDRAW(playerid, response, listitem) {
 
 Dialog:DIALOG_FWITHDRAW2(playerid, response, listitem, inputtext[]) {
 	if(!response) {
-		Dialog_Show(playerid, DIALOG_FWITHDRAW, DIALOG_STYLE_TABLIST_HEADERS, "Faction Withdraw", string_fast("Option\tResult\nMoney\t$%s\nMaterials\t%s\nDrugs\t%s\n", formatNumber(safeInfo[playerInfo[playerid][pSafeID]][sMoney]), formatNumber(safeInfo[playerInfo[playerid][pSafeID]][sMaterials]), formatNumber(safeInfo[playerInfo[playerid][pSafeID]][sDrugs])), "Select", "Cancel");
+		Dialog_Show(playerid, DIALOG_FWITHDRAW, DIALOG_STYLE_TABLIST_HEADERS, "Faction Withdraw", "Option\tResult\nMoney\t$%s\nMaterials\t%s\nDrugs\t%s\n", "Select", "Cancel", formatNumber(safeInfo[playerInfo[playerid][pSafeID]][sMoney]), formatNumber(safeInfo[playerInfo[playerid][pSafeID]][sMaterials]), formatNumber(safeInfo[playerInfo[playerid][pSafeID]][sDrugs]));
 		return true;
 	}	
 	switch(playerInfo[playerid][pSelectedItem]) {

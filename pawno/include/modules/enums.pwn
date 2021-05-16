@@ -196,6 +196,8 @@ enum playerInfoEnum
     pAdminCover[MAX_PLAYER_NAME],
     pDrunkLevel,
     pFPS,
+    pAdText[256],
+    pAdminDuty,
     pSelectVehicle[MAX_PLAYER_PERSONAL_VEHICLES]
 };
 /*

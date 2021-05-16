@@ -1101,20 +1101,13 @@ CMD:finalquest(playerid, params[]) {
 
 CMD:shop(playerid, params[]) {
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai un dialog afisat.");
-	gString[0] = (EOS);
-	strcat(gString, "Item\tPrice\n");
-	strcat(gString, playerInfo[playerid][pPremium] ? "" : "Premium Account\t50 Premium Points\n");
-	strcat(gString, playerInfo[playerid][pVIP] ? "" : "VIP Account\t100 Premium Points\n");
-	Dialog_Show(playerid, DIALOG_SHOP, DIALOG_STYLE_TABLIST_HEADERS, "Shop - Blackmoon", gString, "Select", "Close");
+	Dialog_Show(playerid, DIALOG_SHOP, DIALOG_STYLE_TABLIST_HEADERS, "Shop - Blackmoon", "Item\tPrice\n%s%s", "Select", "Close", playerInfo[playerid][pPremium] ? "" : "Premium Account\t50 Premium Points\n", playerInfo[playerid][pVIP] ? "" : "VIP Account\t100 Premium Points\n");
 	return true;
 }
 
 CMD:hud(playerid, parmas[]) {
 	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda deoarece ai un dialog afisat.");
-	gString[0] = (EOS);
-	strcat(gString, "Option\tStatus\n");
-	strcat(gString, playerInfo[playerid][pFPSShow] ? "FPS Show\tEnabled\n" : "FPS Show\tDisabled\n");
-	Dialog_Show(playerid, DIALOG_HUD, DIALOG_STYLE_TABLIST_HEADERS, "Hud Options", gString, "Select", "Cancel");
+	Dialog_Show(playerid, DIALOG_HUD, DIALOG_STYLE_TABLIST_HEADERS, "Hud Options", "Option\tStatus\n%s", "Select", "Cancel", playerInfo[playerid][pFPSShow] ? "FPS Show\tEnabled\n" : "FPS Show\tDisabled\n");
 	return true;
 }
 
@@ -1166,22 +1159,15 @@ CMD:findhouse(playerid, params[]) {
 	return true;
 }
 
-CMD:xnxx(playerid, params[]) {
-	if(IsNumeric("11321321")) print("este");
-	else print("nueste");
-	return 1;
-}
-
-CMD:xnxx2(playerid, params[]) {
-	if(IsNumeric("11a321321")) print("este");
-	else print("nueste");
-	return 1;
-}
-
-
 CMD:id(playerid, params[]) {
     extract params -> new player:userID; else return sendPlayerSyntax(playerid, "/id <name/id>");
     if(!isPlayerLogged(userID)) return sendPlayerError(playerid, "Acel jucator nu este logat.");
     SCMf(playerid, -1, "* Nume: %s (%d) | Level: %d | FPS: %d | Device: %s | Ping: %d | Faction: %s", getName(userID), userID, playerInfo[userID][pLevel], playerInfo[userID][pFPS], playerInfo[userID][pFPS] > 1 ? "PC" : "Android", GetPlayerPing(userID), factionName(playerInfo[userID][pFaction]));
     return true;
+}
+
+CMD:serverinfo(playerid, params[]) {
+	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece ai un dialog afisat.");
+	Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Server Info", "{ffffff}Players Online: {cc66ff}%d{ffffff}\nTotal Staff: {cc66ff}%d{ffffff} [{cc66ff}%d{ffffff} admins, {cc66ff}%d{ffffff} helpers]\nPanel: black{cc66ff}moon{ffffff}.ro/panel\nForum: black{cc66ff}moon{ffffff}.ro/forum\nDiscord: black{cc66ff}moon{ffffff}.ro/discord", "Ok", "", Iter_Count(loggedPlayers), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
+	return true;
 }

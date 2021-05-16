@@ -253,7 +253,7 @@ Dialog:DIALOG_SHOP(playerid, response, listitem) {
 			playerInfo[playerid][pPremium] = 1;
 			Iter_Add(PremiumPlayers, playerid);
 			update("UPDATE `server_users` SET `Premium` = '1', `PremiumPoints`=PremiumPoints-50 WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
-			sendAdmin(COLOR_SERVER, "* Notice Shop: %s a cumparat 'Premium Account' cu 50 premium points.", getName(playerid));
+			sendAdmin(COLOR_SERVER, "* Notice Shop: {ffffff}%s a cumparat 'Premium Account' cu 50 premium points.", getName(playerid));
 			SCM(playerid, COLOR_SERVER, "* Shop: Ai cumparat 'Premium Account' cu 50 premium points.");
 		}
 		case 1: {
@@ -263,7 +263,7 @@ Dialog:DIALOG_SHOP(playerid, response, listitem) {
 			playerInfo[playerid][pVIP] = 1;
 			Iter_Add(VipPlayers, playerid);
 			update("UPDATE `server_users` SET `VIP` = '1', `PremiumPoints`=PremiumPoints-100 WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
-			sendAdmin(COLOR_SERVER, "* Notice Shop: %s a cumparat 'VIP Account' cu 100 premium points.", getName(playerid));
+			sendAdmin(COLOR_SERVER, "* Notice Shop: {ffffff}%s a cumparat 'VIP Account' cu 100 premium points.", getName(playerid));
 			SCM(playerid, COLOR_SERVER, "* Shop: Ai cumparat 'VIP Account' cu 100 premium points.");			
 		}
 	}
@@ -274,14 +274,13 @@ Dialog:DIALOG_HUD(playerid, response, listitem) {
 	if(!response) return true;
 	switch(listitem) {
 		case 0: {
-			if(playerInfo[playerid][pFPSShow]) {
-				playerInfo[playerid][pFPSShow] = 1;
-				//fpsShow[playerid] = repeat TimerFPS(playerid);
-			}
-			else {
+			if(playerInfo[playerid][pFPSShow] == 0) playerInfo[playerid][pFPSShow] = 1;
+			else if(playerInfo[playerid][pFPSShow] == 1) {
 				playerInfo[playerid][pFPSShow] = 0;
-				//stop fpsShow[playerid];
-			}	
+				PlayerTextDrawHide(playerid, serverHud[1]);
+			}
+			SCMf(playerid, COLOR_SERVER, "* (Hud): {ffffff}Optiunea 'FPS Show' este acum %s.", playerInfo[playerid][pFPSShow] ? "pornita" : "oprita");
+			update("UPDATE `server_users` SET `FPSShow` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pFPSShow], playerInfo[playerid][pSQLID]);
 		}
 	}
 	return true;
