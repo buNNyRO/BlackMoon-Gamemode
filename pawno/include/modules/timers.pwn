@@ -285,12 +285,7 @@ timer ExpirationReport[120000](id) {
 }*/
 
 timer closeGate[6000](gate) {
-	switch(gate) {
-		case 1: {
-			MoveDynamicObject(gates[0], 1544.71, -1630.99, 13.28,  2.0, 0.00, -90.00, -90.00);
-			print("bos bos hah");
-		}
-	}
+	if(gate == 1) MoveDynamicObject(gates[0], 1544.71, -1630.99, 13.28,  2.0, 0.00, -90.00, -90.00);
 	return true;
 }
 
@@ -298,3 +293,5 @@ timer tazerTimer[10000](playerid) {
 	TogglePlayerControllable(playerid, 1);
 	return true;
 }
+
+timer notificationTimer[10000](playerid) for(new i = 0; i < 3; i++) PlayerTextDrawHide(playerid, notificationTD[playerid][i]);

@@ -188,6 +188,41 @@ stock showLicenses(playerid, userID)
 }
 
 stock playerTextDraws(playerid) {
+	notificationTD[playerid][0] = CreatePlayerTextDraw(playerid, -48.333347, 151.017700, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, notificationTD[playerid][0], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, notificationTD[playerid][0], 332.000000, 33.000000);
+	PlayerTextDrawAlignment(playerid, notificationTD[playerid][0], 1);
+	PlayerTextDrawColor(playerid, notificationTD[playerid][0], 220);
+	PlayerTextDrawSetShadow(playerid, notificationTD[playerid][0], 0);
+	PlayerTextDrawSetOutline(playerid, notificationTD[playerid][0], 0);
+	PlayerTextDrawBackgroundColor(playerid, notificationTD[playerid][0], 255);
+	PlayerTextDrawFont(playerid, notificationTD[playerid][0], 4);
+	PlayerTextDrawSetProportional(playerid, notificationTD[playerid][0], 0);
+	PlayerTextDrawSetShadow(playerid, notificationTD[playerid][0], 0);
+
+	notificationTD[playerid][1] = CreatePlayerTextDraw(playerid, 283.743865, 150.920074, "particle:coronamoon");
+	PlayerTextDrawLetterSize(playerid, notificationTD[playerid][0], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, notificationTD[playerid][0], 28.000000, 33.000000);
+	PlayerTextDrawAlignment(playerid, notificationTD[playerid][0], 1);
+	PlayerTextDrawColor(playerid, notificationTD[playerid][0], -36);
+	PlayerTextDrawSetShadow(playerid, notificationTD[playerid][0], 0);
+	PlayerTextDrawSetOutline(playerid, notificationTD[playerid][0], 0);
+	PlayerTextDrawBackgroundColor(playerid, notificationTD[playerid][0], 255);
+	PlayerTextDrawFont(playerid, notificationTD[playerid][0], 4);
+	PlayerTextDrawSetProportional(playerid, notificationTD[playerid][0], 0);
+	PlayerTextDrawSetShadow(playerid, notificationTD[playerid][0], 0);
+
+	notificationTD[playerid][2] = CreatePlayerTextDraw(playerid, 1.999951, 154.162368, "A fost odata ca niciodataA fost odata ca~n~ciodataA fost odata ca niciodata~n~A fost odata ca niciodataA fost odata ca niciodat");
+	PlayerTextDrawLetterSize(playerid, notificationTD[playerid][0], 0.170663, 0.932976);
+	PlayerTextDrawAlignment(playerid, notificationTD[playerid][0], 1);
+	PlayerTextDrawColor(playerid, notificationTD[playerid][0], -1);
+	PlayerTextDrawSetShadow(playerid, notificationTD[playerid][0], 0);
+	PlayerTextDrawSetOutline(playerid, notificationTD[playerid][0], 1);
+	PlayerTextDrawBackgroundColor(playerid, notificationTD[playerid][0], 53);
+	PlayerTextDrawFont(playerid, notificationTD[playerid][0], 2);
+	PlayerTextDrawSetProportional(playerid, notificationTD[playerid][0], 1);
+	PlayerTextDrawSetShadow(playerid, notificationTD[playerid][0], 0);
+
 	vehicleHud[0] = CreatePlayerTextDraw(playerid, 528.143859, 365.662231, "LD_CARD:cd1s");
 	PlayerTextDrawLetterSize(playerid, vehicleHud[0], 0.000000, 0.000000);
 	PlayerTextDrawTextSize(playerid, vehicleHud[0], 28.000000, 47.000000);
@@ -611,6 +646,9 @@ stock destroyPlayerTextDraws(playerid)
 	PlayerTextDrawDestroy(playerid, wantedTD[playerid]);
 	PlayerTextDrawDestroy(playerid, fareTD[playerid]);
 	PlayerTextDrawDestroy(playerid, warTD[playerid]);
+	PlayerTextDrawDestroy(playerid, notificationTD[playerid][0]);
+	PlayerTextDrawDestroy(playerid, notificationTD[playerid][1]);
+	PlayerTextDrawDestroy(playerid, notificationTD[playerid][2]);	
 	return true;
 }
 

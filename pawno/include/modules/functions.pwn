@@ -789,3 +789,11 @@ function SendDiscordAC(const text[], va_args<>) {
 	}
 	return 1;
 }
+
+function showNotification(playerid, from[], const text[]) {
+	va_PlayerTextDrawSetString(playerid, notificationTD[playerid][2], "%s~n~From: %s", text, from);
+	for(new i = 0; i < 3; i++) PlayerTextDrawShow(playerid, notificationTD[playerid][i]);
+	defer notificationTimer(playerid);
+	return true;
+}
+

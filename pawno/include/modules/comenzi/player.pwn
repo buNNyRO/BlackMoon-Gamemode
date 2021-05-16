@@ -1171,3 +1171,5 @@ CMD:serverinfo(playerid, params[]) {
 	Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Server Info", "{ffffff}Players Online: {cc66ff}%d{ffffff}\nTotal Staff: {cc66ff}%d{ffffff} [{cc66ff}%d{ffffff} admins, {cc66ff}%d{ffffff} helpers]\nPanel: black{cc66ff}moon{ffffff}.ro/panel\nForum: black{cc66ff}moon{ffffff}.ro/forum\nDiscord: black{cc66ff}moon{ffffff}.ro/discord", "Ok", "", Iter_Count(loggedPlayers), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
 	return true;
 }
+
+CMD:notificare(playerid, params[]) return showNotification(playerid, "Server", params);

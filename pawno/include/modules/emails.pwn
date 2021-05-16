@@ -1,19 +1,19 @@
 function InsertEmail(playerid, const from[], const text[], type) {
  	update("INSERT INTO `panel_notifications` (`UserID`, `From`, `Text`, `Type`) VALUES('%d', '%s', '%s', '%d')", playerInfo[playerid][pSQLID], from, text, type);
-   	if(isPlayerLogged(playerid)) SCM(playerid, COLOR_GOLD, "(*) You have unread email(s). Use /emails to read it. (*)");
+   	if(isPlayerLogged(playerid)) showNotification(playerid, "Server", "(*) You have unread email(s). Use /emails to read it. (*)");
    	return true;
 } 
 
 function ShowEmails(playerid) {
 	if(!cache_num_rows()) return true;
-	new text[144], from[MAX_PLAYER_NAME], date[64], id=0;
+	new text[144], from[MAX_PLAYER_NAME], date[30], id=0;
 	gString[0] = (EOS);
 	strcat(gString, "#. Email\tBy\tDate\n");
 	for(new i = 0; i < cache_num_rows(); i++) {
 		id++;
 		cache_get_value_name(i, "Text", text, 144);
 		cache_get_value_name(i, "From", from, MAX_PLAYER_NAME);
-		cache_get_value_name(i, "Date", date, 64);
+		cache_get_value_name(i, "Date", date, 30);
 		playerInfo[playerid][pSelectedItem] = id;
 		format(gString, sizeof gString, "%s%d. %s\t%s\t%s\n", gString, id, text, from, date);
 	}
@@ -22,7 +22,7 @@ function ShowEmails(playerid) {
 }
 
 function CalculateEmails(playerid) {
-    if(cache_num_rows()) return SCM(playerid, COLOR_GOLD, "(*) You have unread email(s). Use /emails to read it. (*)");
+    if(cache_num_rows()) return showNotification(playerid, "Server", "(*) You have unread email(s). Use /emails to read it. (*)");
     return 1;
 }
 
