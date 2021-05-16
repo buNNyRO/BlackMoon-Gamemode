@@ -60,7 +60,7 @@ task TimerM[60000]() {
 task Timers[1000]() {
 	new hour, minute, second;
 	gettime(hour, minute, second); 
-	TextDrawSetString(ClockTD[0], string_fast("~p~PAYDAY~w~ IN: %s", PayDayTime-gettime() <= 0 ? "~p~PAYDAY~w~ SENDING..." : secinmin(PayDayTime-gettime())));
+	TextDrawSetString(ClockTD[0], string_fast("PAYDAY IN ~p~%s", PayDayTime-gettime() <= 0 ? "SENDING..." : secinmin(PayDayTime-gettime())));
 
 	foreach(new i : ServerAdmins) va_PlayerTextDrawSetString(i, serverHud[1], "%d~n~~r~%d~w~ / T~g~%d~w~ / A~b~%d~w~ / Q~p~%d", playerInfo[i][pFPS], GetPlayerPing(i), GetServerTickRate(), GetPlayerAnimationIndex(i), mysql_unprocessed_queries());
 	if(hour == 12 && minute == 0 && second == 0) {

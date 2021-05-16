@@ -1349,7 +1349,7 @@
 		<member name="C:CHECKPOINT_FINDCAR" value="2">
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerCar"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 		</member>
 		<member name="C:CHECKPOINT_GETHIT" value="15">
 			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
@@ -1359,7 +1359,7 @@
 			<referrer name="dialog_GPS1"/>
 			<referrer name="pc_cmd_findbusiness"/>
 			<referrer name="pc_cmd_findhouse"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 		</member>
 		<member name="C:CHECKPOINT_JOB" value="1">
 			<referrer name="dialog_DIALOG_JOBS"/>
@@ -1381,7 +1381,7 @@
 			<referrer name="pc_cmd_accept"/>
 			<referrer name="pc_cmd_findbusiness"/>
 			<referrer name="pc_cmd_findhouse"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
 		</member>
 		<member name="C:CHECKPOINT_TRUCKERLS" value="5">
@@ -1602,6 +1602,7 @@
 			<referrer name="Inline_OnAsmError"/>
 			<referrer name="I@L"/>
 			<referrer name="OnDialogResponse"/>
+			<referrer name="OnPlayerEnterCheckpoint"/>
 		</member>
 		<member name="C:cellmin" value="-2147483648">
 			<referrer name="operator-(Float:)"/>
@@ -1692,6 +1693,8 @@
 			<referrer name="Callback_HoldTimer"/>
 			<referrer name="Callback_TabCheck"/>
 			<referrer name="TrollDetect"/>
+			<referrer name="checkpointGet"/>
+			<referrer name="OnPlayerEnterCheckpoint"/>
 			<referrer name="IsVehicleOccupied"/>
 			<referrer name="isPlane"/>
 			<referrer name="isBoat"/>
@@ -1799,6 +1802,7 @@
 			<referrer name="Callback_CheckAnimation"/>
 			<referrer name="Callback_HoldTimer"/>
 			<referrer name="Callback_TabCheck"/>
+			<referrer name="checkpointPlace"/>
 			<referrer name="IsVehicleOccupied"/>
 			<referrer name="sendNearbyMessage"/>
 			<referrer name="sendSplitMessage"/>
@@ -2310,7 +2314,7 @@
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<referrer name="OnPlayerRequestSpawn"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
 		</member>
 
@@ -2744,7 +2748,7 @@
 			<referrer name="assignCheckpointID"/>
 			<referrer name="pc_cmd_addexamcp"/>
 			<referrer name="pc_cmd_exam"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 		</member>
 		<member name="F:Iter_Single@FactionMembers">
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
@@ -2964,7 +2968,7 @@
 			<referrer name="assignCheckpointID"/>
 			<referrer name="pc_cmd_addexamcp"/>
 			<referrer name="pc_cmd_exam"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 		</member>
 		<member name="F:Iterator@FactionMembers">
 			<referrer name="@yH_OnPlayerDeath@007"/>
@@ -4024,10 +4028,6 @@
 		<member name="F:_pawncmd_version">
 			<attribute name="public"/>
 		</member>
-		<member name="F:acDialog">
-			<referrer name="@yH_resetVars@005"/>
-			<referrer name="ShowPlayerDialogEx"/>
-		</member>
 		<member name="F:acTime">
 			<referrer name="@yH_OnPlayerStateChange@005"/>
 		</member>
@@ -4079,7 +4079,7 @@
 		<member name="F:carFind">
 			<tagname value="Timer"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 		</member>
 		<member name="F:cellRandom">
 			<tagname value="Float"/>
@@ -4088,6 +4088,20 @@
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="OnPlayerSpawn"/>
 			<referrer name="OnPlayerDeath"/>
+		</member>
+		<member name="F:checkpointActive">
+			<referrer name="checkpointIsActive"/>
+			<referrer name="checkpointDestroy"/>
+			<referrer name="checkpointPlace"/>
+		</member>
+		<member name="F:checkpointDeelay">
+			<referrer name="OnPlayerEnterCheckpoint"/>
+		</member>
+		<member name="F:checkpointName">
+			<referrer name="checkpointDestroy"/>
+			<referrer name="checkpointPlace"/>
+			<referrer name="checkpointGet"/>
+			<referrer name="OnPlayerEnterCheckpoint"/>
 		</member>
 		<member name="F:clanChat">
 			<referrer name="pc_cmd_clanchat"/>
@@ -4126,7 +4140,7 @@
 			<referrer name="assignCheckpointID"/>
 			<referrer name="pc_cmd_addexamcp"/>
 			<referrer name="pc_cmd_exam"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 		</member>
 		<member name="F:exhaust">
 			<referrer name="SaveComponent"/>
@@ -4534,12 +4548,13 @@
 			<referrer name="playerTextDraws"/>
 			<referrer name="examenFail"/>
 			<referrer name="pc_cmd_exam"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 		</member>
 		<member name="F:playerInfo">
 			<referrer name="TrollDetect"/>
 			<referrer name="@yH_OnPlayerStateChange@005"/>
 			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
+			<referrer name="OnPlayerEnterCheckpoint"/>
 			<referrer name="warnPlayer"/>
 			<referrer name="banPlayer"/>
 			<referrer name="mutePlayer"/>
@@ -4942,7 +4957,7 @@
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<referrer name="OnPlayerRequestSpawn"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
 		</member>
 		<member name="F:playerLevelPTD">
@@ -6653,13 +6668,6 @@
 			<param name="vehicleid">
 			</param>
 			<param name="killerid">
-			</param>
-		</member>
-		<member name="M:@yH_resetVars@005" syntax="@yH_resetVars@005(playerid)">
-			<attribute name="public"/>
-			<stacksize value="1"/>
-			<dependency name="acDialog"/>
-			<param name="playerid">
 			</param>
 		</member>
 		<member name="M:@yT_PayDay" syntax="@yT_PayDay(g, p)">
@@ -10527,6 +10535,7 @@
 			<referrer name="Callback_HoldTimer"/>
 			<referrer name="Callback_TabCheck"/>
 			<referrer name="OnDialogResponse"/>
+			<referrer name="OnPlayerEnterCheckpoint"/>
 			<param name="function">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -12686,6 +12695,7 @@
 		</member>
 		<member name="M:DisablePlayerCheckpoint" syntax="DisablePlayerCheckpoint(playerid)">
 			<attribute name="native"/>
+			<referrer name="checkpointDestroy"/>
 			<referrer name="examenFail"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
@@ -12696,7 +12706,7 @@
 			<referrer name="TimerCarFind"/>
 			<referrer name="pc_cmd_killcp"/>
 			<referrer name="pc_cmd_cancel"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
 			<param name="playerid">
 			</param>
@@ -15417,6 +15427,7 @@
 			<referrer name="enter_public"/>
 			<referrer name="@yH_OnPlayerStateChange@005"/>
 			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
+			<referrer name="OnPlayerEnterCheckpoint"/>
 		</member>
 		<member name="M:GetVehicleDamageStatus" syntax="GetVehicleDamageStatus(vehicleid, &amp;panels, &amp;doors, &amp;lights, &amp;tires)">
 			<attribute name="native"/>
@@ -16930,7 +16941,7 @@
 			<referrer name="pc_cmd_tie"/>
 			<referrer name="pc_cmd_accept"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 			<param name="playerid">
 			</param>
 			<param name="vehicleid">
@@ -17652,7 +17663,7 @@
 			<referrer name="OnVehicleDeath"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerStateChange"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
 			<param name="array">
 				<paraminfo> [] </paraminfo>
@@ -17781,7 +17792,7 @@
 			<referrer name="cancelDriveTest"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="OnVehicleDeath"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 			<dependency name="DestroyVehicle"/>
 			<dependency name="I@"/>
 			<dependency name="Iter_Remove_InternalC"/>
@@ -18590,6 +18601,7 @@
 			<referrer name="TrollDetect"/>
 			<referrer name="@yH_OnPlayerStateChange@005"/>
 			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
+			<referrer name="OnPlayerEnterCheckpoint"/>
 			<referrer name="dialog_REGISTER"/>
 			<referrer name="dialog_LOGIN"/>
 			<referrer name="kickEx"/>
@@ -20145,46 +20157,23 @@
 		</member>
 		<member name="M:OnPlayerEnterCheckpoint" syntax="OnPlayerEnterCheckpoint(playerid)">
 			<attribute name="public"/>
-			<stacksize value="13"/>
-			<dependency name="CHECKPOINT_FINDCAR"/>
-			<dependency name="CHECKPOINT_GPS"/>
-			<dependency name="CHECKPOINT_NONE"/>
-			<dependency name="DisablePlayerCheckpoint"/>
-			<dependency name="IsPlayerInVehicle"/>
-			<dependency name="Iter_Contains_InternalC"/>
-			<dependency name="Iter_DestroyVehicle"/>
-			<dependency name="Iter_Single@ExamenCheckpoints"/>
-			<dependency name="Iterator@ExamenCheckpoints"/>
-			<dependency name="PlayerTextDrawHide"/>
-			<dependency name="SendClientMessage"/>
-			<dependency name="SetPlayerCheckpoint"/>
-			<dependency name="SetPlayerPos"/>
-			<dependency name="SetPlayerVirtualWorld"/>
-			<dependency name="_Timer_F"/>
-			<dependency name="carFind"/>
-			<dependency name="dmvX"/>
-			<dependency name="dmvY"/>
-			<dependency name="dmvZ"/>
-			<dependency name="examenInfo"/>
-			<dependency name="pBoatLicense"/>
-			<dependency name="pBoatLicenseSuspend"/>
-			<dependency name="pCheckpoint"/>
-			<dependency name="pCheckpointID"/>
-			<dependency name="pDrivingLicense"/>
-			<dependency name="pDrivingLicenseSuspend"/>
-			<dependency name="pExamenCheckpoint"/>
-			<dependency name="pExamenVehicle"/>
-			<dependency name="pFlyLicense"/>
-			<dependency name="pFlyLicenseSuspend"/>
-			<dependency name="pSQLID"/>
-			<dependency name="pWeaponLicense"/>
-			<dependency name="pWeaponLicenseSuspend"/>
-			<dependency name="playerExamenPTD"/>
+			<stacksize value="72"/>
+			<dependency name="CallLocalFunction"/>
+			<dependency name="GetTickCount"/>
+			<dependency name="Kick"/>
+			<dependency name="SendDiscordAC"/>
+			<dependency name="cellmax"/>
+			<dependency name="checkpointDeelay"/>
+			<dependency name="checkpointDestroy"/>
+			<dependency name="checkpointName"/>
+			<dependency name="false"/>
+			<dependency name="funcidx"/>
+			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="true"/>
-			<dependency name="update"/>
-			<dependency name="va_PlayerTextDrawSetString"/>
+			<dependency name="strcat"/>
+			<dependency name="strlen"/>
+			<dependency name="va_SendClientMessageToAll"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -21446,7 +21435,7 @@
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="HideDealerShipTD"/>
 			<referrer name="CB_OnPlayerStateChange"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 			<param name="playerid">
 			</param>
 			<param name="text">
@@ -22705,7 +22694,7 @@
 			<referrer name="CalculateEmails"/>
 			<referrer name="OnPlayerSpawn"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 			<param name="playerid">
 			</param>
 			<param name="color">
@@ -22731,6 +22720,7 @@
 			<referrer name="TrollDetect"/>
 			<referrer name="@yH_OnPlayerStateChange@005"/>
 			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
+			<referrer name="OnPlayerEnterCheckpoint"/>
 			<dependency name="DCC_FindChannelById"/>
 			<dependency name="DCC_SendChannelMessage"/>
 			<dependency name="MoonBotAC"/>
@@ -23130,6 +23120,7 @@
 		</member>
 		<member name="M:SetPlayerCheckpoint" syntax="SetPlayerCheckpoint(playerid, x, y, z, size)">
 			<attribute name="native"/>
+			<referrer name="checkpointPlace"/>
 			<referrer name="dialog_GPS1"/>
 			<referrer name="dialog_DIALOG_WANTEDS"/>
 			<referrer name="pc_cmd_gethit"/>
@@ -23147,7 +23138,7 @@
 			<referrer name="pc_cmd_accept"/>
 			<referrer name="pc_cmd_findbusiness"/>
 			<referrer name="pc_cmd_findhouse"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 			<param name="playerid">
 			</param>
 			<param name="x">
@@ -23324,7 +23315,7 @@
 			<referrer name="OnPlayerSpawn"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 			<param name="playerid">
 			</param>
 			<param name="x">
@@ -23434,7 +23425,7 @@
 			<referrer name="OnPlayerSpawn"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 			<param name="playerid">
 			</param>
 			<param name="worldid">
@@ -23682,33 +23673,8 @@
 		</member>
 		<member name="M:ShowPlayerDialog" syntax="ShowPlayerDialog(playerid, dialogid, style, caption[], info[], button1[], button2[])">
 			<attribute name="native"/>
-			<referrer name="ShowPlayerDialogEx"/>
 			<referrer name="Dialog_Close"/>
 			<referrer name="Dialog_Open"/>
-			<param name="playerid">
-			</param>
-			<param name="dialogid">
-			</param>
-			<param name="style">
-			</param>
-			<param name="caption">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="info">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="button1">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="button2">
-				<paraminfo> [] </paraminfo>
-			</param>
-		</member>
-		<member name="M:ShowPlayerDialogEx" syntax="ShowPlayerDialogEx(playerid, dialogid, style, caption[], info[], button1[], button2[])">
-			<attribute name="public"/>
-			<stacksize value="9"/>
-			<dependency name="ShowPlayerDialog"/>
-			<dependency name="acDialog"/>
 			<param name="playerid">
 			</param>
 			<param name="dialogid">
@@ -25635,7 +25601,7 @@
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="CB_OnPlayerStateChange"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 			<dependency name="KillTimer"/>
 			<dependency name="Malloc_Free"/>
 			<dependency name="YSI_gMallocMemory"/>
@@ -26457,6 +26423,59 @@
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:checkpointDestroy" syntax="checkpointDestroy(playerid)">
+			<stacksize value="3"/>
+			<referrer name="OnPlayerEnterCheckpoint"/>
+			<dependency name="DisablePlayerCheckpoint"/>
+			<dependency name="checkpointActive"/>
+			<dependency name="checkpointName"/>
+			<dependency name="checkpointName"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:checkpointGet" syntax="checkpointGet(playerid)">
+			<stacksize value="4"/>
+			<dependency name="checkpointGet"/>
+			<dependency name="checkpointIsActive"/>
+			<dependency name="checkpointName"/>
+			<dependency name="false"/>
+			<dependency name="strlen"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:checkpointIsActive" syntax="checkpointIsActive(playerid)">
+			<attribute name="public"/>
+			<stacksize value="1"/>
+			<referrer name="checkpointGet"/>
+			<dependency name="checkpointActive"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:checkpointPlace" syntax="checkpointPlace(playerid, checkpoint[], x, y, z, size)">
+			<stacksize value="7"/>
+			<dependency name="SetPlayerCheckpoint"/>
+			<dependency name="checkpointActive"/>
+			<dependency name="checkpointName"/>
+			<dependency name="strpack"/>
+			<dependency name="true"/>
+			<param name="playerid">
+			</param>
+			<param name="checkpoint">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="size">
+				<paraminfo>Float </paraminfo>
 			</param>
 		</member>
 		<member name="M:chrfind" syntax="chrfind(needle, haystack[], start)">
@@ -28219,6 +28238,51 @@
 			<param name="listitem">
 			</param>
 		</member>
+		<member name="M:ecp_OnPlayerEnterCheckpoint" syntax="ecp_OnPlayerEnterCheckpoint(playerid)">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="CHECKPOINT_FINDCAR"/>
+			<dependency name="CHECKPOINT_GPS"/>
+			<dependency name="CHECKPOINT_NONE"/>
+			<dependency name="DisablePlayerCheckpoint"/>
+			<dependency name="IsPlayerInVehicle"/>
+			<dependency name="Iter_Contains_InternalC"/>
+			<dependency name="Iter_DestroyVehicle"/>
+			<dependency name="Iter_Single@ExamenCheckpoints"/>
+			<dependency name="Iterator@ExamenCheckpoints"/>
+			<dependency name="PlayerTextDrawHide"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="SetPlayerCheckpoint"/>
+			<dependency name="SetPlayerPos"/>
+			<dependency name="SetPlayerVirtualWorld"/>
+			<dependency name="_Timer_F"/>
+			<dependency name="carFind"/>
+			<dependency name="dmvX"/>
+			<dependency name="dmvY"/>
+			<dependency name="dmvZ"/>
+			<dependency name="examenInfo"/>
+			<dependency name="pBoatLicense"/>
+			<dependency name="pBoatLicenseSuspend"/>
+			<dependency name="pCheckpoint"/>
+			<dependency name="pCheckpointID"/>
+			<dependency name="pDrivingLicense"/>
+			<dependency name="pDrivingLicenseSuspend"/>
+			<dependency name="pExamenCheckpoint"/>
+			<dependency name="pExamenVehicle"/>
+			<dependency name="pFlyLicense"/>
+			<dependency name="pFlyLicenseSuspend"/>
+			<dependency name="pSQLID"/>
+			<dependency name="pWeaponLicense"/>
+			<dependency name="pWeaponLicenseSuspend"/>
+			<dependency name="playerExamenPTD"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="true"/>
+			<dependency name="update"/>
+			<dependency name="va_PlayerTextDrawSetString"/>
+			<param name="playerid">
+			</param>
+		</member>
 		<member name="M:endofline" syntax="endofline(line[], pos)">
 			<stacksize value="3"/>
 			<dependency name="cellmin"/>
@@ -28845,6 +28909,7 @@
 			<referrer name="CGen_GetAddr"/>
 			<referrer name="GetLocalFunction"/>
 			<referrer name="OnDialogResponse"/>
+			<referrer name="OnPlayerEnterCheckpoint"/>
 			<param name="name">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -29974,6 +30039,16 @@
 			<referrer name="DynamicCallFunctionInclusion_"/>
 			<referrer name="AsmEmitInstruction"/>
 			<referrer name="CodeScanMatcherPattern_"/>
+		</member>
+		<member name="M:onCheckpointPerformed" syntax="onCheckpointPerformed(playerid, checkpoint[], success)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="checkpoint">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="success">
+			</param>
 		</member>
 		<member name="M:onPlayerLogin" syntax="onPlayerLogin(playerid)">
 			<attribute name="public"/>
@@ -38976,6 +39051,7 @@
 			<referrer name="Malloc_SetVAS"/>
 			<referrer name="_@_y_inline_@_"/>
 			<referrer name="OnDialogResponse"/>
+			<referrer name="OnPlayerEnterCheckpoint"/>
 			<referrer name="pc_cmd_factions"/>
 			<referrer name="pc_cmd_wanteds"/>
 			<referrer name="showFactionMembers"/>
@@ -39237,6 +39313,8 @@
 			<referrer name="OnPlayerUpdate"/>
 			<referrer name="Dialog_Open"/>
 			<referrer name="OnDialogResponse"/>
+			<referrer name="checkpointGet"/>
+			<referrer name="OnPlayerEnterCheckpoint"/>
 			<referrer name="sendSplitMessage"/>
 			<referrer name="formatNumber"/>
 			<referrer name="strmatch"/>
@@ -39340,6 +39418,7 @@
 			<referrer name="_@_y_inline_@_"/>
 			<referrer name="Remote_RawStrpack"/>
 			<referrer name="Dialog_Open"/>
+			<referrer name="checkpointPlace"/>
 			<param name="dest">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -39734,7 +39813,7 @@
 			<referrer name="OnVehicleDeath"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerStateChange"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 			<dependency name="EOS"/>
 			<dependency name="SQL"/>
 			<dependency name="YVA2_DummyPush"/>
@@ -39938,7 +40017,7 @@
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="ShowDealerShipTD"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 			<dependency name="EOS"/>
 			<dependency name="PlayerTextDrawSetString"/>
 			<dependency name="YVA2_DummyPush"/>
@@ -40101,6 +40180,7 @@
 			<referrer name="TrollDetect"/>
 			<referrer name="@yH_OnPlayerStateChange@005"/>
 			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
+			<referrer name="OnPlayerEnterCheckpoint"/>
 			<referrer name="warnPlayer"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="pc_cmd_arrest"/>

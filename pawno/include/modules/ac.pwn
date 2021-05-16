@@ -6,16 +6,7 @@
 
 new Float:acVelocity[MAX_PLAYERS][3],
     acTime[MAX_PLAYERS],
-    acTimeCrash[MAX_PLAYERS],
-	acDialog[MAX_PLAYERS];
-
-hook resetVars(playerid) { acDialog[playerid] = -1; return 1;}
-
-function ShowPlayerDialogEx(playerid, dialogid, style, caption[], info[], button1[], button2[]) {
-    ShowPlayerDialog(playerid, dialogid, style, caption, info, button1, button2);
-	acDialog[playerid] = dialogid;
-    return 1;
-}
+    acTimeCrash[MAX_PLAYERS];
 
 stock TrollDetect(playerid){
 	new Float:Velocity[3];

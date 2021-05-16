@@ -47,6 +47,7 @@
 #include <modules\variables.pwn>
 #include <modules\ac.pwn> // anti-cheats
 #include <easyDialog>
+#include <easyCheckpoint>
 #include <modules\stocks.pwn>
 #include <modules\dialogs.pwn>
 #include <modules\pickups.pwn>
