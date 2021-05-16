@@ -911,6 +911,7 @@ stock resetVars(playerid)
 	playerInfo[playerid][pFPS] = 0;	
 	playerInfo[playerid][pAdText] = (EOS);
 	playerInfo[playerid][pAdminDuty] = 0;
+	playerInfo[playerid][pSpectate] = -1;
 
 	if(IsValidVehicle(playerInfo[playerid][pExamenVehicle])) DestroyVehicle(playerInfo[playerid][pExamenVehicle]);
 

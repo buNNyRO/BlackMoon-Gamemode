@@ -1481,3 +1481,34 @@ CMD:gotobusiness(playerid, params[]) {
 	sendAdmin(COLOR_SERVER, "Notice: {ffffff}Admin %s s-a teleportat la business %d.", getName(playerid), businessID);
 	return true;
 }
+
+CMD:spec(playerid, params[]) {
+	if(!Iter_Contains(ServerHelpers, playerid) || !Iter_Contains(ServerAdmins, playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai acces la aceasta comanda.");
+	extract params -> new player:userID; else return sendPlayerSyntax(playerid, "/spec <name/id>");
+	if(userID == playerid) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu poti folosi aceasta comanda asupra ta.");
+	if(!isPlayerLogged(userID)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Acest jucator nu este connectat.");	
+	playerInfo[playerid][pSpectate] = userID;
+	if(PlayerHaveReport(userID)) {
+		new reportid = GetReportID(userID);
+		if(reportInfo[reportid][reportType] == REPORT_TYPE_NORMAL) sendAdmin(COLOR_SERVER, "Notice: {ffffff}Admin %s este acum spectator pe %s pentru report.", getName(playerid), getName(userID));
+		else if(reportInfo[reportid][reportType] == REPORT_TYPE_CHEATER) sendAdmin(COLOR_SERVER, "Notice: {ffffff}Admin %s este acum spectator pe %s pentru report de coduri.", getName(playerid), getName(userID));
+		else if(reportInfo[reportid][reportType] == REPORT_TYPE_STUCK) sendAdmin(COLOR_SERVER, "Notice: {ffffff}Admin %s este acum spectator pe %s pentru report de blocat.", getName(playerid), getName(userID));
+		reportInfo[reportid][reportID] = INVALID_PLAYER_ID;
+		reportInfo[reportid][reportPlayer] = INVALID_PLAYER_ID;
+		reportInfo[reportid][reportType] = REPORT_TYPE_NONE;
+		reportInfo[reportid][reportText] = (EOS);
+		stop reportInfo[reportid][reportTimer];
+		Iter_Remove(Reports, reportid);	
+	}
+	new Float:health, Float:armour;
+	GetPlayerHealthEx(userID, health);
+	GetPlayerArmourEx(userID, armour);
+	SCMf(playerid, COLOR_SERVER, "* (Spectating): Player %s (%d) | Health: %.2f | Armour: %.2f | Packet Loss: %.2f", getName(userID), userID, health, armour, NetStats_PacketLossPercent(userID));
+	sendAdmin(COLOR_SERVER, "Notice: {ffffff}Admin %s este acum spectator pe %s.", getName(playerid), getName(userID));	
+	TogglePlayerSpectating(playerid, 1);
+    SetPlayerInterior(playerid, GetPlayerInterior(userID));
+    SetPlayerVirtualWorld(playerid, GetPlayerVirtualWorld(userID)); 
+    if(IsPlayerInAnyVehicle(userID)) PlayerSpectateVehicle(playerid, GetPlayerVehicleID(userID));
+    else PlayerSpectatePlayer(playerid, userID);
+	return true;
+}

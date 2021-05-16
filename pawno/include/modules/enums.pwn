@@ -198,6 +198,7 @@ enum playerInfoEnum
     pFPS,
     pAdText[256],
     pAdminDuty,
+    pSpectate,
     pSelectVehicle[MAX_PLAYER_PERSONAL_VEHICLES]
 };
 /*
