@@ -103,8 +103,8 @@ Dialog:DIALOG_REPORT(playerid, response, listitem) {
 
 Dialog:DIALOG_REPORT_NORMAL(playerid, response, listitem, inputtext[]) {
 	if(!response) return true;
-	//if(Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
-	//if(playerInfo[playerid][pReportMute] > gettime()) return sendPlayerError(playerid, "Pentru a folosi aceasta comanda trebuie sa astepti %d secunde", (playerInfo[playerid][pReportMute] - gettime()));
+	if(Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
+	if(playerInfo[playerid][pReportMute] > gettime()) return sendPlayerError(playerid, "Pentru a folosi aceasta comanda trebuie sa astepti %d secunde", (playerInfo[playerid][pReportMute] - gettime()));
 	if(Iter_Count(Reports) >= MAX_REPORTS) return sendPlayerError(playerid, "Momentan sunt prea multe report-uri in asteptare.");
 	if(!Iter_Count(ServerAdmins)) return sendPlayerError(playerid, "Nu sunt admini conectati.");
 	if(strlen(inputtext) < 6 || strlen(inputtext) > 128) return Dialog_Show(playerid, DIALOG_REPORT_NORMAL, DIALOG_STYLE_INPUT, "Report: Normal", "Scrie mai jos problema pe care o ai:", "Ok", "Cancel");
