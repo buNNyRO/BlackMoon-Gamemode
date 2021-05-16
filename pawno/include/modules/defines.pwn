@@ -11,6 +11,8 @@
 #define fast_string		   				string_fast
 #define SPECIAL_ACTION_PISSING   		68	
 
+#define eERROR 							"[ERROR] {FFFFFF}"
+
 #define MAX_EXAM_CHECKPOINTS 			20
 #define MAX_REPORTS                     50
 //#define MAX_DYNAMIC_PICKUPS             100

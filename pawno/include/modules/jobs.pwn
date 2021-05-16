@@ -251,7 +251,7 @@ timer FishingTimer[10 * 1000](playerid, Float:x, Float:y, Float:z) {
 
 Dialog:DIALOG_JOBS(playerid, response, listitem, inputtext[]) {
 	if(!response) return true;
-	if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Ai un checkpoint activ pe harta.");
+	if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) return SCM(playerid, COLOR_ERROR, eERROR"Ai un checkpoint activ pe harta.");
 	SetPlayerCheckpoint(playerid, jobInfo[listitem + 1][jobX], jobInfo[listitem + 1][jobY], jobInfo[listitem + 1][jobZ], 2.0);
 	SCM(playerid, COLOR_GREY, string_fast("* Ti-am plasat un checkpoint catre job-ul %s.", jobInfo[listitem + 1][jobName]));
 	playerInfo[playerid][pCheckpoint] = CHECKPOINT_JOB;
@@ -260,8 +260,8 @@ Dialog:DIALOG_JOBS(playerid, response, listitem, inputtext[]) {
 }
 
 CMD:jobs(playerid, params[]) {
-	if(!Iter_Count(ServerJobs)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu sunt job-uri disponibile pe server.");
-	if(Dialog_Opened(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
+	if(!Iter_Count(ServerJobs)) return SCM(playerid, COLOR_ERROR, eERROR"Nu sunt job-uri disponibile pe server.");
+	if(Dialog_Opened(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
 	new string[256] = "Job Name\tJob Level\tJob Legal\n", legal[24];
 	foreach(new i : ServerJobs) {
 		if(jobInfo[i][jobLegal] == 1) legal = "{43bf37}Yes{ffffff}";
@@ -273,10 +273,10 @@ CMD:jobs(playerid, params[]) {
 }
 
 CMD:getjob(playerid, params[]) {
-	if(!Iter_Count(ServerJobs)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu sunt job-uri disponibile pe server.");
-	if(playerInfo[playerid][pJob] != 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Ai deja un job, foloseste (/quitjob).");
+	if(!Iter_Count(ServerJobs)) return SCM(playerid, COLOR_ERROR, eERROR"Nu sunt job-uri disponibile pe server.");
+	if(playerInfo[playerid][pJob] != 0) return SCM(playerid, COLOR_ERROR, eERROR"Ai deja un job, foloseste (/quitjob).");
 	if(playerInfo[playerid][areaJob] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, jobInfo[playerInfo[playerid][areaJob]][jobX], jobInfo[playerInfo[playerid][areaJob]][jobY], jobInfo[playerInfo[playerid][areaJob]][jobZ])) {
-		if(playerInfo[playerid][pLevel] < jobInfo[playerInfo[playerid][areaJob]][jobLevel]) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai level-ul necesar pentru acest job.");
+		if(playerInfo[playerid][pLevel] < jobInfo[playerInfo[playerid][areaJob]][jobLevel]) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai level-ul necesar pentru acest job.");
 		playerInfo[playerid][pJob] = playerInfo[playerid][areaJob];
 		update("UPDATE `server_users` SET `Job` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pJob], playerInfo[playerid][pSQLID]);
 		SCM(playerid, COLOR_GREY, string_fast("* Job Notice: Acum ai jobul '%s'.", jobInfo[playerInfo[playerid][areaJob]][jobName]));
@@ -285,7 +285,7 @@ CMD:getjob(playerid, params[]) {
 }
 
 CMD:quitjob(playerid, params[]) {
-	if(playerInfo[playerid][pJob] == 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai un job, foloseste (/getjob).");
+	if(playerInfo[playerid][pJob] == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai un job, foloseste (/getjob).");
 	if(Working[playerid]) CancelJob(playerid, Working[playerid]);
 	playerInfo[playerid][pJob] = 0;
 	gQuery[0] = EOS;
@@ -296,11 +296,11 @@ CMD:quitjob(playerid, params[]) {
 }
 
 CMD:fish(playerid, params[]) {
-	if(playerInfo[playerid][pJob] != 1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai jobul 'Fisher'.");
-	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu poti pescui din vehicul.");
-	if(!IsPlayerInArea(playerid, 348, -2089, 411, -2074)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti in zona in care poti pescui.");
-	if(Fishing[playerid]) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Deja pescuiesti.");
-	if(FishWeight[playerid]) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Ai deja un peste prins.");
+	if(playerInfo[playerid][pJob] != 1) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai jobul 'Fisher'.");
+	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti pescui din vehicul.");
+	if(!IsPlayerInArea(playerid, 348, -2089, 411, -2074)) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti in zona in care poti pescui.");
+	if(Fishing[playerid]) return SCM(playerid, COLOR_ERROR, eERROR"Deja pescuiesti.");
+	if(FishWeight[playerid]) return SCM(playerid, COLOR_ERROR, eERROR"Ai deja un peste prins.");
 	new Float:x, Float:y, Float:z;
 	GetPlayerPos(playerid, x, y, z);
 	Fishing[playerid] = true;
@@ -328,29 +328,29 @@ CMD:skills(playerid, params[]) {
 }
 
 CMD:startwork(playerid, params[]) {
-	if(playerInfo[playerid][pJob] == 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai un job, foloseste (/getjob).");
-	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu poti lucra din vehicul.");
-	if(Working[playerid] != 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Deja lucrezi.");
-	if(playerInfo[playerid][pCheckpointID] != -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Ai deja un checkpoint, pe mini map.");
-	if(playerInfo[playerid][pDrivingLicense] <= 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai licenta de condus.");
-	if(playerInfo[playerid][pDrivingLicenseSuspend] > 0) return SCMf(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Ai licenta suspendata pentru %d ore.", playerInfo[playerid][pDrivingLicenseSuspend]);
+	if(playerInfo[playerid][pJob] == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai un job, foloseste (/getjob).");
+	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti lucra din vehicul.");
+	if(Working[playerid] != 0) return SCM(playerid, COLOR_ERROR, eERROR"Deja lucrezi.");
+	if(playerInfo[playerid][pCheckpointID] != -1) return SCM(playerid, COLOR_ERROR, eERROR"Ai deja un checkpoint, pe mini map.");
+	if(playerInfo[playerid][pDrivingLicense] <= 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai licenta de condus.");
+	if(playerInfo[playerid][pDrivingLicenseSuspend] > 0) return SCMf(playerid, COLOR_ERROR, eERROR"Ai licenta suspendata pentru %d ore.", playerInfo[playerid][pDrivingLicenseSuspend]);
 	new jobid = playerInfo[playerid][pJob];
 	switch(jobid) {
 		case 1: callcmd::fish(playerid, "\1");
 		case 2: {
-			if(!IsPlayerInRangeOfPoint(playerid, 5.5, jobInfo[jobid][jobXST], jobInfo[jobid][jobYST], jobInfo[jobid][jobZST])) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti la punctul de start work pentru jobul 'Trucker'.");
+			if(!IsPlayerInRangeOfPoint(playerid, 5.5, jobInfo[jobid][jobXST], jobInfo[jobid][jobYST], jobInfo[jobid][jobZST])) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti la punctul de start work pentru jobul 'Trucker'.");
 			jobWork(playerid, JOB_TRUCKER);
 		}
 		case 3: {
-			if(!IsPlayerInRangeOfPoint(playerid, 5.5, jobInfo[jobid][jobXST], jobInfo[jobid][jobYST], jobInfo[jobid][jobZST])) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti la punctul de start work pentru jobul 'Drugs Dealer'.");
+			if(!IsPlayerInRangeOfPoint(playerid, 5.5, jobInfo[jobid][jobXST], jobInfo[jobid][jobYST], jobInfo[jobid][jobZST])) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti la punctul de start work pentru jobul 'Drugs Dealer'.");
 			jobWork(playerid, JOB_DRUGSDEALER);
 		}
 		case 4: {
-			if(!IsPlayerInRangeOfPoint(playerid, 5.5, jobInfo[jobid][jobXST], jobInfo[jobid][jobYST], jobInfo[jobid][jobZST])) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti la punctul de start work pentru jobul 'Arms Dealer'.");
+			if(!IsPlayerInRangeOfPoint(playerid, 5.5, jobInfo[jobid][jobXST], jobInfo[jobid][jobYST], jobInfo[jobid][jobZST])) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti la punctul de start work pentru jobul 'Arms Dealer'.");
 			jobWork(playerid, JOB_ARMSDEALER);
 		}
 		case 5: {
-			if(!IsPlayerInRangeOfPoint(playerid, 5.5, jobInfo[jobid][jobXST], jobInfo[jobid][jobYST], jobInfo[jobid][jobZST])) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti la punctul de start work pentru jobul 'Carpenter'.");
+			if(!IsPlayerInRangeOfPoint(playerid, 5.5, jobInfo[jobid][jobXST], jobInfo[jobid][jobYST], jobInfo[jobid][jobZST])) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti la punctul de start work pentru jobul 'Carpenter'.");
 			jobWork(playerid, JOB_CARPENTER);			
 		}
 	}
@@ -358,8 +358,8 @@ CMD:startwork(playerid, params[]) {
 }
 
 CMD:usedrugs(playerid, params[]) {
-	if(playerInfo[playerid][pDrugs] == 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai droguri.");
-	if(UsingDrugs[playerid] == 1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Deja te droghezi.");
+	if(playerInfo[playerid][pDrugs] == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai droguri.");
+	if(UsingDrugs[playerid] == 1) return SCM(playerid, COLOR_ERROR, eERROR"Deja te droghezi.");
 	playerInfo[playerid][pDrugs] --;
 	UsingDrugs[playerid] = 1;
 	update("UPDATE `server_users` SET `Drugs` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pDrugs], playerInfo[playerid][pSQLID]);
@@ -438,7 +438,7 @@ hook OnPlayerEnterCheckpoint(playerid) {
 			update("UPDATE `server_users` SET `ArmsSkill` = '%d', `ArmsTimes` = '%d', `Mats` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pArmsSkill], playerInfo[playerid][pArmsTimes], playerInfo[playerid][pMats], playerInfo[playerid][pSQLID]);
 		}
 		case CHECKPOINT_TRUCKERSF: {
-			if(!IsTrailerAttachedToVehicle(JobVehicle[playerid])) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai atasata remorca de tir.");
+			if(!IsTrailerAttachedToVehicle(JobVehicle[playerid])) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai atasata remorca de tir.");
 			JobMoney[playerid] = (playerInfo[playerid][pTruckSkill] * 35000) + random(15000);
 			playerInfo[playerid][pCheckpoint] = CHECKPOINT_NONE;
 			playerInfo[playerid][pCheckpointID] = -1;
@@ -458,7 +458,7 @@ hook OnPlayerEnterCheckpoint(playerid) {
 			Dialog_Show(playerid, TRUCKER_SELECTTWO, DIALOG_STYLE_LIST, "JOB: Trucker", "Los Santos Airport\nLas Venturas", "Select", "Cancel");
 		}
 		case CHECKPOINT_TRUCKERLV: {
-			if(!IsTrailerAttachedToVehicle(JobVehicle[playerid])) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai atasata remorca de tir.");
+			if(!IsTrailerAttachedToVehicle(JobVehicle[playerid])) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai atasata remorca de tir.");
 			JobMoney[playerid] = (playerInfo[playerid][pTruckSkill] * 35000) + random(15000);
 			playerInfo[playerid][pCheckpoint] = CHECKPOINT_NONE;
 			playerInfo[playerid][pCheckpointID] = -1;
@@ -478,7 +478,7 @@ hook OnPlayerEnterCheckpoint(playerid) {
 			Dialog_Show(playerid, TRUCKER_SELECTTHREE, DIALOG_STYLE_LIST, "JOB: Trucker", "San Fierro Airport\nLos Santos", "Select", "Cancel");
 		}
 		case CHECKPOINT_TRUCKERLS: {
-			if(!IsTrailerAttachedToVehicle(JobVehicle[playerid])) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai atasata remorca de tir.");
+			if(!IsTrailerAttachedToVehicle(JobVehicle[playerid])) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai atasata remorca de tir.");
 			JobMoney[playerid] = (playerInfo[playerid][pTruckSkill] * 35000) + random(15000);
 			playerInfo[playerid][pCheckpoint] = CHECKPOINT_NONE;
 			playerInfo[playerid][pCheckpointID] = -1;

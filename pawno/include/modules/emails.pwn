@@ -49,16 +49,16 @@ Dialog:DIALOG_EMAILS2(playerid, response, listitem) {
 }
 
 CMD:emails(playerid, params[]) {
-	if(Dialog_Opened(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu poti face acest lucru deoarece ai un dialog afisat.");
+	if(Dialog_Opened(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti face acest lucru deoarece ai un dialog afisat.");
 	mysql_tquery(SQL, string_fast("SELECT * FROM `panel_notifications` WHERE `UserID`='%d' ORDER BY `ID` DESC LIMIT 10", playerInfo[playerid][pSQLID]), "ShowEmails", "d", playerid);
 	return true;
 }
 
 CMD:insertemail(playerid, params[], help) {
-	if(playerInfo[playerid][pAdmin] < 6) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai acces la aceasta comanda.");
+	if(playerInfo[playerid][pAdmin] < 6) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 	extract params -> new player:userID, string:text[144]; else return sendPlayerSyntax(playerid, "/insertemail <name/id> <text>");
-	if(!isPlayerLogged(userID)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Acel player nu este connectat.");
-	if(strlen(text) < 1 || strlen(text) > 144) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Invalid text, min. 1 caracter max. 144 caractere");
+	if(!isPlayerLogged(userID)) return SCM(playerid, COLOR_ERROR, eERROR"Acel player nu este connectat.");
+	if(strlen(text) < 1 || strlen(text) > 144) return SCM(playerid, COLOR_ERROR, eERROR"Invalid text, min. 1 caracter max. 144 caractere");
 	InsertEmail(userID, getName(playerid), text, 0);
 	SCMf(playerid, COLOR_SERVER, "* Ai trimis un email catre %s (%d, %d sqlid) text '%s'.", getName(userID), userID, playerInfo[userID][pSQLID], text);
 	return true;

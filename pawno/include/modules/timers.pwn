@@ -274,7 +274,7 @@ timer ExpirationReport[120000](id) {
 	gQuery[0] = (EOS);
 	mysql_format(SQL, gQuery, sizeof gQuery, "SELECT * FROM `server_labels` WHERE `ID`='%d'", labelInfo[label_id][labelSQLID]);
 	inline getText() {
-		if(!cache_num_rows()) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu s-au gasit randuri in baza de date.");
+		if(!cache_num_rows()) return SCM(playerid, COLOR_ERROR, eERROR"Nu s-au gasit randuri in baza de date.");
 		cache_get_value_name(0, "Text", labelInfo[label_id][labelText], 128);
 		labelInfo[label_id][labelID] = CreateDynamic3DTextLabel(labelInfo[label_id][labelText], -1, labelInfo[label_id][labelX], labelInfo[label_id][labelY], labelInfo[label_id][labelZ],  25.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, labelInfo[label_id][labelVirtualWorld], labelInfo[label_id][labelInterior]);
 		SCM(playerid, COLOR_SERVER, string_fast("* Notice Label: Ai creat un 3D Text Label (id: %d, sqlid: %d, worldid: %d, interior: %d)", labelInfo[label_id][labelID], labelInfo[label_id][labelSQLID], labelInfo[label_id][labelVirtualWorld], labelInfo[label_id][labelInterior]));

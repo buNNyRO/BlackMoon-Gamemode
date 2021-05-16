@@ -55,14 +55,14 @@ function LoadClans() {
 }
 
 CMD:cinvite(playerid, params[]) {
-	if(!playerInfo[playerid][pClan]) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti intr-un clan pentru a face acest lucru.");
-	if(playerInfo[playerid][pClanRank] < 5) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai rank-ul 5+ pentru a face acest lucru.");
-	if(clanInfo[playerInfo[playerid][pClan]][cTotal] == clanInfo[playerInfo[playerid][pClan]][cSlots]) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu poti invita membrii in clan deoarece nu mai sunt locuri libere.");
+	if(!playerInfo[playerid][pClan]) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti intr-un clan pentru a face acest lucru.");
+	if(playerInfo[playerid][pClanRank] < 5) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai rank-ul 5+ pentru a face acest lucru.");
+	if(clanInfo[playerInfo[playerid][pClan]][cTotal] == clanInfo[playerInfo[playerid][pClan]][cSlots]) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti invita membrii in clan deoarece nu mai sunt locuri libere.");
 	extract params -> new player:userID, string:reason[32]; else return sendPlayerSyntax(playerid, "/cinvite <name/id> <reason>");
-	if(userID == playerid) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu poti folosi comanda asupra ta.");
-	if(!isPlayerLogged(userID)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Acel jucator nu este connectat.");
-	if(!ProxDetectorS(5.0, playerid, userID)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti langa acel jucator.");
-	if(strlen(reason) < 1 || strlen(reason) > 32) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Invalid reason, min. 1 caracter max. 32 caractere.");
+	if(userID == playerid) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi comanda asupra ta.");
+	if(!isPlayerLogged(userID)) return SCM(playerid, COLOR_ERROR, eERROR"Acel jucator nu este connectat.");
+	if(!ProxDetectorS(5.0, playerid, userID)) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti langa acel jucator.");
+	if(strlen(reason) < 1 || strlen(reason) > 32) return SCM(playerid, COLOR_ERROR, eERROR"Invalid reason, min. 1 caracter max. 32 caractere.");
 	SCM(playerid, COLOR_GOLD, string_fast("* (Clan): L-ai invitat pe %s (%d) in clanul tau pe motiv: %s.", getName(userID), userID, reason));
 	SCM(userID, COLOR_GOLD, string_fast("* (Clan): Ai fost invitat de %s (%d) in clanul sau pe motiv: %s.", getName(playerid), playerid, reason));
 	clanInvitedBy[playerid] = userID;
@@ -71,8 +71,8 @@ CMD:cinvite(playerid, params[]) {
 }
 
 CMD:clanchat(playerid, params[]) {
-	if(playerInfo[playerid][pClan] == 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti intr-un clan pentru a face acest lucru.");
-	if(clanChat[playerInfo[playerid][pClan]] == 1 && playerInfo[playerid][pClanRank] < 6) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Chatul clanului a fost oprit.");
+	if(playerInfo[playerid][pClan] == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti intr-un clan pentru a face acest lucru.");
+	if(clanChat[playerInfo[playerid][pClan]] == 1 && playerInfo[playerid][pClanRank] < 6) return SCM(playerid, COLOR_ERROR, eERROR"Chatul clanului a fost oprit.");
 	extract params -> new string:result[144]; else return sendPlayerSyntax(playerid, "/clanchat <text>");
 	if(faceReclama(result)) return removeFunction(playerid, result);
     if(faceReclama(result)) return Reclama(playerid, result);	
@@ -89,8 +89,8 @@ CMD:clanchat(playerid, params[]) {
 }
 
 CMD:leaveclan(playerid, params[]) {
-	if(playerInfo[playerid][pClan] == 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti intr-un clan pentru a face acest lucru.");
-	if(playerInfo[playerid][pClanRank] == 7) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu poti iesi din clan, deoarece ai rank 7.");
+	if(playerInfo[playerid][pClan] == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti intr-un clan pentru a face acest lucru.");
+	if(playerInfo[playerid][pClanRank] == 7) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti iesi din clan, deoarece ai rank 7.");
 	sendClanMessage(playerInfo[playerid][pClan], clanInfo[playerInfo[playerid][pClan]][cClanColor], "* [CLAN] %s a iesit din clan.", getName(playerid));
 	SCM(playerid, COLOR_GOLD, "* (Clan): Ai iesit din clan.");
 	Iter_Remove(TotalClanMembers, playerid);
@@ -103,7 +103,7 @@ CMD:leaveclan(playerid, params[]) {
 }
 
 CMD:clan(playerid, params[]) {
-	if(playerInfo[playerid][pClan] == 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti intr-un clan pentru a face acest lucru.");
+	if(playerInfo[playerid][pClan] == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti intr-un clan pentru a face acest lucru.");
 	Dialog_Show(playerid, DIALOG_CLAN, DIALOG_STYLE_LIST, "Clan Menu", "Comenzile Clanului\nMembrii clanului\nTag\nSetari", "Select", "Close");
 	return true;
 }

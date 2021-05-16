@@ -392,7 +392,7 @@ public OnPlayerText(playerid, text[]) {
 		return 0;
 	}
 	if(playerInfo[playerid][pMute] > gettime()) {
-		SCMf(playerid, COLOR_LIGHTRED, "[ERROR] {FFFFFF}Ai mute pentru inca %s.", secinmin(playerInfo[playerid][pMute]-gettime()));
+		SCMf(playerid, COLOR_LIGHTRED, eERROR"Ai mute pentru inca %s.", secinmin(playerInfo[playerid][pMute]-gettime()));
 		return 0;
 	}
 	if(playerInfo[playerid][pTalkingLive] != -1) {
@@ -415,21 +415,21 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 	{
 		if(playerInfo[playerid][pFlyLicense] == 0 && isPlane(vehicleid))
 		{
-			SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai licenta de pilot.");
+			SCM(playerid, COLOR_ERROR, eERROR"Nu ai licenta de pilot.");
 			ClearAnimations(playerid);
 			return true;
 		}
 
 		if(playerInfo[playerid][pBoatLicense] == 0 && isBoat(vehicleid))
 		{
-			SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai licenta de navigatie.");
+			SCM(playerid, COLOR_ERROR, eERROR"Nu ai licenta de navigatie.");
 			ClearAnimations(playerid);
 			return true;
 		}
 
 		if(playerInfo[playerid][pDrivingLicense] == 0 && !isBike(vehicleid) && !isBoat(vehicleid) && !isPlane(vehicleid) && vehicleid != playerInfo[playerid][pExamenVehicle])
 		{
-			SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai licenta de condus.");
+			SCM(playerid, COLOR_ERROR, eERROR"Nu ai licenta de condus.");
 			ClearAnimations(playerid);
 			return true;
 		}
@@ -558,8 +558,8 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
     	}
 
 		if(playerInfo[playerid][areaHouse] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, bizInfo[playerInfo[playerid][areaHouse]][bizExtX], bizInfo[playerInfo[playerid][areaHouse]][bizExtY], bizInfo[playerInfo[playerid][areaHouse]][bizExtZ])) {
-			if(houseInfo[playerInfo[playerid][areaHouse]][hLocked] == 1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Acesta casa, este inchisa.");
-			if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Esti intr-un vehicul.");
+			if(houseInfo[playerInfo[playerid][areaHouse]][hLocked] == 1) return SCM(playerid, COLOR_ERROR, eERROR"Acesta casa, este inchisa.");
+			if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Esti intr-un vehicul.");
 			SetPlayerPos(playerid, houseInfo[playerInfo[playerid][areaHouse]][hX], houseInfo[playerInfo[playerid][areaHouse]][hY], houseInfo[playerInfo[playerid][areaHouse]][hZ]);
 			SetPlayerInterior(playerid, houseInfo[playerInfo[playerid][areaHouse]][hInterior]);
 			SetPlayerVirtualWorld(playerid, houseInfo[playerInfo[playerid][areaHouse]][hID]);
@@ -577,7 +577,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 		}
 
 		if(playerInfo[playerid][areaFaction] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, factionInfo[playerInfo[playerid][areaFaction]][fEnterX],factionInfo[playerInfo[playerid][areaFaction]][fEnterY], factionInfo[playerInfo[playerid][areaFaction]][fEnterZ])) {
-			if(playerInfo[playerid][pFaction] != playerInfo[playerid][areaFaction] && factionInfo[playerInfo[playerid][areaFaction]][fLocked]) return SCMf(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu faci parte din factiunea %s.", factionName(playerInfo[playerid][areaFaction]));						
+			if(playerInfo[playerid][pFaction] != playerInfo[playerid][areaFaction] && factionInfo[playerInfo[playerid][areaFaction]][fLocked]) return SCMf(playerid, COLOR_ERROR, eERROR"Nu faci parte din factiunea %s.", factionName(playerInfo[playerid][areaFaction]));						
 			SetPlayerPos(playerid, factionInfo[playerInfo[playerid][areaFaction]][fExitX], factionInfo[playerInfo[playerid][areaFaction]][fExitY], factionInfo[playerInfo[playerid][areaFaction]][fExitZ]);
 			SetPlayerInterior(playerid, factionInfo[playerInfo[playerid][areaFaction]][fInterior]);
 			SetPlayerVirtualWorld(playerid, factionInfo[playerInfo[playerid][areaFaction]][fID]);
@@ -731,21 +731,21 @@ public OnPlayerStateChange(playerid, newstate, oldstate) {
 		new vehicleid = playerInfo[playerid][pinVehicle] = GetPlayerVehicleID(playerid);
 		if(playerInfo[playerid][pFlyLicense] == 0 && isPlane(vehicleid))
 		{
-			SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai licenta de pilot.");
+			SCM(playerid, COLOR_ERROR, eERROR"Nu ai licenta de pilot.");
 			ClearAnimations(playerid);
 			return true;
 		}
 
 		if(playerInfo[playerid][pBoatLicense] == 0 && isBoat(vehicleid))
 		{
-			SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai licenta de navigatie.");
+			SCM(playerid, COLOR_ERROR, eERROR"Nu ai licenta de navigatie.");
 			ClearAnimations(playerid);
 			return true;
 		}
 
 		if(playerInfo[playerid][pDrivingLicense] == 0 && !isBike(vehicleid) && !isBoat(vehicleid) && !isPlane(vehicleid) && vehicleid != playerInfo[playerid][pExamenVehicle])
 		{
-			SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai licenta de condus.");
+			SCM(playerid, COLOR_ERROR, eERROR"Nu ai licenta de condus.");
 			ClearAnimations(playerid);
 			return true;
 		}

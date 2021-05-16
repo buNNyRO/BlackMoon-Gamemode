@@ -147,8 +147,8 @@ Dialog:MY_GARAGE_SPAWNED(playerid, response, listitem) {
 			return Dialog_Show(playerid, 0, DIALOG_STYLE_MSGBOX, "SERVER: Car Information", gString, "Close", "");		
 		}
 		case 1: {
-			if(personalVehicle[id][pvSpawnedID] == INVALID_VEHICLE_ID) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Vehiculul nu este spawnat.");
-			if(playerInfo[playerid][pCheckpointID] != -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Ai deja un checkpoint, pe mini map.");
+			if(personalVehicle[id][pvSpawnedID] == INVALID_VEHICLE_ID) return SCM(playerid, COLOR_ERROR, eERROR"Vehiculul nu este spawnat.");
+			if(playerInfo[playerid][pCheckpointID] != -1) return SCM(playerid, COLOR_ERROR, eERROR"Ai deja un checkpoint, pe mini map.");
 			new Float:x, Float:y, Float:z;
 			GetVehiclePos(personalVehicle[id][pvSpawnedID], x, y, z);
 			new zone[32];
@@ -160,10 +160,10 @@ Dialog:MY_GARAGE_SPAWNED(playerid, response, listitem) {
 			SetPlayerCheckpoint(playerid, x, y, z, 4.0);
 		}
 		case 2: {
-			if(personalVehicle[id][pvSpawnedID] == INVALID_VEHICLE_ID) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Vehiculul nu este spawnat.");
-			if(getVehicleHealth(personalVehicle[id][pvSpawnedID]) < 250.1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Vehiculul este pe cale sa bubuie.");
-			if(IsVehicleOccupied(personalVehicle[id][pvSpawnedID])) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Vehiculul este ocupat in acest moment.");
-			if(GetPlayerCash(playerid) < 1000) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai $1,000 pentru a remorca vehiculul.");
+			if(personalVehicle[id][pvSpawnedID] == INVALID_VEHICLE_ID) return SCM(playerid, COLOR_ERROR, eERROR"Vehiculul nu este spawnat.");
+			if(getVehicleHealth(personalVehicle[id][pvSpawnedID]) < 250.1) return SCM(playerid, COLOR_ERROR, eERROR"Vehiculul este pe cale sa bubuie.");
+			if(IsVehicleOccupied(personalVehicle[id][pvSpawnedID])) return SCM(playerid, COLOR_ERROR, eERROR"Vehiculul este ocupat in acest moment.");
+			if(GetPlayerCash(playerid) < 1000) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai $1,000 pentru a remorca vehiculul.");
 			SetVehiclePos(personalVehicle[id][pvSpawnedID], personalVehicle[id][pvX], personalVehicle[id][pvY], personalVehicle[id][pvZ]);
 			SetVehicleVirtualWorld(personalVehicle[id][pvSpawnedID], personalVehicle[id][pvVirtualWorld]);
 			LinkVehicleToInterior(personalVehicle[id][pvSpawnedID], personalVehicle[id][pvInterior]);
@@ -175,9 +175,9 @@ Dialog:MY_GARAGE_SPAWNED(playerid, response, listitem) {
 			SCM(playerid, COLOR_GREY, string_fast("Vehiculul tau %s, a fost remorcat pentru $1,000.", getVehicleName(personalVehicle[id][pvModelID])));
 		}
 		case 3: {
-			if(personalVehicle[id][pvSpawnedID] == INVALID_VEHICLE_ID) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Vehiculul nu este spawnat.");
-			if(getVehicleHealth(personalVehicle[id][pvSpawnedID]) < 250.1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Vehiculul este pe cale sa bubuie.");
-			if(IsVehicleOccupied(personalVehicle[id][pvSpawnedID])) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Vehiculul este ocupat in acest moment.");
+			if(personalVehicle[id][pvSpawnedID] == INVALID_VEHICLE_ID) return SCM(playerid, COLOR_ERROR, eERROR"Vehiculul nu este spawnat.");
+			if(getVehicleHealth(personalVehicle[id][pvSpawnedID]) < 250.1) return SCM(playerid, COLOR_ERROR, eERROR"Vehiculul este pe cale sa bubuie.");
+			if(IsVehicleOccupied(personalVehicle[id][pvSpawnedID])) return SCM(playerid, COLOR_ERROR, eERROR"Vehiculul este ocupat in acest moment.");
 			personalVehicle[id][pvDespawnTime] = 0;
 			vehicle_engine[personalVehicle[id][pvSpawnedID]] = false;
 			vehicle_lights[personalVehicle[id][pvSpawnedID]] = false;
@@ -201,13 +201,13 @@ Dialog:MY_GARAGE_SPAWNED(playerid, response, listitem) {
 			SCM(playerid, COLOR_GREY, string_fast("Vehiculul tau %s, a fost despawnat.", getVehicleName(personalVehicle[id][pvModelID])));
 		}
 		case 4: {
-			if(personalVehicle[id][pvSpawnedID] == INVALID_VEHICLE_ID) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Vehiculul nu este spawnat.");
-			if(getVehicleHealth(personalVehicle[id][pvSpawnedID]) < 250.1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Vehiculul este pe cale sa bubuie.");
-			if(IsVehicleOccupied(personalVehicle[id][pvSpawnedID])) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Vehiculul este ocupat in acest moment.");
-			if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Ai deja un checkpoint, pe mini map.");
+			if(personalVehicle[id][pvSpawnedID] == INVALID_VEHICLE_ID) return SCM(playerid, COLOR_ERROR, eERROR"Vehiculul nu este spawnat.");
+			if(getVehicleHealth(personalVehicle[id][pvSpawnedID]) < 250.1) return SCM(playerid, COLOR_ERROR, eERROR"Vehiculul este pe cale sa bubuie.");
+			if(IsVehicleOccupied(personalVehicle[id][pvSpawnedID])) return SCM(playerid, COLOR_ERROR, eERROR"Vehiculul este ocupat in acest moment.");
+			if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) return SCM(playerid, COLOR_ERROR, eERROR"Ai deja un checkpoint, pe mini map.");
 			new Float:x, Float:y, Float:z;
 			GetVehiclePos(personalVehicle[id][pvSpawnedID], x, y, z);		
-			if(!IsPlayerInRangeOfPoint(playerid, 75.0, x, y, z)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Trebuie sa te afli la o distanta de 75m de vehicul.");	
+			if(!IsPlayerInRangeOfPoint(playerid, 75.0, x, y, z)) return SCM(playerid, COLOR_ERROR, eERROR"Trebuie sa te afli la o distanta de 75m de vehicul.");	
 			new rand = random(5);
 			SetVehiclePos(personalVehicle[id][pvSpawnedID], DebugVehicles[rand][0], DebugVehicles[rand][1], DebugVehicles[rand][2]);
 			SetVehicleZAngle(personalVehicle[id][pvSpawnedID], DebugVehicles[rand][3]);
@@ -236,10 +236,10 @@ Dialog:MY_GARAGE_SPAWNED(playerid, response, listitem) {
 
 Dialog:BUY_INSURANCE(playerid, response) {
 	if(!response) return true;
-	if(GetPlayerState(playerid) != PLAYER_STATE_DRIVER || !Iter_Contains(PlayerVehicles[playerid], vehicle_personal[GetPlayerVehicleID(playerid)])) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu te afli intr-un vehicul.");
+	if(GetPlayerState(playerid) != PLAYER_STATE_DRIVER || !Iter_Contains(PlayerVehicles[playerid], vehicle_personal[GetPlayerVehicleID(playerid)])) return SCM(playerid, COLOR_ERROR, eERROR"Nu te afli intr-un vehicul.");
 	new id = vehicle_personal[GetPlayerVehicleID(playerid)];
-	if(GetPlayerCash(playerid) < getInsurancePrice(floatround(personalVehicle[id][pvOdometer]), personalVehicle[id][pvAge])) return SCMf(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai $%s pentru a plati asigurarea.", formatNumber(getInsurancePrice(floatround(personalVehicle[id][pvOdometer]), personalVehicle[id][pvAge])));
-	if(personalVehicle[id][pvInsurancePoints] >= 5) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Vehiculul tau are deja mai mult sau egal cu 5 puncte de asigurare");
+	if(GetPlayerCash(playerid) < getInsurancePrice(floatround(personalVehicle[id][pvOdometer]), personalVehicle[id][pvAge])) return SCMf(playerid, COLOR_ERROR, eERROR"Nu ai $%s pentru a plati asigurarea.", formatNumber(getInsurancePrice(floatround(personalVehicle[id][pvOdometer]), personalVehicle[id][pvAge])));
+	if(personalVehicle[id][pvInsurancePoints] >= 5) return SCM(playerid, COLOR_ERROR, eERROR"Vehiculul tau are deja mai mult sau egal cu 5 puncte de asigurare");
 	personalVehicle[id][pvInsurancePoints] ++;
 	update("UPDATE `server_personal_vehicles` SET `InsurancePoints` = '%d' WHERE `ID`='%d'", personalVehicle[id][pvInsurancePoints], personalVehicle[id][pvID]);
 	SCM(playerid, COLOR_GREY, string_fast("* Notice Buy Insurance Points: Ai cumparat un punct de asigurare pentru $%s.", formatNumber(getInsurancePrice(floatround(personalVehicle[id][pvOdometer]), personalVehicle[id][pvAge]))));
@@ -519,7 +519,7 @@ CMD:lock(playerid, params[]) {
 		GetVehiclePos(vehicleid, x, y, z);
 		if(!IsPlayerInRangeOfPoint(playerid, 7.5, x, y, z)) return true;
 	}
-	if(vehicle_personal[vehicleid] == -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Acest vehicul nu este unul personal.");
+	if(vehicle_personal[vehicleid] == -1) return SCM(playerid, COLOR_ERROR, eERROR"Acest vehicul nu este unul personal.");
 	new engine, lights, alarm, doors, bonnet, boot, objective, id = vehicle_personal[vehicleid];
 	if(personalVehicle[id][pvLock] == 0) {
 		GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
@@ -538,8 +538,8 @@ CMD:lock(playerid, params[]) {
 }
 
 CMD:swapcolors(playerid, params[]) {
-	if(!IsPlayerInAnyVehicle(playerid) || GetPlayerState(playerid) != PLAYER_STATE_DRIVER || !Iter_Contains(PlayerVehicles[playerid], vehicle_personal[GetPlayerVehicleID(playerid)])) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu te afli intr-un vehicul.");
-	if(GetPlayerCash(playerid) < 2000) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai $2,000.");
+	if(!IsPlayerInAnyVehicle(playerid) || GetPlayerState(playerid) != PLAYER_STATE_DRIVER || !Iter_Contains(PlayerVehicles[playerid], vehicle_personal[GetPlayerVehicleID(playerid)])) return SCM(playerid, COLOR_ERROR, eERROR"Nu te afli intr-un vehicul.");
+	if(GetPlayerCash(playerid) < 2000) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai $2,000.");
 	new id = vehicle_personal[GetPlayerVehicleID(playerid)], color = personalVehicle[id][pvColorOne];
 	personalVehicle[id][pvColorOne] = personalVehicle[id][pvColorTwo];
 	personalVehicle[id][pvColorTwo] = color;
@@ -552,16 +552,16 @@ CMD:swapcolors(playerid, params[]) {
 }
 
 CMD:buyinsurance(playerid, params[]) {
-	if(GetPlayerState(playerid) != PLAYER_STATE_DRIVER || !Iter_Contains(PlayerVehicles[playerid], vehicle_personal[GetPlayerVehicleID(playerid)])) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu te afli intr-un vehicul.");
-	if(personalVehicle[vehicle_personal[GetPlayerVehicleID(playerid)]][pvInsurancePoints] >= 5) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Vehiculul tau are deja mai mult sau egal cu 5 puncte de asigurare");
+	if(GetPlayerState(playerid) != PLAYER_STATE_DRIVER || !Iter_Contains(PlayerVehicles[playerid], vehicle_personal[GetPlayerVehicleID(playerid)])) return SCM(playerid, COLOR_ERROR, eERROR"Nu te afli intr-un vehicul.");
+	if(personalVehicle[vehicle_personal[GetPlayerVehicleID(playerid)]][pvInsurancePoints] >= 5) return SCM(playerid, COLOR_ERROR, eERROR"Vehiculul tau are deja mai mult sau egal cu 5 puncte de asigurare");
 	Dialog_Show(playerid, BUY_INSURANCE, DIALOG_STYLE_MSGBOX, "SERVER: Buy Insurance", "Esti sigur ca doresti sa cumperi un punct de asigurare pentru $%s?", "Da", "Nu", formatNumber(getInsurancePrice(floatround(personalVehicle[vehicle_personal[GetPlayerVehicleID(playerid)]][pvOdometer]), personalVehicle[vehicle_personal[GetPlayerVehicleID(playerid)]][pvAge])));
 	return true;
 }
 
 CMD:carplate(playerid, params[]) {
-	if(!IsPlayerInAnyVehicle(playerid) || GetPlayerState(playerid) != PLAYER_STATE_DRIVER || !Iter_Contains(PlayerVehicles[playerid], vehicle_personal[GetPlayerVehicleID(playerid)])) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu te afli intr-un vehicul.");
+	if(!IsPlayerInAnyVehicle(playerid) || GetPlayerState(playerid) != PLAYER_STATE_DRIVER || !Iter_Contains(PlayerVehicles[playerid], vehicle_personal[GetPlayerVehicleID(playerid)])) return SCM(playerid, COLOR_ERROR, eERROR"Nu te afli intr-un vehicul.");
 	if(isnull(params) || strlen(params) > 12) return sendPlayerSyntax(playerid, "/carplate <plate>");
-	if(GetPlayerCash(playerid) < 4000) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai $4,000.");
+	if(GetPlayerCash(playerid) < 4000) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai $4,000.");
 	new vehicleid = GetPlayerVehicleID(playerid);
 	format(personalVehicle[vehicle_personal[vehicleid]][pvCarPlate], 12, params);
 	update("UPDATE `server_personal_vehicles` SET `CarPlate` = '%s' WHERE `ID`='%d'", personalVehicle[vehicle_personal[vehicleid]][pvCarPlate], personalVehicle[vehicle_personal[vehicleid]][pvID]);
@@ -574,16 +574,16 @@ CMD:carplate(playerid, params[]) {
 }
 
 CMD:carcolor(playerid, params[]) {
-	if(!IsPlayerInAnyVehicle(playerid) || GetPlayerState(playerid) != PLAYER_STATE_DRIVER || !Iter_Contains(PlayerVehicles[playerid], vehicle_personal[GetPlayerVehicleID(playerid)])) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu te afli intr-un vehicul.");
-	if(!Iter_Contains(PlayerVehicles[playerid], vehicle_personal[GetPlayerVehicleID(playerid)])) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Acest vehicul nu iti apartine.");
-	if(GetPlayerCash(playerid) < 2000) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai $2,000.");
+	if(!IsPlayerInAnyVehicle(playerid) || GetPlayerState(playerid) != PLAYER_STATE_DRIVER || !Iter_Contains(PlayerVehicles[playerid], vehicle_personal[GetPlayerVehicleID(playerid)])) return SCM(playerid, COLOR_ERROR, eERROR"Nu te afli intr-un vehicul.");
+	if(!Iter_Contains(PlayerVehicles[playerid], vehicle_personal[GetPlayerVehicleID(playerid)])) return SCM(playerid, COLOR_ERROR, eERROR"Acest vehicul nu iti apartine.");
+	if(GetPlayerCash(playerid) < 2000) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai $2,000.");
 	new firstColor, secondColor;
 	if(sscanf(params, "dd", firstColor, secondColor)) return sendPlayerSyntax(playerid, "/carcolor <first color> <second color>");
-	if(firstColor < 0 || firstColor > 255) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Culoarea principala, nu este valida.");
-	if(secondColor < 0 || secondColor > 255) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Culoarea secundara, nu este valida.");
+	if(firstColor < 0 || firstColor > 255) return SCM(playerid, COLOR_ERROR, eERROR"Culoarea principala, nu este valida.");
+	if(secondColor < 0 || secondColor > 255) return SCM(playerid, COLOR_ERROR, eERROR"Culoarea secundara, nu este valida.");
 	new id = vehicle_personal[GetPlayerVehicleID(playerid)];
-	if(personalVehicle[id][pvColorOne] == firstColor) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Culoarea principala este deja pe vehiculul tau.");
-	if(personalVehicle[id][pvColorTwo] == secondColor) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Culoarea secundara este deja pe vehiculul tau.");
+	if(personalVehicle[id][pvColorOne] == firstColor) return SCM(playerid, COLOR_ERROR, eERROR"Culoarea principala este deja pe vehiculul tau.");
+	if(personalVehicle[id][pvColorTwo] == secondColor) return SCM(playerid, COLOR_ERROR, eERROR"Culoarea secundara este deja pe vehiculul tau.");
 	personalVehicle[id][pvColorOne] = firstColor;
 	personalVehicle[id][pvColorTwo] = secondColor;
 	update("UPDATE `server_personal_vehicles` SET `ColorOne` = '%d', `ColorTwo` = '%d' WHERE `ID`='%d'", firstColor, secondColor, personalVehicle[id][pvID]);
@@ -595,15 +595,15 @@ CMD:carcolor(playerid, params[]) {
 }
 
 CMD:park(playerid, params[]) {
-	if(GetPlayerState(playerid) != PLAYER_STATE_DRIVER) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu te afli intr-un vehicul ca sofer.");
-	if(IsPlayerInRangeOfPoint(playerid, 50.0, 1310.1444, -1369.5681, 13.5640)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu poti parca masina in zona spawnului.");
+	if(GetPlayerState(playerid) != PLAYER_STATE_DRIVER) return SCM(playerid, COLOR_ERROR, eERROR"Nu te afli intr-un vehicul ca sofer.");
+	if(IsPlayerInRangeOfPoint(playerid, 50.0, 1310.1444, -1369.5681, 13.5640)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti parca masina in zona spawnului.");
 	new vehicleid = GetPlayerVehicleID(playerid);
-	if(getVehicleSpeed(vehicleid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu poti parca un vehicul ce se afla in deplasare.");
-	if(vehicle_personal[vehicleid] == -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu te afli intr-un vehicul personal.");
+	if(getVehicleSpeed(vehicleid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti parca un vehicul ce se afla in deplasare.");
+	if(vehicle_personal[vehicleid] == -1) return SCM(playerid, COLOR_ERROR, eERROR"Nu te afli intr-un vehicul personal.");
 	new id = vehicle_personal[vehicleid];
-	if(personalVehicle[id][pvOwnerID] != playerInfo[playerid][pSQLID])  return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Acest vehicul nu iti apartine.");
+	if(personalVehicle[id][pvOwnerID] != playerInfo[playerid][pSQLID])  return SCM(playerid, COLOR_ERROR, eERROR"Acest vehicul nu iti apartine.");
 	GetVehicleHealth(vehicleid, personalVehicle[id][pvHealth]);
-	if(personalVehicle[id][pvHealth] < 400.0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Acest vehicul este prea avariat.");
+	if(personalVehicle[id][pvHealth] < 400.0) return SCM(playerid, COLOR_ERROR, eERROR"Acest vehicul este prea avariat.");
 	GetVehicleDamageStatus(vehicleid, personalVehicle[id][pvDamagePanels], personalVehicle[id][pvDamageDoors], personalVehicle[id][pvDamageLights], personalVehicle[id][pvDamageTires]);
 	GetVehiclePos(vehicleid, personalVehicle[id][pvX], personalVehicle[id][pvY], personalVehicle[id][pvZ]);
 	GetVehicleZAngle(vehicleid, personalVehicle[id][pvAngle]);
@@ -640,11 +640,11 @@ CMD:park(playerid, params[]) {
 }
 
 CMD:vehicles(playerid, params[]) {
-	if(!Iter_Count(PlayerVehicles[playerid])) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai nici un vehicul personal.");
+	if(!Iter_Count(PlayerVehicles[playerid])) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai nici un vehicul personal.");
 	new count = 0;
 	gString[0] = (EOS);
 	foreach(new i : PlayerVehicles[playerid]) {
-		if(personalVehicle[i][pvModelID] == 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}S-a creeat un bug la sistemul de vehicule, te rog sa raportezi pe /report.");
+		if(personalVehicle[i][pvModelID] == 0) return SCM(playerid, COLOR_ERROR, eERROR"S-a creeat un bug la sistemul de vehicule, te rog sa raportezi pe /report.");
 		if(personalVehicle[i][pvSpawnedID] == INVALID_VEHICLE_ID) {
 			format(gString, sizeof gString, "%s{FFFFFF}[%d] %d\t%s\tHidden\t-\n", gString, personalVehicle[i][pvID], (count + 1), getVehicleName(personalVehicle[i][pvModelID]));
 		}

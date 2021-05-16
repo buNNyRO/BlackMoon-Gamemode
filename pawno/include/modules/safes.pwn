@@ -66,10 +66,10 @@ CMD:fwithdraw(playerid, params[]) {
 }
 
 CMD:createsafe(playerid, params[]) {
-	if(playerInfo[playerid][pAdmin] < 6) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai acces la aceasta comanda.");
+	if(playerInfo[playerid][pAdmin] < 6) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 	extract params -> new factionID, money, mats, drugs; else return sendPlayerSyntax(playerid, "/createsafe <faction id> <money> <materials> <drugs>");
-	if(!Iter_Contains(ServerFactions, factionID)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Aceasta factiune nu exista.");
-	if(!(0 <= money <= 100000000) && !(0 <= mats <= 1000000) && !(0 <= drugs <= 1000)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Invalid money or materials or drugs (Max: $100.000.000 | Materials: 1.000.000 | Drugs: 1.000).");
+	if(!Iter_Contains(ServerFactions, factionID)) return SCM(playerid, COLOR_ERROR, eERROR"Aceasta factiune nu exista.");
+	if(!(0 <= money <= 100000000) && !(0 <= mats <= 1000000) && !(0 <= drugs <= 1000)) return SCM(playerid, COLOR_ERROR, eERROR"Invalid money or materials or drugs (Max: $100.000.000 | Materials: 1.000.000 | Drugs: 1.000).");
 	new id = Iter_Free(FactionSafes), Float:x, Float:y, Float:z;
 	GetPlayerPos(playerid, safeInfo[id][sPosX], safeInfo[id][sPosY], safeInfo[id][sPosZ]);
 	safeInfo[id][sID] = id; safeInfo[id][sFactionID] = factionID; safeInfo[id][sMoney] = money; safeInfo[id][sDrugs] = drugs; safeInfo[id][sMaterials] = mats; safeInfo[id][sVirtualID] = GetPlayerVirtualWorld(playerid);
@@ -82,8 +82,8 @@ CMD:createsafe(playerid, params[]) {
 }
 
 CMD:order(playerid, params[]) {
-	if(playerInfo[playerid][pWeaponLicense] == 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai licenta de 'Gun'.");
-	if(playerInfo[playerid][pinFaction] != playerInfo[playerid][pFaction]) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti in HQ-ul factiunii tale.");
+	if(playerInfo[playerid][pWeaponLicense] == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai licenta de 'Gun'.");
+	if(playerInfo[playerid][pinFaction] != playerInfo[playerid][pFaction]) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti in HQ-ul factiunii tale.");
 	if(Iter_Contains(FactionMembers[8], playerid) || Iter_Contains(FactionMembers[9], playerid)) {
 		new x = playerInfo[playerid][pFaction], y[3];
 		for(new i = 0; i < 5; i++) {
@@ -130,20 +130,20 @@ Dialog:DIALOG_FWITHDRAW2(playerid, response, listitem, inputtext[]) {
 	}	
 	switch(playerInfo[playerid][pSelectedItem]) {
 		case 0: {
-			if(safeInfo[playerInfo[playerid][pSafeID]][sMoney] < strval(inputtext) || strval(inputtext) <= 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Suma invalida.");
+			if(safeInfo[playerInfo[playerid][pSafeID]][sMoney] < strval(inputtext) || strval(inputtext) <= 0) return SCM(playerid, COLOR_ERROR, eERROR"Suma invalida.");
 			safeInfo[playerInfo[playerid][pSafeID]][sMoney] -= strval(inputtext);
 			GivePlayerCash(playerid, 1, strval(inputtext));
 			sendFactionMessage(playerInfo[playerid][pFaction], COLOR_LIMEGREEN, "(-) %s a luat $%s din seiful factiunii.", getName(playerid), formatNumber(strval(inputtext)));
 		}
 		case 1: {
-			if(safeInfo[playerInfo[playerid][pSafeID]][sMaterials] < strval(inputtext) || strval(inputtext) <= 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Suma invalida.");
+			if(safeInfo[playerInfo[playerid][pSafeID]][sMaterials] < strval(inputtext) || strval(inputtext) <= 0) return SCM(playerid, COLOR_ERROR, eERROR"Suma invalida.");
 			safeInfo[playerInfo[playerid][pSafeID]][sMaterials] -= strval(inputtext);
 			playerInfo[playerid][pMats] += strval(inputtext);
 			update("UPDATE `server_users` SET `Mats` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pMats], playerInfo[playerid][pSQLID]);
 			sendFactionMessage(playerInfo[playerid][pFaction], COLOR_LIMEGREEN, "(-) %s a luat %s materiale din seiful factiunii.", getName(playerid), formatNumber(strval(inputtext)));
 		}
 		case 2: {
-			if(safeInfo[playerInfo[playerid][pSafeID]][sDrugs] < strval(inputtext) || strval(inputtext) <= 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Suma invalida.");
+			if(safeInfo[playerInfo[playerid][pSafeID]][sDrugs] < strval(inputtext) || strval(inputtext) <= 0) return SCM(playerid, COLOR_ERROR, eERROR"Suma invalida.");
 			safeInfo[playerInfo[playerid][pSafeID]][sDrugs] -= strval(inputtext);
 			playerInfo[playerid][pDrugs] += strval(inputtext);
 			update("UPDATE `server_users` SET `Drugs` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pDrugs], playerInfo[playerid][pSQLID]);
@@ -172,20 +172,20 @@ Dialog:DIALOG_FDEPOSIT2(playerid, response, listitem, inputtext[]) {
 	}
 	switch(playerInfo[playerid][pSelectedItem]) {
 		case 0: {
-			if(PlayerMoney(playerid, strval(inputtext)) || strval(inputtext) <= 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Suma invalida.");
+			if(PlayerMoney(playerid, strval(inputtext)) || strval(inputtext) <= 0) return SCM(playerid, COLOR_ERROR, eERROR"Suma invalida.");
 			safeInfo[playerInfo[playerid][pSafeID]][sMoney] += strval(inputtext);
 			GivePlayerCash(playerid, 0, strval(inputtext));
 			sendFactionMessage(playerInfo[playerid][pFaction], COLOR_LIMEGREEN, "* %s a depozitat $%s in seiful factiunii.", getName(playerid), formatNumber(strval(inputtext)));
 		}
 		case 1: {
-			if(playerInfo[playerid][pMats] < strval(inputtext) || strval(inputtext) <= 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Suma invalida.");
+			if(playerInfo[playerid][pMats] < strval(inputtext) || strval(inputtext) <= 0) return SCM(playerid, COLOR_ERROR, eERROR"Suma invalida.");
 			safeInfo[playerInfo[playerid][pSafeID]][sMaterials] += strval(inputtext);
 			playerInfo[playerid][pMats] -= strval(inputtext);
 			update("UPDATE `server_users` SET `Mats` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pMats], playerInfo[playerid][pSQLID]);
 			sendFactionMessage(playerInfo[playerid][pFaction], COLOR_LIMEGREEN, "* %s a depozitat %s materiale in seiful factiunii.", getName(playerid), formatNumber(strval(inputtext)));
 		}
 		case 2: {
-			if(playerInfo[playerid][pDrugs] < strval(inputtext) || strval(inputtext) <= 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Suma invalida.");
+			if(playerInfo[playerid][pDrugs] < strval(inputtext) || strval(inputtext) <= 0) return SCM(playerid, COLOR_ERROR, eERROR"Suma invalida.");
 			safeInfo[playerInfo[playerid][pSafeID]][sDrugs] += strval(inputtext);
 			playerInfo[playerid][pDrugs] -= strval(inputtext);
 			update("UPDATE `server_users` SET `Drugs` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pDrugs], playerInfo[playerid][pSQLID]);

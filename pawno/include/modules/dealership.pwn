@@ -177,9 +177,9 @@ hook OnPlayerClickTextDraw(playerid, Text:clickedid) {
 		PlayerTextDrawShow(playerid, serverDealerPTD[playerid][0]);
 	}
 	if(clickedid == serverDealerTD[6]) {
-		if(DSModels[SelectedCar[playerid][DealerID[playerid]]][dStock] < 1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Momentan nu exista stock valabil pentru aceasta masina.");
-		if(GetPlayerCash(playerid) < DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai destui bani, pentru a cumpara aceasta masina.");
-		if(playerInfo[playerid][pVehicleSlots] == Iter_Count(PlayerVehicles[playerid])) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Momentan nu ai slot-uri valabile, pentru a cumpara aceasta masina.");
+		if(DSModels[SelectedCar[playerid][DealerID[playerid]]][dStock] < 1) return SCM(playerid, COLOR_ERROR, eERROR"Momentan nu exista stock valabil pentru aceasta masina.");
+		if(GetPlayerCash(playerid) < DSModels[SelectedCar[playerid][DealerID[playerid]]][dPrice]) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai destui bani, pentru a cumpara aceasta masina.");
+		if(playerInfo[playerid][pVehicleSlots] == Iter_Count(PlayerVehicles[playerid])) return SCM(playerid, COLOR_ERROR, eERROR"Momentan nu ai slot-uri valabile, pentru a cumpara aceasta masina.");
 		gQuery[0] = (EOS);
 		mysql_format(SQL, gQuery, sizeof(gQuery), "INSERT INTO `server_personal_vehicles` (ModelID) VALUES (%d)", DSModels[DealerID[playerid]][dModel]);
 		mysql_tquery(SQL, gQuery, "InsertCarDS", "ii", playerid, DSModels[SelectedCar[playerid][DealerID[playerid]]][dModel]);
@@ -222,8 +222,8 @@ hook OnPlayerClickTextDraw(playerid, Text:clickedid) {
 timer testDriveTimer[120000](playerid) cancelDriveTest(playerid, 1); 
 
 CMD:buycar(playerid, params[]) {
-	if(playerInfo[playerid][pinDealer] > 1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Momentan esti deja in dealer-ul de masini.");
-	if(TestingModel[playerid] > 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Esti in modul de 'test drive' momentan.");
+	if(playerInfo[playerid][pinDealer] > 1) return SCM(playerid, COLOR_ERROR, eERROR"Momentan esti deja in dealer-ul de masini.");
+	if(TestingModel[playerid] > 0) return SCM(playerid, COLOR_ERROR, eERROR"Esti in modul de 'test drive' momentan.");
 	LoadDsVehs(playerid);
 	TestingModel[playerid] = 0;
 	DealerCarType[playerid] = 1;

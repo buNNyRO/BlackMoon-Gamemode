@@ -842,7 +842,7 @@
 			<member name="C:SAFE" value="5">
 			</member>
 		</member>
-		<member name="T:playerInfoEnum" value="882">
+		<member name="T:playerInfoEnum" value="883">
 			<tagname value="playerInfoEnum"/>
 			<member name="C:pSQLID" value="0">
 			</member>
@@ -1180,7 +1180,9 @@
 			</member>
 			<member name="C:pAdminDuty" value="861">
 			</member>
-			<member name="C:pSelectVehicle" value="862">
+			<member name="C:pSpectate" value="862">
+			</member>
+			<member name="C:pSelectVehicle" value="863">
 				<size value="20"/>
 			</member>
 		</member>
@@ -1473,6 +1475,7 @@
 			<referrer name="pc_cmd_unjailo"/>
 			<referrer name="pc_cmd_jailo"/>
 			<referrer name="pc_cmd_acover"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="InsertCarDS"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="ShowEmails"/>
@@ -1551,18 +1554,22 @@
 		</member>
 		<member name="C:REPORT_TYPE_CHEATER" value="1">
 			<referrer name="dialog_DIALOG_REPORT_CHEATER"/>
+			<referrer name="pc_cmd_spec"/>
 		</member>
 		<member name="C:REPORT_TYPE_NONE" value="3">
 			<referrer name="ExpirationReport"/>
 			<referrer name="pc_cmd_acceptreport"/>
 			<referrer name="pc_cmd_closereport"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 		</member>
 		<member name="C:REPORT_TYPE_NORMAL" value="0">
 			<referrer name="dialog_DIALOG_REPORT_NORMAL"/>
+			<referrer name="pc_cmd_spec"/>
 		</member>
 		<member name="C:REPORT_TYPE_STUCK" value="2">
 			<referrer name="dialog_DIALOG_REPORT"/>
+			<referrer name="pc_cmd_spec"/>
 		</member>
 		<member name="C:SERVICE_INSTRUCTOR" value="2">
 			<referrer name="pc_cmd_service"/>
@@ -2188,6 +2195,7 @@
 			<referrer name="pc_cmd_aduty"/>
 			<referrer name="pc_cmd_gotohouse"/>
 			<referrer name="pc_cmd_gotobusiness"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_helpers"/>
 			<referrer name="pc_cmd_showlicenses"/>
@@ -2825,6 +2833,7 @@
 			<referrer name="pc_cmd_reports"/>
 			<referrer name="pc_cmd_acceptreport"/>
 			<referrer name="pc_cmd_closereport"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_report"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 		</member>
@@ -3140,6 +3149,7 @@
 			<referrer name="pc_cmd_reports"/>
 			<referrer name="pc_cmd_acceptreport"/>
 			<referrer name="pc_cmd_closereport"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 		</member>
 		<member name="F:Iterator@ServerAdmins">
@@ -3205,6 +3215,7 @@
 			<referrer name="pc_cmd_aduty"/>
 			<referrer name="pc_cmd_gotohouse"/>
 			<referrer name="pc_cmd_gotobusiness"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_report"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
@@ -3256,6 +3267,7 @@
 			<referrer name="pc_cmd_helperchat"/>
 			<referrer name="pc_cmd_sethelper"/>
 			<referrer name="pc_cmd_pm"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_helpers"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 		</member>
@@ -4899,6 +4911,7 @@
 			<referrer name="pc_cmd_aduty"/>
 			<referrer name="pc_cmd_gotohouse"/>
 			<referrer name="pc_cmd_gotobusiness"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_helpers"/>
 			<referrer name="pc_cmd_showlicenses"/>
@@ -5022,6 +5035,7 @@
 			<referrer name="pc_cmd_reports"/>
 			<referrer name="pc_cmd_acceptreport"/>
 			<referrer name="pc_cmd_closereport"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 		</member>
 		<member name="F:reverse">
@@ -14555,6 +14569,7 @@
 		</member>
 		<member name="M:GetPlayerArmourEx" syntax="GetPlayerArmourEx(playerid, &amp;armour)">
 			<stacksize value="1"/>
+			<referrer name="pc_cmd_spec"/>
 			<dependency name="pArmour"/>
 			<dependency name="playerInfo"/>
 			<param name="playerid">
@@ -14690,6 +14705,7 @@
 		<member name="M:GetPlayerHealthEx" syntax="GetPlayerHealthEx(playerid, &amp;health)">
 			<stacksize value="1"/>
 			<referrer name="pc_cmd_slap"/>
+			<referrer name="pc_cmd_spec"/>
 			<dependency name="pHealth"/>
 			<dependency name="playerInfo"/>
 			<param name="playerid">
@@ -14738,6 +14754,7 @@
 			<referrer name="pc_cmd_respawnhere"/>
 			<referrer name="pc_cmd_mark"/>
 			<referrer name="pc_cmd_area"/>
+			<referrer name="pc_cmd_spec"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -14991,6 +15008,7 @@
 			<referrer name="pc_cmd_flipveh"/>
 			<referrer name="pc_cmd_goto"/>
 			<referrer name="pc_cmd_gethere"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="pc_cmd_lights"/>
 			<referrer name="pc_cmd_accept"/>
@@ -15035,6 +15053,7 @@
 			<referrer name="pc_cmd_gethere"/>
 			<referrer name="pc_cmd_respawnhere"/>
 			<referrer name="pc_cmd_area"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<param name="playerid">
@@ -15333,6 +15352,7 @@
 			<stacksize value="3"/>
 			<referrer name="pc_cmd_acceptreport"/>
 			<referrer name="pc_cmd_closereport"/>
+			<referrer name="pc_cmd_spec"/>
 			<dependency name="Iterator@Reports"/>
 			<dependency name="reportID"/>
 			<dependency name="reportInfo"/>
@@ -16806,6 +16826,7 @@
 			<referrer name="pc_cmd_respawn"/>
 			<referrer name="pc_cmd_respawnhere"/>
 			<referrer name="pc_cmd_gotojob"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="pc_cmd_lights"/>
@@ -17692,6 +17713,7 @@
 			<referrer name="pc_cmd_aduty"/>
 			<referrer name="pc_cmd_gotohouse"/>
 			<referrer name="pc_cmd_gotobusiness"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_report"/>
 			<referrer name="pc_cmd_killcp"/>
 			<referrer name="pc_cmd_cancel"/>
@@ -18400,6 +18422,7 @@
 			<referrer name="pc_cmd_acceptreport"/>
 			<referrer name="pc_cmd_closereport"/>
 			<referrer name="pc_cmd_unjail"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_cancel"/>
 			<referrer name="pc_cmd_accept"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
@@ -19690,6 +19713,7 @@
 			<tagname value="Float"/>
 			<attribute name="native"/>
 			<referrer name="OnPlayerUpdate"/>
+			<referrer name="pc_cmd_spec"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -21355,6 +21379,7 @@
 			<stacksize value="3"/>
 			<referrer name="pc_cmd_acceptreport"/>
 			<referrer name="pc_cmd_closereport"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_report"/>
 			<dependency name="Iterator@Reports"/>
 			<dependency name="false"/>
@@ -21403,6 +21428,26 @@
 			</param>
 			<param name="z">
 				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:PlayerSpectatePlayer" syntax="PlayerSpectatePlayer(playerid, targetplayerid, mode)">
+			<attribute name="native"/>
+			<referrer name="pc_cmd_spec"/>
+			<param name="playerid">
+			</param>
+			<param name="targetplayerid">
+			</param>
+			<param name="mode">
+			</param>
+		</member>
+		<member name="M:PlayerSpectateVehicle" syntax="PlayerSpectateVehicle(playerid, targetvehicleid, mode)">
+			<attribute name="native"/>
+			<referrer name="pc_cmd_spec"/>
+			<param name="playerid">
+			</param>
+			<param name="targetvehicleid">
+			</param>
+			<param name="mode">
 			</param>
 		</member>
 		<member name="M:PlayerTextDrawAlignment" syntax="PlayerTextDrawAlignment(playerid, text, alignment)">
@@ -22888,6 +22933,7 @@
 			<referrer name="pc_cmd_aduty"/>
 			<referrer name="pc_cmd_gotohouse"/>
 			<referrer name="pc_cmd_gotobusiness"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_helpers"/>
 			<referrer name="pc_cmd_showlicenses"/>
@@ -23548,6 +23594,7 @@
 			<referrer name="pc_cmd_gotoxyz"/>
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="pc_cmd_aaa2"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="cancelDriveTest"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
@@ -23720,6 +23767,7 @@
 			<referrer name="pc_cmd_unjail"/>
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="pc_cmd_aaa2"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="InsertCarDS"/>
 			<referrer name="cancelDriveTest"/>
@@ -25102,6 +25150,14 @@
 			<param name="toggle">
 			</param>
 		</member>
+		<member name="M:TogglePlayerSpectating" syntax="TogglePlayerSpectating(playerid, toggle)">
+			<attribute name="native"/>
+			<referrer name="pc_cmd_spec"/>
+			<param name="playerid">
+			</param>
+			<param name="toggle">
+			</param>
+		</member>
 		<member name="M:Translate32Bit" syntax="Translate32Bit(&amp;store_money, &amp;more_int, BigInt[])">
 			<stacksize value="88"/>
 			<referrer name="pc_cmd_givemoney"/>
@@ -25907,6 +25963,7 @@
 			<referrer name="pc_cmd_acceptreport"/>
 			<referrer name="pc_cmd_closereport"/>
 			<referrer name="pc_cmd_unjail"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="CB_OnPlayerStateChange"/>
@@ -29701,6 +29758,7 @@
 			<referrer name="pc_cmd_unjail"/>
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="pc_cmd_acover"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_showlicenses"/>
 			<referrer name="pc_cmd_spawnchange"/>
 			<referrer name="pc_cmd_sms"/>
@@ -36938,6 +36996,59 @@
 				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
+		<member name="M:pc_cmd_spec" syntax="pc_cmd_spec(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="15"/>
+			<dependency name="EOS"/>
+			<dependency name="GetPlayerArmourEx"/>
+			<dependency name="GetPlayerHealthEx"/>
+			<dependency name="GetPlayerInterior"/>
+			<dependency name="GetPlayerVehicleID"/>
+			<dependency name="GetPlayerVirtualWorld"/>
+			<dependency name="GetReportID"/>
+			<dependency name="IsPlayerInAnyVehicle"/>
+			<dependency name="Iter_Contains_InternalC"/>
+			<dependency name="Iter_Remove_InternalC"/>
+			<dependency name="Iter_Single@Reports"/>
+			<dependency name="Iterator@Reports"/>
+			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="Iterator@ServerHelpers"/>
+			<dependency name="NetStats_PacketLossPercent"/>
+			<dependency name="PlayerHaveReport"/>
+			<dependency name="PlayerSpectatePlayer"/>
+			<dependency name="PlayerSpectateVehicle"/>
+			<dependency name="REPORT_TYPE_CHEATER"/>
+			<dependency name="REPORT_TYPE_NONE"/>
+			<dependency name="REPORT_TYPE_NORMAL"/>
+			<dependency name="REPORT_TYPE_STUCK"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="SetPlayerInterior"/>
+			<dependency name="SetPlayerVirtualWorld"/>
+			<dependency name="TogglePlayerSpectating"/>
+			<dependency name="_Timer_F"/>
+			<dependency name="isPlayerLogged"/>
+			<dependency name="pName"/>
+			<dependency name="pSpectate"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="reportID"/>
+			<dependency name="reportInfo"/>
+			<dependency name="reportInfo"/>
+			<dependency name="reportPlayer"/>
+			<dependency name="reportText"/>
+			<dependency name="reportTimer"/>
+			<dependency name="reportType"/>
+			<dependency name="sendAdmin"/>
+			<dependency name="sendPlayerSyntax"/>
+			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
 		<member name="M:pc_cmd_speed" syntax="pc_cmd_speed(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="7"/>
@@ -38210,6 +38321,7 @@
 			<dependency name="pSeconds"/>
 			<dependency name="pSelectedItem"/>
 			<dependency name="pShowTurfs"/>
+			<dependency name="pSpectate"/>
 			<dependency name="pTalkingLive"/>
 			<dependency name="pTaxiDuty"/>
 			<dependency name="pTaxiFare"/>
@@ -38438,6 +38550,7 @@
 			<referrer name="pc_cmd_acover"/>
 			<referrer name="pc_cmd_gotohouse"/>
 			<referrer name="pc_cmd_gotobusiness"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
 			<dependency name="EOS"/>
@@ -38722,6 +38835,7 @@
 			<referrer name="pc_cmd_acover"/>
 			<referrer name="pc_cmd_gotohouse"/>
 			<referrer name="pc_cmd_gotobusiness"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_showlicenses"/>
 			<referrer name="pc_cmd_sms"/>
 			<referrer name="pc_cmd_number"/>
@@ -39749,6 +39863,7 @@
 			<referrer name="pc_cmd_acover"/>
 			<referrer name="pc_cmd_gotohouse"/>
 			<referrer name="pc_cmd_gotobusiness"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_showlicenses"/>
 			<referrer name="pc_cmd_sms"/>
 			<referrer name="pc_cmd_number"/>
@@ -40253,6 +40368,7 @@
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="pc_cmd_showfreq"/>
 			<referrer name="pc_cmd_speed"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_helpers"/>
 			<referrer name="pc_cmd_showlicenses"/>
