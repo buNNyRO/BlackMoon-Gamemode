@@ -195,10 +195,10 @@ Dialog:HOUSE_OPTION_DESCADMIN(playerid, response, listitem, inputtext[]) {
 }
 
 CMD:buyhouse(playerid, params[]) {
-	if(playerInfo[playerid][pHouse] != 0) return sendPlayerError(playerid, "Ai deja o casa cumparata.");
-	if(playerInfo[playerid][pLevel] < 5) return sendPlayerError(playerid, "Trebuie sa detii, minim level 5.");
+	if(playerInfo[playerid][pHouse] != 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Ai deja o casa cumparata.");
+	if(playerInfo[playerid][pLevel] < 5) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Trebuie sa detii, minim level 5.");
 	if(playerInfo[playerid][areaHouse] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, houseInfo[playerInfo[playerid][areaHouse]][hExtX], houseInfo[playerInfo[playerid][areaHouse]][hExtY], houseInfo[playerInfo[playerid][areaHouse]][hExtZ])) {
-		if(houseInfo[playerInfo[playerid][areaHouse]][hPrice] == 0) return sendPlayerError(playerid, "Aceasta casa nu este de vanzare.");
+		if(houseInfo[playerInfo[playerid][areaHouse]][hPrice] == 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Aceasta casa nu este de vanzare.");
 		if(houseInfo[playerInfo[playerid][areaHouse]][hOwned] == 1) {
 			new id = GetPlayerID(houseInfo[playerInfo[playerid][areaHouse]][hOwner]);
 			if(id != INVALID_PLAYER_ID) { 
@@ -240,31 +240,31 @@ CMD:buyhouse(playerid, params[]) {
 }
 
 CMD:sellhousestate(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
-	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
-	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti face aceasta actiune, deoarece esti in masina.");
-	if(GetPlayerVirtualWorld(playerid) != 0 && GetPlayerInterior(playerid) != 0 && playerInfo[playerid][pinHouse] != -1) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda deoarece, esti intr-un alt virtualworld / interior / esti intr-o casa.");
-	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o afacere.");
+	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti logat, pentru a face aceasta actiune.");
+	if(Dialog_Opened(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
+	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu poti face aceasta actiune, deoarece esti in masina.");
+	if(GetPlayerVirtualWorld(playerid) != 0 && GetPlayerInterior(playerid) != 0 && playerInfo[playerid][pinHouse] != -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu poti folosi aceasta comanda deoarece, esti intr-un alt virtualworld / interior / esti intr-o casa.");
+	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu detii o afacere.");
 	Dialog_Show(playerid, SELL_HOUSE_STATE, DIALOG_STYLE_MSGBOX, "House:", "Esti sigur ca doresti sa-ti vinzi casa, pe $200,000?\nDaca apesi pe butonul 'da', nu mai exista cale de intoarcere.", "Da", "Nu");
 	return true;
 }
 
 CMD:housebalance(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
+	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti logat, pentru a face aceasta actiune.");
+	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu detii o casa.");
 	SCMf(playerid, COLOR_GREY, "* House Notice: Balanta ta la casa este de $%s.", formatNumber(houseInfo[playerInfo[playerid][pHouseID]][hBalance]));
 	return true;
 }
 
 CMD:housewithdraw(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
-	if(playerInfo[playerid][pinHouse] != playerInfo[playerid][pHouseID]) return sendPlayerError(playerid, "Poti folosi aceasta comanda doar din interiorul casei tale.");
+	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti logat, pentru a face aceasta actiune.");
+	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu detii o casa.");
+	if(playerInfo[playerid][pinHouse] != playerInfo[playerid][pHouseID]) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Poti folosi aceasta comanda doar din interiorul casei tale.");
 	extract params -> new suma; else {
 		SCMf(playerid, COLOR_GREY, "* House Notice: Balanta ta la casa este de $%s.", formatNumber(houseInfo[playerInfo[playerid][pHouseID]][hBalance]));
 		return sendPlayerSyntax(playerid, "/housewithdraw <money>");
 	}
-	if(houseInfo[playerInfo[playerid][pHouseID]][hBalance] < suma) return sendPlayerError(playerid, "Nu ai suma aceasta de bani in balanta casei tale.");
+	if(houseInfo[playerInfo[playerid][pHouseID]][hBalance] < suma) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai suma aceasta de bani in balanta casei tale.");
 	houseInfo[playerInfo[playerid][pHouseID]][hBalance] -= suma;
 	GivePlayerCash(playerid, 1, suma);
 	update("UPDATE `server_houses` SET `Balance`='%d'  WHERE `ID`='%d' LIMIT 1", houseInfo[playerInfo[playerid][pHouseID]][hBalance], playerInfo[playerid][pHouseID]);
@@ -273,14 +273,14 @@ CMD:housewithdraw(playerid, params[]) {
 }
 
 CMD:housedeposit(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
-	if(playerInfo[playerid][pinHouse] != playerInfo[playerid][pHouseID]) return sendPlayerError(playerid, "Poti folosi aceasta comanda doar din interiorul casei tale.");
+	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti logat, pentru a face aceasta actiune.");
+	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu detii o casa.");
+	if(playerInfo[playerid][pinHouse] != playerInfo[playerid][pHouseID]) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Poti folosi aceasta comanda doar din interiorul casei tale.");
 	extract params -> new suma; else {
 		SCMf(playerid, COLOR_GREY, "* House Notice: Balanta ta la casa este de $%s.", formatNumber(houseInfo[playerInfo[playerid][pHouseID]][hBalance]));
 		return sendPlayerSyntax(playerid, "/housedeposit <money>");			
 	}
-	if(!PlayerMoney(playerid, suma)) return sendPlayerError(playerid, "Nu ai suma aceasta de bani, pentru a adauga in balanta casei tale.");
+	if(!PlayerMoney(playerid, suma)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai suma aceasta de bani, pentru a adauga in balanta casei tale.");
 	houseInfo[playerInfo[playerid][pHouseID]][hBalance] += suma;
 	GivePlayerCash(playerid, 0, suma);
 	update("UPDATE `server_houses` SET `Balance`='%d'  WHERE `ID`='%d' LIMIT 1", houseInfo[playerInfo[playerid][pHouseID]][hBalance], playerInfo[playerid][pHouseID]);
@@ -289,16 +289,16 @@ CMD:housedeposit(playerid, params[]) {
 }
 
 CMD:houseoption(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
-	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
-	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
+	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti logat, pentru a face aceasta actiune.");
+	if(Dialog_Opened(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
+	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu detii o casa.");
 	Dialog_Show(playerid, HOUSE_OPTION, DIALOG_STYLE_TABLIST_HEADERS, "House:", "Option Name\tOption\nTitle\tSchimba Titlul Casei\nDescription\tSchimba Descrierea Casei", "Select", "Close");	
 	return true;
 }
 
 CMD:hlock(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
+	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti logat, pentru a face aceasta actiune.");
+	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu detii o casa.");
 	houseInfo[playerInfo[playerid][pHouseID]][hLocked] = houseInfo[playerInfo[playerid][pHouseID]][hLocked] ? 0 : 1;
 	SCMf(playerid, COLOR_GREY, "* House Notice: Ai %s casa ta, acum playerii %s.", houseInfo[playerInfo[playerid][pHouseID]][hLocked] ? "inchis" : "deschis", houseInfo[playerInfo[playerid][pHouseID]][hLocked] ? "pot intra" : "nu pot intra");
 	update("UPDATE `server_houses` SET `Locked`='%d'  WHERE `ID`='%d' LIMIT 1", houseInfo[playerInfo[playerid][pHouseID]][hLocked], playerInfo[playerid][pHouseID]);
@@ -306,10 +306,10 @@ CMD:hlock(playerid, params[]) {
 }
 
 CMD:sellhouse(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
+	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti logat, pentru a face aceasta actiune.");
+	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu detii o casa.");
 	extract params -> new suma; else return sendPlayerSyntax(playerid, "/sellhouse <money>");
-	if(!(1 <= suma <= 999999999)) return sendPlayerError(playerid, "Invalid money ($1 - $999,999,999).");
+	if(!(1 <= suma <= 999999999)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Invalid money ($1 - $999,999,999).");
 	houseInfo[playerInfo[playerid][pHouseID]][hPrice] = suma;
 	SCMf(playerid, COLOR_GREY, "* House Notice: Ai pus la vanzare casa ta cu pretul $%s. Acum orice player iti poate cumpara casa.", formatNumber(suma));
 	update("UPDATE `server_houses` SET `Price`='%d'  WHERE `ID`='%d' LIMIT 1", houseInfo[playerInfo[playerid][pHouseID]][hPrice], playerInfo[playerid][pHouseID]);
@@ -318,20 +318,20 @@ CMD:sellhouse(playerid, params[]) {
 }
 
 CMD:adminhouse(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pAdmin] < 4) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
-	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
+	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti logat, pentru a face aceasta actiune.");
+	if(playerInfo[playerid][pAdmin] < 4) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai acces la aceasta comanda.");
+	if(Dialog_Opened(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
 	extract params -> new house; else return sendPlayerSyntax(playerid, "/adminhouse <house id>");
-	if(!Iter_Contains(ServerHouses, house)) return sendPlayerError(playerid, "Acesta casa nu exista.");	
+	if(!Iter_Contains(ServerHouses, house)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Acesta casa nu exista.");	
 	IDSelected[playerid] = house;
 	Dialog_Show(playerid, HOUSE_OPTION_ADMIN, DIALOG_STYLE_TABLIST_HEADERS, string_fast("House: %d", house), "Option Name\tOption\nTitlu\tSchimba titlul casei\nDescrierea\tSchimba descrierea casei", "Select", "Cancel");
 	return true;
 }
 
 CMD:rentabil(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
-	if(GetPVarInt(playerid, "RentDeelay") > gettime()) return sendPlayerError(playerid, "Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "RentDeelay") - gettime()));
+	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti logat, pentru a face aceasta actiune.");
+	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu detii o casa.");
+	if(GetPVarInt(playerid, "RentDeelay") > gettime()) return SCMf(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "RentDeelay") - gettime()));
 	houseInfo[playerInfo[playerid][pHouseID]][hRentabil] = houseInfo[playerInfo[playerid][pHouseID]][hRentabil] ? 0 : 1;
 	Update3DTextLabelText(houseInfo[playerInfo[playerid][pHouseID]][hText], COLOR_WHITE, string_fast("House ID: %d\nHouse Title: %s\nHouse Description: %s\nOwner: %s\nPrice: $%s%s", houseInfo[playerInfo[playerid][pHouseID]][hID], houseInfo[playerInfo[playerid][pHouseID]][hTitle], houseInfo[playerInfo[playerid][pHouseID]][hDescription], houseInfo[playerInfo[playerid][pHouseID]][hOwner], formatNumber(houseInfo[playerInfo[playerid][pHouseID]][hPrice]), formatNumber(houseInfo[playerInfo[playerid][pHouseID]][hRentPrice])));		
 	SCMf(playerid, COLOR_GREY, "* House Notice: Acum casa ta este %s.", houseInfo[playerInfo[playerid][pHouseID]][hRentabil] ? "rentabila" : "nerentabila");
@@ -341,20 +341,20 @@ CMD:rentabil(playerid, params[]) {
 }
 
 CMD:renters(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
+	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti logat, pentru a face aceasta actiune.");
+	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu detii o casa.");
 	SCMf(playerid, COLOR_GREY, "* House Notice: Ai %d renteri.", Iter_Count(RentersHouses[playerInfo[playerid][pHouseID]]));
 	return true;
 }
 
 CMD:rentroom(playerid, parmas[]) {
-	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pHouse] == 1 && playerInfo[playerid][pHouseID] != -1) return sendPlayerError(playerid, "Detii deja o casa, nu poti folosi aceasta comanda.");
-	if(playerInfo[playerid][pRent] != -1) return sendPlayerError(playerid, "Ai deja rentroom la o casa, foloseste (/unrentroom).");
+	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti logat, pentru a face aceasta actiune.");
+	if(playerInfo[playerid][pHouse] == 1 && playerInfo[playerid][pHouseID] != -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Detii deja o casa, nu poti folosi aceasta comanda.");
+	if(playerInfo[playerid][pRent] != -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Ai deja rentroom la o casa, foloseste (/unrentroom).");
 	if(playerInfo[playerid][areaHouse] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5 , houseInfo[playerInfo[playerid][areaHouse]][hExtX], houseInfo[playerInfo[playerid][areaHouse]][hExtY], houseInfo[playerInfo[playerid][areaHouse]][hExtZ])) {
-		if(houseInfo[playerInfo[playerid][areaHouse]][hRentabil] == 0) return sendPlayerError(playerid, "Aceasta casa nu este rentabila.");
-		if(houseInfo[playerInfo[playerid][areaHouse]][hPrice] > 0) return sendPlayerError(playerid, "Nu mai poti da rent, deoarece casa este de vanzare.");
-		if(houseInfo[playerInfo[playerid][areaHouse]][hOwned] == 0) return sendPlayerError(playerid, "Nu poti da rent, deoarece aceasta casa nu detine un detinator.");
+		if(houseInfo[playerInfo[playerid][areaHouse]][hRentabil] == 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Aceasta casa nu este rentabila.");
+		if(houseInfo[playerInfo[playerid][areaHouse]][hPrice] > 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu mai poti da rent, deoarece casa este de vanzare.");
+		if(houseInfo[playerInfo[playerid][areaHouse]][hOwned] == 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu poti da rent, deoarece aceasta casa nu detine un detinator.");
 		playerInfo[playerid][pSpawnChange] = 3;
 		playerInfo[playerid][pRent] = playerInfo[playerid][areaHouse];
 		Iter_Add(RentersHouses[playerInfo[playerid][areaHouse]], playerid);
@@ -370,8 +370,8 @@ CMD:rentroom(playerid, parmas[]) {
 }
 
 CMD:unrentroom(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pRent] == -1) return sendPlayerError(playerid, "Nu ai rentroom la o casa, foloseste (/rentroom).");
+	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti logat, pentru a face aceasta actiune.");
+	if(playerInfo[playerid][pRent] == -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai rentroom la o casa, foloseste (/rentroom).");
 	if(Iter_Contains(RentersHouses[playerInfo[playerid][pRent]], playerid)) Iter_Remove(RentersHouses[playerInfo[playerid][pRent]], playerid);            
 	update("UPDATE `server_houses` SET `Renters` = '%d' WHERE `ID` = '%d' LIMIT 1", Iter_Count(RentersHouses[playerid]), houseInfo[playerInfo[playerid][pRent]][hID]);
 	if(playerInfo[playerid][pSpawnChange] == 3) playerInfo[playerid][pSpawnChange] = 1;
@@ -382,11 +382,11 @@ CMD:unrentroom(playerid, params[]) {
 }
 
 CMD:setrentprice(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
-	if(houseInfo[playerInfo[playerid][pHouseID]][hRentabil] == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece casa ta nu are rent-ul activat.");
+	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti logat, pentru a face aceasta actiune.");
+	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu detii o casa.");
+	if(houseInfo[playerInfo[playerid][pHouseID]][hRentabil] == 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu poti folosi aceasta comanda, deoarece casa ta nu are rent-ul activat.");
 	extract params -> new suma; else return sendPlayerSyntax(playerid, "/setrentprice <money>");
-	if(!(1 <= suma <= 5000)) return sendPlayerError(playerid, "Invalid money ($1 - $5,000).");
+	if(!(1 <= suma <= 5000)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Invalid money ($1 - $5,000).");
 	houseInfo[playerInfo[playerid][pHouseID]][hRentPrice] = suma;
 	update("UPDATE `server_houses` SET `RentPrice`='%d'  WHERE `ID`='%d' LIMIT 1", houseInfo[playerInfo[playerid][pHouseID]][hRentPrice], playerInfo[playerid][pHouseID]);
 	Update3DTextLabelText(houseInfo[playerInfo[playerid][pHouseID]][hText], COLOR_WHITE, string_fast("House ID: %d\nHouse Title: %s\nHouse Description: %s\nOwner: %s\nPrice: $%s%s", houseInfo[playerInfo[playerid][pHouseID]][hID], houseInfo[playerInfo[playerid][pHouseID]][hTitle], houseInfo[playerInfo[playerid][pHouseID]][hDescription], houseInfo[playerInfo[playerid][pHouseID]][hOwner], formatNumber(houseInfo[playerInfo[playerid][pHouseID]][hPrice]), formatNumber(houseInfo[playerInfo[playerid][pHouseID]][hRentPrice])));	
@@ -395,15 +395,15 @@ CMD:setrentprice(playerid, params[]) {
 }
 
 CMD:upgradehouse(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return sendPlayerError(playerid, "Nu detii o casa.");
+	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti logat, pentru a face aceasta actiune.");
+	if(playerInfo[playerid][pHouse] == 0 && playerInfo[playerid][pHouseID] == -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu detii o casa.");
 	extract params -> new upgrade; else {
 		SCM(playerid, COLOR_GREY, "* Optiuni: 1 - Health Upgrade | 2 - Armour Upgrade (Only Cops)");
 		return sendPlayerSyntax(playerid, "/upgradehouse <upgrade>");
 	}
 	if(upgrade == 1) {
-		if(houseInfo[playerInfo[playerid][pHouseID]][hUpgrade] == 1) return sendPlayerError(playerid, "Detii deja acest upgrade heal.");
-		if(!PlayerMoney(playerid, 50000)) return sendPlayerError(playerid, "Nu detii $50,000");
+		if(houseInfo[playerInfo[playerid][pHouseID]][hUpgrade] == 1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Detii deja acest upgrade heal.");
+		if(!PlayerMoney(playerid, 50000)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu detii $50,000");
 		houseInfo[playerInfo[playerid][pHouseID]][hUpgrade] = 1;
 		foreach(new i : RentersHouses[playerInfo[playerid][pHouseID]]) {
 			SCMf(i, COLOR_GREY, "* Rent Notice: Proprietarul rentului tau %s, a facut upgrade heal, acum poti tasta /heal in casa.", getName(playerid));
@@ -411,8 +411,8 @@ CMD:upgradehouse(playerid, params[]) {
 		SCM(playerid, COLOR_GREY, "* House Notice: Casa ta acum are upgrade heal, acum poti tasta /heal in casa.");
 	}
 	else if(upgrade == 2) {
-		if(houseInfo[playerInfo[playerid][pHouseID]][hUpgrade] == 2) return sendPlayerError(playerid, "Detii deja acest upgrade armour.");
-		if(!PlayerMoney(playerid, 100000)) return sendPlayerError(playerid, "Nu detii $100,000");
+		if(houseInfo[playerInfo[playerid][pHouseID]][hUpgrade] == 2) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Detii deja acest upgrade armour.");
+		if(!PlayerMoney(playerid, 100000)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu detii $100,000");
 		houseInfo[playerInfo[playerid][pHouseID]][hUpgrade] = 2;
 		foreach(new i : RentersHouses[playerInfo[playerid][pHouseID]]) {
 			SCMf(i, COLOR_GREY, "* Rent Notice: Proprietarul rentului tau %s, a facut upgrade armour, acum toti politistii pot tasta /armour.", getName(playerid));
@@ -423,17 +423,17 @@ CMD:upgradehouse(playerid, params[]) {
 }
 
 CMD:eat(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
+	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti logat, pentru a face aceasta actiune.");
 	if(playerInfo[playerid][pHouse] != 0 && playerInfo[playerid][pHouseID] != -1) {
 		if(playerInfo[playerid][pinHouse] == playerInfo[playerid][pHouseID]){
-			if(houseInfo[playerInfo[playerid][pHouseID]][hUpgrade] <= 0) return sendPlayerError(playerid, "Casa ta nu detine upgrade-ul de heal.");
+			if(houseInfo[playerInfo[playerid][pHouseID]][hUpgrade] <= 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Casa ta nu detine upgrade-ul de heal.");
 			SetPlayerHealthEx(playerid, 100);
 			sendNearbyMessage(playerid, COLOR_PURPLE, 25.0, "* %s si-a dat heal.", getName(playerid));
 		}
 	}
 	else if(playerInfo[playerid][pRent] != -1) {
 		if(GetPlayerVirtualWorld(playerid) == houseInfo[playerInfo[playerid][pRent]][hID] && GetPlayerInterior(playerid) == houseInfo[playerInfo[playerid][pRent]][hInterior]) {
-			if(houseInfo[playerInfo[playerid][pRent]][hUpgrade] <= 0) return sendPlayerError(playerid, "Rentul tau nu detine upgrade-ul de heal.");
+			if(houseInfo[playerInfo[playerid][pRent]][hUpgrade] <= 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Rentul tau nu detine upgrade-ul de heal.");
 			SetPlayerHealthEx(playerid, 100);
 			sendNearbyMessage(playerid, COLOR_PURPLE, 25.0, "* %s si-a dat heal.", getName(playerid));
 		}
@@ -442,12 +442,12 @@ CMD:eat(playerid, params[]) {
 }
 
 CMD:armour(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pFaction] != 2 && playerInfo[playerid][pFaction] != 3 && playerInfo[playerid][pFaction] != 4) return sendPlayerError(playerid, "Aceasta comanda este doar pentru politsti.");
-	if(playerInfo[playerid][pFactionDuty] == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti la datorie.");
+	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu esti logat, pentru a face aceasta actiune.");
+	if(playerInfo[playerid][pFaction] != 2 && playerInfo[playerid][pFaction] != 3 && playerInfo[playerid][pFaction] != 4) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Aceasta comanda este doar pentru politsti.");
+	if(playerInfo[playerid][pFactionDuty] == 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu poti folosi aceasta comanda, deoarece nu esti la datorie.");
 	if(playerInfo[playerid][pHouse] != 0 && playerInfo[playerid][pHouseID] != -1) {
 		if(playerInfo[playerid][pinHouse] == playerInfo[playerid][pHouseID]) {
-			if(houseInfo[playerInfo[playerid][pHouseID]][hUpgrade] <= 0) return sendPlayerError(playerid, "Casa ta nu detine upgrade-ul de armour.");
+			if(houseInfo[playerInfo[playerid][pHouseID]][hUpgrade] <= 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Casa ta nu detine upgrade-ul de armour.");
 			SetPlayerHealthEx(playerid, 100);
 			SetPlayerArmourEx(playerid, 100);
 			sendNearbyMessage(playerid, COLOR_PURPLE, 25.0, "* %s si-a dat heal & armour.", getName(playerid));
@@ -455,7 +455,7 @@ CMD:armour(playerid, params[]) {
 	}
 	else if(playerInfo[playerid][pRent] != -1) {
 		if(GetPlayerVirtualWorld(playerid) == houseInfo[playerInfo[playerid][pRent]][hID] && GetPlayerInterior(playerid) == houseInfo[playerInfo[playerid][pRent]][hInterior]) {
-			if(houseInfo[playerInfo[playerid][pRent]][hUpgrade] <= 0) return sendPlayerError(playerid, "Rentul tau nu detine upgrade-ul de armour.");
+			if(houseInfo[playerInfo[playerid][pRent]][hUpgrade] <= 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Rentul tau nu detine upgrade-ul de armour.");
 			SetPlayerHealthEx(playerid, 100);
 			SetPlayerArmourEx(playerid, 100);
 			sendNearbyMessage(playerid, COLOR_PURPLE, 25.0, "* %s si-a dat heal & armour.", getName(playerid));
@@ -465,14 +465,14 @@ CMD:armour(playerid, params[]) {
 }
 
 CMD:createhouse(playerid, params[], help) {
-	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
-	if(Iter_Count(ServerHouses) >= MAX_HOUSES) return sendPlayerError(playerid, "Database:Limita de case a fost atinsa !");
+	if(playerInfo[playerid][pAdmin] < 6) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai acces la aceasta comanda.");
+	if(Iter_Count(ServerHouses) >= MAX_HOUSES) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Database:Limita de case a fost atinsa !");
 	extract params -> new string:interior[32], price, rent; else {
 		SCM(playerid, COLOR_GREY, "Optiuni Interior: small, medium, big. | Price: 0$ - not for sale ; > 0$ for sale");
 		return sendPlayerSyntax(playerid, "/createhouse <interior> <price> <rent available(0 - no | 1 - yes)>");
 	}
-	if(!(0 <= rent <= 1)) return sendPlayerError(playerid, "Invalid rent available (0 - 1).");
-	if(!(0 <= price <= 100000000)) return sendPlayerError(playerid, "Invalid price (0$ - 100,000,000$).");
+	if(!(0 <= rent <= 1)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Invalid rent available (0 - 1).");
+	if(!(0 <= price <= 100000000)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Invalid price (0$ - 100,000,000$).");
 	new i = Iter_Count(ServerHouses) + 1, int = random(5);
 	Iter_Add(ServerHouses, i);
 	houseInfo[i][hID] = i;

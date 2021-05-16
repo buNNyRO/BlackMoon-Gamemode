@@ -35,7 +35,7 @@ function LoadTurfs() {
 }
 
 CMD:turfs(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Trebuie sa fi logat pentru a folosi aceasta comanda.");
+	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Trebuie sa fi logat pentru a folosi aceasta comanda.");
 	if(playerInfo[playerid][pShowTurfs] == 0) {
 		playerInfo[playerid][pShowTurfs] = 1;
 		for(new i = 0; i < Iter_Count(ServerTurfs); i++) {

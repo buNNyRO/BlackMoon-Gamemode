@@ -1418,7 +1418,6 @@
 			<referrer name="formatNumber"/>
 			<referrer name="update"/>
 			<referrer name="resetVars"/>
-			<referrer name="sendPlayerError"/>
 			<referrer name="sendPlayerSyntax"/>
 			<referrer name="va_PlayerTextDrawSetString"/>
 			<referrer name="getDateTime"/>
@@ -3147,6 +3146,7 @@
 			<referrer name="sendAdmin"/>
 			<referrer name="sendToAdmin"/>
 			<referrer name="dialog_DIALOG_REPORT"/>
+			<referrer name="dialog_DIALOG_REPORT_NORMAL"/>
 			<referrer name="dialog_DIALOG_REPORT_CHEATER"/>
 			<referrer name="sendFactionMessage"/>
 			<referrer name="pc_cmd_gotofaction"/>
@@ -4324,7 +4324,6 @@
 		<member name="F:gString">
 			<referrer name="sendNearbyMessage"/>
 			<referrer name="formatNumber"/>
-			<referrer name="sendPlayerError"/>
 			<referrer name="sendPlayerSyntax"/>
 			<referrer name="va_PlayerTextDrawSetString"/>
 			<referrer name="getDateTime"/>
@@ -6113,6 +6112,7 @@
 			<dependency name="SQL"/>
 			<dependency name="SelectedCar"/>
 			<dependency name="SelectedCar"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetCameraBehindPlayer"/>
 			<dependency name="SetPlayerInterior"/>
 			<dependency name="SetPlayerVirtualWorld"/>
@@ -6134,7 +6134,6 @@
 			<dependency name="pinDealer"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="serverDealerPTD"/>
 			<dependency name="serverDealerTD"/>
 			<dependency name="testDriveTimer_yT@"/>
@@ -6537,7 +6536,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="random"/>
 			<dependency name="returnNeededPoints"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendSplitMessage"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
@@ -6570,10 +6568,10 @@
 			<attribute name="public"/>
 			<stacksize value="5"/>
 			<dependency name="RemovePlayerFromVehicle"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pFaction"/>
 			<dependency name="pFactionDuty"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="slapPlayer"/>
 			<dependency name="true"/>
 			<dependency name="vehicleFaction"/>
@@ -6620,10 +6618,10 @@
 			<stacksize value="6"/>
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="RemovePlayerFromVehicle"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pFaction"/>
 			<dependency name="pFactionRank"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="vehicleFaction"/>
 			<dependency name="vehicleRank"/>
@@ -9729,6 +9727,7 @@
 		<member name="M:BanIPOffline" syntax="BanIPOffline(playerid, ip, reason)">
 			<attribute name="public"/>
 			<stacksize value="10"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPVarInt"/>
 			<dependency name="cache_affected_rows"/>
 			<dependency name="gettime"/>
@@ -9736,7 +9735,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -9750,6 +9748,7 @@
 			<stacksize value="4105"/>
 			<dependency name="I@"/>
 			<dependency name="J@"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SendClientMessageToAll"/>
 			<dependency name="SetPVarInt"/>
 			<dependency name="cache_affected_rows"/>
@@ -9758,7 +9757,6 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<param name="playerid">
@@ -10254,7 +10252,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="pvSpawnedID"/>
 			<dependency name="returnNeededPoints"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
@@ -10295,6 +10292,7 @@
 			<dependency name="PlayerTextDrawSetString"/>
 			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="RemovePlayerFromVehicle"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetVehicleParamsEx"/>
 			<dependency name="TimerSpeedo_yT@"/>
 			<dependency name="Working"/>
@@ -10342,7 +10340,6 @@
 			<dependency name="pvOdometer"/>
 			<dependency name="pvOwnerID"/>
 			<dependency name="sendNearbyMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="speedo"/>
 			<dependency name="taxi"/>
 			<dependency name="true"/>
@@ -11179,6 +11176,7 @@
 		<member name="M:CheckIP" syntax="CheckIP(playerid, params)">
 			<attribute name="public"/>
 			<stacksize value="11"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPVarInt"/>
 			<dependency name="cache_get_value_name_int"/>
 			<dependency name="cache_num_rows"/>
@@ -11187,7 +11185,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<param name="playerid">
@@ -14618,7 +14615,6 @@
 			<referrer name="PlayerMoney"/>
 			<referrer name="dialog_BUYBIZ"/>
 			<referrer name="pc_cmd_bizdeposit"/>
-			<referrer name="pc_cmd_ad"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="dialog_BUY_INSURANCE"/>
 			<referrer name="pc_cmd_swapcolors"/>
@@ -17576,6 +17572,7 @@
 			<referrer name="isPlayerLogged"/>
 			<referrer name="sendToAdmin"/>
 			<referrer name="dialog_DIALOG_REPORT"/>
+			<referrer name="dialog_DIALOG_REPORT_NORMAL"/>
 			<referrer name="dialog_DIALOG_REPORT_CHEATER"/>
 			<referrer name="pc_cmd_adminhouse"/>
 			<referrer name="pc_cmd_unrentroom"/>
@@ -20256,6 +20253,7 @@
 			<attribute name="public"/>
 			<stacksize value="5"/>
 			<dependency name="ClearAnimations"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isBike"/>
 			<dependency name="isBoat"/>
 			<dependency name="isPlane"/>
@@ -20264,7 +20262,6 @@
 			<dependency name="pExamenVehicle"/>
 			<dependency name="pFlyLicense"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -22635,7 +22632,6 @@
 			<referrer name="sendSplitMessage"/>
 			<referrer name="showStats"/>
 			<referrer name="showLicenses"/>
-			<referrer name="sendPlayerError"/>
 			<referrer name="sendPlayerSyntax"/>
 			<referrer name="clearChat"/>
 			<referrer name="sendAdmin"/>
@@ -22645,6 +22641,7 @@
 			<referrer name="examenFail"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="dialog_EMAIL"/>
+			<referrer name="wrongPass"/>
 			<referrer name="dialog_DIALOG_REPORT"/>
 			<referrer name="dialog_DIALOG_REPORT_NORMAL"/>
 			<referrer name="dialog_DIALOG_REPORT_CHEATER"/>
@@ -22654,29 +22651,100 @@
 			<referrer name="dialog_SELL_HOUSE_STATE"/>
 			<referrer name="dialog_HOUSE_OPTION_TITLE"/>
 			<referrer name="dialog_HOUSE_OPTION_DESCRIPTION"/>
+			<referrer name="pc_cmd_buyhouse"/>
+			<referrer name="pc_cmd_sellhousestate"/>
+			<referrer name="pc_cmd_housebalance"/>
+			<referrer name="pc_cmd_housewithdraw"/>
+			<referrer name="pc_cmd_housedeposit"/>
+			<referrer name="pc_cmd_houseoption"/>
+			<referrer name="pc_cmd_hlock"/>
+			<referrer name="pc_cmd_sellhouse"/>
+			<referrer name="pc_cmd_adminhouse"/>
+			<referrer name="pc_cmd_rentabil"/>
+			<referrer name="pc_cmd_renters"/>
+			<referrer name="pc_cmd_rentroom"/>
 			<referrer name="pc_cmd_unrentroom"/>
+			<referrer name="pc_cmd_setrentprice"/>
 			<referrer name="pc_cmd_upgradehouse"/>
+			<referrer name="pc_cmd_eat"/>
+			<referrer name="pc_cmd_armour"/>
 			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="pc_cmd_turfs"/>
+			<referrer name="@yH_OnPlayerEnterVehicle@007"/>
+			<referrer name="@yH_OnPlayerStateChange@007"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
+			<referrer name="dialog_DIALOG_WANTEDS"/>
 			<referrer name="showMDC"/>
+			<referrer name="pc_cmd_factions"/>
+			<referrer name="pc_cmd_gotofaction"/>
+			<referrer name="pc_cmd_makeleader"/>
+			<referrer name="pc_cmd_auninvite"/>
+			<referrer name="pc_cmd_flock"/>
+			<referrer name="pc_cmd_fapps"/>
+			<referrer name="pc_cmd_fspec"/>
+			<referrer name="pc_cmd_blockf"/>
+			<referrer name="pc_cmd_f"/>
+			<referrer name="pc_cmd_r"/>
+			<referrer name="pc_cmd_d"/>
+			<referrer name="pc_cmd_heal"/>
+			<referrer name="pc_cmd_service"/>
+			<referrer name="pc_cmd_duty"/>
+			<referrer name="pc_cmd_invite"/>
+			<referrer name="pc_cmd_so"/>
+			<referrer name="pc_cmd_megaphone"/>
+			<referrer name="pc_cmd_frisk"/>
+			<referrer name="pc_cmd_cuff"/>
+			<referrer name="pc_cmd_uncuff"/>
 			<referrer name="pc_cmd_tazer"/>
 			<referrer name="pc_cmd_confiscate"/>
+			<referrer name="pc_cmd_ticket"/>
+			<referrer name="pc_cmd_wanteds"/>
+			<referrer name="pc_cmd_mdc"/>
+			<referrer name="pc_cmd_su"/>
+			<referrer name="pc_cmd_clear"/>
+			<referrer name="pc_cmd_arrest"/>
+			<referrer name="dialog_DIALOG_MEMBERS"/>
+			<referrer name="dialog_DIALOG_MEMBERS2"/>
+			<referrer name="dialog_DIALOG_MEMBERSRANK"/>
+			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_fare"/>
+			<referrer name="pc_cmd_news"/>
+			<referrer name="pc_cmd_live"/>
 			<referrer name="pc_cmd_endlive"/>
 			<referrer name="pc_cmd_questions"/>
 			<referrer name="pc_cmd_question"/>
+			<referrer name="pc_cmd_aq"/>
+			<referrer name="pc_cmd_startlesson"/>
+			<referrer name="pc_cmd_stoplesson"/>
 			<referrer name="pc_cmd_givelicense"/>
+			<referrer name="pc_cmd_setguns"/>
+			<referrer name="pc_cmd_tie"/>
+			<referrer name="pc_cmd_untie"/>
+			<referrer name="pc_cmd_attack"/>
+			<referrer name="pc_cmd_wars"/>
 			<referrer name="TimerWar"/>
+			<referrer name="pc_cmd_contract"/>
 			<referrer name="pc_cmd_gethit"/>
+			<referrer name="pc_cmd_contracts"/>
+			<referrer name="pc_cmd_svf"/>
 			<referrer name="pc_cmd_dvf"/>
 			<referrer name="dialog_DIALOG_SVF"/>
+			<referrer name="pc_cmd_setraport"/>
+			<referrer name="pc_cmd_resetraport"/>
+			<referrer name="pc_cmd_myraport"/>
+			<referrer name="pc_cmd_createsafe"/>
 			<referrer name="pc_cmd_order"/>
+			<referrer name="dialog_DIALOG_FWITHDRAW2"/>
+			<referrer name="dialog_DIALOG_FDEPOSIT2"/>
 			<referrer name="FishingTimer"/>
 			<referrer name="dialog_DIALOG_JOBS"/>
+			<referrer name="pc_cmd_jobs"/>
 			<referrer name="pc_cmd_getjob"/>
 			<referrer name="pc_cmd_quitjob"/>
+			<referrer name="pc_cmd_fish"/>
 			<referrer name="pc_cmd_skills"/>
+			<referrer name="pc_cmd_startwork"/>
+			<referrer name="pc_cmd_usedrugs"/>
 			<referrer name="usedrugsTimer"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="jobWork"/>
@@ -22686,67 +22754,247 @@
 			<referrer name="dialog_BUYBIZ"/>
 			<referrer name="dialog_TRANSFERBIZ"/>
 			<referrer name="pc_cmd_buybusiness"/>
+			<referrer name="pc_cmd_sellbizstate"/>
 			<referrer name="pc_cmd_bizbalance"/>
 			<referrer name="pc_cmd_bizwithdraw"/>
 			<referrer name="pc_cmd_bizdeposit"/>
+			<referrer name="pc_cmd_bizoption"/>
 			<referrer name="pc_cmd_bizlock"/>
+			<referrer name="pc_cmd_sellbiz"/>
+			<referrer name="pc_cmd_adminbusiness"/>
+			<referrer name="pc_cmd_buy"/>
+			<referrer name="pc_cmd_balance"/>
 			<referrer name="pc_cmd_deposit"/>
 			<referrer name="pc_cmd_withdraw"/>
+			<referrer name="pc_cmd_transfer"/>
+			<referrer name="pc_cmd_ad"/>
+			<referrer name="pc_cmd_myad"/>
 			<referrer name="pc_cmd_deletemyad"/>
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="CautaHelper"/>
+			<referrer name="pc_cmd_helduty"/>
+			<referrer name="pc_cmd_n"/>
+			<referrer name="pc_cmd_ar"/>
+			<referrer name="pc_cmd_ch"/>
+			<referrer name="pc_cmd_hl"/>
+			<referrer name="pc_cmd_skipn"/>
+			<referrer name="pc_cmd_deletead"/>
 			<referrer name="pc_cmd_cinvite"/>
+			<referrer name="pc_cmd_clanchat"/>
 			<referrer name="pc_cmd_leaveclan"/>
+			<referrer name="pc_cmd_clan"/>
 			<referrer name="dialog_DIALOG_CLAN"/>
 			<referrer name="MyHttpResponse"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
+			<referrer name="checkAccountInBanDatabase"/>
+			<referrer name="checkAccountBanDatabase"/>
+			<referrer name="checkBanPlayer"/>
+			<referrer name="BanIPPlayer"/>
+			<referrer name="CheckIP"/>
+			<referrer name="BanIPOffline"/>
+			<referrer name="checkAccountInDatabase"/>
+			<referrer name="checkAccountJail"/>
+			<referrer name="checkAccountInDatabaseJailo"/>
+			<referrer name="checkAccountJailo"/>
 			<referrer name="resetQuest"/>
 			<referrer name="checkMission"/>
 			<referrer name="Reclama"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="dialog_BUY_INSURANCE"/>
+			<referrer name="pc_cmd_lock"/>
 			<referrer name="pc_cmd_swapcolors"/>
+			<referrer name="pc_cmd_buyinsurance"/>
 			<referrer name="pc_cmd_carplate"/>
 			<referrer name="pc_cmd_carcolor"/>
+			<referrer name="pc_cmd_park"/>
+			<referrer name="pc_cmd_vehicles"/>
+			<referrer name="pc_cmd_addbizgas"/>
 			<referrer name="pc_cmd_fill"/>
 			<referrer name="TimerWanted"/>
 			<referrer name="Timers"/>
 			<referrer name="TimerTutorial"/>
 			<referrer name="PayDay"/>
 			<referrer name="ExpirationReport"/>
+			<referrer name="pc_cmd_addexamcp"/>
+			<referrer name="pc_cmd_warn"/>
+			<referrer name="pc_cmd_unwarn"/>
+			<referrer name="pc_cmd_ban"/>
+			<referrer name="pc_cmd_banoffline"/>
+			<referrer name="pc_cmd_unban"/>
+			<referrer name="pc_cmd_mute"/>
+			<referrer name="pc_cmd_unmute"/>
 			<referrer name="pc_cmd_mutedplayers"/>
+			<referrer name="pc_cmd_adminchat"/>
+			<referrer name="pc_cmd_helperchat"/>
+			<referrer name="pc_cmd_setadmin"/>
+			<referrer name="pc_cmd_sethelper"/>
+			<referrer name="pc_cmd_givemoney"/>
 			<referrer name="pc_cmd_adminsuspendlicense"/>
 			<referrer name="pc_cmd_ip"/>
 			<referrer name="pc_cmd_admingivelicense"/>
 			<referrer name="pc_cmd_admintakelicense"/>
+			<referrer name="pc_cmd_kick"/>
+			<referrer name="pc_cmd_spawncar"/>
+			<referrer name="pc_cmd_despawncar"/>
+			<referrer name="pc_cmd_despawncars"/>
+			<referrer name="pc_cmd_gotocar"/>
+			<referrer name="pc_cmd_getcar"/>
+			<referrer name="pc_cmd_slapcar"/>
+			<referrer name="pc_cmd_fixveh"/>
+			<referrer name="pc_cmd_addnos"/>
+			<referrer name="pc_cmd_flipveh"/>
+			<referrer name="pc_cmd_closestcar"/>
+			<referrer name="pc_cmd_entercar"/>
+			<referrer name="pc_cmd_fly"/>
+			<referrer name="pc_cmd_goto"/>
+			<referrer name="pc_cmd_gethere"/>
+			<referrer name="pc_cmd_slap"/>
+			<referrer name="pc_cmd_freeze"/>
+			<referrer name="pc_cmd_unfreeze"/>
 			<referrer name="pc_cmd_set"/>
+			<referrer name="pc_cmd_respawn"/>
+			<referrer name="pc_cmd_respawnhere"/>
+			<referrer name="pc_cmd_pm"/>
 			<referrer name="pc_cmd_mark"/>
 			<referrer name="pc_cmd_gotomark"/>
 			<referrer name="pc_cmd_healme"/>
 			<referrer name="pc_cmd_area"/>
+			<referrer name="pc_cmd_givegun"/>
+			<referrer name="pc_cmd_disarm"/>
 			<referrer name="pc_cmd_reports"/>
+			<referrer name="pc_cmd_acceptreport"/>
+			<referrer name="pc_cmd_rchat"/>
+			<referrer name="pc_cmd_closereport"/>
+			<referrer name="pc_cmd_reportmute"/>
+			<referrer name="pc_cmd_banip"/>
+			<referrer name="pc_cmd_unbanip"/>
+			<referrer name="pc_cmd_banipoffline"/>
+			<referrer name="pc_cmd_gotojob"/>
 			<referrer name="pc_cmd_ah"/>
+			<referrer name="pc_cmd_gotoxyz"/>
+			<referrer name="pc_cmd_unjail"/>
+			<referrer name="pc_cmd_unjailo"/>
+			<referrer name="pc_cmd_jail"/>
+			<referrer name="pc_cmd_jailo"/>
+			<referrer name="pc_cmd_showfreq"/>
+			<referrer name="pc_cmd_speed"/>
+			<referrer name="pc_cmd_clearchat"/>
 			<referrer name="pc_cmd_announce"/>
+			<referrer name="pc_cmd_count"/>
 			<referrer name="pc_cmd_aaa2"/>
+			<referrer name="pc_cmd_acover"/>
+			<referrer name="pc_cmd_aduty"/>
+			<referrer name="pc_cmd_gotohouse"/>
+			<referrer name="pc_cmd_gotobusiness"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_helpers"/>
+			<referrer name="pc_cmd_showlicenses"/>
 			<referrer name="pc_cmd_exam"/>
+			<referrer name="pc_cmd_engine"/>
+			<referrer name="pc_cmd_lights"/>
+			<referrer name="pc_cmd_report"/>
+			<referrer name="pc_cmd_spawnchange"/>
 			<referrer name="pc_cmd_killcp"/>
 			<referrer name="pc_cmd_sms"/>
+			<referrer name="pc_cmd_number"/>
 			<referrer name="pc_cmd_reply"/>
+			<referrer name="pc_cmd_gps"/>
 			<referrer name="pc_cmd_cancel"/>
 			<referrer name="pc_cmd_accept"/>
 			<referrer name="pc_cmd_animlist"/>
+			<referrer name="pc_cmd_carhand"/>
+			<referrer name="pc_cmd_lifejump"/>
+			<referrer name="pc_cmd_robman"/>
+			<referrer name="pc_cmd_exhaust"/>
+			<referrer name="pc_cmd_rcarjack1"/>
+			<referrer name="pc_cmd_lcarjack1"/>
+			<referrer name="pc_cmd_rcarjack2"/>
+			<referrer name="pc_cmd_lcarjack2"/>
+			<referrer name="pc_cmd_hoodfrisked"/>
+			<referrer name="pc_cmd_lightcig"/>
+			<referrer name="pc_cmd_tapcig"/>
+			<referrer name="pc_cmd_bat"/>
+			<referrer name="pc_cmd_lean"/>
+			<referrer name="pc_cmd_clearanim"/>
+			<referrer name="pc_cmd_dancing"/>
+			<referrer name="pc_cmd_box"/>
+			<referrer name="pc_cmd_lowthrow"/>
+			<referrer name="pc_cmd_highthrow"/>
+			<referrer name="pc_cmd_leftslap"/>
+			<referrer name="pc_cmd_handsup"/>
+			<referrer name="pc_cmd_fall"/>
+			<referrer name="pc_cmd_fallback"/>
+			<referrer name="pc_cmd_laugh"/>
+			<referrer name="pc_cmd_lookout"/>
+			<referrer name="pc_cmd_aim"/>
+			<referrer name="pc_cmd_crossarms"/>
+			<referrer name="pc_cmd_lay"/>
+			<referrer name="pc_cmd_hide"/>
+			<referrer name="pc_cmd_vomit"/>
+			<referrer name="pc_cmd_wave"/>
+			<referrer name="pc_cmd_shouting"/>
+			<referrer name="pc_cmd_chant"/>
+			<referrer name="pc_cmd_frisked"/>
+			<referrer name="pc_cmd_exhausted"/>
+			<referrer name="pc_cmd_injured"/>
+			<referrer name="pc_cmd_slapass"/>
+			<referrer name="pc_cmd_deal"/>
+			<referrer name="pc_cmd_dealstance"/>
+			<referrer name="pc_cmd_crack"/>
+			<referrer name="pc_cmd_wank"/>
+			<referrer name="pc_cmd_salute"/>
+			<referrer name="pc_cmd_gro"/>
+			<referrer name="pc_cmd_sup"/>
+			<referrer name="pc_cmd_rap"/>
+			<referrer name="pc_cmd_push"/>
+			<referrer name="pc_cmd_akick"/>
+			<referrer name="pc_cmd_lowbodypush"/>
+			<referrer name="pc_cmd_headbutt"/>
+			<referrer name="pc_cmd_pee"/>
+			<referrer name="pc_cmd_koface"/>
+			<referrer name="pc_cmd_kostomach"/>
+			<referrer name="pc_cmd_kiss"/>
+			<referrer name="pc_cmd_rollfall"/>
+			<referrer name="pc_cmd_lay2"/>
+			<referrer name="pc_cmd_hitch"/>
+			<referrer name="pc_cmd_beach"/>
+			<referrer name="pc_cmd_medic"/>
+			<referrer name="pc_cmd_scratch"/>
+			<referrer name="pc_cmd_sit"/>
+			<referrer name="pc_cmd_drunk"/>
+			<referrer name="pc_cmd_bomb"/>
+			<referrer name="pc_cmd_getarrested"/>
+			<referrer name="pc_cmd_chat"/>
+			<referrer name="pc_cmd_fucku"/>
+			<referrer name="pc_cmd_taichi"/>
+			<referrer name="pc_cmd_knife"/>
+			<referrer name="pc_cmd_basket"/>
 			<referrer name="pc_cmd_dance"/>
 			<referrer name="pc_cmd_jumpwater"/>
 			<referrer name="pc_cmd_quests"/>
 			<referrer name="pc_cmd_wthelp"/>
 			<referrer name="pc_cmd_setfreq"/>
+			<referrer name="pc_cmd_wt"/>
+			<referrer name="pc_cmd_freqmembers"/>
+			<referrer name="pc_cmd_finalquest"/>
+			<referrer name="pc_cmd_shop"/>
+			<referrer name="pc_cmd_hud"/>
+			<referrer name="pc_cmd_help"/>
+			<referrer name="pc_cmd_findbusiness"/>
+			<referrer name="pc_cmd_findhouse"/>
+			<referrer name="pc_cmd_id"/>
+			<referrer name="pc_cmd_serverinfo"/>
 			<referrer name="cancelDriveTest"/>
+			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
+			<referrer name="pc_cmd_buycar"/>
+			<referrer name="pc_cmd_emails"/>
+			<referrer name="pc_cmd_insertemail"/>
 			<referrer name="OnPlayerSpawn"/>
+			<referrer name="OnPlayerEnterVehicle"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
+			<referrer name="CB_OnPlayerStateChange"/>
 			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 			<param name="playerid">
 			</param>
@@ -25279,7 +25527,6 @@
 			<referrer name="string_fast"/>
 			<referrer name="sendNearbyMessage"/>
 			<referrer name="update"/>
-			<referrer name="sendPlayerError"/>
 			<referrer name="sendPlayerSyntax"/>
 			<referrer name="va_PlayerTextDrawSetString"/>
 			<referrer name="sendAdmin"/>
@@ -26218,6 +26465,7 @@
 		<member name="M:checkAccountBanDatabase" syntax="checkAccountBanDatabase(playerid, playerName, days, reason)">
 			<attribute name="public"/>
 			<stacksize value="4108"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPVarInt"/>
 			<dependency name="cache_get_value_name_int"/>
 			<dependency name="cache_num_rows"/>
@@ -26228,7 +26476,6 @@
 			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<dependency name="va_SendClientMessageToAll"/>
@@ -26246,11 +26493,11 @@
 			<stacksize value="10"/>
 			<dependency name="EOS"/>
 			<dependency name="SQL"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="cache_num_rows"/>
 			<dependency name="gQuery"/>
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_tquery"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -26265,11 +26512,11 @@
 			<attribute name="public"/>
 			<stacksize value="9"/>
 			<dependency name="SQL"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="cache_num_rows"/>
 			<dependency name="gQuery"/>
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_tquery"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -26283,11 +26530,11 @@
 			<stacksize value="10"/>
 			<dependency name="EOS"/>
 			<dependency name="SQL"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="cache_num_rows"/>
 			<dependency name="gQuery"/>
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_tquery"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -26301,12 +26548,12 @@
 		<member name="M:checkAccountJail" syntax="checkAccountJail(playerid, playerName, reason)">
 			<attribute name="public"/>
 			<stacksize value="8"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="cache_num_rows"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<param name="playerid">
@@ -26319,12 +26566,12 @@
 		<member name="M:checkAccountJailo" syntax="checkAccountJailo(playerid, playerName, reason, minutes)">
 			<attribute name="public"/>
 			<stacksize value="9"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="cache_num_rows"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<param name="playerid">
@@ -26339,6 +26586,7 @@
 		<member name="M:checkBanPlayer" syntax="checkBanPlayer(playerid)">
 			<attribute name="public"/>
 			<stacksize value="35"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPVarInt"/>
 			<dependency name="cache_get_value_name"/>
 			<dependency name="cache_get_value_name_int"/>
@@ -26348,7 +26596,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<param name="playerid">
@@ -26852,7 +27099,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="random"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
@@ -26889,10 +27135,10 @@
 			<dependency name="pvID"/>
 			<dependency name="pvInsurancePoints"/>
 			<dependency name="pvOdometer"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
+			<dependency name="va_SendClientMessage"/>
 			<dependency name="vehicle_personal"/>
 			<param name="playerid">
 			</param>
@@ -27059,6 +27305,7 @@
 			<dependency name="Dialog_Open"/>
 			<dependency name="GivePlayerCash"/>
 			<dependency name="PlayerMoney"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
 			<dependency name="pDrugs"/>
@@ -27077,7 +27324,6 @@
 			<dependency name="safeInfo"/>
 			<dependency name="saveSafe"/>
 			<dependency name="sendFactionMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="strval"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
@@ -27118,6 +27364,7 @@
 			<stacksize value="12302"/>
 			<dependency name="Dialog_Open"/>
 			<dependency name="GivePlayerCash"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
 			<dependency name="pDrugs"/>
@@ -27136,7 +27383,6 @@
 			<dependency name="safeInfo"/>
 			<dependency name="saveSafe"/>
 			<dependency name="sendFactionMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="strval"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
@@ -27200,7 +27446,6 @@
 			<dependency name="pCheckpointID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<param name="playerid">
@@ -27219,6 +27464,7 @@
 			<dependency name="Dialog_Open"/>
 			<dependency name="SQL"/>
 			<dependency name="Selected"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="cache_delete"/>
 			<dependency name="cache_get_value_name_int"/>
 			<dependency name="format"/>
@@ -27227,7 +27473,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="selName"/>
 			<dependency name="selName"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<param name="playerid">
@@ -27247,6 +27492,7 @@
 			<dependency name="Iter_Single@FactionMembers"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="SQL"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerSkin"/>
 			<dependency name="SpawnPlayer"/>
 			<dependency name="cache_delete"/>
@@ -27268,7 +27514,6 @@
 			<dependency name="selName"/>
 			<dependency name="selName"/>
 			<dependency name="sendFactionMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="showFactionMembers"/>
 			<dependency name="string_fast"/>
 			<dependency name="string_fast"/>
@@ -27285,6 +27530,7 @@
 			<attribute name="public"/>
 			<stacksize value="4108"/>
 			<dependency name="GetPlayerID"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="factionLog"/>
 			<dependency name="pFaction"/>
 			<dependency name="pFactionRank"/>
@@ -27294,7 +27540,6 @@
 			<dependency name="selName"/>
 			<dependency name="selName"/>
 			<dependency name="sendFactionMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="string_fast"/>
 			<dependency name="strval"/>
 			<dependency name="true"/>
@@ -27335,6 +27580,7 @@
 			<dependency name="Iter_Single@FactionMembers"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="SQL"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerSkin"/>
 			<dependency name="SpawnPlayer"/>
 			<dependency name="cache_delete"/>
@@ -27357,7 +27603,6 @@
 			<dependency name="selName"/>
 			<dependency name="selName"/>
 			<dependency name="sendFactionMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="string_fast"/>
 			<dependency name="string_fast"/>
 			<dependency name="strval"/>
@@ -27373,7 +27618,7 @@
 		</member>
 		<member name="M:dialog_DIALOG_REPORT" syntax="dialog_DIALOG_REPORT(playerid, response, listitem)">
 			<attribute name="public"/>
-			<stacksize value="10"/>
+			<stacksize value="11"/>
 			<dependency name="Dialog_Open"/>
 			<dependency name="ExpirationReport_yT@"/>
 			<dependency name="I@"/>
@@ -27400,8 +27645,8 @@
 			<dependency name="reportTimer"/>
 			<dependency name="reportType"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="response">
@@ -27440,9 +27685,9 @@
 			<dependency name="reportTimer"/>
 			<dependency name="reportType"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sscanf"/>
 			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="response">
@@ -27455,14 +27700,16 @@
 		</member>
 		<member name="M:dialog_DIALOG_REPORT_NORMAL" syntax="dialog_DIALOG_REPORT_NORMAL(playerid, response, listitem, inputtext[])">
 			<attribute name="public"/>
-			<stacksize value="10"/>
+			<stacksize value="11"/>
 			<dependency name="Dialog_Open"/>
 			<dependency name="ExpirationReport_yT@"/>
 			<dependency name="I@"/>
 			<dependency name="Iter_Add_InternalC"/>
+			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iter_Single@Reports"/>
 			<dependency name="Iter_Single@ServerAdmins"/>
 			<dependency name="Iterator@Reports"/>
+			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="J@"/>
 			<dependency name="REPORT_TYPE_NORMAL"/>
 			<dependency name="SendClientMessage"/>
@@ -27480,9 +27727,9 @@
 			<dependency name="reportTimer"/>
 			<dependency name="reportType"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="response">
@@ -27529,7 +27776,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<param name="playerid">
@@ -27559,7 +27805,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerVehicle"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="string_fast"/>
 			<dependency name="svfVehicleObjects"/>
 			<dependency name="true"/>
@@ -27583,6 +27828,7 @@
 			<dependency name="GetPlayerPos"/>
 			<dependency name="I@"/>
 			<dependency name="J@"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerCheckpoint"/>
 			<dependency name="TimersWantedFind_yT@"/>
 			<dependency name="pCheckpoint"/>
@@ -27592,7 +27838,6 @@
 			<dependency name="pWantedLevel"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<dependency name="wantedFind"/>
@@ -28029,7 +28274,6 @@
 			<dependency name="pvY"/>
 			<dependency name="pvZ"/>
 			<dependency name="random"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
@@ -28164,7 +28408,6 @@
 			<dependency name="pSpawnChange"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<param name="playerid">
@@ -28212,7 +28455,6 @@
 			<dependency name="pTransferPlayer"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendStaff"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
@@ -30442,7 +30684,6 @@
 			<dependency name="pinHouse"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -30522,7 +30763,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="sendFactionMessage"/>
 			<dependency name="sendNearbyMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="string_fast"/>
 			<dependency name="ticketMoney"/>
@@ -30550,6 +30790,7 @@
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="PlayerHaveReport"/>
 			<dependency name="REPORT_TYPE_NONE"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pName"/>
@@ -30564,7 +30805,6 @@
 			<dependency name="reportTimer"/>
 			<dependency name="reportType"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -30581,6 +30821,7 @@
 			<dependency name="EOS"/>
 			<dependency name="GetPlayerID"/>
 			<dependency name="PlayerTextDrawShow"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerName"/>
 			<dependency name="format"/>
 			<dependency name="isPlayerLogged"/>
@@ -30590,7 +30831,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="serverHud"/>
 			<dependency name="strlen"/>
@@ -30608,7 +30848,6 @@
 			<attribute name="public"/>
 			<stacksize value="4118"/>
 			<dependency name="Float:operator=(_:)"/>
-			<dependency name="GetPlayerCash"/>
 			<dependency name="GivePlayerCash"/>
 			<dependency name="I@"/>
 			<dependency name="IsPlayerInRangeOfPoint"/>
@@ -30617,6 +30856,7 @@
 			<dependency name="Iterator@ServerAds"/>
 			<dependency name="J@"/>
 			<dependency name="PlayerMoney"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="advertismentTimer_yT@"/>
 			<dependency name="bizBalance"/>
 			<dependency name="bizExtX"/>
@@ -30636,10 +30876,8 @@
 			<dependency name="pPhone"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="printf"/>
 			<dependency name="secinmin"/>
 			<dependency name="secinmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sendStaff"/>
 			<dependency name="strlen"/>
@@ -30663,6 +30901,7 @@
 			<dependency name="Iter_Single@ServerGasCan"/>
 			<dependency name="Iterator@ServerBusinesses"/>
 			<dependency name="Iterator@ServerGasCan"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="bizInfo"/>
 			<dependency name="bizType"/>
 			<dependency name="gBizID"/>
@@ -30675,7 +30914,6 @@
 			<dependency name="gasInfo"/>
 			<dependency name="pAdmin"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -30697,6 +30935,7 @@
 			<dependency name="Iter_Single@ExamenCheckpoints"/>
 			<dependency name="Iterator@ExamenCheckpoints"/>
 			<dependency name="SQL"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="dmvID"/>
 			<dependency name="dmvX"/>
 			<dependency name="dmvY"/>
@@ -30708,7 +30947,6 @@
 			<dependency name="mysql_tquery"/>
 			<dependency name="pAdmin"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
@@ -30728,11 +30966,11 @@
 			<dependency name="IsValidVehicle"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strval"/>
 			<dependency name="true"/>
@@ -30752,10 +30990,10 @@
 			<dependency name="IDSelected"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerBusinesses"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pAdmin"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sscanf"/>
 			<dependency name="string_fast"/>
@@ -30771,12 +31009,12 @@
 			<stacksize value="8"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<param name="playerid">
@@ -30805,7 +31043,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -30825,10 +31062,10 @@
 			<dependency name="IDSelected"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerHouses"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pAdmin"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
@@ -30849,7 +31086,6 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
@@ -30878,7 +31114,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -30910,7 +31145,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -30927,11 +31161,11 @@
 			<stacksize value="7"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAdminDuty"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendStaff"/>
 			<dependency name="true"/>
 			<param name="playerid">
@@ -30948,7 +31182,6 @@
 			<dependency name="SendClientMessage"/>
 			<dependency name="pAdmin"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -30961,10 +31194,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -30977,7 +31210,7 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -31005,7 +31238,6 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
@@ -31023,6 +31255,7 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="Questions"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="format"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pName"/>
@@ -31030,7 +31263,6 @@
 			<dependency name="pTalkingLive"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
@@ -31049,7 +31281,7 @@
 			<dependency name="HelperBusy"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerHelpers"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
@@ -31081,7 +31313,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="serverWeapon"/>
 			<dependency name="string_fast"/>
@@ -31101,6 +31332,7 @@
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="GetPlayerInterior"/>
 			<dependency name="GetPlayerVirtualWorld"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerArmourEx"/>
 			<dependency name="SetPlayerHealthEx"/>
 			<dependency name="hID"/>
@@ -31118,7 +31350,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendNearbyMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -31142,6 +31373,7 @@
 			<dependency name="Iterator@JailedPlayers"/>
 			<dependency name="J@"/>
 			<dependency name="RemovePlayerAttachedObject"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="SetPlayerSpecialAction"/>
 			<dependency name="SetPlayerVirtualWorld"/>
@@ -31165,7 +31397,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="random"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -31191,6 +31422,7 @@
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="Iterator@ServerWars"/>
 			<dependency name="J@"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="TimerWar_yT@"/>
 			<dependency name="factionName"/>
 			<dependency name="factionName"/>
@@ -31201,7 +31433,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
 			<dependency name="sendFactionMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="tOwned"/>
 			<dependency name="true"/>
 			<dependency name="turfInfo"/>
@@ -31231,6 +31462,7 @@
 			<dependency name="Iter_Single@FactionMembers"/>
 			<dependency name="Iterator@Contracts"/>
 			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="ShowPlayerNameTagForPlayer"/>
 			<dependency name="cAgainst"/>
 			<dependency name="cID"/>
@@ -31256,7 +31488,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerVehicle"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="svfVehicleObjects"/>
 			<dependency name="true"/>
@@ -31279,9 +31510,9 @@
 			<dependency name="GetBankMoney"/>
 			<dependency name="GetBankMoney"/>
 			<dependency name="GetPlayerInterior"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pinBusiness"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
@@ -31296,6 +31527,7 @@
 			<dependency name="GetPVarInt"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="banPlayer"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
@@ -31303,11 +31535,11 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<dependency name="va_SendClientMessageToAll"/>
 			<param name="playerid">
 			</param>
@@ -31321,6 +31553,7 @@
 			<dependency name="EOS"/>
 			<dependency name="GetPVarInt"/>
 			<dependency name="SQL"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="gQuery"/>
 			<dependency name="getDateTime"/>
 			<dependency name="getDateTime"/>
@@ -31334,11 +31567,11 @@
 			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strmatch"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -31352,6 +31585,7 @@
 			<dependency name="GetPVarInt"/>
 			<dependency name="Iterator@loggedPlayers"/>
 			<dependency name="SQL"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="gQuery"/>
 			<dependency name="getDateTime"/>
 			<dependency name="getDateTime"/>
@@ -31364,10 +31598,10 @@
 			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="strmatch"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -31383,17 +31617,18 @@
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="Iterator@loggedPlayers"/>
 			<dependency name="SQL"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="gQuery"/>
 			<dependency name="gettime"/>
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_tquery"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strmatch"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -31406,10 +31641,10 @@
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="OnePlayAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -31424,10 +31659,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -31440,10 +31675,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -31463,7 +31698,6 @@
 			<dependency name="pBusiness"/>
 			<dependency name="pBusinessID"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<param name="playerid">
@@ -31488,7 +31722,6 @@
 			<dependency name="pBusinessID"/>
 			<dependency name="pinBusiness"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sscanf"/>
 			<dependency name="string_fast"/>
@@ -31511,7 +31744,6 @@
 			<dependency name="pBusiness"/>
 			<dependency name="pBusinessID"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<param name="playerid">
@@ -31525,11 +31757,11 @@
 			<stacksize value="10"/>
 			<dependency name="CallRemoteFunction"/>
 			<dependency name="Dialog_Open"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pBusiness"/>
 			<dependency name="pBusinessID"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -31552,7 +31784,6 @@
 			<dependency name="pBusinessID"/>
 			<dependency name="pinBusiness"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sscanf"/>
 			<dependency name="string_fast"/>
@@ -31567,6 +31798,7 @@
 		<member name="M:pc_cmd_blockf" syntax="pc_cmd_blockf(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="8"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="factionChat"/>
 			<dependency name="pFaction"/>
 			<dependency name="pFactionRank"/>
@@ -31574,7 +31806,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendFactionMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -31588,7 +31819,7 @@
 			<dependency name="ClearAnimations"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -31601,10 +31832,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -31617,12 +31848,12 @@
 			<stacksize value="10"/>
 			<dependency name="CallRemoteFunction"/>
 			<dependency name="Dialog_Open"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="bizInfo"/>
 			<dependency name="bizType"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pinBusiness"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -31672,7 +31903,6 @@
 			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="string_fast"/>
 			<dependency name="strval"/>
 			<dependency name="true"/>
@@ -31696,6 +31926,7 @@
 			<dependency name="LoadDsVehs"/>
 			<dependency name="PlayerTextDrawSetPreviewModel"/>
 			<dependency name="PlayerTextDrawShow"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerInterior"/>
 			<dependency name="SetPlayerVirtualWorld"/>
 			<dependency name="SetVehicleVirtualWorld"/>
@@ -31707,7 +31938,6 @@
 			<dependency name="pinDealer"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="serverDealerPTD"/>
 			<dependency name="true"/>
 			<dependency name="vehicle_personal"/>
@@ -31725,6 +31955,7 @@
 			<dependency name="IsPlayerInRangeOfPoint"/>
 			<dependency name="MoneyMoney"/>
 			<dependency name="SQL"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="StoreMoney"/>
 			<dependency name="Update3DTextLabelText"/>
 			<dependency name="areaHouse"/>
@@ -31755,7 +31986,6 @@
 			<dependency name="pSpawnChange"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
@@ -31774,6 +32004,7 @@
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@PlayerVehicles"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="floatround"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
@@ -31782,7 +32013,6 @@
 			<dependency name="pvAge"/>
 			<dependency name="pvInsurancePoints"/>
 			<dependency name="pvOdometer"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="vehicle_personal"/>
 			<param name="playerid">
@@ -31793,7 +32023,7 @@
 		</member>
 		<member name="M:pc_cmd_buylevel" syntax="pc_cmd_buylevel(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4104"/>
+			<stacksize value="4105"/>
 			<dependency name="GetPlayerCash"/>
 			<dependency name="GivePlayerCash"/>
 			<dependency name="MoneyMoney"/>
@@ -31806,7 +32036,6 @@
 			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<dependency name="updateLevelBar"/>
@@ -31841,7 +32070,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendFactionMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strmatch"/>
 			<dependency name="true"/>
@@ -31876,7 +32104,6 @@
 			<dependency name="pvColorTwo"/>
 			<dependency name="pvID"/>
 			<dependency name="pvSpawnedID"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sscanf"/>
 			<dependency name="true"/>
@@ -31893,7 +32120,7 @@
 			<stacksize value="13"/>
 			<dependency name="CB_ApplyAnimation"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -31923,7 +32150,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="pvCarPlate"/>
 			<dependency name="pvID"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="string_fast"/>
 			<dependency name="strlen"/>
@@ -31946,12 +32172,12 @@
 			<dependency name="Iterator@ServerHelpers"/>
 			<dependency name="QuestionStock"/>
 			<dependency name="QuestionStock"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="helpTimer"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="unformat"/>
 			<dependency name="va_SendClientMessage"/>
@@ -31967,10 +32193,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -31983,7 +32209,7 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -32006,7 +32232,6 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="string_fast"/>
 			<dependency name="strlen"/>
@@ -32022,9 +32247,9 @@
 			<attribute name="public"/>
 			<stacksize value="10"/>
 			<dependency name="Dialog_Open"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pClan"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -32036,6 +32261,7 @@
 			<attribute name="public"/>
 			<stacksize value="154"/>
 			<dependency name="Reclama"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="cClanColor"/>
 			<dependency name="cRank1"/>
 			<dependency name="cRank2"/>
@@ -32055,7 +32281,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="removeFunction"/>
 			<dependency name="sendClanMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -32074,6 +32299,7 @@
 			<dependency name="Iter_Single@Wanteds"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="Iterator@Wanteds"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerWantedLevel"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="pFaction"/>
@@ -32085,7 +32311,6 @@
 			<dependency name="pinFaction"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sendPolice"/>
 			<dependency name="true"/>
@@ -32106,7 +32331,7 @@
 			<stacksize value="13"/>
 			<dependency name="CB_ApplyAnimation"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -32120,12 +32345,12 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="Iterator@loggedPlayers"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="clearChat"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -32145,6 +32370,7 @@
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="PlayerHaveReport"/>
 			<dependency name="REPORT_TYPE_NONE"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pName"/>
@@ -32159,7 +32385,6 @@
 			<dependency name="reportTimer"/>
 			<dependency name="reportType"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -32180,11 +32405,11 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="PutPlayerInVehicle"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="vehNames"/>
 			<dependency name="vehNames"/>
@@ -32221,7 +32446,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="resetWeapons"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strmatch"/>
 			<dependency name="true"/>
@@ -32244,6 +32468,7 @@
 			<dependency name="Iter_Single@Contracts"/>
 			<dependency name="Iterator@Contracts"/>
 			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="cAgainst"/>
 			<dependency name="cID"/>
 			<dependency name="cMoney"/>
@@ -32257,7 +32482,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendFactionMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -32275,6 +32499,7 @@
 			<dependency name="Iter_Single@Contracts"/>
 			<dependency name="Iterator@Contracts"/>
 			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="cAgainst"/>
 			<dependency name="cID"/>
 			<dependency name="cMoney"/>
@@ -32285,7 +32510,6 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
@@ -32300,10 +32524,10 @@
 			<dependency name="CountTime"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -32321,10 +32545,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -32380,7 +32604,6 @@
 			<dependency name="formatNumber"/>
 			<dependency name="pAdmin"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
@@ -32448,7 +32671,6 @@
 			<dependency name="pAdmin"/>
 			<dependency name="playerInfo"/>
 			<dependency name="random"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="smallInteriors"/>
 			<dependency name="smallInteriorsID"/>
@@ -32479,6 +32701,7 @@
 			<dependency name="PickInfo"/>
 			<dependency name="PickInfo"/>
 			<dependency name="SAFE"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="factionName"/>
 			<dependency name="factionName"/>
 			<dependency name="formatNumber"/>
@@ -32498,7 +32721,6 @@
 			<dependency name="sVirtualID"/>
 			<dependency name="safeInfo"/>
 			<dependency name="safeInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
@@ -32516,10 +32738,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -32533,6 +32755,7 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="ProxDetectorS"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerAttachedObject"/>
 			<dependency name="SetPlayerSpecialAction"/>
 			<dependency name="TogglePlayerControllable"/>
@@ -32545,7 +32768,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendNearbyMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -32561,6 +32783,7 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="Reclama"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerChatBubble"/>
 			<dependency name="faceReclama"/>
 			<dependency name="factionName"/>
@@ -32571,7 +32794,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="removeFunction"/>
 			<dependency name="sendFactionMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
@@ -32602,10 +32824,10 @@
 			<stacksize value="13"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -32620,7 +32842,7 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -32633,10 +32855,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -32651,6 +32873,7 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="Iterator@ServerHelpers"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="advertismentTimer"/>
 			<dependency name="isPlayerLogged"/>
@@ -32658,7 +32881,6 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sendStaff"/>
 			<dependency name="strlen"/>
@@ -32684,7 +32906,6 @@
 			<dependency name="pAdText"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
 			<param name="playerid">
@@ -32711,7 +32932,6 @@
 			<dependency name="pinBusiness"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sscanf"/>
 			<dependency name="string_fast"/>
@@ -32736,12 +32956,12 @@
 			<dependency name="Iter_Single@AdminVehicles"/>
 			<dependency name="Iterator@AdminVehicles"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="false"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strval"/>
 			<dependency name="true"/>
@@ -32767,12 +32987,12 @@
 			<dependency name="Iter_Single@AdminVehicles"/>
 			<dependency name="Iterator@AdminVehicles"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="false"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="vehicle_bonnet"/>
 			<dependency name="vehicle_boot"/>
@@ -32792,12 +33012,12 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="ResetPlayerWeapons"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -32813,10 +33033,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -32830,6 +33050,7 @@
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerArmourEx"/>
 			<dependency name="SetPlayerHealthEx"/>
 			<dependency name="SetPlayerSkin"/>
@@ -32843,7 +33064,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="resetWeapons"/>
 			<dependency name="sendNearbyMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="serverWeapon"/>
 			<dependency name="true"/>
 			<param name="playerid">
@@ -32862,7 +33082,6 @@
 			<dependency name="pFaction"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerVehicle"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="svfVehicleObjects"/>
 			<dependency name="true"/>
 			<dependency name="vehicleFaction"/>
@@ -32880,6 +33099,7 @@
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="GetPlayerInterior"/>
 			<dependency name="GetPlayerVirtualWorld"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerHealthEx"/>
 			<dependency name="hID"/>
 			<dependency name="hInterior"/>
@@ -32894,7 +33114,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendNearbyMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -32907,11 +33126,11 @@
 			<stacksize value="4103"/>
 			<dependency name="CallRemoteFunction"/>
 			<dependency name="SQL"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="mysql_tquery"/>
 			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<param name="playerid">
@@ -32935,7 +33154,6 @@
 			<dependency name="pTalkingLive"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
 			<param name="playerid">
@@ -32960,6 +33178,7 @@
 			<dependency name="J@"/>
 			<dependency name="PlayerTextDrawHide"/>
 			<dependency name="PlayerTextDrawSetString"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPVarInt"/>
 			<dependency name="SetVehicleParamsEx"/>
 			<dependency name="TimerSpeedo_yT@"/>
@@ -32973,7 +33192,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="pvInsurancePoints"/>
 			<dependency name="sendNearbyMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="speedo"/>
 			<dependency name="true"/>
 			<dependency name="vehNames"/>
@@ -32997,13 +33215,13 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="PutPlayerInVehicle"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isBike"/>
 			<dependency name="isMotor"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -33047,10 +33265,10 @@
 			<dependency name="playerExamenPTD"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<dependency name="va_PlayerTextDrawSetString"/>
+			<dependency name="va_SendClientMessage"/>
 			<dependency name="vehicle_fuel"/>
 			<dependency name="vehicle_personal"/>
 			<param name="playerid">
@@ -33064,10 +33282,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -33080,10 +33298,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -33097,6 +33315,7 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="Reclama"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="faceReclama"/>
 			<dependency name="factionChat"/>
 			<dependency name="pFaction"/>
@@ -33107,7 +33326,6 @@
 			<dependency name="pspecFaction"/>
 			<dependency name="removeFunction"/>
 			<dependency name="sendFactionMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -33123,6 +33341,7 @@
 			<dependency name="Dialog_Open"/>
 			<dependency name="Iter_Single@ServerFactions"/>
 			<dependency name="Iterator@ServerFactions"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="fApps"/>
 			<dependency name="fMinLevel"/>
 			<dependency name="factionInfo"/>
@@ -33130,7 +33349,6 @@
 			<dependency name="factionName"/>
 			<dependency name="factionName"/>
 			<dependency name="format"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -33143,10 +33361,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -33159,10 +33377,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -33176,12 +33394,12 @@
 			<dependency name="IsNumeric"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerFactions"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="fApps"/>
 			<dependency name="factionInfo"/>
 			<dependency name="factionInfo"/>
 			<dependency name="pAdmin"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strval"/>
 			<dependency name="true"/>
@@ -33213,7 +33431,6 @@
 			<dependency name="pTaxiMoney"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="taxi"/>
 			<dependency name="true"/>
@@ -33275,7 +33492,6 @@
 			<dependency name="gasInfo"/>
 			<dependency name="gasTimer_yT@"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -33291,13 +33507,13 @@
 			<stacksize value="7"/>
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="IsPlayerInRangeOfPoint"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="checkMission"/>
 			<dependency name="getNeedProgress"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pDailyMission"/>
 			<dependency name="pProgress"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -33313,6 +33529,7 @@
 			<dependency name="GetPlayerDistanceFromPoint"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerBusinesses"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerCheckpoint"/>
 			<dependency name="bizExtX"/>
 			<dependency name="bizExtY"/>
@@ -33322,7 +33539,6 @@
 			<dependency name="pCheckpointID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -33341,6 +33557,7 @@
 			<dependency name="GetPlayerDistanceFromPoint"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerHouses"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerCheckpoint"/>
 			<dependency name="hExtX"/>
 			<dependency name="hExtY"/>
@@ -33350,7 +33567,6 @@
 			<dependency name="pCheckpointID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -33377,12 +33593,12 @@
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="IsPlayerInArea"/>
 			<dependency name="J@"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerAttachedObject"/>
 			<dependency name="TogglePlayerControllable"/>
 			<dependency name="false"/>
 			<dependency name="pJob"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -33401,11 +33617,11 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="RepairVehicle"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strval"/>
 			<dependency name="true"/>
@@ -33428,12 +33644,12 @@
 			<dependency name="IsValidVehicle"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetVehicleZAngle"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strval"/>
 			<dependency name="true"/>
@@ -33451,6 +33667,7 @@
 			<dependency name="IsNumeric"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerFactions"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="UpdateDynamic3DTextLabelText"/>
 			<dependency name="fID"/>
 			<dependency name="fLocked"/>
@@ -33461,7 +33678,6 @@
 			<dependency name="factionName"/>
 			<dependency name="pAdmin"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="string_fast"/>
 			<dependency name="strval"/>
@@ -33478,6 +33694,7 @@
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerHealthEx"/>
 			<dependency name="StartFly"/>
 			<dependency name="StopFly"/>
@@ -33485,7 +33702,6 @@
 			<dependency name="pFlymode"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -33498,6 +33714,7 @@
 			<stacksize value="8"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="TogglePlayerControllable"/>
 			<dependency name="false"/>
 			<dependency name="isPlayerLogged"/>
@@ -33506,7 +33723,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -33522,12 +33738,12 @@
 			<stacksize value="9"/>
 			<dependency name="Iter_Single@Freqs"/>
 			<dependency name="Iterator@Freqs"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pName"/>
 			<dependency name="pWTChannel"/>
 			<dependency name="pWTalkie"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
@@ -33544,6 +33760,7 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="ProxDetectorS"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pDrugs"/>
 			<dependency name="pFaction"/>
@@ -33553,7 +33770,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendNearbyMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="string_fast"/>
 			<dependency name="string_fast"/>
@@ -33571,10 +33787,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -33589,6 +33805,7 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="Iterator@ServerFactions"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="factionName"/>
 			<dependency name="factionName"/>
 			<dependency name="pAdmin"/>
@@ -33597,7 +33814,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="pspecFaction"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strval"/>
 			<dependency name="true"/>
@@ -33612,7 +33828,7 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -33654,10 +33870,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -33679,13 +33895,13 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="LinkVehicleToInterior"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetVehiclePos"/>
 			<dependency name="SetVehicleVirtualWorld"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strval"/>
 			<dependency name="true"/>
@@ -33709,6 +33925,7 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="LinkVehicleToInterior"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerInterior"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="SetPlayerVirtualWorld"/>
@@ -33719,7 +33936,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -33762,7 +33978,6 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
@@ -33790,7 +34005,6 @@
 			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
@@ -33805,6 +34019,7 @@
 			<stacksize value="4108"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="getWeaponName"/>
 			<dependency name="getWeaponName"/>
 			<dependency name="isPlayerLogged"/>
@@ -33813,7 +34028,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="serverWeapon"/>
 			<dependency name="true"/>
@@ -33844,7 +34058,6 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strmatch"/>
 			<dependency name="true"/>
@@ -33861,6 +34074,7 @@
 			<stacksize value="60"/>
 			<dependency name="CheckerBigInt"/>
 			<dependency name="MoneyMoney"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="StoreMoney"/>
 			<dependency name="Translate32Bit"/>
 			<dependency name="formatNumberss"/>
@@ -33872,7 +34086,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -33901,6 +34114,7 @@
 			<dependency name="LinkVehicleToInterior"/>
 			<dependency name="MaxSeats"/>
 			<dependency name="PutPlayerInVehicle"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerInterior"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="SetPlayerVirtualWorld"/>
@@ -33911,7 +34125,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -33928,6 +34141,7 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="Iterator@ServerBusinesses"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="bizExtX"/>
 			<dependency name="bizExtY"/>
@@ -33937,7 +34151,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -33959,6 +34172,7 @@
 			<dependency name="IsValidVehicle"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerInterior"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="SetPlayerVirtualWorld"/>
@@ -33966,7 +34180,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strval"/>
 			<dependency name="true"/>
@@ -33985,6 +34198,7 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="Iterator@ServerFactions"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerInterior"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="SetPlayerVirtualWorld"/>
@@ -33997,7 +34211,6 @@
 			<dependency name="pinFaction"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strval"/>
 			<dependency name="va_SendClientMessage"/>
@@ -34013,6 +34226,7 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="Iterator@ServerHouses"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="hExtX"/>
 			<dependency name="hExtY"/>
@@ -34022,7 +34236,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -34040,6 +34253,7 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="Iterator@ServerJobs"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="jobID"/>
 			<dependency name="jobInfo"/>
@@ -34052,7 +34266,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strval"/>
 			<dependency name="true"/>
@@ -34077,7 +34290,6 @@
 			<dependency name="pMarkY"/>
 			<dependency name="pMarkZ"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34090,10 +34302,10 @@
 			<stacksize value="14"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerInterior"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="SetPlayerVirtualWorld"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -34110,10 +34322,10 @@
 			<dependency name="CHECKPOINT_NONE"/>
 			<dependency name="CallRemoteFunction"/>
 			<dependency name="Dialog_Open"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pCheckpoint"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34126,10 +34338,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34141,10 +34353,10 @@
 			<attribute name="public"/>
 			<stacksize value="5"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerSpecialAction"/>
 			<dependency name="pFreezed"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34157,7 +34369,7 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34177,6 +34389,7 @@
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="MoneyMoney"/>
 			<dependency name="PlayerMoney"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerHealthEx"/>
 			<dependency name="StoreMoney"/>
 			<dependency name="addRaportPoint"/>
@@ -34194,7 +34407,6 @@
 			<dependency name="pinHouse"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -34216,7 +34428,6 @@
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerHealthEx"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34230,11 +34441,11 @@
 			<dependency name="HelperDuty"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerHelpers"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendHelper"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34247,7 +34458,7 @@
 			<stacksize value="10"/>
 			<dependency name="CallRemoteFunction"/>
 			<dependency name="Dialog_Open"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34261,12 +34472,12 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="Iterator@ServerHelpers"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pHelper"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sendStaff"/>
 			<dependency name="true"/>
@@ -34287,7 +34498,6 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
@@ -34301,10 +34511,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34317,7 +34527,7 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34330,10 +34540,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34347,11 +34557,11 @@
 			<dependency name="ConversationOpen"/>
 			<dependency name="HelperAtribut"/>
 			<dependency name="HelperBusy"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pHelper"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="unformat"/>
 			<dependency name="va_SendClientMessage"/>
@@ -34364,6 +34574,7 @@
 		<member name="M:pc_cmd_hlock" syntax="pc_cmd_hlock(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="8"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="hLocked"/>
 			<dependency name="houseInfo"/>
 			<dependency name="houseInfo"/>
@@ -34372,7 +34583,6 @@
 			<dependency name="pHouseID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<dependency name="va_SendClientMessage"/>
@@ -34387,10 +34597,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34401,6 +34611,7 @@
 		<member name="M:pc_cmd_housebalance" syntax="pc_cmd_housebalance(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="4104"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
 			<dependency name="hBalance"/>
@@ -34409,7 +34620,6 @@
 			<dependency name="pHouse"/>
 			<dependency name="pHouseID"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
@@ -34423,6 +34633,7 @@
 			<stacksize value="8202"/>
 			<dependency name="GivePlayerCash"/>
 			<dependency name="PlayerMoney"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
 			<dependency name="hBalance"/>
@@ -34434,7 +34645,6 @@
 			<dependency name="pinHouse"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -34451,11 +34661,11 @@
 			<stacksize value="10"/>
 			<dependency name="CallRemoteFunction"/>
 			<dependency name="Dialog_Open"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pHouse"/>
 			<dependency name="pHouseID"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34467,6 +34677,7 @@
 			<attribute name="public"/>
 			<stacksize value="8202"/>
 			<dependency name="GivePlayerCash"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
 			<dependency name="hBalance"/>
@@ -34478,7 +34689,6 @@
 			<dependency name="pinHouse"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -34495,9 +34705,9 @@
 			<stacksize value="11"/>
 			<dependency name="CallRemoteFunction"/>
 			<dependency name="Dialog_Open"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pFPSShow"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34509,6 +34719,7 @@
 			<attribute name="public"/>
 			<stacksize value="51"/>
 			<dependency name="GetPlayerPing"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="factionName"/>
 			<dependency name="factionName"/>
 			<dependency name="isPlayerLogged"/>
@@ -34518,7 +34729,6 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -34534,10 +34744,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34549,13 +34759,13 @@
 			<attribute name="public"/>
 			<stacksize value="155"/>
 			<dependency name="InsertEmail"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pName"/>
 			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
@@ -34574,6 +34784,7 @@
 			<stacksize value="78"/>
 			<dependency name="EOS"/>
 			<dependency name="GetPVarInt"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPVarInt"/>
 			<dependency name="factionName"/>
 			<dependency name="factionName"/>
@@ -34587,7 +34798,6 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sendSplitMessage"/>
 			<dependency name="true"/>
@@ -34609,7 +34819,6 @@
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pAdmin"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="unformat"/>
 			<dependency name="va_SendClientMessage"/>
@@ -34629,6 +34838,7 @@
 			<dependency name="Iterator@JailedPlayers"/>
 			<dependency name="J@"/>
 			<dependency name="RemovePlayerAttachedObject"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerInterior"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="SetPlayerSpecialAction"/>
@@ -34650,7 +34860,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="random"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
@@ -34669,13 +34878,13 @@
 			<dependency name="EOS"/>
 			<dependency name="Iterator@loggedPlayers"/>
 			<dependency name="SQL"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="gQuery"/>
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_tquery"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strlen"/>
 			<dependency name="strmatch"/>
@@ -34694,13 +34903,13 @@
 			<dependency name="Dialog_Open"/>
 			<dependency name="Iter_Single@ServerJobs"/>
 			<dependency name="Iterator@ServerJobs"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="format"/>
 			<dependency name="jobInfo"/>
 			<dependency name="jobInfo"/>
 			<dependency name="jobLegal"/>
 			<dependency name="jobLevel"/>
 			<dependency name="jobName"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34728,17 +34937,18 @@
 			<dependency name="GetPVarInt"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="kickPlayer"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strmatch"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -34759,7 +34969,6 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
@@ -34773,10 +34982,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34790,10 +34999,10 @@
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="OnePlayAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -34808,10 +35017,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34824,10 +35033,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34840,7 +35049,7 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34853,10 +35062,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34869,10 +35078,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34885,7 +35094,7 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34898,7 +35107,7 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34911,10 +35120,10 @@
 			<stacksize value="13"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -34942,7 +35151,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendClanMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34955,7 +35163,7 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34978,10 +35186,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -34994,7 +35202,7 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -35010,12 +35218,12 @@
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="GetVehicleParamsEx"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetVehicleParamsEx"/>
 			<dependency name="false"/>
 			<dependency name="isBike"/>
 			<dependency name="isBoat"/>
 			<dependency name="isPlane"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="vehicle_lights"/>
 			<param name="playerid">
@@ -35031,6 +35239,7 @@
 			<dependency name="IsPlayerInVehicle"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pFaction"/>
@@ -35041,7 +35250,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendFactionMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -35065,13 +35273,13 @@
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="IsPlayerInRangeOfPoint"/>
 			<dependency name="IsValidVehicle"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetVehicleParamsEx"/>
 			<dependency name="personalVehicle"/>
 			<dependency name="personalVehicle"/>
 			<dependency name="pvID"/>
 			<dependency name="pvLock"/>
 			<dependency name="pvModelID"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
@@ -35089,7 +35297,7 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -35102,7 +35310,7 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -35115,7 +35323,7 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -35131,6 +35339,7 @@
 			<dependency name="Iter_Single@FactionMembers"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="Iterator@ServerFactions"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerSkin"/>
 			<dependency name="SpawnPlayer"/>
 			<dependency name="fSkins"/>
@@ -35149,7 +35358,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -35176,7 +35384,6 @@
 			<dependency name="pMarkZ"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -35189,11 +35396,11 @@
 			<stacksize value="6"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pFaction"/>
 			<dependency name="pFactionDuty"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="showMDC"/>
 			<dependency name="true"/>
@@ -35209,10 +35416,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -35226,6 +35433,7 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="Reclama"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="faceReclama"/>
 			<dependency name="pFaction"/>
 			<dependency name="pFactionDuty"/>
@@ -35234,7 +35442,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="removeFunction"/>
 			<dependency name="sendNearbyMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
@@ -35267,6 +35474,7 @@
 			<dependency name="GetPVarInt"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="mutePlayer"/>
@@ -35275,10 +35483,10 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<dependency name="va_SendClientMessageToAll"/>
 			<param name="playerid">
 			</param>
@@ -35298,7 +35506,6 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
@@ -35310,10 +35517,10 @@
 		<member name="M:pc_cmd_myad" syntax="pc_cmd_myad(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="7"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAdText"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
@@ -35326,6 +35533,7 @@
 		<member name="M:pc_cmd_myraport" syntax="pc_cmd_myraport(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="45"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="factionName"/>
 			<dependency name="factionName"/>
 			<dependency name="isPlayerLogged"/>
@@ -35336,7 +35544,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="raportPoints"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
@@ -35352,7 +35559,7 @@
 			<dependency name="HelperAtribut"/>
 			<dependency name="QuestionStock"/>
 			<dependency name="QuestionStock"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="unformat"/>
 			<param name="playerid">
@@ -35367,6 +35574,7 @@
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="addRaportPoint"/>
 			<dependency name="gettime"/>
 			<dependency name="oocNews"/>
@@ -35375,22 +35583,12 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<dependency name="vehicleFaction"/>
-			<param name="playerid">
-			</param>
-			<param name="params">
-				<paraminfo> [] </paraminfo>
-			</param>
-		</member>
-		<member name="M:pc_cmd_notificare" syntax="pc_cmd_notificare(playerid, params[])">
-			<attribute name="public"/>
-			<stacksize value="6"/>
-			<dependency name="showNotification"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -35400,13 +35598,13 @@
 		<member name="M:pc_cmd_number" syntax="pc_cmd_number(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="4107"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pName"/>
 			<dependency name="pPhone"/>
 			<dependency name="pPhoneBook"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="string_fast"/>
 			<dependency name="string_fast"/>
@@ -35438,7 +35636,6 @@
 			<dependency name="safeInfo"/>
 			<dependency name="safeInfo"/>
 			<dependency name="saveSafe"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="serverWeapon"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
@@ -35469,6 +35666,7 @@
 			<dependency name="ModVehicle"/>
 			<dependency name="PutPlayerInVehicle"/>
 			<dependency name="SQL"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetVehicleHealth"/>
 			<dependency name="SetVehicleNumberPlate"/>
 			<dependency name="SetVehicleVirtualWorld"/>
@@ -35503,7 +35701,6 @@
 			<dependency name="pvX"/>
 			<dependency name="pvY"/>
 			<dependency name="pvZ"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="vehicle_bonnet"/>
 			<dependency name="vehicle_boot"/>
@@ -35521,10 +35718,10 @@
 			<attribute name="public"/>
 			<stacksize value="5"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerSpecialAction"/>
 			<dependency name="pFreezed"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -35538,11 +35735,11 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="Iterator@ServerHelpers"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -35558,7 +35755,7 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -35578,7 +35775,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendFactionMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
@@ -35598,7 +35794,6 @@
 			<dependency name="SendClientMessage"/>
 			<dependency name="pTalkingLive"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -35641,7 +35836,6 @@
 			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -35655,6 +35849,7 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="Reclama"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="faceReclama"/>
 			<dependency name="factionChat"/>
 			<dependency name="pFaction"/>
@@ -35665,7 +35860,6 @@
 			<dependency name="pspecFaction"/>
 			<dependency name="removeFunction"/>
 			<dependency name="sendFactionMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -35680,10 +35874,10 @@
 			<stacksize value="13"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -35698,7 +35892,7 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -35711,7 +35905,7 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -35724,11 +35918,11 @@
 			<stacksize value="9"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pName"/>
 			<dependency name="pReportChat"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
@@ -35743,6 +35937,7 @@
 			<attribute name="public"/>
 			<stacksize value="12301"/>
 			<dependency name="GetPVarInt"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPVarInt"/>
 			<dependency name="Update3DTextLabelText"/>
 			<dependency name="formatNumber"/>
@@ -35762,7 +35957,6 @@
 			<dependency name="pHouse"/>
 			<dependency name="pHouseID"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
@@ -35777,11 +35971,11 @@
 			<attribute name="public"/>
 			<stacksize value="7"/>
 			<dependency name="Iter_Single@RentersHouses"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pHouse"/>
 			<dependency name="pHouseID"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
@@ -35797,6 +35991,7 @@
 			<dependency name="Iter_Add_InternalC"/>
 			<dependency name="Iter_Single@RentersHouses"/>
 			<dependency name="Iterator@RentersHouses"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerInterior"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="SetPlayerVirtualWorld"/>
@@ -35822,7 +36017,6 @@
 			<dependency name="pinHouse"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<dependency name="va_SendClientMessage"/>
@@ -35847,7 +36041,6 @@
 			<dependency name="pReply"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sendToAdmin"/>
 			<dependency name="strlen"/>
@@ -35862,19 +36055,20 @@
 		</member>
 		<member name="M:pc_cmd_report" syntax="pc_cmd_report(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="10"/>
+			<stacksize value="11"/>
 			<dependency name="Dialog_Open"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iter_Single@Reports"/>
 			<dependency name="Iter_Single@ServerAdmins"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="PlayerHaveReport"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="gettime"/>
 			<dependency name="pReportMute"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -35886,6 +36080,7 @@
 			<stacksize value="75"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pName"/>
@@ -35894,7 +36089,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -35922,7 +36116,6 @@
 			<dependency name="reportInfo"/>
 			<dependency name="reportInfo"/>
 			<dependency name="reportText"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
@@ -35948,6 +36141,7 @@
 			<attribute name="public"/>
 			<stacksize value="9"/>
 			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pCommands"/>
 			<dependency name="pFaction"/>
@@ -35955,7 +36149,6 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<dependency name="va_SendClientMessage"/>
@@ -35973,6 +36166,7 @@
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="SpawnPlayer"/>
 			<dependency name="isPlayerLogged"/>
@@ -35980,7 +36174,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -36003,6 +36196,7 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="J@"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pName"/>
@@ -36010,7 +36204,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="respawnTimer_yT@"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -36026,10 +36219,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -36042,10 +36235,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -36058,7 +36251,7 @@
 			<stacksize value="13"/>
 			<dependency name="CB_ApplyAnimation"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -36071,10 +36264,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -36085,6 +36278,7 @@
 		<member name="M:pc_cmd_sellbiz" syntax="pc_cmd_sellbiz(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12303"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="Update3DTextLabelText"/>
 			<dependency name="bizDescription"/>
 			<dependency name="bizFee"/>
@@ -36101,7 +36295,6 @@
 			<dependency name="pBusiness"/>
 			<dependency name="pBusinessID"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sscanf"/>
 			<dependency name="string_fast"/>
@@ -36121,12 +36314,12 @@
 			<dependency name="GetPlayerInterior"/>
 			<dependency name="GetPlayerVirtualWorld"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pBusiness"/>
 			<dependency name="pBusinessID"/>
 			<dependency name="pinBusiness"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -36137,6 +36330,7 @@
 		<member name="M:pc_cmd_sellhouse" syntax="pc_cmd_sellhouse(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12302"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="Update3DTextLabelText"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
@@ -36154,7 +36348,6 @@
 			<dependency name="pHouseID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
@@ -36175,12 +36368,12 @@
 			<dependency name="GetPlayerInterior"/>
 			<dependency name="GetPlayerVirtualWorld"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pHouse"/>
 			<dependency name="pHouseID"/>
 			<dependency name="pinHouse"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -36197,7 +36390,7 @@
 			<dependency name="Iter_Single@ServerHelpers"/>
 			<dependency name="Iter_Single@ServerStaff"/>
 			<dependency name="Iter_Single@loggedPlayers"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -36223,12 +36416,12 @@
 			<dependency name="SERVICE_INSTRUCTOR"/>
 			<dependency name="SERVICE_PARAMEDICS"/>
 			<dependency name="SERVICE_TAXI"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="TaxiAcceptedCall"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendFactionMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strmatch"/>
 			<dependency name="true"/>
@@ -36267,7 +36460,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="setSkin"/>
 			<dependency name="true"/>
@@ -36275,6 +36467,7 @@
 			<dependency name="update"/>
 			<dependency name="updateLevelBar"/>
 			<dependency name="updatePlayer"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -36294,6 +36487,7 @@
 			<dependency name="Iterator@ServerStaff"/>
 			<dependency name="PlayerTextDrawHide"/>
 			<dependency name="PlayerTextDrawShow"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pName"/>
@@ -36301,7 +36495,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="serverHud"/>
 			<dependency name="true"/>
@@ -36327,7 +36520,6 @@
 			<dependency name="pWToggle"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -36348,11 +36540,11 @@
 			<dependency name="GunName"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="format"/>
 			<dependency name="gString"/>
 			<dependency name="pGuns"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="strcat"/>
 			<dependency name="true"/>
 			<param name="playerid">
@@ -36369,6 +36561,7 @@
 			<dependency name="Iter_Remove_InternalC"/>
 			<dependency name="Iter_Single@ServerHelpers"/>
 			<dependency name="Iterator@ServerHelpers"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pHelper"/>
@@ -36376,7 +36569,6 @@
 			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sendStaff"/>
 			<dependency name="true"/>
@@ -36392,6 +36584,7 @@
 		<member name="M:pc_cmd_setraport" syntax="pc_cmd_setraport(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="15"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="fCommands"/>
 			<dependency name="factionInfo"/>
 			<dependency name="factionInfo"/>
@@ -36400,7 +36593,6 @@
 			<dependency name="pFactionRank"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -36415,6 +36607,7 @@
 		<member name="M:pc_cmd_setrentprice" syntax="pc_cmd_setrentprice(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12302"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="Update3DTextLabelText"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
@@ -36433,7 +36626,6 @@
 			<dependency name="pHouseID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
@@ -36451,10 +36643,10 @@
 			<stacksize value="12"/>
 			<dependency name="CallRemoteFunction"/>
 			<dependency name="Dialog_Open"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pPremium"/>
 			<dependency name="pVIP"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -36467,10 +36659,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -36483,11 +36675,11 @@
 			<stacksize value="8"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pWTChannel"/>
 			<dependency name="pWTalkie"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -36501,11 +36693,11 @@
 		<member name="M:pc_cmd_showlicenses" syntax="pc_cmd_showlicenses(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="8"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="showLicenses"/>
 			<dependency name="true"/>
@@ -36522,10 +36714,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -36570,7 +36762,7 @@
 			<dependency name="HelperBusy"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerHelpers"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -36586,6 +36778,7 @@
 			<dependency name="GetPlayerPos"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerHealthEx"/>
 			<dependency name="SetPlayerPos"/>
 			<dependency name="isPlayerLogged"/>
@@ -36593,7 +36786,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -36609,7 +36801,7 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -36629,12 +36821,12 @@
 			<dependency name="IsValidVehicle"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetVehiclePos"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strval"/>
 			<dependency name="true"/>
@@ -36661,7 +36853,6 @@
 			<dependency name="pReply"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sendToAdmin"/>
 			<dependency name="true"/>
@@ -36680,6 +36871,7 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="ProxDetectorS"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPVarInt"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
@@ -36689,7 +36881,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendNearbyMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -36711,6 +36902,7 @@
 			<dependency name="Iterator@AdminVehicles"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="PutPlayerInVehicle"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pBoatLicense"/>
 			<dependency name="pDrivingLicense"/>
 			<dependency name="pFlyLicense"/>
@@ -36718,10 +36910,10 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<dependency name="vehNames"/>
 			<dependency name="vehNames"/>
 			<dependency name="vehicle_fuel"/>
@@ -36737,8 +36929,8 @@
 			<stacksize value="10"/>
 			<dependency name="CallRemoteFunction"/>
 			<dependency name="Dialog_Open"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -36749,11 +36941,11 @@
 		<member name="M:pc_cmd_speed" syntax="pc_cmd_speed(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="7"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pEnableBoost"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
@@ -36768,13 +36960,13 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="ProxDetectorS"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pInLesson"/>
 			<dependency name="pLevel"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -36794,6 +36986,7 @@
 			<dependency name="JOB_CARPENTER"/>
 			<dependency name="JOB_DRUGSDEALER"/>
 			<dependency name="JOB_TRUCKER"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="Working"/>
 			<dependency name="jobInfo"/>
 			<dependency name="jobWork"/>
@@ -36807,8 +37000,8 @@
 			<dependency name="pc_cmd_fish"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -36830,12 +37023,12 @@
 			<stacksize value="9"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pInLesson"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -36856,6 +37049,7 @@
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="Iterator@Wanteds"/>
 			<dependency name="J@"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerWantedLevel"/>
 			<dependency name="TimerWanted_yT@"/>
 			<dependency name="addRaportPoint"/>
@@ -36866,7 +37060,6 @@
 			<dependency name="pWantedTime"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sendPolice"/>
 			<dependency name="true"/>
@@ -36884,7 +37077,7 @@
 			<stacksize value="13"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -36900,11 +37093,11 @@
 			<dependency name="Dialog_Open"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pFaction"/>
 			<dependency name="pFactionDuty"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerVehicle"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="strcat"/>
 			<dependency name="true"/>
 			<param name="playerid">
@@ -36935,7 +37128,6 @@
 			<dependency name="pvColorOne"/>
 			<dependency name="pvColorTwo"/>
 			<dependency name="pvID"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<dependency name="vehicle_personal"/>
@@ -36950,10 +37142,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -36966,7 +37158,7 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -36988,7 +37180,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendNearbyMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -37003,6 +37194,7 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="ProxDetectorS"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
 			<dependency name="isPlayerLogged"/>
@@ -37011,7 +37203,6 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="ticketMoney"/>
 			<dependency name="ticketPlayer"/>
@@ -37032,6 +37223,7 @@
 			<dependency name="IsPlayerInVehicle"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="TogglePlayerControllable"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pCuffed"/>
@@ -37040,7 +37232,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendNearbyMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -37070,6 +37261,7 @@
 			<dependency name="Dialog_Open"/>
 			<dependency name="GetPlayerBank"/>
 			<dependency name="GetPlayerInterior"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="formatNumbers"/>
 			<dependency name="formatNumbers"/>
 			<dependency name="isPlayerLogged"/>
@@ -37079,7 +37271,6 @@
 			<dependency name="pinBusiness"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sscanf"/>
 			<dependency name="string_fast"/>
@@ -37101,7 +37292,6 @@
 			<dependency name="pShowTurfs"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="tID"/>
 			<dependency name="tOwned"/>
 			<dependency name="true"/>
@@ -37114,20 +37304,21 @@
 		</member>
 		<member name="M:pc_cmd_unban" syntax="pc_cmd_unban(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="10"/>
+			<stacksize value="11"/>
 			<dependency name="EOS"/>
 			<dependency name="GetPVarInt"/>
 			<dependency name="SQL"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="gQuery"/>
 			<dependency name="gettime"/>
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_tquery"/>
 			<dependency name="pAdmin"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -37136,20 +37327,21 @@
 		</member>
 		<member name="M:pc_cmd_unbanip" syntax="pc_cmd_unbanip(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="10"/>
+			<stacksize value="11"/>
 			<dependency name="EOS"/>
 			<dependency name="GetPVarInt"/>
 			<dependency name="SQL"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="gQuery"/>
 			<dependency name="gettime"/>
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_tquery"/>
 			<dependency name="pAdmin"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -37163,6 +37355,7 @@
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="ProxDetectorS"/>
 			<dependency name="RemovePlayerAttachedObject"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerSpecialAction"/>
 			<dependency name="TogglePlayerControllable"/>
 			<dependency name="isPlayerLogged"/>
@@ -37173,7 +37366,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendNearbyMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -37188,6 +37380,7 @@
 			<stacksize value="8"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="TogglePlayerControllable"/>
 			<dependency name="false"/>
 			<dependency name="isPlayerLogged"/>
@@ -37196,7 +37389,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -37215,6 +37407,7 @@
 			<dependency name="Iter_Single@JailedPlayers"/>
 			<dependency name="Iterator@JailedPlayers"/>
 			<dependency name="PlayerTextDrawHide"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerVirtualWorld"/>
 			<dependency name="SpawnPlayer"/>
 			<dependency name="_Timer_F"/>
@@ -37229,7 +37422,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
@@ -37248,13 +37440,13 @@
 			<dependency name="EOS"/>
 			<dependency name="Iterator@loggedPlayers"/>
 			<dependency name="SQL"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="gQuery"/>
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_tquery"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strlen"/>
 			<dependency name="strmatch"/>
@@ -37274,6 +37466,7 @@
 			<dependency name="Iter_Single@MutedPlayers"/>
 			<dependency name="Iterator@MutedPlayers"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pMute"/>
 			<dependency name="pName"/>
@@ -37281,7 +37474,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -37310,7 +37502,6 @@
 			<dependency name="pSpawnChange"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<param name="playerid">
@@ -37325,6 +37516,7 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="ProxDetectorS"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="TogglePlayerControllable"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pCuffed"/>
@@ -37333,7 +37525,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendNearbyMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -37347,6 +37538,7 @@
 			<attribute name="public"/>
 			<stacksize value="75"/>
 			<dependency name="GetPVarInt"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPVarInt"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
@@ -37357,7 +37549,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -37384,7 +37575,6 @@
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -37401,6 +37591,7 @@
 			<dependency name="CB_ApplyAnimation"/>
 			<dependency name="I@"/>
 			<dependency name="J@"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerWeather"/>
 			<dependency name="UsingDrugs"/>
 			<dependency name="false"/>
@@ -37410,7 +37601,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendNearbyMessage"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<dependency name="usedrugsTimer_yT@"/>
@@ -37428,6 +37618,7 @@
 			<dependency name="IsVehicleOccupied"/>
 			<dependency name="Iter_Single@PlayerVehicles"/>
 			<dependency name="Iterator@PlayerVehicles"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="format"/>
 			<dependency name="gString"/>
 			<dependency name="gettime"/>
@@ -37441,7 +37632,6 @@
 			<dependency name="pvID"/>
 			<dependency name="pvModelID"/>
 			<dependency name="pvSpawnedID"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="vehNames"/>
@@ -37457,7 +37647,7 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
-			<dependency name="sendPlayerError"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -37470,10 +37660,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -37491,6 +37681,7 @@
 			<dependency name="Iter_Single@Wanteds"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="Iterator@Wanteds"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="chasedBy"/>
 			<dependency name="format"/>
 			<dependency name="gString"/>
@@ -37502,7 +37693,6 @@
 			<dependency name="pWantedLevel"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="strcat"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
@@ -37518,15 +37708,16 @@
 			<dependency name="GetPVarInt"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
+			<dependency name="va_SendClientMessage"/>
 			<dependency name="va_SendClientMessageToAll"/>
 			<dependency name="warnPlayer"/>
 			<param name="playerid">
@@ -37539,11 +37730,11 @@
 			<attribute name="public"/>
 			<stacksize value="83"/>
 			<dependency name="Iter_Single@ServerWars"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="WarScore"/>
 			<dependency name="WarScore"/>
 			<dependency name="factionName"/>
 			<dependency name="factionName"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<dependency name="wAttacker"/>
@@ -37562,10 +37753,10 @@
 			<stacksize value="12"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -37591,12 +37782,12 @@
 			<dependency name="pinBusiness"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="sscanf"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -37608,6 +37799,7 @@
 			<stacksize value="138"/>
 			<dependency name="Iterator@Freqs"/>
 			<dependency name="Reclama"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="faceReclama"/>
 			<dependency name="gettime"/>
 			<dependency name="pMute"/>
@@ -37618,7 +37810,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="removeFunction"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -37635,7 +37826,6 @@
 			<dependency name="SendClientMessage"/>
 			<dependency name="pWTalkie"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -37728,7 +37918,6 @@
 			<referrer name="LoadSafes"/>
 			<referrer name="LoadJobs"/>
 			<referrer name="LoadBusinesses"/>
-			<referrer name="pc_cmd_ad"/>
 			<referrer name="LoadClans"/>
 			<referrer name="MyHttpResponse"/>
 			<referrer name="LoadExamCheckpoints"/>
@@ -38413,344 +38602,6 @@
 				<paraminfo> {_,Language,Bit,Text,Menu,Style,XML,Bintree,Group,Timer,Float,File,Text3D} </paraminfo>
 			</param>
 		</member>
-		<member name="M:sendPlayerError" syntax="sendPlayerError(playerid, text[], ...)">
-			<stacksize value="16"/>
-			<referrer name="wrongPass"/>
-			<referrer name="dialog_DIALOG_REPORT"/>
-			<referrer name="dialog_DIALOG_REPORT_NORMAL"/>
-			<referrer name="dialog_DIALOG_REPORT_CHEATER"/>
-			<referrer name="dialog_SPAWNCHANGE"/>
-			<referrer name="dialog_DIALOG_SHOP"/>
-			<referrer name="pc_cmd_buyhouse"/>
-			<referrer name="pc_cmd_sellhousestate"/>
-			<referrer name="pc_cmd_housebalance"/>
-			<referrer name="pc_cmd_housewithdraw"/>
-			<referrer name="pc_cmd_housedeposit"/>
-			<referrer name="pc_cmd_houseoption"/>
-			<referrer name="pc_cmd_hlock"/>
-			<referrer name="pc_cmd_sellhouse"/>
-			<referrer name="pc_cmd_adminhouse"/>
-			<referrer name="pc_cmd_rentabil"/>
-			<referrer name="pc_cmd_renters"/>
-			<referrer name="pc_cmd_rentroom"/>
-			<referrer name="pc_cmd_unrentroom"/>
-			<referrer name="pc_cmd_setrentprice"/>
-			<referrer name="pc_cmd_upgradehouse"/>
-			<referrer name="pc_cmd_eat"/>
-			<referrer name="pc_cmd_armour"/>
-			<referrer name="pc_cmd_createhouse"/>
-			<referrer name="pc_cmd_turfs"/>
-			<referrer name="@yH_OnPlayerEnterVehicle@007"/>
-			<referrer name="@yH_OnPlayerStateChange@007"/>
-			<referrer name="dialog_DIALOG_WANTEDS"/>
-			<referrer name="showMDC"/>
-			<referrer name="pc_cmd_factions"/>
-			<referrer name="pc_cmd_gotofaction"/>
-			<referrer name="pc_cmd_makeleader"/>
-			<referrer name="pc_cmd_auninvite"/>
-			<referrer name="pc_cmd_flock"/>
-			<referrer name="pc_cmd_fapps"/>
-			<referrer name="pc_cmd_fspec"/>
-			<referrer name="pc_cmd_blockf"/>
-			<referrer name="pc_cmd_f"/>
-			<referrer name="pc_cmd_r"/>
-			<referrer name="pc_cmd_d"/>
-			<referrer name="pc_cmd_heal"/>
-			<referrer name="pc_cmd_service"/>
-			<referrer name="pc_cmd_duty"/>
-			<referrer name="pc_cmd_invite"/>
-			<referrer name="pc_cmd_so"/>
-			<referrer name="pc_cmd_megaphone"/>
-			<referrer name="pc_cmd_frisk"/>
-			<referrer name="pc_cmd_cuff"/>
-			<referrer name="pc_cmd_uncuff"/>
-			<referrer name="pc_cmd_tazer"/>
-			<referrer name="pc_cmd_confiscate"/>
-			<referrer name="pc_cmd_ticket"/>
-			<referrer name="pc_cmd_wanteds"/>
-			<referrer name="pc_cmd_mdc"/>
-			<referrer name="pc_cmd_su"/>
-			<referrer name="pc_cmd_clear"/>
-			<referrer name="pc_cmd_arrest"/>
-			<referrer name="dialog_DIALOG_MEMBERS"/>
-			<referrer name="dialog_DIALOG_MEMBERS2"/>
-			<referrer name="dialog_DIALOG_MEMBERSRANK"/>
-			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
-			<referrer name="pc_cmd_fare"/>
-			<referrer name="pc_cmd_news"/>
-			<referrer name="pc_cmd_live"/>
-			<referrer name="pc_cmd_endlive"/>
-			<referrer name="pc_cmd_questions"/>
-			<referrer name="pc_cmd_question"/>
-			<referrer name="pc_cmd_aq"/>
-			<referrer name="pc_cmd_startlesson"/>
-			<referrer name="pc_cmd_stoplesson"/>
-			<referrer name="pc_cmd_givelicense"/>
-			<referrer name="pc_cmd_setguns"/>
-			<referrer name="pc_cmd_tie"/>
-			<referrer name="pc_cmd_untie"/>
-			<referrer name="pc_cmd_attack"/>
-			<referrer name="pc_cmd_wars"/>
-			<referrer name="pc_cmd_contract"/>
-			<referrer name="pc_cmd_gethit"/>
-			<referrer name="pc_cmd_contracts"/>
-			<referrer name="pc_cmd_svf"/>
-			<referrer name="pc_cmd_dvf"/>
-			<referrer name="dialog_DIALOG_SVF"/>
-			<referrer name="pc_cmd_setraport"/>
-			<referrer name="pc_cmd_resetraport"/>
-			<referrer name="pc_cmd_myraport"/>
-			<referrer name="pc_cmd_createsafe"/>
-			<referrer name="pc_cmd_order"/>
-			<referrer name="dialog_DIALOG_FWITHDRAW2"/>
-			<referrer name="dialog_DIALOG_FDEPOSIT2"/>
-			<referrer name="dialog_DIALOG_JOBS"/>
-			<referrer name="pc_cmd_jobs"/>
-			<referrer name="pc_cmd_getjob"/>
-			<referrer name="pc_cmd_quitjob"/>
-			<referrer name="pc_cmd_fish"/>
-			<referrer name="pc_cmd_startwork"/>
-			<referrer name="pc_cmd_usedrugs"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="dialog_BUYBIZ"/>
-			<referrer name="dialog_TRANSFERBIZ"/>
-			<referrer name="pc_cmd_buybusiness"/>
-			<referrer name="pc_cmd_sellbizstate"/>
-			<referrer name="pc_cmd_bizbalance"/>
-			<referrer name="pc_cmd_bizwithdraw"/>
-			<referrer name="pc_cmd_bizdeposit"/>
-			<referrer name="pc_cmd_bizoption"/>
-			<referrer name="pc_cmd_bizlock"/>
-			<referrer name="pc_cmd_sellbiz"/>
-			<referrer name="pc_cmd_adminbusiness"/>
-			<referrer name="pc_cmd_buy"/>
-			<referrer name="pc_cmd_balance"/>
-			<referrer name="pc_cmd_deposit"/>
-			<referrer name="pc_cmd_withdraw"/>
-			<referrer name="pc_cmd_transfer"/>
-			<referrer name="pc_cmd_ad"/>
-			<referrer name="pc_cmd_myad"/>
-			<referrer name="pc_cmd_deletemyad"/>
-			<referrer name="pc_cmd_createbusiness"/>
-			<referrer name="pc_cmd_helduty"/>
-			<referrer name="pc_cmd_n"/>
-			<referrer name="pc_cmd_ar"/>
-			<referrer name="pc_cmd_ch"/>
-			<referrer name="pc_cmd_hl"/>
-			<referrer name="pc_cmd_skipn"/>
-			<referrer name="pc_cmd_deletead"/>
-			<referrer name="pc_cmd_cinvite"/>
-			<referrer name="pc_cmd_clanchat"/>
-			<referrer name="pc_cmd_leaveclan"/>
-			<referrer name="pc_cmd_clan"/>
-			<referrer name="checkAccountInBanDatabase"/>
-			<referrer name="checkAccountBanDatabase"/>
-			<referrer name="checkBanPlayer"/>
-			<referrer name="BanIPPlayer"/>
-			<referrer name="CheckIP"/>
-			<referrer name="BanIPOffline"/>
-			<referrer name="checkAccountInDatabase"/>
-			<referrer name="checkAccountJail"/>
-			<referrer name="checkAccountInDatabaseJailo"/>
-			<referrer name="checkAccountJailo"/>
-			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
-			<referrer name="dialog_BUY_INSURANCE"/>
-			<referrer name="pc_cmd_lock"/>
-			<referrer name="pc_cmd_swapcolors"/>
-			<referrer name="pc_cmd_buyinsurance"/>
-			<referrer name="pc_cmd_carplate"/>
-			<referrer name="pc_cmd_carcolor"/>
-			<referrer name="pc_cmd_park"/>
-			<referrer name="pc_cmd_vehicles"/>
-			<referrer name="pc_cmd_addbizgas"/>
-			<referrer name="pc_cmd_fill"/>
-			<referrer name="pc_cmd_addexamcp"/>
-			<referrer name="pc_cmd_warn"/>
-			<referrer name="pc_cmd_unwarn"/>
-			<referrer name="pc_cmd_ban"/>
-			<referrer name="pc_cmd_banoffline"/>
-			<referrer name="pc_cmd_unban"/>
-			<referrer name="pc_cmd_mute"/>
-			<referrer name="pc_cmd_unmute"/>
-			<referrer name="pc_cmd_mutedplayers"/>
-			<referrer name="pc_cmd_adminchat"/>
-			<referrer name="pc_cmd_helperchat"/>
-			<referrer name="pc_cmd_setadmin"/>
-			<referrer name="pc_cmd_sethelper"/>
-			<referrer name="pc_cmd_givemoney"/>
-			<referrer name="pc_cmd_adminsuspendlicense"/>
-			<referrer name="pc_cmd_ip"/>
-			<referrer name="pc_cmd_admingivelicense"/>
-			<referrer name="pc_cmd_admintakelicense"/>
-			<referrer name="pc_cmd_kick"/>
-			<referrer name="pc_cmd_spawncar"/>
-			<referrer name="pc_cmd_despawncar"/>
-			<referrer name="pc_cmd_despawncars"/>
-			<referrer name="pc_cmd_gotocar"/>
-			<referrer name="pc_cmd_getcar"/>
-			<referrer name="pc_cmd_slapcar"/>
-			<referrer name="pc_cmd_fixveh"/>
-			<referrer name="pc_cmd_addnos"/>
-			<referrer name="pc_cmd_flipveh"/>
-			<referrer name="pc_cmd_closestcar"/>
-			<referrer name="pc_cmd_entercar"/>
-			<referrer name="pc_cmd_fly"/>
-			<referrer name="pc_cmd_goto"/>
-			<referrer name="pc_cmd_gethere"/>
-			<referrer name="pc_cmd_slap"/>
-			<referrer name="pc_cmd_freeze"/>
-			<referrer name="pc_cmd_unfreeze"/>
-			<referrer name="pc_cmd_set"/>
-			<referrer name="pc_cmd_respawn"/>
-			<referrer name="pc_cmd_respawnhere"/>
-			<referrer name="pc_cmd_pm"/>
-			<referrer name="pc_cmd_mark"/>
-			<referrer name="pc_cmd_gotomark"/>
-			<referrer name="pc_cmd_healme"/>
-			<referrer name="pc_cmd_area"/>
-			<referrer name="pc_cmd_givegun"/>
-			<referrer name="pc_cmd_disarm"/>
-			<referrer name="pc_cmd_reports"/>
-			<referrer name="pc_cmd_acceptreport"/>
-			<referrer name="pc_cmd_rchat"/>
-			<referrer name="pc_cmd_closereport"/>
-			<referrer name="pc_cmd_reportmute"/>
-			<referrer name="pc_cmd_banip"/>
-			<referrer name="pc_cmd_unbanip"/>
-			<referrer name="pc_cmd_banipoffline"/>
-			<referrer name="pc_cmd_gotojob"/>
-			<referrer name="pc_cmd_ah"/>
-			<referrer name="pc_cmd_gotoxyz"/>
-			<referrer name="pc_cmd_unjail"/>
-			<referrer name="pc_cmd_unjailo"/>
-			<referrer name="pc_cmd_jail"/>
-			<referrer name="pc_cmd_jailo"/>
-			<referrer name="pc_cmd_showfreq"/>
-			<referrer name="pc_cmd_speed"/>
-			<referrer name="pc_cmd_clearchat"/>
-			<referrer name="pc_cmd_announce"/>
-			<referrer name="pc_cmd_count"/>
-			<referrer name="pc_cmd_aaa2"/>
-			<referrer name="pc_cmd_acover"/>
-			<referrer name="pc_cmd_aduty"/>
-			<referrer name="pc_cmd_gotohouse"/>
-			<referrer name="pc_cmd_gotobusiness"/>
-			<referrer name="pc_cmd_admins"/>
-			<referrer name="pc_cmd_helpers"/>
-			<referrer name="pc_cmd_showlicenses"/>
-			<referrer name="pc_cmd_buylevel"/>
-			<referrer name="pc_cmd_exam"/>
-			<referrer name="pc_cmd_engine"/>
-			<referrer name="pc_cmd_lights"/>
-			<referrer name="pc_cmd_report"/>
-			<referrer name="pc_cmd_spawnchange"/>
-			<referrer name="pc_cmd_killcp"/>
-			<referrer name="pc_cmd_sms"/>
-			<referrer name="pc_cmd_number"/>
-			<referrer name="pc_cmd_reply"/>
-			<referrer name="pc_cmd_gps"/>
-			<referrer name="pc_cmd_cancel"/>
-			<referrer name="pc_cmd_accept"/>
-			<referrer name="pc_cmd_carhand"/>
-			<referrer name="pc_cmd_lifejump"/>
-			<referrer name="pc_cmd_robman"/>
-			<referrer name="pc_cmd_exhaust"/>
-			<referrer name="pc_cmd_rcarjack1"/>
-			<referrer name="pc_cmd_lcarjack1"/>
-			<referrer name="pc_cmd_rcarjack2"/>
-			<referrer name="pc_cmd_lcarjack2"/>
-			<referrer name="pc_cmd_hoodfrisked"/>
-			<referrer name="pc_cmd_lightcig"/>
-			<referrer name="pc_cmd_tapcig"/>
-			<referrer name="pc_cmd_bat"/>
-			<referrer name="pc_cmd_lean"/>
-			<referrer name="pc_cmd_clearanim"/>
-			<referrer name="pc_cmd_dancing"/>
-			<referrer name="pc_cmd_box"/>
-			<referrer name="pc_cmd_lowthrow"/>
-			<referrer name="pc_cmd_highthrow"/>
-			<referrer name="pc_cmd_leftslap"/>
-			<referrer name="pc_cmd_handsup"/>
-			<referrer name="pc_cmd_fall"/>
-			<referrer name="pc_cmd_fallback"/>
-			<referrer name="pc_cmd_laugh"/>
-			<referrer name="pc_cmd_lookout"/>
-			<referrer name="pc_cmd_aim"/>
-			<referrer name="pc_cmd_crossarms"/>
-			<referrer name="pc_cmd_lay"/>
-			<referrer name="pc_cmd_hide"/>
-			<referrer name="pc_cmd_vomit"/>
-			<referrer name="pc_cmd_wave"/>
-			<referrer name="pc_cmd_shouting"/>
-			<referrer name="pc_cmd_chant"/>
-			<referrer name="pc_cmd_frisked"/>
-			<referrer name="pc_cmd_exhausted"/>
-			<referrer name="pc_cmd_injured"/>
-			<referrer name="pc_cmd_slapass"/>
-			<referrer name="pc_cmd_deal"/>
-			<referrer name="pc_cmd_dealstance"/>
-			<referrer name="pc_cmd_crack"/>
-			<referrer name="pc_cmd_wank"/>
-			<referrer name="pc_cmd_salute"/>
-			<referrer name="pc_cmd_gro"/>
-			<referrer name="pc_cmd_sup"/>
-			<referrer name="pc_cmd_rap"/>
-			<referrer name="pc_cmd_push"/>
-			<referrer name="pc_cmd_akick"/>
-			<referrer name="pc_cmd_lowbodypush"/>
-			<referrer name="pc_cmd_headbutt"/>
-			<referrer name="pc_cmd_pee"/>
-			<referrer name="pc_cmd_koface"/>
-			<referrer name="pc_cmd_kostomach"/>
-			<referrer name="pc_cmd_kiss"/>
-			<referrer name="pc_cmd_rollfall"/>
-			<referrer name="pc_cmd_lay2"/>
-			<referrer name="pc_cmd_hitch"/>
-			<referrer name="pc_cmd_beach"/>
-			<referrer name="pc_cmd_medic"/>
-			<referrer name="pc_cmd_scratch"/>
-			<referrer name="pc_cmd_sit"/>
-			<referrer name="pc_cmd_drunk"/>
-			<referrer name="pc_cmd_bomb"/>
-			<referrer name="pc_cmd_getarrested"/>
-			<referrer name="pc_cmd_chat"/>
-			<referrer name="pc_cmd_fucku"/>
-			<referrer name="pc_cmd_taichi"/>
-			<referrer name="pc_cmd_knife"/>
-			<referrer name="pc_cmd_basket"/>
-			<referrer name="pc_cmd_wthelp"/>
-			<referrer name="pc_cmd_setfreq"/>
-			<referrer name="pc_cmd_wt"/>
-			<referrer name="pc_cmd_freqmembers"/>
-			<referrer name="pc_cmd_finalquest"/>
-			<referrer name="pc_cmd_shop"/>
-			<referrer name="pc_cmd_hud"/>
-			<referrer name="pc_cmd_help"/>
-			<referrer name="pc_cmd_findbusiness"/>
-			<referrer name="pc_cmd_findhouse"/>
-			<referrer name="pc_cmd_id"/>
-			<referrer name="pc_cmd_serverinfo"/>
-			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
-			<referrer name="pc_cmd_buycar"/>
-			<referrer name="pc_cmd_emails"/>
-			<referrer name="pc_cmd_insertemail"/>
-			<referrer name="OnPlayerEnterVehicle"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
-			<referrer name="CB_OnPlayerStateChange"/>
-			<dependency name="EOS"/>
-			<dependency name="SendClientMessage"/>
-			<dependency name="YVA2_DummyPush"/>
-			<dependency name="gString"/>
-			<dependency name="va_format"/>
-			<param name="playerid">
-			</param>
-			<param name="text">
-				<paraminfo> [] </paraminfo>
-			</param>
-			<param name="...">
-				<paraminfo> {_,Language,Bit,Text,Menu,Style,XML,Bintree,Group,Timer,Float,File,Text3D} </paraminfo>
-			</param>
-		</member>
 		<member name="M:sendPlayerSyntax" syntax="sendPlayerSyntax(playerid, text[], ...)">
 			<stacksize value="16"/>
 			<referrer name="pc_cmd_housewithdraw"/>
@@ -39168,7 +39019,6 @@
 			<dependency name="pWantedTime"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<dependency name="wantedName"/>
@@ -39181,7 +39031,6 @@
 		<member name="M:showNotification" syntax="showNotification(playerid, from[], text[])">
 			<attribute name="public"/>
 			<stacksize value="8"/>
-			<referrer name="pc_cmd_notificare"/>
 			<referrer name="InsertEmail"/>
 			<referrer name="CalculateEmails"/>
 			<dependency name="I@"/>
@@ -40293,6 +40142,9 @@
 			<referrer name="showStats"/>
 			<referrer name="showLicenses"/>
 			<referrer name="dialog_GENDER"/>
+			<referrer name="dialog_DIALOG_REPORT"/>
+			<referrer name="dialog_DIALOG_REPORT_NORMAL"/>
+			<referrer name="dialog_DIALOG_REPORT_CHEATER"/>
 			<referrer name="dialog_GPS1"/>
 			<referrer name="dialog_DIALOG_HUD"/>
 			<referrer name="pc_cmd_buyhouse"/>
@@ -40322,6 +40174,7 @@
 			<referrer name="pc_cmd_ticket"/>
 			<referrer name="pc_cmd_clear"/>
 			<referrer name="pc_cmd_fare"/>
+			<referrer name="pc_cmd_news"/>
 			<referrer name="pc_cmd_live"/>
 			<referrer name="pc_cmd_startlesson"/>
 			<referrer name="pc_cmd_stoplesson"/>
@@ -40336,9 +40189,11 @@
 			<referrer name="pc_cmd_resetraport"/>
 			<referrer name="pc_cmd_myraport"/>
 			<referrer name="pc_cmd_createsafe"/>
+			<referrer name="pc_cmd_startwork"/>
 			<referrer name="dialog_BUYBIZ"/>
 			<referrer name="pc_cmd_sellbiz"/>
 			<referrer name="pc_cmd_balance"/>
+			<referrer name="pc_cmd_withdraw"/>
 			<referrer name="pc_cmd_ad"/>
 			<referrer name="pc_cmd_myad"/>
 			<referrer name="pc_cmd_createbusiness"/>
@@ -40351,11 +40206,17 @@
 			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPlayerBanIP"/>
+			<referrer name="dialog_BUY_INSURANCE"/>
 			<referrer name="pc_cmd_addbizgas"/>
 			<referrer name="gasTimer"/>
 			<referrer name="TimerJail"/>
 			<referrer name="pc_cmd_addexamcp"/>
+			<referrer name="pc_cmd_warn"/>
 			<referrer name="pc_cmd_unwarn"/>
+			<referrer name="pc_cmd_ban"/>
+			<referrer name="pc_cmd_banoffline"/>
+			<referrer name="pc_cmd_unban"/>
+			<referrer name="pc_cmd_mute"/>
 			<referrer name="pc_cmd_unmute"/>
 			<referrer name="pc_cmd_mutedplayers"/>
 			<referrer name="pc_cmd_setadmin"/>
@@ -40365,11 +40226,14 @@
 			<referrer name="pc_cmd_ip"/>
 			<referrer name="pc_cmd_admingivelicense"/>
 			<referrer name="pc_cmd_admintakelicense"/>
+			<referrer name="pc_cmd_kick"/>
+			<referrer name="pc_cmd_spawncar"/>
 			<referrer name="pc_cmd_goto"/>
 			<referrer name="pc_cmd_gethere"/>
 			<referrer name="pc_cmd_slap"/>
 			<referrer name="pc_cmd_freeze"/>
 			<referrer name="pc_cmd_unfreeze"/>
+			<referrer name="pc_cmd_set"/>
 			<referrer name="pc_cmd_respawn"/>
 			<referrer name="pc_cmd_respawnhere"/>
 			<referrer name="pc_cmd_pm"/>
@@ -40381,6 +40245,9 @@
 			<referrer name="pc_cmd_rchat"/>
 			<referrer name="pc_cmd_closereport"/>
 			<referrer name="pc_cmd_reportmute"/>
+			<referrer name="pc_cmd_banip"/>
+			<referrer name="pc_cmd_unbanip"/>
+			<referrer name="pc_cmd_banipoffline"/>
 			<referrer name="pc_cmd_gotoxyz"/>
 			<referrer name="pc_cmd_unjail"/>
 			<referrer name="pc_cmd_jail"/>
@@ -40390,6 +40257,8 @@
 			<referrer name="pc_cmd_helpers"/>
 			<referrer name="pc_cmd_showlicenses"/>
 			<referrer name="pc_cmd_buylevel"/>
+			<referrer name="pc_cmd_exam"/>
+			<referrer name="pc_cmd_report"/>
 			<referrer name="pc_cmd_killcp"/>
 			<referrer name="pc_cmd_sms"/>
 			<referrer name="pc_cmd_number"/>
@@ -40511,7 +40380,6 @@
 			<referrer name="string_fast"/>
 			<referrer name="sendNearbyMessage"/>
 			<referrer name="update"/>
-			<referrer name="sendPlayerError"/>
 			<referrer name="sendPlayerSyntax"/>
 			<referrer name="va_PlayerTextDrawSetString"/>
 			<referrer name="getDateTime"/>
@@ -40685,12 +40553,12 @@
 			<dependency name="Dialog_Open"/>
 			<dependency name="I@"/>
 			<dependency name="J@"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="kickEx_yT@"/>
 			<dependency name="pLoginTries"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="sendPlayerError"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>

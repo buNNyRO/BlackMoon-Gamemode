@@ -478,7 +478,7 @@ function assignCheckpointID(i) {
 
 function checkAccountInBanDatabase(playerid, playerName, days, reason) {
 	if(cache_num_rows())
-		return sendPlayerError(playerid, "Acest cont este deja banat.");
+		return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Acest cont este deja banat.");
 
 	gQuery[0] = (EOS);
 	mysql_format(SQL, gQuery, sizeof gQuery, "SELECT * FROM `server_users` WHERE `Name` = '%s' LIMIT 1", playerName);
@@ -488,7 +488,7 @@ function checkAccountInBanDatabase(playerid, playerName, days, reason) {
 
 function checkAccountBanDatabase(playerid, playerName, days, reason)  {
 	if(!cache_num_rows())
-		return sendPlayerError(playerid, "Acest cont nu exista.");
+		return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Acest cont nu exista.");
 
 	new playerID;
 	cache_get_value_name_int(0, "ID", playerID);
@@ -520,7 +520,7 @@ function checkPlayerBanIP(playerid) {
 
 function checkBanPlayer(playerid) {
 	if(!cache_num_rows())
-		return sendPlayerError(playerid, "Nu a fost gasit nici-un jucator banat cu acest nume.");
+		return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu a fost gasit nici-un jucator banat cu acest nume.");
 
 	new playerName[MAX_PLAYER_NAME], playerID;
 	cache_get_value_name(0, "PlayerName", playerName, MAX_PLAYER_NAME);
@@ -533,7 +533,7 @@ function checkBanPlayer(playerid) {
 }
 
 function BanIPPlayer(playerid, id, reason) {
-	if(!cache_affected_rows()) return sendPlayerError(playerid, "Banul nu a putut fi acordat, eroare tehnica reveniti mai tarziu.");
+	if(!cache_affected_rows()) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Banul nu a putut fi acordat, eroare tehnica reveniti mai tarziu.");
 	SendClientMessageToAll(COLOR_LIGHTRED, string_fast("AdmCmd: %s a primit ban ip de la administratorul %s, motiv: %s.", getName(id), getName(playerid), reason));
 	SetPVarInt(playerid, "banDeelay", (gettime() + 60));
 	defer kickEx(id);
@@ -541,7 +541,7 @@ function BanIPPlayer(playerid, id, reason) {
 }
 
 function CheckIP(playerid, params) {
-	if(!cache_num_rows()) return sendPlayerError(playerid, "Acest ip nu este banat.");
+	if(!cache_num_rows()) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Acest ip nu este banat.");
 	new playerID;
 	cache_get_value_name_int(0, "ID", playerID);
 	sendAdmin(COLOR_SERVER, "* Ban Notice: {ffffff}Admin %s a debanat ip-ul %s.", getName(playerid), params);
@@ -551,28 +551,28 @@ function CheckIP(playerid, params) {
 }
 
 function BanIPOffline(playerid, ip, reason) {
-	if(!cache_affected_rows()) return sendPlayerError(playerid, "Banul nu a putut fi acordat, eroare tehnica reveniti mai tarziu.");
+	if(!cache_affected_rows()) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Banul nu a putut fi acordat, eroare tehnica reveniti mai tarziu.");
 	sendAdmin(COLOR_SERVER, "* Ban Notice: {ffffff}Admin %s a banat ip-ul %s, motiv: %s.", getName(playerid), ip, reason);
 	SetPVarInt(playerid, "banDeelay", (gettime() + 60));
 	return true;
 }
 
 function checkAccountInDatabase(playerid, playerName, reason) {
-	if(!cache_num_rows()) return sendPlayerError(playerid, "Acest cont nu este in jail.");
+	if(!cache_num_rows()) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Acest cont nu este in jail.");
 	mysql_format(SQL, gQuery, sizeof gQuery, "SELECT * FROM `server_users` WHERE `Name` = '%s' LIMIT 1", playerName);
 	mysql_tquery(SQL, gQuery, "checkAccountJail", "dss", playerid, playerName, reason);
 	return true;
 }
 
 function checkAccountJail(playerid, playerName, reason) {
-	if(!cache_num_rows()) return sendPlayerError(playerid, "Acest cont nu exista.");
+	if(!cache_num_rows()) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Acest cont nu exista.");
 	sendAdmin(COLOR_SERVER, "* Notice: {ffffff}Admin %s l-a eliberat din inchisoare pe %s. Motiv: %s.", getName(playerid), playerName, reason);
 	update("UPDATE `server_users` SET `Jailed` = '0', `JailTime` = '0' WHERE `Name` = '%s' LIMIT 1", playerName);
 	return true;
 }
 
 function checkAccountInDatabaseJailo(playerid, playerName, reason, minutes) {
-	if(cache_num_rows()) return sendPlayerError(playerid, "Acest cont este deja in jail.");
+	if(cache_num_rows()) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Acest cont este deja in jail.");
 	gQuery[0] = (EOS);
 	mysql_format(SQL, gQuery, sizeof gQuery, "SELECT * FROM `server_users` WHERE `Name` = '%s' LIMIT 1", playerName);
 	mysql_tquery(SQL, gQuery, "checkAccountJailo", "dssd", playerid, playerName, reason, minutes);
@@ -580,7 +580,7 @@ function checkAccountInDatabaseJailo(playerid, playerName, reason, minutes) {
 }
 
 function checkAccountJailo(playerid, playerName, reason, minutes) {
-	if(!cache_num_rows()) return sendPlayerError(playerid, "Acest cont nu exista.");
+	if(!cache_num_rows()) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Acest cont nu exista.");
 	sendAdmin(COLOR_SERVER, "* Notice: {ffffff}Admin %s l-a bagat in inchisoare pe %s, %d minute. Motiv: %s.", getName(playerid), playerName, minutes, reason);
 	update("UPDATE `server_users` SET `Jailed` = '2', `JailTime` = '%d' WHERE `Name` = '%s' LIMIT 1", minutes*60, playerName);
 	return true;

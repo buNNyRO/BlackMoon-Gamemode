@@ -35,11 +35,11 @@ function updateGasCan(gid) {
 }
 
 CMD:addbizgas(playerid, params[]) {
-	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
-	if(Iter_Count(ServerGasCan) == MAX_GASCAN) return sendPlayerError(playerid, "Nu poti adauga un nou gascan deoarece s-a atins limita maxima.");
+	if(playerInfo[playerid][pAdmin] < 6) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai acces la aceasta comanda.");
+	if(Iter_Count(ServerGasCan) == MAX_GASCAN) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu poti adauga un nou gascan deoarece s-a atins limita maxima.");
 	extract params -> new id, fuel; else return sendPlayerSyntax(playerid, "/addbizgas <biz id> <fuel>");
-	if(!Iter_Contains(ServerBusinesses, id)) return sendPlayerError(playerid, "Acest biz nu exista.");
-	if(bizInfo[id][bizType] != 3) return sendPlayerError(playerid, "Acest business nu este de tip benzinarie.");
+	if(!Iter_Contains(ServerBusinesses, id)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Acest biz nu exista.");
+	if(bizInfo[id][bizType] != 3) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Acest business nu este de tip benzinarie.");
 	new Float:x, Float:y, Float:z;
 	GetPlayerPos(playerid, x, y, z);
 	new i = Iter_Free(ServerGasCan);
@@ -57,15 +57,15 @@ CMD:addbizgas(playerid, params[]) {
 
 CMD:fill(playerid, params[]) {
 	SCM(playerid, -1, "debug fill by vicentzo #1");
-	if(!IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Trebuie sa fi intr-un vehicul pentru a face acest lucru."); 
+	if(!IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Trebuie sa fi intr-un vehicul pentru a face acest lucru."); 
 	extract params -> new Float:full; else return sendPlayerSyntax(playerid, "/fill <gas procent>");
 	SCM(playerid, -1, "debug fill by vicentzo #2");
 	if(playerInfo[playerid][areaGascan] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, gasInfo[playerInfo[playerid][areaGascan]][gX], gasInfo[playerInfo[playerid][areaGascan]][gY], gasInfo[playerInfo[playerid][areaGascan]][gZ])) {
-		if(full + vehicle_fuel[GetPlayerVehicleID(playerid)] >= 100.0) return sendPlayerError(playerid, "Acest vehicul are rezervorul plin.");
+		if(full + vehicle_fuel[GetPlayerVehicleID(playerid)] >= 100.0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Acest vehicul are rezervorul plin.");
 		new Float:procent = 100.0 - vehicle_fuel[GetPlayerVehicleID(playerid)];
 		SCM(playerid, -1, "debug fill by vicentzo #3");
-		if(!PlayerMoney(playerid, 10 * 250)) return sendPlayerError(playerid, "Nu ai destui bani pentru a face acest lucru.");
-		if(gasInfo[playerInfo[playerid][areaGascan]][gFull] < procent) return sendPlayerError(playerid, "Aceasta benzinarie nu detine procentajul necesar de combustibil");
+		if(!PlayerMoney(playerid, 10 * 250)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai destui bani pentru a face acest lucru.");
+		if(gasInfo[playerInfo[playerid][areaGascan]][gFull] < procent) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Aceasta benzinarie nu detine procentajul necesar de combustibil");
 		TogglePlayerControllable(playerid, 0);
 		defer gasTimer(playerid, 10 * 250);
 		SCM(playerid, -1, "debug fill by vicentzo #4");

@@ -943,12 +943,6 @@ stock getVehicleSpeed(vehicleid,mode = 1) {
     return floatround(((floatsqroot(((x*x)+(y*y)+(z*z)))*(!mode ? 105.0 : 170.0 )))*0.98);
 }
 
-stock sendPlayerError(playerid, const text[], va_args<>) {
-	gString[0] = (EOS);
-	va_format(gString, sizeof gString, "[ERROR] {FFFFFF}%s", text, va_start<2>);
-	return SCM(playerid, COLOR_ERROR, gString);
-}
-
 stock secinmin(secunde) {
 	new hour = secunde / 60, minutes = secunde / 60 % 60, seconds = secunde % 60, secs[10];
 	if(secunde >= 3600) format(secs, sizeof secs, "%02d:%02d.%d", hour, minutes, seconds);

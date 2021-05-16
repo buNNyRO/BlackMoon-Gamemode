@@ -21,7 +21,7 @@ stock wrongPass(playerid)
 	playerInfo[playerid][pLoginTries] ++;
 	if(playerInfo[playerid][pLoginTries] == 3)
 	{
-		sendPlayerError(playerid, "Ai primit kick deoarece ai gresit parola de prea multe ori.");
+		SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Ai primit kick deoarece ai gresit parola de prea multe ori.");
 		defer kickEx(playerid);
 		return true;
 	}
@@ -79,10 +79,10 @@ Dialog:LOGIN(playerid, response, listitem, inputtext[])
 
 Dialog:DIALOG_REPORT(playerid, response, listitem) {
 	if(!response) return true;
-	if(Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
-	if(playerInfo[playerid][pReportMute] > gettime()) return sendPlayerError(playerid, "Pentru a folosi aceasta comanda trebuie sa astepti %d secunde", (playerInfo[playerid][pReportMute] - gettime()));
-	if(!Iter_Count(ServerAdmins)) return sendPlayerError(playerid, "Nu sunt admini conectati.");
-	if(Iter_Count(Reports) >= MAX_REPORTS) return sendPlayerError(playerid, "Momentan sunt prea multe report-uri in asteptare.");
+	if(Iter_Contains(ServerAdmins, playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai acces la aceasta comanda.");
+	if(playerInfo[playerid][pReportMute] > gettime()) return SCMf(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Pentru a folosi aceasta comanda trebuie sa astepti %d secunde", (playerInfo[playerid][pReportMute] - gettime()));
+	if(!Iter_Count(ServerAdmins)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu sunt admini conectati.");
+	if(Iter_Count(Reports) >= MAX_REPORTS) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Momentan sunt prea multe report-uri in asteptare.");
 	switch(listitem) {
 		case 0: Dialog_Show(playerid, DIALOG_REPORT_NORMAL, DIALOG_STYLE_INPUT, "Report: Normal", "Scrie mai jos problema pe care o ai:", "Ok", "Cancel");
 		case 1: Dialog_Show(playerid, DIALOG_REPORT_CHEATER, DIALOG_STYLE_INPUT, "Report: Cheater", "Scrie mai jos numele/id-ul jucatorului care foloseste cheats:", "Ok", "Cancel");
@@ -103,10 +103,10 @@ Dialog:DIALOG_REPORT(playerid, response, listitem) {
 
 Dialog:DIALOG_REPORT_NORMAL(playerid, response, listitem, inputtext[]) {
 	if(!response) return true;
-	if(Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
-	if(playerInfo[playerid][pReportMute] > gettime()) return sendPlayerError(playerid, "Pentru a folosi aceasta comanda trebuie sa astepti %d secunde", (playerInfo[playerid][pReportMute] - gettime()));
-	if(Iter_Count(Reports) >= MAX_REPORTS) return sendPlayerError(playerid, "Momentan sunt prea multe report-uri in asteptare.");
-	if(!Iter_Count(ServerAdmins)) return sendPlayerError(playerid, "Nu sunt admini conectati.");
+	if(Iter_Contains(ServerAdmins, playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai acces la aceasta comanda.");
+	if(playerInfo[playerid][pReportMute] > gettime()) return SCMf(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Pentru a folosi aceasta comanda trebuie sa astepti %d secunde", (playerInfo[playerid][pReportMute] - gettime()));
+	if(Iter_Count(Reports) >= MAX_REPORTS) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Momentan sunt prea multe report-uri in asteptare.");
+	if(!Iter_Count(ServerAdmins)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu sunt admini conectati.");
 	if(strlen(inputtext) < 6 || strlen(inputtext) > 128) return Dialog_Show(playerid, DIALOG_REPORT_NORMAL, DIALOG_STYLE_INPUT, "Report: Normal", "Scrie mai jos problema pe care o ai:", "Ok", "Cancel");
 	new id = (Iter_Count(Reports) +1);
 	reportInfo[id][reportID] = playerid;
@@ -122,10 +122,10 @@ Dialog:DIALOG_REPORT_NORMAL(playerid, response, listitem, inputtext[]) {
 
 Dialog:DIALOG_REPORT_CHEATER(playerid, response, listitem, inputtext[]) {
 	if(!response) return true;
-	if(Iter_Contains(ServerAdmins, playerid)) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
-	if(playerInfo[playerid][pReportMute] > gettime()) return sendPlayerError(playerid, "Pentru a folosi aceasta comanda trebuie sa astepti %d secunde", (playerInfo[playerid][pReportMute] - gettime()));
-	if(!Iter_Count(ServerAdmins)) return sendPlayerError(playerid, "Nu sunt admini conectati.");
-	if(Iter_Count(Reports) >= MAX_REPORTS) return sendPlayerError(playerid, "Momentan sunt prea multe report-uri in asteptare.");
+	if(Iter_Contains(ServerAdmins, playerid)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai acces la aceasta comanda.");
+	if(playerInfo[playerid][pReportMute] > gettime()) return SCMf(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Pentru a folosi aceasta comanda trebuie sa astepti %d secunde", (playerInfo[playerid][pReportMute] - gettime()));
+	if(!Iter_Count(ServerAdmins)) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu sunt admini conectati.");
+	if(Iter_Count(Reports) >= MAX_REPORTS) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Momentan sunt prea multe report-uri in asteptare.");
 	if(isnull(inputtext)) return  Dialog_Show(playerid, DIALOG_REPORT_CHEATER, DIALOG_STYLE_INPUT, "Report: Cheater", "Scrie mai jos numele/id-ul jucatorului care foloseste cheats:", "Ok", "Cancel");
 	new userid = INVALID_PLAYER_ID;
 	if(sscanf(inputtext, "u", userid)) return Dialog_Show(playerid, DIALOG_REPORT_CHEATER, DIALOG_STYLE_INPUT, "Report: Cheater", "Scrie mai jos numele/id-ul jucatorului care foloseste cheats:", "Ok", "Cancel");
@@ -151,8 +151,8 @@ Dialog:DIALOG_REPORT_CHEATER(playerid, response, listitem, inputtext[]) {
 		DeletePVar(playerid, "LabelInt");
 		return true;
 	}
-	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
-	if(Iter_Free(Labels) == -1) return sendPlayerError(playerid, "In acest moment, nu se pot creea pickup-uri, deoarece s-a atins numarul maxim.");
+	if(playerInfo[playerid][pAdmin] < 6) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai acces la aceasta comanda.");
+	if(Iter_Free(Labels) == -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}In acest moment, nu se pot creea pickup-uri, deoarece s-a atins numarul maxim.");
 	if(isnull(inputtext) || strlen(inputtext) > 128) return Dialog_Show(playerid, DIALOG_CREATE_LABEL, DIALOG_STYLE_INPUT, "Create Label:", "Scrie mai jos ce text doresti sa aiba label-ul:", "Ok", "Cancel");
 	new id = Iter_Free(Labels);
 	labelInfo[id][labelInterior] = GetPVarInt(playerid, "LabelInt");
@@ -161,7 +161,7 @@ Dialog:DIALOG_REPORT_CHEATER(playerid, response, listitem, inputtext[]) {
 	gQuery[0] = (EOS);
 	mysql_format(SQL, gQuery, sizeof gQuery, "INSERT INTO `server_labels` (`X`, `Y`, `Z`, `WorldID`, `Interior`, `Text`) VALUES('%f', '%f', '%f', '%d', '%d', '%s')", labelInfo[id][labelX],labelInfo[id][labelY],labelInfo[id][labelZ],labelInfo[id][labelVirtualWorld],labelInfo[id][labelInterior], inputtext);
 	inline getLabelID() {
-		if(!cache_affected_rows()) return sendPlayerError(playerid, "Nu s-a putut insera acest label in baza de date.");
+		if(!cache_affected_rows()) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu s-a putut insera acest label in baza de date.");
 		labelInfo[id][labelSQLID] = cache_insert_id();
 		defer PickupLabel(playerid, id);
 		return true;
@@ -174,22 +174,22 @@ Dialog:SPAWNCHANGE(playerid, response, listitem) {
 	if(!response) return true;
 	switch(listitem) {
 		case 0: {
-			if(playerInfo[playerid][pSpawnChange] == 1) return sendPlayerError(playerid, "Ai deja selectat, spawn change-ul pe 'Spawn'.");
+			if(playerInfo[playerid][pSpawnChange] == 1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Ai deja selectat, spawn change-ul pe 'Spawn'.");
 			playerInfo[playerid][pSpawnChange] = 1;	
 		}
 		case 1: {
-			if(playerInfo[playerid][pHouse] == 0) return sendPlayerError(playerid, "Nu detii casa, nu poti selecta aceasta optiune.");
-			if(playerInfo[playerid][pSpawnChange] == 2) return sendPlayerError(playerid, "Ai deja selectat, spawn change-ul pe 'House'.");
+			if(playerInfo[playerid][pHouse] == 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu detii casa, nu poti selecta aceasta optiune.");
+			if(playerInfo[playerid][pSpawnChange] == 2) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Ai deja selectat, spawn change-ul pe 'House'.");
 			playerInfo[playerid][pSpawnChange] = 2;	
 		}
 		case 2: {
-			if(playerInfo[playerid][pRent] == -1) return sendPlayerError(playerid, "Nu detii rent, nu poti selecta aceasta optiune.");
-			if(playerInfo[playerid][pSpawnChange] == 3) return sendPlayerError(playerid, "Ai deja selectat, spawn change-ul pe 'Rent'.");
+			if(playerInfo[playerid][pRent] == -1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu detii rent, nu poti selecta aceasta optiune.");
+			if(playerInfo[playerid][pSpawnChange] == 3) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Ai deja selectat, spawn change-ul pe 'Rent'.");
 			playerInfo[playerid][pSpawnChange] = 3;	
 		}
 		case 3: {
-			if(playerInfo[playerid][pFaction] == 0) return sendPlayerError(playerid, "Nu ai o factiune, nu poti selecta aceasta optiune.");
-			if(playerInfo[playerid][pSpawnChange] == 4) return sendPlayerError(playerid, "Ai deja selectat, spawn change-ul pe 'Faction'.");
+			if(playerInfo[playerid][pFaction] == 0) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai o factiune, nu poti selecta aceasta optiune.");
+			if(playerInfo[playerid][pSpawnChange] == 4) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Ai deja selectat, spawn change-ul pe 'Faction'.");
 			playerInfo[playerid][pSpawnChange] = 4;		
 		}
 	}
@@ -247,8 +247,8 @@ Dialog:DIALOG_SHOP(playerid, response, listitem) {
 	if(!response) return true;
 	switch(listitem) {
 		case 0: {
-			if(playerInfo[playerid][pPremium] == 1) return sendPlayerError(playerid, "Ai deja premium account.");
-			if(playerInfo[playerid][pPremiumPoints] < 50) return sendPlayerError(playerid, "Nu ai 50 premium points.");
+			if(playerInfo[playerid][pPremium] == 1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Ai deja premium account.");
+			if(playerInfo[playerid][pPremiumPoints] < 50) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai 50 premium points.");
 			playerInfo[playerid][pPremiumPoints] -= 50;
 			playerInfo[playerid][pPremium] = 1;
 			Iter_Add(PremiumPlayers, playerid);
@@ -257,8 +257,8 @@ Dialog:DIALOG_SHOP(playerid, response, listitem) {
 			SCM(playerid, COLOR_SERVER, "* Shop: Ai cumparat 'Premium Account' cu 50 premium points.");
 		}
 		case 1: {
-			if(playerInfo[playerid][pVIP] == 1) return sendPlayerError(playerid, "Ai deja VIP account.");
-			if(playerInfo[playerid][pPremiumPoints] < 100) return sendPlayerError(playerid, "Nu ai 100 premium points.");
+			if(playerInfo[playerid][pVIP] == 1) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Ai deja VIP account.");
+			if(playerInfo[playerid][pPremiumPoints] < 100) return SCM(playerid, COLOR_ERROR, "[ERROR] {FFFFFF}Nu ai 100 premium points.");
 			playerInfo[playerid][pPremiumPoints] -= 100;
 			playerInfo[playerid][pVIP] = 1;
 			Iter_Add(VipPlayers, playerid);
