@@ -17,7 +17,7 @@
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define MYSQL 0 // 0 - local | 1 - host
-#define VERSION "v1.6.41"
+#define VERSION "v1.6.43"
 
 #include <discord>
 
@@ -32,6 +32,8 @@
 #include <YSI\y_va>
 #include <YSI\y_inline>
 #include <YSI\y_stringhash>
+
+#include <nex-ac>
 
 #include <Pawn.CMD>
 #include <a_mysql>
@@ -310,7 +312,7 @@ public OnPlayerSpawn(playerid) {
 	return true;
 }
 
-public OnPlayerDeath(playerid, killerid) 
+public OnPlayerDeath(playerid, killerid, reason) 
 {
 	if(Working[playerid]) CancelJob(playerid, Working[playerid]);
 	if(playerInfo[playerid][pOnTurf] == 1) playerInfo[playerid][pOnTurf] = 0;
@@ -385,8 +387,8 @@ public OnPlayerDeath(playerid, killerid)
 
 public OnPlayerText(playerid, text[]) {
 	if(!isPlayerLogged(playerid)) defer kickEx(playerid);
-	if(strmatch(Diley[playerid], text)) return 0;
-	format(Diley[playerid], 144, text);
+	if(strmatch(deelayInfo[playerid][Chat], text)) return 0;
+	format(deelayInfo[playerid][Chat], 144, text);
 	if(faceReclama(text)) {
 		Reclama(playerid, text);
 		return 0;
@@ -505,57 +507,57 @@ public OnVehicleDeath(vehicleid, killerid) {
 }
 
 public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
+	if(deelayInfo[playerid][Keys] > GetTickCount()) return 1;
+	deelayInfo[playerid][Keys] = GetTickCount()+500;
 	if(PRESSED(KEY_LOOK_BEHIND)) {
 		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER || !isBike(GetPlayerVehicleID(playerid)) || GetPVarInt(playerid, "engineDeelay") != gettime()) callcmd::engine(playerid, "\1");
 	}
 	if(PRESSED(KEY_SECONDARY_ATTACK)) {
 		new b = GetPlayerVirtualWorld(playerid);
-	    if(PRESSED(KEY_SECONDARY_ATTACK)) {
-	        if(playerInfo[playerid][areaBizz] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, bizInfo[playerInfo[playerid][areaBizz]][bizExtX], bizInfo[playerInfo[playerid][areaBizz]][bizExtY], bizInfo[playerInfo[playerid][areaBizz]][bizExtZ]) && bizInfo[playerInfo[playerid][areaBizz]][bizStatic] != 1 && bizInfo[playerInfo[playerid][areaBizz]][bizLocked] != 1) {
-				SetPlayerPos(playerid, bizInfo[playerInfo[playerid][areaBizz]][bizX], bizInfo[playerInfo[playerid][areaBizz]][bizY], bizInfo[playerInfo[playerid][areaBizz]][bizZ]);
-				SetPlayerInterior(playerid, bizInfo[playerInfo[playerid][areaBizz]][bizInterior]);
-				SetPlayerVirtualWorld(playerid, bizInfo[playerInfo[playerid][areaBizz]][bizID]);
-				GivePlayerCash(playerid, 0, bizInfo[playerInfo[playerid][areaBizz]][bizFee]);
-				va_GameTextForPlayer(playerid, "~r~-$%d", bizInfo[playerInfo[playerid][areaBizz]][bizFee], 1000, 1);
-				playerInfo[playerid][pinBusiness] = playerInfo[playerid][areaBizz];
-				bizInfo[playerInfo[playerid][areaBizz]][bizBalance] += bizInfo[playerInfo[playerid][areaBizz]][bizFee];
-				update("UPDATE `server_business` SET `Balance`='%d' WHERE `ID`='%d' LIMIT 1",bizInfo[playerInfo[playerid][areaBizz]][bizBalance], playerInfo[playerid][areaBizz]);
-				switch(bizInfo[playerInfo[playerid][areaBizz]][bizType]) {
-					case 1: SCM(playerid, -1, "Welcome in the business, commands available: /balance, /deposit, /withdraw, /transfer."); 
-					case 2: {
-						SCM(playerid, -1, "Welcome in the business, commands available: /buy.");
-						if(FishWeight[playerid]) {
-							new money = FishWeight[playerid] * 115;
-							SCM(playerid, COLOR_GREY, string_fast("* Fish Notice: Ai vandut pestele , si ai castigat $%s.", formatNumber(money)));
-							FishWeight[playerid] = 0;
-							playerInfo[playerid][pFishTimes] ++;
-							if(playerInfo[playerid][pFishSkill] < 5) {
-								if(playerInfo[playerid][pFishTimes] >= returnNeededPoints(playerid, JOB_FISHER)) {
-									playerInfo[playerid][pFishSkill] ++;
-									SCM(playerid, COLOR_GREY, string_fast("* Fisherman Notice: Ai avansat in %d skill. Vei castiga probabil mai multi bani", playerInfo[playerid][pFishSkill]));
-								}
+        if(playerInfo[playerid][areaBizz] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, bizInfo[playerInfo[playerid][areaBizz]][bizExtX], bizInfo[playerInfo[playerid][areaBizz]][bizExtY], bizInfo[playerInfo[playerid][areaBizz]][bizExtZ]) && bizInfo[playerInfo[playerid][areaBizz]][bizStatic] != 1 && bizInfo[playerInfo[playerid][areaBizz]][bizLocked] != 1) {
+			SetPlayerPos(playerid, bizInfo[playerInfo[playerid][areaBizz]][bizX], bizInfo[playerInfo[playerid][areaBizz]][bizY], bizInfo[playerInfo[playerid][areaBizz]][bizZ]);
+			SetPlayerInterior(playerid, bizInfo[playerInfo[playerid][areaBizz]][bizInterior]);
+			SetPlayerVirtualWorld(playerid, bizInfo[playerInfo[playerid][areaBizz]][bizID]);
+			GivePlayerCash(playerid, 0, bizInfo[playerInfo[playerid][areaBizz]][bizFee]);
+			va_GameTextForPlayer(playerid, "~r~-$%d", bizInfo[playerInfo[playerid][areaBizz]][bizFee], 1000, 1);
+			playerInfo[playerid][pinBusiness] = playerInfo[playerid][areaBizz];
+			bizInfo[playerInfo[playerid][areaBizz]][bizBalance] += bizInfo[playerInfo[playerid][areaBizz]][bizFee];
+			update("UPDATE `server_business` SET `Balance`='%d' WHERE `ID`='%d' LIMIT 1",bizInfo[playerInfo[playerid][areaBizz]][bizBalance], playerInfo[playerid][areaBizz]);
+			switch(bizInfo[playerInfo[playerid][areaBizz]][bizType]) {
+				case 1: SCM(playerid, -1, "Welcome in the business, commands available: /balance, /deposit, /withdraw, /transfer."); 
+				case 2: {
+					SCM(playerid, -1, "Welcome in the business, commands available: /buy.");
+					if(FishWeight[playerid]) {
+						new money = FishWeight[playerid] * 115;
+						SCM(playerid, COLOR_GREY, string_fast("* Fish Notice: Ai vandut pestele , si ai castigat $%s.", formatNumber(money)));
+						FishWeight[playerid] = 0;
+						playerInfo[playerid][pFishTimes] ++;
+						if(playerInfo[playerid][pFishSkill] < 5) {
+							if(playerInfo[playerid][pFishTimes] >= returnNeededPoints(playerid, JOB_FISHER)) {
+								playerInfo[playerid][pFishSkill] ++;
+								SCM(playerid, COLOR_GREY, string_fast("* Fisherman Notice: Ai avansat in %d skill. Vei castiga probabil mai multi bani", playerInfo[playerid][pFishSkill]));
 							}
-							GivePlayerCash(playerid, 1, money);
-							for(new m; m < 2; m++) {
-								if(playerInfo[playerid][pDailyMission][m] == 1) checkMission(playerid, m);
-							}
-							gQuery[0] = (EOS);
-							mysql_format(SQL, gQuery, sizeof(gQuery), "UPDATE `server_users` SET `Money`= '%d', `MStore` = '%d', `FishTimes` = '%d', `FishSkill` = '%d' WHERE `ID`='%d'", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pFishTimes], playerInfo[playerid][pFishSkill], playerInfo[playerid][pSQLID]);
-							mysql_tquery(SQL, gQuery);
 						}
+						GivePlayerCash(playerid, 1, money);
+						for(new m; m < 2; m++) {
+							if(playerInfo[playerid][pDailyMission][m] == 1) checkMission(playerid, m);
+						}
+						gQuery[0] = (EOS);
+						mysql_format(SQL, gQuery, sizeof(gQuery), "UPDATE `server_users` SET `Money`= '%d', `MStore` = '%d', `FishTimes` = '%d', `FishSkill` = '%d' WHERE `ID`='%d'", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pFishTimes], playerInfo[playerid][pFishSkill], playerInfo[playerid][pSQLID]);
+						mysql_tquery(SQL, gQuery);
 					}
 				}
-				playerInfo[playerid][areaBizz] = 0;
-				return true;
-	        }
-	        else if(IsPlayerInRangeOfPoint(playerid, 3.0, bizInfo[b][bizX], bizInfo[b][bizY], bizInfo[b][bizZ])) {
-	        	SetPlayerPos(playerid, bizInfo[b][bizExtX], bizInfo[b][bizExtY], bizInfo[b][bizExtZ]);
-	            SetPlayerInterior(playerid, 0);
-	            SetPlayerVirtualWorld(playerid, 0);
-	            playerInfo[playerid][pinBusiness] = -1;
-	            return true;
-	        }
-    	}
+			}
+			playerInfo[playerid][areaBizz] = 0;
+			return true;
+        }
+        else if(IsPlayerInRangeOfPoint(playerid, 3.0, bizInfo[b][bizX], bizInfo[b][bizY], bizInfo[b][bizZ])) {
+        	SetPlayerPos(playerid, bizInfo[b][bizExtX], bizInfo[b][bizExtY], bizInfo[b][bizExtZ]);
+            SetPlayerInterior(playerid, 0);
+            SetPlayerVirtualWorld(playerid, 0);
+            playerInfo[playerid][pinBusiness] = -1;
+            return true;
+        }
 
 		if(playerInfo[playerid][areaHouse] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, bizInfo[playerInfo[playerid][areaHouse]][bizExtX], bizInfo[playerInfo[playerid][areaHouse]][bizExtY], bizInfo[playerInfo[playerid][areaHouse]][bizExtZ])) {
 			if(houseInfo[playerInfo[playerid][areaHouse]][hLocked] == 1) return SCM(playerid, COLOR_ERROR, eERROR"Acesta casa, este inchisa.");
@@ -672,7 +674,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 }
 
 public OnPlayerStateChange(playerid, newstate, oldstate) {
-    print("merge cehats u 2");
 	if(newstate == 2 && oldstate == 3) return 1;
 	if(newstate == PLAYER_STATE_SPECTATING && playerInfo[playerid][pAdmin] == 0) return va_SendClientMessageToAll(COLOR_LIGHTRED, "(AC) %s a primit kick pentru 'Invisibile Hack'.", getName(playerid)), Kick(playerid);
 	if(newstate == PLAYER_STATE_DRIVER || newstate == PLAYER_STATE_PASSENGER) if(Iter_Contains(PlayerInVehicle, playerid)) Iter_Add(PlayerInVehicle, playerid);
@@ -905,8 +906,8 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 
 public OnPlayerCommandReceived(playerid, cmd[], params[], flags) {
 	if(!isPlayerLogged(playerid)) defer kickEx(playerid);
-	if(DileyCMD[playerid] > gettime()) {
-		SCMf(playerid, COLOR_SERVER, "* (Deelay): {ffffff}Poti folosi o comanda peste %d secunde.", DileyCMD[playerid]-gettime());
+	if(deelayInfo[playerid][Commands] > gettime()) {
+		SCMf(playerid, COLOR_SERVER, "* (Deelay): {ffffff}Poti folosi o comanda peste %d secunde.", deelayInfo[playerid][Commands]-gettime());
 		return 0;
 	}
     return 1; 
@@ -917,7 +918,7 @@ public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags) {
         SCMf(playerid, COLOR_SERVER, "* (/%s): {ffffff}Aceasta comanda nu exista pe server.", cmd);
         return 0; 
     }
-    DileyCMD[playerid] = gettime()+1;
+    deelayInfo[playerid][Commands] = gettime()+1;
     return 1; 
 }
 

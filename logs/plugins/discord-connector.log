@@ -21,3 +21,11 @@
 [05/15/21 19:00:30] [ERROR] can't update guild member presence: user id "610958450419302450" not cached
 [05/15/21 19:00:32] [ERROR] can't update guild member presence: user id "610958450419302450" not cached
 [05/16/21 23:01:53] [ERROR] Can't write to Discord websocket gateway: The I/O operation has been aborted because of either a thread exit or an application request (995)
+[05/16/21 23:47:55] [ERROR] Can't establish secured connection to Discord gateway: An existing connection was forcibly closed by the remote host (10054)
+[05/16/21 23:48:22] [ERROR] Discord terminated websocket connection; reason: Not authenticated. (4003)
+[05/16/21 23:48:45] [ERROR] Can't resolve Discord API URL: No such host is known (11001)
+[05/16/21 23:50:31] [ERROR] Can't establish secured connection to Discord API: An existing connection was forcibly closed by the remote host (10054)
+[05/16/21 23:51:29] [ERROR] Can't establish secured connection to Discord API: An existing connection was forcibly closed by the remote host (10054)
+[05/16/21 23:52:34] [ERROR] Can't establish secured connection to Discord API: An existing connection was forcibly closed by the remote host (10054)
+[05/16/21 23:53:49] [ERROR] Can't read from Discord websocket gateway: The network connection was aborted by the local system (1236)
+[05/16/21 23:54:52] [ERROR] Can't establish secured connection to Discord API: An existing connection was forcibly closed by the remote host (10054)

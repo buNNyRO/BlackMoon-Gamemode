@@ -245,3 +245,9 @@ enum dealershipInfoEnum {
     dPrice, 
     dStock
 };
+
+enum deelayEnum {
+    Chat[144],
+    Commands,
+    Keys,
+}; new deelayInfo[MAX_PLAYERS][deelayEnum];

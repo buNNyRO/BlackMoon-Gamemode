@@ -64,11 +64,11 @@ hook OnPlayerStateChange(playerid, newstate, oldstate) {
         }
         acTime[playerid] = GetTickCount()+500;
     }
-    if(oldstate == PLAYER_STATE_DRIVER) print("a fost inveh");
 	return 1;
 }
 
 hook OnPlayerEnterVehicle(playerid, vehicleid, ispassenger) {
+    print("merge cehats u 2YYYYYY");
     if(GetTickCount() < acTimeCrash[playerid]) {
         va_SendClientMessageToAll(COLOR_LIGHTRED, "(AC) %s a primit kick pentru 'Crasher #1'.", getName(playerid));
         SendDiscordAC("%s a primit kick pentru **'Crasher #1'**", getName(playerid));
