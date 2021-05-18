@@ -850,68 +850,70 @@ stock resetVars(playerid)
 	GetPlayerName(playerid, playerInfo[playerid][pName], MAX_PLAYER_NAME);
 	GetPlayerIp(playerid, playerInfo[playerid][pLastIp], 16);
 		
-	playerInfo[playerid][pLogged] = false;
-	playerInfo[playerid][pLoginEnabled] = false;
-	playerInfo[playerid][pFlymode] = false;
-	playerInfo[playerid][pMark] = false;
+	playerInfo[playerid][pLogged] =
+	playerInfo[playerid][pLoginEnabled] =
+	playerInfo[playerid][pFlymode] =
+	playerInfo[playerid][pMark] =
+	playerInfo[playerid][pTutorial] = false;	
 
-	playerInfo[playerid][pLoginTries] = 0;
+	playerInfo[playerid][pHours] =
+	playerInfo[playerid][pSeconds] =
+	playerInfo[playerid][pAFKSeconds] =
+	playerInfo[playerid][pDrivingLicense] =
+	playerInfo[playerid][pDrivingLicenseSuspend] =
+	playerInfo[playerid][pFlyLicense] =
+	playerInfo[playerid][pFlyLicenseSuspend] =
+	playerInfo[playerid][pBoatLicense] =
+	playerInfo[playerid][pBoatLicenseSuspend] =
+	playerInfo[playerid][pWeaponLicense] =
+	playerInfo[playerid][pWeaponLicenseSuspend] =
+	playerInfo[playerid][pWarn] =
+	playerInfo[playerid][pCuffed] =
+	playerInfo[playerid][pTazer] =
+	playerInfo[playerid][pAnimLooping] =
+	playerInfo[playerid][pTaxiDuty] =
+	playerInfo[playerid][pTaxiFare] =
+	playerInfo[playerid][pInLesson] =
+	playerInfo[playerid][pLesson] =
+	playerInfo[playerid][pLicense] =
+	playerInfo[playerid][pShowTurfs] =
+	playerInfo[playerid][pOnTurf] =
+	playerInfo[playerid][pFactionDuty] =
+	playerInfo[playerid][pEnableBoost] =
+	playerInfo[playerid][pDrunkLevel] =
+	playerInfo[playerid][pFPS] =	
+	playerInfo[playerid][pAdminDuty] =
+	playerInfo[playerid][pLoginTries] =
+	playerInfo[playerid][pHelper] =
+	playerInfo[playerid][pRespectPoints] =
+	playerInfo[playerid][pMute] = 0;	
+	
+	playerInfo[playerid][pCheckpointID] =
+	playerInfo[playerid][pinVehicle] =
+	playerInfo[playerid][pLiveOffer] =
+	playerInfo[playerid][pTalkingLive] =
+	playerInfo[playerid][pLicenseOffer] =
+	playerInfo[playerid][pSafeID] =
+	playerInfo[playerid][pSelectedItem] =
+	playerInfo[playerid][pSpectate] = -1;
+
+	playerInfo[playerid][pLastPosX] =
+	playerInfo[playerid][pLastPosY] =
+	playerInfo[playerid][pLastPosZ] =
+	playerInfo[playerid][pMarkX] =
+	playerInfo[playerid][pMarkY] =
+	playerInfo[playerid][pMarkZ] = 0.0;
+
 	playerInfo[playerid][pGender] = 1;
-	playerInfo[playerid][pTutorial] = false;
-	playerInfo[playerid][pAdmin] = 0;
-	playerInfo[playerid][pHelper] = 0;
-	playerInfo[playerid][pRespectPoints] = 0;
 	playerInfo[playerid][pLevel] = 1;
 	playerInfo[playerid][pMoney] = 2500;
 	playerInfo[playerid][pBank] = 5000;
-	playerInfo[playerid][pMute] = 0;
-	playerInfo[playerid][pHours] = 0;
-	playerInfo[playerid][pSeconds] = 0;
-	playerInfo[playerid][pAFKSeconds] = 0;
-	playerInfo[playerid][pLastPosX] = 0.0;
-	playerInfo[playerid][pLastPosY] = 0.0;
-	playerInfo[playerid][pLastPosZ] = 0.0;
-	playerInfo[playerid][pDrivingLicense] = 0;
-	playerInfo[playerid][pDrivingLicenseSuspend] = 0;
-	playerInfo[playerid][pFlyLicense] = 0;
-	playerInfo[playerid][pFlyLicenseSuspend] = 0;
-	playerInfo[playerid][pBoatLicense] = 0;
-	playerInfo[playerid][pBoatLicenseSuspend] = 0;
-	playerInfo[playerid][pWeaponLicense] = 0;
-	playerInfo[playerid][pWeaponLicenseSuspend] = 0;
-	playerInfo[playerid][pWarn] = 0;
-	playerInfo[playerid][pMarkX] = 0.0;
-	playerInfo[playerid][pMarkY] = 0.0;
-	playerInfo[playerid][pMarkZ] = 0.0;
 	playerInfo[playerid][pReportChat] = INVALID_PLAYER_ID;
 	playerInfo[playerid][pVehicleSlots] = 2;
 	playerInfo[playerid][pCheckpoint] = CHECKPOINT_NONE;
-	playerInfo[playerid][pCheckpointID] = -1;
-	playerInfo[playerid][pinVehicle] = -1;
-	playerInfo[playerid][pCuffed] = 0;
-	playerInfo[playerid][pTazer] = 0;
-	playerInfo[playerid][pAnimLooping] = 0;
-	playerInfo[playerid][pTaxiDuty] = 0;
-	playerInfo[playerid][pTaxiFare] = 0;
-	playerInfo[playerid][pLiveOffer] = -1;
-	playerInfo[playerid][pTalkingLive] = -1;
 	format(playerInfo[playerid][pQuestionText], 4, "None");
-	playerInfo[playerid][pInLesson] = 0;
-	playerInfo[playerid][pLesson] = 0;
-	playerInfo[playerid][pLicense] = 0;
-	playerInfo[playerid][pLicenseOffer] = -1;
-	playerInfo[playerid][pShowTurfs] = 0;
-	playerInfo[playerid][pSafeID] = -1;
-	playerInfo[playerid][pSelectedItem] = -1;
-	playerInfo[playerid][pOnTurf] = 0;
-	playerInfo[playerid][pFactionDuty] = 0;
-	playerInfo[playerid][pEnableBoost] = 0;
 	playerInfo[playerid][pAdminCover] = (EOS);
-	playerInfo[playerid][pDrunkLevel] = 0;
-	playerInfo[playerid][pFPS] = 0;	
 	playerInfo[playerid][pAdText] = (EOS);
-	playerInfo[playerid][pAdminDuty] = 0;
-	playerInfo[playerid][pSpectate] = -1;
 
 	if(IsValidVehicle(playerInfo[playerid][pExamenVehicle])) DestroyVehicle(playerInfo[playerid][pExamenVehicle]);
 

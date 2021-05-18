@@ -958,7 +958,7 @@ CMD:respawn(playerid, params[]) {
 		GetPlayerPos(id, x, y, z);
 		SetPlayerPos(id, x, y, z + 5);
 	}
-	SpawnPlayer(id);	
+	SpawnPlayerEx(id);	
 	return true;
 }
 
@@ -1307,7 +1307,7 @@ CMD:unjail(playerid, params[]) {
 	playerInfo[userID][pJailed] = 0;
 	playerInfo[userID][pJailTime] = 0;
 	stop jailTime[userID];
-	SpawnPlayer(userID);
+	SpawnPlayerEx(userID);
 	SetPlayerVirtualWorld(playerid, 0);
 	PlayerTextDrawHide(userID, jailTimeTD[userID]);
 	Iter_Remove(JailedPlayers, userID);

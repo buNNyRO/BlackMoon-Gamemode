@@ -14,7 +14,7 @@ timer TimerJail[1000](i) {
 		stop jailTime[i];
 		playerInfo[i][pJailTime] = 0;
 		playerInfo[i][pJailed] = 0;
-		SpawnPlayer(i);
+		SpawnPlayerEx(i);
 		Iter_Remove(JailedPlayers, i);
 		PlayerTextDrawHide(i, jailTimeTD[i]);
 		SCMf(i, COLOR_LIGHTRED, "* Jail:{ffffff} Timpul de jail a expirat, acum esti liber.");
@@ -179,7 +179,7 @@ timer TimerTutorial[1000](playerid) {
 		StopAudioStreamForPlayer(playerid);
 		SetPlayerVirtualWorld(playerid, 0);
 		TogglePlayerControllable(playerid, 1);
-		SpawnPlayer(playerid);
+		SpawnPlayerEx(playerid);
 	}
 	return true;
 }

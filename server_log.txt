@@ -806,3 +806,907 @@ v0.3.7-R2, (C)2005-2015 SA-MP Team
 [20:11:44] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
 [20:11:44] [ACCOUNT] mr.bunny loaded 1 vehicles
 [20:12:13] merge cehats u 2YYYYYY
+[20:38:14] [part] mr.bunny has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[21:37:09] filterscripts = ""  (string)
+[21:37:09] 
+[21:37:09] Server Plugins
+[21:37:09] --------------
+[21:37:09]  Loading plugin: crashdetect
+[21:37:09]   CrashDetect plugin 4.19.4
+[21:37:09]   Loaded.
+[21:37:09]  Loading plugin: discord-connector
+[21:37:15]  >> plugin.dc-connector: v0.3.5 successfully loaded.
+[21:37:15]   Loaded.
+[21:37:15]  Loading plugin: pawncmd
+[21:37:15] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[21:37:15]   Loaded.
+[21:37:15]  Loading plugin: sscanf
+[21:37:15] 
+
+[21:37:15]  ===============================
+
+[21:37:15]       sscanf plugin loaded.     
+
+[21:37:15]          Version:  2.8.3        
+
+[21:37:15]   (c) 2018 Alex "Y_Less" Cole  
+
+[21:37:15]  ===============================
+
+[21:37:15]   Loaded.
+[21:37:15]  Loading plugin: streamer
+[21:37:15] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[21:37:15]   Loaded.
+[21:37:15]  Loading plugin: mysql
+[21:37:15]  >> plugin.mysql: R41-4 successfully loaded.
+[21:37:15]   Loaded.
+[21:37:15]  Loaded 6 plugins.
+
+[21:37:15] 
+[21:37:15] Filterscripts
+[21:37:15] ---------------
+[21:37:15]   Loaded 0 filterscripts.
+
+[21:37:15]  
+[21:37:15]  
+[21:37:15]  
+[21:37:15]  ======================================= 
+[21:37:15]  |                                     | 
+[21:37:15]  |        YSI version 4.00.0001        | 
+[21:37:15]  |        By Alex "Y_Less" Cole        | 
+[21:37:15]  |                                     | 
+[21:37:15]  ======================================= 
+[21:37:15]  
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[21:37:21] filterscripts = ""  (string)
+[21:37:21] 
+[21:37:21] Server Plugins
+[21:37:21] --------------
+[21:37:21]  Loading plugin: crashdetect
+[21:37:21]   CrashDetect plugin 4.19.4
+[21:37:21]   Loaded.
+[21:37:21]  Loading plugin: discord-connector
+[21:37:27]  >> plugin.dc-connector: v0.3.5 successfully loaded.
+[21:37:27]   Loaded.
+[21:37:27]  Loading plugin: pawncmd
+[21:37:27] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[21:37:27]   Loaded.
+[21:37:27]  Loading plugin: sscanf
+[21:37:27] 
+
+[21:37:27]  ===============================
+
+[21:37:27]       sscanf plugin loaded.     
+
+[21:37:27]          Version:  2.8.3        
+
+[21:37:27]   (c) 2018 Alex "Y_Less" Cole  
+
+[21:37:27]  ===============================
+
+[21:37:27]   Loaded.
+[21:37:27]  Loading plugin: streamer
+[21:37:27] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[21:37:27]   Loaded.
+[21:37:27]  Loading plugin: mysql
+[21:37:27]  >> plugin.mysql: R41-4 successfully loaded.
+[21:37:27]   Loaded.
+[21:37:27]  Loaded 6 plugins.
+
+[21:37:27] 
+[21:37:27] Filterscripts
+[21:37:27] ---------------
+[21:37:27]   Loaded 0 filterscripts.
+
+[21:37:27]  
+[21:37:27]  
+[21:37:27]  
+[21:37:27]  ======================================= 
+[21:37:27]  |                                     | 
+[21:37:27]  |        YSI version 4.00.0001        | 
+[21:37:27]  |        By Alex "Y_Less" Cole        | 
+[21:37:27]  |                                     | 
+[21:37:27]  ======================================= 
+[21:37:27]  
+[21:37:32] [Nex-AC] Eroare la crearea/deschidera nex-ac_settings.cfg!
+[21:37:32] [Nex-AC] Eroare la crearea/deschidera nex-ac_nop_settings.cfg!
+[21:37:32]  
+[21:37:32] --------------------------------------
+[21:37:32]  Anticheat Nex-AC incarcat!
+[21:37:32]  Anticheat versiune: 1.9.55
+[21:37:32]  Autor: Nexius
+[21:37:32] --------------------------------------
+
+[21:37:32] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[21:37:32] [MYSQL] Baza de date, s-a conectat.
+[21:37:32] Number of vehicle models: 0
+[21:37:32] Exam Checkpoints: 1 [From Database]
+[21:37:32] Jobs: 5 [From Database]
+[21:37:32] Businesses: 11 [From Database]
+[21:37:32] Houses: 13 [From Database]
+[21:37:32] Dealership models: 89 [From Database]
+[21:37:32] Factions: 10 [From Database]
+[21:37:32] Turfs: 43 [From Database]
+[21:37:32] Faction Safes: 0 [From Database]
+[21:37:32] Clans: 0 [From Database]
+[21:44:16] [connection] 127.0.0.1:56527 requests connection cookie.
+[21:44:17] [connection] incoming connection: 127.0.0.1:56527 id: 0
+[21:44:17] [join] mr.bunny has joined the server (0:127.0.0.1)
+[21:44:22] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[21:44:22] [ACCOUNT] mr.bunny loaded 1 vehicles
+[21:45:17] [Nex-AC debug] Dist: 60.932331, dist set: 25000.000000, speed: 0, pos x, y, z: 29.822908, 1266.555908, 12.502480, old pos x, y, z: -0.318996, 1214.046020, 19.352746
+[21:45:17] [Nex-AC] Suspiciune de la ID 0. Motiv cod: 002 (2)
+[21:45:17] [part] mr.bunny has left the server (0:2)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[20:22:17] filterscripts = ""  (string)
+[20:22:17] 
+[20:22:17] Server Plugins
+[20:22:17] --------------
+[20:22:17]  Loading plugin: crashdetect
+[20:22:17]   CrashDetect plugin 4.19.4
+[20:22:17]   Loaded.
+[20:22:17]  Loading plugin: discord-connector
+[20:22:20]  >> plugin.dc-connector: v0.3.5 successfully loaded.
+[20:22:20]   Loaded.
+[20:22:20]  Loading plugin: pawncmd
+[20:22:20] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[20:22:20]   Loaded.
+[20:22:20]  Loading plugin: sscanf
+[20:22:20] 
+
+[20:22:20]  ===============================
+
+[20:22:20]       sscanf plugin loaded.     
+
+[20:22:20]          Version:  2.8.3        
+
+[20:22:20]   (c) 2018 Alex "Y_Less" Cole  
+
+[20:22:20]  ===============================
+
+[20:22:20]   Loaded.
+[20:22:20]  Loading plugin: streamer
+[20:22:20] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[20:22:20]   Loaded.
+[20:22:20]  Loading plugin: mysql
+[20:22:20]  >> plugin.mysql: R41-4 successfully loaded.
+[20:22:20]   Loaded.
+[20:22:20]  Loaded 6 plugins.
+
+[20:22:20] 
+[20:22:20] Filterscripts
+[20:22:20] ---------------
+[20:22:20]   Loaded 0 filterscripts.
+
+[20:22:20]  
+[20:22:20]  
+[20:22:20]  
+[20:22:20]  ======================================= 
+[20:22:20]  |                                     | 
+[20:22:20]  |        YSI version 4.00.0001        | 
+[20:22:20]  |        By Alex "Y_Less" Cole        | 
+[20:22:20]  |                                     | 
+[20:22:20]  ======================================= 
+[20:22:20]  
+[20:22:25] [Nex-AC] Eroare la crearea/deschidera nex-ac_settings.cfg!
+[20:22:25] [Nex-AC] Eroare la crearea/deschidera nex-ac_nop_settings.cfg!
+[20:22:25]  
+[20:22:25] --------------------------------------
+[20:22:25]  Anticheat Nex-AC incarcat!
+[20:22:25]  Anticheat versiune: 1.9.55
+[20:22:25]  Autor: Nexius
+[20:22:25] --------------------------------------
+
+[20:22:25] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[20:22:25] [MYSQL] Baza de date, s-a conectat.
+[20:22:25] Number of vehicle models: 0
+[20:22:25] Exam Checkpoints: 1 [From Database]
+[20:22:25] Jobs: 5 [From Database]
+[20:22:25] Businesses: 11 [From Database]
+[20:22:25] Houses: 13 [From Database]
+[20:22:25] Dealership models: 89 [From Database]
+[20:22:25] Factions: 10 [From Database]
+[20:22:25] Turfs: 43 [From Database]
+[20:22:25] Faction Safes: 0 [From Database]
+[20:22:26] Clans: 0 [From Database]
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[20:22:48] filterscripts = ""  (string)
+[20:22:48] 
+[20:22:48] Server Plugins
+[20:22:48] --------------
+[20:22:48]  Loading plugin: crashdetect
+[20:22:48]   CrashDetect plugin 4.19.4
+[20:22:48]   Loaded.
+[20:22:48]  Loading plugin: discord-connector
+[20:22:51]  >> plugin.dc-connector: v0.3.5 successfully loaded.
+[20:22:51]   Loaded.
+[20:22:51]  Loading plugin: pawncmd
+[20:22:51] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[20:22:51]   Loaded.
+[20:22:51]  Loading plugin: sscanf
+[20:22:51] 
+
+[20:22:51]  ===============================
+
+[20:22:51]       sscanf plugin loaded.     
+
+[20:22:51]          Version:  2.8.3        
+
+[20:22:51]   (c) 2018 Alex "Y_Less" Cole  
+
+[20:22:51]  ===============================
+
+[20:22:51]   Loaded.
+[20:22:51]  Loading plugin: streamer
+[20:22:51] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[20:22:51]   Loaded.
+[20:22:51]  Loading plugin: mysql
+[20:22:51]  >> plugin.mysql: R41-4 successfully loaded.
+[20:22:51]   Loaded.
+[20:22:51]  Loaded 6 plugins.
+
+[20:22:51] 
+[20:22:51] Filterscripts
+[20:22:51] ---------------
+[20:22:51]   Loaded 0 filterscripts.
+
+[20:22:51]  
+[20:22:51]  
+[20:22:51]  
+[20:22:51]  ======================================= 
+[20:22:51]  |                                     | 
+[20:22:51]  |        YSI version 4.00.0001        | 
+[20:22:51]  |        By Alex "Y_Less" Cole        | 
+[20:22:51]  |                                     | 
+[20:22:51]  ======================================= 
+[20:22:51]  
+[20:22:56] [Nex-AC] Eroare la crearea/deschidera nex-ac_settings.cfg!
+[20:22:56] [Nex-AC] Eroare la crearea/deschidera nex-ac_nop_settings.cfg!
+[20:22:56]  
+[20:22:56] --------------------------------------
+[20:22:56]  Anticheat Nex-AC incarcat!
+[20:22:56]  Anticheat versiune: 1.9.55
+[20:22:56]  Autor: Nexius
+[20:22:56] --------------------------------------
+
+[20:22:56] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[20:22:56] [MYSQL] Baza de date, s-a conectat.
+[20:22:56] Number of vehicle models: 0
+[20:22:56] Exam Checkpoints: 1 [From Database]
+[20:22:56] Jobs: 5 [From Database]
+[20:22:56] Businesses: 11 [From Database]
+[20:22:56] Houses: 13 [From Database]
+[20:22:56] Dealership models: 89 [From Database]
+[20:22:56] Factions: 10 [From Database]
+[20:22:56] Turfs: 43 [From Database]
+[20:22:56] Faction Safes: 0 [From Database]
+[20:22:56] Clans: 0 [From Database]
+[20:23:38] [connection] 127.0.0.1:59472 requests connection cookie.
+[20:23:39] [connection] incoming connection: 127.0.0.1:59472 id: 0
+[20:23:39] [join] mr.bunny has joined the server (0:127.0.0.1)
+[20:23:43] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[20:23:43] [ACCOUNT] mr.bunny loaded 1 vehicles
+[20:23:56] [Nex-AC debug] Spawn res: 0, respawn time: 1380825109
+[20:23:56] [Nex-AC] Suspiciune de la ID 0. Motiv cod: 027
+[20:23:56] [part] mr.bunny has left the server (0:2)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[20:40:53] filterscripts = ""  (string)
+[20:40:53] 
+[20:40:53] Server Plugins
+[20:40:53] --------------
+[20:40:53]  Loading plugin: crashdetect
+[20:40:53]   CrashDetect plugin 4.19.4
+[20:40:53]   Loaded.
+[20:40:53]  Loading plugin: discord-connector
+[20:40:58]  >> plugin.dc-connector: v0.3.5 successfully loaded.
+[20:40:58]   Loaded.
+[20:40:58]  Loading plugin: pawncmd
+[20:40:58] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[20:40:58]   Loaded.
+[20:40:58]  Loading plugin: sscanf
+[20:40:58] 
+
+[20:40:58]  ===============================
+
+[20:40:58]       sscanf plugin loaded.     
+
+[20:40:58]          Version:  2.8.3        
+
+[20:40:58]   (c) 2018 Alex "Y_Less" Cole  
+
+[20:40:58]  ===============================
+
+[20:40:58]   Loaded.
+[20:40:58]  Loading plugin: streamer
+[20:40:58] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[20:40:58]   Loaded.
+[20:40:58]  Loading plugin: mysql
+[20:40:58]  >> plugin.mysql: R41-4 successfully loaded.
+[20:40:58]   Loaded.
+[20:40:58]  Loaded 6 plugins.
+
+[20:40:58] 
+[20:40:58] Filterscripts
+[20:40:58] ---------------
+[20:40:58]   Loaded 0 filterscripts.
+
+[20:40:58]  
+[20:40:58]  
+[20:40:58]  
+[20:40:58]  ======================================= 
+[20:40:58]  |                                     | 
+[20:40:58]  |        YSI version 4.00.0001        | 
+[20:40:58]  |        By Alex "Y_Less" Cole        | 
+[20:40:58]  |                                     | 
+[20:40:58]  ======================================= 
+[20:40:58]  
+[20:41:02] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[20:41:02] [MYSQL] Baza de date, s-a conectat.
+[20:41:02] Number of vehicle models: 0
+[20:41:02] Exam Checkpoints: 1 [From Database]
+[20:41:02] Jobs: 5 [From Database]
+[20:41:02] Businesses: 11 [From Database]
+[20:41:02] Houses: 13 [From Database]
+[20:41:02] Dealership models: 89 [From Database]
+[20:41:02] Factions: 10 [From Database]
+[20:41:02] Turfs: 43 [From Database]
+[20:41:02] Faction Safes: 0 [From Database]
+[20:41:02] Clans: 0 [From Database]
+[20:41:20] [connection] 127.0.0.1:56184 requests connection cookie.
+[20:41:21] [connection] incoming connection: 127.0.0.1:56184 id: 0
+[20:41:21] [join] mr.bunny has joined the server (0:127.0.0.1)
+[20:41:37] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[20:41:37] [ACCOUNT] mr.bunny loaded 1 vehicles
+[20:41:39] hack: 0, respawn time: 1381888429
+[20:41:39] [part] mr.bunny has left the server (0:2)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[20:43:28] filterscripts = ""  (string)
+[20:43:28] 
+[20:43:28] Server Plugins
+[20:43:28] --------------
+[20:43:28]  Loading plugin: crashdetect
+[20:43:28]   CrashDetect plugin 4.19.4
+[20:43:28]   Loaded.
+[20:43:28]  Loading plugin: discord-connector
+[20:43:32]  >> plugin.dc-connector: v0.3.5 successfully loaded.
+[20:43:32]   Loaded.
+[20:43:32]  Loading plugin: pawncmd
+[20:43:32] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[20:43:32]   Loaded.
+[20:43:32]  Loading plugin: sscanf
+[20:43:32] 
+
+[20:43:32]  ===============================
+
+[20:43:32]       sscanf plugin loaded.     
+
+[20:43:32]          Version:  2.8.3        
+
+[20:43:32]   (c) 2018 Alex "Y_Less" Cole  
+
+[20:43:32]  ===============================
+
+[20:43:32]   Loaded.
+[20:43:32]  Loading plugin: streamer
+[20:43:32] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[20:43:32]   Loaded.
+[20:43:32]  Loading plugin: mysql
+[20:43:32]  >> plugin.mysql: R41-4 successfully loaded.
+[20:43:32]   Loaded.
+[20:43:32]  Loaded 6 plugins.
+
+[20:43:32] 
+[20:43:32] Filterscripts
+[20:43:32] ---------------
+[20:43:32]   Loaded 0 filterscripts.
+
+[20:43:32]  
+[20:43:32]  
+[20:43:32]  
+[20:43:32]  ======================================= 
+[20:43:32]  |                                     | 
+[20:43:32]  |        YSI version 4.00.0001        | 
+[20:43:32]  |        By Alex "Y_Less" Cole        | 
+[20:43:32]  |                                     | 
+[20:43:32]  ======================================= 
+[20:43:32]  
+[20:43:36] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[20:43:36] [MYSQL] Baza de date, s-a conectat.
+[20:43:36] Number of vehicle models: 0
+[20:43:36] Exam Checkpoints: 1 [From Database]
+[20:43:36] Jobs: 5 [From Database]
+[20:43:36] Businesses: 11 [From Database]
+[20:43:36] Houses: 13 [From Database]
+[20:43:36] Dealership models: 89 [From Database]
+[20:43:36] Factions: 10 [From Database]
+[20:43:36] Turfs: 43 [From Database]
+[20:43:36] Faction Safes: 0 [From Database]
+[20:43:36] Clans: 0 [From Database]
+[20:43:42] [connection] 127.0.0.1:57468 requests connection cookie.
+[20:43:43] [connection] incoming connection: 127.0.0.1:57468 id: 0
+[20:43:43] [join] mr.bunny has joined the server (0:127.0.0.1)
+[20:43:45] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[20:43:45] [ACCOUNT] mr.bunny loaded 1 vehicles
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[20:45:19] filterscripts = ""  (string)
+[20:45:19] 
+[20:45:19] Server Plugins
+[20:45:19] --------------
+[20:45:19]  Loading plugin: crashdetect
+[20:45:19]   CrashDetect plugin 4.19.4
+[20:45:19]   Loaded.
+[20:45:19]  Loading plugin: discord-connector
+[20:45:25]  >> plugin.dc-connector: v0.3.5 successfully loaded.
+[20:45:25]   Loaded.
+[20:45:25]  Loading plugin: pawncmd
+[20:45:25] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[20:45:25]   Loaded.
+[20:45:25]  Loading plugin: sscanf
+[20:45:25] 
+
+[20:45:25]  ===============================
+
+[20:45:25]       sscanf plugin loaded.     
+
+[20:45:25]          Version:  2.8.3        
+
+[20:45:25]   (c) 2018 Alex "Y_Less" Cole  
+
+[20:45:25]  ===============================
+
+[20:45:25]   Loaded.
+[20:45:25]  Loading plugin: streamer
+[20:45:25] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[20:45:25]   Loaded.
+[20:45:25]  Loading plugin: mysql
+[20:45:25]  >> plugin.mysql: R41-4 successfully loaded.
+[20:45:25]   Loaded.
+[20:45:25]  Loaded 6 plugins.
+
+[20:45:25] 
+[20:45:25] Filterscripts
+[20:45:25] ---------------
+[20:45:25]   Loaded 0 filterscripts.
+
+[20:45:25]  
+[20:45:25]  
+[20:45:25]  
+[20:45:25]  ======================================= 
+[20:45:25]  |                                     | 
+[20:45:25]  |        YSI version 4.00.0001        | 
+[20:45:25]  |        By Alex "Y_Less" Cole        | 
+[20:45:25]  |                                     | 
+[20:45:25]  ======================================= 
+[20:45:25]  
+[20:45:29] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[20:45:29] [MYSQL] Baza de date, s-a conectat.
+[20:45:29] Number of vehicle models: 0
+[20:45:29] Exam Checkpoints: 1 [From Database]
+[20:45:29] Jobs: 5 [From Database]
+[20:45:29] Businesses: 11 [From Database]
+[20:45:29] Houses: 13 [From Database]
+[20:45:29] Dealership models: 89 [From Database]
+[20:45:29] Factions: 10 [From Database]
+[20:45:29] Turfs: 43 [From Database]
+[20:45:29] Faction Safes: 0 [From Database]
+[20:45:29] Clans: 0 [From Database]
+[20:45:33] [connection] 127.0.0.1:64714 requests connection cookie.
+[20:45:34] [connection] incoming connection: 127.0.0.1:64714 id: 0
+[20:45:34] [join] mr.bunny has joined the server (0:127.0.0.1)
+[20:45:36] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[20:45:36] [ACCOUNT] mr.bunny loaded 1 vehicles
+[20:45:37] hack: 1, respawn time: 1382126553
+[20:45:44] hack: 1, respawn time: 1382133553
+[20:45:45] hack: 1, respawn time: 1382133673
+[20:45:46] hack: 1, respawn time: 1382135117
+[20:45:46] hack: 1, respawn time: 1382135237
+[20:45:47] hack: 1, respawn time: 1382136332
+[20:45:47] hack: 1, respawn time: 1382136410
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[20:47:22] filterscripts = ""  (string)
+[20:47:22] 
+[20:47:22] Server Plugins
+[20:47:22] --------------
+[20:47:22]  Loading plugin: crashdetect
+[20:47:22]   CrashDetect plugin 4.19.4
+[20:47:22]   Loaded.
+[20:47:22]  Loading plugin: discord-connector
+[20:47:25]  >> plugin.dc-connector: v0.3.5 successfully loaded.
+[20:47:25]   Loaded.
+[20:47:25]  Loading plugin: pawncmd
+[20:47:25] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[20:47:25]   Loaded.
+[20:47:25]  Loading plugin: sscanf
+[20:47:25] 
+
+[20:47:25]  ===============================
+
+[20:47:25]       sscanf plugin loaded.     
+
+[20:47:25]          Version:  2.8.3        
+
+[20:47:25]   (c) 2018 Alex "Y_Less" Cole  
+
+[20:47:25]  ===============================
+
+[20:47:25]   Loaded.
+[20:47:25]  Loading plugin: streamer
+[20:47:25] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[20:47:25]   Loaded.
+[20:47:25]  Loading plugin: mysql
+[20:47:25]  >> plugin.mysql: R41-4 successfully loaded.
+[20:47:25]   Loaded.
+[20:47:25]  Loaded 6 plugins.
+
+[20:47:25] 
+[20:47:25] Filterscripts
+[20:47:25] ---------------
+[20:47:25]   Loaded 0 filterscripts.
+
+[20:47:25]  
+[20:47:25]  
+[20:47:25]  
+[20:47:25]  ======================================= 
+[20:47:25]  |                                     | 
+[20:47:25]  |        YSI version 4.00.0001        | 
+[20:47:25]  |        By Alex "Y_Less" Cole        | 
+[20:47:25]  |                                     | 
+[20:47:25]  ======================================= 
+[20:47:25]  
+[20:47:29] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[20:47:29] [MYSQL] Baza de date, s-a conectat.
+[20:47:29] Number of vehicle models: 0
+[20:47:29] Exam Checkpoints: 1 [From Database]
+[20:47:29] Jobs: 5 [From Database]
+[20:47:29] Businesses: 11 [From Database]
+[20:47:29] Houses: 13 [From Database]
+[20:47:29] Dealership models: 89 [From Database]
+[20:47:29] Factions: 10 [From Database]
+[20:47:29] Turfs: 43 [From Database]
+[20:47:29] Faction Safes: 0 [From Database]
+[20:47:29] Clans: 0 [From Database]
+[20:47:32] [connection] 127.0.0.1:62496 requests connection cookie.
+[20:47:33] [connection] incoming connection: 127.0.0.1:62496 id: 0
+[20:47:34] [join] mr.bunny has joined the server (0:127.0.0.1)
+[20:47:36] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[20:47:36] [ACCOUNT] mr.bunny loaded 1 vehicles
+[20:47:36] hack: 1, respawn time: 1382245062
+[20:47:55] hack: 1, respawn time: 3727
+[20:47:59] hack: 1, respawn time: 1382268356
+[20:47:59] hack: 0, respawn time: 1382268481
+[20:47:59] [part] mr.bunny has left the server (0:2)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[21:49:42] filterscripts = ""  (string)
+[21:49:42] 
+[21:49:42] Server Plugins
+[21:49:42] --------------
+[21:49:42]  Loading plugin: crashdetect
+[21:49:42]   CrashDetect plugin 4.19.4
+[21:49:42]   Loaded.
+[21:49:42]  Loading plugin: discord-connector
+[21:49:44]  >> plugin.dc-connector: v0.3.5 successfully loaded.
+[21:49:44]   Loaded.
+[21:49:44]  Loading plugin: pawncmd
+[21:49:44] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[21:49:44]   Loaded.
+[21:49:44]  Loading plugin: sscanf
+[21:49:44] 
+
+[21:49:44]  ===============================
+
+[21:49:44]       sscanf plugin loaded.     
+
+[21:49:44]          Version:  2.8.3        
+
+[21:49:44]   (c) 2018 Alex "Y_Less" Cole  
+
+[21:49:44]  ===============================
+
+[21:49:44]   Loaded.
+[21:49:44]  Loading plugin: streamer
+[21:49:45] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[21:49:45]   Loaded.
+[21:49:45]  Loading plugin: mysql
+[21:49:45]  >> plugin.mysql: R41-4 successfully loaded.
+[21:49:45]   Loaded.
+[21:49:45]  Loaded 6 plugins.
+
+[21:49:45] 
+[21:49:45] Filterscripts
+[21:49:45] ---------------
+[21:49:45]   Loaded 0 filterscripts.
+
+[21:49:45]  
+[21:49:45]  
+[21:49:45]  
+[21:49:45]  ======================================= 
+[21:49:45]  |                                     | 
+[21:49:45]  |        YSI version 4.00.0001        | 
+[21:49:45]  |        By Alex "Y_Less" Cole        | 
+[21:49:45]  |                                     | 
+[21:49:45]  ======================================= 
+[21:49:45]  
+[21:49:49] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[21:49:49] [MYSQL] Baza de date, s-a conectat.
+[21:49:49] Number of vehicle models: 0
+[21:49:49] Exam Checkpoints: 1 [From Database]
+[21:49:49] Jobs: 5 [From Database]
+[21:49:49] Businesses: 11 [From Database]
+[21:49:49] Houses: 13 [From Database]
+[21:49:49] Dealership models: 89 [From Database]
+[21:49:49] Factions: 10 [From Database]
+[21:49:49] Turfs: 43 [From Database]
+[21:49:49] Faction Safes: 0 [From Database]
+[21:49:49] Clans: 0 [From Database]
+[21:49:50] [connection] 127.0.0.1:49400 requests connection cookie.
+[21:49:51] [connection] incoming connection: 127.0.0.1:49400 id: 0
+[21:49:52] [join] mr.bunny has joined the server (0:127.0.0.1)
+[21:49:54] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[21:49:54] [ACCOUNT] mr.bunny loaded 1 vehicles
+[21:50:02] [part] mr.bunny has left the server (0:2)
+[21:50:13] [connection] incoming connection: 127.0.0.1:49408 id: 0
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[21:51:30] filterscripts = ""  (string)
+[21:51:30] 
+[21:51:30] Server Plugins
+[21:51:30] --------------
+[21:51:30]  Loading plugin: crashdetect
+[21:51:30]   CrashDetect plugin 4.19.4
+[21:51:30]   Loaded.
+[21:51:30]  Loading plugin: discord-connector
+[21:51:31]  >> plugin.dc-connector: v0.3.5 successfully loaded.
+[21:51:31]   Loaded.
+[21:51:31]  Loading plugin: pawncmd
+[21:51:31] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[21:51:31]   Loaded.
+[21:51:31]  Loading plugin: sscanf
+[21:51:31] 
+
+[21:51:31]  ===============================
+
+[21:51:31]       sscanf plugin loaded.     
+
+[21:51:31]          Version:  2.8.3        
+
+[21:51:31]   (c) 2018 Alex "Y_Less" Cole  
+
+[21:51:31]  ===============================
+
+[21:51:31]   Loaded.
+[21:51:31]  Loading plugin: streamer
+[21:51:31] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[21:51:31]   Loaded.
+[21:51:31]  Loading plugin: mysql
+[21:51:31]  >> plugin.mysql: R41-4 successfully loaded.
+[21:51:31]   Loaded.
+[21:51:31]  Loaded 6 plugins.
+
+[21:51:31] 
+[21:51:31] Filterscripts
+[21:51:31] ---------------
+[21:51:31]   Loaded 0 filterscripts.
+
+[21:51:31]  
+[21:51:31]  
+[21:51:31]  
+[21:51:31]  ======================================= 
+[21:51:31]  |                                     | 
+[21:51:31]  |        YSI version 4.00.0001        | 
+[21:51:31]  |        By Alex "Y_Less" Cole        | 
+[21:51:31]  |                                     | 
+[21:51:31]  ======================================= 
+[21:51:31]  
+[21:51:35] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[21:51:35] [MYSQL] Baza de date, s-a conectat.
+[21:51:35] Number of vehicle models: 0
+[21:51:35] Exam Checkpoints: 1 [From Database]
+[21:51:35] Jobs: 5 [From Database]
+[21:51:35] Businesses: 11 [From Database]
+[21:51:35] Houses: 13 [From Database]
+[21:51:35] Dealership models: 89 [From Database]
+[21:51:35] Factions: 10 [From Database]
+[21:51:35] Turfs: 43 [From Database]
+[21:51:35] Faction Safes: 0 [From Database]
+[21:51:35] Clans: 0 [From Database]
+[21:53:15] [connection] 127.0.0.1:49450 requests connection cookie.
+[21:53:16] [connection] incoming connection: 127.0.0.1:49450 id: 0
+[21:53:16] [join] mr.bunny has joined the server (0:127.0.0.1)
+[21:53:18] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[21:53:18] [ACCOUNT] mr.bunny loaded 1 vehicles
+[21:53:26] (AC) mr.bunny a primit kick pentru 'Fake Spawn'.
+[21:53:26] [part] mr.bunny has left the server (0:2)
+[21:58:40] [connection] 127.0.0.1:52430 requests connection cookie.
+[21:58:41] [connection] incoming connection: 127.0.0.1:52430 id: 0
+[21:58:41] [join] mr.bunny has joined the server (0:127.0.0.1)
+[21:58:43] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[21:58:43] [ACCOUNT] mr.bunny loaded 1 vehicles
+[21:58:52] [connection] 127.0.0.1:49753 requests connection cookie.
+[21:58:52] [connection] incoming connection: 127.0.0.1:49753 id: 1
+[21:58:53] [join] [OCT]Uadud93 has joined the server (1:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:05:44] filterscripts = ""  (string)
+[22:05:44] 
+[22:05:44] Server Plugins
+[22:05:44] --------------
+[22:05:44]  Loading plugin: crashdetect
+[22:05:44]   CrashDetect plugin 4.19.4
+[22:05:44]   Loaded.
+[22:05:44]  Loading plugin: discord-connector
+[22:05:45]  >> plugin.dc-connector: v0.3.5 successfully loaded.
+[22:05:45]   Loaded.
+[22:05:45]  Loading plugin: pawncmd
+[22:05:45] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[22:05:45]   Loaded.
+[22:05:45]  Loading plugin: sscanf
+[22:05:45] 
+
+[22:05:45]  ===============================
+
+[22:05:45]       sscanf plugin loaded.     
+
+[22:05:45]          Version:  2.8.3        
+
+[22:05:45]   (c) 2018 Alex "Y_Less" Cole  
+
+[22:05:45]  ===============================
+
+[22:05:45]   Loaded.
+[22:05:45]  Loading plugin: streamer
+[22:05:45] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[22:05:45]   Loaded.
+[22:05:45]  Loading plugin: mysql
+[22:05:45]  >> plugin.mysql: R41-4 successfully loaded.
+[22:05:45]   Loaded.
+[22:05:45]  Loaded 6 plugins.
+
+[22:05:45] 
+[22:05:45] Filterscripts
+[22:05:45] ---------------
+[22:05:45]   Loaded 0 filterscripts.
+
+[22:05:45]  
+[22:05:45]  
+[22:05:45]  
+[22:05:45]  ======================================= 
+[22:05:45]  |                                     | 
+[22:05:45]  |        YSI version 4.00.0001        | 
+[22:05:45]  |        By Alex "Y_Less" Cole        | 
+[22:05:45]  |                                     | 
+[22:05:45]  ======================================= 
+[22:05:45]  
+[22:05:49] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[22:05:49] [MYSQL] Baza de date, s-a conectat.
+[22:05:49] Number of vehicle models: 0
+[22:05:49] Exam Checkpoints: 1 [From Database]
+[22:05:49] Jobs: 5 [From Database]
+[22:05:49] Businesses: 11 [From Database]
+[22:05:49] Houses: 13 [From Database]
+[22:05:49] Dealership models: 89 [From Database]
+[22:05:49] Factions: 10 [From Database]
+[22:05:49] Turfs: 43 [From Database]
+[22:05:49] Faction Safes: 0 [From Database]
+[22:05:49] Clans: 0 [From Database]
+[22:07:01] [connection] 127.0.0.1:50263 requests connection cookie.
+[22:07:02] [connection] incoming connection: 127.0.0.1:50263 id: 0

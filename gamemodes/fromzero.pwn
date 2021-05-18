@@ -16,8 +16,8 @@
 // B::::::::::::::::B  l::::::l a::::::::::aa:::a  cc:::::::::::::::ck::::::k   k:::::k M::::::M               M::::::M oo:::::::::::oo  oo:::::::::::oo   n::::n    n::::n//
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define MYSQL 0 // 0 - local | 1 - host
-#define VERSION "v1.6.43"
+#define MYSQL 1 // 0 - local | 1 - host
+#define VERSION "v1.6.44"
 
 #include <discord>
 
@@ -33,7 +33,7 @@
 #include <YSI\y_inline>
 #include <YSI\y_stringhash>
 
-#include <nex-ac>
+// #include <ac>
 
 #include <Pawn.CMD>
 #include <a_mysql>
@@ -135,7 +135,7 @@ public OnGameModeExit()
 public OnPlayerRequestClass(playerid, classid)
 {
 	if(playerInfo[playerid][pLogged] == true)
-		return SpawnPlayer(playerid);
+		return SpawnPlayerEx(playerid);
 
 
 	if(playerInfo[playerid][pLoginEnabled] == true)
@@ -150,7 +150,9 @@ public OnPlayerRequestClass(playerid, classid)
 }
 
 public OnPlayerConnect(playerid)
-{
+{ 
+	acReset(playerid);
+
 	resetVars(playerid);
 	removeMaps(playerid);	
 	GameTextForPlayer(playerid, "PLEASE WAIT~n~CHECKING YOUR ~p~ACCOUNT", 10000, 5);
@@ -507,8 +509,8 @@ public OnVehicleDeath(vehicleid, killerid) {
 }
 
 public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
-	if(deelayInfo[playerid][Keys] > GetTickCount()) return 1;
-	deelayInfo[playerid][Keys] = GetTickCount()+500;
+	// if(deelayInfo[playerid][Keys] > GetTickCount()) return 1;
+	// deelayInfo[playerid][Keys] = GetTickCount()+500;
 	if(PRESSED(KEY_LOOK_BEHIND)) {
 		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER || !isBike(GetPlayerVehicleID(playerid)) || GetPVarInt(playerid, "engineDeelay") != gettime()) callcmd::engine(playerid, "\1");
 	}
@@ -675,7 +677,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 
 public OnPlayerStateChange(playerid, newstate, oldstate) {
 	if(newstate == 2 && oldstate == 3) return 1;
-	if(newstate == PLAYER_STATE_SPECTATING && playerInfo[playerid][pAdmin] == 0) return va_SendClientMessageToAll(COLOR_LIGHTRED, "(AC) %s a primit kick pentru 'Invisibile Hack'.", getName(playerid)), Kick(playerid);
+	if(newstate == PLAYER_STATE_SPECTATING && playerInfo[playerid][pAdmin] == 0) return acKicked(playerid, "Invisibile Hack");
 	if(newstate == PLAYER_STATE_DRIVER || newstate == PLAYER_STATE_PASSENGER) if(Iter_Contains(PlayerInVehicle, playerid)) Iter_Add(PlayerInVehicle, playerid);
 	if(oldstate == PLAYER_STATE_DRIVER || oldstate == PLAYER_STATE_PASSENGER) {
 		if(Iter_Contains(PlayerInVehicle, playerid)) Iter_Remove(PlayerInVehicle, playerid);
@@ -808,7 +810,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate) {
 public OnPlayerRequestSpawn(playerid)
 {
 	if(playerInfo[playerid][pLogged] == true) 
-		return SpawnPlayer(playerid);
+		return SpawnPlayerEx(playerid);
 	return false;
 }
 

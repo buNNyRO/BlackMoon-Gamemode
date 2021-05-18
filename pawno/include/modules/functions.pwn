@@ -5,7 +5,7 @@ function MySQLLoad() {
 			SQL = mysql_connect("localhost", "root", "", "from0");
 		}
 		case 1: { // MainHost
-			SQL = mysql_connect("188.212.100.198", "client106_samp", "qyYw7BB2S4EFwWbu", "client106_samp"); 
+			SQL = mysql_connect("185.248.139.28", "u208_acYj5UowoI", "DjFDeF7^FLjfbh9IUy+gY^v7", "s208_server");
 		}
 	}
 	if(mysql_errno() != 0) {
@@ -106,7 +106,7 @@ function onPlayerLogin(playerid)
 	if(!cache_num_rows())
 		return wrongPass(playerid);
 
-	SpawnPlayer(playerid);
+	SpawnPlayerEx(playerid);
 	playerInfo[playerid][pLogged] = true;
 	playerInfo[playerid][pLoginEnabled] = false;
 	playerInfo[playerid][pLoginTries] = 0;

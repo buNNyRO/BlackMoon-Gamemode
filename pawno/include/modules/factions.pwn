@@ -371,7 +371,7 @@ function whenPlayerLeaveFaction(playerid) {
 	playerInfo[playerid][pSpawnChange] = 1;
 	SetPlayerSkin(playerid, 250);
 	update("UPDATE `server_users` SET `Skin` = '250', `SpawnChange` = '1' WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
-	SpawnPlayer(playerid);
+	SpawnPlayerEx(playerid);
 	return true;
 }
 
@@ -472,7 +472,7 @@ CMD:makeleader(playerid, params[]) {
 	playerInfo[targetid][pSkin] = fSkins[playerInfo[targetid][pFaction]][playerInfo[targetid][pFactionRank]];
 	playerInfo[targetid][pSpawnChange] = 4;
 	SetPlayerSkin(targetid, playerInfo[targetid][pSkin]);
-	SpawnPlayer(targetid);
+	SpawnPlayerEx(targetid);
 	update("UPDATE `server_users` SET `Faction` = '%d', `FRank` = '7', `FAge` = '%d', `FWarns` = '0', `SpawnChange` = '4', `Skin` = '%d' WHERE `ID` = '%d'", playerInfo[targetid][pFaction], playerInfo[targetid][pFactionAge], playerInfo[targetid][pSkin], playerInfo[targetid][pSQLID]);
 	Iter_Add(FactionMembers[fid], targetid);
 	sendAdmin(COLOR_SERVER, "Notice: {ffffff}Admin %s i-a setat lui %s lider la factiunea %s.", getName(playerid), getName(targetid), factionName(fid));
@@ -1030,7 +1030,7 @@ Dialog:DIALOG_MEMBERS2(playerid, response, listitem) {
 					if(playerInfo[userID][pGender] == FEMALE_GENDER) playerInfo[userID][pSkin] = 12;
 					else playerInfo[userID][pSkin] = 250;
 					SetPlayerSkin(userID, playerInfo[userID][pSkin]);
-					SpawnPlayer(userID);
+					SpawnPlayerEx(userID);
 					Dialog_Show(userID, 0, DIALOG_STYLE_MSGBOX, "Uninvited", string_fast("Ai fost demis din factiunea %s de AdmBot\nMotiv: 3/3 Faction Warn's.", factionName(playerInfo[playerid][pFaction])), "Ok", "");						
 				}	
 				sendFactionMessage(playerInfo[playerid][pFaction], COLOR_LIMEGREEN, "(-) %s a fost dat afara de AdmBot, motiv: 3/3 Faction Warn's.", selName[playerid]);
@@ -1092,7 +1092,7 @@ Dialog:DIALOG_MEMBERSUINV2(playerid, response, inputtext[]) {
 		if(playerInfo[userID][pGender] == FEMALE_GENDER) playerInfo[userID][pSkin] = 12;
 		else playerInfo[userID][pSkin] = 250;
 		SetPlayerSkin(userID, playerInfo[userID][pSkin]);
-		SpawnPlayer(userID);
+		SpawnPlayerEx(userID);
 		Dialog_Show(userID, 0, DIALOG_STYLE_MSGBOX, "Uninvited", string_fast("Ai fost demis din factiunea %s de %s\nMotiv: %s.", factionName(playerInfo[playerid][pFaction]), getName(playerid), response), "Ok", "");						
 	}		
 	if(fp == 0) {
