@@ -5,7 +5,7 @@ function MySQLLoad() {
 			SQL = mysql_connect("localhost", "root", "", "from0");
 		}
 		case 1: { // MainHost
-			SQL = mysql_connect("188.212.100.198", "client106_samp", "qyYw7BB2S4EFwWbu", "client106_samp"); 
+			SQL = mysql_connect("185.248.139.28", "u208_acYj5UowoI", "DjFDeF7^FLjfbh9IUy+gY^v7", "s208_server");
 		}
 	}
 	if(mysql_errno() != 0) {
@@ -28,7 +28,7 @@ function MySQLLoad() {
 		mysql_tquery(SQL, "SELECT * FROM `server_safes`", "LoadSafes", "");
 		mysql_tquery(SQL, "SELECT * FROM `server_clans`", "LoadClans", "");
 		print("[MYSQL] Baza de date, s-a conectat.");
-		SetGameModeText("RPG V: 1.6.31");
+		SetGameModeText("RPG "VERSION);
 		serverTextDraws();
 	}
 	return true;
@@ -106,7 +106,7 @@ function onPlayerLogin(playerid)
 	if(!cache_num_rows())
 		return wrongPass(playerid);
 
-	SpawnPlayer(playerid);
+	SpawnPlayerEx(playerid);
 	playerInfo[playerid][pLogged] = true;
 	playerInfo[playerid][pLoginEnabled] = false;
 	playerInfo[playerid][pLoginTries] = 0;
@@ -228,19 +228,16 @@ function onPlayerLogin(playerid)
 		Iter_Add(ServerAdmins, playerid);
 		Iter_Add(ServerStaff, playerid);
 		AllowPlayerTeleport(playerid, 1);
-		TextDrawShowForPlayer(playerid, serverInfoTD);
-		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server (Total Staff: %d [%d admins, %d helpers]).", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
+
+		PlayerTextDrawSetString(playerid, serverHud[1], "");
+		PlayerTextDrawShow(playerid, serverHud[1]);
+		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server | Total Staff: %d [%d admins, %d helpers].", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
 	}
 
 	if(playerInfo[playerid][pHelper]) {
 		Iter_Add(ServerHelpers, playerid);
 		Iter_Add(ServerStaff, playerid);
-		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server (Total Staff: %d [%d admins, %d helpers]).", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
-	}
-
-	if(playerInfo[playerid][pMute] > 1) {
-		Iter_Add(MutedPlayers, playerid);
-		muteTime[playerid] = repeat TimerMute(playerid);
+		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server | Total Staff: %d [%d admins, %d helpers].", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
 	}
 
 	playerInfo[playerid][pReportMute] += gettime();
@@ -248,16 +245,26 @@ function onPlayerLogin(playerid)
 	PlayerNumber[playerInfo[playerid][pPhone]] = playerid;
 	Iter_Add(loggedPlayers, playerid);
 
-	va_PlayerTextDrawSetString(playerid, playerNamePTD[playerid], "%s ~R~(%d)", getName(playerid), playerid);
-	PlayerTextDrawShow(playerid, playerNamePTD[playerid]);
+	va_PlayerTextDrawSetString(playerid, serverHud[0], "%s/RPG.BLACK~p~MOON~w~.RO", getName(playerid));
+	PlayerTextDrawShow(playerid, serverHud[0]);
 
-	TextDrawShowForPlayer(playerid, serverDateTD);
-	TextDrawShowForPlayer(playerid, serverNameTD);
+	TextDrawShowForPlayer(playerid, ClockTD[0]);
+	TextDrawShowForPlayer(playerid, ClockTD[1]);
+	TextDrawShowForPlayer(playerid, ClockTD[2]);
+
+	new hour, minute, second, year, month, day;
+	gettime(hour, minute, second);
+	getdate(year, month, day);
+
+	TextDrawSetString(ClockTD[2], string_fast("%02d:%02d", hour, minute));
+	TextDrawSetString(ClockTD[1], string_fast("%02d.%02d.%d", day, month, year));
 
 	SetPlayerScore(playerid, playerInfo[playerid][pLevel]);
 	updatePlayer(playerid);
 	updateLevelBar(playerid);
 
+	DCC_SetBotActivity(string_fast("%d / %d", Iter_Count(Player), MAX_PLAYERS));
+	if(DCC_GetBotPresenceStatus() != DCC_BotPresenceStatus:IDLE) DCC_SetBotPresenceStatus(IDLE);
 	return true;
 }
 
@@ -471,7 +478,7 @@ function assignCheckpointID(i) {
 
 function checkAccountInBanDatabase(playerid, playerName, days, reason) {
 	if(cache_num_rows())
-		return sendPlayerError(playerid, "Acest cont este deja banat.");
+		return SCM(playerid, COLOR_ERROR, eERROR"Acest cont este deja banat.");
 
 	gQuery[0] = (EOS);
 	mysql_format(SQL, gQuery, sizeof gQuery, "SELECT * FROM `server_users` WHERE `Name` = '%s' LIMIT 1", playerName);
@@ -481,7 +488,7 @@ function checkAccountInBanDatabase(playerid, playerName, days, reason) {
 
 function checkAccountBanDatabase(playerid, playerName, days, reason)  {
 	if(!cache_num_rows())
-		return sendPlayerError(playerid, "Acest cont nu exista.");
+		return SCM(playerid, COLOR_ERROR, eERROR"Acest cont nu exista.");
 
 	new playerID;
 	cache_get_value_name_int(0, "ID", playerID);
@@ -513,7 +520,7 @@ function checkPlayerBanIP(playerid) {
 
 function checkBanPlayer(playerid) {
 	if(!cache_num_rows())
-		return sendPlayerError(playerid, "Nu a fost gasit nici-un jucator banat cu acest nume.");
+		return SCM(playerid, COLOR_ERROR, eERROR"Nu a fost gasit nici-un jucator banat cu acest nume.");
 
 	new playerName[MAX_PLAYER_NAME], playerID;
 	cache_get_value_name(0, "PlayerName", playerName, MAX_PLAYER_NAME);
@@ -526,7 +533,7 @@ function checkBanPlayer(playerid) {
 }
 
 function BanIPPlayer(playerid, id, reason) {
-	if(!cache_affected_rows()) return sendPlayerError(playerid, "Banul nu a putut fi acordat, eroare tehnica reveniti mai tarziu.");
+	if(!cache_affected_rows()) return SCM(playerid, COLOR_ERROR, eERROR"Banul nu a putut fi acordat, eroare tehnica reveniti mai tarziu.");
 	SendClientMessageToAll(COLOR_LIGHTRED, string_fast("AdmCmd: %s a primit ban ip de la administratorul %s, motiv: %s.", getName(id), getName(playerid), reason));
 	SetPVarInt(playerid, "banDeelay", (gettime() + 60));
 	defer kickEx(id);
@@ -534,7 +541,7 @@ function BanIPPlayer(playerid, id, reason) {
 }
 
 function CheckIP(playerid, params) {
-	if(!cache_num_rows()) return sendPlayerError(playerid, "Acest ip nu este banat.");
+	if(!cache_num_rows()) return SCM(playerid, COLOR_ERROR, eERROR"Acest ip nu este banat.");
 	new playerID;
 	cache_get_value_name_int(0, "ID", playerID);
 	sendAdmin(COLOR_SERVER, "* Ban Notice: {ffffff}Admin %s a debanat ip-ul %s.", getName(playerid), params);
@@ -544,28 +551,28 @@ function CheckIP(playerid, params) {
 }
 
 function BanIPOffline(playerid, ip, reason) {
-	if(!cache_affected_rows()) return sendPlayerError(playerid, "Banul nu a putut fi acordat, eroare tehnica reveniti mai tarziu.");
+	if(!cache_affected_rows()) return SCM(playerid, COLOR_ERROR, eERROR"Banul nu a putut fi acordat, eroare tehnica reveniti mai tarziu.");
 	sendAdmin(COLOR_SERVER, "* Ban Notice: {ffffff}Admin %s a banat ip-ul %s, motiv: %s.", getName(playerid), ip, reason);
 	SetPVarInt(playerid, "banDeelay", (gettime() + 60));
 	return true;
 }
 
 function checkAccountInDatabase(playerid, playerName, reason) {
-	if(!cache_num_rows()) return sendPlayerError(playerid, "Acest cont nu este in jail.");
+	if(!cache_num_rows()) return SCM(playerid, COLOR_ERROR, eERROR"Acest cont nu este in jail.");
 	mysql_format(SQL, gQuery, sizeof gQuery, "SELECT * FROM `server_users` WHERE `Name` = '%s' LIMIT 1", playerName);
 	mysql_tquery(SQL, gQuery, "checkAccountJail", "dss", playerid, playerName, reason);
 	return true;
 }
 
 function checkAccountJail(playerid, playerName, reason) {
-	if(!cache_num_rows()) return sendPlayerError(playerid, "Acest cont nu exista.");
+	if(!cache_num_rows()) return SCM(playerid, COLOR_ERROR, eERROR"Acest cont nu exista.");
 	sendAdmin(COLOR_SERVER, "* Notice: {ffffff}Admin %s l-a eliberat din inchisoare pe %s. Motiv: %s.", getName(playerid), playerName, reason);
 	update("UPDATE `server_users` SET `Jailed` = '0', `JailTime` = '0' WHERE `Name` = '%s' LIMIT 1", playerName);
 	return true;
 }
 
 function checkAccountInDatabaseJailo(playerid, playerName, reason, minutes) {
-	if(cache_num_rows()) return sendPlayerError(playerid, "Acest cont este deja in jail.");
+	if(cache_num_rows()) return SCM(playerid, COLOR_ERROR, eERROR"Acest cont este deja in jail.");
 	gQuery[0] = (EOS);
 	mysql_format(SQL, gQuery, sizeof gQuery, "SELECT * FROM `server_users` WHERE `Name` = '%s' LIMIT 1", playerName);
 	mysql_tquery(SQL, gQuery, "checkAccountJailo", "dssd", playerid, playerName, reason, minutes);
@@ -573,229 +580,10 @@ function checkAccountInDatabaseJailo(playerid, playerName, reason, minutes) {
 }
 
 function checkAccountJailo(playerid, playerName, reason, minutes) {
-	if(!cache_num_rows()) return sendPlayerError(playerid, "Acest cont nu exista.");
+	if(!cache_num_rows()) return SCM(playerid, COLOR_ERROR, eERROR"Acest cont nu exista.");
 	sendAdmin(COLOR_SERVER, "* Notice: {ffffff}Admin %s l-a bagat in inchisoare pe %s, %d minute. Motiv: %s.", getName(playerid), playerName, minutes, reason);
 	update("UPDATE `server_users` SET `Jailed` = '2', `JailTime` = '%d' WHERE `Name` = '%s' LIMIT 1", minutes*60, playerName);
 	return true;
-}
-
-function getVehicleMaxSpeed(model) {
-	new speed;
-	model -= 400;
-	switch(model) {
-		case 0: speed = 149; // model 400
-		case 1: speed = 139; // model 401
-		case 2: speed = 176; // model 402
-		case 3: speed = 104; // model 403
-		case 4: speed = 125; // model 404
-		case 5: speed = 155; // model 405
-		case 6: speed = 104; // model 406
-		case 7: speed = 140; // model 407
-		case 8: speed = 94;  // model 408
-		case 9: speed = 149; // model 409
-		case 10: speed = 122; // model 410
-		case 11: speed = 209; // model 411
-		case 12: speed = 159; // model 412
-		case 13: speed = 104; // model 413
-		case 14: speed = 100; // model 414
-		case 15: speed = 181; // model 415
-		case 16: speed = 145; // model 416
-		case 17: speed = 127; // model 417
-		case 18: speed = 109; // model 418
-		case 19: speed = 141; // model 419
-		case 20: speed = 137; // model 420
-		case 21: speed = 145; // model 421
-		case 22: speed = 132; // model 422
-		case 23: speed = 93;  // model 423
-		case 24: speed = 128; // model 424
-		case 25: speed = 191; // model 425
-		case 26: speed = 164; // model 426
-		case 27: speed = 156; // model 427
-		case 28: speed = 148; // model 428
-		case 29: speed = 190; // model 429
-		case 30: speed = 100; // model 430
-		case 31: speed = 123; // model 431
-		case 32: speed = 89;  // model 432
-		case 33: speed = 104; // model 433
-		case 34: speed = 158; // model 434
-		case 35: speed = 0;   // model 435
-		case 36: speed = 141; // model 436
-		case 37: speed = 149; // model 437
-		case 38: speed = 135; // model 438
-		case 39: speed = 159; // model 439
-		case 40: speed = 128; // model 440
-		case 41: speed = 71;  // model 441
-		case 42: speed = 131; // model 442
-		case 43: speed = 119; // model 443
-		case 44: speed = 104; // model 444
-		case 45: speed = 155; // model 445
-		case 46: speed = 140; // model 446
-		case 47: speed = 126; // model 447
-		case 48: speed = 106; // model 448
-		case 49: speed = 169; // model 449
-		case 50: speed = 0;   // model 450
-		case 51: speed = 182; // model 451
-		case 52: speed = 141; // model 452
-		case 53: speed = 58;  // model 453
-		case 54: speed = 115; // model 454
-		case 55: speed = 119; // model 455
-		case 56: speed = 100; // model 456
-		case 57: speed = 90;  // model 457
-		case 58: speed = 138; // model 458
-		case 59: speed = 128; // model 459
-		case 60: speed = 0;   // model 460
-		case 61: speed = 151; // model 461
-		case 62: speed = 105; // model 462
-		case 63: speed = 136; // model 463
-		case 64: speed = 0;   // model 464
-		case 65: speed = 0;   // model 465
-		case 66: speed = 139; // model 466
-		case 67: speed = 132; // model 467
-		case 68: speed = 136; // model 468
-		case 69: speed = 0;   // model 469
-		case 70: speed = 148; // model 470
-		case 71: speed = 104; // model 471
-		case 72: speed = 0;   // model 472
-		case 73: speed = 0;   // model 473
-		case 74: speed = 141; // model 474
-		case 75: speed = 163; // model 475
-		case 76: speed = 0;   // model 476
-		case 77: speed = 176; // model 477
-		case 78: speed = 111; // model 478
-		case 79: speed = 132; // model 479
-		case 80: speed = 174; // model 480
-		case 81: speed = 68;  // model 481
-		case 82: speed = 148; // model 482
-		case 83: speed = 116; // model 483
-		case 84: speed = 0;   // model 484
-		case 85: speed = 94;  // model 485
-		case 86: speed = 60;  // model 486
-		case 87: speed = 0;   // model 487
-		case 88: speed = 0;   // model 488
-		case 89: speed = 132; // model 489
-		case 90: speed = 148; // model 490
-		case 91: speed = 141; // model 491
-		case 92: speed = 132; // model 492
-		case 93: speed = 0;   // model 493
-		case 94: speed = 203; // model 494
-		case 95: speed = 166; // model 495
-		case 96: speed = 153; // model 496
-		case 97: speed = 0;   // model 497
-		case 98: speed = 115; // model 498
-		case 99: speed = 116; // model 499
-		case 100: speed = 132; // model 500
-		case 101: speed = 0;   // model 501
-		case 102: speed = 203; // model 502
-		case 103: speed = 203; // model 503
-		case 104: speed = 163; // model 504
-		case 105: speed = 132; // model 505
-		case 106: speed = 169; // model 506
-		case 107: speed = 156; // model 507
-		case 108: speed = 102; // model 508
-		case 109: speed = 74;  // model 509
-		case 110: speed = 95;  // model 510
-		case 111: speed = 0;   // model 511
-		case 112: speed = 0;   // model 512
-		case 113: speed = 0;   // model 513
-		case 114: speed = 113; // model 514
-		case 115: speed = 126; // model 515
-		case 116: speed = 148; // model 516
-		case 117: speed = 148; // model 517
-		case 118: speed = 155; // model 518
-		case 119: speed = 0;   // model 519
-		case 120: speed = 0;   // model 520
-		case 121: speed = 150; // model 521
-		case 122: speed = 166; // model 522
-		case 123: speed = 142; // model 523
-		case 124: speed = 123; // model 524
-		case 125: speed = 151; // model 525
-		case 126: speed = 149; // model 526
-		case 127: speed = 141; // model 527
-		case 128: speed = 166; // model 528
-		case 129: speed = 141; // model 529
-		case 130: speed = 57;  // model 530
-		case 131: speed = 66;  // model 531
-		case 132: speed = 104; // model 532
-		case 133: speed = 157; // model 533
-		case 134: speed = 159; // model 534
-		case 135: speed = 149; // model 535
-		case 136: speed = 163; // model 536
-		case 137: speed = 0;   // model 537
-		case 138: speed = 0;   // model 538
-		case 139: speed = 94;  // model 539
-		case 140: speed = 141; // model 540
-		case 141: speed = 191; // model 541
-		case 142: speed = 155; // model 542
-		case 143: speed = 142; // model 543
-		case 144: speed = 140; // model 544
-		case 145: speed = 139; // model 545
-		case 146: speed = 141; // model 546
-		case 147: speed = 135; // model 547
-		case 148: speed = 0;   // model 548
-		case 149: speed = 145; // model 549
-		case 150: speed = 137; // model 550
-		case 151: speed = 148; // model 551
-		case 152: speed = 114; // model 552
-		case 153: speed = 0;   // model 553
-		case 154: speed = 136; // model 554
-		case 155: speed = 149; // model 555
-		case 156: speed = 104; // model 556
-		case 157: speed = 104; // model 557
-		case 158: speed = 147; // model 558
-		case 159: speed = 168; // model 559
-		case 160: speed = 159; // model 560
-		case 161: speed = 145; // model 561
-		case 162: speed = 168; // model 562
-		case 163: speed = 0;   // model 563
-		case 164: speed = 83;  // model 564
-		case 165: speed = 155; // model 565
-		case 166: speed = 151; // model 566
-		case 167: speed = 163; // model 567
-		case 168: speed = 138; // model 568
-		case 169: speed = 0;   // model 569
-		case 170: speed = 0;   // model 570
-		case 171: speed = 88;  // model 571
-		case 172: speed = 58;  // model 572
-		case 173: speed = 104; // model 573
-		case 174: speed = 57;  // model 574
-		case 175: speed = 149; // model 575
-		case 176: speed = 140; // model 576  
-		case 177: speed = 0;   // model 577
-		case 178: speed = 123; // model 578
-		case 179: speed = 149; // model 579
-		case 180: speed = 144; // model 580
-		case 181: speed = 101; // model 581
-		case 182: speed = 115; // model 582
-		case 183: speed = 66;  // model 583
-		case 184: speed = 0;   // model 584
-		case 185: speed = 144; // model 585
-		case 186: speed = 132; // model 586
-		case 187: speed = 155; // model 587
-		case 188: speed = 102; // model 588
-		case 189: speed = 153; // model 589
-		case 190: speed = 0;   // model 590
-		case 191: speed = 0;   // model 591
-		case 192: speed = 0;   // model 592
-		case 193: speed = 0;   // model 593
-		case 194: speed = 57;  // model 594
-		case 195: speed = 0;   // model 595
-		case 196: speed = 166; // model 596
-		case 197: speed = 166; // model 597
-		case 198: speed = 166; // model 598
-		case 199: speed = 149; // model 599
-		case 200: speed = 142; // model 600
-		case 201: speed = 104; // model 601
-		case 202: speed = 160; // model 602
-		case 203: speed = 162; // model 603
-		case 204: speed = 139; // model 604
-		case 205: speed = 142; // model 605
-		case 206: speed = 0;   // model 606
-		case 207: speed = 0;   // model 607
-		case 208: speed = 0;   // model 608
-		case 209: speed = 102; // model 609
-		case 210: speed = 0;   // model 610
-	}
-	return speed;
 }
 
 function serverWeapon(playerid, weaponid, ammo) {
@@ -967,11 +755,11 @@ function removeFunction(playerid, text[]) {
 
 function Reclama(playerid, text[]) {
 	if(playerInfo[playerid][pAdmin] > 5) return true;
-	playerInfo[playerid][pMute] += 120;
+	playerInfo[playerid][pMute] = gettime()+120;
 	update("UPDATE `server_users` SET `Mute` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pMute], playerInfo[playerid][pSQLID]);
 	SCM(playerid, COLOR_LIGHTRED, "* Anti-Reclama: Deoarece ai facut reclama, ai primit mute timp de 2 minute.");
 	sendStaff(COLOR_LIGHTRED, "* Notice Anti-reclama: %s este posibil sa faca reclama ('%s').", getName(playerid), text);
-	return true;
+	return 1;
 }
 
 function PlayerToPoint(Float:radi, playerid, Float:x, Float:y, Float:z) {
@@ -988,3 +776,24 @@ function IsPlayerInTurf(playerid, turfid) {
 	if(x >= turfInfo[turfid][tMinX] && x < turfInfo[turfid][tMaxX] && y >= turfInfo[turfid][tMinY] && y < turfInfo[turfid][tMaxY]) return true;
 	return false;
 }
+
+function SendDiscordAC(const text[], va_args<>) {
+	switch(MYSQL) {
+		case 1: {
+			if (_:MoonBotAC == 0) MoonBotAC = DCC_FindChannelById("843145109977825310");
+
+			new Discord[100];
+			va_format(Discord, sizeof Discord, text, va_start<1>);
+			DCC_SendChannelMessage(MoonBotAC, string_fast(":warning: %s", Discord));
+		}
+	}
+	return 1;
+}
+
+function showNotification(playerid, from[], const text[]) {
+	va_PlayerTextDrawSetString(playerid, notificationTD[playerid], "%s~n~From: %s", text, from);
+	PlayerTextDrawShow(playerid, notificationTD[playerid]);
+	defer notificationTimer(playerid);
+	return true;
+}
+

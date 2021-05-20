@@ -1,12 +1,36 @@
-C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\gamemodes\fromzero.pwn(882) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "Contract"
-C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\gamemodes\fromzero.pwn(882) : ďđĺäóďđĺćäĺíčĺ 215: âűđŕćĺíčĺ íĺ čěĺĺň ýôôĺęňŕ
-C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\gamemodes\fromzero.pwn(882) : îřčáęŕ 001: îćčäŕëń˙ ňîęĺí ";", íî íŕéäĺí "]"
-C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\gamemodes\fromzero.pwn(882) : îřčáęŕ 029: íĺďđŕâčëüíîĺ âűđŕćĺíčĺ, ďđčí˙ň íîëü
-C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\gamemodes\fromzero.pwn(882) : ôŕňŕëüíŕ˙ îřčáęŕ 107: ńëčřęîě ěíîăî îřčáîę íŕ îäíîé ńňđîęĺ
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\factions.pwn(397) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "SpawnPlayerEx"
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\factions.pwn(500) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "SpawnPlayerEx"
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\factions.pwn(1071) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "SpawnPlayerEx"
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\factions.pwn(1150) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "SpawnPlayerEx"
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\business.pwn(46) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "DCC_FindChannelById"
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\business.pwn(46) : ďđĺäóďđĺćäĺíčĺ 213: íĺńîâďŕäĺíčĺ ňčďîâ
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\business.pwn(47) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "DCC_SendChannelMessage"
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\functions.pwn(31) : îřčáęŕ 001: îćčäŕëń˙ ňîęĺí "-string end-", íî íŕéäĺí "-identifier-"
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\functions.pwn(31) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "VERSION"
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\functions.pwn(31) : ďđĺäóďđĺćäĺíčĺ 202: ęîëč÷ĺńňâî ŕđăóěĺíňîâ íĺ ńîâďŕäŕĺň ń îáú˙âëĺíčĺě
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\functions.pwn(109) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "SpawnPlayerEx"
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\functions.pwn(266) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "DCC_SetBotActivity"
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\functions.pwn(267) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "DCC_GetBotPresenceStatus"
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\functions.pwn(267) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "DCC_SetBotPresenceStatus"
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\functions.pwn(783) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "DCC_FindChannelById"
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\functions.pwn(783) : ďđĺäóďđĺćäĺíčĺ 213: íĺńîâďŕäĺíčĺ ňčďîâ
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\functions.pwn(787) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "DCC_SendChannelMessage"
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn(17) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "SpawnPlayerEx"
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\timers.pwn(182) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "SpawnPlayerEx"
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\comenzi\admin.pwn(961) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "SpawnPlayerEx"
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\pawno\include\modules\comenzi\admin.pwn(1310) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "SpawnPlayerEx"
+C:\Users\vlogs\AppData\Local\Temp\Rar$DIa15192.49629\fromzero.pwn(364) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "sendPlayerError"
+C:\Users\vlogs\AppData\Local\Temp\Rar$DIa15192.49629\fromzero.pwn(380) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "sendPlayerError"
+C:\Users\vlogs\AppData\Local\Temp\Rar$DIa15192.49629\fromzero.pwn(387) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "sendPlayerError"
+C:\Users\vlogs\AppData\Local\Temp\Rar$DIa15192.49629\fromzero.pwn(394) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "sendPlayerError"
+C:\Users\vlogs\AppData\Local\Temp\Rar$DIa15192.49629\fromzero.pwn(521) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "sendPlayerError"
+C:\Users\vlogs\AppData\Local\Temp\Rar$DIa15192.49629\fromzero.pwn(522) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "sendPlayerError"
+C:\Users\vlogs\AppData\Local\Temp\Rar$DIa15192.49629\fromzero.pwn(539) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "sendPlayerError"
+C:\Users\vlogs\AppData\Local\Temp\Rar$DIa15192.49629\fromzero.pwn(695) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "sendPlayerError"
 
 Ęîěďčë˙öč˙ îńňŕíîâëĺíŕ.
 
 Pawn compiler 3.2.3664	 	 	Copyright (c) 1997-2017, ITB CompuPhase
 
 
-Îřčáîę:4.
+Îřčáîę:26.
