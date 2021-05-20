@@ -6,16 +6,15 @@ function InsertEmail(playerid, const from[], const text[], type) {
 
 function ShowEmails(playerid) {
 	if(!cache_num_rows()) return true;
-	new text[144], from[MAX_PLAYER_NAME], date[30], id=0;
+	new text[144], from[MAX_PLAYER_NAME], date[30];
 	gString[0] = (EOS);
 	strcat(gString, "#. Email\tBy\tDate\n");
 	for(new i = 0; i < cache_num_rows(); i++) {
-		id++;
 		cache_get_value_name(i, "Text", text, 144);
 		cache_get_value_name(i, "From", from, MAX_PLAYER_NAME);
 		cache_get_value_name(i, "Date", date, 30);
-		playerInfo[playerid][pSelectedItem] = id;
-		format(gString, sizeof gString, "%s%d. %s\t%s\t%s\n", gString, id, text, from, date);
+		playerInfo[playerid][pSelectedItem] = i;
+		strcat(gString, string_fast("%d. %s\t%s\t%s\n", i, text, from, date));
 	}
 	Dialog_Show(playerid, DIALOG_EMAILS, DIALOG_STYLE_TABLIST_HEADERS, "Emails", gString, "Select", "Cancel");
 	return true;
@@ -35,15 +34,14 @@ Dialog:DIALOG_EMAILS(playerid, response, listitem) {
 
 function showEmail(playerid, id) {
 	new text[144], from[MAX_PLAYER_NAME], date[30];
-	cache_get_value_name(0, "Text", text, 144);
-	cache_get_value_name(0, "From", from, MAX_PLAYER_NAME);
-	cache_get_value_name(0, "Date", date, 30);	
-	Dialog_Show(playerid, DIALOG_EMAIL2, DIALOG_STYLE_MSGBOX, string_fast("Email #%d", id), "%s\nFrom: %s\nDate: %s","Ok", "", text, from, date);
+	cache_get_value_name(id, "Text", text, 144);
+	cache_get_value_name(id, "From", from, MAX_PLAYER_NAME);
+	cache_get_value_name(id, "Date", date, 30);	
+	Dialog_Show(playerid, DIALOG_EMAIL2, DIALOG_STYLE_MSGBOX, "Email Reading", "%s\nFrom: %s\nDate: %s","Ok", "", text, from, date);
 	return true;
 }
 
 Dialog:DIALOG_EMAILS2(playerid, response, listitem) {
-	if(response) return true;		
 	update("UPDATE `panel_notifications` SET `Read` = '1' WHERE `ID` = '%d' AND `UserID` = '%d' LIMTI 1", selName[playerid], playerInfo[playerid][pSQLID]);	
 	return true;
 }

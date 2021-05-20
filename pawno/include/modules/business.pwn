@@ -27,7 +27,7 @@ enum businessInfoEnum {
 	bizPickup,
 	bizArea
 };
-new bizInfo[MAX_BUSINESSES + 1][businessInfoEnum], Iterator:ServerBusinesses<MAX_BUSINESSES + 1>, Iterator:ServerAds<MAX_PLAYERS>;
+new bizInfo[MAX_BUSINESSES + 1][businessInfoEnum], Iterator:ServerBusinesses<MAX_BUSINESSES + 1>, AdTimer[MAX_PLAYERS], AdText[MAX_PLAYERS][180];
 
 hook OnGameModeInit() {
 	Iter_Init(ServerBusinesses);
@@ -36,46 +36,50 @@ hook OnGameModeInit() {
 
 hook OnPlayerConnect(playerid) {
 	IDSelected[playerid] = -1;
+	AdTimer[playerid] = 0;
 	return true;
 }
 
-timer advertismentTimer[Iter_Count(ServerAds) * 60000](playerid) {
-	sendSplitMessage(playerid, COLOR_SERVER, string_fast("Advertisment by {ffffff}%s{cc66ff}(phone: {ffffff}%d{cc66ff}): '{ffffff}%s{cc66ff}'", getName(playerid), playerInfo[playerid][pPhone], playerInfo[playerid][pAdText]));
-	switch(MYSQL) {
-		case 1: {
-			if (_:MoonBot == 0) MoonBot = DCC_FindChannelById("842858866973737020");
-			DCC_SendChannelMessage(MoonBot, string_fast(":newspaper: Ad by **%s[%d]** (phone: **%d**): %s", getName(playerid), playerid, playerInfo[playerid][pPhone], playerInfo[playerid][pAdText]));
-		}
-	}
-	Iter_Remove(ServerAds, playerid);
-	playerInfo[playerid][pAdText] = (EOS);
+function totalAds() {
+	new x;
+	foreach(new i : loggedPlayers) {
+		if(AdTimer[i] != 0) x++;
+	}	
+	return x;
+}
+
+timer advertismentTimer[totalAds() * 60000](playerid) {
+	sendSplitMessage(playerid, COLOR_WHITE, string_fast("{00D900}Ad by %s (phone: {FFFFFF}%d{00D900}): %s", getName(playerid), playerInfo[playerid][pPhone], AdText[playerid]));
+	AdText[playerid] = "";
+	AdTimer[playerid] = 0;
 	return true;
 }
+
 
 function LoadBusinesses() {
 	if(!cache_num_rows()) return print("Businesses: 0 [From Database]");
-	for(new i = 1, j = cache_num_rows() + 1; i != j; i++) {
+	for(new i = 0; i < cache_num_rows(); i++) {
 		Iter_Add(ServerBusinesses, i);
 
-		cache_get_value_name(i - 1, "Title", bizInfo[i][bizTitle], 32);
-		cache_get_value_name(i - 1, "Description", bizInfo[i][bizDescription], 64);
-		cache_get_value_name(i - 1, "Owner", bizInfo[i][bizOwner], 32);
-		cache_get_value_name_int(i - 1, "ID", bizInfo[i][bizID]);
-		cache_get_value_name_float(i - 1, "X", bizInfo[i][bizX]);
-		cache_get_value_name_float(i - 1, "Y", bizInfo[i][bizY]);
-		cache_get_value_name_float(i - 1, "Z", bizInfo[i][bizZ]);
-		cache_get_value_name_float(i - 1, "ExtX", bizInfo[i][bizExtX]);
-		cache_get_value_name_float(i - 1, "ExtY", bizInfo[i][bizExtY]);
-		cache_get_value_name_float(i - 1, "ExtZ", bizInfo[i][bizExtZ]);
-		cache_get_value_name_int(i - 1, "Fee", bizInfo[i][bizFee]);
-		cache_get_value_name_int(i - 1, "Static", bizInfo[i][bizStatic]);
-		cache_get_value_name_int(i - 1, "Type", bizInfo[i][bizType]);
-		cache_get_value_name_int(i - 1, "Interior", bizInfo[i][bizInterior]);
-		cache_get_value_name_int(i - 1, "Owned", bizInfo[i][bizOwned]);
-		cache_get_value_name_int(i - 1, "Price", bizInfo[i][bizPrice]);
-		cache_get_value_name_int(i - 1, "OwnerID", bizInfo[i][bizOwnerID]);
-		cache_get_value_name_int(i - 1, "Locked", bizInfo[i][bizLocked]);
-		cache_get_value_name_int(i - 1, "Balance", bizInfo[i][bizBalance]);
+		cache_get_value_name(i, "Title", bizInfo[i][bizTitle], 32);
+		cache_get_value_name(i, "Description", bizInfo[i][bizDescription], 64);
+		cache_get_value_name(i, "Owner", bizInfo[i][bizOwner], 32);
+		cache_get_value_name_int(i, "ID", bizInfo[i][bizID]);
+		cache_get_value_name_float(i, "X", bizInfo[i][bizX]);
+		cache_get_value_name_float(i, "Y", bizInfo[i][bizY]);
+		cache_get_value_name_float(i, "Z", bizInfo[i][bizZ]);
+		cache_get_value_name_float(i, "ExtX", bizInfo[i][bizExtX]);
+		cache_get_value_name_float(i, "ExtY", bizInfo[i][bizExtY]);
+		cache_get_value_name_float(i, "ExtZ", bizInfo[i][bizExtZ]);
+		cache_get_value_name_int(i, "Fee", bizInfo[i][bizFee]);
+		cache_get_value_name_int(i, "Static", bizInfo[i][bizStatic]);
+		cache_get_value_name_int(i, "Type", bizInfo[i][bizType]);
+		cache_get_value_name_int(i, "Interior", bizInfo[i][bizInterior]);
+		cache_get_value_name_int(i, "Owned", bizInfo[i][bizOwned]);
+		cache_get_value_name_int(i, "Price", bizInfo[i][bizPrice]);
+		cache_get_value_name_int(i, "OwnerID", bizInfo[i][bizOwnerID]);
+		cache_get_value_name_int(i, "Locked", bizInfo[i][bizLocked]);
+		cache_get_value_name_int(i, "Balance", bizInfo[i][bizBalance]);
 
 		bizInfo[i][bizText] = CreateDynamic3DTextLabel(string_fast("Business ID: %d\nBusiness Title: %s\nBusiness Description: %s\nBusiness Owner: %s\nBusiness Price: $%s\nBusiness Fee: $%s", bizInfo[i][bizID], bizInfo[i][bizTitle], bizInfo[i][bizDescription], bizInfo[i][bizOwner], formatNumber(bizInfo[i][bizPrice]),formatNumber(bizInfo[i][bizFee])), -1, bizInfo[i][bizExtX],bizInfo[i][bizExtY],bizInfo[i][bizExtZ], 20.0, 0xFFFF, 0xFFFF, 0, 0, 0, -1, STREAMER_3D_TEXT_LABEL_SD);
 		bizInfo[i][bizPickup] = CreateDynamicPickup(1239, 23, bizInfo[i][bizExtX],bizInfo[i][bizExtY],bizInfo[i][bizExtZ], 0, 0, -1, STREAMER_PICKUP_SD);					
@@ -180,50 +184,55 @@ Dialog:BIZ_OPTION_DESCADMIN(playerid, response, listitem, inputtext[]) {
 
 Dialog:BUYBIZ(playerid, response, listitem) { 
 	if(!response) return true;
+	SCM(playerid, -1, "smeker 999");
 	switch(listitem) {
 		case 0: {
-			if(GetPlayerCash(playerid) < 1500) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai $1500.");
-			if(playerInfo[playerid][pPhone] > 0) return SCM(playerid, COLOR_ERROR, eERROR"Ai deja telefon.");
-			if(strlen(playerInfo[playerid][pPhone]) == 4) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti cumpara alt telefon deoarece ai un iPhone.");
+			SCM(playerid, -1, "smeker 1");
+			if(GetPlayerCash(playerid) < 1500) return sendPlayerError(playerid, "Nu ai $1500.");
+			if(playerInfo[playerid][pPhone] > 0) return sendPlayerError(playerid, "Ai deja telefon.");
+			if(strlen(playerInfo[playerid][pPhone]) == 4) return sendPlayerError(playerid, "Nu poti cumpara alt telefon deoarece ai un iPhone.");
 			new randphone = 5000 + random(9999) + 5000;
 			GivePlayerCash(playerid, 0, 1500);
 			PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
 			bizInfo[2][bizBalance] += 1500;
 			playerInfo[playerid][pPhone] = randphone;
-			update("UPDATE `server_users` SET `Phone` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pPhone], playerInfo[playerid][pSQLID]);
-			update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '2' LIMIT 1", bizInfo[2][bizBalance]);
-			SCMf(playerid, COLOR_GREY, "* Buy Notice: Ai cumparat un telefon, iar numarul tau este %d.", randphone);
+			update("UPDATE `server_users` SET `Phone` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pPhone], playerInfo[playerid][pSQLID]);
+			update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '2'", bizInfo[2][bizBalance]);
+			SCM(playerid, COLOR_GREY, string_fast("* Buy Notice: Ai cumparat un telefon, iar numarul tau este %d.", randphone));
 		}
 		case 1: {
-			if(GetPlayerCash(playerid) < 3500) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai $3500.");
-			if(playerInfo[playerid][pPhoneBook] > 0) return SCM(playerid, COLOR_ERROR, eERROR"Ai deja agenda telefonica.");
+			SCM(playerid, -1, "smeker 2");
+			if(GetPlayerCash(playerid) < 3500) return sendPlayerError(playerid, "Nu ai $3500.");
+			if(playerInfo[playerid][pPhoneBook] > 0) return sendPlayerError(playerid, "Ai deja agenda telefonica.");
 			GivePlayerCash(playerid, 0, 3500);
 			PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
 			playerInfo[playerid][pPhoneBook] = 1;
 			bizInfo[2][bizBalance] += 3500;
-			update("UPDATE `server_users` SET `PhoneBook` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pPhoneBook], playerInfo[playerid][pSQLID]);
-			update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '2' LIMIT 1", bizInfo[2][bizBalance]);
+			update("UPDATE `server_users` SET `PhoneBook` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pPhoneBook], playerInfo[playerid][pSQLID]);
+			update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '2'", bizInfo[2][bizBalance]);
 			SCM(playerid, COLOR_GREY, "* Buy Notice: Ai cumparat o agenda telefonica.");
 		}
 		case 2: {
-			if(GetPlayerCash(playerid) < 5000) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai $5000.");
-			if(playerInfo[playerid][pWTalkie] == 1) return SCM(playerid, COLOR_ERROR, eERROR"Ai deja un walkie talkie.");
+			SCM(playerid, -1, "smeker 3");
+			if(GetPlayerCash(playerid) < 5000) return sendPlayerError(playerid, "Nu ai $5000.");
+			if(playerInfo[playerid][pWTalkie] == 1) return sendPlayerError(playerid, "Ai deja un walkie talkie.");
 			GivePlayerCash(playerid, 0, 5000);
 			PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
 			playerInfo[playerid][pWTalkie] = 1;
 			bizInfo[2][bizBalance] += 5000;
-			update("UPDATE `server_users` SET `WTalkie` = '1' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pSQLID]);
-			update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '2' LIMIT 1", bizInfo[2][bizBalance]);
+			update("UPDATE `server_users` SET `WTalkie` = '1' WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
+			update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '2'", bizInfo[2][bizBalance]);
 			SCM(playerid, COLOR_GREY, "* Buy Notice: Ai cumparat un walkie talkie.");			
 		}
 	}
+	SCM(playerid, -1, "smeker 4");
 	return true;
 }
 
 Dialog:TRANSFERBIZ(playerid, response) {
 	if(!response) return true;	
 	new taxBank = playerInfo[playerid][pTransferMoney]/75;
-	if(playerInfo[playerid][pStoreBank] == 0 && playerInfo[playerid][pBank] < playerInfo[playerid][pTransferMoney]+taxBank) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai suma necesara pentru a transfera banii.");
+	if(playerInfo[playerid][pStoreBank] == 0 && playerInfo[playerid][pBank] < playerInfo[playerid][pTransferMoney]+taxBank) return sendPlayerError(playerid, "Nu ai suma necesara pentru a transfera banii.");
 	new LastMoney[45];
 	format(LastMoney, 45, GetBankMoney(playerid));
 	GivePlayerBank(playerid, -playerInfo[playerid][pTransferMoney]+taxBank);
@@ -233,17 +242,17 @@ Dialog:TRANSFERBIZ(playerid, response) {
 	SCM(playerid, COLOR_GREY, string_fast("* Bank Notice: Ai transferat in contul lui %s (%d) suma de $%s. In contul tau mai ai $%s. Taxa: $%s.", getName(playerInfo[playerid][pTransferPlayer]), playerInfo[playerid][pTransferPlayer], formatNumber(playerInfo[playerid][pTransferMoney]), formatNumber(playerInfo[playerid][pBank]), taxBank));
 	SCM(playerInfo[playerid][pTransferPlayer], COLOR_GREY, string_fast("* Bank Notice: Ai primit in contul tau bancar suma de $%s de la %s (%d).", formatNumber(playerInfo[playerid][pTransferMoney]), getName(playerid), playerid));
 	sendStaff(COLOR_SERVER, string_fast("(-$+) Transfer:{ffffff} %s a transferat $%s lui %s. [Last Bank Money: $%S].", getName(playerid), formatNumber(playerInfo[playerid][pTransferMoney]), getName(playerInfo[playerid][pTransferPlayer]), LastMoney));
-	update("UPDATE `server_users` SET `Bank` = '%d', `MBank` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pBank], playerInfo[playerid][pStoreBank], playerInfo[playerid][pSQLID]);
-	update("UPDATE `server_users` SET `Bank` = '%d', `MBank` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerInfo[playerid][pTransferPlayer]][pBank], playerInfo[playerInfo[playerid][pTransferPlayer]][pStoreBank], playerInfo[playerInfo[playerid][pTransferPlayer]][pSQLID]);
-	update("UPDATE `server_business` SET `Balance`='%d' WHERE `ID`='1' LIMIT 1", bizInfo[1][bizBalance]);
+	update("UPDATE `server_users` SET `Bank` = '%d', `MBank` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pBank], playerInfo[playerid][pStoreBank], playerInfo[playerid][pSQLID]);
+	update("UPDATE `server_users` SET `Bank` = '%d', `MBank` = '%d' WHERE `ID` = '%d'", playerInfo[playerInfo[playerid][pTransferPlayer]][pBank], playerInfo[playerInfo[playerid][pTransferPlayer]][pStoreBank], playerInfo[playerInfo[playerid][pTransferPlayer]][pSQLID]);
+	update("UPDATE `server_business` SET `Balance`='%d' WHERE `ID`='1'", bizInfo[1][bizBalance]);
 	return true;
 }
 
 CMD:buybusiness(playerid, params[]) {
-	if(playerInfo[playerid][pBusiness] != 0) return SCM(playerid, COLOR_ERROR, eERROR"Ai deja o afacere cumparata.");
-	if(playerInfo[playerid][pLevel] < 5) return SCM(playerid, COLOR_ERROR, eERROR"Trebuie sa detii, minim level 5.");
+	if(playerInfo[playerid][pBusiness] != 0) return sendPlayerError(playerid, "Ai deja o afacere cumparata.");
+	if(playerInfo[playerid][pLevel] < 10) return sendPlayerError(playerid, "Trebuie sa detii, minim level 10.");
 	if(playerInfo[playerid][areaBizz] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, bizInfo[playerInfo[playerid][areaBizz]][bizExtX], bizInfo[playerInfo[playerid][areaBizz]][bizExtY], bizInfo[playerInfo[playerid][areaBizz]][bizExtZ])) {
-		if(bizInfo[playerInfo[playerid][areaBizz]][bizPrice] == 0) return SCM(playerid, COLOR_ERROR, eERROR"Aceasta afacere nu este de vanzare.");
+		if(bizInfo[playerInfo[playerid][areaBizz]][bizPrice] == 0) return sendPlayerError(playerid, "Aceasta afacere nu este de vanzare.");
 		if(bizInfo[playerInfo[playerid][areaBizz]][bizOwned] == 1) {
 			new id = GetPlayerID(bizInfo[playerInfo[playerid][areaBizz]][bizOwner]), moneys, newmoneys;
 			gString[0] = (EOS);
@@ -252,7 +261,7 @@ CMD:buybusiness(playerid, params[]) {
 				playerInfo[id][pBusinessID] = -1;
 				playerInfo[id][pBank] += bizInfo[playerInfo[playerid][areaBizz]][bizPrice];
 				SCM(playerid, COLOR_GREY, string_fast("* %s ti-a cumparat afacerea, si ai primit $%s, in banca.", getName(playerid), formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizPrice])));
-				update("UPDATE `server_users` SET `Bank` = '%d', `Business` = '0', `BusinessID` = '-1' WHERE `ID` = '%d' LIMIT 1", playerInfo[id][pBank], playerInfo[id][pSQLID]);
+				update("UPDATE `server_users` SET `Bank` = '%d', `Business` = '0', `BusinessID` = '-1' WHERE `ID` = '%d'", playerInfo[id][pBank], playerInfo[id][pSQLID]);
 			}
 			else {
 				new Cache: result = mysql_query(SQL, string_fast("SELECT * FROM `server_users` WHERE `Name` = '%s'", bizInfo[playerInfo[playerid][areaBizz]][bizOwner]));
@@ -261,7 +270,7 @@ CMD:buybusiness(playerid, params[]) {
 					newmoneys = moneys + bizInfo[playerInfo[playerid][areaBizz]][bizPrice];
 				}
 				cache_delete(result);
-				update("UPDATE `server_users` SET `Bank` = '%d', `Business` = '0', `BusinessID` = '-1' WHERE `ID` = '%d' LIMIT 1", newmoneys, playerInfo[id][pSQLID]);
+				update("UPDATE `server_users` SET `Bank` = '%d', `Business` = '0', `BusinessID` = '-1' WHERE `ID` = '%d'", newmoneys, playerInfo[id][pSQLID]);
 			}
 			SCM(playerid, COLOR_GREY, string_fast("* Business Notice: Felicitari ! Ai cumparat afacerea cu id %d, si ai platit $%s.", playerInfo[playerid][areaBizz], formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizPrice])));
 			GivePlayerCash(playerid, 0, bizInfo[playerInfo[playerid][areaBizz]][bizPrice]);
@@ -271,8 +280,8 @@ CMD:buybusiness(playerid, params[]) {
 			bizInfo[playerInfo[playerid][areaBizz]][bizOwned] = 1;
 			bizInfo[playerInfo[playerid][areaBizz]][bizPrice] = 0;
 			Update3DTextLabelText(bizInfo[playerInfo[playerid][areaBizz]][bizText], COLOR_WHITE, string_fast("Business ID: %d\nBusiness Title: %s\nBusiness Description: %s\nBusiness Owner: %s\nBusiness Price: $%s\nBusiness Fee: $%s", bizInfo[playerInfo[playerid][areaBizz]][bizID], bizInfo[playerInfo[playerid][areaBizz]][bizTitle], bizInfo[playerInfo[playerid][areaBizz]][bizDescription], bizInfo[playerInfo[playerid][areaBizz]][bizOwner], formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizPrice]),formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizFee])));
-			update("UPDATE `server_users` SET `Business` = '1', `BusinessID` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][areaBizz], playerInfo[playerid][pSQLID]);
-			update("UPDATE `server_business` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d' LIMIT 1",bizInfo[playerInfo[playerid][areaBizz]][bizOwner], playerInfo[playerid][pSQLID], playerInfo[playerid][areaBizz]);
+			update("UPDATE `server_users` SET `Business` = '1', `BusinessID` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][areaBizz], playerInfo[playerid][pSQLID]);
+			update("UPDATE `server_business` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d'",bizInfo[playerInfo[playerid][areaBizz]][bizOwner], playerInfo[playerid][pSQLID], playerInfo[playerid][areaBizz]);
 		}
 		else if(bizInfo[playerInfo[playerid][areaBizz]][bizOwned] == 0) {
 			SCM(playerid, COLOR_GREY, string_fast("* Business Notice: Felicitari ! Ai cumparat afacerea cu id %d, si ai platit $%s.", playerInfo[playerid][areaBizz], formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizPrice])));
@@ -284,41 +293,41 @@ CMD:buybusiness(playerid, params[]) {
 			bizInfo[playerInfo[playerid][areaBizz]][bizOwned] = 1;
 			bizInfo[playerInfo[playerid][areaBizz]][bizPrice] = 0;
 			Update3DTextLabelText(bizInfo[playerInfo[playerid][areaBizz]][bizText], COLOR_WHITE, string_fast("Business ID: %d\nBusiness Title: %s\nBusiness Description: %s\nBusiness Owner: %s\nBusiness Price: $%s\nBusiness Fee: $%s", bizInfo[playerInfo[playerid][areaBizz]][bizID], bizInfo[playerInfo[playerid][areaBizz]][bizTitle], bizInfo[playerInfo[playerid][areaBizz]][bizDescription], bizInfo[playerInfo[playerid][areaBizz]][bizOwner], formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizPrice]),formatNumber(bizInfo[playerInfo[playerid][areaBizz]][bizFee])));
-			update("UPDATE `server_users` SET `Money` = '%d', `MStore` = '%d', `Business` = '1', `BusinessID` = '%d' WHERE `ID` = '%d' LIMIT 1", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][areaBizz], playerInfo[playerid][pSQLID]);
-			update("UPDATE `server_business` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d' LIMIT 1",bizInfo[playerInfo[playerid][areaBizz]][bizOwner],playerInfo[playerid][pSQLID], playerInfo[playerid][areaBizz]);
+			update("UPDATE `server_users` SET `Money` = '%d', `MStore` = '%d', `Business` = '1', `BusinessID` = '%d' WHERE `ID` = '%d'", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][areaBizz], playerInfo[playerid][pSQLID]);
+			update("UPDATE `server_business` SET `Owned`='1',`Owner`='%s',`OwnerID`='%d',`Price`='0' WHERE `ID`='%d'",bizInfo[playerInfo[playerid][areaBizz]][bizOwner],playerInfo[playerid][pSQLID], playerInfo[playerid][areaBizz]);
 		}
 	}
 	return true;
 }
 
 CMD:sellbizstate(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti logat, pentru a face aceasta actiune.");
-	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti face aceasta actiune, deoarece esti in masina.");
-	if(GetPlayerVirtualWorld(playerid) != 0 && GetPlayerInterior(playerid) != 0 && playerInfo[playerid][pinBusiness] != -1) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda deoarece, esti intr-un alt virtualworld / interior / esti intr-un business.");
-	if(playerInfo[playerid][pBusiness] == 0 && playerInfo[playerid][pBusinessID] == -1) return SCM(playerid, COLOR_ERROR, eERROR"Nu detii o afacere.");
+	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
+	if(IsPlayerInAnyVehicle(playerid)) return sendPlayerError(playerid, "Nu poti face aceasta actiune, deoarece esti in masina.");
+	if(GetPlayerVirtualWorld(playerid) != 0 && GetPlayerInterior(playerid) != 0 && playerInfo[playerid][pinBusiness] != -1) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda deoarece, esti intr-un alt virtualworld / interior / esti intr-un business.");
+	if(playerInfo[playerid][pBusiness] == 0 && playerInfo[playerid][pBusinessID] == -1) return sendPlayerError(playerid, "Nu detii o afacere.");
 	Dialog_Show(playerid, SELL_BIZ_STATE, DIALOG_STYLE_MSGBOX, "Business:", "Esti sigur ca doresti sa-ti vinzi afacerea, pe $150,000?\nDaca apesi pe butonul 'da', nu mai exista cale de intoarcere.", "Da", "Nu");
 	return true;
 }
 
 CMD:bizbalance(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pBusiness] == 0 && playerInfo[playerid][pBusinessID] == -1) return SCM(playerid, COLOR_ERROR, eERROR"Nu detii o afacere.");
+	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
+	if(playerInfo[playerid][pBusiness] == 0 && playerInfo[playerid][pBusinessID] == -1) return sendPlayerError(playerid, "Nu detii o afacere.");
 	new businessid = playerInfo[playerid][pBusinessID];
 	SCM(playerid, COLOR_GREY, string_fast("* Business Notice: Balanta ta la afacere este de $%s.", formatNumber(bizInfo[businessid][bizBalance])));
 	return true;
 }
 
 CMD:bizwithdraw(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pBusiness] == 0 && playerInfo[playerid][pBusinessID] == -1) return SCM(playerid, COLOR_ERROR, eERROR"Nu detii o afacere.");
+	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
+	if(playerInfo[playerid][pBusiness] == 0 && playerInfo[playerid][pBusinessID] == -1) return sendPlayerError(playerid, "Nu detii o afacere.");
 	new businessid = playerInfo[playerid][pBusinessID], suma;
-	if(playerInfo[playerid][pinBusiness] != businessid) return SCM(playerid, COLOR_ERROR, eERROR"Poti folosi aceasta comanda doar din interiorul afacerii tale.");
+	if(playerInfo[playerid][pinBusiness] != businessid) return sendPlayerError(playerid, "Poti folosi aceasta comanda doar din interiorul afacerii tale.");
 	if(sscanf(params, "d", suma)) {
 		sendPlayerSyntax(playerid, "/bizwithdraw <money>");
 		SCM(playerid, COLOR_GREY, string_fast("* Business Notice: Balanta ta la afacere este de $%s.", formatNumber(bizInfo[businessid][bizBalance])));
 		return true;
 	}
-	if(bizInfo[businessid][bizBalance] < suma) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai suma aceasta de bani in balanta afacerii tale.");
+	if(bizInfo[businessid][bizBalance] < suma) return sendPlayerError(playerid, "Nu ai suma aceasta de bani in balanta afacerii tale.");
 	bizInfo[businessid][bizBalance] -= suma;
 	GivePlayerCash(playerid, 1, suma);
 	update("UPDATE `server_business` SET `Balance`='%d'  WHERE `ID`='%d' LIMIT 1", bizInfo[businessid][bizBalance], businessid);
@@ -327,12 +336,12 @@ CMD:bizwithdraw(playerid, params[]) {
 }
 
 CMD:bizdeposit(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pBusiness] == 0 && playerInfo[playerid][pBusinessID] == -1) return SCM(playerid, COLOR_ERROR, eERROR"Nu detii o afacere.");
+	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
+	if(playerInfo[playerid][pBusiness] == 0 && playerInfo[playerid][pBusinessID] == -1) return sendPlayerError(playerid, "Nu detii o afacere.");
 	new businessid = playerInfo[playerid][pBusinessID], suma;
-	if(playerInfo[playerid][pinBusiness] != businessid) return SCM(playerid, COLOR_ERROR, eERROR"Poti folosi aceasta comanda doar din interiorul afacerii tale.");
+	if(playerInfo[playerid][pinBusiness] != businessid) return sendPlayerError(playerid, "Poti folosi aceasta comanda doar din interiorul afacerii tale.");
 	if(sscanf(params, "d", suma)) return sendPlayerSyntax(playerid, "/bizdeposit <money>");
-	if(GetPlayerCash(playerid) < suma) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai suma aceasta de bani, pentru a adauga in balanta afacerii tale.");
+	if(GetPlayerCash(playerid) < suma) return sendPlayerError(playerid, "Nu ai suma aceasta de bani, pentru a adauga in balanta afacerii tale.");
 	bizInfo[businessid][bizBalance] += suma;
 	GivePlayerCash(playerid, 0, suma);
 	update("UPDATE `server_business` SET `Balance`='%d'  WHERE `ID`='%d' LIMIT 1", bizInfo[businessid][bizBalance], businessid);
@@ -341,16 +350,16 @@ CMD:bizdeposit(playerid, params[]) {
 }
 
 CMD:bizoption(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pBusiness] == 0 && playerInfo[playerid][pBusinessID] == -1) return SCM(playerid, COLOR_ERROR, eERROR"Nu detii o afacere.");
-	if(Dialog_Opened(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
+	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
+	if(playerInfo[playerid][pBusiness] == 0 && playerInfo[playerid][pBusinessID] == -1) return sendPlayerError(playerid, "Nu detii o afacere.");
+	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
 	Dialog_Show(playerid, BIZ_OPTION, DIALOG_STYLE_TABLIST_HEADERS, "Business:", "Option Name\tOption\nTitle\tSchimba Titlul Afacerii\nDescription\tSchimba Descrierea Afacerii", "Select", "Close");	
 	return true;
 }
 
 CMD:bizlock(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pBusiness] == 0 && playerInfo[playerid][pBusinessID] == -1) return SCM(playerid, COLOR_ERROR, eERROR"Nu detii o afacere.");
+	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
+	if(playerInfo[playerid][pBusiness] == 0 && playerInfo[playerid][pBusinessID] == -1) return sendPlayerError(playerid, "Nu detii o afacere.");
 	new businessid = playerInfo[playerid][pBusinessID];
 	if(bizInfo[businessid][bizLocked] == 0) {
 		bizInfo[businessid][bizLocked] = 1;
@@ -365,8 +374,8 @@ CMD:bizlock(playerid, params[]) {
 }
 
 CMD:sellbiz(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pBusiness] == 0 && playerInfo[playerid][pBusinessID] == -1) return SCM(playerid, COLOR_ERROR, eERROR"Nu detii o afacere.");
+	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
+	if(playerInfo[playerid][pBusiness] == 0 && playerInfo[playerid][pBusinessID] == -1) return sendPlayerError(playerid, "Nu detii o afacere.");
 	new businessid = playerInfo[playerid][pBusinessID], suma;
 	if(sscanf(params, "d", suma)) return sendPlayerSyntax(playerid, "/sellbiz <price>");
 	bizInfo[businessid][bizPrice] = suma;
@@ -377,49 +386,49 @@ CMD:sellbiz(playerid, params[]) {
 }
 
 CMD:adminbusiness(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti logat, pentru a face aceasta actiune.");
-	if(playerInfo[playerid][pAdmin] < 4) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
-	if(Dialog_Opened(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
+	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
+	if(playerInfo[playerid][pAdmin] < 4) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
+	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
 	new idbiz;
 	if(sscanf(params, "d", idbiz)) return sendPlayerSyntax(playerid, "/adminbusiness <business id>");
-	if(!Iter_Contains(ServerBusinesses, idbiz)) return SCM(playerid, COLOR_ERROR, eERROR"Acest ID nu exista in baza de date.");
+	if(!Iter_Contains(ServerBusinesses, idbiz)) return sendPlayerError(playerid, "Acest ID nu exista in baza de date.");
 	IDSelected[playerid] = idbiz;
 	Dialog_Show(playerid, BIZ_OPTION_ADMIN, DIALOG_STYLE_TABLIST_HEADERS, string_fast("Business: %d", idbiz), "Option Name\tOption Task\nTitlu\tSchimba titlul afacerii\nDescrierea\tSchimba descrierea afacerii", "Select", "Cancel");
 	return true;
 }
 
 CMD:buy(playerid, params[]) {
-	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti logat, pentru a face aceasta actiune.");
-	if(Dialog_Opened(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
-	if(playerInfo[playerid][pinBusiness] == 0 && bizInfo[playerInfo[playerid][pinBusiness]][bizType] != 2) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda, deoarece nu esti intr-un biz de tip 24/7.");	
+	if(!isPlayerLogged(playerid)) return sendPlayerError(playerid, "Nu esti logat, pentru a face aceasta actiune.");
+	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
+	if(playerInfo[playerid][pinBusiness] != 2 && GetPlayerInterior(playerid) == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti intr-un biz de tip 24/7.");	
 	Dialog_Show(playerid, BUYBIZ, DIALOG_STYLE_TABLIST_HEADERS, "SERVER: Buy", "Item\tPrice\nPhone\t$1,500\nPhone Book\t$3,500\nWalkie Talkie\t$5,000\n", "Select", "Close");
 	return true;
 }
 
 CMD:balance(playerid, params[]) {
-	if(playerInfo[playerid][pinBusiness] != 1 && GetPlayerInterior(playerid) == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda, deoarece nu esti intr-un biz de tip banca.");	
-	SCMf(playerid, COLOR_GREY, "* Bank Notice: Ai $%s bani in contul tau bancar.", GetBankMoney(playerid));
+	if(playerInfo[playerid][pinBusiness] != 1 && GetPlayerInterior(playerid) == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti intr-un biz de tip banca.");	
+	SCM(playerid, COLOR_GREY, string_fast("* Bank Notice: Ai $%s bani in contul tau bancar.", GetBankMoney(playerid)));
 	return true;
 }
 
 CMD:deposit(playerid, params[]) {
-	if(playerInfo[playerid][pinBusiness] != 1 && GetPlayerInterior(playerid) == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda, deoarece nu esti intr-un biz de tip banca.");	
+	if(playerInfo[playerid][pinBusiness] != 1 && GetPlayerInterior(playerid) == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti intr-un biz de tip banca.");	
 	new depositMoney;
 	if(sscanf(params, "d", depositMoney)) return sendPlayerSyntax(playerid, "/deposit <money>");
-	if(PlayerMoney(playerid, depositMoney) || depositMoney < 1 || depositMoney > 1000000000) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai aceasta suma de bani pentru a deposita.");
+	if(PlayerMoney(playerid, depositMoney) || depositMoney < 1 || depositMoney > 1000000000) return sendPlayerError(playerid, "Nu ai aceasta suma de bani pentru a deposita.");
 	GivePlayerCash(playerid, 0, depositMoney);
 	GivePlayerBank(playerid, depositMoney);
 	SCM(playerid, COLOR_GREY, string_fast("* Bank Notice: Ai depositat $%s in contul tau. Acum ai in contul bancar: $%s.", formatNumbers(depositMoney), GetBankMoney(playerid)));
-	update("UPDATE `server_users` SET `Bank` = '%d', `Money` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pBank], playerInfo[playerid][pMoney], playerInfo[playerid][pSQLID]);
+	update("UPDATE `server_users` SET `Bank` = '%d', `Money` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pBank], playerInfo[playerid][pMoney], playerInfo[playerid][pSQLID]);
 	return true;
 }
 
 CMD:withdraw(playerid, params[]) {
-	if(playerInfo[playerid][pinBusiness] != 1 && GetPlayerInterior(playerid) == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda, deoarece nu esti intr-un biz de tip banca.");	
+	if(playerInfo[playerid][pinBusiness] != 1 && GetPlayerInterior(playerid) == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti intr-un biz de tip banca.");	
 	new withdrawMoney;
 	if(sscanf(params, "d", withdrawMoney)) return sendPlayerSyntax(playerid, "/withdraw <money>");
-	if(withdrawMoney < 1 || withdrawMoney > 1000000000) return SCM(playerid, COLOR_ERROR, eERROR"Poti scoate din contul tau bancar minim 1$ maxim $1,000,000,000.");
-	if(playerInfo[playerid][pStoreBank] == 0 && withdrawMoney > playerInfo[playerid][pBank])return SCMf(playerid, COLOR_ERROR, eERROR"Nu ai aceasta suma de bani in contul tau. Momentan in contul tau detii $%s.", GetBankMoney(playerid));
+	if(withdrawMoney < 1 || withdrawMoney > 1000000000) return sendPlayerError(playerid, "Poti scoate din contul tau bancar minim 1$ maxim $1,000,000,000.");
+	if(playerInfo[playerid][pStoreBank] == 0 && withdrawMoney > playerInfo[playerid][pBank])return sendPlayerError(playerid, "Nu ai aceasta suma de bani in contul tau. Momentan in contul tau detii $%s.", GetBankMoney(playerid));
 	GivePlayerCash(playerid, 1, withdrawMoney);
 	GivePlayerBank(playerid, -withdrawMoney);
 	SCM(playerid, COLOR_GREY, string_fast("* Bank Notice: Ai scos $%s din contul tau. Acum ai in contul bancar: $%s.", formatNumbers(withdrawMoney), GetBankMoney(playerid)));
@@ -428,14 +437,14 @@ CMD:withdraw(playerid, params[]) {
 }
 
 CMD:transfer(playerid, params[]) {
-	if(playerInfo[playerid][pinBusiness] != 1 && GetPlayerInterior(playerid) == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda, deoarece nu esti intr-un biz de tip banca.");	
+	if(playerInfo[playerid][pinBusiness] != 1 && GetPlayerInterior(playerid) == 0) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda, deoarece nu esti intr-un biz de tip banca.");	
 	new userID, transferMoney;
 	if(sscanf(params, "ud", userID, transferMoney)) return sendPlayerSyntax(playerid, "/transfer <name/id> <money>");
-	if(userID == playerid) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda asupra ta.");
-	if(Dialog_Opened(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi comanda cat timp ai un dialog afisat.");
-	if(!isPlayerLogged(userID)) return SCM(playerid, COLOR_ERROR, eERROR"Acel jucator nu este connectat.");
-	if(transferMoney < 10000 || transferMoney > 5000000000) return SCM(playerid, COLOR_ERROR, eERROR"Poti transfera minim $10,000 si maxim $500,000,000.");
-	if(GetPlayerBank(playerid) < transferMoney) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai aceste fonduri in contul tau bancar.");
+	if(userID == playerid) return sendPlayerError(playerid, "Nu poti folosi aceasta comanda asupra ta.");
+	if(Dialog_Opened(playerid)) return sendPlayerError(playerid, "Nu poti folosi comanda cat timp ai un dialog afisat.");
+	if(!isPlayerLogged(userID)) return sendPlayerError(playerid, "Acel jucator nu este connectat.");
+	if(transferMoney < 10000 || transferMoney > 5000000000) return sendPlayerError(playerid, "Poti transfera minim $10,000 si maxim $500,000,000.");
+	if(GetPlayerBank(playerid) < transferMoney) return sendPlayerError(playerid, "Nu ai aceste fonduri in contul tau bancar.");
 	playerInfo[playerid][pTransferPlayer] = userID;
 	playerInfo[playerid][pTransferMoney] = transferMoney;
 	Dialog_Show(playerid, TRANSFERBIZ, DIALOG_STYLE_MSGBOX, "Bank:", string_fast("Esti sigur ca vrei sa-i transferi lui %s, suma de $%s?", getName(playerInfo[playerid][pTransferPlayer]), formatNumbers(playerInfo[playerid][pTransferMoney])), "Ok", "Cancel");
@@ -443,49 +452,55 @@ CMD:transfer(playerid, params[]) {
 }
 
 CMD:ad(playerid, params[]) {
-	if(!IsPlayerInRangeOfPoint(playerid, 10, bizInfo[3][bizExtX],bizInfo[3][bizExtY],bizInfo[3][bizExtZ])) return SCM(playerid, COLOR_ERROR, eERROR"Nu te afli in fata unui CNN.");
-	if(strlen(playerInfo[playerid][pPhone]) == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai un telefon.");
-	if(strlen(playerInfo[playerid][pAdText]) > 0) return SCM(playerid, COLOR_ERROR, eERROR"Ai pus un anunt recent. Foloseste comanda /myad pentru a-l vedea.");
-	if(playerInfo[playerid][pMute] > gettime()) return SCM(playerid, COLOR_ERROR, eERROR"Nu pot folosi aceasta comanda deoarece ai mute.");
-	if(playerInfo[playerid][pLevel] < 3) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai level 3+ pentru a folosi aceasta comanda.");
-	if(!PlayerMoney(playerid, bizInfo[3][bizFee])) return SCMf(playerid, COLOR_ERROR, eERROR"Trebuie sa ai minim $%s pentru a pune un anunt.", formatNumber(bizInfo[3][bizFee]));
-	if(!strlen(params)) return sendPlayerSyntax(playerid, "/ad <text>");
-	format(playerInfo[playerid][pAdText], 256, params);
-	sendStaff(COLOR_SERVER, "(Ad Preview): {ffffff}Ad by %s (%d): %s", getName(playerid), playerInfo[playerid][pPhone], params);
-	va_GameTextForPlayer(playerid, "Ai platit ~p~$%s~w~~n~Mesajul contine: ~p~%d~w~ caractere~n~Acesta va fi afisat in ~p~%s", 10000, 5, formatNumber(bizInfo[3][bizFee]), strlen(params), secinmin(Iter_Count(ServerAds) * 60));
-	defer advertismentTimer(playerid);
-	Iter_Add(ServerAds, playerid);
-	GivePlayerCash(playerid, 0, bizInfo[3][bizFee]);
-	bizInfo[3][bizBalance] += bizInfo[3][bizFee];
-	update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '3' LIMIT 1", bizInfo[3][bizBalance]);
+	if(AdTimer[playerid] != 0) return sendPlayerError(playerid, "Ai pus un anunt recent. Foloseste comanda /myad pentru a-l vedea.");
+	if(playerInfo[playerid][pMute] > 0) return sendPlayerError(playerid, "Nu pot folosi aceasta comanda deoarece ai mute.");
+	if(playerInfo[playerid][pLevel] < 3) return sendPlayerError(playerid, "Nu ai level 3+ pentru a folosi aceasta comanda.");
+	new idx, length = strlen(params), offset = idx, result[264], totalads = totalAds()+1;
+	while ((idx < length) && (params[idx] <= ' ')) idx++;
+	while ((idx < length) && ((idx - offset) < (sizeof(result) - 1))) {
+		result[idx - offset] = params[idx];
+		idx++;
+	}
+	result[idx - offset] = (EOS);
+	if(IsPlayerInRangeOfPoint(playerid, 10, 1170.6370, -1489.7297, 22.7018)) {
+		if(!strlen(result)) return sendPlayerSyntax(playerid, "/ad <text>");
+		new payad = bizInfo[3][bizFee];
+		if(GetPlayerCash(playerid) < payad) return sendPlayerError(playerid, "Nu ai bani necesari pentru a da un ad. Ai folosit %d caractere si anuntul costa $%s.", offset, formatNumber(payad));
+		GivePlayerCash(playerid, 0, payad);
+		AdTimer[playerid] = totalads*60;
+		bizInfo[3][bizBalance] += payad;
+		va_GameTextForPlayer(playerid, "~r~Ai platit $%d~n~~w~Mesajul contine: %d caractere~n~Acesta va fi afisat in %d minute (%d secunde)", payad, idx, AdTimer[playerid]/60, AdTimer[playerid], 5000, 5);
+		format(AdText[playerid], 256, result);
+		sendStaff(COLOR_SERVER, "(Ad Preview): {00D900}Ad by %s ({FFFFFF}%d{00D900}): %s", getName(playerid), playerInfo[playerid][pPhone], result);
+		defer advertismentTimer(playerid);
+		update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '3'", bizInfo[3][bizBalance]);	
+	}
 	return true;
 }
 
 CMD:myad(playerid, params[]) {
-	if(strlen(playerInfo[playerid][pAdText]) == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai un advertisment pus.");
-	SCMf(playerid, COLOR_SERVER, "* (Advertisment): {ffffff}Advertisment-ul tau este '%s'.", playerInfo[playerid][pAdText]);
+	if(AdTimer[playerid] == 0 ) return sendPlayerError(playerid, "Nu ai un anunt pus.");
+	SCMf(playerid, COLOR_GREY, "* AD Notice: Ad-ul tau este '%s'", AdText[playerid]);
 	return true;
 }
 
 CMD:deletemyad(playerid, params[]) {
-	if(strlen(playerInfo[playerid][pAdText]) == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai un advertisment pus.");
-	playerInfo[playerid][pAdText] = (EOS);
-	stop advertismentTimer(playerid);
-	Iter_Remove(ServerAds, playerid);
-	SCM(playerid, COLOR_SERVER, "* (Advertisment): {ffffff}Advertisment-ul tau a fost sters.");
+	if(AdTimer[playerid] == 0) return sendPlayerError(playerid, "Nu ai un ad pus.");
+	AdText[playerid] = "";
+	AdTimer[playerid] = 0;
+	SCM(playerid, COLOR_GREY, "* AD Notice: Ad-ul tau a fost sters.");
 	return true;
 }
 
 CMD:createbusiness(playerid, params[], help) {
-	if(playerInfo[playerid][pAdmin] < 6) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
-	if(Iter_Count(ServerBusinesses) >= MAX_BUSINESSES) return SCM(playerid, COLOR_ERROR, eERROR"Database:Limita de business-uri a fost atinsa !");
-	extract params -> new string:type[32], level, price, bizbalance, locked; else {
+	if(playerInfo[playerid][pAdmin] < 6) return sendPlayerError(playerid, "Nu ai acces la aceasta comanda.");
+	if(Iter_Count(ServerBusinesses) >= MAX_BUSINESSES) return sendPlayerError(playerid, "Database:Limita de business-uri a fost atinsa !");
+	extract params -> new string:type[32], price, bizbalance, locked; else {
 		SCM(playerid, COLOR_GREY, "Optiuni Type: bank, shop, bar, cnn, club, sexshop, pns, barber, tatoo, gym, binco, gunshop.| Price: 0$ - not for sale ; > 0$ for sale");
-		return sendPlayerSyntax(playerid, "/createbusiness <type> <level> <price> <biz balance> <locked (0 - no | 1 - yes)");
+		return sendPlayerSyntax(playerid, "/createbusiness <type> <price> <biz balance> <locked (0 - no | 1 - yes)");
 	}
-	if(!(1 <= level <= 30)) return SCM(playerid, COLOR_ERROR, eERROR"Invalid level (1 - 30).");
-	if(!(0 <= price <= 100000000)) return SCM(playerid, COLOR_ERROR, eERROR"Invalid price (0$ - 100,000,000$).");
-	if(!(0 <= locked <= 1)) return SCM(playerid, COLOR_ERROR, eERROR"Invalid locked (0 - no | 1 - yes).");
+	if(!(0 <= price <= 100000000)) return sendPlayerError(playerid, "Invalid price (0$ - 100,000,000$).");
+	if(!(0 <= locked <= 1)) return sendPlayerError(playerid, "Invalid locked (0 - no | 1 - yes).");
 	new i = Iter_Count(ServerBusinesses) + 1;
 	Iter_Add(ServerBusinesses, i);
 	bizInfo[i][bizID] = i;
@@ -530,7 +545,7 @@ CMD:createbusiness(playerid, params[], help) {
 		} 
 		default: {
 			SCM(playerid, COLOR_GREY, "Optiuni Type: bank, shop, bar, cnn, club, sexshop, pns, barber, tatoo, gym, binco, gunshop. | Price: 0$ - not for sale ; > 0$ for sale");
-			return sendPlayerSyntax(playerid, "/createbusiness <type> <level> <price> <biz balance> <locked (0 - no | 1 - yes)");
+			return sendPlayerSyntax(playerid, "/createbusiness <type> <price> <biz balance> <locked (0 - no | 1 - yes)");
 		}
 	}
 	format(bizInfo[i][bizOwner], 32, "Admbot");
@@ -557,6 +572,6 @@ CMD:createbusiness(playerid, params[], help) {
 		case 12: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],6,0,-1,-1,-1,750.0); 
 	}
 	update("INSERT INTO `server_business` (`Title`, `Description`, `Owner`, `X`, `Y`, `Z`, `ExtX`, `ExtY`, `ExtZ`, `Static`, `Type`, `Interior`, `Price`) VALUES('%s', '%s', '%s', '%.2f', '%.2f', '%.2f', '%.2f', '%.2f', '%.2f', '%d', '%d', '%d', '%d')", bizInfo[i][bizTitle], bizInfo[i][bizDescription], bizInfo[i][bizOwner], bizInfo[i][bizX], bizInfo[i][bizY], bizInfo[i][bizZ], bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ], bizInfo[i][bizStatic], bizInfo[i][bizType], bizInfo[i][bizInterior], bizInfo[i][bizPrice]);
-	SCMf(playerid, COLOR_SERVER, "* Notice: {ffffff}Ai creat un business de tip '%s' (id: %d | level: %d | price: $%s | biz balance: $%s | locked: %s).", type, bizInfo[i][bizID], bizInfo[i][bizPrice], formatNumber(bizInfo[i][bizPrice]), formatNumber(bizInfo[i][bizBalance]), bizInfo[i][bizLocked] ? "yes" : "no");
+	SCMf(playerid, COLOR_SERVER, "* Notice: {ffffff}Ai creat un business de tip '%s' (id: %d | price: $%s | biz balance: $%s | locked: %s).", type, bizInfo[i][bizID], bizInfo[i][bizPrice], formatNumber(bizInfo[i][bizPrice]), formatNumber(bizInfo[i][bizBalance]), bizInfo[i][bizLocked] ? "yes" : "no");
 	return true;
 }

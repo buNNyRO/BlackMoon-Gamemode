@@ -39,10 +39,6 @@ enum examenInfoEnum {
 	Float:dmvZ
 };
 
-enum LIST_ANTIFLOOD {
-    lastCheck, floodRate
-}
-
 enum playerInfoEnum
 {
 	pSQLID,
@@ -199,6 +195,8 @@ enum playerInfoEnum
     pAdText[256],
     pAdminDuty,
     pSpectate,
+    pContract,
+    pContractID,
     pSelectVehicle[MAX_PLAYER_PERSONAL_VEHICLES]
 };
 /*
