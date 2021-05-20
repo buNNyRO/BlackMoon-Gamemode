@@ -1,2 +1,12 @@
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\gamemodes\fromzero.pwn(882) : îřčáęŕ 017: íĺîáú˙âëĺííűé ńčěâîë "Contract"
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\gamemodes\fromzero.pwn(882) : ďđĺäóďđĺćäĺíčĺ 215: âűđŕćĺíčĺ íĺ čěĺĺň ýôôĺęňŕ
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\gamemodes\fromzero.pwn(882) : îřčáęŕ 001: îćčäŕëń˙ ňîęĺí ";", íî íŕéäĺí "]"
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\gamemodes\fromzero.pwn(882) : îřčáęŕ 029: íĺďđŕâčëüíîĺ âűđŕćĺíčĺ, ďđčí˙ň íîëü
+C:\Users\vlogs\Desktop\BlackMoon Community\BlackMoon-Gamemode\gamemodes\fromzero.pwn(882) : ôŕňŕëüíŕ˙ îřčáęŕ 107: ńëčřęîě ěíîăî îřčáîę íŕ îäíîé ńňđîęĺ
+
+Ęîěďčë˙öč˙ îńňŕíîâëĺíŕ.
+
 Pawn compiler 3.2.3664	 	 	Copyright (c) 1997-2017, ITB CompuPhase
 
+
+Îřčáîę:4.

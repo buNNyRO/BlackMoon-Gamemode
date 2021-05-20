@@ -463,9 +463,9 @@
 		</member>
 		<member name="T:contractEnum" value="3">
 			<tagname value="contractEnum"/>
-			<member name="C:cID" value="0">
+			<member name="C:cBy" value="0">
 			</member>
-			<member name="C:cAgainst" value="1">
+			<member name="C:cFor" value="1">
 			</member>
 			<member name="C:cMoney" value="2">
 			</member>
@@ -583,7 +583,7 @@
 				<tagname value="Float"/>
 			</member>
 		</member>
-		<member name="T:enumAC" value="10">
+		<member name="T:enumAC" value="11">
 			<tagname value="enumAC"/>
 			<member name="C:acTime" value="0">
 			</member>
@@ -599,7 +599,9 @@
 			</member>
 			<member name="C:acSpawnTime" value="8">
 			</member>
-			<member name="C:acSpawn" value="9">
+			<member name="C:acCPTime" value="9">
+			</member>
+			<member name="C:acSpawn" value="10">
 			</member>
 		</member>
 		<member name="T:examenInfoEnum" value="4">
@@ -871,7 +873,7 @@
 			<member name="C:SAFE" value="5">
 			</member>
 		</member>
-		<member name="T:playerInfoEnum" value="883">
+		<member name="T:playerInfoEnum" value="885">
 			<tagname value="playerInfoEnum"/>
 			<member name="C:pSQLID" value="0">
 			</member>
@@ -1211,7 +1213,11 @@
 			</member>
 			<member name="C:pSpectate" value="862">
 			</member>
-			<member name="C:pSelectVehicle" value="863">
+			<member name="C:pContract" value="863">
+			</member>
+			<member name="C:pContractID" value="864">
+			</member>
+			<member name="C:pSelectVehicle" value="865">
 				<size value="20"/>
 			</member>
 		</member>
@@ -1405,7 +1411,6 @@
 			<referrer name="resetVars"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
-			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="dialog_DIALOG_JOBS"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="CancelJob"/>
@@ -1461,12 +1466,15 @@
 			<referrer name="sendToAdmin"/>
 			<referrer name="dialog_REGISTER"/>
 			<referrer name="dialog_LOGIN"/>
-			<referrer name="factionLog"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="wantedName"/>
 			<referrer name="sendFactionMessage"/>
+			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_invite"/>
 			<referrer name="pc_cmd_wanteds"/>
 			<referrer name="showFactionMembers"/>
+			<referrer name="dialog_DIALOG_MEMBERS2"/>
+			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_setguns"/>
 			<referrer name="pc_cmd_quitjob"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
@@ -1938,7 +1946,6 @@
 			<referrer name="@yH_OnGameModeInit@007"/>
 			<referrer name="@yH_OnPlayerConnect@007"/>
 			<referrer name="@yH_OnPlayerDeath@007"/>
-			<referrer name="factionLog"/>
 			<referrer name="save_guns"/>
 			<referrer name="@yH_OnPlayerEnterVehicle@007"/>
 			<referrer name="@yH_OnPlayerStateChange@007"/>
@@ -2005,8 +2012,8 @@
 			<referrer name="TimerWar"/>
 			<referrer name="pc_cmd_contract"/>
 			<referrer name="pc_cmd_gethit"/>
-			<referrer name="pc_cmd_contracts"/>
 			<referrer name="TimerGetHit"/>
+			<referrer name="pc_cmd_contracts"/>
 			<referrer name="pc_cmd_svf"/>
 			<referrer name="pc_cmd_dvf"/>
 			<referrer name="dialog_DIALOG_SVF"/>
@@ -2537,13 +2544,6 @@
 			<referrer name="TimerM"/>
 			<referrer name="Timers"/>
 		</member>
-		<member name="F:Contract">
-			<referrer name="@yH_OnPlayerConnect@007"/>
-			<referrer name="pc_cmd_auninvite"/>
-			<referrer name="pc_cmd_gethit"/>
-			<referrer name="TimerGetHit"/>
-			<referrer name="CB_OnPlayerWeaponShot"/>
-		</member>
 		<member name="F:ConversationOpen">
 			<referrer name="@yH_OnPlayerConnect@010"/>
 			<referrer name="CautaHelper"/>
@@ -2764,13 +2764,6 @@
 			<referrer name="@yH_OnPlayerConnect@002"/>
 			<referrer name="Iter_OPDCInternal"/>
 		</member>
-		<member name="F:Iter_Single@Contracts">
-			<referrer name="pc_cmd_auninvite"/>
-			<referrer name="pc_cmd_contract"/>
-			<referrer name="pc_cmd_gethit"/>
-			<referrer name="pc_cmd_contracts"/>
-			<referrer name="CB_OnPlayerWeaponShot"/>
-		</member>
 		<member name="F:Iter_Single@ExamenCheckpoints">
 			<referrer name="LoadExamCheckpoints"/>
 			<referrer name="assignCheckpointID"/>
@@ -2887,6 +2880,15 @@
 			<referrer name="LoadClans"/>
 			<referrer name="Timers"/>
 		</member>
+		<member name="F:Iter_Single@ServerContracts">
+			<referrer name="@yH_OnPlayerDeath@007"/>
+			<referrer name="pc_cmd_auninvite"/>
+			<referrer name="dialog_DIALOG_MEMBERS2"/>
+			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
+			<referrer name="pc_cmd_contract"/>
+			<referrer name="pc_cmd_gethit"/>
+			<referrer name="pc_cmd_contracts"/>
+		</member>
 		<member name="F:Iter_Single@ServerFactions">
 			<referrer name="LoadFactions"/>
 			<referrer name="pc_cmd_factions"/>
@@ -2995,13 +2997,6 @@
 			<referrer name="@yH_OnScriptInit@002"/>
 			<referrer name="@yH_OnPlayerConnect@002"/>
 			<referrer name="Iter_OPDCInternal"/>
-		</member>
-		<member name="F:Iterator@Contracts">
-			<referrer name="pc_cmd_auninvite"/>
-			<referrer name="pc_cmd_contract"/>
-			<referrer name="pc_cmd_gethit"/>
-			<referrer name="pc_cmd_contracts"/>
-			<referrer name="CB_OnPlayerWeaponShot"/>
 		</member>
 		<member name="F:Iterator@ExamenCheckpoints">
 			<referrer name="LoadExamCheckpoints"/>
@@ -3259,6 +3254,15 @@
 			<referrer name="sendClanMessage"/>
 			<referrer name="LoadClans"/>
 			<referrer name="Timers"/>
+		</member>
+		<member name="F:Iterator@ServerContracts">
+			<referrer name="@yH_OnPlayerDeath@007"/>
+			<referrer name="pc_cmd_auninvite"/>
+			<referrer name="dialog_DIALOG_MEMBERS2"/>
+			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
+			<referrer name="pc_cmd_contract"/>
+			<referrer name="pc_cmd_gethit"/>
+			<referrer name="pc_cmd_contracts"/>
 		</member>
 		<member name="F:Iterator@ServerFactions">
 			<referrer name="LoadFactions"/>
@@ -4091,6 +4095,7 @@
 			<referrer name="@yH_OnPlayerRequestSpawn@005"/>
 			<referrer name="SpawnPlayerEx"/>
 			<referrer name="@yH_OnPlayerStateChange@005"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@005"/>
 			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
 		</member>
 		<member name="F:bigInteriors">
@@ -4182,7 +4187,10 @@
 			<referrer name="pc_cmd_accept"/>
 		</member>
 		<member name="F:contractInfo">
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="pc_cmd_auninvite"/>
+			<referrer name="dialog_DIALOG_MEMBERS2"/>
+			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_contract"/>
 			<referrer name="pc_cmd_gethit"/>
 			<referrer name="pc_cmd_contracts"/>
@@ -4328,7 +4336,6 @@
 			<referrer name="kickPlayer"/>
 			<referrer name="dialog_REGISTER"/>
 			<referrer name="dialog_LOGIN"/>
-			<referrer name="factionLog"/>
 			<referrer name="pc_cmd_quitjob"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
 			<referrer name="MyHttpResponse"/>
@@ -4619,7 +4626,6 @@
 			<referrer name="Hacker"/>
 			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
 			<referrer name="acKicked"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
 			<referrer name="warnPlayer"/>
 			<referrer name="banPlayer"/>
 			<referrer name="mutePlayer"/>
@@ -4748,6 +4754,7 @@
 			<referrer name="TimerWar"/>
 			<referrer name="pc_cmd_contract"/>
 			<referrer name="pc_cmd_gethit"/>
+			<referrer name="TimerGetHit"/>
 			<referrer name="pc_cmd_contracts"/>
 			<referrer name="pc_cmd_svf"/>
 			<referrer name="pc_cmd_dvf"/>
@@ -5041,6 +5048,8 @@
 			<referrer name="@yH_OnVehicleDeath@007"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_auninvite"/>
+			<referrer name="dialog_DIALOG_MEMBERS2"/>
+			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_svf"/>
 			<referrer name="pc_cmd_dvf"/>
 			<referrer name="dialog_DIALOG_SVF"/>
@@ -5194,6 +5203,8 @@
 			<referrer name="@yH_OnVehicleDeath@007"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_auninvite"/>
+			<referrer name="dialog_DIALOG_MEMBERS2"/>
+			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_dvf"/>
 			<referrer name="dialog_DIALOG_SVF"/>
 			<referrer name="removeFunction"/>
@@ -5268,6 +5279,8 @@
 			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_heal"/>
 			<referrer name="pc_cmd_arrest"/>
+			<referrer name="dialog_DIALOG_MEMBERS2"/>
+			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_fare"/>
 			<referrer name="pc_cmd_news"/>
 			<referrer name="pc_cmd_live"/>
@@ -5289,6 +5302,8 @@
 			<referrer name="@yH_OnVehicleDeath@007"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_auninvite"/>
+			<referrer name="dialog_DIALOG_MEMBERS2"/>
+			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_dvf"/>
 			<referrer name="dialog_DIALOG_SVF"/>
 			<referrer name="removeFunction"/>
@@ -5296,6 +5311,8 @@
 		<member name="F:vehicleRank">
 			<referrer name="@yH_OnPlayerStateChange@007"/>
 			<referrer name="pc_cmd_auninvite"/>
+			<referrer name="dialog_DIALOG_MEMBERS2"/>
+			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_dvf"/>
 			<referrer name="dialog_DIALOG_SVF"/>
 			<referrer name="removeFunction"/>
@@ -6231,7 +6248,6 @@
 		<member name="M:@yH_OnPlayerConnect@007" syntax="@yH_OnPlayerConnect@007(playerid)">
 			<attribute name="public"/>
 			<stacksize value="4"/>
-			<dependency name="Contract"/>
 			<dependency name="DeletePVar"/>
 			<dependency name="InstructorAcceptedCall"/>
 			<dependency name="MedicAcceptedCall"/>
@@ -6337,27 +6353,41 @@
 			<param name="reason">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerDeath@007" syntax="@yH_OnPlayerDeath@007(playerid, killerid)">
+		<member name="M:@yH_OnPlayerDeath@007" syntax="@yH_OnPlayerDeath@007(playerid, killerid, reason)">
 			<attribute name="public"/>
 			<stacksize value="4143"/>
 			<dependency name="operator+(Float:,Float:)"/>
 			<dependency name="DistanceToPlayer"/>
-			<dependency name="GetPlayerWeapon"/>
+			<dependency name="EOS"/>
 			<dependency name="GetWeaponName"/>
+			<dependency name="GivePlayerCash"/>
 			<dependency name="IsPlayerInTurf"/>
 			<dependency name="Iter_Contains_InternalC"/>
+			<dependency name="Iter_Remove_InternalC"/>
+			<dependency name="Iter_Single@ServerContracts"/>
 			<dependency name="Iter_Single@ServerWars"/>
 			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="Iterator@ServerContracts"/>
+			<dependency name="PlayerPlaySound"/>
 			<dependency name="WarScore"/>
 			<dependency name="WarScore"/>
 			<dependency name="WarScore2"/>
 			<dependency name="WarScore2"/>
+			<dependency name="cBy"/>
+			<dependency name="cFor"/>
+			<dependency name="cMoney"/>
+			<dependency name="contractInfo"/>
+			<dependency name="contractInfo"/>
 			<dependency name="decese"/>
 			<dependency name="decese"/>
+			<dependency name="formatNumber"/>
+			<dependency name="pContract"/>
+			<dependency name="pContractID"/>
 			<dependency name="pFaction"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
+			<dependency name="sendFactionMessage"/>
 			<dependency name="string_fast"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
@@ -6370,6 +6400,8 @@
 			<param name="playerid">
 			</param>
 			<param name="killerid">
+			</param>
+			<param name="reason">
 			</param>
 		</member>
 		<member name="M:@yH_OnPlayerDeath@013" syntax="@yH_OnPlayerDeath@013(playerid)">
@@ -6515,6 +6547,17 @@
 			<param name="playerid">
 			</param>
 			<param name="reason">
+			</param>
+		</member>
+		<member name="M:@yH_OnPlayerEnterCheckpoint@005" syntax="@yH_OnPlayerEnterCheckpoint@005(playerid)">
+			<attribute name="public"/>
+			<stacksize value="5"/>
+			<dependency name="GetTickCount"/>
+			<dependency name="acCPTime"/>
+			<dependency name="acInfo"/>
+			<dependency name="acInfo"/>
+			<dependency name="acKicked"/>
+			<param name="playerid">
 			</param>
 		</member>
 		<member name="M:@yH_OnPlayerEnterCheckpoint@007" syntax="@yH_OnPlayerEnterCheckpoint@007(playerid)">
@@ -10456,7 +10499,6 @@
 			<dependency name="operator&lt;(Float:,_:)"/>
 			<dependency name="AntiCheatWarnings"/>
 			<dependency name="CHECKPOINT_NONE"/>
-			<dependency name="Contract"/>
 			<dependency name="DisablePlayerCheckpoint"/>
 			<dependency name="GetPlayerDistanceFromPoint"/>
 			<dependency name="GetPlayerLastShotVectors"/>
@@ -10467,8 +10509,6 @@
 			<dependency name="IsPlayerInRangeOfPoint"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iter_Remove_InternalC"/>
-			<dependency name="Iter_Single@Contracts"/>
-			<dependency name="Iterator@Contracts"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="J@"/>
 			<dependency name="SetPlayerHealthEx"/>
@@ -10478,7 +10518,6 @@
 			<dependency name="cAgainst"/>
 			<dependency name="cID"/>
 			<dependency name="cMoney"/>
-			<dependency name="contractInfo"/>
 			<dependency name="contractInfo"/>
 			<dependency name="floatround"/>
 			<dependency name="pCheckpoint"/>
@@ -11870,6 +11909,9 @@
 				<paraminfo> &amp; </paraminfo>
 			</param>
 		</member>
+		<member name="M:Contract" syntax="Contract()">
+			<stacksize value="1"/>
+		</member>
 		<member name="M:CreateActor" syntax="CreateActor(modelid, X, Y, Z, Rotation)">
 			<attribute name="native"/>
 			<referrer name="Iter_CreateActor"/>
@@ -12669,6 +12711,8 @@
 			<referrer name="@yH_OnVehicleDeath@007"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_auninvite"/>
+			<referrer name="dialog_DIALOG_MEMBERS2"/>
+			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_dvf"/>
 			<referrer name="removeFunction"/>
 			<param name="objectid">
@@ -12809,7 +12853,6 @@
 			<referrer name="examenFail"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
-			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="CancelJob"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
@@ -13149,6 +13192,7 @@
 		<member name="M:DistanceToPlayer" syntax="DistanceToPlayer(playerid, targetid)">
 			<stacksize value="9"/>
 			<referrer name="@yH_OnPlayerDeath@007"/>
+			<referrer name="TimerGetHit"/>
 			<dependency name="GetPlayerDistanceFromPoint"/>
 			<dependency name="GetPlayerPos"/>
 			<dependency name="floatround"/>
@@ -15130,7 +15174,6 @@
 			<referrer name="IsPlayerSkydiving"/>
 			<referrer name="OnPlayerUpdate"/>
 			<referrer name="OnPlayerKeyStateChange"/>
-			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="pc_cmd_tazer"/>
 			<param name="playerid">
 			</param>
@@ -15554,6 +15597,7 @@
 			<referrer name="@yH_OnPlayerSpawn@005"/>
 			<referrer name="@yH_OnPlayerDeath@005"/>
 			<referrer name="@yH_OnPlayerStateChange@005"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@005"/>
 			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
 			<referrer name="OnPlayerEnterCheckpoint"/>
 		</member>
@@ -15776,6 +15820,7 @@
 			<referrer name="pc_cmd_buyhouse"/>
 			<referrer name="pc_cmd_housewithdraw"/>
 			<referrer name="pc_cmd_housedeposit"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="pc_cmd_heal"/>
 			<referrer name="pc_cmd_arrest"/>
 			<referrer name="pc_cmd_fare"/>
@@ -17314,6 +17359,8 @@
 			<referrer name="@yH_OnVehicleDeath@007"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_auninvite"/>
+			<referrer name="dialog_DIALOG_MEMBERS2"/>
+			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_dvf"/>
 			<referrer name="removeFunction"/>
 			<param name="objectid">
@@ -17935,6 +17982,8 @@
 			<referrer name="@yH_OnVehicleDeath@007"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_auninvite"/>
+			<referrer name="dialog_DIALOG_MEMBERS2"/>
+			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_dvf"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="CancelJob"/>
@@ -18492,6 +18541,7 @@
 			<referrer name="Iter_VehicleDo"/>
 			<referrer name="Iter_DestroyVehicle"/>
 			<referrer name="pc_cmd_unrentroom"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_clear"/>
@@ -18759,7 +18809,6 @@
 		<member name="M:Kick" syntax="Kick(playerid)">
 			<attribute name="native"/>
 			<referrer name="acKicked"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
 			<referrer name="dialog_REGISTER"/>
 			<referrer name="dialog_LOGIN"/>
 			<referrer name="kickEx"/>
@@ -19157,7 +19206,7 @@
 		</member>
 		<member name="M:LoadTurfs" syntax="LoadTurfs()">
 			<attribute name="public"/>
-			<stacksize value="11"/>
+			<stacksize value="10"/>
 			<dependency name="GangZoneCreateEx"/>
 			<dependency name="Iter_Add_InternalC"/>
 			<dependency name="Iter_Single@ServerTurfs"/>
@@ -20323,20 +20372,14 @@
 			<stacksize value="72"/>
 			<dependency name="CallLocalFunction"/>
 			<dependency name="GetTickCount"/>
-			<dependency name="Kick"/>
-			<dependency name="SendDiscordAC"/>
 			<dependency name="cellmax"/>
 			<dependency name="checkpointDeelay"/>
 			<dependency name="checkpointDestroy"/>
 			<dependency name="checkpointName"/>
 			<dependency name="false"/>
 			<dependency name="funcidx"/>
-			<dependency name="pName"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
 			<dependency name="strcat"/>
 			<dependency name="strlen"/>
-			<dependency name="va_SendClientMessageToAll"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -21490,6 +21533,7 @@
 			<referrer name="pc_cmd_heal"/>
 			<referrer name="fareUpdateTimer"/>
 			<referrer name="pc_cmd_givelicense"/>
+			<referrer name="pc_cmd_contract"/>
 			<referrer name="dialog_DIALOG_FDEPOSIT2"/>
 			<referrer name="pc_cmd_deposit"/>
 			<referrer name="pc_cmd_ad"/>
@@ -21506,6 +21550,7 @@
 		</member>
 		<member name="M:PlayerPlaySound" syntax="PlayerPlaySound(playerid, soundid, x, y, z)">
 			<attribute name="native"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="dialog_BUYBIZ"/>
 			<referrer name="dialog_TRANSFERBIZ"/>
 			<referrer name="pc_cmd_sms"/>
@@ -23160,7 +23205,6 @@
 			<attribute name="public"/>
 			<stacksize value="4203"/>
 			<referrer name="acKicked"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
 			<dependency name="DCC_FindChannelById"/>
 			<dependency name="DCC_SendChannelMessage"/>
 			<dependency name="MoonBotAC"/>
@@ -23816,6 +23860,8 @@
 		</member>
 		<member name="M:SetPlayerToFactionColor" syntax="SetPlayerToFactionColor(playerid)">
 			<stacksize value="4"/>
+			<referrer name="whenPlayerLeaveFaction"/>
+			<referrer name="pc_cmd_makeleader"/>
 			<referrer name="pc_cmd_duty"/>
 			<referrer name="OnPlayerSpawn"/>
 			<dependency name="IsPlayerConnected"/>
@@ -24101,17 +24147,17 @@
 		</member>
 		<member name="M:ShowEmails" syntax="ShowEmails(playerid)">
 			<attribute name="public"/>
-			<stacksize value="210"/>
+			<stacksize value="4305"/>
 			<dependency name="Dialog_Open"/>
 			<dependency name="EOS"/>
 			<dependency name="cache_get_value_name"/>
 			<dependency name="cache_num_rows"/>
-			<dependency name="format"/>
 			<dependency name="gString"/>
 			<dependency name="pSelectedItem"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="strcat"/>
+			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -24147,7 +24193,6 @@
 		</member>
 		<member name="M:ShowPlayerNameTagForPlayer" syntax="ShowPlayerNameTagForPlayer(playerid, showplayerid, show)">
 			<attribute name="native"/>
-			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_gethit"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
 			<param name="playerid">
@@ -24738,13 +24783,16 @@
 			</param>
 		</member>
 		<member name="M:TimerGetHit" syntax="TimerGetHit(playerid)">
-			<stacksize value="10"/>
+			<stacksize value="11"/>
 			<referrer name="TimerGetHit@_yT"/>
 			<dependency name="Float:operator=(_:)"/>
-			<dependency name="Contract"/>
+			<dependency name="DistanceToPlayer"/>
 			<dependency name="GetPlayerPos"/>
 			<dependency name="SetPlayerCheckpoint"/>
+			<dependency name="pContract"/>
+			<dependency name="playerInfo"/>
 			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -26130,6 +26178,7 @@
 			<referrer name="@yH_OnPlayerSpawn@005"/>
 			<referrer name="@yH_OnPlayerDeath@005"/>
 			<referrer name="@yH_OnPlayerStateChange@005"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@005"/>
 			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<dependency name="Kick"/>
@@ -26368,6 +26417,10 @@
 			</param>
 			<param name="id">
 			</param>
+		</member>
+		<member name="M:cAgainst" syntax="cAgainst()">
+			<stacksize value="1"/>
+			<referrer name="CB_OnPlayerWeaponShot"/>
 		</member>
 		<member name="M:cache_affected_rows" syntax="cache_affected_rows()">
 			<attribute name="native"/>
@@ -27659,21 +27712,35 @@
 		<member name="M:dialog_DIALOG_MEMBERS2" syntax="dialog_DIALOG_MEMBERS2(playerid, response, listitem)">
 			<attribute name="public"/>
 			<stacksize value="4147"/>
+			<dependency name="DestroyObject"/>
 			<dependency name="Dialog_Open"/>
+			<dependency name="EOS"/>
 			<dependency name="FEMALE_GENDER"/>
 			<dependency name="GetPlayerID"/>
+			<dependency name="IsValidObject"/>
+			<dependency name="Iter_DestroyVehicle"/>
 			<dependency name="Iter_Remove_InternalC"/>
 			<dependency name="Iter_Single@FactionMembers"/>
+			<dependency name="Iter_Single@ServerContracts"/>
 			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="Iterator@ServerContracts"/>
 			<dependency name="SQL"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerSkin"/>
 			<dependency name="SpawnPlayerEx"/>
+			<dependency name="cBy"/>
+			<dependency name="cFor"/>
+			<dependency name="cMoney"/>
 			<dependency name="cache_delete"/>
 			<dependency name="cache_get_value_name_int"/>
+			<dependency name="contractInfo"/>
+			<dependency name="contractInfo"/>
 			<dependency name="factionName"/>
 			<dependency name="factionName"/>
+			<dependency name="formatNumber"/>
+			<dependency name="formatNumber"/>
 			<dependency name="mysql_query"/>
+			<dependency name="pContractID"/>
 			<dependency name="pFaction"/>
 			<dependency name="pFactionAge"/>
 			<dependency name="pFactionPunish"/>
@@ -27685,14 +27752,19 @@
 			<dependency name="pSkin"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
+			<dependency name="playerVehicle"/>
 			<dependency name="selName"/>
 			<dependency name="selName"/>
 			<dependency name="sendFactionMessage"/>
 			<dependency name="showFactionMembers"/>
 			<dependency name="string_fast"/>
 			<dependency name="string_fast"/>
+			<dependency name="svfVehicleObjects"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
+			<dependency name="vehicleFaction"/>
+			<dependency name="vehiclePlayerID"/>
+			<dependency name="vehicleRank"/>
 			<param name="playerid">
 			</param>
 			<param name="response">
@@ -27746,23 +27818,37 @@
 		<member name="M:dialog_DIALOG_MEMBERSUINV2" syntax="dialog_DIALOG_MEMBERSUINV2(playerid, response, inputtext[])">
 			<attribute name="public"/>
 			<stacksize value="4213"/>
+			<dependency name="DestroyObject"/>
 			<dependency name="Dialog_Open"/>
+			<dependency name="EOS"/>
 			<dependency name="FEMALE_GENDER"/>
 			<dependency name="GetPVarString"/>
 			<dependency name="GetPlayerID"/>
+			<dependency name="IsValidObject"/>
+			<dependency name="Iter_DestroyVehicle"/>
 			<dependency name="Iter_Remove_InternalC"/>
 			<dependency name="Iter_Single@FactionMembers"/>
+			<dependency name="Iter_Single@ServerContracts"/>
 			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="Iterator@ServerContracts"/>
 			<dependency name="SQL"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerSkin"/>
 			<dependency name="SpawnPlayerEx"/>
+			<dependency name="cBy"/>
+			<dependency name="cFor"/>
+			<dependency name="cMoney"/>
 			<dependency name="cache_delete"/>
 			<dependency name="cache_get_value_name_int"/>
+			<dependency name="contractInfo"/>
+			<dependency name="contractInfo"/>
 			<dependency name="factionLog"/>
 			<dependency name="factionName"/>
 			<dependency name="factionName"/>
+			<dependency name="formatNumber"/>
+			<dependency name="formatNumber"/>
 			<dependency name="mysql_query"/>
+			<dependency name="pContractID"/>
 			<dependency name="pFaction"/>
 			<dependency name="pFactionAge"/>
 			<dependency name="pFactionPunish"/>
@@ -27774,14 +27860,19 @@
 			<dependency name="pSkin"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
+			<dependency name="playerVehicle"/>
 			<dependency name="selName"/>
 			<dependency name="selName"/>
 			<dependency name="sendFactionMessage"/>
 			<dependency name="string_fast"/>
 			<dependency name="string_fast"/>
 			<dependency name="strval"/>
+			<dependency name="svfVehicleObjects"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
+			<dependency name="vehicleFaction"/>
+			<dependency name="vehiclePlayerID"/>
+			<dependency name="vehicleRank"/>
 			<param name="playerid">
 			</param>
 			<param name="response">
@@ -28863,9 +28954,6 @@
 			<referrer name="dialog_DIALOG_MEMBERSRANK"/>
 			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_accept"/>
-			<dependency name="EOS"/>
-			<dependency name="gQuery"/>
-			<dependency name="true"/>
 			<dependency name="update"/>
 			<param name="factionid">
 			</param>
@@ -29184,7 +29272,6 @@
 			<referrer name="@dialog_format"/>
 			<referrer name="Dialog_Open"/>
 			<referrer name="formatNumber"/>
-			<referrer name="resetVars"/>
 			<referrer name="secinmin"/>
 			<referrer name="Value64Bit"/>
 			<referrer name="GetCashStr"/>
@@ -29236,7 +29323,6 @@
 			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="pc_cmd_acover"/>
 			<referrer name="pc_cmd_quests"/>
-			<referrer name="ShowEmails"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="OnPlayerText"/>
 			<param name="output">
@@ -29268,10 +29354,14 @@
 			<referrer name="pc_cmd_rentabil"/>
 			<referrer name="pc_cmd_setrentprice"/>
 			<referrer name="pc_cmd_createhouse"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
+			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_heal"/>
 			<referrer name="pc_cmd_ticket"/>
 			<referrer name="pc_cmd_arrest"/>
+			<referrer name="dialog_DIALOG_MEMBERS2"/>
+			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_fare"/>
 			<referrer name="fareUpdateTimer"/>
 			<referrer name="updateTaxiTextdraw"/>
@@ -31625,31 +31715,29 @@
 		</member>
 		<member name="M:pc_cmd_auninvite" syntax="pc_cmd_auninvite(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="49"/>
-			<dependency name="CHECKPOINT_NONE"/>
-			<dependency name="Contract"/>
+			<stacksize value="4113"/>
 			<dependency name="DestroyObject"/>
-			<dependency name="DisablePlayerCheckpoint"/>
+			<dependency name="EOS"/>
 			<dependency name="IsValidObject"/>
 			<dependency name="Iter_DestroyVehicle"/>
 			<dependency name="Iter_Remove_InternalC"/>
-			<dependency name="Iter_Single@Contracts"/>
 			<dependency name="Iter_Single@FactionMembers"/>
-			<dependency name="Iterator@Contracts"/>
+			<dependency name="Iter_Single@ServerContracts"/>
 			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="Iterator@ServerContracts"/>
 			<dependency name="SendClientMessage"/>
-			<dependency name="ShowPlayerNameTagForPlayer"/>
-			<dependency name="cAgainst"/>
-			<dependency name="cID"/>
+			<dependency name="cBy"/>
+			<dependency name="cFor"/>
 			<dependency name="cMoney"/>
 			<dependency name="contractInfo"/>
 			<dependency name="contractInfo"/>
 			<dependency name="factionName"/>
 			<dependency name="factionName"/>
+			<dependency name="formatNumber"/>
+			<dependency name="formatNumber"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pAdmin"/>
-			<dependency name="pCheckpoint"/>
-			<dependency name="pCheckpointID"/>
+			<dependency name="pContractID"/>
 			<dependency name="pFaction"/>
 			<dependency name="pFactionAge"/>
 			<dependency name="pFactionDuty"/>
@@ -31663,6 +31751,7 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerVehicle"/>
 			<dependency name="sendAdmin"/>
+			<dependency name="sendFactionMessage"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="svfVehicleObjects"/>
 			<dependency name="true"/>
@@ -32640,12 +32729,13 @@
 			<dependency name="Iter_Add_InternalC"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iter_Free_Internal"/>
-			<dependency name="Iter_Single@Contracts"/>
-			<dependency name="Iterator@Contracts"/>
+			<dependency name="Iter_Single@ServerContracts"/>
 			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="Iterator@ServerContracts"/>
+			<dependency name="PlayerMoney"/>
 			<dependency name="SendClientMessage"/>
-			<dependency name="cAgainst"/>
-			<dependency name="cID"/>
+			<dependency name="cBy"/>
+			<dependency name="cFor"/>
 			<dependency name="cMoney"/>
 			<dependency name="contractInfo"/>
 			<dependency name="contractInfo"/>
@@ -32669,14 +32759,14 @@
 		</member>
 		<member name="M:pc_cmd_contracts" syntax="pc_cmd_contracts(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4108"/>
+			<stacksize value="4110"/>
 			<dependency name="Iter_Contains_InternalC"/>
-			<dependency name="Iter_Single@Contracts"/>
-			<dependency name="Iterator@Contracts"/>
+			<dependency name="Iter_Single@ServerContracts"/>
 			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="Iterator@ServerContracts"/>
 			<dependency name="SendClientMessage"/>
-			<dependency name="cAgainst"/>
-			<dependency name="cID"/>
+			<dependency name="cBy"/>
+			<dependency name="cFor"/>
 			<dependency name="cMoney"/>
 			<dependency name="contractInfo"/>
 			<dependency name="contractInfo"/>
@@ -34126,21 +34216,20 @@
 			<stacksize value="4110"/>
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="CHECKPOINT_GETHIT"/>
-			<dependency name="Contract"/>
 			<dependency name="GetPlayerPos"/>
 			<dependency name="I@"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iter_Random_Internal"/>
-			<dependency name="Iter_Single@Contracts"/>
-			<dependency name="Iterator@Contracts"/>
+			<dependency name="Iter_Single@ServerContracts"/>
 			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="Iterator@ServerContracts"/>
 			<dependency name="J@"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerCheckpoint"/>
 			<dependency name="ShowPlayerNameTagForPlayer"/>
 			<dependency name="TimerGetHit_yT@"/>
 			<dependency name="Undercover"/>
-			<dependency name="cAgainst"/>
+			<dependency name="cFor"/>
 			<dependency name="cMoney"/>
 			<dependency name="contractInfo"/>
 			<dependency name="contractInfo"/>
@@ -34150,9 +34239,12 @@
 			<dependency name="getHit"/>
 			<dependency name="pCheckpoint"/>
 			<dependency name="pCheckpointID"/>
+			<dependency name="pContract"/>
+			<dependency name="pContractID"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
+			<dependency name="serverWeapon"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
@@ -35516,6 +35608,7 @@
 			<dependency name="Iterator@ServerFactions"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerSkin"/>
+			<dependency name="SetPlayerToFactionColor"/>
 			<dependency name="SpawnPlayerEx"/>
 			<dependency name="fSkins"/>
 			<dependency name="factionName"/>
@@ -38383,7 +38476,6 @@
 			<dependency name="Iter_DestroyVehicle"/>
 			<dependency name="SetPlayerScore"/>
 			<dependency name="false"/>
-			<dependency name="format"/>
 			<dependency name="pAFKSeconds"/>
 			<dependency name="pAdText"/>
 			<dependency name="pAdminCover"/>
@@ -38394,6 +38486,8 @@
 			<dependency name="pBoatLicenseSuspend"/>
 			<dependency name="pCheckpoint"/>
 			<dependency name="pCheckpointID"/>
+			<dependency name="pContract"/>
+			<dependency name="pContractID"/>
 			<dependency name="pCuffed"/>
 			<dependency name="pDrivingLicense"/>
 			<dependency name="pDrivingLicenseSuspend"/>
@@ -38719,8 +38813,10 @@
 		</member>
 		<member name="M:sendFactionMessage" syntax="sendFactionMessage(fid, color, message[], ...)">
 			<stacksize value="15"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="sendPolice"/>
+			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_blockf"/>
 			<referrer name="pc_cmd_f"/>
 			<referrer name="pc_cmd_r"/>
@@ -39112,6 +39208,7 @@
 			<attribute name="public"/>
 			<stacksize value="5"/>
 			<referrer name="pc_cmd_duty"/>
+			<referrer name="pc_cmd_gethit"/>
 			<referrer name="pc_cmd_order"/>
 			<referrer name="pc_cmd_area"/>
 			<referrer name="pc_cmd_givegun"/>
@@ -39182,10 +39279,9 @@
 		</member>
 		<member name="M:showEmail" syntax="showEmail(playerid, id)">
 			<attribute name="public"/>
-			<stacksize value="4307"/>
+			<stacksize value="211"/>
 			<dependency name="Dialog_Open"/>
 			<dependency name="cache_get_value_name"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -39574,8 +39670,8 @@
 			<referrer name="pc_cmd_number"/>
 			<referrer name="pc_cmd_accept"/>
 			<referrer name="cancelDriveTest"/>
+			<referrer name="ShowEmails"/>
 			<referrer name="dialog_DIALOG_EMAILS"/>
-			<referrer name="showEmail"/>
 			<referrer name="pc_cmd_emails"/>
 			<referrer name="CB_OnGameModeInit"/>
 			<referrer name="SSCANF_OnPlayerConnect"/>
@@ -40416,6 +40512,7 @@
 			<referrer name="TimerWar"/>
 			<referrer name="pc_cmd_contract"/>
 			<referrer name="pc_cmd_gethit"/>
+			<referrer name="TimerGetHit"/>
 			<referrer name="pc_cmd_contracts"/>
 			<referrer name="pc_cmd_setraport"/>
 			<referrer name="pc_cmd_resetraport"/>
@@ -40532,7 +40629,6 @@
 		<member name="M:va_SendClientMessageToAll" syntax="va_SendClientMessageToAll(colour, fmat[], ...)">
 			<stacksize value="144"/>
 			<referrer name="acKicked"/>
-			<referrer name="OnPlayerEnterCheckpoint"/>
 			<referrer name="warnPlayer"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="pc_cmd_arrest"/>
@@ -40766,6 +40862,7 @@
 			<stacksize value="5"/>
 			<referrer name="pc_cmd_auninvite"/>
 			<dependency name="SetPlayerSkin"/>
+			<dependency name="SetPlayerToFactionColor"/>
 			<dependency name="SpawnPlayerEx"/>
 			<dependency name="pSQLID"/>
 			<dependency name="pSkin"/>

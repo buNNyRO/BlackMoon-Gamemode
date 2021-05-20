@@ -40,12 +40,6 @@ stock checkpointGet(playerid) {
 }
 
 public OnPlayerEnterCheckpoint(playerid) {
-    if(GetTickCount() < checkpointDeelay[playerid]) {
-        va_SendClientMessageToAll(COLOR_LIGHTRED, "(AC) %s a primit kick pentru 'Teleport Checkpoint'.", getName(playerid));
-        SendDiscordAC("%s a primit kick pentru **'Teleport Checkpoint'**", getName(playerid));
-        Kick(playerid);
-        return 1;
-    }  
 	static func = cellmax;
 	if(func == cellmax) func = funcidx("onCheckpointPerformed");
 	if(strlen(checkpointName[playerid]) > 0) {

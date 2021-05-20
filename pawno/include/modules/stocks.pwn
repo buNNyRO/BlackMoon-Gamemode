@@ -911,9 +911,11 @@ stock resetVars(playerid)
 	playerInfo[playerid][pReportChat] = INVALID_PLAYER_ID;
 	playerInfo[playerid][pVehicleSlots] = 2;
 	playerInfo[playerid][pCheckpoint] = CHECKPOINT_NONE;
-	format(playerInfo[playerid][pQuestionText], 4, "None");
+	playerInfo[playerid][pQuestionText] = (EOS);
 	playerInfo[playerid][pAdminCover] = (EOS);
 	playerInfo[playerid][pAdText] = (EOS);
+	playerInfo[playerid][pContract] = -1;
+	playerInfo[playerid][pContractID] = -1;
 
 	if(IsValidVehicle(playerInfo[playerid][pExamenVehicle])) DestroyVehicle(playerInfo[playerid][pExamenVehicle]);
 

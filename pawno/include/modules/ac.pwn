@@ -6,6 +6,7 @@ enum enumAC {
     Float:acVelocity[3],
     Float:acvehPos[3],
     acSpawnTime,
+    acCPTime,
     acSpawn
 }; new acInfo[MAX_PLAYERS][enumAC];
 
@@ -83,6 +84,12 @@ hook OnPlayerStateChange(playerid, newstate, oldstate) {
         acInfo[playerid][acTime] = GetTickCount()+500;
     }
 	return 1;
+}
+
+hook OnPlayerEnterCheckpoint(playerid) {
+    if(acInfo[playerid][acCPTime]-GetTickCount() < 1000) return acKicked(playerid, "Teleport CP #1");
+    acInfo[playerid][acCPTime] = GetTickCount()+1000;
+    return 1;
 }
 
 hook OnPlayerEnterVehicle(playerid, vehicleid, ispassenger) {
