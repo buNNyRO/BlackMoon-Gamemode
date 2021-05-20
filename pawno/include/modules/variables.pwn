@@ -51,6 +51,7 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
     PlayerText:fareTD[MAX_PLAYERS],
     PlayerText:warTD[MAX_PLAYERS],
     PlayerText:notificationTD[MAX_PLAYERS],
+    PlayerText:specTD[MAX_PLAYERS],
 
     Timer:jailTime[MAX_PLAYERS],
     Timer:wantedTime[MAX_PLAYERS],
@@ -61,6 +62,7 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
     Timer:war[MAX_TURFS],
     Timer:taxi[MAX_PLAYERS],
     Timer:getHit[MAX_PLAYERS],
+    Timer:spectator[MAX_PLAYERS],
     // Timer:fpsShow[MAX_PLAYERS],
 
 

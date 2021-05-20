@@ -188,6 +188,17 @@ stock showLicenses(playerid, userID)
 }
 
 stock playerTextDraws(playerid) {
+	specTD[playerid]  = CreatePlayerTextDraw(playerid, 318.500000, 329.377838, "Nume:~p~Vicentzo (0)~n~~w~Health:~p~59.29~w~~n~Armour:~p~29.59~w~~n~Vehicle:~p~411~w~[Health:~p~999.5~w~]Packet Loss:~p~59.29");
+	PlayerTextDrawLetterSize(playerid, specTD[playerid] , 0.296500, 1.295110);
+	PlayerTextDrawAlignment(playerid, specTD[playerid] , 2);
+	PlayerTextDrawColor(playerid, specTD[playerid] , -1);
+	PlayerTextDrawSetShadow(playerid, specTD[playerid] , 0);
+	PlayerTextDrawSetOutline(playerid, specTD[playerid] , 1);
+	PlayerTextDrawBackgroundColor(playerid, specTD[playerid] , 255);
+	PlayerTextDrawFont(playerid, specTD[playerid] , 1);
+	PlayerTextDrawSetProportional(playerid, specTD[playerid] , 1);
+	PlayerTextDrawSetShadow(playerid, specTD[playerid] , 0);
+
 	notificationTD[playerid]= CreatePlayerTextDraw(playerid, 322.444519, 390.115509, "Stiu casdadsaStiu casdadsaxx~n~Stiu casdadsaStiu casdadsaxx~n~Stiu casdadsaStiu casdadsaxx");
 	PlayerTextDrawLetterSize(playerid, notificationTD[playerid], 0.198666, 1.186844);
 	PlayerTextDrawAlignment(playerid, notificationTD[playerid], 2);
@@ -623,6 +634,7 @@ stock destroyPlayerTextDraws(playerid)
 	PlayerTextDrawDestroy(playerid, fareTD[playerid]);
 	PlayerTextDrawDestroy(playerid, warTD[playerid]);
 	PlayerTextDrawDestroy(playerid, notificationTD[playerid]);	
+	PlayerTextDrawDestroy(playerid, specTD[playerid]);
 	return true;
 }
 
@@ -1455,8 +1467,8 @@ stock missionName(playerid, type, id) {
 	return string;
 }
 
-stock DistanceToPlayer(playerid, targetid) {
-	new Float: X, Float: Y, Float: Z;
-	GetPlayerPos(targetid, X, Y, Z);
-	return floatround(GetPlayerDistanceFromPoint(playerid, X, Y, Z));
+stock Float:DistanceToPlayer(playerid, targetid) {
+    new Float: X, Float: Y, Float: Z;
+    GetPlayerPos(targetid, X, Y, Z);
+    return GetPlayerDistanceFromPoint(playerid, X, Y, Z);
 }

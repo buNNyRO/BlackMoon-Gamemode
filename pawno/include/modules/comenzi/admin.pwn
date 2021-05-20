@@ -1488,6 +1488,7 @@ CMD:spec(playerid, params[]) {
 	if(userID == playerid) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda asupra ta.");
 	if(!isPlayerLogged(userID)) return SCM(playerid, COLOR_ERROR, eERROR"Acest jucator nu este connectat.");	
 	playerInfo[playerid][pSpectate] = userID;
+	playerInfo[userID][pSpectate] = playerid;
 	if(PlayerHaveReport(userID)) {
 		new reportid = GetReportID(userID);
 		if(reportInfo[reportid][reportType] == REPORT_TYPE_NORMAL) sendAdmin(COLOR_SERVER, "Notice: {ffffff}Admin %s este acum spectator pe %s pentru report.", getName(playerid), getName(userID));
@@ -1510,5 +1511,17 @@ CMD:spec(playerid, params[]) {
     SetPlayerVirtualWorld(playerid, GetPlayerVirtualWorld(userID)); 
     if(IsPlayerInAnyVehicle(userID)) PlayerSpectateVehicle(playerid, GetPlayerVehicleID(userID));
     else PlayerSpectatePlayer(playerid, userID);
+    PlayerTextDrawShow(playerid, specTD[playerid]);
+    spectator[playerid] = repeat TimerSpectator(playerid);
+	return true;
+}
+
+timer TimerSpectator[1000](playerid) {
+	new Float:health, Float:armour, Float:healthv = -1;
+	GetPlayerHealthEx(playerInfo[playerid][pSpectate], health);
+	GetPlayerArmourEx(playerInfo[playerid][pSpectate], armour);
+	if(IsPlayerInAnyVehicle(playerInfo[playerid][pSpectate])) GetVehicleHealth(GetPlayerVehicleID(playerInfo[playerid][pSpectate]), healthv);
+	
+	va_PlayerTextDrawSetString(playerid, specTD[playerid], "Nume:~p~%s (%d)~n~~w~Health:~p~%.2f~w~~n~Armour:~p~%.2f~w~~n~Vehicle:~p~%d~w~[Health:~p~%.2f~w~]Packet Loss:~p~%.2f", getName(playerInfo[playerid][pSpectate]), playerInfo[playerid][pSpectate],  health, armour, IsPlayerInAnyVehicle(playerInfo[playerid][pSpectate]) ? GetPlayerVehicleID(playerInfo[playerid][pSpectate]) : -1, healthv, NetStats_PacketLossPercent(playerInfo[playerid][pSpectate]));
 	return true;
 }

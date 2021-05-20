@@ -274,7 +274,10 @@ Dialog:DIALOG_HUD(playerid, response, listitem) {
 	if(!response) return true;
 	switch(listitem) {
 		case 0: {
-			if(playerInfo[playerid][pFPSShow] == 0) playerInfo[playerid][pFPSShow] = 1;
+			if(playerInfo[playerid][pFPSShow] == 0) {
+				playerInfo[playerid][pFPSShow] = 1;
+				PlayerTextDrawShow(playerid, serverHud[1]);
+			}
 			else if(playerInfo[playerid][pFPSShow] == 1) {
 				playerInfo[playerid][pFPSShow] = 0;
 				PlayerTextDrawHide(playerid, serverHud[1]);

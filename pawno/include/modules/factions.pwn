@@ -40,7 +40,8 @@ new factionInfo[MAX_FACTIONS + 1][factionInfoEnum], Iterator:ServerFactions<MAX_
 enum contractEnum {
 	cBy,
 	cFor,
-	cMoney
+	cMoney,
+	cHitman
 };
 new contractInfo[MAX_CONTRACTS][contractEnum],Iterator:ServerContracts<MAX_PLAYERS>;
 
@@ -97,8 +98,8 @@ hook OnPlayerDeath(playerid, killerid, reason) {
 					else if(playerInfo[killerid][pFaction] == warInfo[turf][wFaction]) WarScore[2][turf] += 1.5;
 					new weaponName[32];
 					GetWeaponName(reason, weaponName, sizeof weaponName); 
-					SCMf(killerid, COLOR_LIGHTGREEN, "* (War System): L-ai omorat pe %s cu %s de la %d metri, ai primit %0.2f scor iar la echipa ai adus %s scor.", getName(playerid), weaponName, DistanceToPlayer(killerid, playerid), WarScore2[playerid][turf], playerInfo[killerid][pFaction] == warInfo[turf][wAttacker] ? string_fast("%0.2f", WarScore[1][turf]) : string_fast("%0.2f", WarScore[2][turf]));
-					SCMf(playerid, COLOR_LIGHTGREEN, "* (War System): Ai fost omorat de %s cu %s de la %d metri.", getName(killerid), weaponName, DistanceToPlayer(playerid, killerid));
+					SCMf(killerid, COLOR_LIGHTGREEN, "* (War System): L-ai omorat pe %s cu %s de la %.01f metri, ai primit %0.2f scor iar la echipa ai adus %s scor.", getName(playerid), weaponName, DistanceToPlayer(killerid, playerid), WarScore2[playerid][turf], playerInfo[killerid][pFaction] == warInfo[turf][wAttacker] ? string_fast("%0.2f", WarScore[1][turf]) : string_fast("%0.2f", WarScore[2][turf]));
+					SCMf(playerid, COLOR_LIGHTGREEN, "* (War System): Ai fost omorat de %s cu %s de la %.01f metri.", getName(killerid), weaponName, DistanceToPlayer(playerid, killerid));
 				}
 			}
 		}
@@ -109,9 +110,10 @@ hook OnPlayerDeath(playerid, killerid, reason) {
 	    	SCMf(killerid, -1, "distanta de la tine pana la tinta ta este de %.01f metri si ai dat fail #1", DistanceToPlayer(playerid, killerid));
    	    	sendFactionMessage(10, COLOR_LIMEGREEN, "* %s (%d) a dat fail contractului folosind 'Knife' plasat de %s (%d) pentru %s (%d) in valoare de %s$.", getName(killerid), killerid, getName(contractInfo[playerInfo[killerid][pContractID]][cBy]), contractInfo[playerInfo[killerid][pContractID]][cBy], getName(contractInfo[playerInfo[killerid][pContractID]][cFor]), contractInfo[playerInfo[killerid][pContractID]][cFor], formatNumber(contractInfo[playerInfo[killerid][pContractID]][cMoney]));
    	    	Iter_Remove(ServerContracts, playerInfo[killerid][pContractID]);
-   	    	contractInfo[playerInfo[killerid][pContractID]][cBy] = (EOS);
-   	    	contractInfo[playerInfo[killerid][pContractID]][cFor] = (EOS);
+   	    	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
+   	    	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
    	    	contractInfo[playerInfo[killerid][pContractID]][cMoney] = -1;
+   	    	contractInfo[playerInfo[killerid][pContractID]][cHitman] = -1;
    	    	playerInfo[killerid][pContractID] = -1;
    	    	return true;	
    	    }
@@ -119,9 +121,10 @@ hook OnPlayerDeath(playerid, killerid, reason) {
    	       	SCMf(killerid, -1, "distanta de la tine pana la tinta ta este de %.01f metri si ai dat fail #2", DistanceToPlayer(playerid, killerid));
    	       	sendFactionMessage(10, COLOR_LIMEGREEN, "* %s (%d) a dat fail contractului folosind 'Sniper Rifle' plasat de %s (%d) pentru %s (%d) in valoare de %s$.", getName(killerid), killerid, getName(contractInfo[playerInfo[killerid][pContractID]][cBy]), contractInfo[playerInfo[killerid][pContractID]][cBy], getName(contractInfo[playerInfo[killerid][pContractID]][cFor]), contractInfo[playerInfo[killerid][pContractID]][cFor], formatNumber(contractInfo[playerInfo[killerid][pContractID]][cMoney]));
    	    	Iter_Remove(ServerContracts, playerInfo[killerid][pContractID]);
-   	    	contractInfo[playerInfo[killerid][pContractID]][cBy] = (EOS);
-   	    	contractInfo[playerInfo[killerid][pContractID]][cFor] = (EOS);
+   	    	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
+   	    	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
    	    	contractInfo[playerInfo[killerid][pContractID]][cMoney] = -1;
+   	    	contractInfo[playerInfo[killerid][pContractID]][cHitman] = -1;
    	    	playerInfo[killerid][pContractID] = -1;
    	    	return true;
    	    }
@@ -132,9 +135,10 @@ hook OnPlayerDeath(playerid, killerid, reason) {
         GivePlayerCash(killerid, 1, contractInfo[playerInfo[killerid][pContractID]][cMoney]);
         sendFactionMessage(10, COLOR_LIMEGREEN, "* %s (%d) a terminat cu succes contractul (%0.1fm) plasat de %s (%d) pe %s (%d) in valoare de %s$.", getName(killerid), killerid, DistanceToPlayer(playerid, killerid), getName(contractInfo[playerInfo[killerid][pContractID]][cBy]), contractInfo[playerInfo[killerid][pContractID]][cBy], getName(contractInfo[playerInfo[killerid][pContractID]][cFor]), contractInfo[playerInfo[killerid][pContractID]][cFor], formatNumber(contractInfo[playerInfo[killerid][pContractID]][cMoney]));
     	Iter_Remove(ServerContracts, playerInfo[killerid][pContractID]);
-    	contractInfo[playerInfo[killerid][pContractID]][cBy] = (EOS);
-    	contractInfo[playerInfo[killerid][pContractID]][cFor] = (EOS);
+    	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
+    	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
     	contractInfo[playerInfo[killerid][pContractID]][cMoney] = -1;
+    	contractInfo[playerInfo[killerid][pContractID]][cHitman] = -1;
     	playerInfo[killerid][pContractID] = -1;   	
         return true;
 	}
@@ -257,7 +261,6 @@ hook OnPlayerDisconnect(playerid, reason) {
 }
 
 hook OnPlayerEnterCheckpoint(playerid) {
-	if(!Iter_Contains(FactionMembers[1], playerid)) return Y_HOOKS_CONTINUE_RETURN_1;
 	switch(playerInfo[playerid][pCheckpoint]) {
 		case CHECKPOINT_FACTION_DUTY: {
 			if(MedicAcceptedCall[playerid] != -1) {
@@ -525,9 +528,10 @@ CMD:auninvite(playerid, params[]) {
 	if(playerInfo[targetid][pContractID] > -1) {
 		sendFactionMessage(10, COLOR_LIMEGREEN, "* Deoarece %s (%d) nu mai este in factiune contractul plasat de %s (%d) pe %s (%d) in valoare de %s$ s-a sters.", getName(targetid), targetid, getName(contractInfo[playerInfo[targetid][pContractID]][cBy]), contractInfo[playerInfo[targetid][pContractID]][cBy], getName(contractInfo[playerInfo[targetid][pContractID]][cFor]), contractInfo[playerInfo[targetid][pContractID]][cFor], formatNumber(contractInfo[playerInfo[targetid][pContractID]][cMoney]));
 		Iter_Remove(ServerContracts, playerInfo[targetid][pContractID]);
-    	contractInfo[playerInfo[targetid][pContractID]][cBy] = (EOS);
-    	contractInfo[playerInfo[targetid][pContractID]][cFor] = (EOS);
+    	contractInfo[playerInfo[targetid][pContractID]][cBy] = -1;
+    	contractInfo[playerInfo[targetid][pContractID]][cFor] = -1;
     	contractInfo[playerInfo[targetid][pContractID]][cMoney] = -1;
+    	contractInfo[playerInfo[targetid][pContractID]][cHitman] = -1;
     	playerInfo[targetid][pContractID] = -1;   	
     }
 	Iter_Remove(FactionMembers[playerInfo[targetid][pFaction]], targetid);
@@ -1055,9 +1059,10 @@ Dialog:DIALOG_MEMBERS2(playerid, response, listitem) {
 					if(playerInfo[userID][pContractID] > -1) {
 						sendFactionMessage(10, COLOR_LIMEGREEN, "* Deoarece %s (%d) nu mai este in factiune contractul plasat de %s (%d) pe %s (%d) in valoare de %s$ s-a sters.", getName(userID), userID, getName(contractInfo[playerInfo[userID][pContractID]][cBy]), contractInfo[playerInfo[userID][pContractID]][cBy], getName(contractInfo[playerInfo[userID][pContractID]][cFor]), contractInfo[playerInfo[userID][pContractID]][cFor], formatNumber(contractInfo[playerInfo[userID][pContractID]][cMoney]));
 						Iter_Remove(ServerContracts, playerInfo[userID][pContractID]);
-				    	contractInfo[playerInfo[userID][pContractID]][cBy] = (EOS);
-				    	contractInfo[playerInfo[userID][pContractID]][cFor] = (EOS);
+				    	contractInfo[playerInfo[userID][pContractID]][cBy] = -1;
+				    	contractInfo[playerInfo[userID][pContractID]][cFor] = -1;
 				    	contractInfo[playerInfo[userID][pContractID]][cMoney] = -1;
+				    	contractInfo[playerInfo[userID][pContractID]][cHitman] = -1;
 				    	playerInfo[userID][pContractID] = -1;   	
 				    }
 					playerInfo[userID][pFactionWarns] = 0;	
@@ -1134,9 +1139,10 @@ Dialog:DIALOG_MEMBERSUINV2(playerid, response, inputtext[]) {
 		if(playerInfo[userID][pContractID] > -1) {
 			sendFactionMessage(10, COLOR_LIMEGREEN, "* Deoarece %s (%d) nu mai este in factiune contractul plasat de %s (%d) pe %s (%d) in valoare de %s$ s-a sters.", getName(userID), userID, getName(contractInfo[playerInfo[userID][pContractID]][cBy]), contractInfo[playerInfo[userID][pContractID]][cBy], getName(contractInfo[playerInfo[userID][pContractID]][cFor]), contractInfo[playerInfo[userID][pContractID]][cFor], formatNumber(contractInfo[playerInfo[userID][pContractID]][cMoney]));
 			Iter_Remove(ServerContracts, playerInfo[userID][pContractID]);
-	    	contractInfo[playerInfo[userID][pContractID]][cBy] = (EOS);
-	    	contractInfo[playerInfo[userID][pContractID]][cFor] = (EOS);
+	    	contractInfo[playerInfo[userID][pContractID]][cBy] = -1;
+	    	contractInfo[playerInfo[userID][pContractID]][cFor] = -1;
 	    	contractInfo[playerInfo[userID][pContractID]][cMoney] = -1;
+	    	contractInfo[playerInfo[userID][pContractID]][cHitman] = -1;
 	    	playerInfo[userID][pContractID] = -1;   	
 	    }
 		playerInfo[userID][pFactionWarns] = 0;	
@@ -1554,6 +1560,7 @@ CMD:contract(playerid, params[]) {
 	contractInfo[id][cBy] = playerid;
 	contractInfo[id][cFor] = userID;
 	contractInfo[id][cMoney] = money;
+	contractInfo[id][cHitman] = -1;
 	GivePlayerCash(playerid, 0, money);
 	SCMf(playerid, COLOR_SERVER, "* (Contract): {ffffff}Ai depus un contract pe jucatorul %s (%d) in valoare de %s$.", getName(userID), userID, formatNumber(money));
 	sendFactionMessage(10, COLOR_LIMEGREEN, "* Jucatorul %s (%d) a depus un contract pe %s (%d) in valoare de %s$.", getName(playerid), playerid, getName(userID), userID, formatNumber(money));
@@ -1563,8 +1570,12 @@ CMD:contract(playerid, params[]) {
 CMD:gethit(playerid, params[]) {
 	if(!Iter_Contains(FactionMembers[10], playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti in factiunea 'Hitman Agency' pentru a folosi aceasta comanda.");
 	if(Iter_Count(ServerContracts) == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu sunt contracte momentan.");
-	new id = Iter_Random(ServerContracts), Float:x, Float:y, Float:z;
+	if(playerInfo[playerid][pContract] > -1) return SCM(playerid, COLOR_ERROR, eERROR"Ai deja un contract, foloseste comanda '/cancelhit'.");
+	new id = Iter_Random(ServerContracts);
+	if(contractInfo[id][cHitman] > -1) return id = Iter_Random(ServerContracts);
+	new Float:x, Float:y, Float:z;
 	GetPlayerPos(contractInfo[id][cFor], x, y, z);
+	contractInfo[id][cHitman] = playerid;
 	playerInfo[playerid][pContract] = contractInfo[id][cFor];
 	playerInfo[contractInfo[id][cFor]][pContract] = playerid;
 	playerInfo[playerid][pContractID] = id;
@@ -1584,6 +1595,21 @@ CMD:gethit(playerid, params[]) {
 	return true;
 }
 
+CMD:cancelhit(playerid, params[]) {
+	if(!Iter_Contains(FactionMembers[10], playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti in factiunea 'Hitman Agency' pentru a folosi aceasta comanda.");
+	if(playerInfo[playerid][pContract] == -1) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai un contract, foloseste '/gethit' pentru a lua unul.");
+	extract params -> new string:reason[32]; else return sendPlayerSyntax(playerid, "/cancelhit <reason>");
+	if(strlen(reason) < 1 || strlen(reason) > 32) return SCM(playerid, COLOR_ERROR, eERROR"Invalid reason, min. 1 caracter max. 32 caractere.");
+	sendFactionMessage(10, COLOR_LIMEGREEN, "* %s (%d) a renuntat la contractul plasat de %s (%d) pe %s (%d) in valoare de %s$, motiv: %s.", getName(playerid), playerid, getName(contractInfo[playerInfo[playerid][pContractID]][cBy]), contractInfo[playerInfo[playerid][pContractID]][cBy], getName(contractInfo[playerInfo[playerid][pContractID]][cFor]), contractInfo[playerInfo[playerid][pContractID]][cFor], formatNumber(contractInfo[playerInfo[playerid][pContractID]][cMoney]), reason);
+	Iter_Remove(ServerContracts, playerInfo[playerid][pContractID]);
+	contractInfo[playerInfo[playerid][pContractID]][cBy] = -1;
+	contractInfo[playerInfo[playerid][pContractID]][cFor] = -1;
+	contractInfo[playerInfo[playerid][pContractID]][cMoney] = -1;
+	contractInfo[playerInfo[playerid][pContractID]][cHitman] = -1;
+	playerInfo[playerid][pContractID] = -1;
+	return true;
+}
+
 timer TimerGetHit[1000](playerid) {
 	new Float:x, Float:y, Float:z;
 	GetPlayerPos(playerInfo[playerid][pContract], x, y, z);
@@ -1596,8 +1622,8 @@ CMD:contracts(playerid, params[]) {
 	if(!Iter_Contains(FactionMembers[10], playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti in factiunea 'Hitman Agency' pentru a folosi aceasta comanda.");
 	if(Iter_Count(ServerContracts) == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu sunt contracte momentan.");
 	foreach(new i : ServerContracts) {
-		SCMf(playerid, COLOR_SERVER, "(*) {ffffff}#%d By %s (%d) For %s (%d) - %s$", i, getName(contractInfo[i][cBy]), contractInfo[i][cBy], getName(contractInfo[i][cFor]), contractInfo[i][cFor], formatNumber(contractInfo[i][cMoney]));
-	}
+		SCMf(playerid, COLOR_SERVER, "(*) {ffffff}#%d By %s (%d) For %s (%d) - %s$ (%s)", i, getName(contractInfo[i][cBy]), contractInfo[i][cBy], getName(contractInfo[i][cFor]), contractInfo[i][cFor], formatNumber(contractInfo[i][cMoney]), contractInfo[i][cHitman] > -1 ? "have hitman" : "don't have hitman (/gethit)");
+	} 
 	SCMf(playerid, COLOR_SERVER, "(*) {ffffff}Sunt %d contracte momentan.", Iter_Count(ServerContracts));
 	return true;
 }

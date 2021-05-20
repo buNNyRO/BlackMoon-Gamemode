@@ -796,4 +796,3 @@ function showNotification(playerid, from[], const text[]) {
 	defer notificationTimer(playerid);
 	return true;
 }
-
