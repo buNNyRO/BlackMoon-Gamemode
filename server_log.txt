@@ -1,0 +1,584 @@
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[20:18:18] filterscripts = ""  (string)
+[20:18:18] 
+[20:18:18] Server Plugins
+[20:18:18] --------------
+[20:18:18]  Loading plugin: crashdetect
+[20:18:19]   CrashDetect plugin 4.19.4
+[20:18:19]   Loaded.
+[20:18:19]  Loading plugin: pawncmd
+[20:18:19] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[20:18:19]   Loaded.
+[20:18:19]  Loading plugin: sscanf
+[20:18:19] 
+
+[20:18:19]  ===============================
+
+[20:18:19]       sscanf plugin loaded.     
+
+[20:18:19]          Version:  2.8.3        
+
+[20:18:19]   (c) 2018 Alex "Y_Less" Cole  
+
+[20:18:19]  ===============================
+
+[20:18:19]   Loaded.
+[20:18:19]  Loading plugin: streamer
+[20:18:19] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[20:18:19]   Loaded.
+[20:18:19]  Loading plugin: mysql
+[20:18:19]  >> plugin.mysql: R41-4 successfully loaded.
+[20:18:19]   Loaded.
+[20:18:19]  Loaded 5 plugins.
+
+[20:18:19] 
+[20:18:19] Filterscripts
+[20:18:19] ---------------
+[20:18:19]   Loaded 0 filterscripts.
+
+[20:18:19]  
+[20:18:19]  
+[20:18:19]  
+[20:18:19]  ======================================= 
+[20:18:19]  |                                     | 
+[20:18:19]  |        YSI version 4.00.0001        | 
+[20:18:19]  |        By Alex "Y_Less" Cole        | 
+[20:18:19]  |                                     | 
+[20:18:19]  ======================================= 
+[20:18:19]  
+[20:18:22] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[20:18:22] [MYSQL] Baza de date, s-a conectat.
+[20:18:22] Number of vehicle models: 0
+[20:18:22] Exam Checkpoints: 9 [From Database]
+[20:18:22] Jobs: 5 [From Database]
+[20:18:22] Businesses: 3 [From Database]
+[20:18:22] Houses: 0 [From Database]
+[20:18:22] Dealership models: 89 [From Database]
+[20:18:22] Factions: 10 [From Database]
+[20:18:22] Turfs: 43 [From Database]
+[20:18:22] Faction Safes: 0 [From Database]
+[20:18:22] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:18:22] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:18:22] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:18:22] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:18:22] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:18:22] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:18:22] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:18:22] Clans: 1 [From Database]
+[20:19:13] [connection] 192.168.8.137:51448 requests connection cookie.
+[20:19:14] [connection] incoming connection: 192.168.8.137:51448 id: 0
+[20:19:14] [join] mr.bunny has joined the server (0:192.168.8.137)
+[20:19:18] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[20:19:18] [ACCOUNT] mr.bunny loaded 2 vehicles
+[20:19:20] 0
+[20:19:20] 1
+[20:19:22] 0
+[20:19:22] 1
+[20:19:37] [part] mr.bunny has left the server (0:1)
+[20:19:37] [connection] incoming connection: 192.168.8.137:53316 id: 0
+[20:19:48] [connection] incoming connection: 192.168.8.137:53319 id: 0
+[20:19:48] [join] mr.bunny has joined the server (0:192.168.8.137)
+[20:19:51] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[20:19:51] [ACCOUNT] mr.bunny loaded 2 vehicles
+[20:19:55] 0
+[20:19:55] 1
+[20:21:20] [part] mr.bunny has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[20:37:44] filterscripts = ""  (string)
+[20:37:44] 
+[20:37:44] Server Plugins
+[20:37:44] --------------
+[20:37:44]  Loading plugin: crashdetect
+[20:37:44]   CrashDetect plugin 4.19.4
+[20:37:44]   Loaded.
+[20:37:44]  Loading plugin: pawncmd
+[20:37:44] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[20:37:44]   Loaded.
+[20:37:44]  Loading plugin: sscanf
+[20:37:44] 
+
+[20:37:44]  ===============================
+
+[20:37:44]       sscanf plugin loaded.     
+
+[20:37:44]          Version:  2.8.3        
+
+[20:37:44]   (c) 2018 Alex "Y_Less" Cole  
+
+[20:37:44]  ===============================
+
+[20:37:44]   Loaded.
+[20:37:44]  Loading plugin: streamer
+[20:37:44] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[20:37:44]   Loaded.
+[20:37:44]  Loading plugin: mysql
+[20:37:44]  >> plugin.mysql: R41-4 successfully loaded.
+[20:37:44]   Loaded.
+[20:37:44]  Loaded 5 plugins.
+
+[20:37:44] 
+[20:37:44] Filterscripts
+[20:37:44] ---------------
+[20:37:44]   Loaded 0 filterscripts.
+
+[20:37:44]  
+[20:37:44]  
+[20:37:44]  
+[20:37:44]  ======================================= 
+[20:37:44]  |                                     | 
+[20:37:44]  |        YSI version 4.00.0001        | 
+[20:37:44]  |        By Alex "Y_Less" Cole        | 
+[20:37:44]  |                                     | 
+[20:37:44]  ======================================= 
+[20:37:44]  
+[20:37:47] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[20:37:47] [MYSQL] Baza de date, s-a conectat.
+[20:37:47] Number of vehicle models: 0
+[20:37:47] Exam Checkpoints: 9 [From Database]
+[20:37:47] Jobs: 5 [From Database]
+[20:37:47] Businesses: 4 [From Database]
+[20:37:47] Houses: 0 [From Database]
+[20:37:47] Dealership models: 89 [From Database]
+[20:37:47] Factions: 10 [From Database]
+[20:37:47] Turfs: 43 [From Database]
+[20:37:47] Faction Safes: 0 [From Database]
+[20:37:47] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:37:47] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:37:47] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:37:47] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:37:47] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:37:47] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:37:47] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:37:47] Clans: 1 [From Database]
+[20:38:33] [connection] 192.168.8.137:65047 requests connection cookie.
+[20:38:34] [connection] incoming connection: 192.168.8.137:65047 id: 0
+[20:38:34] [join] mr.bunny has joined the server (0:192.168.8.137)
+[20:38:48] SELECT * FROM `server_personal_vehicles` WHERE `OwnerID` = '2'
+[20:38:48] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[20:38:48] [ACCOUNT] mr.bunny loaded 19 vehicles
+[20:40:05] 0
+[20:40:05] 1
+[20:40:05] 2
+[20:40:05] 3
+[20:40:05] 4
+[20:40:05] 5
+[20:40:05] 6
+[20:40:05] 7
+[20:40:05] 8
+[20:40:05] 9
+[20:40:05] 10
+[20:40:05] 11
+[20:40:05] 12
+[20:40:05] 13
+[20:40:05] 14
+[20:40:05] 15
+[20:40:05] 16
+[20:40:05] 17
+[20:40:05] 18
+[20:42:21] 0
+[20:42:21] 1
+[20:42:21] 2
+[20:42:21] 3
+[20:42:21] 4
+[20:42:21] 5
+[20:42:21] 6
+[20:42:21] 7
+[20:42:21] 8
+[20:42:21] 9
+[20:42:21] 10
+[20:42:21] 11
+[20:42:21] 12
+[20:42:21] 13
+[20:42:21] 14
+[20:42:21] 15
+[20:42:21] 16
+[20:42:21] 17
+[20:42:21] 18
+[20:42:21] 19
+[20:45:04] [part] mr.bunny has left the server (0:1)
+[20:45:04] [connection] 192.168.8.137:49527 requests connection cookie.
+[20:45:05] [connection] incoming connection: 192.168.8.137:49527 id: 0
+[20:45:06] [join] mr.bunny has joined the server (0:192.168.8.137)
+[20:45:07] [part] mr.bunny has left the server (0:2)
+[20:50:15] [connection] 192.168.8.137:57108 requests connection cookie.
+[20:50:16] [connection] incoming connection: 192.168.8.137:57108 id: 0
+[20:50:16] [join] mr.bunny has joined the server (0:192.168.8.137)
+[20:50:43] SELECT * FROM `server_personal_vehicles` WHERE `OwnerID` = '2'
+[20:50:43] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[20:50:43] [ACCOUNT] mr.bunny loaded 20 vehicles
+Console input: gmx
+[20:53:11]  
+[20:53:11]  
+[20:53:11]  
+[20:53:11]  ======================================= 
+[20:53:11]  |                                     | 
+[20:53:11]  |        YSI version 4.00.0001        | 
+[20:53:11]  |        By Alex "Y_Less" Cole        | 
+[20:53:11]  |                                     | 
+[20:53:11]  ======================================= 
+[20:53:11]  
+[20:53:14] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[20:53:15] [MYSQL] Baza de date, nu s-a conectat.
+[20:53:15] Number of vehicle models: 0
+Console input: gmx
+[20:53:42]  
+[20:53:42]  
+[20:53:42]  
+[20:53:42]  ======================================= 
+[20:53:42]  |                                     | 
+[20:53:42]  |        YSI version 4.00.0001        | 
+[20:53:42]  |        By Alex "Y_Less" Cole        | 
+[20:53:42]  |                                     | 
+[20:53:42]  ======================================= 
+[20:53:42]  
+[20:53:45] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[20:53:45] [MYSQL] Baza de date, s-a conectat.
+[20:53:45] Number of vehicle models: 0
+[20:53:45] Exam Checkpoints: 9 [From Database]
+[20:53:45] Jobs: 5 [From Database]
+[20:53:45] Businesses: 4 [From Database]
+[20:53:45] Houses: 0 [From Database]
+[20:53:45] Dealership models: 89 [From Database]
+[20:53:45] Factions: 10 [From Database]
+[20:53:45] Turfs: 43 [From Database]
+[20:53:45] Faction Safes: 0 [From Database]
+[20:53:45] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:53:45] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:53:45] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:53:45] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:53:45] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:53:45] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:53:45] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:53:45] Clans: 1 [From Database]
+[20:53:49] SELECT * FROM `server_personal_vehicles` WHERE `OwnerID` = '2'
+[20:53:49] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[20:53:49] [ACCOUNT] mr.bunny loaded 20 vehicles
+[20:55:07] #. Email	By	Date
+1. 		
+
+Console input: gmx
+[20:56:30]  
+[20:56:30]  
+[20:56:30]  
+[20:56:30]  ======================================= 
+[20:56:30]  |                                     | 
+[20:56:30]  |        YSI version 4.00.0001        | 
+[20:56:30]  |        By Alex "Y_Less" Cole        | 
+[20:56:30]  |                                     | 
+[20:56:30]  ======================================= 
+[20:56:30]  
+[20:56:33] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[20:56:33] [MYSQL] Baza de date, s-a conectat.
+[20:56:33] Number of vehicle models: 0
+[20:56:33] Exam Checkpoints: 9 [From Database]
+[20:56:33] Jobs: 5 [From Database]
+[20:56:33] Businesses: 4 [From Database]
+[20:56:33] Houses: 0 [From Database]
+[20:56:33] Dealership models: 89 [From Database]
+[20:56:33] Factions: 10 [From Database]
+[20:56:33] Turfs: 43 [From Database]
+[20:56:33] Faction Safes: 0 [From Database]
+[20:56:33] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:56:33] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:56:33] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:56:33] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:56:33] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:56:33] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:56:33] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[20:56:33] Clans: 1 [From Database]
+[20:56:50] SELECT * FROM `server_personal_vehicles` WHERE `OwnerID` = '2'
+[20:56:50] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[20:56:50] [ACCOUNT] mr.bunny loaded 20 vehicles
+[20:56:53] _____#. Email	By	Date
+1. 		
+_____
+[20:56:53] #. Email	By	Date
+1. 		
+
+[21:01:06] _____#. Email	By	Date
+1. 		
+_____
+[21:01:06] #. Email	By	Date
+1. 		
+
+Console input: gmx
+[21:03:59] _____#. Email	By	Date
+1. 		
+_____
+[21:03:59] #. Email	By	Date
+1. 		
+
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[21:04:11] filterscripts = ""  (string)
+[21:04:11] 
+[21:04:11] Server Plugins
+[21:04:11] --------------
+[21:04:11]  Loading plugin: crashdetect
+[21:04:11]   CrashDetect plugin 4.19.4
+[21:04:11]   Loaded.
+[21:04:11]  Loading plugin: pawncmd
+[21:04:11] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[21:04:11]   Loaded.
+[21:04:11]  Loading plugin: sscanf
+[21:04:11] 
+
+[21:04:11]  ===============================
+
+[21:04:11]       sscanf plugin loaded.     
+
+[21:04:11]          Version:  2.8.3        
+
+[21:04:11]   (c) 2018 Alex "Y_Less" Cole  
+
+[21:04:11]  ===============================
+
+[21:04:11]   Loaded.
+[21:04:11]  Loading plugin: streamer
+[21:04:11] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[21:04:11]   Loaded.
+[21:04:11]  Loading plugin: mysql
+[21:04:11]  >> plugin.mysql: R41-4 successfully loaded.
+[21:04:11]   Loaded.
+[21:04:11]  Loaded 5 plugins.
+
+[21:04:11] 
+[21:04:11] Filterscripts
+[21:04:11] ---------------
+[21:04:11]   Loaded 0 filterscripts.
+
+[21:04:11]  
+[21:04:11]  
+[21:04:11]  
+[21:04:11]  ======================================= 
+[21:04:11]  |                                     | 
+[21:04:11]  |        YSI version 4.00.0001        | 
+[21:04:11]  |        By Alex "Y_Less" Cole        | 
+[21:04:11]  |                                     | 
+[21:04:11]  ======================================= 
+[21:04:11]  
+[21:04:14] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[21:04:14] [MYSQL] Baza de date, s-a conectat.
+[21:04:14] Number of vehicle models: 0
+[21:04:14] Exam Checkpoints: 9 [From Database]
+[21:04:14] Jobs: 5 [From Database]
+[21:04:14] Businesses: 4 [From Database]
+[21:04:14] Houses: 0 [From Database]
+[21:04:14] Dealership models: 89 [From Database]
+[21:04:14] Factions: 10 [From Database]
+[21:04:14] Turfs: 43 [From Database]
+[21:04:14] Faction Safes: 0 [From Database]
+[21:04:14] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:04:14] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:04:14] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:04:14] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:04:14] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:04:14] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:04:14] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:04:14] Clans: 1 [From Database]
+[21:04:15] [connection] 192.168.8.137:54823 requests connection cookie.
+[21:04:16] [connection] incoming connection: 192.168.8.137:54823 id: 0
+[21:04:17] [join] mr.bunny has joined the server (0:192.168.8.137)
+[21:04:19] SELECT * FROM `server_personal_vehicles` WHERE `OwnerID` = '2'
+[21:04:19] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[21:04:19] [ACCOUNT] mr.bunny loaded 20 vehicles
+[21:04:21] _____#. Email	By	Date
+1. 		
+_____
+[21:04:21] #. Email	By	Date
+1. 		
+
+[21:07:09] _____#. Email	By	Date
+1. sdasdasdasda	Vicentzo	2021-05-03 20:54:54
+_____
+[21:07:09] _____#. Email	By	Date
+1. sdasdasdasda	Vicentzo	2021-05-03 20:54:54
+2. sdasdasdasda	Vicentzo	2021-05-03 20:54:54
+_____
+[21:07:09] #. Email	By	Date
+1. sdasdasdasda	Vicentzo	2021-05-03 20:54:54
+2. sdasdasdasda	Vicentzo	2021-05-03 20:54:54
+
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[21:07:29] filterscripts = ""  (string)
+[21:07:29] 
+[21:07:29] Server Plugins
+[21:07:29] --------------
+[21:07:29]  Loading plugin: crashdetect
+[21:07:29]   CrashDetect plugin 4.19.4
+[21:07:29]   Loaded.
+[21:07:29]  Loading plugin: pawncmd
+[21:07:29] [Pawn.CMD] plugin v3.3.3 by urShadow loaded
+[21:07:29]   Loaded.
+[21:07:29]  Loading plugin: sscanf
+[21:07:29] 
+
+[21:07:29]  ===============================
+
+[21:07:29]       sscanf plugin loaded.     
+
+[21:07:29]          Version:  2.8.3        
+
+[21:07:29]   (c) 2018 Alex "Y_Less" Cole  
+
+[21:07:29]  ===============================
+
+[21:07:29]   Loaded.
+[21:07:29]  Loading plugin: streamer
+[21:07:29] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[21:07:29]   Loaded.
+[21:07:29]  Loading plugin: mysql
+[21:07:29]  >> plugin.mysql: R41-4 successfully loaded.
+[21:07:29]   Loaded.
+[21:07:29]  Loaded 5 plugins.
+
+[21:07:29] 
+[21:07:29] Filterscripts
+[21:07:29] ---------------
+[21:07:29]   Loaded 0 filterscripts.
+
+[21:07:29]  
+[21:07:29]  
+[21:07:29]  
+[21:07:29]  ======================================= 
+[21:07:29]  |                                     | 
+[21:07:29]  |        YSI version 4.00.0001        | 
+[21:07:29]  |        By Alex "Y_Less" Cole        | 
+[21:07:29]  |                                     | 
+[21:07:29]  ======================================= 
+[21:07:29]  
+[21:07:32] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[21:07:32] [MYSQL] Baza de date, s-a conectat.
+[21:07:32] Number of vehicle models: 0
+[21:07:32] Exam Checkpoints: 9 [From Database]
+[21:07:32] Jobs: 5 [From Database]
+[21:07:32] Businesses: 4 [From Database]
+[21:07:32] Houses: 0 [From Database]
+[21:07:32] Dealership models: 89 [From Database]
+[21:07:32] Factions: 10 [From Database]
+[21:07:32] Turfs: 43 [From Database]
+[21:07:32] Faction Safes: 0 [From Database]
+[21:07:32] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:07:32] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:07:32] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:07:32] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:07:32] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:07:32] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:07:32] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:07:32] Clans: 1 [From Database]
+[21:07:39] [connection] 192.168.8.137:60933 requests connection cookie.
+[21:07:40] [connection] incoming connection: 192.168.8.137:60933 id: 0
+[21:07:40] [join] mr.bunny has joined the server (0:192.168.8.137)
+[21:07:42] SELECT * FROM `server_personal_vehicles` WHERE `OwnerID` = '2'
+[21:07:42] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[21:07:42] [ACCOUNT] mr.bunny loaded 20 vehicles
+[21:07:46] _____#. Email	By	Date
+1. sdasdasdasda	Vicentzo	2021-05-03 20:54:54
+_____
+[21:07:46] #. Email	By	Date
+1. sdasdasdasda	Vicentzo	2021-05-03 20:54:54
+
+[21:08:09] _____#. Email	By	Date
+1. sakkkk	mr.bunny	2021-05-03 21:06:57
+_____
+[21:08:09] _____#. Email	By	Date
+1. sakkkk	mr.bunny	2021-05-03 21:06:57
+2. sdasdasdasda	Vicentzo	2021-05-03 20:54:54
+_____
+[21:08:09] #. Email	By	Date
+1. sakkkk	mr.bunny	2021-05-03 21:06:57
+2. sdasdasdasda	Vicentzo	2021-05-03 20:54:54
+
+Console input: gmx
+[21:08:52]  
+[21:08:52]  
+[21:08:52]  
+[21:08:52]  ======================================= 
+[21:08:52]  |                                     | 
+[21:08:52]  |        YSI version 4.00.0001        | 
+[21:08:52]  |        By Alex "Y_Less" Cole        | 
+[21:08:52]  |                                     | 
+[21:08:52]  ======================================= 
+[21:08:52]  
+[21:08:55] [Pawn.CMD] PC_RegAlias: invalid unordered_map<K, T> key
+[21:08:55] [MYSQL] Baza de date, s-a conectat.
+[21:08:55] Number of vehicle models: 0
+[21:08:55] Exam Checkpoints: 9 [From Database]
+[21:08:55] Jobs: 5 [From Database]
+[21:08:55] Businesses: 4 [From Database]
+[21:08:55] Houses: 0 [From Database]
+[21:08:55] Dealership models: 89 [From Database]
+[21:08:55] Factions: 10 [From Database]
+[21:08:55] Turfs: 43 [From Database]
+[21:08:55] Faction Safes: 0 [From Database]
+[21:08:55] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:08:55] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:08:55] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:08:55] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:08:55] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:08:55] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:08:55] sscanf warning: Strings without a length are deprecated, please add a destination size.
+[21:08:55] Clans: 1 [From Database]
+[21:09:03] SELECT * FROM `server_personal_vehicles` WHERE `OwnerID` = '2'
+[21:09:03] AllowPlayerTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[21:09:03] [ACCOUNT] mr.bunny loaded 20 vehicles
+[21:09:05] _____#. Email	By	Date
+0. sakkkk	mr.bunny	2021-05-03 21:06:57
+_____
+[21:09:05] _____#. Email	By	Date
+0. sakkkk	mr.bunny	2021-05-03 21:06:57
+1. sakkkk	mr.bunny	2021-05-03 21:06:57
+_____
+[21:09:05] _____#. Email	By	Date
+0. sakkkk	mr.bunny	2021-05-03 21:06:57
+1. sakkkk	mr.bunny	2021-05-03 21:06:57
+2. sdasdasdasda	Vicentzo	2021-05-03 20:54:54
+_____
+[21:09:05] #. Email	By	Date
+0. sakkkk	mr.bunny	2021-05-03 21:06:57
+1. sakkkk	mr.bunny	2021-05-03 21:06:57
+2. sdasdasdasda	Vicentzo	2021-05-03 20:54:54
+
