@@ -5,7 +5,7 @@ function MySQLLoad() {
 			SQL = mysql_connect("localhost", "root", "", "from0");
 		}
 		case 1: { // MainHost
-			SQL = mysql_connect("185.248.139.28", "u208_acYj5UowoI", "DjFDeF7^FLjfbh9IUy+gY^v7", "s208_server");
+			SQL = mysql_connect("185.248.139.28", "u210_22UPQ1CIxs", "+uwxJfPW+!y6..mzICdF5jaV", "s210_server");
 		}
 	}
 	if(mysql_errno() != 0) {

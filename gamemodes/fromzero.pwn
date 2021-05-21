@@ -16,7 +16,7 @@
 // B::::::::::::::::B  l::::::l a::::::::::aa:::a  cc:::::::::::::::ck::::::k   k:::::k M::::::M               M::::::M oo:::::::::::oo  oo:::::::::::oo   n::::n    n::::n//
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define MYSQL 0 // 0 - local | 1 - host
+#define MYSQL 1 // 0 - local | 1 - host
 #define VERSION "v1.6.44"
 
 #include <discord>
@@ -677,10 +677,13 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 public OnPlayerStateChange(playerid, newstate, oldstate) {
 	if(newstate == 2 && oldstate == 3) return 1;
 	if(newstate == PLAYER_STATE_SPECTATING && playerInfo[playerid][pAdmin] == 0) return acKicked(playerid, "Invisibile Hack");
-	if(newstate == PLAYER_STATE_DRIVER || newstate == PLAYER_STATE_PASSENGER) if(Iter_Contains(PlayerInVehicle, playerid)) Iter_Add(PlayerInVehicle, playerid);
+	if(newstate == PLAYER_STATE_DRIVER || newstate == PLAYER_STATE_PASSENGER) {
+		if(Iter_Contains(PlayerInVehicle, playerid)) Iter_Add(PlayerInVehicle, playerid);
+		if(playerInfo[playerid][pSpectate] > -1) PlayerSpectateVehicle(playerInfo[playerid][pSpectate], GetPlayerVehicleID(playerid));
+	}
 	if(oldstate == PLAYER_STATE_DRIVER || oldstate == PLAYER_STATE_PASSENGER) {
 		if(Iter_Contains(PlayerInVehicle, playerid)) Iter_Remove(PlayerInVehicle, playerid);
-
+		if(playerInfo[playerid][pSpectate] > -1) PlayerSpectatePlayer(playerInfo[playerid][pSpectate], playerid);
 		new vehicleid = playerInfo[playerid][pinVehicle];
 		if(vehicle_personal[vehicleid] > -1) {
 			new i = vehicle_personal[vehicleid];

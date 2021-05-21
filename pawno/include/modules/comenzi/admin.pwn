@@ -1483,7 +1483,7 @@ CMD:gotobusiness(playerid, params[]) {
 }
 
 CMD:spec(playerid, params[]) {
-	if(!Iter_Contains(ServerHelpers, playerid) || !Iter_Contains(ServerAdmins, playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
+	if(!Iter_Contains(ServerHelpers, playerid) && !Iter_Contains(ServerAdmins, playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 	extract params -> new player:userID; else return sendPlayerSyntax(playerid, "/spec <name/id>");
 	if(userID == playerid) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda asupra ta.");
 	if(!isPlayerLogged(userID)) return SCM(playerid, COLOR_ERROR, eERROR"Acest jucator nu este connectat.");	
@@ -1521,7 +1521,8 @@ timer TimerSpectator[1000](playerid) {
 	GetPlayerHealthEx(playerInfo[playerid][pSpectate], health);
 	GetPlayerArmourEx(playerInfo[playerid][pSpectate], armour);
 	if(IsPlayerInAnyVehicle(playerInfo[playerid][pSpectate])) GetVehicleHealth(GetPlayerVehicleID(playerInfo[playerid][pSpectate]), healthv);
-	
-	va_PlayerTextDrawSetString(playerid, specTD[playerid], "Nume:~p~%s (%d)~n~~w~Health:~p~%.2f~w~~n~Armour:~p~%.2f~w~~n~Vehicle:~p~%d~w~[Health:~p~%.2f~w~]Packet Loss:~p~%.2f", getName(playerInfo[playerid][pSpectate]), playerInfo[playerid][pSpectate],  health, armour, IsPlayerInAnyVehicle(playerInfo[playerid][pSpectate]) ? GetPlayerVehicleID(playerInfo[playerid][pSpectate]) : -1, healthv, NetStats_PacketLossPercent(playerInfo[playerid][pSpectate]));
+	if(GetPlayerInterior(playerid) != 0) SetPlayerInterior(playerid, GetPlayerInterior(playerInfo[playerid][pSpectate]));
+   	if(GetPlayerVirtualWorld(playerid) != 0) SetPlayerVirtualWorld(playerid, GetPlayerVirtualWorld(playerInfo[playerid][pSpectate])); 
+	va_PlayerTextDrawSetString(playerid, specTD[playerid], "Nume:~p~%s (%d)~n~~w~Health:~p~%.2f~w~~n~Armour:~p~%.2f~w~~n~Vehicle:~p~%d~w~[Health:~p~%.2f~w~]Packet Loss:~p~%.2f~n~Device:~p~%s~w~ FPS:~p~%d~w~ Ping:~p~%d", getName(playerInfo[playerid][pSpectate]), playerInfo[playerid][pSpectate],  health, armour, IsPlayerInAnyVehicle(playerInfo[playerid][pSpectate]) ? GetPlayerVehicleID(playerInfo[playerid][pSpectate]) : -1, healthv > 0 ? healthv : 0.0, NetStats_PacketLossPercent(playerInfo[playerid][pSpectate]), playerInfo[playerInfo[playerid][pSpectate]][pFPS] > 1 ? "PC" : "Android", playerInfo[playerInfo[playerid][pSpectate]][pFPS], GetPlayerPing(playerInfo[playerid][pSpectate]));
 	return true;
 }
