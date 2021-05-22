@@ -1811,7 +1811,7 @@ Dialog:DIALOG_SVF(playerid, response, listitem) {
 		}
 	}
 	SetVehicleNumberPlate(playerVehicle[playerid], string_fast("SVF-%d", playerInfo[playerid][pFaction]));
-	PutPlayerInVehicle(playerid, playerVehicle[playerid], 0);
+	PutPlayerInVehicleEx(playerid, playerVehicle[playerid], 0);
 	vehicle_personal[playerVehicle[playerid]] = -1;
 	vehicle_fuel[playerVehicle[playerid]] = 100;
 	vehicleFaction[playerVehicle[playerid]] = playerInfo[playerid][pFaction];

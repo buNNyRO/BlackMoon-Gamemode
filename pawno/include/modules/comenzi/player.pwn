@@ -71,7 +71,7 @@ CMD:exam(playerid, params[]) {
 	SetPlayerVirtualWorld(playerid, (playerid +1));
 	playerInfo[playerid][pExamenVehicle] = CreateVehicle(589, 1110.1354, -1743.3287, 13.0742, -90, -1, -1, -1);
 	SetVehicleVirtualWorld(playerInfo[playerid][pExamenVehicle], (playerid +1));
-	PutPlayerInVehicle(playerid, playerInfo[playerid][pExamenVehicle], 0);
+	PutPlayerInVehicleEx(playerid, playerInfo[playerid][pExamenVehicle], 0);
 	vehicle_fuel[playerInfo[playerid][pExamenVehicle]] = 100.0;
 	vehicle_personal[playerInfo[playerid][pExamenVehicle]] = -1;
 	SetPlayerCheckpoint(playerid, examenInfo[Iter_First(ExamenCheckpoints)][dmvX], examenInfo[Iter_First(ExamenCheckpoints)][dmvY], examenInfo[Iter_First(ExamenCheckpoints)][dmvZ], 3.0);

@@ -629,7 +629,7 @@ CMD:park(playerid, params[]) {
 	SetVehicleNumberPlate(personalVehicle[id][pvSpawnedID], personalVehicle[id][pvCarPlate]);
 	vehicle_fuel[personalVehicle[id][pvSpawnedID]] = personalVehicle[id][pvFuel];
 	vehicle_personal[personalVehicle[id][pvSpawnedID]] = id;	
-	PutPlayerInVehicle(playerid, personalVehicle[id][pvSpawnedID], 0);
+	PutPlayerInVehicleEx(playerid, personalVehicle[id][pvSpawnedID], 0);
 	ModVehicle(personalVehicle[id][pvSpawnedID]);
 	if(personalVehicle[id][pvPaintJob] > -1) {
 		ChangeVehiclePaintjob(personalVehicle[id][pvSpawnedID], personalVehicle[id][pvPaintJob]);

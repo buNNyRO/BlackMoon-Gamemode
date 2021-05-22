@@ -200,7 +200,7 @@ hook OnPlayerClickTextDraw(playerid, Text:clickedid) {
 		LinkVehicleToInterior(DealerCar[playerid], 0);
 		SetVehicleVirtualWorld(DealerCar[playerid], playerid+1);
 		SetVehiclePos(DealerCar[playerid], 1416.1704,-2284.2883,13.1099);
-		PutPlayerInVehicle(playerid, DealerCar[playerid], 0);
+		PutPlayerInVehicleEx(playerid, DealerCar[playerid], 0);
 		vehicle_fuel[DealerCar[playerid]] = 100;
 		defer testDriveTimer(playerid);
 	}

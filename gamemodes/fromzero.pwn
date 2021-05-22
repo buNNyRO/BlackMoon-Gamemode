@@ -17,7 +17,7 @@
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define MYSQL 1 // 0 - local | 1 - host
-#define VERSION "v1.6.44"
+#define VERSION "v1.6.45"
 
 #include <discord>
 

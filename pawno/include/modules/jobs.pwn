@@ -530,13 +530,13 @@ stock jobWork(playerid, job) {
 	switch(job) {
 		case JOB_TRUCKER: {
 			JobVehicle[playerid] = CreateVehicle(515, 873.6147,-1773.7589,13.3828,84.5656, 1, 1,-1);
-			PutPlayerInVehicle(playerid, JobVehicle[playerid], 0);
+			PutPlayerInVehicleEx(playerid, JobVehicle[playerid], 0);
 			Dialog_Show(playerid, TRUCKER_SELECT, DIALOG_STYLE_LIST, "JOB: Trucker", "San Fierro Airport\nLas Venturas", "Select", "Cancel");
 			SCM(playerid, COLOR_WHITE, string_fast("{f26050}* (Trucker){ffffff}: Pentru a atasa trailer-ul iar, poti apasa tasta F."));
 		}
 		case JOB_DRUGSDEALER: {
 			JobVehicle[playerid] = CreateVehicle(478, 1285.8954,173.8965,20.1386, 62.8171, 1, 1, -1);
-			PutPlayerInVehicle(playerid, JobVehicle[playerid], 0);
+			PutPlayerInVehicleEx(playerid, JobVehicle[playerid], 0);
 			playerInfo[playerid][pCheckpointID] = JobVehicle[playerid];
 			playerInfo[playerid][pCheckpoint] = CHECKPOINT_DRUGSDEALER;	
 			SetPlayerCheckpoint(playerid, 643.1931, 1241.5510, 11.5892, 4.5);
@@ -545,7 +545,7 @@ stock jobWork(playerid, job) {
 		}
 		case JOB_ARMSDEALER: {
 			JobVehicle[playerid] = CreateVehicle(455, 1700.6183,-1485.4926,13.8227,179.7867, 1, 1, -1);
-			PutPlayerInVehicle(playerid, JobVehicle[playerid], 0);
+			PutPlayerInVehicleEx(playerid, JobVehicle[playerid], 0);
 			playerInfo[playerid][pCheckpointID] = JobVehicle[playerid];
 			playerInfo[playerid][pCheckpoint] = CHECKPOINT_ARMSDEALER;	
 			SetPlayerCheckpoint(playerid, -351.4561, -1032.3164, 59.4044, 4.5);
@@ -554,7 +554,7 @@ stock jobWork(playerid, job) {
 		}
 		case JOB_CARPENTER: {
 			JobVehicle[playerid] = CreateVehicle(456, 1027.2261, -1451.8898, 13.3994, 90.2400, 1, 1, -1);
-			PutPlayerInVehicle(playerid, JobVehicle[playerid], 0);
+			PutPlayerInVehicleEx(playerid, JobVehicle[playerid], 0);
 			playerInfo[playerid][pCheckpointID] = JobVehicle[playerid];
 			playerInfo[playerid][pCheckpoint] = CHECKPOINT_CARPENTER;	
 			SetPlayerCheckpoint(playerid, -64.9157,-1120.2693,1.0781, 4.5);

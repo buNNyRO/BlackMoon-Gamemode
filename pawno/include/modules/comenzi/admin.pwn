@@ -599,7 +599,7 @@ CMD:spawncar(playerid, params[]) {
 	GetPlayerPos(playerid, x, y, z);
 	GetPlayerFacingAngle(playerid, angle);
 	new carid = CreateVehicle(modelid, x, y, z, angle, firstcolor, secondcolor, -1);
-	PutPlayerInVehicle(playerid, carid, 0);
+	PutPlayerInVehicleEx(playerid, carid, 0);
 	Iter_Add(AdminVehicles, carid);
 	vehicle_fuel[carid] = 100.0;
 	vehicle_personal[carid] = -1;
@@ -749,7 +749,7 @@ CMD:closestcar(playerid, params[]) {
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Trebuie sa cobori jos din vehicul.");
 	new vehicleID = GetClosestVehicle(playerid);
 	if(!IsValidVehicle(vehicleID)) return SCM(playerid, COLOR_ERROR, eERROR"Nu a fost gasit un vehicul in raza ta.");
-	PutPlayerInVehicle(playerid, vehicleID, 0);
+	PutPlayerInVehicleEx(playerid, vehicleID, 0);
 	sendAdmin(COLOR_SERVER, "Notice: {ffffff}Admin %s a intrat in vehiculul %s (ID: %d).", getName(playerid), getVehicleName(GetVehicleModel(vehicleID)), vehicleID);
 	return true;
 }
@@ -762,7 +762,7 @@ CMD:entercar(playerid, params[]) {
 	if(seatid < 0 || seatid > 4) return SCM(playerid, COLOR_ERROR, eERROR"Invalid seat id.");
 	if(isBike(vehicleid) && seatid > 0) return SCM(playerid, COLOR_ERROR, eERROR"Acel vehicul nu are mai mult de un loc disponibil.");
 	if(isMotor(vehicleid) && seatid > 1) return SCM(playerid, COLOR_ERROR, eERROR"Acel vehicul nu are mai mult de doua locuri disponibile.");
-	PutPlayerInVehicle(playerid, vehicleid, seatid);
+	PutPlayerInVehicleEx(playerid, vehicleid, seatid);
 	sendAdmin(COLOR_SERVER, "Notice: {ffffff}Admin %s s-a teleportat in vehiculul %s (ID: %d)", getName(playerid), getVehicleName(GetVehicleModel(vehicleid)), vehicleid);
 	return true;
 }
@@ -801,7 +801,7 @@ CMD:goto(playerid, params[]) {
 		if(getVehicleMaxSeats(GetVehicleModel(GetPlayerVehicleID(id))) > 0) {
 			for(new i = 0; i < getVehicleMaxSeats(GetVehicleModel(GetPlayerVehicleID(id))); i++) {
 				if(!IsSeatTaked(GetPlayerVehicleID(id), i)) {
-					PutPlayerInVehicle(playerid, GetPlayerVehicleID(id), i);
+					PutPlayerInVehicleEx(playerid, GetPlayerVehicleID(id), i);
 					break;
 				}
 				else SetPlayerPos(playerid, x, (y +4), z);
