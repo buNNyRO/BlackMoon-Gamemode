@@ -151,7 +151,7 @@ stock setSkin(playerid, skin)
 stock showStats(playerid, userID)
 {
 	SCMf(playerid, COLOR_SERVER, "------------------|{ffffff}%s's stats{cc66ff}|----------------------", getName(userID));
-	SCMf(playerid, COLOR_SERVER, "Account: {ffffff}%s (%d) | Level: %d | Ore jucate: %2.f | Warn-uri: %d/3 | Faction: %s (rank %d)", getName(userID), userID, playerInfo[userID][pLevel], playerInfo[userID][pHours], playerInfo[userID][pWarn], playerInfo[userID][pFaction] ? factionName(playerInfo[userID][pFaction]) : "None", playerInfo[userID][pFactionRank] ? playerInfo[userID][pFactionRank] : -1);
+	SCMf(playerid, COLOR_SERVER, "Account: {ffffff}%s (%d) | Level: %d | Ore jucate: %0.1f | Warn-uri: %d/3 | Faction: %s (rank %d)", getName(userID), userID, playerInfo[userID][pLevel], playerInfo[userID][pHours], playerInfo[userID][pWarn], playerInfo[userID][pFaction] ? factionName(playerInfo[userID][pFaction]) : "None", playerInfo[userID][pFactionRank] ? playerInfo[userID][pFactionRank] : 0);
 	SCMf(playerid, COLOR_SERVER, "Economy: {ffffff}Cash: %s$ | Banca: %s$ | Urmatorul nivel: $%s", GetCashStr(userID), GetBankMoney(userID), formatNumber(playerInfo[userID][pLevel] * 250));
 	SCMf(playerid, COLOR_SERVER, "Points: {ffffff}Premium Points: %d | Puncte de respect: %d/%d", playerInfo[userID][pPremiumPoints], playerInfo[userID][pRespectPoints], (playerInfo[userID][pLevel] * 3));
 	SCMf(playerid, COLOR_SERVER, "Other: {ffffff}Drugs:%d | Materiale:%s | Phone: %d | VIP: %s | Premium: %s", playerInfo[userID][pDrugs], formatNumber(playerInfo[userID][pMats]), playerInfo[userID][pPhone], playerInfo[userID][pVIP] ? "Yes" : "No", playerInfo[userID][pPremium] ? "Yes" : "No");

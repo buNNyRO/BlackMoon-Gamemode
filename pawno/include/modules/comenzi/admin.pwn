@@ -231,6 +231,13 @@ CMD:setadmin(playerid, params[])
 		Iter_Remove(ServerAdmins, userID);
 		Iter_Remove(ServerStaff, userID);
 		AllowPlayerTeleport(userID, 0);
+		if(playerInfo[playerid][pSpectate] > -1) {
+			TogglePlayerSpectating(playerid, 0);
+			stop spectator[playerid];
+			playerInfo[playerInfo[playerid][pSpectate]][pSpectate] = -1;
+			playerInfo[playerid][pSpectate] = -1;
+			PlayerTextDrawHide(playerid, specTD[playerid]);
+		}
 	} 
 
 	if(!Iter_Contains(ServerAdmins, userID) && admin) {
@@ -1437,9 +1444,12 @@ CMD:aaa2(playerid, parmas[]) {
 CMD:acover(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 6) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 	if(strlen(playerInfo[playerid][pAdminCover]) > 0) {
+		SCMf(playerid, -1, "nume acover: %s", playerInfo[playerid][pAdminCover]);
 		SetPlayerName(playerid, playerInfo[playerid][pAdminCover]);
-		format(playerInfo[playerid][pName], MAX_PLAYER_NAME, playerInfo[playerid][pAdminCover]);
+		playerInfo[playerid][pName] = playerInfo[playerid][pAdminCover];
+		SCMf(playerid, -1, "nume dupa acoveroff (original): %s", playerInfo[playerid][pName]);
 		playerInfo[playerid][pAdminCover] = (EOS);
+		SCMf(playerid, -1, "variabila admin cover: %s", playerInfo[playerid][pAdminCover]);
 		sendAdmin(COLOR_SERVER, "* Notice: {ffffff}Admin %s s-a scos de sub acoperire.", getName(playerid));
 		va_PlayerTextDrawSetString(playerid, serverHud[0], "%s/RPG.BLACK~p~MOON~w~.RO", getName(playerid));
 		PlayerTextDrawShow(playerid, serverHud[0]);
@@ -1450,8 +1460,11 @@ CMD:acover(playerid, params[]) {
 	if(strmatch(name, "Vicentzo") || strmatch(name, "mr.bunny")) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti pune acest nume");
 	sendAdmin(COLOR_SERVER, "* Notice: {ffffff}Admin %s s-a pus sub acoperire cu numele de '%s'.", getName(playerid), name);
 	playerInfo[playerid][pAdminCover] = name;
+	SCMf(playerid, -1, "nume acover: %s", playerInfo[playerid][pAdminCover]);
 	SetPlayerName(playerid, name);
 	playerInfo[playerid][pName] = name;
+	SCMf(playerid, -1, "nume dupa acoveroff (original): %s", playerInfo[playerid][pName]);
+	SCMf(playerid, -1, "variabila admin cover: %s", playerInfo[playerid][pAdminCover]);
 	va_PlayerTextDrawSetString(playerid, serverHud[0], "%s/RPG.BLACK~p~MOON~w~.RO", getName(playerid));
 	PlayerTextDrawShow(playerid, serverHud[0]);
 	return true;
@@ -1516,6 +1529,18 @@ CMD:spec(playerid, params[]) {
 	return true;
 }
 
+CMD:specoff(playerid, params[]) {
+	if(!Iter_Contains(ServerHelpers, playerid) && !Iter_Contains(ServerAdmins, playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
+	if(playerInfo[playerid][pSpectate] == -1) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti spectator pe un jucator.");
+	SCMf(playerid, COLOR_SERVER, "* (Spectating): Nu mai esti spectator pe %s (%d).", getName(playerInfo[playerid][pSpectate]), playerInfo[playerid][pSpectate]);
+	TogglePlayerSpectating(playerid, 0);
+	stop spectator[playerid];
+	playerInfo[playerInfo[playerid][pSpectate]][pSpectate] = -1;
+	playerInfo[playerid][pSpectate] = -1;
+	PlayerTextDrawHide(playerid, specTD[playerid]);
+	return true;
+}
+
 timer TimerSpectator[1000](playerid) {
 	new Float:health, Float:armour, Float:healthv = -1;
 	GetPlayerHealthEx(playerInfo[playerid][pSpectate], health);
@@ -1523,6 +1548,6 @@ timer TimerSpectator[1000](playerid) {
 	if(IsPlayerInAnyVehicle(playerInfo[playerid][pSpectate])) GetVehicleHealth(GetPlayerVehicleID(playerInfo[playerid][pSpectate]), healthv);
 	if(GetPlayerInterior(playerid) != 0) SetPlayerInterior(playerid, GetPlayerInterior(playerInfo[playerid][pSpectate]));
    	if(GetPlayerVirtualWorld(playerid) != 0) SetPlayerVirtualWorld(playerid, GetPlayerVirtualWorld(playerInfo[playerid][pSpectate])); 
-	va_PlayerTextDrawSetString(playerid, specTD[playerid], "Nume:~p~%s (%d)~n~~w~Health:~p~%.2f~w~~n~Armour:~p~%.2f~w~~n~Vehicle:~p~%d~w~[Health:~p~%.2f~w~]Packet Loss:~p~%.2f~n~Device:~p~%s~w~ FPS:~p~%d~w~ Ping:~p~%d", getName(playerInfo[playerid][pSpectate]), playerInfo[playerid][pSpectate],  health, armour, IsPlayerInAnyVehicle(playerInfo[playerid][pSpectate]) ? GetPlayerVehicleID(playerInfo[playerid][pSpectate]) : -1, healthv > 0 ? healthv : 0.0, NetStats_PacketLossPercent(playerInfo[playerid][pSpectate]), playerInfo[playerInfo[playerid][pSpectate]][pFPS] > 1 ? "PC" : "Android", playerInfo[playerInfo[playerid][pSpectate]][pFPS], GetPlayerPing(playerInfo[playerid][pSpectate]));
+	va_PlayerTextDrawSetString(playerid, specTD[playerid], "Nume:~p~%s (%d)~n~~w~Health:~p~%.2f~w~~n~Armour:~p~%.2f~w~~n~Vehicle:~p~%d~w~[Health:~p~%.2f~w~]Packet Loss:~p~%.2f~w~~n~Device:~p~%s~w~ FPS:~p~%d~w~ Ping:~p~%d", getName(playerInfo[playerid][pSpectate]), playerInfo[playerid][pSpectate],  health, armour, IsPlayerInAnyVehicle(playerInfo[playerid][pSpectate]) ? GetPlayerVehicleID(playerInfo[playerid][pSpectate]) : -1, healthv > 0 ? healthv : 0.0, NetStats_PacketLossPercent(playerInfo[playerid][pSpectate]), playerInfo[playerInfo[playerid][pSpectate]][pFPS] > 1 ? "PC" : "Android", playerInfo[playerInfo[playerid][pSpectate]][pFPS], GetPlayerPing(playerInfo[playerid][pSpectate]));
 	return true;
 }

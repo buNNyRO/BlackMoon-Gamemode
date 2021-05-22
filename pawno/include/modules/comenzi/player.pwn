@@ -1214,11 +1214,6 @@ CMD:findbusiness(playerid, params[]) {
 	return true;
 }
 
-CMD:xnxx(playerid, params[]) {
-	printf("%d", GetPlayerCash(playerid));
-	return 1;
-}
-
 CMD:findhouse(playerid, params[]) {
 	if(playerInfo[playerid][pCheckpoint] != CHECKPOINT_NONE) return SCM(playerid, COLOR_ERROR, eERROR"Ai un checkpoint activ pe minimap.");
 	extract params -> new houseID; else return sendPlayerSyntax(playerid, "/findhouse <house id>");
