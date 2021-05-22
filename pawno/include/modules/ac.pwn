@@ -113,6 +113,6 @@ function acKicked(playerid, const motiv[]) {
     va_SendClientMessageToAll(COLOR_LIGHTRED, "(AC) %s a primit kick pentru '%s'.", getName(playerid), motiv);
     printf("(AC) %s a primit kick pentru '%s'.", getName(playerid), motiv);
     SendDiscordAC("%s a primit kick pentru **'%s'**", getName(playerid), motiv);
-    Kick(playerid);
+    //Kick(playerid);
     return 1;
 }

@@ -35,7 +35,7 @@ enum factionInfoEnum {
 	fMapIcon,
 	fPickup
 };
-new factionInfo[MAX_FACTIONS + 1][factionInfoEnum], Iterator:ServerFactions<MAX_FACTIONS + 1>, Iterator:FactionMembers[MAX_FACTIONS + 1]<MAX_FACTIONS + 1>, Iterator:Wanteds<MAX_PLAYERS>, fSkins[MAX_FACTIONS + 1][8], factionChat[10], Iterator:ServiceCalls[3]<MAX_PLAYERS>, MedicAcceptedCall[MAX_PLAYERS], TaxiAcceptedCall[MAX_PLAYERS], InstructorAcceptedCall[MAX_PLAYERS], invitedPlayer[MAX_PLAYERS], invitedByPlayer[MAX_PLAYERS], ticketPlayer[MAX_PLAYERS], ticketMoney[MAX_PLAYERS], vehicleFaction[MAX_VEHICLES], vehiclePlayerID[MAX_VEHICLES], vehicleRank[MAX_VEHICLES], playerVehicle[MAX_PLAYERS], svfVehicleObjects[2], WarSeconds[MAX_PLAYERS], Iterator:ServerWars<3>, bool:Undercover[MAX_PLAYERS];
+new factionInfo[MAX_FACTIONS + 1][factionInfoEnum], Iterator:ServerFactions<MAX_FACTIONS>, Iterator:FactionMembers[MAX_FACTIONS + 1]<MAX_FACTIONS + 1>, Iterator:Wanteds<MAX_PLAYERS>, fSkins[MAX_FACTIONS + 1][8], factionChat[10], Iterator:ServiceCalls[3]<MAX_PLAYERS>, MedicAcceptedCall[MAX_PLAYERS], TaxiAcceptedCall[MAX_PLAYERS], InstructorAcceptedCall[MAX_PLAYERS], invitedPlayer[MAX_PLAYERS], invitedByPlayer[MAX_PLAYERS], ticketPlayer[MAX_PLAYERS], ticketMoney[MAX_PLAYERS], vehicleFaction[MAX_VEHICLES], vehiclePlayerID[MAX_VEHICLES], vehicleRank[MAX_VEHICLES], playerVehicle[MAX_PLAYERS], svfVehicleObjects[2], WarSeconds[MAX_PLAYERS], Iterator:ServerWars<3>, bool:Undercover[MAX_PLAYERS];
 
 enum contractEnum {
 	cBy,
@@ -114,6 +114,7 @@ hook OnPlayerDeath(playerid, killerid, reason) {
    	    	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
    	    	contractInfo[playerInfo[killerid][pContractID]][cMoney] = -1;
    	    	contractInfo[playerInfo[killerid][pContractID]][cHitman] = -1;
+   	    	playerInfo[killerid][pContract] = -1;
    	    	playerInfo[killerid][pContractID] = -1;
    	    	return true;	
    	    }
@@ -125,6 +126,7 @@ hook OnPlayerDeath(playerid, killerid, reason) {
    	    	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
    	    	contractInfo[playerInfo[killerid][pContractID]][cMoney] = -1;
    	    	contractInfo[playerInfo[killerid][pContractID]][cHitman] = -1;
+   	    	playerInfo[killerid][pContract] = -1;
    	    	playerInfo[killerid][pContractID] = -1;
    	    	return true;
    	    }
@@ -139,6 +141,7 @@ hook OnPlayerDeath(playerid, killerid, reason) {
     	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
     	contractInfo[playerInfo[killerid][pContractID]][cMoney] = -1;
     	contractInfo[playerInfo[killerid][pContractID]][cHitman] = -1;
+    	playerInfo[killerid][pContract] = -1;
     	playerInfo[killerid][pContractID] = -1;   	
         return true;
 	}
@@ -348,37 +351,37 @@ function chasedBy(playerid) {
 
 function LoadFactions() {
 	if(!cache_num_rows()) return print("Factions: 0 [From Database]");
-	for(new i = 1, j = cache_num_rows() + 1; i != j; i++) {	
-		cache_get_value_name_int(i - 1, "ID", factionInfo[i][fID]);
-		cache_get_value_name_int(i - 1, "MinLevel", factionInfo[i][fMinLevel]);
-		cache_get_value_name_int(i - 1, "MaxMembers", factionInfo[i][fMaxMembers]);
-		cache_get_value_name_int(i - 1, "Interior", factionInfo[i][fInterior]);
-		cache_get_value_name_int(i - 1, "Type", factionInfo[i][fType]);
-		cache_get_value_name_int(i - 1, "MapIconType", factionInfo[i][fMapIconType]);
-		cache_get_value_name_int(i - 1, "Apps", factionInfo[i][fApps]);
-		cache_get_value_name_int(i - 1, "Locked", factionInfo[i][fLocked]);
-		cache_get_value_name(i - 1, "Name", factionInfo[i][fName]);
-		cache_get_value_name(i - 1, "Motd", factionInfo[i][fMotd]);
-		cache_get_value_name_float(i - 1, "X", factionInfo[i][fEnterX]);
-		cache_get_value_name_float(i - 1, "Y", factionInfo[i][fEnterY]);
-		cache_get_value_name_float(i - 1, "Z", factionInfo[i][fEnterZ]);
-		cache_get_value_name_float(i - 1, "ExtX", factionInfo[i][fExitX]);
-		cache_get_value_name_float(i - 1, "ExtY", factionInfo[i][fExitY]);
-		cache_get_value_name_float(i - 1, "ExtZ", factionInfo[i][fExitZ]);
-		cache_get_value_name_int(i - 1, "SkinRank1", fSkins[factionInfo[i][fID]][2]);
-		cache_get_value_name_int(i - 1, "SkinRank2", fSkins[factionInfo[i][fID]][2]);
-		cache_get_value_name_int(i - 1, "SkinRank3", fSkins[factionInfo[i][fID]][3]);
-		cache_get_value_name_int(i - 1, "SkinRank4", fSkins[factionInfo[i][fID]][4]);
-		cache_get_value_name_int(i - 1, "SkinRank5", fSkins[factionInfo[i][fID]][5]);
-		cache_get_value_name_int(i - 1, "SkinRank6", fSkins[factionInfo[i][fID]][6]);
-		cache_get_value_name_int(i - 1, "SkinRank7", fSkins[factionInfo[i][fID]][7]);
-		cache_get_value_name_int(i - 1, "Commands1", factionInfo[i][fCommands][0]);
-		cache_get_value_name_int(i - 1, "Commands2", factionInfo[i][fCommands][1]);
-		cache_get_value_name_int(i - 1, "Commands3", factionInfo[i][fCommands][2]);
-		cache_get_value_name_int(i - 1, "Commands4", factionInfo[i][fCommands][3]);
-		cache_get_value_name_int(i - 1, "Commands5", factionInfo[i][fCommands][4]);
-		cache_get_value_name_int(i - 1, "Commands6", factionInfo[i][fCommands][6]);
-		cache_get_value_name_int(i - 1, "Commands7", factionInfo[i][fCommands][7]);
+	for(new i = 0; i < cache_num_rows(); i++) {	
+		cache_get_value_name_int(i, "ID", factionInfo[i][fID]);
+		cache_get_value_name_int(i, "MinLevel", factionInfo[i][fMinLevel]);
+		cache_get_value_name_int(i, "MaxMembers", factionInfo[i][fMaxMembers]);
+		cache_get_value_name_int(i, "Interior", factionInfo[i][fInterior]);
+		cache_get_value_name_int(i, "Type", factionInfo[i][fType]);
+		cache_get_value_name_int(i, "MapIconType", factionInfo[i][fMapIconType]);
+		cache_get_value_name_int(i, "Apps", factionInfo[i][fApps]);
+		cache_get_value_name_int(i, "Locked", factionInfo[i][fLocked]);
+		cache_get_value_name(i, "Name", factionInfo[i][fName]);
+		cache_get_value_name(i, "Motd", factionInfo[i][fMotd]);
+		cache_get_value_name_float(i, "X", factionInfo[i][fEnterX]);
+		cache_get_value_name_float(i, "Y", factionInfo[i][fEnterY]);
+		cache_get_value_name_float(i, "Z", factionInfo[i][fEnterZ]);
+		cache_get_value_name_float(i, "ExtX", factionInfo[i][fExitX]);
+		cache_get_value_name_float(i, "ExtY", factionInfo[i][fExitY]);
+		cache_get_value_name_float(i, "ExtZ", factionInfo[i][fExitZ]);
+		cache_get_value_name_int(i, "SkinRank1", fSkins[factionInfo[i][fID]][2]);
+		cache_get_value_name_int(i, "SkinRank2", fSkins[factionInfo[i][fID]][2]);
+		cache_get_value_name_int(i, "SkinRank3", fSkins[factionInfo[i][fID]][3]);
+		cache_get_value_name_int(i, "SkinRank4", fSkins[factionInfo[i][fID]][4]);
+		cache_get_value_name_int(i, "SkinRank5", fSkins[factionInfo[i][fID]][5]);
+		cache_get_value_name_int(i, "SkinRank6", fSkins[factionInfo[i][fID]][6]);
+		cache_get_value_name_int(i, "SkinRank7", fSkins[factionInfo[i][fID]][7]);
+		cache_get_value_name_int(i, "Commands1", factionInfo[i][fCommands][0]);
+		cache_get_value_name_int(i, "Commands2", factionInfo[i][fCommands][1]);
+		cache_get_value_name_int(i, "Commands3", factionInfo[i][fCommands][2]);
+		cache_get_value_name_int(i, "Commands4", factionInfo[i][fCommands][3]);
+		cache_get_value_name_int(i, "Commands5", factionInfo[i][fCommands][4]);
+		cache_get_value_name_int(i, "Commands6", factionInfo[i][fCommands][6]);
+		cache_get_value_name_int(i, "Commands7", factionInfo[i][fCommands][7]);
 
 		Iter_Add(ServerFactions, i);
 
@@ -393,10 +396,11 @@ function LoadFactions() {
 }
 
 function whenPlayerLeaveFaction(playerid) {
-	playerInfo[playerid][pSkin] = 250;
+	if(playerInfo[playerid][pGender] == FEMALE_GENDER) playerInfo[playerid][pSkin] = 12;
+	else playerInfo[playerid][pSkin] = 250;
 	playerInfo[playerid][pSpawnChange] = 1;
-	SetPlayerSkin(playerid, 250);
-	update("UPDATE `server_users` SET `Skin` = '250', `SpawnChange` = '1' WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
+	SetPlayerSkin(playerid, playerInfo[playerid][pSkin]);
+	update("UPDATE `server_users` SET `Skin` = '%d', `SpawnChange` = '1' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pSkin], playerInfo[playerid][pSQLID]);
 	SpawnPlayerEx(playerid);
 	SetPlayerToFactionColor(playerid);
 	return true;
@@ -526,12 +530,9 @@ CMD:auninvite(playerid, params[]) {
 		if(IsValidObject(svfVehicleObjects[1])) DestroyObject(svfVehicleObjects[1]);
 	}
 	if(playerInfo[targetid][pContractID] > -1) {
-		sendFactionMessage(10, COLOR_LIMEGREEN, "* Deoarece %s (%d) nu mai este in factiune contractul plasat de %s (%d) pe %s (%d) in valoare de %s$ s-a sters.", getName(targetid), targetid, getName(contractInfo[playerInfo[targetid][pContractID]][cBy]), contractInfo[playerInfo[targetid][pContractID]][cBy], getName(contractInfo[playerInfo[targetid][pContractID]][cFor]), contractInfo[playerInfo[targetid][pContractID]][cFor], formatNumber(contractInfo[playerInfo[targetid][pContractID]][cMoney]));
-		Iter_Remove(ServerContracts, playerInfo[targetid][pContractID]);
-    	contractInfo[playerInfo[targetid][pContractID]][cBy] = -1;
-    	contractInfo[playerInfo[targetid][pContractID]][cFor] = -1;
-    	contractInfo[playerInfo[targetid][pContractID]][cMoney] = -1;
+		sendFactionMessage(10, COLOR_LIMEGREEN, "* Deoarece %s (%d) nu mai este in factiune contractul plasat de %s (%d) pe %s (%d) in valoare de %s$ este valabil.", getName(targetid), targetid, getName(contractInfo[playerInfo[targetid][pContractID]][cBy]), contractInfo[playerInfo[targetid][pContractID]][cBy], getName(contractInfo[playerInfo[targetid][pContractID]][cFor]), contractInfo[playerInfo[targetid][pContractID]][cFor], formatNumber(contractInfo[playerInfo[targetid][pContractID]][cMoney]));
     	contractInfo[playerInfo[targetid][pContractID]][cHitman] = -1;
+    	playerInfo[targetid][pContract] = -1;
     	playerInfo[targetid][pContractID] = -1;   	
     }
 	Iter_Remove(FactionMembers[playerInfo[targetid][pFaction]], targetid);
@@ -588,7 +589,7 @@ CMD:blockf(playerid, params[]) {
 CMD:f(playerid, params[]) {
 	if(playerInfo[playerid][pFaction] == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai vreo factiune.");
 	if(factionChat[playerInfo[playerid][pFaction]] == 1 && playerInfo[playerid][pFactionRank] < 6) return SCM(playerid, COLOR_ERROR, eERROR"Chatul factiunii a fost oprit.");
-	if(Iter_Contains(FactionMembers[2], playerid) || Iter_Contains(FactionMembers[3], playerid) || Iter_Contains(FactionMembers[4], playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Pentru a scrie pe chatul factiunii, foloseste comanda '/r'");
+	if(Iter_Contains(FactionMembers[1], playerid) || Iter_Contains(FactionMembers[2], playerid) || Iter_Contains(FactionMembers[3], playerid) || Iter_Contains(FactionMembers[4], playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Pentru a scrie pe chatul factiunii, foloseste comanda '/r'");
 	extract params -> new string:result[250]; else return sendPlayerSyntax(playerid, "/f <text>");
 	if(faceReclama(result)) return removeFunction(playerid, result);
     if(faceReclama(result)) return Reclama(playerid, result);
@@ -602,7 +603,7 @@ CMD:f(playerid, params[]) {
 
 CMD:r(playerid, params[]) {
 	if(playerInfo[playerid][pFaction] == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai vreo factiune.");
-	if(Iter_Contains(FactionMembers[1], playerid) || Iter_Contains(FactionMembers[5], playerid) || Iter_Contains(FactionMembers[6], playerid) || Iter_Contains(FactionMembers[7], playerid) || Iter_Contains(FactionMembers[8], playerid) || Iter_Contains(FactionMembers[9], playerid) || Iter_Contains(FactionMembers[10], playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Pentru a scrie pe chatul factiunii, foloseste comanda '/f'");
+	if(Iter_Contains(FactionMembers[5], playerid) || Iter_Contains(FactionMembers[6], playerid) || Iter_Contains(FactionMembers[7], playerid) || Iter_Contains(FactionMembers[8], playerid) || Iter_Contains(FactionMembers[9], playerid) || Iter_Contains(FactionMembers[10], playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Pentru a scrie pe chatul factiunii, foloseste comanda '/f'");
 	if(factionChat[playerInfo[playerid][pFaction]] == 1 && playerInfo[playerid][pFactionRank] < 6) return SCM(playerid, COLOR_ERROR, eERROR"Chatul factiunii a fost oprit.");
 	extract params -> new string:result[250]; else return sendPlayerSyntax(playerid, "/r <text>");
 	if(faceReclama(result)) return removeFunction(playerid, result);
@@ -617,13 +618,14 @@ CMD:r(playerid, params[]) {
 
 CMD:d(playerid, params[]) {
 	if(playerInfo[playerid][pFaction] == 0 || playerInfo[playerid][pAdmin] == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai vreo factiune.");
-	if(Iter_Contains(FactionMembers[1], playerid) || Iter_Contains(FactionMembers[5], playerid) || Iter_Contains(FactionMembers[6], playerid) || Iter_Contains(FactionMembers[7], playerid) || Iter_Contains(FactionMembers[8], playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Pentru a folosi aceasta comanda, trebuie sa fii intr-un departament.");
+	if(Iter_Contains(FactionMembers[5], playerid) || Iter_Contains(FactionMembers[6], playerid) || Iter_Contains(FactionMembers[7], playerid) || Iter_Contains(FactionMembers[8], playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Pentru a folosi aceasta comanda, trebuie sa fii intr-un departament.");
 	extract params -> new string:result[144]; else return sendPlayerSyntax(playerid, "/d <text>");
 	if(faceReclama(result)) return removeFunction(playerid, result);
     if(faceReclama(result)) return Reclama(playerid, result);
 	sendFactionMessage(1, COLOR_LIGHTRED, "* (%s) %s: %s, over", playerInfo[playerid][pAdmin] > 0 ? "Admin" : factionName(playerInfo[playerid][pFaction]), getName(playerid), result);
 	sendFactionMessage(2, COLOR_LIGHTRED, "* (%s) %s: %s, over", playerInfo[playerid][pAdmin] > 0 ? "Admin" : factionName(playerInfo[playerid][pFaction]), getName(playerid), result);
 	sendFactionMessage(3, COLOR_LIGHTRED, "* (%s) %s: %s, over", playerInfo[playerid][pAdmin] > 0 ? "Admin" : factionName(playerInfo[playerid][pFaction]), getName(playerid), result);
+	sendFactionMessage(4, COLOR_LIGHTRED, "* (%s) %s: %s, over", playerInfo[playerid][pAdmin] > 0 ? "Admin" : factionName(playerInfo[playerid][pFaction]), getName(playerid), result);
 	SetPlayerChatBubble(playerid, string_fast("'%s'", result), COLOR_LIGHTRED, 25.0, 5000);
 	return true;
 }
@@ -730,11 +732,9 @@ CMD:invite(playerid, params[]) {
 	if(playerInfo[userID][pFaction] > 0) return SCM(playerid, COLOR_ERROR, eERROR"Acel player are deja o factiune.");
 	invitedPlayer[playerid] = userID;
 	invitedByPlayer[userID] = playerid;
-	gString[0] = (EOS);
-	va_format(gString, sizeof(gString), "{32CD32}*{ffffff} Ai invitat pe {32CD32}'%s'{ffffff} (%d) in factiunea ta {32CD32}'%s'{ffffff}. Motiv: %s.", getName(userID), userID, factionName(playerInfo[playerid][pFaction]), reason);
-	sendSplitMessage(playerid, COLOR_WHITE, gString);
-	SCMf(userID, COLOR_WHITE, "{32CD32}*{ffffff} Ai fost invitat de {32CD32}'%s'{ffffff} (%d) in factiunea lui {32CD32}'%s'{ffffff}. Motiv: %s.", getName(playerid), playerid, factionName(playerInfo[playerid][pFaction]), reason);
-	SCMf(userID, COLOR_WHITE, "{32CD32}*{ffffff} Pentru a accepta invitatia tasteaza /accept invite %d.", playerid);
+	sendSplitMessage(playerid, COLOR_SERVER, string_fast("(*) {ffffff}Ai invitat pe '%s' (%d) in factiunea ta '%s'. Motiv: %s.", getName(userID), userID, factionName(playerInfo[playerid][pFaction]), reason));
+	SCMf(userID, COLOR_SERVER, "(*) {ffffff}Ai fost invitat de '%s' (%d) in factiunea lui '%s'. Motiv: %s.", getName(playerid), playerid, factionName(playerInfo[playerid][pFaction]), reason);
+	SCMf(userID, COLOR_SERVER, "(*) {ffffff}Pentru a accepta invitatia tasteaza /accept invite %d.", playerid);
 	SetPVarInt(playerid, "inviteDeelay", gettime() + 5);
 	return true;
 }
@@ -1057,12 +1057,9 @@ Dialog:DIALOG_MEMBERS2(playerid, response, listitem) {
 						if(IsValidObject(svfVehicleObjects[1])) DestroyObject(svfVehicleObjects[1]);
 					}
 					if(playerInfo[userID][pContractID] > -1) {
-						sendFactionMessage(10, COLOR_LIMEGREEN, "* Deoarece %s (%d) nu mai este in factiune contractul plasat de %s (%d) pe %s (%d) in valoare de %s$ s-a sters.", getName(userID), userID, getName(contractInfo[playerInfo[userID][pContractID]][cBy]), contractInfo[playerInfo[userID][pContractID]][cBy], getName(contractInfo[playerInfo[userID][pContractID]][cFor]), contractInfo[playerInfo[userID][pContractID]][cFor], formatNumber(contractInfo[playerInfo[userID][pContractID]][cMoney]));
-						Iter_Remove(ServerContracts, playerInfo[userID][pContractID]);
-				    	contractInfo[playerInfo[userID][pContractID]][cBy] = -1;
-				    	contractInfo[playerInfo[userID][pContractID]][cFor] = -1;
-				    	contractInfo[playerInfo[userID][pContractID]][cMoney] = -1;
-				    	contractInfo[playerInfo[userID][pContractID]][cHitman] = -1;
+						sendFactionMessage(10, COLOR_LIMEGREEN, "* Deoarece %s (%d) nu mai este in factiune contractul plasat de %s (%d) pe %s (%d) in valoare de %s$ este valabil.", getName(userID), userID, getName(contractInfo[playerInfo[userID][pContractID]][cBy]), contractInfo[playerInfo[userID][pContractID]][cBy], getName(contractInfo[playerInfo[userID][pContractID]][cFor]), contractInfo[playerInfo[userID][pContractID]][cFor], formatNumber(contractInfo[playerInfo[userID][pContractID]][cMoney]));
+						contractInfo[playerInfo[userID][pContractID]][cHitman] = -1;
+						playerInfo[userID][pContract] = -1;
 				    	playerInfo[userID][pContractID] = -1;   	
 				    }
 					playerInfo[userID][pFactionWarns] = 0;	
@@ -1137,12 +1134,9 @@ Dialog:DIALOG_MEMBERSUINV2(playerid, response, inputtext[]) {
 			if(IsValidObject(svfVehicleObjects[1])) DestroyObject(svfVehicleObjects[1]);
 		}
 		if(playerInfo[userID][pContractID] > -1) {
-			sendFactionMessage(10, COLOR_LIMEGREEN, "* Deoarece %s (%d) nu mai este in factiune contractul plasat de %s (%d) pe %s (%d) in valoare de %s$ s-a sters.", getName(userID), userID, getName(contractInfo[playerInfo[userID][pContractID]][cBy]), contractInfo[playerInfo[userID][pContractID]][cBy], getName(contractInfo[playerInfo[userID][pContractID]][cFor]), contractInfo[playerInfo[userID][pContractID]][cFor], formatNumber(contractInfo[playerInfo[userID][pContractID]][cMoney]));
-			Iter_Remove(ServerContracts, playerInfo[userID][pContractID]);
-	    	contractInfo[playerInfo[userID][pContractID]][cBy] = -1;
-	    	contractInfo[playerInfo[userID][pContractID]][cFor] = -1;
-	    	contractInfo[playerInfo[userID][pContractID]][cMoney] = -1;
+			sendFactionMessage(10, COLOR_LIMEGREEN, "* Deoarece %s (%d) nu mai este in factiune contractul plasat de %s (%d) pe %s (%d) in valoare de %s$ este valabil.", getName(userID), userID, getName(contractInfo[playerInfo[userID][pContractID]][cBy]), contractInfo[playerInfo[userID][pContractID]][cBy], getName(contractInfo[playerInfo[userID][pContractID]][cFor]), contractInfo[playerInfo[userID][pContractID]][cFor], formatNumber(contractInfo[playerInfo[userID][pContractID]][cMoney]));
 	    	contractInfo[playerInfo[userID][pContractID]][cHitman] = -1;
+	    	playerInfo[userID][pContract] = -1;
 	    	playerInfo[userID][pContractID] = -1;   	
 	    }
 		playerInfo[userID][pFactionWarns] = 0;	
@@ -1547,6 +1541,7 @@ timer TimerWar[1000](i) {
 }
 
 CMD:contract(playerid, params[]) {
+	if(Iter_Contains(FactionMembers[10], playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu accesa aceasta comanda, deoarece faci parte din factiunea 'Hitman Agency'.");
 	if(playerInfo[playerid][pLevel] < 3) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti depune un contract deoarece nu ai level 3+.");
 	extract params -> new player:userID, money; else return sendPlayerSyntax(playerid, "/contract <name/id> <money>");
 	if(userID == playerid) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda asupra ta.");
@@ -1554,6 +1549,7 @@ CMD:contract(playerid, params[]) {
 	if(Iter_Contains(FactionMembers[10], userID)) return SCM(playerid, COLOR_ERROR, eERROR"Acel jucator face parte din factiunea 'Hitman Agency'.");
 	if(!(100000 <= money <= 1000000)) return SCM(playerid, COLOR_ERROR, eERROR"Invalid money (100,000$ - $1,000,000).");
 	if(!PlayerMoney(playerid, money)) return SCMf(playerid, COLOR_ERROR, eERROR"Nu ai $%s pentru a depune acest contract.", formatNumber(money));
+	if(Iter_Count(FactionMembers[10]) <= Iter_Count(ServerContracts)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti pune mai multe contracte decat hitmani.");
 	if(Iter_Count(ServerContracts) == MAX_CONTRACTS) return SCM(playerid, COLOR_ERROR, eERROR"Nu se pot depune contracte momentan deoarece s-a atins limita pentru contracte.");
 	new id = Iter_Free(ServerContracts);
 	Iter_Add(ServerContracts, id);
@@ -1601,11 +1597,8 @@ CMD:cancelhit(playerid, params[]) {
 	extract params -> new string:reason[32]; else return sendPlayerSyntax(playerid, "/cancelhit <reason>");
 	if(strlen(reason) < 1 || strlen(reason) > 32) return SCM(playerid, COLOR_ERROR, eERROR"Invalid reason, min. 1 caracter max. 32 caractere.");
 	sendFactionMessage(10, COLOR_LIMEGREEN, "* %s (%d) a renuntat la contractul plasat de %s (%d) pe %s (%d) in valoare de %s$, motiv: %s.", getName(playerid), playerid, getName(contractInfo[playerInfo[playerid][pContractID]][cBy]), contractInfo[playerInfo[playerid][pContractID]][cBy], getName(contractInfo[playerInfo[playerid][pContractID]][cFor]), contractInfo[playerInfo[playerid][pContractID]][cFor], formatNumber(contractInfo[playerInfo[playerid][pContractID]][cMoney]), reason);
-	Iter_Remove(ServerContracts, playerInfo[playerid][pContractID]);
-	contractInfo[playerInfo[playerid][pContractID]][cBy] = -1;
-	contractInfo[playerInfo[playerid][pContractID]][cFor] = -1;
-	contractInfo[playerInfo[playerid][pContractID]][cMoney] = -1;
 	contractInfo[playerInfo[playerid][pContractID]][cHitman] = -1;
+	playerInfo[playerid][pContract] = -1;
 	playerInfo[playerid][pContractID] = -1;
 	return true;
 }
@@ -1632,35 +1625,35 @@ CMD:svf(playerid, params[]) {
 	if(!playerInfo[playerid][pFaction]) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda, deoarece nu esti intr-o factiune.");
 	if(Iter_Contains(FactionMembers[2], playerid) || Iter_Contains(FactionMembers[3], playerid) || Iter_Contains(FactionMembers[4], playerid) && playerInfo[playerid][pFactionDuty] == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda, deoarece nu esti la datorie.");
 	if(playerVehicle[playerid] != -1) return SCM(playerid, COLOR_ERROR, eERROR"Ai deja un vehicul de factiune spawnat.");
-	new szDialog[256];
-	strcat(szDialog, "Vehicle\tRank\n");
+	gString[0] = (EOS); 
+	strcat(gString, "Vehicle\tRank\n");
 	switch(playerInfo[playerid][pFaction]) {
 		case 1: {
-			strcat(szDialog, "Ambulance\tRank 1\nRancher\t Rank 2\n");
+			strcat(gString, "Ambulance\tRank 1\nRancher\t Rank 2\n");
 		}
 		case 2..4: {
- 			strcat(szDialog, "Police Car\tRank 1\nRancher\tRank 1\nInfernus\tRank 2\n");
+ 			strcat(gString, "Police Car\tRank 1\nRancher\tRank 1\nInfernus\tRank 2\n");
 		}
 		case 5: {
-			strcat(szDialog, "Taxi\tRank 1\nSultan\tRank 2\n"); 
+			strcat(gString, "Taxi\tRank 1\nSultan\tRank 2\n"); 
 		}
 		case 6: {
-			strcat(szDialog, "Merit\t Rank 1\nSultan\tRank 2\n");
+			strcat(gString, "Merit\t Rank 1\nSultan\tRank 2\n");
 		}
 		case 7: {
-			strcat(szDialog, "News Van\t Rank 1\nNews Helicopter\tRank 2\n");
+			strcat(gString, "News Van\t Rank 1\nNews Helicopter\tRank 2\n");
 		}
 		case 8: {
-			strcat(szDialog, "Savana\tRank 1\nHuntley\tRank 2\nSultan\tRank 3\n");
+			strcat(gString, "Savana\tRank 1\nHuntley\tRank 2\nSultan\tRank 3\n");
 		}
 		case 9: {
-			strcat(szDialog, "Savana\tRank 1\nHuntley\tRank 2\nSultan\tRank 3\n");
+			strcat(gString, "Savana\tRank 1\nHuntley\tRank 2\nSultan\tRank 3\n");
 		}
 		case 10: {
-			strcat(szDialog, "Buffalo\tRank 1\nHelicopter\tRank 1\nSultan\tRank 2\n");
+			strcat(gString, "Buffalo\tRank 1\nHelicopter\tRank 1\nSultan\tRank 2\n");
 		}
 	}
-	Dialog_Show(playerid, DIALOG_SVF, DIALOG_STYLE_TABLIST_HEADERS, "Spawn Vehicle Faction", szDialog, "Select", "Cancel");
+	Dialog_Show(playerid, DIALOG_SVF, DIALOG_STYLE_TABLIST_HEADERS, "Spawn Vehicle Faction", gString, "Select", "Cancel");
 	return true;
 }
 

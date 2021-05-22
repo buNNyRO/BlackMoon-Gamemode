@@ -37,6 +37,7 @@ function showEmail(playerid, id) {
 	cache_get_value_name(id, "Text", text, 144);
 	cache_get_value_name(id, "From", from, MAX_PLAYER_NAME);
 	cache_get_value_name(id, "Date", date, 30);	
+	SCMf(playerid, -1, "id %d , %s, %s, %s", id, text, from, date);
 	Dialog_Show(playerid, DIALOG_EMAIL2, DIALOG_STYLE_MSGBOX, "Email Reading", "%s\nFrom: %s\nDate: %s","Ok", "", text, from, date);
 	return true;
 }

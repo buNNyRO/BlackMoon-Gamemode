@@ -190,6 +190,19 @@ public OnPlayerDisconnect(playerid, reason)
 		sendClanMessage(playerInfo[playerid][pClan], clanInfo[playerInfo[playerid][pClan]][cClanColor], "** MoonBot: {ffffff}%s s-a deconnectat de pe server.", getName(playerid));
 	}
 
+	if(playerInfo[playerid][pContractID] > -1) {
+		sendFactionMessage(10, COLOR_LIMEGREEN, "* Deoarece %s (%d) a iesit de pe server contractul plasat de %s (%d) pe %s (%d) in valoare de %s$ este valabil.", getName(playerid), playerid, getName(contractInfo[playerInfo[playerid][pContractID]][cBy]), contractInfo[playerInfo[playerid][pContractID]][cBy], getName(contractInfo[playerInfo[playerid][pContractID]][cFor]), contractInfo[playerInfo[playerid][pContractID]][cFor], formatNumber(contractInfo[playerInfo[playerid][pContractID]][cMoney]));
+		contractInfo[playerInfo[playerid][pContractID]][cHitman] = -1; 	
+    }
+
+    if(playerInfo[playerid][pSpectate] > -1) {
+		TogglePlayerSpectating(playerInfo[playerid][pSpectate], 0);
+		stop spectator[playerInfo[playerid][pSpectate]];
+		playerInfo[playerInfo[playerid][pSpectate]][pSpectate] = -1;
+		PlayerTextDrawHide(playerid, specTD[playerInfo[playerid][pSpectate]]);
+		SCMf(playerInfo[playerid][pSpectate], COLOR_SERVER, "* (Spectating): Deoarece %s (%d) s-a deconnectat, nu mai esti spectator pe el.", getName(playerid), playerid);
+    }
+
 	foreach(new x : Reports) {
 		if(reportInfo[x][reportID] == playerid) {
 			sendAdmin(COLOR_SERVER, "Notice Report: {ffffff}Report-ul lui %s a fost anulat automat, deoarece s-a deconectat.", getName(playerid));
@@ -657,7 +670,8 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 			SetVehicleParamsEx(GetPlayerVehicleID(playerid), engine, lights, alarm, doors, VEHICLE_PARAMS_ON, boot, objective);
 		}
 	}
-	if(PRESSED(KEY_NO)) callcmd::lock(playerid, "\1");
+	if(PRESSED(KEY_NO)) callcmd::lock(playerid, "\1"); 
+	if(PRESSED(KEY_WALK)) callcmd::specoff(playerid, "\1");
 	if(PRESSED(KEY_CROUCH)) {
 		if(Iter_Contains(FactionMembers[2], playerid) || Iter_Contains(FactionMembers[3], playerid) || Iter_Contains(FactionMembers[4], playerid)) {
 			if(IsPlayerInRangeOfPoint(playerid, 15.0, 1542.2355, -1628.0953, 13.4154)) {

@@ -27,7 +27,7 @@ enum businessInfoEnum {
 	bizPickup,
 	bizArea
 };
-new bizInfo[MAX_BUSINESSES + 1][businessInfoEnum], Iterator:ServerBusinesses<MAX_BUSINESSES + 1>, Iterator:ServerAds<MAX_PLAYERS>;
+new bizInfo[MAX_BUSINESSES + 1][businessInfoEnum], Iterator:ServerBusinesses<MAX_BUSINESSES + 1>, Iterator:ServerAds<MAX_PLAYERS>, Timer:adTimer[MAX_PLAYERS];
 
 hook OnGameModeInit() {
 	Iter_Init(ServerBusinesses);
@@ -39,8 +39,9 @@ hook OnPlayerConnect(playerid) {
 	return true;
 }
 
-timer advertismentTimer[Iter_Count(ServerAds) * 60000](playerid) {
-	sendSplitMessage(playerid, COLOR_SERVER, string_fast("Advertisment by {ffffff}%s{cc66ff}(phone: {ffffff}%d{cc66ff}): '{ffffff}%s{cc66ff}'", getName(playerid), playerInfo[playerid][pPhone], playerInfo[playerid][pAdText]));
+timer advertismentTimer[Iter_Count(ServerAds)+1 * 60000](playerid) {
+	sendSplitMessage(playerid, COLOR_LAWNGREEN, string_fast("Advertisment by {ffffff}%s{7CFC00}(phone: {ffffff}%d{7CFC00}): '{ffffff}%s{7CFC00}'", getName(playerid), playerInfo[playerid][pPhone], playerInfo[playerid][pAdText]));
+	stop adTimer[playerid];
 	switch(MYSQL) {
 		case 1: {
 			if (_:MoonBot == 0) MoonBot = DCC_FindChannelById("842858866973737020");
@@ -453,7 +454,7 @@ CMD:ad(playerid, params[]) {
 	format(playerInfo[playerid][pAdText], 256, params);
 	sendStaff(COLOR_SERVER, "(Ad Preview): {ffffff}Ad by %s (%d): %s", getName(playerid), playerInfo[playerid][pPhone], params);
 	va_GameTextForPlayer(playerid, "Ai platit ~p~$%s~w~~n~Mesajul contine: ~p~%d~w~ caractere~n~Acesta va fi afisat in ~p~%s", 10000, 5, formatNumber(bizInfo[3][bizFee]), strlen(params), secinmin(Iter_Count(ServerAds) * 60));
-	defer advertismentTimer(playerid);
+	adTimer[playerid] = defer advertismentTimer(playerid);
 	Iter_Add(ServerAds, playerid);
 	GivePlayerCash(playerid, 0, bizInfo[3][bizFee]);
 	bizInfo[3][bizBalance] += bizInfo[3][bizFee];
@@ -470,7 +471,7 @@ CMD:myad(playerid, params[]) {
 CMD:deletemyad(playerid, params[]) {
 	if(strlen(playerInfo[playerid][pAdText]) == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai un advertisment pus.");
 	playerInfo[playerid][pAdText] = (EOS);
-	stop advertismentTimer(playerid);
+	stop adTimer[playerid];
 	Iter_Remove(ServerAds, playerid);
 	SCM(playerid, COLOR_SERVER, "* (Advertisment): {ffffff}Advertisment-ul tau a fost sters.");
 	return true;

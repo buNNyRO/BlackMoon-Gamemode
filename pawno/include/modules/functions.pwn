@@ -714,6 +714,13 @@ function removeFunction(playerid, text[]) {
 			StopFly(playerid);
 			SetPlayerHealthEx(playerid, 100);
 		}
+		if(playerInfo[playerid][pSpectate] > -1) {
+			TogglePlayerSpectating(playerid, 0);
+			stop spectator[playerid];
+			playerInfo[playerInfo[playerid][pSpectate]][pSpectate] = -1;
+			playerInfo[playerid][pSpectate] = -1;
+			PlayerTextDrawHide(playerid, specTD[playerid]);
+		}
 		sendStaff(COLOR_LIGHTRED, "* Remove Notice: %s a facut reclama folosind intermediul functiei. Acesta a luat remove automat.", getName(playerid));
 		sendStaff(COLOR_LIGHTRED, "* Remove Notice: Text '%s'.", text);
 	}
@@ -731,7 +738,6 @@ function removeFunction(playerid, text[]) {
 	}
 	if(playerInfo[playerid][pFaction] != 0 && playerInfo[playerid][pFactionRank] == 7) {
 		if(playerVehicle[playerid] != -1) {
-			sendFactionMessage(playerInfo[playerid][pFaction], COLOR_LIMEGREEN, "(*) %s a fost scos din factiune de admin AdmBot, iar vehiculul spawnat de el a fost distrus.", getName(playerid));
 			DestroyVehicle(playerVehicle[playerid]); 
 			vehicleFaction[playerVehicle[playerid]] = 0;  
 			vehiclePlayerID[playerVehicle[playerid]] = -1;
@@ -740,6 +746,11 @@ function removeFunction(playerid, text[]) {
 			if(IsValidObject(svfVehicleObjects[0])) DestroyObject(svfVehicleObjects[0]); 
 			if(IsValidObject(svfVehicleObjects[1])) DestroyObject(svfVehicleObjects[1]);
 		}
+		if(playerInfo[playerid][pContractID] > -1) {
+			sendFactionMessage(10, COLOR_LIMEGREEN, "* Deoarece %s (%d) nu mai este in factiune contractul plasat de %s (%d) pe %s (%d) in valoare de %s$ s-a sters.", getName(playerid), playerid, getName(contractInfo[playerInfo[playerid][pContractID]][cBy]), contractInfo[playerInfo[playerid][pContractID]][cBy], getName(contractInfo[playerInfo[playerid][pContractID]][cFor]), contractInfo[playerInfo[playerid][pContractID]][cFor], formatNumber(contractInfo[playerInfo[playerid][pContractID]][cMoney]));
+	    	contractInfo[playerInfo[playerid][pContractID]][cHitman] = -1;
+	    	playerInfo[playerid][pContractID] = -1;   	
+	    }
 		playerInfo[playerid][pFaction] = 0;
 		playerInfo[playerid][pFactionRank] = 0;
 		playerInfo[playerid][pFactionAge] = 0;
