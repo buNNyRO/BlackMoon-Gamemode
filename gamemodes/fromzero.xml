@@ -461,13 +461,15 @@
 			<member name="C:cTotal" value="428">
 			</member>
 		</member>
-		<member name="T:contractEnum" value="3">
+		<member name="T:contractEnum" value="4">
 			<tagname value="contractEnum"/>
 			<member name="C:cBy" value="0">
 			</member>
 			<member name="C:cFor" value="1">
 			</member>
 			<member name="C:cMoney" value="2">
+			</member>
+			<member name="C:cHitman" value="3">
 			</member>
 		</member>
 		<member name="T:dInfo" value="4">
@@ -583,25 +585,25 @@
 				<tagname value="Float"/>
 			</member>
 		</member>
-		<member name="T:enumAC" value="11">
+		<member name="T:enumAC" value="10">
 			<tagname value="enumAC"/>
 			<member name="C:acTime" value="0">
 			</member>
 			<member name="C:acTimeCrash" value="1">
 			</member>
-			<member name="C:acVelocity" value="2">
+			<member name="C:acSpawnTime" value="2">
+			</member>
+			<member name="C:acCPTime" value="3">
+			</member>
+			<member name="C:acVelocity" value="4">
 				<tagname value="Float"/>
 				<size value="3"/>
 			</member>
-			<member name="C:acvehPos" value="5">
-				<tagname value="Float"/>
-				<size value="3"/>
+			<member name="C:acVehicleEnter" value="7">
 			</member>
-			<member name="C:acSpawnTime" value="8">
+			<member name="C:acVehicleEnterKey" value="8">
 			</member>
-			<member name="C:acCPTime" value="9">
-			</member>
-			<member name="C:acSpawn" value="10">
+			<member name="C:acSpawn" value="9">
 			</member>
 		</member>
 		<member name="T:examenInfoEnum" value="4">
@@ -1424,7 +1426,6 @@
 			<referrer name="pc_cmd_findbusiness"/>
 			<referrer name="pc_cmd_findhouse"/>
 			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
-			<referrer name="CB_OnPlayerWeaponShot"/>
 		</member>
 		<member name="C:CHECKPOINT_TRUCKERLS" value="5">
 			<referrer name="dialog_TRUCKER_SELECTTWO"/>
@@ -1466,15 +1467,11 @@
 			<referrer name="sendToAdmin"/>
 			<referrer name="dialog_REGISTER"/>
 			<referrer name="dialog_LOGIN"/>
-			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="wantedName"/>
 			<referrer name="sendFactionMessage"/>
-			<referrer name="pc_cmd_auninvite"/>
 			<referrer name="pc_cmd_invite"/>
 			<referrer name="pc_cmd_wanteds"/>
 			<referrer name="showFactionMembers"/>
-			<referrer name="dialog_DIALOG_MEMBERS2"/>
-			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_setguns"/>
 			<referrer name="pc_cmd_quitjob"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
@@ -2012,6 +2009,7 @@
 			<referrer name="TimerWar"/>
 			<referrer name="pc_cmd_contract"/>
 			<referrer name="pc_cmd_gethit"/>
+			<referrer name="pc_cmd_cancelhit"/>
 			<referrer name="TimerGetHit"/>
 			<referrer name="pc_cmd_contracts"/>
 			<referrer name="pc_cmd_svf"/>
@@ -2232,6 +2230,7 @@
 			<referrer name="pc_cmd_gotohouse"/>
 			<referrer name="pc_cmd_gotobusiness"/>
 			<referrer name="pc_cmd_spec"/>
+			<referrer name="TimerSpectator"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_helpers"/>
 			<referrer name="pc_cmd_showlicenses"/>
@@ -2711,6 +2710,8 @@
 			<referrer name="notificationTimer_yT@"/>
 			<referrer name="pc_cmd_respawnhere"/>
 			<referrer name="pc_cmd_jail"/>
+			<referrer name="pc_cmd_spec"/>
+			<referrer name="TimerSpectator_yT@"/>
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="testDriveTimer_yT@"/>
@@ -2887,6 +2888,7 @@
 			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_contract"/>
 			<referrer name="pc_cmd_gethit"/>
+			<referrer name="pc_cmd_cancelhit"/>
 			<referrer name="pc_cmd_contracts"/>
 		</member>
 		<member name="F:Iter_Single@ServerFactions">
@@ -3008,7 +3010,6 @@
 		<member name="F:Iterator@FactionMembers">
 			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
 			<referrer name="sendFactionMessage"/>
 			<referrer name="pc_cmd_makeleader"/>
 			<referrer name="pc_cmd_auninvite"/>
@@ -3049,6 +3050,7 @@
 			<referrer name="pc_cmd_attack"/>
 			<referrer name="pc_cmd_contract"/>
 			<referrer name="pc_cmd_gethit"/>
+			<referrer name="pc_cmd_cancelhit"/>
 			<referrer name="pc_cmd_contracts"/>
 			<referrer name="pc_cmd_svf"/>
 			<referrer name="dialog_DIALOG_SVF"/>
@@ -3061,7 +3063,6 @@
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerStateChange"/>
-			<referrer name="CB_OnPlayerWeaponShot"/>
 		</member>
 		<member name="F:Iterator@FactionSafes">
 			<referrer name="LoadSafes"/>
@@ -3262,6 +3263,7 @@
 			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_contract"/>
 			<referrer name="pc_cmd_gethit"/>
+			<referrer name="pc_cmd_cancelhit"/>
 			<referrer name="pc_cmd_contracts"/>
 		</member>
 		<member name="F:Iterator@ServerFactions">
@@ -3446,6 +3448,8 @@
 			<referrer name="notificationTimer_yT@"/>
 			<referrer name="pc_cmd_respawnhere"/>
 			<referrer name="pc_cmd_jail"/>
+			<referrer name="pc_cmd_spec"/>
+			<referrer name="TimerSpectator_yT@"/>
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="testDriveTimer_yT@"/>
@@ -4097,6 +4101,7 @@
 			<referrer name="@yH_OnPlayerStateChange@005"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@005"/>
 			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
+			<referrer name="PutPlayerInVehicleEx"/>
 		</member>
 		<member name="F:bigInteriors">
 			<tagname value="Float"/>
@@ -4193,8 +4198,8 @@
 			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_contract"/>
 			<referrer name="pc_cmd_gethit"/>
+			<referrer name="pc_cmd_cancelhit"/>
 			<referrer name="pc_cmd_contracts"/>
-			<referrer name="CB_OnPlayerWeaponShot"/>
 		</member>
 		<member name="F:decese">
 			<referrer name="@yH_OnPlayerDeath@007"/>
@@ -4624,6 +4629,7 @@
 		</member>
 		<member name="F:playerInfo">
 			<referrer name="Hacker"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@005"/>
 			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
 			<referrer name="acKicked"/>
 			<referrer name="warnPlayer"/>
@@ -4754,6 +4760,7 @@
 			<referrer name="TimerWar"/>
 			<referrer name="pc_cmd_contract"/>
 			<referrer name="pc_cmd_gethit"/>
+			<referrer name="pc_cmd_cancelhit"/>
 			<referrer name="TimerGetHit"/>
 			<referrer name="pc_cmd_contracts"/>
 			<referrer name="pc_cmd_svf"/>
@@ -4946,6 +4953,7 @@
 			<referrer name="pc_cmd_gotohouse"/>
 			<referrer name="pc_cmd_gotobusiness"/>
 			<referrer name="pc_cmd_spec"/>
+			<referrer name="TimerSpectator"/>
 			<referrer name="pc_cmd_admins"/>
 			<referrer name="pc_cmd_helpers"/>
 			<referrer name="pc_cmd_showlicenses"/>
@@ -5187,6 +5195,17 @@
 		</member>
 		<member name="F:smallInteriorsID">
 			<referrer name="pc_cmd_createhouse"/>
+		</member>
+		<member name="F:specTD">
+			<tagname value="PlayerText"/>
+			<referrer name="playerTextDraws"/>
+			<referrer name="destroyPlayerTextDraws"/>
+			<referrer name="pc_cmd_spec"/>
+			<referrer name="TimerSpectator"/>
+		</member>
+		<member name="F:spectator">
+			<tagname value="Timer"/>
+			<referrer name="pc_cmd_spec"/>
 		</member>
 		<member name="F:speedo">
 			<tagname value="Timer"/>
@@ -5549,7 +5568,6 @@
 			<tagname value="bool"/>
 			<stacksize value="4"/>
 			<referrer name="RandomFloat"/>
-			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
 			<dependency name="floatcmp"/>
 			<param name="oper1">
 				<paraminfo>Float </paraminfo>
@@ -5788,6 +5806,7 @@
 			<referrer name="pc_cmd_set"/>
 			<referrer name="pc_cmd_healme"/>
 			<referrer name="pc_cmd_area"/>
+			<referrer name="TimerSpectator"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="pc_cmd_jumpwater"/>
 			<referrer name="pc_cmd_finalquest"/>
@@ -5851,6 +5870,7 @@
 			<referrer name="GetClosestVehicle"/>
 			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_area"/>
+			<referrer name="TimerSpectator"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
 			<dependency name="float"/>
 			<dependency name="floatcmp"/>
@@ -5922,6 +5942,7 @@
 			<referrer name="SetPlayerLookAt"/>
 			<referrer name="Callback_IsVehicleInPoint"/>
 			<referrer name="Hacker"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@005"/>
 			<referrer name="GetMapZoneAtPoint"/>
 			<referrer name="GetMapZoneAtPoint2D"/>
 			<referrer name="AttachTrailer"/>
@@ -5941,6 +5962,7 @@
 		<member name="M:operator&lt;(Float:,_:)" syntax="operator&lt;(Float:,_:)(oper1, oper2)">
 			<tagname value="bool"/>
 			<stacksize value="4"/>
+			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="pc_cmd_area"/>
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
@@ -5972,6 +5994,7 @@
 			<referrer name="Get3DZone"/>
 			<referrer name="Get2DPosZone"/>
 			<referrer name="SetPlayerLookAt"/>
+			<referrer name="Hacker"/>
 			<referrer name="IsPlayerInArea"/>
 			<referrer name="GetMapZoneAtPoint"/>
 			<referrer name="GetMapZoneAtPoint2D"/>
@@ -6345,7 +6368,6 @@
 			<dependency name="acKicked"/>
 			<dependency name="acSpawn"/>
 			<dependency name="acSpawnTime"/>
-			<dependency name="printf"/>
 			<param name="playerid">
 			</param>
 			<param name="killerid">
@@ -6357,8 +6379,8 @@
 			<attribute name="public"/>
 			<stacksize value="4143"/>
 			<dependency name="operator+(Float:,Float:)"/>
+			<dependency name="operator&lt;(Float:,_:)"/>
 			<dependency name="DistanceToPlayer"/>
-			<dependency name="EOS"/>
 			<dependency name="GetWeaponName"/>
 			<dependency name="GivePlayerCash"/>
 			<dependency name="IsPlayerInTurf"/>
@@ -6375,6 +6397,7 @@
 			<dependency name="WarScore2"/>
 			<dependency name="cBy"/>
 			<dependency name="cFor"/>
+			<dependency name="cHitman"/>
 			<dependency name="cMoney"/>
 			<dependency name="contractInfo"/>
 			<dependency name="contractInfo"/>
@@ -6551,25 +6574,29 @@
 		</member>
 		<member name="M:@yH_OnPlayerEnterCheckpoint@005" syntax="@yH_OnPlayerEnterCheckpoint@005(playerid)">
 			<attribute name="public"/>
-			<stacksize value="5"/>
+			<stacksize value="7"/>
+			<dependency name="operator&lt;(Float:,Float:)"/>
+			<dependency name="GetPlayerDistanceFromPoint"/>
 			<dependency name="GetTickCount"/>
 			<dependency name="acCPTime"/>
 			<dependency name="acInfo"/>
 			<dependency name="acInfo"/>
 			<dependency name="acKicked"/>
+			<dependency name="pLastPosX"/>
+			<dependency name="pLastPosY"/>
+			<dependency name="pLastPosZ"/>
+			<dependency name="playerInfo"/>
 			<param name="playerid">
 			</param>
 		</member>
 		<member name="M:@yH_OnPlayerEnterCheckpoint@007" syntax="@yH_OnPlayerEnterCheckpoint@007(playerid)">
 			<attribute name="public"/>
-			<stacksize value="6"/>
+			<stacksize value="5"/>
 			<dependency name="CHECKPOINT_FACTION_DUTY"/>
 			<dependency name="CHECKPOINT_GETHIT"/>
 			<dependency name="CHECKPOINT_NONE"/>
 			<dependency name="CHECKPOINT_WANTEDFIND"/>
 			<dependency name="DisablePlayerCheckpoint"/>
-			<dependency name="Iter_Contains_InternalC"/>
-			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="MedicAcceptedCall"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="TaxiAcceptedCall"/>
@@ -6648,19 +6675,17 @@
 		</member>
 		<member name="M:@yH_OnPlayerEnterVehicle@005" syntax="@yH_OnPlayerEnterVehicle@005(playerid, vehicleid, ispassenger)">
 			<attribute name="public"/>
-			<stacksize value="11"/>
-			<dependency name="operator!=(Float:,Float:)"/>
+			<stacksize value="5"/>
 			<dependency name="GetTickCount"/>
-			<dependency name="GetVehiclePos"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="acInfo"/>
 			<dependency name="acInfo"/>
 			<dependency name="acKicked"/>
 			<dependency name="acTimeCrash"/>
-			<dependency name="acvehPos"/>
+			<dependency name="acVehicleEnter"/>
+			<dependency name="acVehicleEnterKey"/>
 			<dependency name="pAdmin"/>
 			<dependency name="playerInfo"/>
-			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="vehicleid">
@@ -6729,6 +6754,7 @@
 			<dependency name="acKicked"/>
 			<dependency name="acTime"/>
 			<dependency name="acTimeCrash"/>
+			<dependency name="acVehicleEnter"/>
 			<param name="playerid">
 			</param>
 			<param name="newstate">
@@ -10410,6 +10436,8 @@
 			<dependency name="Iterator@loggedPlayers"/>
 			<dependency name="J@"/>
 			<dependency name="PlayerMoney"/>
+			<dependency name="PlayerSpectatePlayer"/>
+			<dependency name="PlayerSpectateVehicle"/>
 			<dependency name="PlayerTextDrawHide"/>
 			<dependency name="PlayerTextDrawSetString"/>
 			<dependency name="PlayerTextDrawShow"/>
@@ -10438,6 +10466,7 @@
 			<dependency name="pFaction"/>
 			<dependency name="pFlyLicense"/>
 			<dependency name="pName"/>
+			<dependency name="pSpectate"/>
 			<dependency name="pTaxiDriver"/>
 			<dependency name="pTaxiDuty"/>
 			<dependency name="pTaxiFare"/>
@@ -10498,8 +10527,6 @@
 			<dependency name="operator&gt;(Float:,_:)"/>
 			<dependency name="operator&lt;(Float:,_:)"/>
 			<dependency name="AntiCheatWarnings"/>
-			<dependency name="CHECKPOINT_NONE"/>
-			<dependency name="DisablePlayerCheckpoint"/>
 			<dependency name="GetPlayerDistanceFromPoint"/>
 			<dependency name="GetPlayerLastShotVectors"/>
 			<dependency name="GetPlayerPos"/>
@@ -10507,22 +10534,9 @@
 			<dependency name="GetWeaponName"/>
 			<dependency name="I@"/>
 			<dependency name="IsPlayerInRangeOfPoint"/>
-			<dependency name="Iter_Contains_InternalC"/>
-			<dependency name="Iter_Remove_InternalC"/>
-			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="J@"/>
-			<dependency name="SetPlayerHealthEx"/>
-			<dependency name="ShowPlayerNameTagForPlayer"/>
 			<dependency name="TogglePlayerControllable"/>
-			<dependency name="addRaportPoint"/>
-			<dependency name="cAgainst"/>
-			<dependency name="cID"/>
-			<dependency name="cMoney"/>
-			<dependency name="contractInfo"/>
 			<dependency name="floatround"/>
-			<dependency name="pCheckpoint"/>
-			<dependency name="pCheckpointID"/>
-			<dependency name="pFactionRank"/>
 			<dependency name="pName"/>
 			<dependency name="pTazer"/>
 			<dependency name="pTintaApasata"/>
@@ -10532,7 +10546,6 @@
 			<dependency name="sendNearbyMessage"/>
 			<dependency name="tazerTimer_yT@"/>
 			<dependency name="true"/>
-			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="weaponid">
@@ -11909,9 +11922,6 @@
 				<paraminfo> &amp; </paraminfo>
 			</param>
 		</member>
-		<member name="M:Contract" syntax="Contract()">
-			<stacksize value="1"/>
-		</member>
 		<member name="M:CreateActor" syntax="CreateActor(modelid, X, Y, Z, Rotation)">
 			<attribute name="native"/>
 			<referrer name="Iter_CreateActor"/>
@@ -12861,7 +12871,6 @@
 			<referrer name="pc_cmd_killcp"/>
 			<referrer name="pc_cmd_cancel"/>
 			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
-			<referrer name="CB_OnPlayerWeaponShot"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -13190,12 +13199,12 @@
 			</param>
 		</member>
 		<member name="M:DistanceToPlayer" syntax="DistanceToPlayer(playerid, targetid)">
+			<tagname value="Float"/>
 			<stacksize value="9"/>
 			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="TimerGetHit"/>
 			<dependency name="GetPlayerDistanceFromPoint"/>
 			<dependency name="GetPlayerPos"/>
-			<dependency name="floatround"/>
 			<param name="playerid">
 			</param>
 			<param name="targetid">
@@ -14671,13 +14680,82 @@
 			<referrer name="IsPlayerSprayingVehicle"/>
 			<referrer name="OnPlayerUpdate"/>
 			<referrer name="Callback_CheckAnimation"/>
+			<referrer name="Hacker"/>
 			<referrer name="Timers"/>
+			<referrer name="pc_cmd_carhand"/>
+			<referrer name="pc_cmd_lifejump"/>
+			<referrer name="pc_cmd_robman"/>
+			<referrer name="pc_cmd_exhaust"/>
+			<referrer name="pc_cmd_rcarjack1"/>
+			<referrer name="pc_cmd_lcarjack1"/>
+			<referrer name="pc_cmd_rcarjack2"/>
+			<referrer name="pc_cmd_lcarjack2"/>
+			<referrer name="pc_cmd_hoodfrisked"/>
+			<referrer name="pc_cmd_lightcig"/>
+			<referrer name="pc_cmd_tapcig"/>
+			<referrer name="pc_cmd_bat"/>
+			<referrer name="pc_cmd_lean"/>
+			<referrer name="pc_cmd_clearanim"/>
+			<referrer name="pc_cmd_dancing"/>
+			<referrer name="pc_cmd_box"/>
+			<referrer name="pc_cmd_lowthrow"/>
+			<referrer name="pc_cmd_highthrow"/>
+			<referrer name="pc_cmd_leftslap"/>
+			<referrer name="pc_cmd_handsup"/>
+			<referrer name="pc_cmd_fall"/>
+			<referrer name="pc_cmd_fallback"/>
+			<referrer name="pc_cmd_laugh"/>
+			<referrer name="pc_cmd_lookout"/>
+			<referrer name="pc_cmd_aim"/>
+			<referrer name="pc_cmd_crossarms"/>
+			<referrer name="pc_cmd_lay"/>
+			<referrer name="pc_cmd_hide"/>
+			<referrer name="pc_cmd_vomit"/>
+			<referrer name="pc_cmd_wave"/>
+			<referrer name="pc_cmd_shouting"/>
+			<referrer name="pc_cmd_chant"/>
+			<referrer name="pc_cmd_frisked"/>
+			<referrer name="pc_cmd_exhausted"/>
+			<referrer name="pc_cmd_injured"/>
+			<referrer name="pc_cmd_slapass"/>
+			<referrer name="pc_cmd_deal"/>
+			<referrer name="pc_cmd_dealstance"/>
+			<referrer name="pc_cmd_crack"/>
+			<referrer name="pc_cmd_wank"/>
+			<referrer name="pc_cmd_salute"/>
+			<referrer name="pc_cmd_gro"/>
+			<referrer name="pc_cmd_sup"/>
+			<referrer name="pc_cmd_rap"/>
+			<referrer name="pc_cmd_push"/>
+			<referrer name="pc_cmd_akick"/>
+			<referrer name="pc_cmd_lowbodypush"/>
+			<referrer name="pc_cmd_headbutt"/>
+			<referrer name="pc_cmd_pee"/>
+			<referrer name="pc_cmd_koface"/>
+			<referrer name="pc_cmd_kostomach"/>
+			<referrer name="pc_cmd_kiss"/>
+			<referrer name="pc_cmd_rollfall"/>
+			<referrer name="pc_cmd_lay2"/>
+			<referrer name="pc_cmd_hitch"/>
+			<referrer name="pc_cmd_beach"/>
+			<referrer name="pc_cmd_medic"/>
+			<referrer name="pc_cmd_scratch"/>
+			<referrer name="pc_cmd_sit"/>
+			<referrer name="pc_cmd_drunk"/>
+			<referrer name="pc_cmd_bomb"/>
+			<referrer name="pc_cmd_getarrested"/>
+			<referrer name="pc_cmd_chat"/>
+			<referrer name="pc_cmd_fucku"/>
+			<referrer name="pc_cmd_taichi"/>
+			<referrer name="pc_cmd_knife"/>
+			<referrer name="pc_cmd_basket"/>
 			<param name="playerid">
 			</param>
 		</member>
 		<member name="M:GetPlayerArmourEx" syntax="GetPlayerArmourEx(playerid, &amp;armour)">
 			<stacksize value="1"/>
 			<referrer name="pc_cmd_spec"/>
+			<referrer name="TimerSpectator"/>
 			<dependency name="pArmour"/>
 			<dependency name="playerInfo"/>
 			<param name="playerid">
@@ -14770,6 +14848,7 @@
 		<member name="M:GetPlayerDistanceFromPoint" syntax="GetPlayerDistanceFromPoint(playerid, X, Y, Z)">
 			<tagname value="Float"/>
 			<attribute name="native"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@005"/>
 			<referrer name="DistanceToPlayer"/>
 			<referrer name="pc_cmd_findbusiness"/>
 			<referrer name="pc_cmd_findhouse"/>
@@ -14814,6 +14893,7 @@
 			<stacksize value="1"/>
 			<referrer name="pc_cmd_slap"/>
 			<referrer name="pc_cmd_spec"/>
+			<referrer name="TimerSpectator"/>
 			<dependency name="pHealth"/>
 			<dependency name="playerInfo"/>
 			<param name="playerid">
@@ -14864,6 +14944,7 @@
 			<referrer name="pc_cmd_mark"/>
 			<referrer name="pc_cmd_area"/>
 			<referrer name="pc_cmd_spec"/>
+			<referrer name="TimerSpectator"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -14983,6 +15064,7 @@
 		<member name="M:GetPlayerPing" syntax="GetPlayerPing(playerid)">
 			<attribute name="native"/>
 			<referrer name="Timers"/>
+			<referrer name="TimerSpectator"/>
 			<referrer name="pc_cmd_id"/>
 			<param name="playerid">
 			</param>
@@ -15075,6 +15157,12 @@
 			<param name="playerid">
 			</param>
 		</member>
+		<member name="M:GetPlayerSurfingVehicleID" syntax="GetPlayerSurfingVehicleID(playerid)">
+			<attribute name="native"/>
+			<referrer name="Hacker"/>
+			<param name="playerid">
+			</param>
+		</member>
 		<member name="M:GetPlayerTargetPlayer" syntax="GetPlayerTargetPlayer(playerid)">
 			<attribute name="native"/>
 			<referrer name="OnPlayerUpdate"/>
@@ -15119,6 +15207,7 @@
 			<referrer name="pc_cmd_goto"/>
 			<referrer name="pc_cmd_gethere"/>
 			<referrer name="pc_cmd_spec"/>
+			<referrer name="TimerSpectator"/>
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="pc_cmd_lights"/>
 			<referrer name="pc_cmd_accept"/>
@@ -15164,6 +15253,7 @@
 			<referrer name="pc_cmd_respawnhere"/>
 			<referrer name="pc_cmd_area"/>
 			<referrer name="pc_cmd_spec"/>
+			<referrer name="TimerSpectator"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<param name="playerid">
@@ -15631,6 +15721,7 @@
 			<referrer name="TimerCar"/>
 			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_park"/>
+			<referrer name="TimerSpectator"/>
 			<param name="vehicleid">
 			</param>
 			<param name="health">
@@ -15717,7 +15808,6 @@
 		<member name="M:GetVehiclePos" syntax="GetVehiclePos(vehicleid, &amp;x, &amp;y, &amp;z)">
 			<attribute name="native"/>
 			<referrer name="Callback_IsVehicleInPoint"/>
-			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
 			<referrer name="GetDistancePlayerToVeh"/>
 			<referrer name="GetVehicleMapZone"/>
 			<referrer name="GetVehicleMapZone2D"/>
@@ -15912,18 +16002,23 @@
 			<dependency name="operator==(Float:,Float:)"/>
 			<dependency name="operator&gt;(Float:,Float:)"/>
 			<dependency name="operator&lt;(Float:,Float:)"/>
+			<dependency name="operator&lt;=(Float:,Float:)"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="GetPlayerCameraMode"/>
 			<dependency name="GetPlayerCameraPos"/>
 			<dependency name="GetPlayerInterior"/>
 			<dependency name="GetPlayerPos"/>
 			<dependency name="GetPlayerState"/>
+			<dependency name="GetPlayerSurfingVehicleID"/>
 			<dependency name="GetPlayerVelocity"/>
-			<dependency name="acInfo"/>
 			<dependency name="acInfo"/>
 			<dependency name="acKicked"/>
 			<dependency name="acVelocity"/>
 			<dependency name="false"/>
 			<dependency name="pFlymode"/>
+			<dependency name="pLastPosX"/>
+			<dependency name="pLastPosY"/>
+			<dependency name="pLastPosZ"/>
 			<dependency name="playerInfo"/>
 			<param name="playerid">
 			</param>
@@ -16964,6 +17059,7 @@
 			<referrer name="pc_cmd_respawnhere"/>
 			<referrer name="pc_cmd_gotojob"/>
 			<referrer name="pc_cmd_spec"/>
+			<referrer name="TimerSpectator"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="pc_cmd_lights"/>
@@ -17738,7 +17834,6 @@
 			<referrer name="pc_cmd_unrentroom"/>
 			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
 			<referrer name="sendFactionMessage"/>
 			<referrer name="pc_cmd_gotofaction"/>
 			<referrer name="pc_cmd_makeleader"/>
@@ -17779,6 +17874,7 @@
 			<referrer name="pc_cmd_attack"/>
 			<referrer name="pc_cmd_contract"/>
 			<referrer name="pc_cmd_gethit"/>
+			<referrer name="pc_cmd_cancelhit"/>
 			<referrer name="pc_cmd_contracts"/>
 			<referrer name="pc_cmd_svf"/>
 			<referrer name="dialog_DIALOG_SVF"/>
@@ -17868,7 +17964,6 @@
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
-			<referrer name="CB_OnPlayerWeaponShot"/>
 			<param name="array">
 				<paraminfo> [] </paraminfo>
 				iterator data.
@@ -18548,6 +18643,7 @@
 			<referrer name="dialog_DIALOG_MEMBERS2"/>
 			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="TimerWar"/>
+			<referrer name="pc_cmd_cancelhit"/>
 			<referrer name="advertismentTimer"/>
 			<referrer name="pc_cmd_deletemyad"/>
 			<referrer name="pc_cmd_leaveclan"/>
@@ -18570,7 +18666,6 @@
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<referrer name="OnVehicleDeath"/>
 			<referrer name="CB_OnPlayerStateChange"/>
-			<referrer name="CB_OnPlayerWeaponShot"/>
 			<dependency name="Iter_SafeRemove_InternalC"/>
 			<param name="count">
 				<paraminfo> &amp; </paraminfo>
@@ -19852,6 +19947,7 @@
 			<attribute name="native"/>
 			<referrer name="OnPlayerUpdate"/>
 			<referrer name="pc_cmd_spec"/>
+			<referrer name="TimerSpectator"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -19907,6 +20003,7 @@
 			<referrer name="closeGate_yT@"/>
 			<referrer name="tazerTimer_yT@"/>
 			<referrer name="notificationTimer_yT@"/>
+			<referrer name="TimerSpectator_yT@"/>
 			<referrer name="testDriveTimer_yT@"/>
 			<param name="function">
 				<paraminfo> [] </paraminfo>
@@ -21405,6 +21502,7 @@
 			<referrer name="pc_alias_helperchat"/>
 			<referrer name="pc_alias_setrepsectpoints"/>
 			<referrer name="pc_alias_admingivelicense"/>
+			<referrer name="pc_alias_admintakelicense"/>
 			<referrer name="pc_alias_adminsuspendlicense"/>
 			<referrer name="pc_alias_vehicles"/>
 			<referrer name="pc_alias_fixveh"/>
@@ -21572,6 +21670,7 @@
 		<member name="M:PlayerSpectatePlayer" syntax="PlayerSpectatePlayer(playerid, targetplayerid, mode)">
 			<attribute name="native"/>
 			<referrer name="pc_cmd_spec"/>
+			<referrer name="CB_OnPlayerStateChange"/>
 			<param name="playerid">
 			</param>
 			<param name="targetplayerid">
@@ -21582,6 +21681,7 @@
 		<member name="M:PlayerSpectateVehicle" syntax="PlayerSpectateVehicle(playerid, targetvehicleid, mode)">
 			<attribute name="native"/>
 			<referrer name="pc_cmd_spec"/>
+			<referrer name="CB_OnPlayerStateChange"/>
 			<param name="playerid">
 			</param>
 			<param name="targetvehicleid">
@@ -21791,6 +21891,7 @@
 		<member name="M:PlayerTextDrawShow" syntax="PlayerTextDrawShow(playerid, text)">
 			<attribute name="native"/>
 			<referrer name="updateLevelBar"/>
+			<referrer name="dialog_DIALOG_HUD"/>
 			<referrer name="updateTaxiTextdraw"/>
 			<referrer name="TimerWar"/>
 			<referrer name="onPlayerLogin"/>
@@ -21800,6 +21901,7 @@
 			<referrer name="TimerWanted"/>
 			<referrer name="pc_cmd_setadmin"/>
 			<referrer name="pc_cmd_acover"/>
+			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="ShowDealerShipTD"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
@@ -22014,6 +22116,7 @@
 		</member>
 		<member name="M:PutPlayerInVehicle" syntax="PutPlayerInVehicle(playerid, vehicleid, seatid)">
 			<attribute name="native"/>
+			<referrer name="PutPlayerInVehicleEx"/>
 			<referrer name="dialog_DIALOG_SVF"/>
 			<referrer name="jobWork"/>
 			<referrer name="pc_cmd_park"/>
@@ -22023,6 +22126,20 @@
 			<referrer name="pc_cmd_goto"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
+			<param name="playerid">
+			</param>
+			<param name="vehicleid">
+			</param>
+			<param name="seatid">
+			</param>
+		</member>
+		<member name="M:PutPlayerInVehicleEx" syntax="PutPlayerInVehicleEx(playerid, vehicleid, seatid)">
+			<attribute name="public"/>
+			<stacksize value="5"/>
+			<dependency name="PutPlayerInVehicle"/>
+			<dependency name="acInfo"/>
+			<dependency name="acInfo"/>
+			<dependency name="acVehicleEnter"/>
 			<param name="playerid">
 			</param>
 			<param name="vehicleid">
@@ -22910,6 +23027,7 @@
 			<referrer name="TimerWar"/>
 			<referrer name="pc_cmd_contract"/>
 			<referrer name="pc_cmd_gethit"/>
+			<referrer name="pc_cmd_cancelhit"/>
 			<referrer name="pc_cmd_contracts"/>
 			<referrer name="pc_cmd_svf"/>
 			<referrer name="pc_cmd_dvf"/>
@@ -23706,7 +23824,6 @@
 			<referrer name="pc_cmd_area"/>
 			<referrer name="OnPlayerSpawn"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
-			<referrer name="CB_OnPlayerWeaponShot"/>
 			<dependency name="SetPlayerHealth"/>
 			<dependency name="pHealth"/>
 			<dependency name="playerInfo"/>
@@ -23732,6 +23849,7 @@
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="pc_cmd_aaa2"/>
 			<referrer name="pc_cmd_spec"/>
+			<referrer name="TimerSpectator"/>
 			<referrer name="cancelDriveTest"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
@@ -23907,6 +24025,7 @@
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="pc_cmd_aaa2"/>
 			<referrer name="pc_cmd_spec"/>
+			<referrer name="TimerSpectator"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="InsertCarDS"/>
 			<referrer name="cancelDriveTest"/>
@@ -24194,7 +24313,6 @@
 		<member name="M:ShowPlayerNameTagForPlayer" syntax="ShowPlayerNameTagForPlayer(playerid, showplayerid, show)">
 			<attribute name="native"/>
 			<referrer name="pc_cmd_gethit"/>
-			<referrer name="CB_OnPlayerWeaponShot"/>
 			<param name="playerid">
 			</param>
 			<param name="showplayerid">
@@ -24896,6 +25014,53 @@
 		</member>
 		<member name="M:TimerPos_yT@" syntax="TimerPos_yT@(playerid)">
 			<stacksize value="8"/>
+			<dependency name="I@"/>
+			<dependency name="J@"/>
+			<dependency name="O@"/>
+			<dependency name="_Timer_C"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:TimerSpectator" syntax="TimerSpectator(playerid)">
+			<stacksize value="23"/>
+			<referrer name="TimerSpectator@_yT"/>
+			<dependency name="Float:operator=(_:)"/>
+			<dependency name="operator&gt;(Float:,_:)"/>
+			<dependency name="GetPlayerArmourEx"/>
+			<dependency name="GetPlayerHealthEx"/>
+			<dependency name="GetPlayerInterior"/>
+			<dependency name="GetPlayerPing"/>
+			<dependency name="GetPlayerVehicleID"/>
+			<dependency name="GetPlayerVirtualWorld"/>
+			<dependency name="GetVehicleHealth"/>
+			<dependency name="IsPlayerInAnyVehicle"/>
+			<dependency name="NetStats_PacketLossPercent"/>
+			<dependency name="SetPlayerInterior"/>
+			<dependency name="SetPlayerVirtualWorld"/>
+			<dependency name="pFPS"/>
+			<dependency name="pName"/>
+			<dependency name="pSpectate"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="specTD"/>
+			<dependency name="true"/>
+			<dependency name="va_PlayerTextDrawSetString"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:TimerSpectator@_yT" syntax="TimerSpectator@_yT(__r, playerid)">
+			<tagname value="@Yj"/>
+			<attribute name="public"/>
+			<stacksize value="4"/>
+			<dependency name="TimerSpectator"/>
+			<param name="__r">
+			</param>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:TimerSpectator_yT@" syntax="TimerSpectator_yT@(playerid)">
+			<stacksize value="8"/>
+			<referrer name="pc_cmd_spec"/>
 			<dependency name="I@"/>
 			<dependency name="J@"/>
 			<dependency name="O@"/>
@@ -26034,6 +26199,7 @@
 			<referrer name="closeGate_yT@"/>
 			<referrer name="tazerTimer_yT@"/>
 			<referrer name="notificationTimer_yT@"/>
+			<referrer name="TimerSpectator_yT@"/>
 			<referrer name="testDriveTimer_yT@"/>
 			<dependency name="I@"/>
 			<dependency name="Timer_GetSingleSlot"/>
@@ -26204,7 +26370,7 @@
 			<dependency name="acSpawnTime"/>
 			<dependency name="acTime"/>
 			<dependency name="acTimeCrash"/>
-			<dependency name="acVelocity"/>
+			<dependency name="acVehicleEnter"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -26221,7 +26387,6 @@
 			<referrer name="pc_cmd_endlive"/>
 			<referrer name="pc_cmd_accept"/>
 			<referrer name="CB_OnPlayerStateChange"/>
-			<referrer name="CB_OnPlayerWeaponShot"/>
 			<dependency name="pCommands"/>
 			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
@@ -26417,10 +26582,6 @@
 			</param>
 			<param name="id">
 			</param>
-		</member>
-		<member name="M:cAgainst" syntax="cAgainst()">
-			<stacksize value="1"/>
-			<referrer name="CB_OnPlayerWeaponShot"/>
 		</member>
 		<member name="M:cache_affected_rows" syntax="cache_affected_rows()">
 			<attribute name="native"/>
@@ -27138,6 +27299,7 @@
 			<dependency name="playerLevelPTD"/>
 			<dependency name="serverDealerPTD"/>
 			<dependency name="serverHud"/>
+			<dependency name="specTD"/>
 			<dependency name="true"/>
 			<dependency name="wantedTD"/>
 			<dependency name="warTD"/>
@@ -27641,6 +27803,7 @@
 			<attribute name="public"/>
 			<stacksize value="7"/>
 			<dependency name="PlayerTextDrawHide"/>
+			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="pFPSShow"/>
 			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
@@ -27714,7 +27877,6 @@
 			<stacksize value="4147"/>
 			<dependency name="DestroyObject"/>
 			<dependency name="Dialog_Open"/>
-			<dependency name="EOS"/>
 			<dependency name="FEMALE_GENDER"/>
 			<dependency name="GetPlayerID"/>
 			<dependency name="IsValidObject"/>
@@ -27730,6 +27892,7 @@
 			<dependency name="SpawnPlayerEx"/>
 			<dependency name="cBy"/>
 			<dependency name="cFor"/>
+			<dependency name="cHitman"/>
 			<dependency name="cMoney"/>
 			<dependency name="cache_delete"/>
 			<dependency name="cache_get_value_name_int"/>
@@ -27820,7 +27983,6 @@
 			<stacksize value="4213"/>
 			<dependency name="DestroyObject"/>
 			<dependency name="Dialog_Open"/>
-			<dependency name="EOS"/>
 			<dependency name="FEMALE_GENDER"/>
 			<dependency name="GetPVarString"/>
 			<dependency name="GetPlayerID"/>
@@ -27837,6 +27999,7 @@
 			<dependency name="SpawnPlayerEx"/>
 			<dependency name="cBy"/>
 			<dependency name="cFor"/>
+			<dependency name="cHitman"/>
 			<dependency name="cMoney"/>
 			<dependency name="cache_delete"/>
 			<dependency name="cache_get_value_name_int"/>
@@ -29183,7 +29346,6 @@
 			<referrer name="getVehicleHealth"/>
 			<referrer name="getVehicleSpeed"/>
 			<referrer name="GetDistancePlayerToVeh"/>
-			<referrer name="DistanceToPlayer"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="dialog_BUY_INSURANCE"/>
@@ -29367,6 +29529,7 @@
 			<referrer name="updateTaxiTextdraw"/>
 			<referrer name="pc_cmd_contract"/>
 			<referrer name="pc_cmd_gethit"/>
+			<referrer name="pc_cmd_cancelhit"/>
 			<referrer name="pc_cmd_contracts"/>
 			<referrer name="pc_cmd_fwithdraw"/>
 			<referrer name="pc_cmd_createsafe"/>
@@ -30860,6 +31023,11 @@
 			<stacksize value="5"/>
 			<dependency name="PC_RegAlias"/>
 		</member>
+		<member name="M:pc_alias_admintakelicense" syntax="pc_alias_admintakelicense()">
+			<attribute name="public"/>
+			<stacksize value="5"/>
+			<dependency name="PC_RegAlias"/>
+		</member>
 		<member name="M:pc_alias_announce" syntax="pc_alias_announce()">
 			<attribute name="public"/>
 			<stacksize value="4"/>
@@ -31457,6 +31625,7 @@
 		<member name="M:pc_cmd_aim" syntax="pc_cmd_aim(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -31473,6 +31642,7 @@
 		<member name="M:pc_cmd_akick" syntax="pc_cmd_akick(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -31717,7 +31887,6 @@
 			<attribute name="public"/>
 			<stacksize value="4113"/>
 			<dependency name="DestroyObject"/>
-			<dependency name="EOS"/>
 			<dependency name="IsValidObject"/>
 			<dependency name="Iter_DestroyVehicle"/>
 			<dependency name="Iter_Remove_InternalC"/>
@@ -31728,6 +31897,7 @@
 			<dependency name="SendClientMessage"/>
 			<dependency name="cBy"/>
 			<dependency name="cFor"/>
+			<dependency name="cHitman"/>
 			<dependency name="cMoney"/>
 			<dependency name="contractInfo"/>
 			<dependency name="contractInfo"/>
@@ -31902,6 +32072,7 @@
 		<member name="M:pc_cmd_basket" syntax="pc_cmd_basket(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="13"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="OnePlayAnim"/>
@@ -31921,6 +32092,7 @@
 		<member name="M:pc_cmd_bat" syntax="pc_cmd_bat(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -31937,6 +32109,7 @@
 		<member name="M:pc_cmd_beach" syntax="pc_cmd_beach(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -32081,6 +32254,7 @@
 			<attribute name="public"/>
 			<stacksize value="12"/>
 			<dependency name="ClearAnimations"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -32094,6 +32268,7 @@
 		<member name="M:pc_cmd_box" syntax="pc_cmd_box(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -32345,6 +32520,39 @@
 				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
+		<member name="M:pc_cmd_cancelhit" syntax="pc_cmd_cancelhit(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="4142"/>
+			<dependency name="Iter_Contains_InternalC"/>
+			<dependency name="Iter_Remove_InternalC"/>
+			<dependency name="Iter_Single@ServerContracts"/>
+			<dependency name="Iterator@FactionMembers"/>
+			<dependency name="Iterator@ServerContracts"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="cBy"/>
+			<dependency name="cFor"/>
+			<dependency name="cHitman"/>
+			<dependency name="cMoney"/>
+			<dependency name="contractInfo"/>
+			<dependency name="contractInfo"/>
+			<dependency name="formatNumber"/>
+			<dependency name="formatNumber"/>
+			<dependency name="pContract"/>
+			<dependency name="pContractID"/>
+			<dependency name="pName"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendFactionMessage"/>
+			<dependency name="sendPlayerSyntax"/>
+			<dependency name="strlen"/>
+			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
 		<member name="M:pc_cmd_carcolor" syntax="pc_cmd_carcolor(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="10"/>
@@ -32383,6 +32591,7 @@
 			<attribute name="public"/>
 			<stacksize value="13"/>
 			<dependency name="CB_ApplyAnimation"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
@@ -32455,6 +32664,7 @@
 		<member name="M:pc_cmd_chant" syntax="pc_cmd_chant(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -32471,6 +32681,7 @@
 		<member name="M:pc_cmd_chat" syntax="pc_cmd_chat(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -32594,6 +32805,7 @@
 			<attribute name="public"/>
 			<stacksize value="13"/>
 			<dependency name="CB_ApplyAnimation"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
@@ -32736,6 +32948,7 @@
 			<dependency name="SendClientMessage"/>
 			<dependency name="cBy"/>
 			<dependency name="cFor"/>
+			<dependency name="cHitman"/>
 			<dependency name="cMoney"/>
 			<dependency name="contractInfo"/>
 			<dependency name="contractInfo"/>
@@ -32767,6 +32980,7 @@
 			<dependency name="SendClientMessage"/>
 			<dependency name="cBy"/>
 			<dependency name="cFor"/>
+			<dependency name="cHitman"/>
 			<dependency name="cMoney"/>
 			<dependency name="contractInfo"/>
 			<dependency name="contractInfo"/>
@@ -32808,6 +33022,7 @@
 		<member name="M:pc_cmd_crack" syntax="pc_cmd_crack(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -33001,6 +33216,7 @@
 		<member name="M:pc_cmd_crossarms" syntax="pc_cmd_crossarms(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -33087,6 +33303,7 @@
 		<member name="M:pc_cmd_dancing" syntax="pc_cmd_dancing(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="13"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -33105,6 +33322,7 @@
 		<member name="M:pc_cmd_deal" syntax="pc_cmd_deal(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -33118,6 +33336,7 @@
 		<member name="M:pc_cmd_dealstance" syntax="pc_cmd_dealstance(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -33296,6 +33515,7 @@
 		<member name="M:pc_cmd_drunk" syntax="pc_cmd_drunk(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -33545,6 +33765,7 @@
 		<member name="M:pc_cmd_exhaust" syntax="pc_cmd_exhaust(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -33561,6 +33782,7 @@
 		<member name="M:pc_cmd_exhausted" syntax="pc_cmd_exhausted(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -33624,6 +33846,7 @@
 		<member name="M:pc_cmd_fall" syntax="pc_cmd_fall(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -33640,6 +33863,7 @@
 		<member name="M:pc_cmd_fallback" syntax="pc_cmd_fallback(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -34050,6 +34274,7 @@
 		<member name="M:pc_cmd_frisked" syntax="pc_cmd_frisked(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -34091,6 +34316,7 @@
 		<member name="M:pc_cmd_fucku" syntax="pc_cmd_fucku(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -34133,6 +34359,7 @@
 		<member name="M:pc_cmd_getarrested" syntax="pc_cmd_getarrested(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -34230,6 +34457,7 @@
 			<dependency name="TimerGetHit_yT@"/>
 			<dependency name="Undercover"/>
 			<dependency name="cFor"/>
+			<dependency name="cHitman"/>
 			<dependency name="cMoney"/>
 			<dependency name="contractInfo"/>
 			<dependency name="contractInfo"/>
@@ -34603,6 +34831,7 @@
 		<member name="M:pc_cmd_gro" syntax="pc_cmd_gro(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -34619,6 +34848,7 @@
 		<member name="M:pc_cmd_handsup" syntax="pc_cmd_handsup(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="5"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerSpecialAction"/>
@@ -34634,6 +34864,7 @@
 		<member name="M:pc_cmd_headbutt" syntax="pc_cmd_headbutt(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -34776,6 +35007,7 @@
 		<member name="M:pc_cmd_hide" syntax="pc_cmd_hide(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -34792,6 +35024,7 @@
 		<member name="M:pc_cmd_highthrow" syntax="pc_cmd_highthrow(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -34805,6 +35038,7 @@
 		<member name="M:pc_cmd_hitch" syntax="pc_cmd_hitch(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -34862,6 +35096,7 @@
 		<member name="M:pc_cmd_hoodfrisked" syntax="pc_cmd_hoodfrisked(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -35009,6 +35244,7 @@
 		<member name="M:pc_cmd_injured" syntax="pc_cmd_injured(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -35247,6 +35483,7 @@
 		<member name="M:pc_cmd_kiss" syntax="pc_cmd_kiss(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -35263,6 +35500,7 @@
 		<member name="M:pc_cmd_knife" syntax="pc_cmd_knife(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="13"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="OnePlayAnim"/>
@@ -35282,6 +35520,7 @@
 		<member name="M:pc_cmd_koface" syntax="pc_cmd_koface(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -35298,6 +35537,7 @@
 		<member name="M:pc_cmd_kostomach" syntax="pc_cmd_kostomach(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -35314,6 +35554,7 @@
 		<member name="M:pc_cmd_laugh" syntax="pc_cmd_laugh(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -35327,6 +35568,7 @@
 		<member name="M:pc_cmd_lay" syntax="pc_cmd_lay(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -35343,6 +35585,7 @@
 		<member name="M:pc_cmd_lay2" syntax="pc_cmd_lay2(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -35359,6 +35602,7 @@
 		<member name="M:pc_cmd_lcarjack1" syntax="pc_cmd_lcarjack1(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -35372,6 +35616,7 @@
 		<member name="M:pc_cmd_lcarjack2" syntax="pc_cmd_lcarjack2(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -35385,6 +35630,7 @@
 		<member name="M:pc_cmd_lean" syntax="pc_cmd_lean(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="13"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -35428,6 +35674,7 @@
 		<member name="M:pc_cmd_leftslap" syntax="pc_cmd_leftslap(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -35451,6 +35698,7 @@
 		<member name="M:pc_cmd_lifejump" syntax="pc_cmd_lifejump(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -35467,6 +35715,7 @@
 		<member name="M:pc_cmd_lightcig" syntax="pc_cmd_lightcig(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -35562,6 +35811,7 @@
 		<member name="M:pc_cmd_lookout" syntax="pc_cmd_lookout(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -35575,6 +35825,7 @@
 		<member name="M:pc_cmd_lowbodypush" syntax="pc_cmd_lowbodypush(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -35588,6 +35839,7 @@
 		<member name="M:pc_cmd_lowthrow" syntax="pc_cmd_lowthrow(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -35682,6 +35934,7 @@
 		<member name="M:pc_cmd_medic" syntax="pc_cmd_medic(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -35985,6 +36238,7 @@
 		<member name="M:pc_cmd_pee" syntax="pc_cmd_pee(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="5"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerSpecialAction"/>
@@ -36021,6 +36275,7 @@
 		<member name="M:pc_cmd_push" syntax="pc_cmd_push(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -36140,6 +36395,7 @@
 		<member name="M:pc_cmd_rap" syntax="pc_cmd_rap(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="13"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -36158,6 +36414,7 @@
 		<member name="M:pc_cmd_rcarjack1" syntax="pc_cmd_rcarjack1(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -36171,6 +36428,7 @@
 		<member name="M:pc_cmd_rcarjack2" syntax="pc_cmd_rcarjack2(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -36485,6 +36743,7 @@
 		<member name="M:pc_cmd_robman" syntax="pc_cmd_robman(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -36501,6 +36760,7 @@
 		<member name="M:pc_cmd_rollfall" syntax="pc_cmd_rollfall(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -36518,6 +36778,7 @@
 			<attribute name="public"/>
 			<stacksize value="13"/>
 			<dependency name="CB_ApplyAnimation"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="true"/>
@@ -36530,6 +36791,7 @@
 		<member name="M:pc_cmd_scratch" syntax="pc_cmd_scratch(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -36925,6 +37187,7 @@
 		<member name="M:pc_cmd_shouting" syntax="pc_cmd_shouting(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -36980,6 +37243,7 @@
 		<member name="M:pc_cmd_sit" syntax="pc_cmd_sit(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -37067,6 +37331,7 @@
 		<member name="M:pc_cmd_slapass" syntax="pc_cmd_slapass(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -37216,6 +37481,7 @@
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="GetPlayerVirtualWorld"/>
 			<dependency name="GetReportID"/>
+			<dependency name="I@"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iter_Remove_InternalC"/>
@@ -37223,10 +37489,12 @@
 			<dependency name="Iterator@Reports"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="Iterator@ServerHelpers"/>
+			<dependency name="J@"/>
 			<dependency name="NetStats_PacketLossPercent"/>
 			<dependency name="PlayerHaveReport"/>
 			<dependency name="PlayerSpectatePlayer"/>
 			<dependency name="PlayerSpectateVehicle"/>
+			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="REPORT_TYPE_CHEATER"/>
 			<dependency name="REPORT_TYPE_NONE"/>
 			<dependency name="REPORT_TYPE_NORMAL"/>
@@ -37234,6 +37502,7 @@
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerInterior"/>
 			<dependency name="SetPlayerVirtualWorld"/>
+			<dependency name="TimerSpectator_yT@"/>
 			<dependency name="TogglePlayerSpectating"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="isPlayerLogged"/>
@@ -37250,6 +37519,8 @@
 			<dependency name="reportType"/>
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerSyntax"/>
+			<dependency name="specTD"/>
+			<dependency name="spectator"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
 			<dependency name="va_SendClientMessage"/>
@@ -37396,6 +37667,7 @@
 		<member name="M:pc_cmd_sup" syntax="pc_cmd_sup(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="13"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -37461,6 +37733,7 @@
 		<member name="M:pc_cmd_taichi" syntax="pc_cmd_taichi(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -37477,6 +37750,7 @@
 		<member name="M:pc_cmd_tapcig" syntax="pc_cmd_tapcig(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -37966,6 +38240,7 @@
 		<member name="M:pc_cmd_vomit" syntax="pc_cmd_vomit(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="OnePlayAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -37979,6 +38254,7 @@
 		<member name="M:pc_cmd_wank" syntax="pc_cmd_wank(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -38072,6 +38348,7 @@
 		<member name="M:pc_cmd_wave" syntax="pc_cmd_wave(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="12"/>
+			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="LoopingAnim"/>
 			<dependency name="SendClientMessage"/>
@@ -38192,6 +38469,7 @@
 			<dependency name="serverDealerPTD"/>
 			<dependency name="serverDealerPTD"/>
 			<dependency name="serverHud"/>
+			<dependency name="specTD"/>
 			<dependency name="true"/>
 			<dependency name="vehicleHud"/>
 			<dependency name="wantedTD"/>
@@ -38231,7 +38509,6 @@
 			<referrer name="ProfilerInit"/>
 			<referrer name="DumpStack"/>
 			<referrer name="PrintStackTrace"/>
-			<referrer name="@yH_OnPlayerDeath@005"/>
 			<referrer name="acKicked"/>
 			<referrer name="LoadHouses"/>
 			<referrer name="LoadTurfs"/>
@@ -38829,6 +39106,7 @@
 			<referrer name="pc_cmd_question"/>
 			<referrer name="pc_cmd_attack"/>
 			<referrer name="pc_cmd_contract"/>
+			<referrer name="pc_cmd_cancelhit"/>
 			<referrer name="dialog_DIALOG_FWITHDRAW2"/>
 			<referrer name="dialog_DIALOG_FDEPOSIT2"/>
 			<referrer name="onPlayerLogin"/>
@@ -38970,6 +39248,7 @@
 			<referrer name="pc_cmd_tie"/>
 			<referrer name="pc_cmd_untie"/>
 			<referrer name="pc_cmd_contract"/>
+			<referrer name="pc_cmd_cancelhit"/>
 			<referrer name="pc_cmd_setraport"/>
 			<referrer name="pc_cmd_createsafe"/>
 			<referrer name="pc_cmd_bizwithdraw"/>
@@ -39763,6 +40042,7 @@
 			<referrer name="pc_cmd_endlive"/>
 			<referrer name="pc_cmd_question"/>
 			<referrer name="pc_cmd_aq"/>
+			<referrer name="pc_cmd_cancelhit"/>
 			<referrer name="dialog_BIZ_OPTION_TITLE"/>
 			<referrer name="dialog_BIZ_OPTION_DESCRIPTION"/>
 			<referrer name="dialog_BIZ_OPTION_TITLEADMIN"/>
@@ -40020,6 +40300,7 @@
 			<referrer name="pc_cmd_tie"/>
 			<referrer name="pc_cmd_untie"/>
 			<referrer name="pc_cmd_contract"/>
+			<referrer name="pc_cmd_cancelhit"/>
 			<referrer name="pc_cmd_setraport"/>
 			<referrer name="pc_cmd_createsafe"/>
 			<referrer name="pc_cmd_createbusiness"/>
@@ -40440,6 +40721,7 @@
 			<referrer name="TimerWanted"/>
 			<referrer name="Timers"/>
 			<referrer name="pc_cmd_acover"/>
+			<referrer name="TimerSpectator"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="ShowDealerShipTD"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
@@ -40463,7 +40745,6 @@
 		</member>
 		<member name="M:va_SendClientMessage" syntax="va_SendClientMessage(playerid, colour, fmat[], ...)">
 			<stacksize value="145"/>
-			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
 			<referrer name="sendSplitMessage"/>
 			<referrer name="warnPlayer"/>
 			<referrer name="mutePlayer"/>
@@ -40609,7 +40890,6 @@
 			<referrer name="OnVehicleDeath"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerStateChange"/>
-			<referrer name="CB_OnPlayerWeaponShot"/>
 			<referrer name="OnPlayerCommandReceived"/>
 			<referrer name="OnPlayerCommandPerformed"/>
 			<dependency name="SendClientMessage"/>

@@ -514,71 +514,84 @@ CMD:animlist(playerid, params[]) {
 }
 
 CMD:carhand(playerid, params[]) {
+   	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
     if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     ApplyAnimation(playerid,"CAR","Tap_hand",4.1,0,1,1 ,1,1);
 	return true;
 }
 CMD:lifejump(playerid, params[]) {
+   	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
     if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"PED","EV_dive",4.0,0,1,1,1,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
 CMD:robman(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	LoopingAnim(playerid, "SHOP", "ROB_Loop_Threat", 4.0, 1, 0, 0, 0, 0);
  	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
 CMD:exhaust(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"PED","IDLE_tired",3.0,1,0,0,0,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
 CMD:rcarjack1(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	OnePlayAnim(playerid,"PED","CAR_pulloutL_LHS",4.0,0,0,0,0,0);
 	return true;
 }
 CMD:lcarjack1(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	OnePlayAnim(playerid,"PED","CAR_pulloutL_RHS",4.0,0,0,0,0,0);
 	return true;
 }
 CMD:rcarjack2(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	OnePlayAnim(playerid,"PED","CAR_pullout_LHS",4.0,0,0,0,0,0);
 	return true;
 }
 CMD:lcarjack2(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	OnePlayAnim(playerid,"PED","CAR_pullout_RHS",4.0,0,0,0,0,0);
 	return true;
 }
 CMD:hoodfrisked(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	LoopingAnim(playerid,"POLICE","crm_drgbst_01",4.0,0,1,1,1,0);
  	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
 CMD:lightcig(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	OnePlayAnim(playerid,"SMOKING","M_smk_in",3.0,0,0,0,0,0);
 	return true;
 }
 CMD:tapcig(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	OnePlayAnim(playerid,"SMOKING","M_smk_tap",3.0,0,0,0,0,0);
 	return true;
 }
 CMD:bat(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	LoopingAnim(playerid,"BASEBALL","Bat_IDLE",4.0,1,1,1,1,0);
  	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
 CMD:lean(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     extract params -> new test; else return sendPlayerSyntax(playerid, "/lean <1-2>");
     switch (test)
@@ -596,11 +609,13 @@ CMD:lean(playerid, params[]) {
 	return true;
 }
 CMD:clearanim(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	ApplyAnimation(playerid, "CARRY", "crry_prtial", 1.0, 0, 0, 0, 0, 0);
 	return true;
 }
 CMD:dancing(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	extract params -> new test; else return sendPlayerSyntax(playerid, "/dancing <1-7>");
    	switch (test) {
@@ -637,102 +652,120 @@ CMD:dancing(playerid, params[]) {
 	return true;
 }
 CMD:box(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	LoopingAnim(playerid,"GYMNASIUM","GYMshadowbox",4.0,1,1,1,1,0);
  	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
 CMD:lowthrow(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	OnePlayAnim(playerid,"GRENADE","WEAPON_throwu",3.0,0,0,0,0,0);
 	return true;
 }
 CMD:highthrow(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	OnePlayAnim(playerid,"GRENADE","WEAPON_throw",4.0,0,0,0,0,0);
 	return true;
 }
 CMD:leftslap(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	OnePlayAnim(playerid,"PED","BIKE_elbowL",4.0,0,0,0,0,0);
 	return true;
 }
 CMD:handsup(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	if(playerInfo[playerid][pFreezed] == 1) return true;
 	SetPlayerSpecialAction(playerid,SPECIAL_ACTION_HANDSUP);
 	return true;
 }
 CMD:fall(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"PED","KO_skid_front",4.1,0,1,1,1,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
 CMD:fallback(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid, "PED","FLOOR_hit_f", 4.0, 1, 0, 0, 0, 0);
     if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
     return true;
 }
 CMD:laugh(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	OnePlayAnim(playerid, "RAPPING", "Laugh_01", 4.0, 0, 0, 0, 0, 0);
 	return true;
 }
 CMD:lookout(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     OnePlayAnim(playerid, "SHOP", "ROB_Shifty", 4.0, 0, 0, 0, 0, 0);
 	return true;
 }
 CMD:aim(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid, "SHOP", "ROB_Loop_Threat", 4.0, 1, 0, 0, 0, 0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
 CMD:crossarms(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid, "COP_AMBIENT", "Coplook_loop", 4.0, 0, 1, 1, 1, -1);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
 CMD:lay(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	LoopingAnim(playerid,"BEACH", "bather", 4.0, 1, 0, 0, 0, 0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
 CMD:hide(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	LoopingAnim(playerid, "ped", "cower", 3.0, 1, 0, 0, 0, 0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
 CMD:vomit(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	OnePlayAnim(playerid, "FOOD", "EAT_Vomit_P", 3.0, 0, 0, 0, 0, 0);
 	return true;
 }
 CMD:wave(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid, "ON_LOOKERS", "wave_loop", 4.0, 1, 0, 0, 0, 0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
 CMD:shouting(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid,"RIOT","RIOT_shout",4.0,1,0,0,0,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
 CMD:chant(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid,"RIOT","RIOT_CHANT",4.0,1,1,1,1,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
 CMD:frisked(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid,"POLICE","crm_drgbst_01",4.0,0,1,1,1,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;    
@@ -740,57 +773,67 @@ CMD:frisked(playerid, params[]) {
 
 }
 CMD:exhausted(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid,"PED","IDLE_tired",3.0,1,0,0,0,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
 CMD:injured(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid, "SWEET", "Sweet_injuredloop", 4.0, 1, 0, 0, 0, 0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
 CMD:slapass(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     OnePlayAnim(playerid, "SWEET", "sweet_ass_slap", 4.0, 0, 0, 0, 0, 0);
 	return true;
 }
 CMD:deal(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     OnePlayAnim(playerid, "DEALER", "DEALER_DEAL", 4.0, 0, 0, 0, 0, 0);
 	return true;
 }
 CMD:dealstance(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid,"DEALER","DEALER_IDLE",4.0,1,0,0,0,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
 CMD:crack(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid, "CRACK", "crckdeth2", 4.0, 1, 0, 0, 0, 0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;    
 	return true;
 }
 CMD:wank(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid,"PAULNMAC", "wank_loop", 1.800001, 1, 0, 0, 1, 600);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1;
 	return true;
 }
 CMD:salute(playerid, params[]) {
+   	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
     if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     ApplyAnimation(playerid, "ON_LOOKERS", "Pointup_loop", 4.0, 1, 0, 0, 0, 0, 1);
     return true;
 }
 CMD:gro(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	LoopingAnim(playerid,"BEACH", "ParkSit_M_loop", 4.0, 1, 0, 0, 0, 0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
 CMD:sup(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     extract params -> new test; else return sendPlayerSyntax(playerid, "/sup <1-3>");
 	switch (test)
@@ -803,6 +846,7 @@ CMD:sup(playerid, params[]) {
     return true;
 }
 CMD:rap(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     extract params -> new test; else return sendPlayerSyntax(playerid, "/rap <1-4>");
 	switch (test)
@@ -828,126 +872,148 @@ CMD:rap(playerid, params[]) {
     return true;
 }
 CMD:push(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
  	OnePlayAnim(playerid,"GANGS","shake_cara",4.0,0,0,0,0,0);
 	return true;
 }
 CMD:akick(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	OnePlayAnim(playerid,"POLICE","Door_Kick",4.0,0,0,0,0,0);
 	return true;
 }
 CMD:lowbodypush(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	OnePlayAnim(playerid,"GANGS","shake_carSH",4.0,0,0,0,0,0);
 	return true;
 }
 CMD:headbutt(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	OnePlayAnim(playerid,"WAYFARER","WF_Fwd",4.0,0,0,0,0,0);
 	return true;
 }
 CMD:pee(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	if(playerInfo[playerid][pFreezed] == 1) return true;
 	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_PISSING);
 	return true;
 }
 CMD:koface(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"PED","KO_shot_face",4.0,0,1,1,1,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
 CMD:kostomach(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"PED","KO_shot_stom",4.0,0,1,1,1,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
 CMD:kiss(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"KISSING", "Grlfrd_Kiss_02", 1.800001, 1, 0, 0, 1, 600);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
 CMD:rollfall(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"PED","BIKE_fallR",4.0,0,1,1,1,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
 CMD:lay2(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"SUNBATHE","Lay_Bac_in",3.0,0,1,1,1,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 		
 	return true;
 }
 CMD:hitch(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"MISC","Hiker_Pose", 4.0, 1, 0, 0, 0, 0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
 CMD:beach(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"BEACH","SitnWait_loop_W",4.1,0,1,1,1,1);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
 CMD:medic(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"MEDIC","CPR",4.1,0,1,1,1,1);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
 CMD:scratch(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"MISC","Scratchballs_01", 4.0, 1, 0, 0, 0, 0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
 CMD:sit(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"PED","SEAT_idle", 4.0, 1, 0, 0, 0, 0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 		
 	return true;
 }
 CMD:drunk(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	LoopingAnim(playerid,"PED","WALK_DRUNK",4.0,1,1,1,1,0);
 	if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
 CMD:bomb(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
    	ClearAnimations(playerid);
    	OnePlayAnim(playerid, "BOMBER", "BOM_Plant", 4.0, 0, 0, 0, 0, 0);
 	return true;
 }
 CMD:getarrested(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid,"ped", "ARRESTgun", 4.0, 0, 1, 1, 1, -1);
     if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
 CMD:chat(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     OnePlayAnim(playerid,"PED","IDLE_CHAT",4.0,0,0,0,0,0);
 	return true;
 }
 CMD:fucku(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     OnePlayAnim(playerid,"PED","fucku",4.0,0,0,0,0,0);
 	return true;
 }
 CMD:taichi(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     LoopingAnim(playerid,"PARK","Tai_Chi_Loop",4.0,1,0,0,0,0);
     if(!playerInfo[playerid][pAnimLooping]) playerInfo[playerid][pAnimLooping] = 1; 	
 	return true;
 }
 CMD:knife(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
     extract params -> new test; else return sendPlayerSyntax(playerid, "/knife <1-4>");
 	switch (test)
@@ -970,6 +1036,7 @@ CMD:knife(playerid, params[]) {
 	return true;
 }
 CMD:basket(playerid, params[]) {
+	if(GetPlayerAnimationIndex(playerid) == 1130) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animati in cadere.");
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi animatii in timp ce esti intr-un vehicul.");
 	extract params -> new test; else return sendPlayerSyntax(playerid, "/basket <1-6>");
 	switch (test)
