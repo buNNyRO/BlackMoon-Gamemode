@@ -1213,6 +1213,11 @@ stock getWeaponSlot(weaponid) {
 	return slot;
 }
 stock removeMaps(playerid) {
+	RemoveBuildingForPlayer(playerid, 16565, -318.7656, 1046.4688, 18.7344, 0.25);
+	RemoveBuildingForPlayer(playerid, 1294, -308.2422, 1013.4609, 23.2031, 0.25);
+	RemoveBuildingForPlayer(playerid, 1294, -308.2422, 1030.6719, 23.2031, 0.25);
+	RemoveBuildingForPlayer(playerid, 16564, -318.7656, 1046.4688, 18.7344, 0.25);
+
 	RemoveBuildingForPlayer(playerid, 8229, 1142.0313, 1362.5000, 12.4844, 0.25);
 	RemoveBuildingForPlayer(playerid, 1368, 1165.1719, 1222.8047, 10.5078, 0.25);
 	RemoveBuildingForPlayer(playerid, 1368, 1169.6250, 1222.8047, 10.5078, 0.25);

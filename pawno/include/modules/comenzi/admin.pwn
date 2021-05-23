@@ -232,7 +232,7 @@ CMD:setadmin(playerid, params[])
 		Iter_Remove(ServerStaff, userID);
 		AllowPlayerTeleport(userID, 0);
 		if(playerInfo[playerid][pSpectate] > -1) {
-			TogglePlayerSpectating(playerid, 0);
+			TogglePlayerSpectatingEx(playerid, 0);
 			stop spectator[playerid];
 			playerInfo[playerInfo[playerid][pSpectate]][pSpectate] = -1;
 			playerInfo[playerid][pSpectate] = -1;
@@ -1519,7 +1519,7 @@ CMD:spec(playerid, params[]) {
 	GetPlayerArmourEx(userID, armour);
 	SCMf(playerid, COLOR_SERVER, "* (Spectating): Player %s (%d) | Health: %.2f | Armour: %.2f | Packet Loss: %.2f", getName(userID), userID, health, armour, NetStats_PacketLossPercent(userID));
 	sendAdmin(COLOR_SERVER, "Notice: {ffffff}Admin %s este acum spectator pe %s.", getName(playerid), getName(userID));	
-	TogglePlayerSpectating(playerid, 1);
+	TogglePlayerSpectatingEx(playerid, 1);
     SetPlayerInterior(playerid, GetPlayerInterior(userID));
     SetPlayerVirtualWorld(playerid, GetPlayerVirtualWorld(userID)); 
     if(IsPlayerInAnyVehicle(userID)) PlayerSpectateVehicle(playerid, GetPlayerVehicleID(userID));
@@ -1533,7 +1533,7 @@ CMD:specoff(playerid, params[]) {
 	if(!Iter_Contains(ServerHelpers, playerid) && !Iter_Contains(ServerAdmins, playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 	if(playerInfo[playerid][pSpectate] == -1) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti spectator pe un jucator.");
 	SCMf(playerid, COLOR_SERVER, "* (Spectating): Nu mai esti spectator pe %s (%d).", getName(playerInfo[playerid][pSpectate]), playerInfo[playerid][pSpectate]);
-	TogglePlayerSpectating(playerid, 0);
+	TogglePlayerSpectatingEx(playerid, 0);
 	stop spectator[playerid];
 	playerInfo[playerInfo[playerid][pSpectate]][pSpectate] = -1;
 	playerInfo[playerid][pSpectate] = -1;

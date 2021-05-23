@@ -7,6 +7,7 @@ enum enumAC {
     acCPTime,
     Float:acVelocity[3],
     acVehicleEnter,
+    acDeath,
     acVehicleEnterKey,
     acSpawn
 }; new acInfo[MAX_PLAYERS][enumAC];
@@ -14,6 +15,9 @@ enum enumAC {
 function acReset(playerid) {
     acInfo[playerid][acTime] = 
     acInfo[playerid][acTimeCrash] =
+
+    acInfo[playerid][acDeath] = 
+
     acInfo[playerid][acSpawnTime] = 0;
     acInfo[playerid][acSpawn] = 1;
 
@@ -30,10 +34,10 @@ stock Hacker(playerid){
     if(GetPlayerState(playerid) == PLAYER_STATE_ONFOOT) {
         if(playerInfo[playerid][pFlymode] == false) {
 
-            if(Velocity[0] <= -0.800000 || Velocity[1] <= -0.800000 || Velocity[2] <= -0.800000) {
-                if(GetPlayerAnimationIndex(playerid) == 1008) return acKicked(playerid, "Fly Hack #1");
-                if(GetPlayerSurfingVehicleID(playerid) == INVALID_VEHICLE_ID) acKicked(playerid, "Fly Hack #2");
-            }
+            // if(Velocity[0] <= -0.800000 || Velocity[1] <= -0.800000 || Velocity[2] <= -0.800000) {
+            //     if(GetPlayerAnimationIndex(playerid) == 1008) return acKicked(playerid, "Fly Hack #1");
+            //     if(GetPlayerSurfingVehicleID(playerid) == INVALID_VEHICLE_ID) acKicked(playerid, "Fly Hack #2");
+            // }
 
             new Float:amount = Velocity[0]-acInfo[playerid][acVelocity][0],
             Float:amount2 = Velocity[1]-acInfo[playerid][acVelocity][1];
@@ -48,16 +52,42 @@ stock Hacker(playerid){
 }
 
 hook OnPlayerSpawn(playerid) {
-    if(acInfo[playerid][acSpawn] < 1 || GetTickCount()-acInfo[playerid][acSpawnTime] < 1000) return acKicked(playerid, "Fake Spawn");
-    else acInfo[playerid][acSpawn] = 0;
+    if(acInfo[playerid][acSpawn] != 1 || GetTickCount()-acInfo[playerid][acSpawnTime] < 1000) return acKicked(playerid, "Fake Spawn", false);
+    acInfo[playerid][acSpawn] = 0;
+    return 1;
+}
+
+CMD:test(playerid, params[]) {
+    va_SendClientMessage(playerid, -1, "1ai %f HP", playerInfo[playerid][pHealth]);
+    new Float: test;
+    GetPlayerHealth(playerid, test);
+    va_SendClientMessage(playerid, -1, "2ai %f HP", test);
     return 1;
 }
 
 hook OnPlayerDeath(playerid, killerid, reason) {
-    if(reason != WEAPON_COLLISION && reason != 255 || killerid != INVALID_PLAYER_ID) return acKicked(playerid, "Fake Death");
+    va_SendClientMessage(playerid, -1, "OnPlayerDeath %d, %d", reason, killerid);
+    if(acInfo[playerid][acDeath] == 0)
+        if(killerid != INVALID_PLAYER_ID) return acKicked(playerid, "Fake Death", false);
 
     if(acInfo[playerid][acSpawn] < 1) acInfo[playerid][acSpawnTime] = GetTickCount();
+    acInfo[playerid][acDeath] = 0;
     acInfo[playerid][acSpawn] = 1;
+    return 1;
+}
+
+hook OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart) {
+    va_SendClientMessage(playerid, -1, "OnPlayerGiveDamage %f, %d, are %f hp", amount, weaponid, playerInfo[damagedid][pHealth]);
+    playerInfo[playerid][pHealth] -= amount;
+    return 1;
+}
+
+hook OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart) {
+    playerInfo[playerid][pHealth] -= amount;
+    if(playerInfo[playerid][pHealth] < -70) return acKicked(playerid, "GoodMod", false);
+    va_SendClientMessage(playerid, -1, "OnPlayerTakeDamage %f, %d hp: %f", amount, weaponid, playerInfo[playerid][pHealth]);
+    // if(playerInfo[playerid][pHealth] < -1) return acKicked(playerid, "GoodMode", false);
+    if(playerInfo[playerid][pHealth] < 1) acInfo[playerid][acDeath] = 1;
     return 1;
 }
 
@@ -74,10 +104,18 @@ function SpawnPlayerEx(playerid) {
     return 1;
 }
 
+function TogglePlayerSpectatingEx(playerid, toggle) {
+    TogglePlayerSpectating(playerid, toggle);
+
+    acInfo[playerid][acSpawnTime] = 0;
+    acInfo[playerid][acSpawn] = 1;
+    return 1;
+}
+
 hook OnPlayerStateChange(playerid, newstate, oldstate) {
     if(newstate == PLAYER_STATE_DRIVER) {
         if(GetTickCount()-acInfo[playerid][acTimeCrash] < 500) return acKicked(playerid, "Vehicle Troll #1");
-        if(oldstate == PLAYER_STATE_PASSENGER) return acKicked(playerid, "Vehicle Jacker #1");
+        if(oldstate == PLAYER_STATE_PASSENGER) return acKicked(playerid, "Vehicle Jacker #1", false);
         if(GetTickCount()-acInfo[playerid][acTime] < 500) return acKicked(playerid, "Troll Hack #2");
         acInfo[playerid][acTime] = GetTickCount()+500;
 
@@ -88,21 +126,21 @@ hook OnPlayerStateChange(playerid, newstate, oldstate) {
 }
 
 hook OnPlayerEnterCheckpoint(playerid) {
-    if(acInfo[playerid][acCPTime]-GetTickCount() < 1000) return acKicked(playerid, "Teleport to CP");
+    if(acInfo[playerid][acCPTime]-gettime() < 1) return SCMf(playerid, COLOR_ERROR, eERROR"Mai asteapta %d secunde", (acInfo[playerid][acCPTime]-GetTickCount()));
 
     new Float:distance = GetPlayerDistanceFromPoint(playerid, playerInfo[playerid][pLastPosX], playerInfo[playerid][pLastPosY], playerInfo[playerid][pLastPosZ]);
-    if(distance < 15.0 || acInfo[playerid][acCPTime] > GetTickCount()) return acKicked(playerid, "Teleport hack #1");
+    if(distance < 15.0 || acInfo[playerid][acCPTime] > gettime()) return acKicked(playerid, "Teleport hack #1");
 
-    acInfo[playerid][acCPTime] = GetTickCount()+1000;
+    acInfo[playerid][acCPTime] = gettime()+1;
     return 1;
 }
 
 hook OnPlayerEnterVehicle(playerid, vehicleid, ispassenger) {
     acInfo[playerid][acVehicleEnter] = vehicleid;
 
-    if(GetTickCount()-acInfo[playerid][acTimeCrash] < 50 && acInfo[playerid][acVehicleEnterKey] != 1) return acKicked(playerid, "Crasher #1");
+    if(acInfo[playerid][acTimeCrash]-GetTickCount() > 1000 && acInfo[playerid][acVehicleEnterKey] != 1) return acKicked(playerid, "Crasher #1");
     acInfo[playerid][acVehicleEnterKey] = 0;
-    acInfo[playerid][acTimeCrash] = GetTickCount()+50;
+    acInfo[playerid][acTimeCrash] = GetTickCount()+1000;
     if(IsPlayerInAnyVehicle(playerid) && !playerInfo[playerid][pAdmin]) return acKicked(playerid, "Crasher #2");
     return 1;
 }
@@ -123,10 +161,11 @@ public OnPlayerUpdate(playerid) {
     return 1;
 }
 
-function acKicked(playerid, const motiv[]) {
+stock acKicked(playerid, const motiv[], bool:deelay = true) {
     va_SendClientMessageToAll(COLOR_LIGHTRED, "(AC) %s a primit kick pentru '%s'.", getName(playerid), motiv);
     printf("(AC) %s a primit kick pentru '%s'.", getName(playerid), motiv);
     SendDiscordAC("%s a primit kick pentru **'%s'**", getName(playerid), motiv);
-    Kick(playerid);
+    if(deelay) { Kick(playerid); }
+    else { defer kickEx(playerid); }
     return 1;
 }

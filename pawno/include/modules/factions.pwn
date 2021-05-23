@@ -351,37 +351,37 @@ function chasedBy(playerid) {
 
 function LoadFactions() {
 	if(!cache_num_rows()) return print("Factions: 0 [From Database]");
-	for(new i = 0; i < cache_num_rows(); i++) {	
-		cache_get_value_name_int(i, "ID", factionInfo[i][fID]);
-		cache_get_value_name_int(i, "MinLevel", factionInfo[i][fMinLevel]);
-		cache_get_value_name_int(i, "MaxMembers", factionInfo[i][fMaxMembers]);
-		cache_get_value_name_int(i, "Interior", factionInfo[i][fInterior]);
-		cache_get_value_name_int(i, "Type", factionInfo[i][fType]);
-		cache_get_value_name_int(i, "MapIconType", factionInfo[i][fMapIconType]);
-		cache_get_value_name_int(i, "Apps", factionInfo[i][fApps]);
-		cache_get_value_name_int(i, "Locked", factionInfo[i][fLocked]);
-		cache_get_value_name(i, "Name", factionInfo[i][fName]);
-		cache_get_value_name(i, "Motd", factionInfo[i][fMotd]);
-		cache_get_value_name_float(i, "X", factionInfo[i][fEnterX]);
-		cache_get_value_name_float(i, "Y", factionInfo[i][fEnterY]);
-		cache_get_value_name_float(i, "Z", factionInfo[i][fEnterZ]);
-		cache_get_value_name_float(i, "ExtX", factionInfo[i][fExitX]);
-		cache_get_value_name_float(i, "ExtY", factionInfo[i][fExitY]);
-		cache_get_value_name_float(i, "ExtZ", factionInfo[i][fExitZ]);
-		cache_get_value_name_int(i, "SkinRank1", fSkins[factionInfo[i][fID]][2]);
-		cache_get_value_name_int(i, "SkinRank2", fSkins[factionInfo[i][fID]][2]);
-		cache_get_value_name_int(i, "SkinRank3", fSkins[factionInfo[i][fID]][3]);
-		cache_get_value_name_int(i, "SkinRank4", fSkins[factionInfo[i][fID]][4]);
-		cache_get_value_name_int(i, "SkinRank5", fSkins[factionInfo[i][fID]][5]);
-		cache_get_value_name_int(i, "SkinRank6", fSkins[factionInfo[i][fID]][6]);
-		cache_get_value_name_int(i, "SkinRank7", fSkins[factionInfo[i][fID]][7]);
-		cache_get_value_name_int(i, "Commands1", factionInfo[i][fCommands][0]);
-		cache_get_value_name_int(i, "Commands2", factionInfo[i][fCommands][1]);
-		cache_get_value_name_int(i, "Commands3", factionInfo[i][fCommands][2]);
-		cache_get_value_name_int(i, "Commands4", factionInfo[i][fCommands][3]);
-		cache_get_value_name_int(i, "Commands5", factionInfo[i][fCommands][4]);
-		cache_get_value_name_int(i, "Commands6", factionInfo[i][fCommands][6]);
-		cache_get_value_name_int(i, "Commands7", factionInfo[i][fCommands][7]);
+	for(new i = 1; i < cache_num_rows() + 1; i++) {	
+		cache_get_value_name_int(i - 1, "ID", factionInfo[i][fID]);
+		cache_get_value_name_int(i - 1, "MinLevel", factionInfo[i][fMinLevel]);
+		cache_get_value_name_int(i - 1, "MaxMembers", factionInfo[i][fMaxMembers]);
+		cache_get_value_name_int(i - 1, "Interior", factionInfo[i][fInterior]);
+		cache_get_value_name_int(i - 1, "Type", factionInfo[i][fType]);
+		cache_get_value_name_int(i - 1, "MapIconType", factionInfo[i][fMapIconType]);
+		cache_get_value_name_int(i - 1, "Apps", factionInfo[i][fApps]);
+		cache_get_value_name_int(i - 1, "Locked", factionInfo[i][fLocked]);
+		cache_get_value_name(i - 1, "Name", factionInfo[i][fName]);
+		cache_get_value_name(i - 1, "Motd", factionInfo[i][fMotd]);
+		cache_get_value_name_float(i - 1, "X", factionInfo[i][fEnterX]);
+		cache_get_value_name_float(i - 1, "Y", factionInfo[i][fEnterY]);
+		cache_get_value_name_float(i - 1, "Z", factionInfo[i][fEnterZ]);
+		cache_get_value_name_float(i - 1, "ExtX", factionInfo[i][fExitX]);
+		cache_get_value_name_float(i - 1, "ExtY", factionInfo[i][fExitY]);
+		cache_get_value_name_float(i - 1, "ExtZ", factionInfo[i][fExitZ]);
+		cache_get_value_name_int(i - 1, "SkinRank1", fSkins[factionInfo[i][fID]][2]);
+		cache_get_value_name_int(i - 1, "SkinRank2", fSkins[factionInfo[i][fID]][2]);
+		cache_get_value_name_int(i - 1, "SkinRank3", fSkins[factionInfo[i][fID]][3]);
+		cache_get_value_name_int(i - 1, "SkinRank4", fSkins[factionInfo[i][fID]][4]);
+		cache_get_value_name_int(i - 1, "SkinRank5", fSkins[factionInfo[i][fID]][5]);
+		cache_get_value_name_int(i - 1, "SkinRank6", fSkins[factionInfo[i][fID]][6]);
+		cache_get_value_name_int(i - 1, "SkinRank7", fSkins[factionInfo[i][fID]][7]);
+		cache_get_value_name_int(i - 1, "Commands1", factionInfo[i][fCommands][0]);
+		cache_get_value_name_int(i - 1, "Commands2", factionInfo[i][fCommands][1]);
+		cache_get_value_name_int(i - 1, "Commands3", factionInfo[i][fCommands][2]);
+		cache_get_value_name_int(i - 1, "Commands4", factionInfo[i][fCommands][3]);
+		cache_get_value_name_int(i - 1, "Commands5", factionInfo[i][fCommands][4]);
+		cache_get_value_name_int(i - 1, "Commands6", factionInfo[i][fCommands][6]);
+		cache_get_value_name_int(i - 1, "Commands7", factionInfo[i][fCommands][7]);
 
 		Iter_Add(ServerFactions, i);
 
