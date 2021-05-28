@@ -712,7 +712,7 @@ function removeFunction(playerid, text[]) {
 			SetPlayerHealthEx(playerid, 100);
 		}
 		if(playerInfo[playerid][pSpectate] > -1) {
-			TogglePlayerSpectatingEx(playerid, 0);
+			TogglePlayerSpectating(playerid, 0);
 			stop spectator[playerid];
 			playerInfo[playerInfo[playerid][pSpectate]][pSpectate] = -1;
 			playerInfo[playerid][pSpectate] = -1;
@@ -744,7 +744,7 @@ function removeFunction(playerid, text[]) {
 			if(IsValidObject(svfVehicleObjects[1])) DestroyObject(svfVehicleObjects[1]);
 		}
 		if(playerInfo[playerid][pContractID] > -1) {
-			sendFactionMessage(10, COLOR_LIMEGREEN, "* Deoarece %s (%d) nu mai este in factiune contractul plasat de %s (%d) pe %s (%d) in valoare de %s$ s-a sters.", getName(playerid), playerid, getName(contractInfo[playerInfo[playerid][pContractID]][cBy]), contractInfo[playerInfo[playerid][pContractID]][cBy], getName(contractInfo[playerInfo[playerid][pContractID]][cFor]), contractInfo[playerInfo[playerid][pContractID]][cFor], formatNumber(contractInfo[playerInfo[playerid][pContractID]][cMoney]));
+			sendFactionMessage(10, COLOR_LIMEGREEN, "* Deoarece %s (%d) nu mai este in factiune contractul plasat de %s (%d) pe %s (%d) in valoare de %s$ este liber.", getName(playerid), playerid, getName(contractInfo[playerInfo[playerid][pContractID]][cBy]), contractInfo[playerInfo[playerid][pContractID]][cBy], getName(contractInfo[playerInfo[playerid][pContractID]][cFor]), contractInfo[playerInfo[playerid][pContractID]][cFor], formatNumber(contractInfo[playerInfo[playerid][pContractID]][cMoney]));
 	    	contractInfo[playerInfo[playerid][pContractID]][cHitman] = -1;
 	    	playerInfo[playerid][pContractID] = -1;   	
 	    }

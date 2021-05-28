@@ -217,6 +217,28 @@ Dialog:BUYBIZ(playerid, response, listitem) {
 			update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '2' LIMIT 1", bizInfo[2][bizBalance]);
 			SCM(playerid, COLOR_GREY, "* Buy Notice: Ai cumparat un walkie talkie.");			
 		}
+		case 3: {
+			if(GetPlayerCash(playerid) < 3000) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai $3000.");
+			if(playerInfo[playerid][pFishBaitNormal] == 30) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti avea mai mult de 30 momeala pluta.");
+			GivePlayerCash(playerid, 0, 3000);
+			PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
+			playerInfo[playerid][pFishBaitNormal] ++;
+			bizInfo[2][bizBalance] += 3000;
+			update("UPDATE `server_users` SET `FishBaitNormal` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pFishBaitNormal], playerInfo[playerid][pSQLID]);
+			update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '2' LIMIT 1", bizInfo[2][bizBalance]);
+			SCM(playerid, COLOR_GREY, "* Buy Notice: Ai cumparat momeala pentru pluta.");				
+		}
+		case 4: {
+			if(GetPlayerCash(playerid) < 6000) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai $6000.");
+			if(playerInfo[playerid][pFishBaitSpecial] == 30) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti avea mai mult de 30 momeala fund.");
+			GivePlayerCash(playerid, 0, 6000);
+			PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
+			playerInfo[playerid][pFishBaitSpecial] ++;
+			bizInfo[2][bizBalance] += 6000;
+			update("UPDATE `server_users` SET `FishBaitNormal` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pFishBaitSpecial], playerInfo[playerid][pSQLID]);
+			update("UPDATE `server_business` SET `Balance` = '%d' WHERE `ID` = '2' LIMIT 1", bizInfo[2][bizBalance]);
+			SCM(playerid, COLOR_GREY, "* Buy Notice: Ai cumparat momeala pentru fund.");				
+		}
 	}
 	return true;
 }
@@ -393,7 +415,7 @@ CMD:buy(playerid, params[]) {
 	if(!isPlayerLogged(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti logat, pentru a face aceasta actiune.");
 	if(Dialog_Opened(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda cat timp ai un dialog afisat.");
 	if(playerInfo[playerid][pinBusiness] == 0 && bizInfo[playerInfo[playerid][pinBusiness]][bizType] != 2) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda, deoarece nu esti intr-un biz de tip 24/7.");	
-	Dialog_Show(playerid, BUYBIZ, DIALOG_STYLE_TABLIST_HEADERS, "SERVER: Buy", "Item\tPrice\nPhone\t$1,500\nPhone Book\t$3,500\nWalkie Talkie\t$5,000\n", "Select", "Close");
+	Dialog_Show(playerid, BUYBIZ, DIALOG_STYLE_TABLIST_HEADERS, "SERVER: Buy", "Item\tPrice\nPhone\t$1,500\nPhone Book\t$3,500\nWalkie Talkie\t$5,000\nFish Bait Pluta\t$3,000\nFish Bait Fund\t$6,000\n", "Select", "Close");
 	return true;
 }
 
