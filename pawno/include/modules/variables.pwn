@@ -20,7 +20,8 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
     Iterator:PlayerInVehicle<MAX_PLAYERS>,
 	Iterator:MutedPlayers<MAX_PLAYERS>,
 	Iterator:ExamenCheckpoints<MAX_EXAM_CHECKPOINTS>,
-	Iterator:AdminVehicles<MAX_VEHICLES>,
+    Iterator:AdminVehicles<MAX_VEHICLES>,
+	Iterator:StreamPlayer[MAX_PLAYERS]<MAX_PLAYERS>,
 	/*Iterator:Pickups<MAX_DYNAMIC_PICKUPS>,
 	Iterator:Labels<MAX_DYNAMIC_LABELS>,*/
 	Iterator:Reports<MAX_REPORTS>,

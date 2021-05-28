@@ -190,11 +190,11 @@ stock jobWork(playerid, job) {
 	return true;
 }
 		
-CancelJob(playerid, job) {
-	switch(job) {
-		case JOB_FISHER: {
-			// coming soon
-		}
-	}
-	return true;
-}
+// CancelJob(playerid, job) {
+// 	switch(job) {
+// 		case JOB_FISHER: {
+// 			// coming soon
+// 		}
+// 	}
+// 	return true;
+// }

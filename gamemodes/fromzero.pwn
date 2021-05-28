@@ -170,6 +170,7 @@ public OnPlayerConnect(playerid)
 
 public OnPlayerDisconnect(playerid, reason)
 {
+	Iter_Clear(StreamPlayer[playerid]);
 	if(Iter_Contains(ServerAdmins, playerid)) 
 		Iter_Remove(ServerAdmins, playerid);
 
@@ -821,9 +822,13 @@ public OnPlayerRequestSpawn(playerid)
 
 public OnPlayerStreamIn(playerid, forplayerid)
 {
-    new string[40];
-    format(string, sizeof(string), "Player %d is now streamed in for you.", playerid);
-    SendClientMessage(forplayerid, 0xFFFFFFFF, string);
+	Iter_Add(StreamPlayer[playerid], forplayerid);
+    return 1;
+}
+
+public OnPlayerStreamOut(playerid, forplayerid)
+{
+	Iter_Remove(StreamPlayer[playerid], forplayerid);
     return 1;
 }
 

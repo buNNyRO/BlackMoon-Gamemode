@@ -358,7 +358,7 @@
 				<size value="6"/>
 			</member>
 		</member>
-		<member name="T:businessInfoEnum" value="150">
+		<member name="T:businessInfoEnum" value="149">
 			<tagname value="businessInfoEnum"/>
 			<member name="C:bizID" value="0">
 			</member>
@@ -411,8 +411,6 @@
 				<tagname value="Text3D"/>
 			</member>
 			<member name="C:bizPickup" value="148">
-			</member>
-			<member name="C:bizArea" value="149">
 			</member>
 		</member>
 		<member name="T:clanInfoEnum" value="429">
@@ -1480,8 +1478,6 @@
 		<member name="C:E_STREAMER_EXTRA_ID" value="15">
 			<referrer name="LoadHouses"/>
 			<referrer name="pc_cmd_createhouse"/>
-			<referrer name="LoadBusinesses"/>
-			<referrer name="pc_cmd_createbusiness"/>
 		</member>
 		<member name="C:FEMALE_GENDER" value="0">
 			<referrer name="dialog_GENDER"/>
@@ -1492,7 +1488,6 @@
 		<member name="C:JOB_FISHER" value="1">
 			<referrer name="returnNeededPoints"/>
 			<referrer name="pc_cmd_skills"/>
-			<referrer name="CancelJob"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 		</member>
 		<member name="C:MALE_GENDER" value="1">
@@ -1831,6 +1826,7 @@
 			<referrer name="dialog_TOG"/>
 			<referrer name="dialog_DIALOG_SHOP"/>
 			<referrer name="dialog_DIALOG_HUD"/>
+			<referrer name="dialog_DIALOG_HELP"/>
 			<referrer name="@yH_OnGameModeInit@005"/>
 			<referrer name="@yH_OnPlayerConnect@005"/>
 			<referrer name="buyHouseOffline"/>
@@ -1963,7 +1959,6 @@
 			<referrer name="pc_cmd_startwork"/>
 			<referrer name="pc_cmd_fish"/>
 			<referrer name="jobWork"/>
-			<referrer name="CancelJob"/>
 			<referrer name="@yH_OnGameModeInit@009"/>
 			<referrer name="@yH_OnPlayerConnect@009"/>
 			<referrer name="advertismentTimer"/>
@@ -2245,7 +2240,6 @@
 			<referrer name="pc_cmd_shop"/>
 			<referrer name="pc_cmd_hud"/>
 			<referrer name="pc_cmd_help"/>
-			<referrer name="dialog_DIALOG_HELP"/>
 			<referrer name="pc_cmd_findbusiness"/>
 			<referrer name="pc_cmd_findhouse"/>
 			<referrer name="pc_cmd_id"/>
@@ -2557,7 +2551,6 @@
 			<referrer name="Iter_AddStaticVehicleEx"/>
 			<referrer name="Iter_DestroyVehicle"/>
 			<referrer name="_Timer_C"/>
-			<referrer name="acKicked"/>
 			<referrer name="banPlayer"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="wrongPass"/>
@@ -2838,6 +2831,11 @@
 			<referrer name="pc_cmd_service"/>
 			<referrer name="pc_cmd_cancel"/>
 			<referrer name="pc_cmd_accept"/>
+		</member>
+		<member name="F:Iter_Single@StreamPlayer">
+			<referrer name="CB_OnPlayerDisconnect"/>
+			<referrer name="OnPlayerStreamIn"/>
+			<referrer name="OnPlayerStreamOut"/>
 		</member>
 		<member name="F:Iter_Single@TotalClanMembers">
 			<referrer name="sendClanMessage"/>
@@ -3226,6 +3224,12 @@
 			<referrer name="pc_cmd_cancel"/>
 			<referrer name="pc_cmd_accept"/>
 		</member>
+		<member name="F:Iterator@StreamPlayer">
+			<referrer name="sendNearbyMessage"/>
+			<referrer name="CB_OnPlayerDisconnect"/>
+			<referrer name="OnPlayerStreamIn"/>
+			<referrer name="OnPlayerStreamOut"/>
+		</member>
 		<member name="F:Iterator@TotalClanMembers">
 			<referrer name="sendClanMessage"/>
 			<referrer name="pc_cmd_leaveclan"/>
@@ -3259,7 +3263,6 @@
 			<referrer name="onPlayerLogin"/>
 		</member>
 		<member name="F:Iterator@loggedPlayers">
-			<referrer name="sendNearbyMessage"/>
 			<referrer name="isPlayerLogged"/>
 			<referrer name="oocNews"/>
 			<referrer name="GetPlayerID"/>
@@ -3293,7 +3296,6 @@
 			<referrer name="Iter_AddStaticVehicle"/>
 			<referrer name="Iter_AddStaticVehicleEx"/>
 			<referrer name="Iter_DestroyVehicle"/>
-			<referrer name="acKicked"/>
 			<referrer name="banPlayer"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="wrongPass"/>
@@ -3980,7 +3982,6 @@
 			<referrer name="pc_cmd_buy"/>
 			<referrer name="pc_cmd_ad"/>
 			<referrer name="pc_cmd_createbusiness"/>
-			<referrer name="pc_cmd_addbizgas"/>
 			<referrer name="pc_cmd_gotobusiness"/>
 			<referrer name="pc_cmd_findbusiness"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
@@ -4493,7 +4494,6 @@
 		</member>
 		<member name="F:playerInfo">
 			<referrer name="Hacker"/>
-			<referrer name="pc_cmd_test"/>
 			<referrer name="@yH_OnPlayerGiveDamage@005"/>
 			<referrer name="@yH_OnPlayerTakeDamage@005"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@005"/>
@@ -4533,6 +4533,7 @@
 			<referrer name="dialog_TOG"/>
 			<referrer name="dialog_DIALOG_SHOP"/>
 			<referrer name="dialog_DIALOG_HUD"/>
+			<referrer name="dialog_DIALOG_HELP"/>
 			<referrer name="OnPlayerPickUpDynamicPickup"/>
 			<referrer name="@yH_OnPlayerConnect@005"/>
 			<referrer name="buyHouseOffline"/>
@@ -4878,7 +4879,6 @@
 			<referrer name="pc_cmd_finalquest"/>
 			<referrer name="pc_cmd_shop"/>
 			<referrer name="pc_cmd_hud"/>
-			<referrer name="dialog_DIALOG_HELP"/>
 			<referrer name="pc_cmd_findbusiness"/>
 			<referrer name="pc_cmd_findhouse"/>
 			<referrer name="pc_cmd_id"/>
@@ -6194,7 +6194,7 @@
 		</member>
 		<member name="M:@yH_OnPlayerDeath@005" syntax="@yH_OnPlayerDeath@005(playerid, killerid, reason)">
 			<attribute name="public"/>
-			<stacksize value="8"/>
+			<stacksize value="6"/>
 			<dependency name="GetTickCount"/>
 			<dependency name="acDeath"/>
 			<dependency name="acInfo"/>
@@ -6203,7 +6203,6 @@
 			<dependency name="acSpawn"/>
 			<dependency name="acSpawnTime"/>
 			<dependency name="false"/>
-			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="killerid">
@@ -6478,12 +6477,11 @@
 		</member>
 		<member name="M:@yH_OnPlayerGiveDamage@005" syntax="@yH_OnPlayerGiveDamage@005(playerid, damagedid, amount, weaponid, bodypart)">
 			<attribute name="public"/>
-			<stacksize value="9"/>
+			<stacksize value="1"/>
 			<dependency name="operator-(Float:,Float:)"/>
 			<dependency name="pHealth"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="damagedid">
@@ -6583,7 +6581,7 @@
 		</member>
 		<member name="M:@yH_OnPlayerTakeDamage@005" syntax="@yH_OnPlayerTakeDamage@005(playerid, issuerid, amount, weaponid, bodypart)">
 			<attribute name="public"/>
-			<stacksize value="9"/>
+			<stacksize value="6"/>
 			<dependency name="operator-(Float:,Float:)"/>
 			<dependency name="operator&lt;(Float:,_:)"/>
 			<dependency name="acDeath"/>
@@ -6594,7 +6592,6 @@
 			<dependency name="pHealth"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="issuerid">
@@ -10011,6 +10008,7 @@
 			<dependency name="DCC_SetBotPresenceStatus"/>
 			<dependency name="EOS"/>
 			<dependency name="IDLE"/>
+			<dependency name="Iter_Clear_InternalC"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iter_Remove_InternalC"/>
 			<dependency name="Iter_Single@MutedPlayers"/>
@@ -10019,6 +10017,7 @@
 			<dependency name="Iter_Single@ServerAdmins"/>
 			<dependency name="Iter_Single@ServerHelpers"/>
 			<dependency name="Iter_Single@ServerStaff"/>
+			<dependency name="Iter_Single@StreamPlayer"/>
 			<dependency name="Iter_Single@TotalClanMembers"/>
 			<dependency name="Iter_Single@loggedPlayers"/>
 			<dependency name="Iterator@MutedPlayers"/>
@@ -10026,13 +10025,14 @@
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="Iterator@ServerHelpers"/>
 			<dependency name="Iterator@ServerStaff"/>
+			<dependency name="Iterator@StreamPlayer"/>
 			<dependency name="Iterator@TotalClanMembers"/>
 			<dependency name="Iterator@loggedPlayers"/>
 			<dependency name="MoneyMoney"/>
 			<dependency name="PlayerTextDrawHide"/>
 			<dependency name="REPORT_TYPE_NONE"/>
 			<dependency name="StoreMoney"/>
-			<dependency name="TogglePlayerSpectatingEx"/>
+			<dependency name="TogglePlayerSpectating"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="cBy"/>
 			<dependency name="cClanColor"/>
@@ -10866,15 +10866,6 @@
 			<dependency name="s_aPlayerTickInfo"/>
 			<dependency name="s_aPlayerTickInfo"/>
 			<dependency name="true"/>
-		</member>
-		<member name="M:CancelJob" syntax="CancelJob(playerid, job)">
-			<stacksize value="1"/>
-			<dependency name="JOB_FISHER"/>
-			<dependency name="true"/>
-			<param name="playerid">
-			</param>
-			<param name="job">
-			</param>
 		</member>
 		<member name="M:CancelSelectTextDraw" syntax="CancelSelectTextDraw(playerid)">
 			<attribute name="native"/>
@@ -11918,8 +11909,6 @@
 			<attribute name="native"/>
 			<referrer name="LoadHouses"/>
 			<referrer name="pc_cmd_createhouse"/>
-			<referrer name="LoadBusinesses"/>
-			<referrer name="pc_cmd_createbusiness"/>
 			<param name="x">
 				<paraminfo>Float </paraminfo>
 			</param>
@@ -12521,6 +12510,7 @@
 			<referrer name="dialog_DIALOG_REPORT_NORMAL"/>
 			<referrer name="dialog_DIALOG_REPORT_CHEATER"/>
 			<referrer name="dialog_GPS"/>
+			<referrer name="dialog_DIALOG_HELP"/>
 			<referrer name="dialog_HOUSE_OPTION"/>
 			<referrer name="dialog_HOUSE_OPTION_TITLE"/>
 			<referrer name="dialog_HOUSE_OPTION_DESCRIPTION"/>
@@ -12576,7 +12566,6 @@
 			<referrer name="pc_cmd_shop"/>
 			<referrer name="pc_cmd_hud"/>
 			<referrer name="pc_cmd_help"/>
-			<referrer name="dialog_DIALOG_HELP"/>
 			<referrer name="pc_cmd_serverinfo"/>
 			<referrer name="ShowEmails"/>
 			<referrer name="showEmail"/>
@@ -16705,7 +16694,6 @@
 			<referrer name="pc_cmd_swapcolors"/>
 			<referrer name="pc_cmd_carplate"/>
 			<referrer name="pc_cmd_carcolor"/>
-			<referrer name="pc_cmd_fill"/>
 			<referrer name="pc_cmd_despawncar"/>
 			<referrer name="pc_cmd_gotocar"/>
 			<referrer name="pc_cmd_getcar"/>
@@ -17324,6 +17312,7 @@
 			<referrer name="LoadDSVehicles"/>
 			<referrer name="InsertCarDS"/>
 			<referrer name="CB_OnPlayerStateChange"/>
+			<referrer name="OnPlayerStreamIn"/>
 			<dependency name="cellmin"/>
 			<param name="count">
 				<paraminfo> &amp; </paraminfo>
@@ -17426,6 +17415,7 @@
 			<stacksize value="5"/>
 			<referrer name="@yH_OnScriptInit@002"/>
 			<referrer name="pc_cmd_despawncars"/>
+			<referrer name="CB_OnPlayerDisconnect"/>
 			<dependency name="setarg"/>
 			<param name="array">
 				<paraminfo> [] </paraminfo>
@@ -18315,6 +18305,7 @@
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<referrer name="OnVehicleDeath"/>
 			<referrer name="CB_OnPlayerStateChange"/>
+			<referrer name="OnPlayerStreamOut"/>
 			<dependency name="Iter_SafeRemove_InternalC"/>
 			<param name="count">
 				<paraminfo> &amp; </paraminfo>
@@ -18555,7 +18546,6 @@
 		</member>
 		<member name="M:Kick" syntax="Kick(playerid)">
 			<attribute name="native"/>
-			<referrer name="acKicked"/>
 			<referrer name="dialog_REGISTER"/>
 			<referrer name="dialog_LOGIN"/>
 			<referrer name="kickEx"/>
@@ -18595,15 +18585,11 @@
 			<dependency name="CreateDynamic3DTextLabel"/>
 			<dependency name="CreateDynamicMapIcon"/>
 			<dependency name="CreateDynamicPickup"/>
-			<dependency name="CreateDynamicSphere"/>
-			<dependency name="E_STREAMER_EXTRA_ID"/>
 			<dependency name="Iter_Add_InternalC"/>
 			<dependency name="Iter_Single@ServerBusinesses"/>
 			<dependency name="Iterator@ServerBusinesses"/>
 			<dependency name="PickInfo"/>
 			<dependency name="PickInfo"/>
-			<dependency name="Streamer_SetIntData"/>
-			<dependency name="bizArea"/>
 			<dependency name="bizBalance"/>
 			<dependency name="bizDescription"/>
 			<dependency name="bizExtX"/>
@@ -20646,16 +20632,21 @@
 		</member>
 		<member name="M:OnPlayerStreamIn" syntax="OnPlayerStreamIn(playerid, forplayerid)">
 			<attribute name="public"/>
-			<stacksize value="46"/>
-			<dependency name="SendClientMessage"/>
-			<dependency name="format"/>
+			<stacksize value="7"/>
+			<dependency name="Iter_Add_InternalC"/>
+			<dependency name="Iter_Single@StreamPlayer"/>
+			<dependency name="Iterator@StreamPlayer"/>
 			<param name="playerid">
 			</param>
 			<param name="forplayerid">
 			</param>
 		</member>
 		<member name="M:OnPlayerStreamOut" syntax="OnPlayerStreamOut(playerid, forplayerid)">
-			<stacksize value="1"/>
+			<attribute name="public"/>
+			<stacksize value="7"/>
+			<dependency name="Iter_Remove_InternalC"/>
+			<dependency name="Iter_Single@StreamPlayer"/>
+			<dependency name="Iterator@StreamPlayer"/>
 			<param name="playerid">
 			</param>
 			<param name="forplayerid">
@@ -22968,7 +22959,6 @@
 			<referrer name="OnPlayerEnterVehicle"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerStateChange"/>
-			<referrer name="OnPlayerStreamIn"/>
 			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 			<referrer name="OnPlayerClickPlayerTextDraw"/>
 			<param name="playerid">
@@ -22993,7 +22983,6 @@
 		<member name="M:SendDiscordAC" syntax="SendDiscordAC(text[], ...)">
 			<attribute name="public"/>
 			<stacksize value="4203"/>
-			<referrer name="acKicked"/>
 			<dependency name="DCC_FindChannelById"/>
 			<dependency name="DCC_SendChannelMessage"/>
 			<dependency name="MoonBotAC"/>
@@ -24173,8 +24162,6 @@
 			<attribute name="native"/>
 			<referrer name="LoadHouses"/>
 			<referrer name="pc_cmd_createhouse"/>
-			<referrer name="LoadBusinesses"/>
-			<referrer name="pc_cmd_createbusiness"/>
 			<param name="type">
 			</param>
 			<param name="id">
@@ -25125,9 +25112,11 @@
 		<member name="M:TogglePlayerSpectating" syntax="TogglePlayerSpectating(playerid, toggle)">
 			<attribute name="native"/>
 			<referrer name="TogglePlayerSpectatingEx"/>
+			<referrer name="removeFunction"/>
 			<referrer name="pc_cmd_setadmin"/>
 			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_specoff"/>
+			<referrer name="CB_OnPlayerDisconnect"/>
 			<param name="playerid">
 			</param>
 			<param name="toggle">
@@ -25136,8 +25125,6 @@
 		<member name="M:TogglePlayerSpectatingEx" syntax="TogglePlayerSpectatingEx(playerid, toggle)">
 			<attribute name="public"/>
 			<stacksize value="4"/>
-			<referrer name="removeFunction"/>
-			<referrer name="CB_OnPlayerDisconnect"/>
 			<dependency name="TogglePlayerSpectating"/>
 			<dependency name="acInfo"/>
 			<dependency name="acInfo"/>
@@ -26024,15 +26011,9 @@
 			<referrer name="@yH_OnPlayerEnterCheckpoint@005"/>
 			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
 			<referrer name="CB_OnPlayerStateChange"/>
-			<dependency name="I@"/>
-			<dependency name="J@"/>
-			<dependency name="Kick"/>
-			<dependency name="SendDiscordAC"/>
-			<dependency name="kickEx_yT@"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="printf"/>
 			<dependency name="va_SendClientMessageToAll"/>
 			<param name="playerid">
 			</param>
@@ -27167,6 +27148,8 @@
 			<dependency name="bizBalance"/>
 			<dependency name="bizInfo"/>
 			<dependency name="bizInfo"/>
+			<dependency name="pFishBaitNormal"/>
+			<dependency name="pFishBaitSpecial"/>
 			<dependency name="pPhone"/>
 			<dependency name="pPhoneBook"/>
 			<dependency name="pSQLID"/>
@@ -29090,7 +29073,6 @@
 			<referrer name="pc_cmd_quests"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="OnPlayerText"/>
-			<referrer name="OnPlayerStreamIn"/>
 			<param name="output">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -29847,7 +29829,6 @@
 		</member>
 		<member name="M:kickEx_yT@" syntax="kickEx_yT@(playerid)">
 			<stacksize value="8"/>
-			<referrer name="acKicked"/>
 			<referrer name="banPlayer"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="wrongPass"/>
@@ -30911,8 +30892,6 @@
 			<dependency name="Iterator@ServerBusinesses"/>
 			<dependency name="Iterator@ServerGasCan"/>
 			<dependency name="SendClientMessage"/>
-			<dependency name="bizInfo"/>
-			<dependency name="bizType"/>
 			<dependency name="gBizID"/>
 			<dependency name="gFull"/>
 			<dependency name="gID"/>
@@ -32617,8 +32596,6 @@
 			<dependency name="CreateDynamic3DTextLabel"/>
 			<dependency name="CreateDynamicMapIcon"/>
 			<dependency name="CreateDynamicPickup"/>
-			<dependency name="CreateDynamicSphere"/>
-			<dependency name="E_STREAMER_EXTRA_ID"/>
 			<dependency name="GetPlayerPos"/>
 			<dependency name="Iter_Add_InternalC"/>
 			<dependency name="Iter_Single@ServerBusinesses"/>
@@ -32626,9 +32603,7 @@
 			<dependency name="PickInfo"/>
 			<dependency name="PickInfo"/>
 			<dependency name="SendClientMessage"/>
-			<dependency name="Streamer_SetIntData"/>
 			<dependency name="YHash"/>
-			<dependency name="bizArea"/>
 			<dependency name="bizBalance"/>
 			<dependency name="bizDescription"/>
 			<dependency name="bizExtX"/>
@@ -33540,7 +33515,6 @@
 			<dependency name="GameTextForPlayer"/>
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="I@"/>
-			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="IsPlayerInRangeOfPoint"/>
 			<dependency name="J@"/>
 			<dependency name="PlayerMoney"/>
@@ -37372,12 +37346,8 @@
 		</member>
 		<member name="M:pc_cmd_test" syntax="pc_cmd_test(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="8"/>
+			<stacksize value="5"/>
 			<dependency name="GetPlayerHealth"/>
-			<dependency name="pHealth"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -38078,7 +38048,6 @@
 			<referrer name="ProfilerInit"/>
 			<referrer name="DumpStack"/>
 			<referrer name="PrintStackTrace"/>
-			<referrer name="acKicked"/>
 			<referrer name="LoadHouses"/>
 			<referrer name="LoadTurfs"/>
 			<referrer name="LoadFactions"/>
@@ -38250,7 +38219,7 @@
 			<dependency name="PlayerTextDrawHide"/>
 			<dependency name="SetPlayerHealthEx"/>
 			<dependency name="StopFly"/>
-			<dependency name="TogglePlayerSpectatingEx"/>
+			<dependency name="TogglePlayerSpectating"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="cBy"/>
 			<dependency name="cFor"/>
@@ -38762,7 +38731,7 @@
 			<dependency name="GetPlayerPos"/>
 			<dependency name="GetPlayerVirtualWorld"/>
 			<dependency name="IsPlayerInRangeOfPoint"/>
-			<dependency name="Iterator@loggedPlayers"/>
+			<dependency name="Iterator@StreamPlayer"/>
 			<dependency name="YVA2_DummyPush"/>
 			<dependency name="gString"/>
 			<dependency name="sendSplitMessage"/>
@@ -40336,10 +40305,6 @@
 		</member>
 		<member name="M:va_SendClientMessage" syntax="va_SendClientMessage(playerid, colour, fmat[], ...)">
 			<stacksize value="145"/>
-			<referrer name="pc_cmd_test"/>
-			<referrer name="@yH_OnPlayerDeath@005"/>
-			<referrer name="@yH_OnPlayerGiveDamage@005"/>
-			<referrer name="@yH_OnPlayerTakeDamage@005"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@005"/>
 			<referrer name="sendSplitMessage"/>
 			<referrer name="warnPlayer"/>

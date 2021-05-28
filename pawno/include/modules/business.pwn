@@ -24,8 +24,7 @@ enum businessInfoEnum {
 	bizBalance,
 
 	Text3D:bizText,
-	bizPickup,
-	bizArea
+	bizPickup
 };
 new bizInfo[MAX_BUSINESSES + 1][businessInfoEnum], Iterator:ServerBusinesses<MAX_BUSINESSES + 1>, Iterator:ServerAds<MAX_PLAYERS>, Timer:adTimer[MAX_PLAYERS];
 
@@ -81,8 +80,6 @@ function LoadBusinesses() {
 		bizInfo[i][bizText] = CreateDynamic3DTextLabel(string_fast("Business ID: %d\nBusiness Title: %s\nBusiness Description: %s\nBusiness Owner: %s\nBusiness Price: $%s\nBusiness Fee: $%s", bizInfo[i][bizID], bizInfo[i][bizTitle], bizInfo[i][bizDescription], bizInfo[i][bizOwner], formatNumber(bizInfo[i][bizPrice]),formatNumber(bizInfo[i][bizFee])), -1, bizInfo[i][bizExtX],bizInfo[i][bizExtY],bizInfo[i][bizExtZ], 20.0, 0xFFFF, 0xFFFF, 0, 0, 0, -1, STREAMER_3D_TEXT_LABEL_SD);
 		bizInfo[i][bizPickup] = CreateDynamicPickup(1239, 23, bizInfo[i][bizExtX],bizInfo[i][bizExtY],bizInfo[i][bizExtZ], 0, 0, -1, STREAMER_PICKUP_SD);					
 		PickInfo[bizInfo[i][bizPickup]][BIZZ] = i;
-		bizInfo[i][bizArea] = CreateDynamicSphere(bizInfo[i][bizExtX],bizInfo[i][bizExtY],bizInfo[i][bizExtZ], 2.0, 0, 0);
-		Streamer_SetIntData(STREAMER_TYPE_AREA, bizInfo[i][bizArea], E_STREAMER_EXTRA_ID, (i + BUSINESS_STREAMER_START));	
 		switch(bizInfo[i][bizType]) {
 			case 1: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],52,0,-1,-1,-1,750.0);
 			case 2: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],17,0,-1,-1,-1,750.0); 
@@ -515,42 +512,18 @@ CMD:createbusiness(playerid, params[], help) {
 	bizInfo[i][bizLocked] = locked;
 	GetPlayerPos(playerid, bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ]);
 	switch(YHash(type)) {
-		case _H<bank>: {
-			bizInfo[i][bizType] = 1; bizInfo[i][bizX] = 2315.952880; bizInfo[i][bizY] = -1.618174; bizInfo[i][bizZ] = 26.742187; bizInfo[i][bizInterior] = 0; bizInfo[i][bizStatic] = 0;
-		}
-		case _H<shop>: {
-			bizInfo[i][bizType] = 2; bizInfo[i][bizX] = -25.884498; bizInfo[i][bizY] = -185.868988; bizInfo[i][bizZ] = 1003.546875; bizInfo[i][bizInterior] = 17; bizInfo[i][bizStatic] = 0;
-		}
-		case _H<bar>: { 
-			bizInfo[i][bizType] = 3; bizInfo[i][bizX] = 501.980987; bizInfo[i][bizY] = -69.150199; bizInfo[i][bizZ] = 998.757812;bizInfo[i][bizInterior] = 11; bizInfo[i][bizStatic] = 0;
-		}
-		case _H<cnn>: { 
-			bizInfo[i][bizType] = 4; bizInfo[i][bizX] = 0; bizInfo[i][bizY] = 0; bizInfo[i][bizZ] = 0; bizInfo[i][bizInterior] = 0; bizInfo[i][bizStatic] = 1;
-		}
-		case _H<club>: { 
-			bizInfo[i][bizType] = 5;  bizInfo[i][bizX] = 493.390991; bizInfo[i][bizY] = -22.722799; bizInfo[i][bizZ] = 1000.679687; bizInfo[i][bizInterior] = 17; bizInfo[i][bizStatic] = 0;
-		}
-		case _H<sexshop>: {
-			bizInfo[i][bizType] = 6;  bizInfo[i][bizX] = -103.559165; bizInfo[i][bizY] = -24.225606; bizInfo[i][bizZ] = 1000.718750; bizInfo[i][bizInterior] = 3; bizInfo[i][bizStatic] = 0;
-		}
-		case _H<pns>: {
-			bizInfo[i][bizType] = 7;  bizInfo[i][bizX] = 0; bizInfo[i][bizY] = 0; bizInfo[i][bizZ] = 0; bizInfo[i][bizInterior] = 0; bizInfo[i][bizStatic] = 1;	
-		}
-		case _H<barber>: {
-			bizInfo[i][bizType] = 8;  bizInfo[i][bizX] = 411.625976; bizInfo[i][bizY] = -21.433298; bizInfo[i][bizZ] = 1001.804687; bizInfo[i][bizInterior] = 2; bizInfo[i][bizStatic] = 0;	
-		}
-		case _H<tatoo>: {
-			bizInfo[i][bizType] = 9;  bizInfo[i][bizX] = -204.439987; bizInfo[i][bizY] = -26.453998; bizInfo[i][bizZ] = 1002.273437; bizInfo[i][bizInterior] = 16; bizInfo[i][bizStatic] = 0;	
-		}
-		case _H<gym>: {
-			bizInfo[i][bizType] = 10;  bizInfo[i][bizX] = 773.579956; bizInfo[i][bizY] = -77.096694; bizInfo[i][bizZ] = 1000.655029; bizInfo[i][bizInterior] = 7; bizInfo[i][bizStatic] = 0;	
-		} 
-		case _H<binco>: {
-			bizInfo[i][bizType] = 11;  bizInfo[i][bizX] = 207.737991; bizInfo[i][bizY] = -109.019996; bizInfo[i][bizZ] = 1005.132812; bizInfo[i][bizInterior] = 15; bizInfo[i][bizStatic] = 0;			
-		}
-		case _H<gunshop>: {
-			bizInfo[i][bizType] = 12;  bizInfo[i][bizX] = 286.800994; bizInfo[i][bizY] = -82.547599; bizInfo[i][bizZ] = 1001.515625; bizInfo[i][bizInterior] = 4; bizInfo[i][bizStatic] = 0;					
-		} 
+		case _H<bank>: { bizInfo[i][bizType] = 1; bizInfo[i][bizX] = 2315.952880; bizInfo[i][bizY] = -1.618174; bizInfo[i][bizZ] = 26.742187; bizInfo[i][bizInterior] = 0; bizInfo[i][bizStatic] = 0; }
+		case _H<shop>: { bizInfo[i][bizType] = 2; bizInfo[i][bizX] = -25.884498; bizInfo[i][bizY] = -185.868988; bizInfo[i][bizZ] = 1003.546875; bizInfo[i][bizInterior] = 17; bizInfo[i][bizStatic] = 0; }
+		case _H<bar>: {  bizInfo[i][bizType] = 3; bizInfo[i][bizX] = 501.980987; bizInfo[i][bizY] = -69.150199; bizInfo[i][bizZ] = 998.757812;bizInfo[i][bizInterior] = 11; bizInfo[i][bizStatic] = 0; }
+		case _H<cnn>: {  bizInfo[i][bizType] = 4; bizInfo[i][bizX] = 0; bizInfo[i][bizY] = 0; bizInfo[i][bizZ] = 0; bizInfo[i][bizInterior] = 0; bizInfo[i][bizStatic] = 1; }
+		case _H<club>: {  bizInfo[i][bizType] = 5;  bizInfo[i][bizX] = 493.390991; bizInfo[i][bizY] = -22.722799; bizInfo[i][bizZ] = 1000.679687; bizInfo[i][bizInterior] = 17; bizInfo[i][bizStatic] = 0; }
+		case _H<sexshop>: { bizInfo[i][bizType] = 6;  bizInfo[i][bizX] = -103.559165; bizInfo[i][bizY] = -24.225606; bizInfo[i][bizZ] = 1000.718750; bizInfo[i][bizInterior] = 3; bizInfo[i][bizStatic] = 0; }
+		case _H<pns>: { bizInfo[i][bizType] = 7;  bizInfo[i][bizX] = 0; bizInfo[i][bizY] = 0; bizInfo[i][bizZ] = 0; bizInfo[i][bizInterior] = 0; bizInfo[i][bizStatic] = 1;	 }
+		case _H<barber>: { bizInfo[i][bizType] = 8;  bizInfo[i][bizX] = 411.625976; bizInfo[i][bizY] = -21.433298; bizInfo[i][bizZ] = 1001.804687; bizInfo[i][bizInterior] = 2; bizInfo[i][bizStatic] = 0;	 }
+		case _H<tatoo>: { bizInfo[i][bizType] = 9;  bizInfo[i][bizX] = -204.439987; bizInfo[i][bizY] = -26.453998; bizInfo[i][bizZ] = 1002.273437; bizInfo[i][bizInterior] = 16; bizInfo[i][bizStatic] = 0;	 }
+		case _H<gym>: { bizInfo[i][bizType] = 10;  bizInfo[i][bizX] = 773.579956; bizInfo[i][bizY] = -77.096694; bizInfo[i][bizZ] = 1000.655029; bizInfo[i][bizInterior] = 7; bizInfo[i][bizStatic] = 0;	 } 
+		case _H<binco>: { bizInfo[i][bizType] = 11;  bizInfo[i][bizX] = 207.737991; bizInfo[i][bizY] = -109.019996; bizInfo[i][bizZ] = 1005.132812; bizInfo[i][bizInterior] = 15; bizInfo[i][bizStatic] = 0;			 }
+		case _H<gunshop>: { bizInfo[i][bizType] = 12;  bizInfo[i][bizX] = 286.800994; bizInfo[i][bizY] = -82.547599; bizInfo[i][bizZ] = 1001.515625; bizInfo[i][bizInterior] = 4; bizInfo[i][bizStatic] = 0;					 } 
 		default: {
 			SCM(playerid, COLOR_GREY, "Optiuni Type: bank, shop, bar, cnn, club, sexshop, pns, barber, tatoo, gym, binco, gunshop. | Price: 0$ - not for sale ; > 0$ for sale");
 			return sendPlayerSyntax(playerid, "/createbusiness <type> <level> <price> <biz balance> <locked (0 - no | 1 - yes)");
@@ -563,8 +536,6 @@ CMD:createbusiness(playerid, params[], help) {
 	bizInfo[i][bizText] = CreateDynamic3DTextLabel(string_fast("Business ID: %d\nBusiness Title: %s\nBusiness Description: %s\nBusiness Owner: %s\nBusiness Price: $%s\nBusiness Fee: $%s", bizInfo[i][bizID], bizInfo[i][bizTitle], bizInfo[i][bizDescription], bizInfo[i][bizOwner], formatNumber(bizInfo[i][bizPrice]),formatNumber(bizInfo[i][bizFee])), -1, bizInfo[i][bizExtX],bizInfo[i][bizExtY],bizInfo[i][bizExtZ], 20.0, 0xFFFF, 0xFFFF, 0, 0, 0, -1, STREAMER_3D_TEXT_LABEL_SD);
 	bizInfo[i][bizPickup] = CreateDynamicPickup(1239, 23, bizInfo[i][bizExtX],bizInfo[i][bizExtY],bizInfo[i][bizExtZ], 0, 0, -1, STREAMER_PICKUP_SD);					
 	PickInfo[bizInfo[i][bizPickup]][BIZZ] = i;
-	bizInfo[i][bizArea] = CreateDynamicSphere(bizInfo[i][bizExtX],bizInfo[i][bizExtY],bizInfo[i][bizExtZ], 2.0, 0, 0);
-	Streamer_SetIntData(STREAMER_TYPE_AREA, bizInfo[i][bizArea], E_STREAMER_EXTRA_ID, (i + BUSINESS_STREAMER_START));	
 	switch(bizInfo[i][bizType]) {
 		case 1: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],52,0,-1,-1,-1,750.0);
 		case 2: CreateDynamicMapIcon(bizInfo[i][bizExtX], bizInfo[i][bizExtY], bizInfo[i][bizExtZ],17,0,-1,-1,-1,750.0); 

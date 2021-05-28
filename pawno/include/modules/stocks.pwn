@@ -17,12 +17,10 @@ stock sendNearbyMessage(playerid, color, Float:distance, const text[], va_args<>
 	new Float:x, Float:y, Float:z;
 	GetPlayerPos(playerid, x, y, z);
 
-	foreach(new i : loggedPlayers)
+	if(IsPlayerInRangeOfPoint(playerid, distance, x, y, z) && GetPlayerInterior(playerid) == GetPlayerInterior(playerid) && GetPlayerVirtualWorld(playerid) == GetPlayerVirtualWorld(playerid)) sendSplitMessage(playerid, color, gString);
+	foreach(new i : StreamPlayer[playerid])
 	{
-		if(IsPlayerInRangeOfPoint(i, distance, x, y, z) && GetPlayerInterior(playerid) == GetPlayerInterior(i) && GetPlayerVirtualWorld(playerid) == GetPlayerVirtualWorld(i))
-		{
-			sendSplitMessage(i, color, gString);
-		}
+		if(IsPlayerInRangeOfPoint(i, distance, x, y, z) && GetPlayerInterior(playerid) == GetPlayerInterior(i) && GetPlayerVirtualWorld(playerid) == GetPlayerVirtualWorld(i)) sendSplitMessage(i, color, gString);
 	}
 	return true;
 }

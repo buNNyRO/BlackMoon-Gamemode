@@ -58,15 +58,12 @@ hook OnPlayerSpawn(playerid) {
 }
 
 CMD:test(playerid, params[]) {
-    va_SendClientMessage(playerid, -1, "1ai %f HP", playerInfo[playerid][pHealth]);
     new Float: test;
     GetPlayerHealth(playerid, test);
-    va_SendClientMessage(playerid, -1, "2ai %f HP", test);
     return 1;
 }
 
 hook OnPlayerDeath(playerid, killerid, reason) {
-    va_SendClientMessage(playerid, -1, "OnPlayerDeath %d, %d", reason, killerid);
     if(acInfo[playerid][acDeath] == 0)
         if(killerid != INVALID_PLAYER_ID) return acKicked(playerid, "Fake Death", false);
 
@@ -77,7 +74,6 @@ hook OnPlayerDeath(playerid, killerid, reason) {
 }
 
 hook OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart) {
-    va_SendClientMessage(playerid, -1, "OnPlayerGiveDamage %f, %d, are %f hp", amount, weaponid, playerInfo[damagedid][pHealth]);
     playerInfo[playerid][pHealth] -= amount;
     return 1;
 }
@@ -85,7 +81,6 @@ hook OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart) {
 hook OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart) {
     playerInfo[playerid][pHealth] -= amount;
     if(playerInfo[playerid][pHealth] < -70) return acKicked(playerid, "GoodMod", false);
-    va_SendClientMessage(playerid, -1, "OnPlayerTakeDamage %f, %d hp: %f", amount, weaponid, playerInfo[playerid][pHealth]);
     // if(playerInfo[playerid][pHealth] < -1) return acKicked(playerid, "GoodMode", false);
     if(playerInfo[playerid][pHealth] < 1) acInfo[playerid][acDeath] = 1;
     return 1;
@@ -163,9 +158,9 @@ public OnPlayerUpdate(playerid) {
 
 stock acKicked(playerid, const motiv[], bool:deelay = true) {
     va_SendClientMessageToAll(COLOR_LIGHTRED, "(AC) %s a primit kick pentru '%s'.", getName(playerid), motiv);
-    printf("(AC) %s a primit kick pentru '%s'.", getName(playerid), motiv);
-    SendDiscordAC("%s a primit kick pentru **'%s'**", getName(playerid), motiv);
-    if(deelay) { Kick(playerid); }
-    else { defer kickEx(playerid); }
+    // printf("(AC) %s a primit kick pentru '%s'.", getName(playerid), motiv);
+    // SendDiscordAC("%s a primit kick pentru **'%s'**", getName(playerid), motiv);
+    if(deelay) {  }
+    // else { defer kickEx(playerid); }
     return 1;
 }
