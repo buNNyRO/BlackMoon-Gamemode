@@ -105,6 +105,7 @@ public OnQueryError(errorid, const error[], const callback[], const query[], MyS
 	return true;
 }
 
+
 public OnGameModeInit()
 {
 	PayDayTime = gettime()+3600;
@@ -197,7 +198,7 @@ public OnPlayerDisconnect(playerid, reason)
     }
 
     if(playerInfo[playerid][pSpectate] > -1) {
-		TogglePlayerSpectatingEx(playerInfo[playerid][pSpectate], 0);
+		TogglePlayerSpectating(playerInfo[playerid][pSpectate], 0);
 		stop spectator[playerInfo[playerid][pSpectate]];
 		playerInfo[playerInfo[playerid][pSpectate]][pSpectate] = -1;
 		PlayerTextDrawHide(playerid, specTD[playerInfo[playerid][pSpectate]]);

@@ -288,3 +288,23 @@ Dialog:DIALOG_HUD(playerid, response, listitem) {
 	}
 	return true;
 }
+
+Dialog:DIALOG_HELP(playerid, response, listitem) {
+	if(!response) return true;
+	switch(listitem) {
+		case 0: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Account", "/stats -> Arata statistici despre contul tau\n/showlicenses -> Iti vezi licentele", "Ok", "");
+		case 1: {
+			switch(playerInfo[playerid][pFaction]) {
+				case 1: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/heal -> Oferi heal unui jucator\n/accept medic <name/id> -> Accepti o comanda unui jucator", "Ok", "");
+				case 2..4: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/r -> Chatul factiunii\n/d -> Chatul departamentului\n/wanteds -> Lista jucatorilor wanted", "Ok", "");
+				case 5: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/fare -> Te pui la datorie\n/accept taxi <name/id> -> Accepti o comanda unui jucator", "Ok", "");
+				case 6: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/startlesson <name/id> -> Incepi o lectie cu un jucator\n/stoplesson -> Opresti o lectie\n/givelicense <name/id> -> Oferi o licenta unui jucator", "Ok", "");
+				case 7: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/news <text> -> Dai o stire pe server\n/live <name/id> -> Oferi o invitatie live unui jucator\n/endlive -> Opresti o conversatie live\n/questions -> Pornesti/Opresti intrebarile\n/aq <name/id> -> Accepti o intrebare pusa de un jucator", "Ok", "");
+				case 8: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/setguns -> Iti setezi armele la '/order'\n/tie <name/id> -> Legi un jucator\n/untie <name/id> -> Dezlegi un jucator\n/attack -> Incepi un razboi pe un teritoriu", "Ok", "");
+				case 9: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/setguns -> Iti setezi armele la '/order'\n/tie <name/id> -> Legi un jucator\n/untie <name/id> -> Dezlegi un jucator\n/attack -> Incepi un razboi pe un teritoriu", "Ok", "");
+				case 10: Dialog_Show(playerid, -1, DIALOG_STYLE_MSGBOX, "Help Menu - Faction", "/gethit -> Iei un contract\n/contracts -> Vezi contractele valabile", "Ok", "");
+			}
+		}
+	}
+	return true;
+}
