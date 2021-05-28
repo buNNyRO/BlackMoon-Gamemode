@@ -58,7 +58,7 @@
 #include <modules\turfs.pwn>
 #include <modules\factions.pwn>
 #include <modules\safes.pwn>
-#include <modules\jobs.pwn>
+#include <modules\newjobs.pwn>
 #include <modules\business.pwn>
 #include <modules\comenzi\helper.pwn>
 #include <modules\clans.pwn>
@@ -221,8 +221,7 @@ public OnPlayerDisconnect(playerid, reason)
 		playerInfo[playerInfo[playerid][pReportChat]][pReportChat] = INVALID_PLAYER_ID;
 		playerInfo[playerid][pReportChat] = INVALID_PLAYER_ID;
 	}
-	if(Working[playerid]) CancelJob(playerid, Working[playerid]);
-    if(reason == 0) sendNearbyMessage(playerid, COLOR_SERVER, 20.0, "(*) {ffffff}%s a iesit de pe server (Crash).", getName(playerid));
+	if(reason == 0) sendNearbyMessage(playerid, COLOR_SERVER, 20.0, "(*) {ffffff}%s a iesit de pe server (Crash).", getName(playerid));
     else if(reason == 1) sendNearbyMessage(playerid, COLOR_SERVER, 20.0, "(*) {ffffff}%s a iesit de pe server (Quit).", getName(playerid));
     else if(reason == 2) sendNearbyMessage(playerid, COLOR_SERVER, 20.0, "(*) {ffffff}%s a iesit de pe server (Kicked/Banned).", getName(playerid));
 	destroyPlayerTextDraws(playerid);
@@ -263,6 +262,7 @@ public OnPlayerSpawn(playerid) {
 		PreloadAnimLib(playerid,"PARK");
 		PreloadAnimLib(playerid,"INT_HOUSE");
 		PreloadAnimLib(playerid,"FOOD");
+		PreloadAnimLib(playerid, "SWORD");
 		playerInfo[playerid][pAnimLibLoaded] = 1;
 	}
 	
@@ -280,7 +280,6 @@ public OnPlayerSpawn(playerid) {
 		return true;
 	}
 	if(IsValidVehicle(playerInfo[playerid][pExamenVehicle])) examenFail(playerid);
-	if(Working[playerid]) CancelJob(playerid, Working[playerid]);
 	if(playerInfo[playerid][pFlymode] == true)  {
 		playerInfo[playerid][pFlymode] = false;
 		StopFly(playerid);
@@ -329,7 +328,6 @@ public OnPlayerSpawn(playerid) {
 
 public OnPlayerDeath(playerid, killerid, reason) 
 {
-	if(Working[playerid]) CancelJob(playerid, Working[playerid]);
 	if(playerInfo[playerid][pOnTurf] == 1) playerInfo[playerid][pOnTurf] = 0;
 	if(playerInfo[playerid][pFactionDuty]) playerInfo[playerid][pFactionDuty] = 0;
 	if(playerInfo[playerid][pWantedLevel] != 0) {
@@ -542,24 +540,22 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 				case 1: SCM(playerid, -1, "Welcome in the business, commands available: /balance, /deposit, /withdraw, /transfer."); 
 				case 2: {
 					SCM(playerid, -1, "Welcome in the business, commands available: /buy.");
-					if(FishWeight[playerid]) {
-						new money = FishWeight[playerid] * 115;
-						SCM(playerid, COLOR_GREY, string_fast("* Fish Notice: Ai vandut pestele , si ai castigat $%s.", formatNumber(money)));
-						FishWeight[playerid] = 0;
+					if(playerInfo[playerid][pFishMoney] > 0) {
+						SCMf(playerid, COLOR_SERVER, "* (Fisherman): {ffffff}Ai castigat %s$ deoarece ai vandut pestele.", formatNumber(playerInfo[playerid][pFishMoney]));
+						GivePlayerCash(playerid, 1, playerInfo[playerid][pFishMoney]);
+						playerInfo[playerid][pFishMoney] = 0;
 						playerInfo[playerid][pFishTimes] ++;
+						playerInfo[playerid][pFishCaught] = 0;
 						if(playerInfo[playerid][pFishSkill] < 5) {
 							if(playerInfo[playerid][pFishTimes] >= returnNeededPoints(playerid, JOB_FISHER)) {
 								playerInfo[playerid][pFishSkill] ++;
-								SCM(playerid, COLOR_GREY, string_fast("* Fisherman Notice: Ai avansat in %d skill. Vei castiga probabil mai multi bani", playerInfo[playerid][pFishSkill]));
+								SCMf(playerid, COLOR_SERVER, "* (Fisherman): {ffffff}Ai avansat in skill. Acum ai %d skill si vei castiga mai multi bani.", playerInfo[playerid][pFishSkill]);
 							}
 						}
-						GivePlayerCash(playerid, 1, money);
 						for(new m; m < 2; m++) {
 							if(playerInfo[playerid][pDailyMission][m] == 1) checkMission(playerid, m);
 						}
-						gQuery[0] = (EOS);
-						mysql_format(SQL, gQuery, sizeof(gQuery), "UPDATE `server_users` SET `Money`= '%d', `MStore` = '%d', `FishTimes` = '%d', `FishSkill` = '%d' WHERE `ID`='%d'", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pFishTimes], playerInfo[playerid][pFishSkill], playerInfo[playerid][pSQLID]);
-						mysql_tquery(SQL, gQuery);
+						update("UPDATE `server_users` SET `Money`= '%d', `MStore` = '%d', `FishTimes` = '%d', `FishSkill` = '%d' WHERE `ID`='%d' LIMIT 1", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pFishTimes], playerInfo[playerid][pFishSkill], playerInfo[playerid][pSQLID]);
 					}
 				}
 			}
@@ -574,7 +570,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
             return true;
         }
 
-		if(playerInfo[playerid][areaHouse] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, bizInfo[playerInfo[playerid][areaHouse]][bizExtX], bizInfo[playerInfo[playerid][areaHouse]][bizExtY], bizInfo[playerInfo[playerid][areaHouse]][bizExtZ])) {
+		if(playerInfo[playerid][areaHouse] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, houseInfo[playerInfo[playerid][areaHouse]][hExtX], houseInfo[playerInfo[playerid][areaHouse]][hExtY], houseInfo[playerInfo[playerid][areaHouse]][hExtZ])) {
 			if(houseInfo[playerInfo[playerid][areaHouse]][hLocked] == 1) return SCM(playerid, COLOR_ERROR, eERROR"Acesta casa, este inchisa.");
 			if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Esti intr-un vehicul.");
 			SetPlayerPos(playerid, houseInfo[playerInfo[playerid][areaHouse]][hX], houseInfo[playerInfo[playerid][areaHouse]][hY], houseInfo[playerInfo[playerid][areaHouse]][hZ]);
@@ -615,11 +611,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 			SetPlayerHealthEx(playerid, 100);
 			StopFly(playerid);
 		}		
-		if(Working[playerid] == 2 && IsPlayerInVehicle(playerid, JobVehicle[playerid])) {
-			if(!IsTrailerAttachedToVehicle(JobVehicle[playerid])) {
-				AttachTrailer(playerid);
-			}
-		}
 		if(!IsPlayerInAnyVehicle(playerid)) {
 			new Float:x, Float:y, Float:z;
 			foreach(new i : PlayerVehicles[playerid]) {
@@ -743,7 +734,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate) {
 		PlayerTextDrawSetString(playerid, vehicleHud[15], "C");
 		PlayerTextDrawSetString(playerid, vehicleHud[16], "L");
 		PlayerTextDrawSetString(playerid, vehicleHud[17], "0000000.0");
-
+		if(IsValidVehicle(playerInfo[playerid][pExamenVehicle])) examenFail(playerid);
 		for(new i; i < sizeof vehicleHud; i++) PlayerTextDrawHide(playerid, vehicleHud[i]);
 	}
 	if(newstate == PLAYER_STATE_DRIVER)
@@ -800,10 +791,6 @@ public OnPlayerStateChange(playerid, newstate, oldstate) {
 
 		if(vehicle_engine[GetPlayerVehicleID(playerid)] == true) speedo[playerid] = repeat TimerSpeedo(playerid);
 		for(new i; i < 18; i++) PlayerTextDrawShow(playerid, vehicleHud[i]);
-	}
-	if(newstate == PLAYER_STATE_ONFOOT || oldstate == PLAYER_STATE_DRIVER) {
-		if(IsValidVehicle(playerInfo[playerid][pExamenVehicle])) examenFail(playerid);
-		if(Working[playerid]) CancelJob(playerid, Working[playerid]);
 	}
 	if(newstate == PLAYER_STATE_PASSENGER) {
 		foreach(new i : FactionMembers[5]) {
@@ -917,6 +904,40 @@ public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags) {
     return 1; 
 }
 
+public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid) {
+	if(playertextid == fishTD[playerid][9]) {  
+		playerInfo[playerid][pFishSteps] ++;  
+		PlayerTextDrawHide(playerid, fishTD[playerid][9]);
+		SCMf(playerid, COLOR_SERVER, "* (Fisherman): {ffffff}Progress %d/5 for fishing rod.", playerInfo[playerid][pFishSteps]);
+	}
+	if(playertextid == fishTD[playerid][10]) {  
+		if(playerInfo[playerid][pFishSteps] < 1) return SCM(playerid, COLOR_ERROR, eERROR"Trebuie sa pui obiectele in ordine.");
+		playerInfo[playerid][pFishSteps] ++; 
+		PlayerTextDrawHide(playerid, fishTD[playerid][10]);
+		SCMf(playerid, COLOR_SERVER, "* (Fisherman): {ffffff}Progress %d/5 for fishing rod.", playerInfo[playerid][pFishSteps]);
+	}
+	if(playertextid == fishTD[playerid][11]) { 
+		if(playerInfo[playerid][pFishSteps] < 2) return SCM(playerid, COLOR_ERROR, eERROR"Trebuie sa pui obiectele in ordine.");
+		playerInfo[playerid][pFishSteps] ++;
+		PlayerTextDrawHide(playerid, fishTD[playerid][11]);
+		SCMf(playerid, COLOR_SERVER, "* (Fisherman): {ffffff}Progress %d/5 for fishing rod.", playerInfo[playerid][pFishSteps]);
+	}
+	if(playertextid == fishTD[playerid][12]) { 
+		if(playerInfo[playerid][pFishSteps] < 3) return SCM(playerid, COLOR_ERROR, eERROR"Trebuie sa pui obiectele in ordine.");
+		playerInfo[playerid][pFishSteps] ++; 
+		PlayerTextDrawHide(playerid, fishTD[playerid][12]);
+		SCMf(playerid, COLOR_SERVER, "* (Fisherman): {ffffff}Progress %d/5 for fishing rod.", playerInfo[playerid][pFishSteps]);
+	}
+	if(playertextid == fishTD[playerid][14]) { 
+		if(playerInfo[playerid][pFishSteps] < 4) return SCM(playerid, COLOR_ERROR, eERROR"Trebuie sa pui obiectele in ordine.");
+		playerInfo[playerid][pFishingRod] = 100;
+		playerInfo[playerid][pFishSteps] = 0;
+		SCMf(playerid, COLOR_SERVER, "* (Fisherman): {ffffff}Undita ta are acum 100 HP, va scade 1 HP la fiecare (/fish).");
+		for(new i = 0; i < 15; i++) PlayerTextDrawHide(playerid, fishTD[playerid][i]);
+		CancelSelectTextDraw(playerid);
+	}	
+	return true;
+}
 
 function loadMaps() {
 	#include map/other

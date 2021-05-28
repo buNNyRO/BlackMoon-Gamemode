@@ -188,6 +188,204 @@ stock showLicenses(playerid, userID)
 }
 
 stock playerTextDraws(playerid) {
+	fishTD[playerid][0] = CreatePlayerTextDraw(playerid, 13.000073, 158.982315, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, fishTD[playerid][0], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, fishTD[playerid][0], 53.000000, 146.000000);
+	PlayerTextDrawAlignment(playerid, fishTD[playerid][0], 1);
+	PlayerTextDrawColor(playerid, fishTD[playerid][0], 1581711742);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][0], 0);
+	PlayerTextDrawSetOutline(playerid, fishTD[playerid][0], 0);
+	PlayerTextDrawBackgroundColor(playerid, fishTD[playerid][0], 255);
+	PlayerTextDrawFont(playerid, fishTD[playerid][0], 4);
+	PlayerTextDrawSetProportional(playerid, fishTD[playerid][0], 0);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][0], 0);
+
+	fishTD[playerid][1] = CreatePlayerTextDraw(playerid, 14.000077, 159.882369, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, fishTD[playerid][1], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, fishTD[playerid][1], 51.000000, 103.000000);
+	PlayerTextDrawAlignment(playerid, fishTD[playerid][1], 1);
+	PlayerTextDrawColor(playerid, fishTD[playerid][1], 454761471);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][1], 0);
+	PlayerTextDrawSetOutline(playerid, fishTD[playerid][1], 0);
+	PlayerTextDrawBackgroundColor(playerid, fishTD[playerid][1], 255);
+	PlayerTextDrawFont(playerid, fishTD[playerid][1], 4);
+	PlayerTextDrawSetProportional(playerid, fishTD[playerid][1], 0);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][1], 0);
+
+	fishTD[playerid][2] = CreatePlayerTextDraw(playerid, 39.288986, 262.424652, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, fishTD[playerid][2], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, fishTD[playerid][2], 1.000000, 41.000000);
+	PlayerTextDrawAlignment(playerid, fishTD[playerid][2], 1);
+	PlayerTextDrawColor(playerid, fishTD[playerid][2], 454761471);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][2], 0);
+	PlayerTextDrawSetOutline(playerid, fishTD[playerid][2], 0);
+	PlayerTextDrawBackgroundColor(playerid, fishTD[playerid][2], 255);
+	PlayerTextDrawFont(playerid, fishTD[playerid][2], 4);
+	PlayerTextDrawSetProportional(playerid, fishTD[playerid][2], 0);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][2], 0);
+
+	fishTD[playerid][3] = CreatePlayerTextDraw(playerid, 5.999966, 276.171173, "");
+	PlayerTextDrawLetterSize(playerid, fishTD[playerid][3], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, fishTD[playerid][3], 37.000000, 16.000000);
+	PlayerTextDrawAlignment(playerid, fishTD[playerid][3], 1);
+	PlayerTextDrawColor(playerid, fishTD[playerid][3], -1);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][3], 0);
+	PlayerTextDrawSetOutline(playerid, fishTD[playerid][3], 0);
+	PlayerTextDrawBackgroundColor(playerid, fishTD[playerid][3], 0);
+	PlayerTextDrawFont(playerid, fishTD[playerid][3], 5);
+	PlayerTextDrawSetProportional(playerid, fishTD[playerid][3], 0);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][3], 0);
+	PlayerTextDrawSetPreviewModel(playerid, fishTD[playerid][3], 19468);
+	PlayerTextDrawSetPreviewRot(playerid, fishTD[playerid][3], 0.000000, 0.000000, 180.000000, 0.716272);
+
+	fishTD[playerid][4] = CreatePlayerTextDraw(playerid, 13.444416, 259.544647, "");
+	PlayerTextDrawLetterSize(playerid, fishTD[playerid][4], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, fishTD[playerid][4], 29.000000, 34.000000);
+	PlayerTextDrawAlignment(playerid, fishTD[playerid][4], 1);
+	PlayerTextDrawColor(playerid, fishTD[playerid][4], -1);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][4], 0);
+	PlayerTextDrawSetOutline(playerid, fishTD[playerid][4], 0);
+	PlayerTextDrawBackgroundColor(playerid, fishTD[playerid][4], 0);
+	PlayerTextDrawFont(playerid, fishTD[playerid][4], 5);
+	PlayerTextDrawSetProportional(playerid, fishTD[playerid][4], 0);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][4], 0);
+	PlayerTextDrawSetPreviewModel(playerid, fishTD[playerid][4], 19630);
+	PlayerTextDrawSetPreviewRot(playerid, fishTD[playerid][4], 360.000000, 46.000000, 180.000000, 0.764951);
+
+	fishTD[playerid][5] = CreatePlayerTextDraw(playerid, 35.777725, 260.242218, "");
+	PlayerTextDrawLetterSize(playerid, fishTD[playerid][5], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, fishTD[playerid][5], 34.000000, 36.000000);
+	PlayerTextDrawAlignment(playerid, fishTD[playerid][5], 1);
+	PlayerTextDrawColor(playerid, fishTD[playerid][5], 202);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][5], 0);
+	PlayerTextDrawSetOutline(playerid, fishTD[playerid][5], 0);
+	PlayerTextDrawBackgroundColor(playerid, fishTD[playerid][5], 0);
+	PlayerTextDrawFont(playerid, fishTD[playerid][5], 5);
+	PlayerTextDrawSetProportional(playerid, fishTD[playerid][5], 0);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][5], 0);
+	PlayerTextDrawSetPreviewModel(playerid, fishTD[playerid][5], 18631);
+	PlayerTextDrawSetPreviewRot(playerid, fishTD[playerid][5], 0.000000, 0.000000, 232.000000, 1.050069);
+
+	fishTD[playerid][6] = CreatePlayerTextDraw(playerid, 14.211205, 292.789001, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, fishTD[playerid][6], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, fishTD[playerid][6], 51.000000, 11.000000);
+	PlayerTextDrawAlignment(playerid, fishTD[playerid][6], 1);
+	PlayerTextDrawColor(playerid, fishTD[playerid][6], 454761471);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][6], 0);
+	PlayerTextDrawSetOutline(playerid, fishTD[playerid][6], 0);
+	PlayerTextDrawBackgroundColor(playerid, fishTD[playerid][6], 255);
+	PlayerTextDrawFont(playerid, fishTD[playerid][6], 4);
+	PlayerTextDrawSetProportional(playerid, fishTD[playerid][6], 0);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][6], 0);
+
+	fishTD[playerid][7] = CreatePlayerTextDraw(playerid, 25.111099, 291.648864, "13");
+	PlayerTextDrawLetterSize(playerid, fishTD[playerid][7], 0.271555, 1.291377);
+	PlayerTextDrawAlignment(playerid, fishTD[playerid][7], 2);
+	PlayerTextDrawColor(playerid, fishTD[playerid][7], -1);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][7], 0);
+	PlayerTextDrawSetOutline(playerid, fishTD[playerid][7], 0);
+	PlayerTextDrawBackgroundColor(playerid, fishTD[playerid][7], 255);
+	PlayerTextDrawFont(playerid, fishTD[playerid][7], 2);
+	PlayerTextDrawSetProportional(playerid, fishTD[playerid][7], 1);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][7], 0);
+
+	fishTD[playerid][8] = CreatePlayerTextDraw(playerid, 51.310829, 291.648864, "13");
+	PlayerTextDrawLetterSize(playerid, fishTD[playerid][8], 0.271555, 1.291377);
+	PlayerTextDrawAlignment(playerid, fishTD[playerid][8], 2);
+	PlayerTextDrawColor(playerid, fishTD[playerid][8], -1);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][8], 0);
+	PlayerTextDrawSetOutline(playerid, fishTD[playerid][8], 0);
+	PlayerTextDrawBackgroundColor(playerid, fishTD[playerid][8], 255);
+	PlayerTextDrawFont(playerid, fishTD[playerid][8], 2);
+	PlayerTextDrawSetProportional(playerid, fishTD[playerid][8], 1);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][8], 0);
+
+	fishTD[playerid][9] = CreatePlayerTextDraw(playerid, 14.333283, 160.475585, ""); 
+	PlayerTextDrawLetterSize(playerid, fishTD[playerid][9], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, fishTD[playerid][9], 25.000000, 29.000000);
+	PlayerTextDrawAlignment(playerid, fishTD[playerid][9], 1);
+	PlayerTextDrawColor(playerid, fishTD[playerid][9], -1);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][9], 0);
+	PlayerTextDrawSetOutline(playerid, fishTD[playerid][9], 0);
+	PlayerTextDrawBackgroundColor(playerid, fishTD[playerid][9], -1061109740);
+	PlayerTextDrawFont(playerid, fishTD[playerid][9], 5);
+	PlayerTextDrawSetProportional(playerid, fishTD[playerid][9], 0);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][9], 0);
+	PlayerTextDrawSetSelectable(playerid, fishTD[playerid][9], true);
+	PlayerTextDrawSetPreviewModel(playerid, fishTD[playerid][9], 3054);
+	PlayerTextDrawSetPreviewRot(playerid, fishTD[playerid][9], 0.000000, 0.000000, 0.000000, 1.529902);
+
+	fishTD[playerid][10] = CreatePlayerTextDraw(playerid, 40.577793, 160.475616, ""); 
+	PlayerTextDrawLetterSize(playerid, fishTD[playerid][10], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, fishTD[playerid][10], 24.000000, 29.000000);
+	PlayerTextDrawAlignment(playerid, fishTD[playerid][10], 1);
+	PlayerTextDrawColor(playerid, fishTD[playerid][10], -1);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][10], 0);
+	PlayerTextDrawSetOutline(playerid, fishTD[playerid][10], 0);
+	PlayerTextDrawBackgroundColor(playerid, fishTD[playerid][10], -1061109740);
+	PlayerTextDrawFont(playerid, fishTD[playerid][10], 5);
+	PlayerTextDrawSetProportional(playerid, fishTD[playerid][10], 0);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][10], 0);
+	PlayerTextDrawSetSelectable(playerid, fishTD[playerid][10], true);
+	PlayerTextDrawSetPreviewModel(playerid, fishTD[playerid][10], 18633);
+	PlayerTextDrawSetPreviewRot(playerid, fishTD[playerid][10], 0.000000, 49.000000, 270.000000, 1.063977);
+
+	fishTD[playerid][11] = CreatePlayerTextDraw(playerid, 14.333320, 190.777420, ""); 
+	PlayerTextDrawLetterSize(playerid, fishTD[playerid][11], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, fishTD[playerid][11], 25.000000, 29.000000);
+	PlayerTextDrawAlignment(playerid, fishTD[playerid][11], 1);
+	PlayerTextDrawColor(playerid, fishTD[playerid][11], -1);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][11], 0);
+	PlayerTextDrawSetOutline(playerid, fishTD[playerid][11], 0);
+	PlayerTextDrawBackgroundColor(playerid, fishTD[playerid][11], -1061109740);
+	PlayerTextDrawFont(playerid, fishTD[playerid][11], 5);
+	PlayerTextDrawSetProportional(playerid, fishTD[playerid][11], 0);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][11], 0);
+	PlayerTextDrawSetSelectable(playerid, fishTD[playerid][11], true);
+	PlayerTextDrawSetPreviewModel(playerid, fishTD[playerid][11], 11722);
+	PlayerTextDrawSetPreviewRot(playerid, fishTD[playerid][11], 306.000000, 196.000000, 0.000000, 1.000000);
+
+	fishTD[playerid][12] = CreatePlayerTextDraw(playerid, 40.555522, 190.775131, ""); 
+	PlayerTextDrawLetterSize(playerid, fishTD[playerid][12], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, fishTD[playerid][12], 24.000000, 29.000000);
+	PlayerTextDrawAlignment(playerid, fishTD[playerid][12], 1);
+	PlayerTextDrawColor(playerid, fishTD[playerid][12], -1);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][12], 0);
+	PlayerTextDrawSetOutline(playerid, fishTD[playerid][12], 0);
+	PlayerTextDrawBackgroundColor(playerid, fishTD[playerid][12], -1061109740);
+	PlayerTextDrawFont(playerid, fishTD[playerid][12], 5);
+	PlayerTextDrawSetProportional(playerid, fishTD[playerid][12], 0);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][12], 0);
+	PlayerTextDrawSetSelectable(playerid, fishTD[playerid][12], true);
+	PlayerTextDrawSetPreviewModel(playerid, fishTD[playerid][12], 11708);
+	PlayerTextDrawSetPreviewRot(playerid, fishTD[playerid][12], 72.000000, 149.000000, 0.000000, 1.000000);
+
+	fishTD[playerid][13] = CreatePlayerTextDraw(playerid, 13.999977, 146.786590, "FISH");
+	PlayerTextDrawLetterSize(playerid, fishTD[playerid][13], 0.342222, 1.286400);
+	PlayerTextDrawAlignment(playerid, fishTD[playerid][13], 1);
+	PlayerTextDrawColor(playerid, fishTD[playerid][13], -1);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][13], 0);
+	PlayerTextDrawSetOutline(playerid, fishTD[playerid][13], 1);
+	PlayerTextDrawBackgroundColor(playerid, fishTD[playerid][13], 45);
+	PlayerTextDrawFont(playerid, fishTD[playerid][13], 3);
+	PlayerTextDrawSetProportional(playerid, fishTD[playerid][13], 1);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][13], 0);
+
+	fishTD[playerid][14] = CreatePlayerTextDraw(playerid, 14.566635, 250.508514, "");
+	PlayerTextDrawLetterSize(playerid, fishTD[playerid][14], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, fishTD[playerid][14], 50.000000, 12.000000);
+	PlayerTextDrawAlignment(playerid, fishTD[playerid][14], 1);
+	PlayerTextDrawColor(playerid, fishTD[playerid][14], -1);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][14], 0);
+	PlayerTextDrawSetOutline(playerid, fishTD[playerid][14], 0);
+	PlayerTextDrawBackgroundColor(playerid, fishTD[playerid][14], -1061109740);
+	PlayerTextDrawFont(playerid, fishTD[playerid][14], 5);
+	PlayerTextDrawSetProportional(playerid, fishTD[playerid][14], 0);
+	PlayerTextDrawSetShadow(playerid, fishTD[playerid][14], 0);
+	PlayerTextDrawSetSelectable(playerid, fishTD[playerid][14], true);
+	PlayerTextDrawSetPreviewModel(playerid, fishTD[playerid][14], 338);
+	PlayerTextDrawSetPreviewRot(playerid, fishTD[playerid][14], 83.000000, 32.000000, 0.000000, 0.799721);
+
 	specTD[playerid]  = CreatePlayerTextDraw(playerid, 318.500000, 329.377838, "Nume:~p~Vicentzo (0)~n~~w~Health:~p~59.29~w~~n~Armour:~p~29.59~w~~n~Vehicle:~p~411~w~[Health:~p~999.5~w~]Packet Loss:~p~59.29");
 	PlayerTextDrawLetterSize(playerid, specTD[playerid] , 0.296500, 1.295110);
 	PlayerTextDrawAlignment(playerid, specTD[playerid] , 2);
@@ -635,6 +833,21 @@ stock destroyPlayerTextDraws(playerid)
 	PlayerTextDrawDestroy(playerid, warTD[playerid]);
 	PlayerTextDrawDestroy(playerid, notificationTD[playerid]);	
 	PlayerTextDrawDestroy(playerid, specTD[playerid]);
+	PlayerTextDrawDestroy(playerid, fishTD[playerid][0]);
+	PlayerTextDrawDestroy(playerid, fishTD[playerid][1]);
+	PlayerTextDrawDestroy(playerid, fishTD[playerid][2]);
+	PlayerTextDrawDestroy(playerid, fishTD[playerid][3]);
+	PlayerTextDrawDestroy(playerid, fishTD[playerid][4]);
+	PlayerTextDrawDestroy(playerid, fishTD[playerid][5]);
+	PlayerTextDrawDestroy(playerid, fishTD[playerid][6]);
+	PlayerTextDrawDestroy(playerid, fishTD[playerid][7]);
+	PlayerTextDrawDestroy(playerid, fishTD[playerid][8]);
+	PlayerTextDrawDestroy(playerid, fishTD[playerid][9]);
+	PlayerTextDrawDestroy(playerid, fishTD[playerid][10]);
+	PlayerTextDrawDestroy(playerid, fishTD[playerid][11]);
+	PlayerTextDrawDestroy(playerid, fishTD[playerid][12]);
+	PlayerTextDrawDestroy(playerid, fishTD[playerid][13]);
+	PlayerTextDrawDestroy(playerid, fishTD[playerid][14]);
 	return true;
 }
 
@@ -853,7 +1066,7 @@ stock isValidEmail(const email[])
 
 stock isPlayerLogged(playerid)
 {
-	if(Iter_Contains(Player, playerid) && playerInfo[playerid][pLogged] == true) return true;
+	if(Iter_Contains(loggedPlayers, playerid)) return true;
 	return false;
 }
 
@@ -928,6 +1141,10 @@ stock resetVars(playerid)
 	playerInfo[playerid][pAdText] = (EOS);
 	playerInfo[playerid][pContract] = -1;
 	playerInfo[playerid][pContractID] = -1;
+	playerInfo[playerid][pWorking] = 0;
+	playerInfo[playerid][pFishSteps] = 0;
+	playerInfo[playerid][pFishMoney] = 0;
+	playerInfo[playerid][pFishCaught] = 0;
 
 	if(IsValidVehicle(playerInfo[playerid][pExamenVehicle])) DestroyVehicle(playerInfo[playerid][pExamenVehicle]);
 

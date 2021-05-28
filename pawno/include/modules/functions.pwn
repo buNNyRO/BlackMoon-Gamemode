@@ -142,14 +142,11 @@ function onPlayerLogin(playerid)
 	cache_get_value_name_int(0, "VehicleSlots", playerInfo[playerid][pVehicleSlots]);
 	cache_get_value_name_int(0, "FishTimes", playerInfo[playerid][pFishTimes]);
 	cache_get_value_name_int(0, "FishSkill", playerInfo[playerid][pFishSkill]);
-	cache_get_value_name_int(0, "TruckTimes", playerInfo[playerid][pTruckTimes]);
-	cache_get_value_name_int(0, "TruckSkill", playerInfo[playerid][pTruckSkill]);
-	cache_get_value_name_int(0, "ArmsTimes", playerInfo[playerid][pArmsTimes]);
- 	cache_get_value_name_int(0, "ArmsSkill", playerInfo[playerid][pArmsSkill]);
-  	cache_get_value_name_int(0, "DrugsTimes", playerInfo[playerid][pDrugsTimes]);
-	cache_get_value_name_int(0, "DrugsSkill", playerInfo[playerid][pDrugsSkill]);
-	cache_get_value_name_int(0, "CarpenterTimes", playerInfo[playerid][pCarpenterTimes]);
-	cache_get_value_name_int(0, "CarpenterSkill", playerInfo[playerid][pCarpenterSkill]);
+	cache_get_value_name_int(0, "FishingRod", playerInfo[playerid][pFishingRod]);
+	cache_get_value_name_int(0, "FishCaughtNormal", playerInfo[playerid][pFishCaughtNormal]);
+	cache_get_value_name_int(0, "FishCaughtSpecial", playerInfo[playerid][pFishCaughtSpecial]);
+	cache_get_value_name_int(0, "FishBaitNormal", playerInfo[playerid][pFishBaitNormal]);
+	cache_get_value_name_int(0, "FishBaitSpecial", playerInfo[playerid][pFishBaitSpecial]);
 	cache_get_value_name_int(0, "Drugs", playerInfo[playerid][pDrugs]);
 	cache_get_value_name_int(0, "Mats", playerInfo[playerid][pMats]);
 	cache_get_value_name_int(0, "ReportMute", playerInfo[playerid][pReportMute]);
@@ -587,7 +584,7 @@ function checkAccountJailo(playerid, playerName, reason, minutes) {
 }
 
 function serverWeapon(playerid, weaponid, ammo) {
-	if(playerInfo[playerid][pWeaponLicense] == 0 && weaponid >= 8 && weaponid != 43 || weaponid == 9 && playerInfo[playerid][pJob] == 0 && Working[playerid] == 0) return true;
+	if(playerInfo[playerid][pWeaponLicense] == 0 && weaponid >= 8 && weaponid != 43 || weaponid == 9 && playerInfo[playerid][pJob] == 0) return true;
 	Weapons[playerid][weaponid] = 1;
 	WeaponAmmo[playerid][getWeaponSlot(weaponid)] += ammo;
 	GivePlayerWeapon(playerid, weaponid, ammo);

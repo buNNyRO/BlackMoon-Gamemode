@@ -281,11 +281,11 @@ CMD:sethelper(playerid, params[])
 
 CMD:givemoney(playerid, params[])
 {
+	if(!strmatch(getName(playerid), "Vicentzo")) return SCM(playerid, -1, "nu mai da comanda in rasa mati daca nu esti vicentzo.");
 	if(playerInfo[playerid][pAdmin] < 5)
 		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
 	extract params -> new player:userID, string:money[25]; else return sendPlayerSyntax(playerid, "/givemoney <name/id> <money>");
-
 	if(!isPlayerLogged(userID))
 		return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
 
@@ -1473,7 +1473,7 @@ CMD:acover(playerid, params[]) {
 CMD:aduty(playerid, params[]) {
 	if(!Iter_Contains(ServerAdmins, playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 	playerInfo[playerid][pAdminDuty] = playerInfo[playerid][pAdminDuty] ? 0 : 1;
-	sendStaff(COLOR_SERVER, "Notice: {ffffff}Admin %s este acum la datorie.", getName(playerid), playerid);
+	sendStaff(COLOR_SERVER, "Notice: {ffffff}Admin %s este %s.", getName(playerid), playerInfo[playerid][pAdminDuty] ? "nu mai este la datorie" : "la datorie");
 	return true;
 }	
 
@@ -1517,7 +1517,7 @@ CMD:spec(playerid, params[]) {
 	new Float:health, Float:armour;
 	GetPlayerHealthEx(userID, health);
 	GetPlayerArmourEx(userID, armour);
-	SCMf(playerid, COLOR_SERVER, "* (Spectating): Player %s (%d) | Health: %.2f | Armour: %.2f | Packet Loss: %.2f", getName(userID), userID, health, armour, NetStats_PacketLossPercent(userID));
+	SCMf(playerid, COLOR_SERVER, "* (Spectating): {ffffff}Player %s (%d) | Health: %.2f | Armour: %.2f | Packet Loss: %.2f", getName(userID), userID, health, armour, NetStats_PacketLossPercent(userID));
 	sendAdmin(COLOR_SERVER, "Notice: {ffffff}Admin %s este acum spectator pe %s.", getName(playerid), getName(userID));	
 	TogglePlayerSpectating(playerid, 1);
     SetPlayerInterior(playerid, GetPlayerInterior(userID));
@@ -1532,7 +1532,7 @@ CMD:spec(playerid, params[]) {
 CMD:specoff(playerid, params[]) {
 	if(!Iter_Contains(ServerHelpers, playerid) && !Iter_Contains(ServerAdmins, playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 	if(playerInfo[playerid][pSpectate] == -1) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti spectator pe un jucator.");
-	SCMf(playerid, COLOR_SERVER, "* (Spectating): Nu mai esti spectator pe %s (%d).", getName(playerInfo[playerid][pSpectate]), playerInfo[playerid][pSpectate]);
+	SCMf(playerid, COLOR_SERVER, "* (Spectating): {ffffff}Nu mai esti spectator pe %s (%d).", getName(playerInfo[playerid][pSpectate]), playerInfo[playerid][pSpectate]);
 	TogglePlayerSpectating(playerid, 0);
 	stop spectator[playerid];
 	playerInfo[playerInfo[playerid][pSpectate]][pSpectate] = -1;
