@@ -712,7 +712,7 @@ function removeFunction(playerid, text[]) {
 			SetPlayerHealthEx(playerid, 100);
 		}
 		if(playerInfo[playerid][pSpectate] > -1) {
-			TogglePlayerSpectating(playerid, 0);
+			TogglePlayerSpectatingEx(playerid, 0);
 			stop spectator[playerid];
 			playerInfo[playerInfo[playerid][pSpectate]][pSpectate] = -1;
 			playerInfo[playerid][pSpectate] = -1;

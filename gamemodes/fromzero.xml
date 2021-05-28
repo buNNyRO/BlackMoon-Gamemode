@@ -585,7 +585,7 @@
 				<tagname value="Float"/>
 			</member>
 		</member>
-		<member name="T:enumAC" value="10">
+		<member name="T:enumAC" value="11">
 			<tagname value="enumAC"/>
 			<member name="C:acTime" value="0">
 			</member>
@@ -601,9 +601,11 @@
 			</member>
 			<member name="C:acVehicleEnter" value="7">
 			</member>
-			<member name="C:acVehicleEnterKey" value="8">
+			<member name="C:acDeath" value="8">
 			</member>
-			<member name="C:acSpawn" value="9">
+			<member name="C:acVehicleEnterKey" value="9">
+			</member>
+			<member name="C:acSpawn" value="10">
 			</member>
 		</member>
 		<member name="T:examenInfoEnum" value="4">
@@ -1739,6 +1741,10 @@
 			<referrer name="Callback_HoldTimer"/>
 			<referrer name="Callback_TabCheck"/>
 			<referrer name="Hacker"/>
+			<referrer name="@yH_OnPlayerSpawn@005"/>
+			<referrer name="@yH_OnPlayerDeath@005"/>
+			<referrer name="@yH_OnPlayerTakeDamage@005"/>
+			<referrer name="@yH_OnPlayerStateChange@005"/>
 			<referrer name="checkpointGet"/>
 			<referrer name="OnPlayerEnterCheckpoint"/>
 			<referrer name="IsVehicleOccupied"/>
@@ -2658,6 +2664,7 @@
 			<referrer name="Iter_AddStaticVehicleEx"/>
 			<referrer name="Iter_DestroyVehicle"/>
 			<referrer name="_Timer_C"/>
+			<referrer name="acKicked"/>
 			<referrer name="banPlayer"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="wrongPass"/>
@@ -3395,6 +3402,7 @@
 			<referrer name="Iter_AddStaticVehicle"/>
 			<referrer name="Iter_AddStaticVehicleEx"/>
 			<referrer name="Iter_DestroyVehicle"/>
+			<referrer name="acKicked"/>
 			<referrer name="banPlayer"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="wrongPass"/>
@@ -3660,10 +3668,6 @@
 			<referrer name="LoadDsVehs"/>
 			<referrer name="InsertCarDS"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
-		</member>
-		<member name="F:SpawnPos">
-			<tagname value="Float"/>
-			<referrer name="OnPlayerSpawn"/>
 		</member>
 		<member name="F:SpeedVehicle">
 			<referrer name="ShowDealerShipTD"/>
@@ -4093,12 +4097,15 @@
 			<referrer name="Hacker"/>
 			<referrer name="@yH_OnPlayerSpawn@005"/>
 			<referrer name="@yH_OnPlayerDeath@005"/>
+			<referrer name="@yH_OnPlayerTakeDamage@005"/>
 			<referrer name="@yH_OnPlayerRequestSpawn@005"/>
 			<referrer name="SpawnPlayerEx"/>
+			<referrer name="TogglePlayerSpectatingEx"/>
 			<referrer name="@yH_OnPlayerStateChange@005"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@005"/>
 			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
 			<referrer name="PutPlayerInVehicleEx"/>
+			<referrer name="CB_OnPlayerKeyStateChange"/>
 		</member>
 		<member name="F:adTimer">
 			<tagname value="Timer"/>
@@ -4634,6 +4641,9 @@
 		</member>
 		<member name="F:playerInfo">
 			<referrer name="Hacker"/>
+			<referrer name="pc_cmd_test"/>
+			<referrer name="@yH_OnPlayerGiveDamage@005"/>
+			<referrer name="@yH_OnPlayerTakeDamage@005"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@005"/>
 			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
 			<referrer name="acKicked"/>
@@ -5717,6 +5727,8 @@
 			<referrer name="Callback_IsVehicleInPoint"/>
 			<referrer name="OnPlayerUpdate"/>
 			<referrer name="Hacker"/>
+			<referrer name="@yH_OnPlayerGiveDamage@005"/>
+			<referrer name="@yH_OnPlayerTakeDamage@005"/>
 			<referrer name="GetDistancePlayerToVeh"/>
 			<referrer name="AttachTrailer"/>
 			<referrer name="ProxDetectorS"/>
@@ -5976,6 +5988,7 @@
 		<member name="M:operator&lt;(Float:,_:)" syntax="operator&lt;(Float:,_:)(oper1, oper2)">
 			<tagname value="bool"/>
 			<stacksize value="4"/>
+			<referrer name="@yH_OnPlayerTakeDamage@005"/>
 			<referrer name="@yH_OnPlayerDeath@007"/>
 			<referrer name="pc_cmd_area"/>
 			<referrer name="pc_cmd_engine"/>
@@ -6008,7 +6021,6 @@
 			<referrer name="Get3DZone"/>
 			<referrer name="Get2DPosZone"/>
 			<referrer name="SetPlayerLookAt"/>
-			<referrer name="Hacker"/>
 			<referrer name="IsPlayerInArea"/>
 			<referrer name="GetMapZoneAtPoint"/>
 			<referrer name="GetMapZoneAtPoint2D"/>
@@ -6375,13 +6387,16 @@
 		</member>
 		<member name="M:@yH_OnPlayerDeath@005" syntax="@yH_OnPlayerDeath@005(playerid, killerid, reason)">
 			<attribute name="public"/>
-			<stacksize value="5"/>
+			<stacksize value="8"/>
 			<dependency name="GetTickCount"/>
+			<dependency name="acDeath"/>
 			<dependency name="acInfo"/>
 			<dependency name="acInfo"/>
 			<dependency name="acKicked"/>
 			<dependency name="acSpawn"/>
 			<dependency name="acSpawnTime"/>
+			<dependency name="false"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="killerid">
@@ -6588,7 +6603,7 @@
 		</member>
 		<member name="M:@yH_OnPlayerEnterCheckpoint@005" syntax="@yH_OnPlayerEnterCheckpoint@005(playerid)">
 			<attribute name="public"/>
-			<stacksize value="7"/>
+			<stacksize value="9"/>
 			<dependency name="operator&lt;(Float:,Float:)"/>
 			<dependency name="GetPlayerDistanceFromPoint"/>
 			<dependency name="GetTickCount"/>
@@ -6596,10 +6611,12 @@
 			<dependency name="acInfo"/>
 			<dependency name="acInfo"/>
 			<dependency name="acKicked"/>
+			<dependency name="gettime"/>
 			<dependency name="pLastPosX"/>
 			<dependency name="pLastPosY"/>
 			<dependency name="pLastPosZ"/>
 			<dependency name="playerInfo"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -6725,6 +6742,26 @@
 			<param name="ispassenger">
 			</param>
 		</member>
+		<member name="M:@yH_OnPlayerGiveDamage@005" syntax="@yH_OnPlayerGiveDamage@005(playerid, damagedid, amount, weaponid, bodypart)">
+			<attribute name="public"/>
+			<stacksize value="9"/>
+			<dependency name="operator-(Float:,Float:)"/>
+			<dependency name="pHealth"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="va_SendClientMessage"/>
+			<param name="playerid">
+			</param>
+			<param name="damagedid">
+			</param>
+			<param name="amount">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="weaponid">
+			</param>
+			<param name="bodypart">
+			</param>
+		</member>
 		<member name="M:@yH_OnPlayerKeyStateChange@012" syntax="@yH_OnPlayerKeyStateChange@012(playerid, newkeys, oldkeys)">
 			<attribute name="public"/>
 			<stacksize value="3"/>
@@ -6749,19 +6786,20 @@
 		</member>
 		<member name="M:@yH_OnPlayerSpawn@005" syntax="@yH_OnPlayerSpawn@005(playerid)">
 			<attribute name="public"/>
-			<stacksize value="5"/>
+			<stacksize value="6"/>
 			<dependency name="GetTickCount"/>
 			<dependency name="acInfo"/>
 			<dependency name="acInfo"/>
 			<dependency name="acKicked"/>
 			<dependency name="acSpawn"/>
 			<dependency name="acSpawnTime"/>
+			<dependency name="false"/>
 			<param name="playerid">
 			</param>
 		</member>
 		<member name="M:@yH_OnPlayerStateChange@005" syntax="@yH_OnPlayerStateChange@005(playerid, newstate, oldstate)">
 			<attribute name="public"/>
-			<stacksize value="5"/>
+			<stacksize value="6"/>
 			<dependency name="GetTickCount"/>
 			<dependency name="acInfo"/>
 			<dependency name="acInfo"/>
@@ -6769,6 +6807,7 @@
 			<dependency name="acTime"/>
 			<dependency name="acTimeCrash"/>
 			<dependency name="acVehicleEnter"/>
+			<dependency name="false"/>
 			<param name="playerid">
 			</param>
 			<param name="newstate">
@@ -6806,6 +6845,32 @@
 			<param name="newstate">
 			</param>
 			<param name="oldstate">
+			</param>
+		</member>
+		<member name="M:@yH_OnPlayerTakeDamage@005" syntax="@yH_OnPlayerTakeDamage@005(playerid, issuerid, amount, weaponid, bodypart)">
+			<attribute name="public"/>
+			<stacksize value="9"/>
+			<dependency name="operator-(Float:,Float:)"/>
+			<dependency name="operator&lt;(Float:,_:)"/>
+			<dependency name="acDeath"/>
+			<dependency name="acInfo"/>
+			<dependency name="acInfo"/>
+			<dependency name="acKicked"/>
+			<dependency name="false"/>
+			<dependency name="pHealth"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="va_SendClientMessage"/>
+			<param name="playerid">
+			</param>
+			<param name="issuerid">
+			</param>
+			<param name="amount">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="weaponid">
+			</param>
+			<param name="bodypart">
 			</param>
 		</member>
 		<member name="M:@yH_OnScriptInit@001" syntax="@yH_OnScriptInit@001()">
@@ -10263,7 +10328,7 @@
 			<dependency name="PlayerTextDrawHide"/>
 			<dependency name="REPORT_TYPE_NONE"/>
 			<dependency name="StoreMoney"/>
-			<dependency name="TogglePlayerSpectating"/>
+			<dependency name="TogglePlayerSpectatingEx"/>
 			<dependency name="Working"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="cBy"/>
@@ -10327,6 +10392,7 @@
 			<dependency name="GetPlayerState"/>
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="GetPlayerVirtualWorld"/>
+			<dependency name="GetTickCount"/>
 			<dependency name="GetVehicleParamsEx"/>
 			<dependency name="GetVehiclePos"/>
 			<dependency name="GetVehicleVelocity"/>
@@ -10357,6 +10423,9 @@
 			<dependency name="StopLoopingAnim"/>
 			<dependency name="StoreMoney"/>
 			<dependency name="Working"/>
+			<dependency name="acInfo"/>
+			<dependency name="acInfo"/>
+			<dependency name="acTimeCrash"/>
 			<dependency name="areaBizz"/>
 			<dependency name="areaFaction"/>
 			<dependency name="areaHouse"/>
@@ -12216,6 +12285,7 @@
 		<member name="M:CreateObject" syntax="CreateObject(modelid, X, Y, Z, rX, rY, rZ, DrawDistance)">
 			<attribute name="native"/>
 			<referrer name="dialog_DIALOG_SVF"/>
+			<referrer name="loadMaps"/>
 			<param name="modelid">
 			</param>
 			<param name="X">
@@ -14711,7 +14781,6 @@
 			<referrer name="IsPlayerSprayingVehicle"/>
 			<referrer name="OnPlayerUpdate"/>
 			<referrer name="Callback_CheckAnimation"/>
-			<referrer name="Hacker"/>
 			<referrer name="Timers"/>
 			<referrer name="pc_cmd_carhand"/>
 			<referrer name="pc_cmd_lifejump"/>
@@ -14916,6 +14985,15 @@
 			<param name="playerid">
 			</param>
 			<param name="ang">
+				<paraminfo>Float &amp; </paraminfo>
+			</param>
+		</member>
+		<member name="M:GetPlayerHealth" syntax="GetPlayerHealth(playerid, &amp;health)">
+			<attribute name="native"/>
+			<referrer name="pc_cmd_test"/>
+			<param name="playerid">
+			</param>
+			<param name="health">
 				<paraminfo>Float &amp; </paraminfo>
 			</param>
 		</member>
@@ -15184,12 +15262,6 @@
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="pc_cmd_lights"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
-			<param name="playerid">
-			</param>
-		</member>
-		<member name="M:GetPlayerSurfingVehicleID" syntax="GetPlayerSurfingVehicleID(playerid)">
-			<attribute name="native"/>
-			<referrer name="Hacker"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -15720,6 +15792,7 @@
 			<referrer name="@yH_OnPlayerEnterCheckpoint@005"/>
 			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
 			<referrer name="OnPlayerEnterCheckpoint"/>
+			<referrer name="CB_OnPlayerKeyStateChange"/>
 		</member>
 		<member name="M:GetVehicleDamageStatus" syntax="GetVehicleDamageStatus(vehicleid, &amp;panels, &amp;doors, &amp;lights, &amp;tires)">
 			<attribute name="native"/>
@@ -16032,14 +16105,11 @@
 			<dependency name="operator==(Float:,Float:)"/>
 			<dependency name="operator&gt;(Float:,Float:)"/>
 			<dependency name="operator&lt;(Float:,Float:)"/>
-			<dependency name="operator&lt;=(Float:,Float:)"/>
-			<dependency name="GetPlayerAnimationIndex"/>
 			<dependency name="GetPlayerCameraMode"/>
 			<dependency name="GetPlayerCameraPos"/>
 			<dependency name="GetPlayerInterior"/>
 			<dependency name="GetPlayerPos"/>
 			<dependency name="GetPlayerState"/>
-			<dependency name="GetPlayerSurfingVehicleID"/>
 			<dependency name="GetPlayerVelocity"/>
 			<dependency name="acInfo"/>
 			<dependency name="acKicked"/>
@@ -20927,7 +20997,6 @@
 			<dependency name="SetPlayerSkin"/>
 			<dependency name="SetPlayerToFactionColor"/>
 			<dependency name="SetPlayerVirtualWorld"/>
-			<dependency name="SpawnPos"/>
 			<dependency name="StopFly"/>
 			<dependency name="TogglePlayerControllable"/>
 			<dependency name="Working"/>
@@ -25504,11 +25573,25 @@
 		</member>
 		<member name="M:TogglePlayerSpectating" syntax="TogglePlayerSpectating(playerid, toggle)">
 			<attribute name="native"/>
+			<referrer name="TogglePlayerSpectatingEx"/>
+			<param name="playerid">
+			</param>
+			<param name="toggle">
+			</param>
+		</member>
+		<member name="M:TogglePlayerSpectatingEx" syntax="TogglePlayerSpectatingEx(playerid, toggle)">
+			<attribute name="public"/>
+			<stacksize value="4"/>
 			<referrer name="removeFunction"/>
 			<referrer name="pc_cmd_setadmin"/>
 			<referrer name="pc_cmd_spec"/>
 			<referrer name="pc_cmd_specoff"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
+			<dependency name="TogglePlayerSpectating"/>
+			<dependency name="acInfo"/>
+			<dependency name="acInfo"/>
+			<dependency name="acSpawn"/>
+			<dependency name="acSpawnTime"/>
 			<param name="playerid">
 			</param>
 			<param name="toggle">
@@ -26266,7 +26349,7 @@
 			<param name="who">
 			</param>
 			<param name="results">
-				<paraminfo> [200] </paraminfo>
+				<paraminfo> [50] </paraminfo>
 			</param>
 			<param name="a">
 				<paraminfo> [2] </paraminfo>
@@ -26380,18 +26463,21 @@
 			<param name="reason">
 			</param>
 		</member>
-		<member name="M:acKicked" syntax="acKicked(playerid, motiv[])">
-			<attribute name="public"/>
+		<member name="M:acKicked" syntax="acKicked(playerid, motiv[], deelay)">
 			<stacksize value="7"/>
 			<referrer name="Hacker"/>
 			<referrer name="@yH_OnPlayerSpawn@005"/>
 			<referrer name="@yH_OnPlayerDeath@005"/>
+			<referrer name="@yH_OnPlayerTakeDamage@005"/>
 			<referrer name="@yH_OnPlayerStateChange@005"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@005"/>
 			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
 			<referrer name="CB_OnPlayerStateChange"/>
+			<dependency name="I@"/>
+			<dependency name="J@"/>
 			<dependency name="Kick"/>
 			<dependency name="SendDiscordAC"/>
+			<dependency name="kickEx_yT@"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
@@ -26402,11 +26488,15 @@
 			<param name="motiv">
 				<paraminfo> [] </paraminfo>
 			</param>
+			<param name="deelay">
+				<paraminfo>bool </paraminfo>
+			</param>
 		</member>
 		<member name="M:acReset" syntax="acReset(playerid)">
 			<attribute name="public"/>
 			<stacksize value="1"/>
 			<referrer name="SSCANF_OnPlayerConnect"/>
+			<dependency name="acDeath"/>
 			<dependency name="acInfo"/>
 			<dependency name="acInfo"/>
 			<dependency name="acSpawn"/>
@@ -29895,6 +29985,7 @@
 		</member>
 		<member name="M:gettime" syntax="gettime(&amp;hour, &amp;minute, &amp;second)">
 			<attribute name="native"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@005"/>
 			<referrer name="warnPlayer"/>
 			<referrer name="banPlayer"/>
 			<referrer name="mutePlayer"/>
@@ -30310,6 +30401,7 @@
 		</member>
 		<member name="M:kickEx_yT@" syntax="kickEx_yT@(playerid)">
 			<stacksize value="8"/>
+			<referrer name="acKicked"/>
 			<referrer name="banPlayer"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="wrongPass"/>
@@ -30366,6 +30458,7 @@
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="CreateDynamicObject"/>
 			<dependency name="CreateDynamicObjectEx"/>
+			<dependency name="CreateObject"/>
 			<dependency name="SetDynamicObjectMaterial"/>
 			<dependency name="gates"/>
 		</member>
@@ -37057,7 +37150,7 @@
 			<dependency name="PlayerTextDrawHide"/>
 			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="SendClientMessage"/>
-			<dependency name="TogglePlayerSpectating"/>
+			<dependency name="TogglePlayerSpectatingEx"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pAdmin"/>
@@ -37547,7 +37640,7 @@
 			<dependency name="SetPlayerInterior"/>
 			<dependency name="SetPlayerVirtualWorld"/>
 			<dependency name="TimerSpectator_yT@"/>
-			<dependency name="TogglePlayerSpectating"/>
+			<dependency name="TogglePlayerSpectatingEx"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pName"/>
@@ -37583,7 +37676,7 @@
 			<dependency name="Iterator@ServerHelpers"/>
 			<dependency name="PlayerTextDrawHide"/>
 			<dependency name="SendClientMessage"/>
-			<dependency name="TogglePlayerSpectating"/>
+			<dependency name="TogglePlayerSpectatingEx"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="pName"/>
 			<dependency name="pSpectate"/>
@@ -37847,6 +37940,20 @@
 			<dependency name="playerInfo"/>
 			<dependency name="sendNearbyMessage"/>
 			<dependency name="true"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:pc_cmd_test" syntax="pc_cmd_test(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="8"/>
+			<dependency name="GetPlayerHealth"/>
+			<dependency name="pHealth"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -38742,7 +38849,7 @@
 			<dependency name="PlayerTextDrawHide"/>
 			<dependency name="SetPlayerHealthEx"/>
 			<dependency name="StopFly"/>
-			<dependency name="TogglePlayerSpectating"/>
+			<dependency name="TogglePlayerSpectatingEx"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="cBy"/>
 			<dependency name="cFor"/>
@@ -40822,6 +40929,11 @@
 		</member>
 		<member name="M:va_SendClientMessage" syntax="va_SendClientMessage(playerid, colour, fmat[], ...)">
 			<stacksize value="145"/>
+			<referrer name="pc_cmd_test"/>
+			<referrer name="@yH_OnPlayerDeath@005"/>
+			<referrer name="@yH_OnPlayerGiveDamage@005"/>
+			<referrer name="@yH_OnPlayerTakeDamage@005"/>
+			<referrer name="@yH_OnPlayerEnterCheckpoint@005"/>
 			<referrer name="sendSplitMessage"/>
 			<referrer name="warnPlayer"/>
 			<referrer name="mutePlayer"/>

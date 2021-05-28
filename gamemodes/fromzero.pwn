@@ -17,7 +17,7 @@
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define MYSQL 1 // 0 - local | 1 - host
-#define VERSION "v1.6.45"
+#define VERSION "v1.6.46"
 
 #include <discord>
 
@@ -197,7 +197,7 @@ public OnPlayerDisconnect(playerid, reason)
     }
 
     if(playerInfo[playerid][pSpectate] > -1) {
-		TogglePlayerSpectating(playerInfo[playerid][pSpectate], 0);
+		TogglePlayerSpectatingEx(playerInfo[playerid][pSpectate], 0);
 		stop spectator[playerInfo[playerid][pSpectate]];
 		playerInfo[playerInfo[playerid][pSpectate]][pSpectate] = -1;
 		PlayerTextDrawHide(playerid, specTD[playerInfo[playerid][pSpectate]]);
@@ -292,9 +292,8 @@ public OnPlayerSpawn(playerid) {
 	}
 	switch(playerInfo[playerid][pSpawnChange]) {
 		case 1: {
-			new spawn = random(4);
-			SetPlayerPos(playerid, SpawnPos[spawn][0], SpawnPos[spawn][1], SpawnPos[spawn][2]);
-			SetPlayerFacingAngle(playerid, SpawnPos[spawn][0]);
+			SetPlayerPos(playerid, -334.0408,1052.1276,19.7392);
+			SetPlayerFacingAngle(playerid, 270.4797);
 			SetPlayerVirtualWorld(playerid, 0);
 			SetPlayerInterior(playerid, 0);
 			return true;		
@@ -522,6 +521,7 @@ public OnVehicleDeath(vehicleid, killerid) {
 public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 	// if(deelayInfo[playerid][Keys] > GetTickCount()) return 1;
 	// deelayInfo[playerid][Keys] = GetTickCount()+500;
+	if(newkeys == KEY_SECONDARY_ATTACK) acInfo[playerid][acTimeCrash] = GetTickCount()+1000;
 	if(PRESSED(KEY_LOOK_BEHIND)) {
 		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER || !isBike(GetPlayerVehicleID(playerid)) || GetPVarInt(playerid, "engineDeelay") != gettime()) callcmd::engine(playerid, "\1");
 	}
