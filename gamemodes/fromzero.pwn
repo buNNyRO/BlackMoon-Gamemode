@@ -818,6 +818,14 @@ public OnPlayerRequestSpawn(playerid)
 	return false;
 }
 
+public OnPlayerStreamIn(playerid, forplayerid)
+{
+    new string[40];
+    format(string, sizeof(string), "Player %d is now streamed in for you.", playerid);
+    SendClientMessage(forplayerid, 0xFFFFFFFF, string);
+    return 1;
+}
+
 public OnPlayerEnterCheckpoint(playerid) 
 {
 	if(playerInfo[playerid][pExamenCheckpoint] > 0 && IsPlayerInVehicle(playerid, playerInfo[playerid][pExamenVehicle])) {

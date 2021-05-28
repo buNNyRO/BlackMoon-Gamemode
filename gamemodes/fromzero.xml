@@ -877,7 +877,7 @@
 			<member name="C:SAFE" value="5">
 			</member>
 		</member>
-		<member name="T:playerInfoEnum" value="885">
+		<member name="T:playerInfoEnum" value="886">
 			<tagname value="playerInfoEnum"/>
 			<member name="C:pSQLID" value="0">
 			</member>
@@ -959,269 +959,271 @@
 			</member>
 			<member name="C:pFishSkill" value="250">
 			</member>
-			<member name="C:pTruckTimes" value="251">
-			</member>
-			<member name="C:pTruckSkill" value="252">
-			</member>
-			<member name="C:pArmsTimes" value="253">
-			</member>
-			<member name="C:pArmsSkill" value="254">
-			</member>
-			<member name="C:pDrugsTimes" value="255">
-			</member>
-			<member name="C:pDrugsSkill" value="256">
-			</member>
-			<member name="C:pCarpenterSkill" value="257">
-			</member>
-			<member name="C:pCarpenterTimes" value="258">
-			</member>
-			<member name="C:pIp" value="259">
+			<member name="C:pIp" value="251">
 				<size value="16"/>
 			</member>
-			<member name="C:pLastIp" value="275">
+			<member name="C:pLastIp" value="267">
 				<size value="16"/>
 			</member>
-			<member name="C:pDrugs" value="291">
+			<member name="C:pDrugs" value="283">
 			</member>
-			<member name="C:pPremium" value="292">
+			<member name="C:pPremium" value="284">
 			</member>
-			<member name="C:pVIP" value="293">
+			<member name="C:pVIP" value="285">
 			</member>
-			<member name="C:pBeta" value="294">
+			<member name="C:pBeta" value="286">
 			</member>
-			<member name="C:pMats" value="295">
+			<member name="C:pMats" value="287">
 			</member>
-			<member name="C:pFaction" value="296">
+			<member name="C:pFaction" value="288">
 			</member>
-			<member name="C:pFactionPunish" value="297">
+			<member name="C:pFactionPunish" value="289">
 			</member>
-			<member name="C:pFactionWarns" value="298">
+			<member name="C:pFactionWarns" value="290">
 			</member>
-			<member name="C:pFactionAge" value="299">
+			<member name="C:pFactionAge" value="291">
 			</member>
-			<member name="C:pFactionRank" value="300">
+			<member name="C:pFactionRank" value="292">
 			</member>
-			<member name="C:pPhone" value="301">
+			<member name="C:pPhone" value="293">
 			</member>
-			<member name="C:pPhoneBook" value="302">
+			<member name="C:pPhoneBook" value="294">
 			</member>
-			<member name="C:pWantedLevel" value="303">
+			<member name="C:pWantedLevel" value="295">
 			</member>
-			<member name="C:pJailed" value="304">
+			<member name="C:pJailed" value="296">
 			</member>
-			<member name="C:pJailTime" value="305">
+			<member name="C:pJailTime" value="297">
 			</member>
-			<member name="C:pArrested" value="306">
+			<member name="C:pArrested" value="298">
 			</member>
-			<member name="C:pWantedDeaths" value="307">
+			<member name="C:pWantedDeaths" value="299">
 			</member>
-			<member name="C:pCommands" value="308">
+			<member name="C:pCommands" value="300">
 			</member>
-			<member name="C:pNeedProgress" value="309">
+			<member name="C:pNeedProgress" value="301">
 				<size value="2"/>
 			</member>
-			<member name="C:pDailyMission" value="311">
+			<member name="C:pDailyMission" value="303">
 				<size value="2"/>
 			</member>
-			<member name="C:pProgress" value="313">
+			<member name="C:pProgress" value="305">
 				<size value="2"/>
 			</member>
-			<member name="C:pWTChannel" value="315">
+			<member name="C:pWTChannel" value="307">
 			</member>
-			<member name="C:pWTalkie" value="316">
+			<member name="C:pWTalkie" value="308">
 			</member>
-			<member name="C:pWToggle" value="317">
+			<member name="C:pWToggle" value="309">
 			</member>
-			<member name="C:pLiveToggle" value="318">
+			<member name="C:pLiveToggle" value="310">
 			</member>
-			<member name="C:pWantedTime" value="319">
+			<member name="C:pWantedTime" value="311">
 			</member>
-			<member name="C:pGuns" value="320">
+			<member name="C:pGuns" value="312">
 				<tagname value="bool"/>
 				<size value="6"/>
 			</member>
-			<member name="C:pClan" value="326">
+			<member name="C:pClan" value="318">
 			</member>
-			<member name="C:pClanTag" value="327">
+			<member name="C:pClanTag" value="319">
 			</member>
-			<member name="C:pClanRank" value="328">
+			<member name="C:pClanRank" value="320">
 			</member>
-			<member name="C:pClanAge" value="329">
+			<member name="C:pClanAge" value="321">
 			</member>
-			<member name="C:pClanWarns" value="330">
+			<member name="C:pClanWarns" value="322">
 			</member>
-			<member name="C:pPremiumPoints" value="331">
+			<member name="C:pPremiumPoints" value="323">
 			</member>
-			<member name="C:pFPSShow" value="332">
+			<member name="C:pFPSShow" value="324">
 			</member>
-			<member name="C:pLoginTries" value="333">
+			<member name="C:pFishingRod" value="325">
 			</member>
-			<member name="C:pAFKSeconds" value="334">
+			<member name="C:pFishCaughtNormal" value="326">
 			</member>
-			<member name="C:pLogged" value="335">
+			<member name="C:pFishCaughtSpecial" value="327">
+			</member>
+			<member name="C:pFishBaitNormal" value="328">
+			</member>
+			<member name="C:pFishBaitSpecial" value="329">
+			</member>
+			<member name="C:pLoginTries" value="330">
+			</member>
+			<member name="C:pAFKSeconds" value="331">
+			</member>
+			<member name="C:pLogged" value="332">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pLoginEnabled" value="336">
+			<member name="C:pLoginEnabled" value="333">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pLoginTimer" value="337">
+			<member name="C:pLoginTimer" value="334">
 				<tagname value="Timer"/>
 			</member>
-			<member name="C:pLastPosX" value="338">
+			<member name="C:pLastPosX" value="335">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pLastPosY" value="339">
+			<member name="C:pLastPosY" value="336">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pLastPosZ" value="340">
+			<member name="C:pLastPosZ" value="337">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pExamenVehicle" value="341">
+			<member name="C:pExamenVehicle" value="338">
 			</member>
-			<member name="C:pExamenCheckpoint" value="342">
+			<member name="C:pExamenCheckpoint" value="339">
 			</member>
-			<member name="C:pFlymode" value="343">
+			<member name="C:pFlymode" value="340">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pFreeze" value="344">
+			<member name="C:pFreeze" value="341">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pMark" value="345">
+			<member name="C:pMark" value="342">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pMarkX" value="346">
+			<member name="C:pMarkX" value="343">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pMarkY" value="347">
+			<member name="C:pMarkY" value="344">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pMarkZ" value="348">
+			<member name="C:pMarkZ" value="345">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pHealth" value="349">
+			<member name="C:pHealth" value="346">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pArmour" value="350">
+			<member name="C:pArmour" value="347">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pMarkInterior" value="351">
+			<member name="C:pMarkInterior" value="348">
 			</member>
-			<member name="C:pTutorialSeconds" value="352">
+			<member name="C:pTutorialSeconds" value="349">
 			</member>
-			<member name="C:pReportChat" value="353">
+			<member name="C:pReportChat" value="350">
 			</member>
-			<member name="C:pTutorialActive" value="354">
+			<member name="C:pTutorialActive" value="351">
 			</member>
-			<member name="C:pCheckpoint" value="355">
+			<member name="C:pCheckpoint" value="352">
 			</member>
-			<member name="C:pCheckpointID" value="356">
+			<member name="C:pCheckpointID" value="353">
 			</member>
-			<member name="C:pinBusiness" value="357">
+			<member name="C:pinBusiness" value="354">
 			</member>
-			<member name="C:pinHouse" value="358">
+			<member name="C:pinHouse" value="355">
 			</member>
-			<member name="C:pinVehicle" value="359">
+			<member name="C:pinVehicle" value="356">
 			</member>
-			<member name="C:pinDealer" value="360">
+			<member name="C:pinDealer" value="357">
 			</member>
-			<member name="C:pinFaction" value="361">
+			<member name="C:pinFaction" value="358">
 			</member>
-			<member name="C:pTintaApasata" value="362">
+			<member name="C:pTintaApasata" value="359">
 			</member>
-			<member name="C:pTransferMoney" value="363">
+			<member name="C:pTransferMoney" value="360">
 			</member>
-			<member name="C:pTransferPlayer" value="364">
+			<member name="C:pTransferPlayer" value="361">
 			</member>
-			<member name="C:pspecFaction" value="365">
+			<member name="C:pspecFaction" value="362">
 			</member>
-			<member name="C:pPhoneOnline" value="366">
+			<member name="C:pPhoneOnline" value="363">
 			</member>
-			<member name="C:pReply" value="367">
+			<member name="C:pReply" value="364">
 			</member>
-			<member name="C:pDistanceCheckpoint" value="368">
+			<member name="C:pDistanceCheckpoint" value="365">
 			</member>
-			<member name="C:pFactionDuty" value="369">
+			<member name="C:pFactionDuty" value="366">
 			</member>
-			<member name="C:pCuffed" value="370">
+			<member name="C:pCuffed" value="367">
 			</member>
-			<member name="C:pTazer" value="371">
+			<member name="C:pTazer" value="368">
 			</member>
-			<member name="C:pMDCon" value="372">
+			<member name="C:pMDCon" value="369">
 			</member>
-			<member name="C:pCollision" value="373">
+			<member name="C:pCollision" value="370">
 			</member>
-			<member name="C:pUnFreezeTime" value="374">
+			<member name="C:pUnFreezeTime" value="371">
 			</member>
-			<member name="C:pFreezed" value="375">
+			<member name="C:pFreezed" value="372">
 			</member>
-			<member name="C:pAnimLibLoaded" value="376">
+			<member name="C:pAnimLibLoaded" value="373">
 			</member>
-			<member name="C:pAnimLooping" value="377">
+			<member name="C:pAnimLooping" value="374">
 			</member>
-			<member name="C:pTaxiDuty" value="378">
+			<member name="C:pTaxiDuty" value="375">
 			</member>
-			<member name="C:pTaxiFare" value="379">
+			<member name="C:pTaxiFare" value="376">
 			</member>
-			<member name="C:pTaxiDriver" value="380">
+			<member name="C:pTaxiDriver" value="377">
 			</member>
-			<member name="C:pTaxiMoney" value="381">
+			<member name="C:pTaxiMoney" value="378">
 			</member>
-			<member name="C:pLiveOffer" value="382">
+			<member name="C:pLiveOffer" value="379">
 			</member>
-			<member name="C:pTalkingLive" value="383">
+			<member name="C:pTalkingLive" value="380">
 			</member>
-			<member name="C:pQuestionText" value="384">
+			<member name="C:pQuestionText" value="381">
 				<size value="180"/>
 			</member>
-			<member name="C:pInLesson" value="564">
+			<member name="C:pInLesson" value="561">
 			</member>
-			<member name="C:pLesson" value="565">
+			<member name="C:pLesson" value="562">
 			</member>
-			<member name="C:pLicense" value="566">
+			<member name="C:pLicense" value="563">
 			</member>
-			<member name="C:pLicenseOffer" value="567">
+			<member name="C:pLicenseOffer" value="564">
 			</member>
-			<member name="C:pShowTurfs" value="568">
+			<member name="C:pShowTurfs" value="565">
 			</member>
-			<member name="C:pSafeID" value="569">
+			<member name="C:pSafeID" value="566">
 			</member>
-			<member name="C:pSelectedItem" value="570">
+			<member name="C:pSelectedItem" value="567">
 			</member>
-			<member name="C:pOnTurf" value="571">
+			<member name="C:pOnTurf" value="568">
 			</member>
-			<member name="C:areaBizz" value="572">
+			<member name="C:areaBizz" value="569">
 			</member>
-			<member name="C:areaHouse" value="573">
+			<member name="C:areaHouse" value="570">
 			</member>
-			<member name="C:areaFaction" value="574">
+			<member name="C:areaFaction" value="571">
 			</member>
-			<member name="C:areaJob" value="575">
+			<member name="C:areaJob" value="572">
 			</member>
-			<member name="C:areaGascan" value="576">
+			<member name="C:areaGascan" value="573">
 			</member>
-			<member name="C:areaSafe" value="577">
+			<member name="C:areaSafe" value="574">
 			</member>
-			<member name="C:pEnableBoost" value="578">
+			<member name="C:pEnableBoost" value="575">
 			</member>
-			<member name="C:pAdminCover" value="579">
+			<member name="C:pAdminCover" value="576">
 				<size value="24"/>
 			</member>
-			<member name="C:pDrunkLevel" value="603">
+			<member name="C:pDrunkLevel" value="600">
 			</member>
-			<member name="C:pFPS" value="604">
+			<member name="C:pFPS" value="601">
 			</member>
-			<member name="C:pAdText" value="605">
+			<member name="C:pAdText" value="602">
 				<size value="256"/>
 			</member>
-			<member name="C:pAdminDuty" value="861">
+			<member name="C:pAdminDuty" value="858">
 			</member>
-			<member name="C:pSpectate" value="862">
+			<member name="C:pSpectate" value="859">
 			</member>
-			<member name="C:pContract" value="863">
+			<member name="C:pContract" value="860">
 			</member>
-			<member name="C:pContractID" value="864">
+			<member name="C:pContractID" value="861">
 			</member>
-			<member name="C:pSelectVehicle" value="865">
+			<member name="C:pWorking" value="862">
+			</member>
+			<member name="C:pFishSteps" value="863">
+			</member>
+			<member name="C:pFishMoney" value="864">
+			</member>
+			<member name="C:pFishCaught" value="865">
+			</member>
+			<member name="C:pSelectVehicle" value="866">
 				<size value="20"/>
 			</member>
 		</member>
@@ -1365,27 +1367,6 @@
 		<member name="C:AMX_HDR_OFFSET_TAGS" value="48">
 			<referrer name="GetAmxHeaderNow"/>
 		</member>
-		<member name="C:CHECKPOINT_ARMSDEALER" value="8">
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="jobWork"/>
-		</member>
-		<member name="C:CHECKPOINT_ARMSDEALER2" value="9">
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-		</member>
-		<member name="C:CHECKPOINT_CARPENTER" value="10">
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="jobWork"/>
-		</member>
-		<member name="C:CHECKPOINT_CARPENTER2" value="11">
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-		</member>
-		<member name="C:CHECKPOINT_DRUGSDEALER" value="6">
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="jobWork"/>
-		</member>
-		<member name="C:CHECKPOINT_DRUGSDEALER2" value="7">
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-		</member>
 		<member name="C:CHECKPOINT_FACTION_DUTY" value="12">
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
@@ -1403,21 +1384,17 @@
 		</member>
 		<member name="C:CHECKPOINT_GPS" value="13">
 			<referrer name="dialog_GPS1"/>
+			<referrer name="dialog_DIALOG_JOBS"/>
 			<referrer name="pc_cmd_findbusiness"/>
 			<referrer name="pc_cmd_findhouse"/>
 			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
-		</member>
-		<member name="C:CHECKPOINT_JOB" value="1">
-			<referrer name="dialog_DIALOG_JOBS"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 		</member>
 		<member name="C:CHECKPOINT_NONE" value="0">
 			<referrer name="resetVars"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
 			<referrer name="dialog_DIALOG_JOBS"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="CancelJob"/>
+			<referrer name="pc_cmd_startwork"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerCar"/>
 			<referrer name="TimerCarFind"/>
@@ -1428,21 +1405,6 @@
 			<referrer name="pc_cmd_findbusiness"/>
 			<referrer name="pc_cmd_findhouse"/>
 			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
-		</member>
-		<member name="C:CHECKPOINT_TRUCKERLS" value="5">
-			<referrer name="dialog_TRUCKER_SELECTTWO"/>
-			<referrer name="dialog_TRUCKER_SELECTTHREE"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-		</member>
-		<member name="C:CHECKPOINT_TRUCKERLV" value="4">
-			<referrer name="dialog_TRUCKER_SELECT"/>
-			<referrer name="dialog_TRUCKER_SELECTTWO"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-		</member>
-		<member name="C:CHECKPOINT_TRUCKERSF" value="3">
-			<referrer name="dialog_TRUCKER_SELECT"/>
-			<referrer name="dialog_TRUCKER_SELECTTHREE"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 		</member>
 		<member name="C:CHECKPOINT_WANTEDFIND" value="14">
 			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
@@ -1475,9 +1437,7 @@
 			<referrer name="showFactionMembers"/>
 			<referrer name="pc_cmd_setguns"/>
 			<referrer name="pc_cmd_svf"/>
-			<referrer name="pc_cmd_quitjob"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="jobWork"/>
+			<referrer name="pc_cmd_jobs"/>
 			<referrer name="advertismentTimer"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
 			<referrer name="pc_cmd_buybusiness"/>
@@ -1516,7 +1476,6 @@
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="ShowEmails"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
 		</member>
 		<member name="C:E_STREAMER_EXTRA_ID" value="15">
 			<referrer name="LoadHouses"/>
@@ -1530,49 +1489,11 @@
 			<referrer name="dialog_DIALOG_MEMBERS2"/>
 			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 		</member>
-		<member name="C:JOB_ARMSDEALER" value="4">
-			<referrer name="returnNeededPoints"/>
-			<referrer name="pc_cmd_skills"/>
-			<referrer name="pc_cmd_startwork"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="jobWork"/>
-			<referrer name="CancelJob"/>
-		</member>
-		<member name="C:JOB_CARPENTER" value="5">
-			<referrer name="returnNeededPoints"/>
-			<referrer name="pc_cmd_skills"/>
-			<referrer name="pc_cmd_startwork"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="jobWork"/>
-			<referrer name="CancelJob"/>
-		</member>
-		<member name="C:JOB_DRUGSDEALER" value="3">
-			<referrer name="returnNeededPoints"/>
-			<referrer name="pc_cmd_skills"/>
-			<referrer name="pc_cmd_startwork"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="jobWork"/>
-			<referrer name="CancelJob"/>
-		</member>
 		<member name="C:JOB_FISHER" value="1">
 			<referrer name="returnNeededPoints"/>
 			<referrer name="pc_cmd_skills"/>
 			<referrer name="CancelJob"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
-		</member>
-		<member name="C:JOB_NONE" value="0">
-			<referrer name="@yH_OnPlayerConnect@008"/>
-		</member>
-		<member name="C:JOB_TRUCKER" value="2">
-			<referrer name="returnNeededPoints"/>
-			<referrer name="dialog_TRUCKER_SELECT"/>
-			<referrer name="dialog_TRUCKER_SELECTTWO"/>
-			<referrer name="dialog_TRUCKER_SELECTTHREE"/>
-			<referrer name="pc_cmd_skills"/>
-			<referrer name="pc_cmd_startwork"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="jobWork"/>
-			<referrer name="CancelJob"/>
 		</member>
 		<member name="C:MALE_GENDER" value="1">
 			<referrer name="dialog_GENDER"/>
@@ -1769,11 +1690,7 @@
 			<referrer name="sendFactionMessage"/>
 			<referrer name="dialog_DIALOG_SETGUN"/>
 			<referrer name="pc_cmd_gethit"/>
-			<referrer name="@yH_OnPlayerConnect@008"/>
-			<referrer name="FishingTimer"/>
 			<referrer name="pc_cmd_fish"/>
-			<referrer name="pc_cmd_usedrugs"/>
-			<referrer name="CancelJob"/>
 			<referrer name="sendClanMessage"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="ProxDetectorS"/>
@@ -2036,22 +1953,15 @@
 			<referrer name="dialog_DIALOG_FDEPOSIT"/>
 			<referrer name="dialog_DIALOG_FDEPOSIT2"/>
 			<referrer name="@yH_OnGameModeInit@008"/>
-			<referrer name="@yH_OnPlayerConnect@008"/>
-			<referrer name="@yH_OnPlayerDisconnect@008"/>
-			<referrer name="dialog_TRUCKER_SELECT"/>
-			<referrer name="dialog_TRUCKER_SELECTTWO"/>
-			<referrer name="dialog_TRUCKER_SELECTTHREE"/>
-			<referrer name="FishingTimer"/>
+			<referrer name="returnNeededPoints"/>
+			<referrer name="timerFishJob"/>
 			<referrer name="dialog_DIALOG_JOBS"/>
 			<referrer name="pc_cmd_jobs"/>
 			<referrer name="pc_cmd_getjob"/>
 			<referrer name="pc_cmd_quitjob"/>
-			<referrer name="pc_cmd_fish"/>
 			<referrer name="pc_cmd_skills"/>
 			<referrer name="pc_cmd_startwork"/>
-			<referrer name="pc_cmd_usedrugs"/>
-			<referrer name="usedrugsTimer"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
+			<referrer name="pc_cmd_fish"/>
 			<referrer name="jobWork"/>
 			<referrer name="CancelJob"/>
 			<referrer name="@yH_OnGameModeInit@009"/>
@@ -2377,6 +2287,7 @@
 			<referrer name="OnPlayerRequestSpawn"/>
 			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
+			<referrer name="OnPlayerClickPlayerTextDraw"/>
 		</member>
 
 		<!-- variables -->
@@ -2599,27 +2510,9 @@
 		<member name="F:FALSE">
 			<tagname value="bool"/>
 		</member>
-		<member name="F:FishNames">
-			<referrer name="FishingTimer"/>
-		</member>
 		<member name="F:FishTimer">
 			<tagname value="Timer"/>
-			<referrer name="@yH_OnPlayerDisconnect@008"/>
 			<referrer name="pc_cmd_fish"/>
-			<referrer name="CancelJob"/>
-		</member>
-		<member name="F:FishWeight">
-			<referrer name="@yH_OnPlayerConnect@008"/>
-			<referrer name="FishingTimer"/>
-			<referrer name="pc_cmd_fish"/>
-			<referrer name="CancelJob"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
-		</member>
-		<member name="F:Fishing">
-			<referrer name="@yH_OnPlayerConnect@008"/>
-			<referrer name="FishingTimer"/>
-			<referrer name="pc_cmd_fish"/>
-			<referrer name="CancelJob"/>
 		</member>
 		<member name="F:GunName">
 			<referrer name="pc_cmd_setguns"/>
@@ -2683,10 +2576,8 @@
 			<referrer name="pc_cmd_gethit"/>
 			<referrer name="TimerGetHit_yT@"/>
 			<referrer name="@yH_OnGameModeInit@008"/>
-			<referrer name="FishingTimer_yT@"/>
+			<referrer name="timerFishJob_yT@"/>
 			<referrer name="pc_cmd_fish"/>
-			<referrer name="pc_cmd_usedrugs"/>
-			<referrer name="usedrugsTimer_yT@"/>
 			<referrer name="@yH_OnGameModeInit@009"/>
 			<referrer name="advertismentTimer_yT@"/>
 			<referrer name="pc_cmd_ad"/>
@@ -3121,7 +3012,6 @@
 			<referrer name="@yH_OnPlayerConnect@002"/>
 			<referrer name="Iter_OPDCInternal"/>
 			<referrer name="_Timer_D"/>
-			<referrer name="isPlayerLogged"/>
 			<referrer name="IsSeatTaked"/>
 			Create the internal iterators. 
 		</member>
@@ -3370,6 +3260,7 @@
 		</member>
 		<member name="F:Iterator@loggedPlayers">
 			<referrer name="sendNearbyMessage"/>
+			<referrer name="isPlayerLogged"/>
 			<referrer name="oocNews"/>
 			<referrer name="GetPlayerID"/>
 			<referrer name="pc_cmd_fare"/>
@@ -3418,10 +3309,8 @@
 			<referrer name="TimerWar_yT@"/>
 			<referrer name="pc_cmd_gethit"/>
 			<referrer name="TimerGetHit_yT@"/>
-			<referrer name="FishingTimer_yT@"/>
+			<referrer name="timerFishJob_yT@"/>
 			<referrer name="pc_cmd_fish"/>
-			<referrer name="pc_cmd_usedrugs"/>
-			<referrer name="usedrugsTimer_yT@"/>
 			<referrer name="advertismentTimer_yT@"/>
 			<referrer name="pc_cmd_ad"/>
 			<referrer name="CautaHelper"/>
@@ -3465,21 +3354,6 @@
 			<referrer name="CB_OnPlayerWeaponShot"/>
 			<referrer name="OnPlayerCommandReceived"/>
 		</member>
-		<member name="F:JobMoney">
-			<referrer name="@yH_OnPlayerConnect@008"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-		</member>
-		<member name="F:JobVehicle">
-			<referrer name="@yH_OnPlayerConnect@008"/>
-			<referrer name="dialog_TRUCKER_SELECT"/>
-			<referrer name="dialog_TRUCKER_SELECTTWO"/>
-			<referrer name="dialog_TRUCKER_SELECTTHREE"/>
-			<referrer name="AttachTrailer"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="jobWork"/>
-			<referrer name="CancelJob"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
-		</member>
 		<member name="F:MATCH_NAME_PARTIAL">
 		</member>
 		<member name="F:MapZoneAreaData">
@@ -3513,7 +3387,6 @@
 			<referrer name="dialog_SELL_HOUSE_STATE"/>
 			<referrer name="pc_cmd_buyhouse"/>
 			<referrer name="pc_cmd_heal"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
 			<referrer name="pc_cmd_buybusiness"/>
 			<referrer name="onPlayerLogin"/>
@@ -3619,7 +3492,6 @@
 			<referrer name="dialog_DIALOG_MEMBERS"/>
 			<referrer name="dialog_DIALOG_MEMBERS2"/>
 			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
-			<referrer name="pc_cmd_quitjob"/>
 			<referrer name="pc_cmd_buybusiness"/>
 			<referrer name="MySQLLoad"/>
 			<referrer name="MyHttpResponse"/>
@@ -3648,7 +3520,6 @@
 			<referrer name="pc_cmd_emails"/>
 			<referrer name="ScriptInit_OnGameModeExit"/>
 			<referrer name="SSCANF_OnPlayerConnect"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
 		</member>
 		<member name="F:SSCANF_QUIET">
 		</member>
@@ -3682,7 +3553,6 @@
 			<referrer name="dialog_SELL_HOUSE_STATE"/>
 			<referrer name="pc_cmd_buyhouse"/>
 			<referrer name="pc_cmd_heal"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
 			<referrer name="pc_cmd_buybusiness"/>
 			<referrer name="onPlayerLogin"/>
@@ -3729,15 +3599,6 @@
 			<referrer name="LoadDsVehs"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 		</member>
-		<member name="F:Trailer">
-			<referrer name="@yH_OnPlayerConnect@008"/>
-			<referrer name="dialog_TRUCKER_SELECT"/>
-			<referrer name="dialog_TRUCKER_SELECTTWO"/>
-			<referrer name="dialog_TRUCKER_SELECTTHREE"/>
-			<referrer name="AttachTrailer"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="CancelJob"/>
-		</member>
 		<member name="F:UNIQUE_SYMBOL_DOESNT_EXIST">
 		</member>
 		<member name="F:UNIQUE_SYMBOL_LESS_THAN_100">
@@ -3771,11 +3632,6 @@
 			<referrer name="@yH_OnPlayerConnect@007"/>
 			<referrer name="pc_cmd_gethit"/>
 		</member>
-		<member name="F:UsingDrugs">
-			<referrer name="@yH_OnPlayerConnect@008"/>
-			<referrer name="pc_cmd_usedrugs"/>
-			<referrer name="usedrugsTimer"/>
-		</member>
 		<member name="F:WarScore">
 			<tagname value="Float"/>
 			<referrer name="@yH_OnPlayerDeath@007"/>
@@ -3796,20 +3652,6 @@
 		<member name="F:Weapons">
 			<referrer name="resetWeapons"/>
 			<referrer name="serverWeapon"/>
-		</member>
-		<member name="F:Working">
-			<referrer name="@yH_OnPlayerConnect@008"/>
-			<referrer name="pc_cmd_quitjob"/>
-			<referrer name="pc_cmd_startwork"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="jobWork"/>
-			<referrer name="CancelJob"/>
-			<referrer name="serverWeapon"/>
-			<referrer name="CB_OnPlayerDisconnect"/>
-			<referrer name="OnPlayerSpawn"/>
-			<referrer name="OnPlayerDeath"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
-			<referrer name="CB_OnPlayerStateChange"/>
 		</member>
 		<member name="F:YSI_FILTERSCRIPT">
 			<tagname value="bool"/>
@@ -4270,6 +4112,19 @@
 		<member name="F:fbumper">
 			<referrer name="SaveComponent"/>
 		</member>
+		<member name="F:fishNamesFund">
+			<referrer name="timerFishJob"/>
+		</member>
+		<member name="F:fishNamesPluta">
+			<referrer name="timerFishJob"/>
+		</member>
+		<member name="F:fishTD">
+			<tagname value="PlayerText"/>
+			<referrer name="playerTextDraws"/>
+			<referrer name="destroyPlayerTextDraws"/>
+			<referrer name="pc_cmd_fish"/>
+			<referrer name="OnPlayerClickPlayerTextDraw"/>
+		</member>
 		<member name="F:gBase">
 			<referrer name="CodeScanAddSwitchTarget"/>
 			<referrer name="CodeScanStepInternal"/>
@@ -4353,7 +4208,6 @@
 			<referrer name="kickPlayer"/>
 			<referrer name="dialog_REGISTER"/>
 			<referrer name="dialog_LOGIN"/>
-			<referrer name="pc_cmd_quitjob"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
 			<referrer name="MyHttpResponse"/>
 			<referrer name="checkPlayerBan"/>
@@ -4376,7 +4230,6 @@
 			<referrer name="pc_cmd_unjailo"/>
 			<referrer name="pc_cmd_jailo"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
 		</member>
 		<member name="F:gSAZones">
 			<referrer name="GetPlayer2DZone"/>
@@ -4398,8 +4251,7 @@
 			<referrer name="showFactionMembers"/>
 			<referrer name="pc_cmd_setguns"/>
 			<referrer name="pc_cmd_svf"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="jobWork"/>
+			<referrer name="pc_cmd_jobs"/>
 			<referrer name="pc_cmd_buybusiness"/>
 			<referrer name="sendClanMessage"/>
 			<referrer name="onPlayerLogin"/>
@@ -4654,7 +4506,6 @@
 			<referrer name="showStats"/>
 			<referrer name="showLicenses"/>
 			<referrer name="updateLevelBar"/>
-			<referrer name="isPlayerLogged"/>
 			<referrer name="resetVars"/>
 			<referrer name="oocNews"/>
 			<referrer name="examenFail"/>
@@ -4794,22 +4645,14 @@
 			<referrer name="dialog_DIALOG_FWITHDRAW2"/>
 			<referrer name="dialog_DIALOG_FDEPOSIT"/>
 			<referrer name="dialog_DIALOG_FDEPOSIT2"/>
-			<referrer name="@yH_OnPlayerConnect@008"/>
 			<referrer name="returnNeededPoints"/>
-			<referrer name="dialog_TRUCKER_SELECT"/>
-			<referrer name="dialog_TRUCKER_SELECTTWO"/>
-			<referrer name="dialog_TRUCKER_SELECTTHREE"/>
-			<referrer name="FishingTimer"/>
+			<referrer name="timerFishJob"/>
 			<referrer name="dialog_DIALOG_JOBS"/>
 			<referrer name="pc_cmd_getjob"/>
 			<referrer name="pc_cmd_quitjob"/>
-			<referrer name="pc_cmd_fish"/>
 			<referrer name="pc_cmd_skills"/>
 			<referrer name="pc_cmd_startwork"/>
-			<referrer name="pc_cmd_usedrugs"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="jobWork"/>
-			<referrer name="CancelJob"/>
+			<referrer name="pc_cmd_fish"/>
 			<referrer name="advertismentTimer"/>
 			<referrer name="dialog_BIZ_OPTION_TITLE"/>
 			<referrer name="dialog_BIZ_OPTION_DESCRIPTION"/>
@@ -5061,6 +4904,7 @@
 			<referrer name="OnPlayerRequestSpawn"/>
 			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
+			<referrer name="OnPlayerClickPlayerTextDraw"/>
 		</member>
 		<member name="F:playerLevelPTD">
 			<tagname value="PlayerText"/>
@@ -5628,9 +5472,6 @@
 			<tagname value="Float"/>
 			<stacksize value="4"/>
 			<referrer name="slapPlayer"/>
-			<referrer name="dialog_TRUCKER_SELECT"/>
-			<referrer name="dialog_TRUCKER_SELECTTWO"/>
-			<referrer name="dialog_TRUCKER_SELECTTHREE"/>
 			<referrer name="gasTimer"/>
 			<referrer name="pc_cmd_gotocar"/>
 			<referrer name="pc_cmd_getcar"/>
@@ -5730,7 +5571,6 @@
 			<referrer name="@yH_OnPlayerGiveDamage@005"/>
 			<referrer name="@yH_OnPlayerTakeDamage@005"/>
 			<referrer name="GetDistancePlayerToVeh"/>
-			<referrer name="AttachTrailer"/>
 			<referrer name="ProxDetectorS"/>
 			<referrer name="PlayerToPoint"/>
 			<referrer name="TimerSpeedo"/>
@@ -5819,8 +5659,7 @@
 			<referrer name="pc_cmd_gethit"/>
 			<referrer name="TimerGetHit"/>
 			<referrer name="dialog_DIALOG_SVF"/>
-			<referrer name="pc_cmd_fish"/>
-			<referrer name="usedrugsTimer"/>
+			<referrer name="dialog_DIALOG_JOBS"/>
 			<referrer name="pc_cmd_ad"/>
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="removeFunction"/>
@@ -5971,7 +5810,6 @@
 			<referrer name="@yH_OnPlayerEnterCheckpoint@005"/>
 			<referrer name="GetMapZoneAtPoint"/>
 			<referrer name="GetMapZoneAtPoint2D"/>
-			<referrer name="AttachTrailer"/>
 			<referrer name="ProxDetectorS"/>
 			<referrer name="PlayerToPoint"/>
 			<referrer name="IsPlayerInTurf"/>
@@ -6317,37 +6155,6 @@
 			<param name="playerid">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerConnect@008" syntax="@yH_OnPlayerConnect@008(playerid)">
-			<attribute name="public"/>
-			<stacksize value="13"/>
-			<dependency name="CB_ApplyAnimation"/>
-			<dependency name="FishWeight"/>
-			<dependency name="Fishing"/>
-			<dependency name="JOB_NONE"/>
-			<dependency name="JobMoney"/>
-			<dependency name="JobVehicle"/>
-			<dependency name="RemovePlayerAttachedObject"/>
-			<dependency name="Trailer"/>
-			<dependency name="UsingDrugs"/>
-			<dependency name="Working"/>
-			<dependency name="false"/>
-			<dependency name="pArmsSkill"/>
-			<dependency name="pArmsTimes"/>
-			<dependency name="pCarpenterSkill"/>
-			<dependency name="pCarpenterTimes"/>
-			<dependency name="pDrugsSkill"/>
-			<dependency name="pDrugsTimes"/>
-			<dependency name="pFishSkill"/>
-			<dependency name="pFishTimes"/>
-			<dependency name="pJob"/>
-			<dependency name="pTruckSkill"/>
-			<dependency name="pTruckTimes"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="true"/>
-			<param name="playerid">
-			</param>
-		</member>
 		<member name="M:@yH_OnPlayerConnect@009" syntax="@yH_OnPlayerConnect@009(playerid)">
 			<attribute name="public"/>
 			<stacksize value="1"/>
@@ -6533,17 +6340,6 @@
 			<param name="reason">
 			</param>
 		</member>
-		<member name="M:@yH_OnPlayerDisconnect@008" syntax="@yH_OnPlayerDisconnect@008(playerid, reason)">
-			<attribute name="public"/>
-			<stacksize value="4"/>
-			<dependency name="FishTimer"/>
-			<dependency name="_Timer_F"/>
-			<dependency name="true"/>
-			<param name="playerid">
-			</param>
-			<param name="reason">
-			</param>
-		</member>
 		<member name="M:@yH_OnPlayerDisconnect@010" syntax="@yH_OnPlayerDisconnect@010(playerid)">
 			<attribute name="public"/>
 			<stacksize value="4"/>
@@ -6639,68 +6435,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="true"/>
 			<dependency name="wantedFind"/>
-			<param name="playerid">
-			</param>
-		</member>
-		<member name="M:@yH_OnPlayerEnterCheckpoint@008" syntax="@yH_OnPlayerEnterCheckpoint@008(playerid)">
-			<attribute name="public"/>
-			<stacksize value="8201"/>
-			<dependency name="CHECKPOINT_ARMSDEALER"/>
-			<dependency name="CHECKPOINT_ARMSDEALER2"/>
-			<dependency name="CHECKPOINT_CARPENTER"/>
-			<dependency name="CHECKPOINT_CARPENTER2"/>
-			<dependency name="CHECKPOINT_DRUGSDEALER"/>
-			<dependency name="CHECKPOINT_DRUGSDEALER2"/>
-			<dependency name="CHECKPOINT_JOB"/>
-			<dependency name="CHECKPOINT_NONE"/>
-			<dependency name="CHECKPOINT_TRUCKERLS"/>
-			<dependency name="CHECKPOINT_TRUCKERLV"/>
-			<dependency name="CHECKPOINT_TRUCKERSF"/>
-			<dependency name="Dialog_Open"/>
-			<dependency name="DisablePlayerCheckpoint"/>
-			<dependency name="EOS"/>
-			<dependency name="GetDistanceBetweenPoints"/>
-			<dependency name="GetVehicleTrailer"/>
-			<dependency name="GivePlayerCash"/>
-			<dependency name="IsTrailerAttachedToVehicle"/>
-			<dependency name="Iter_DestroyVehicle"/>
-			<dependency name="JOB_ARMSDEALER"/>
-			<dependency name="JOB_CARPENTER"/>
-			<dependency name="JOB_DRUGSDEALER"/>
-			<dependency name="JOB_TRUCKER"/>
-			<dependency name="JobMoney"/>
-			<dependency name="JobVehicle"/>
-			<dependency name="MoneyMoney"/>
-			<dependency name="SendClientMessage"/>
-			<dependency name="SetPlayerCheckpoint"/>
-			<dependency name="StoreMoney"/>
-			<dependency name="Trailer"/>
-			<dependency name="Working"/>
-			<dependency name="formatNumber"/>
-			<dependency name="formatNumber"/>
-			<dependency name="gString"/>
-			<dependency name="pArmsSkill"/>
-			<dependency name="pArmsTimes"/>
-			<dependency name="pCarpenterSkill"/>
-			<dependency name="pCarpenterTimes"/>
-			<dependency name="pCheckpoint"/>
-			<dependency name="pCheckpointID"/>
-			<dependency name="pDrugs"/>
-			<dependency name="pDrugsSkill"/>
-			<dependency name="pDrugsTimes"/>
-			<dependency name="pMats"/>
-			<dependency name="pSQLID"/>
-			<dependency name="pTruckSkill"/>
-			<dependency name="pTruckTimes"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="random"/>
-			<dependency name="returnNeededPoints"/>
-			<dependency name="sendSplitMessage"/>
-			<dependency name="string_fast"/>
-			<dependency name="true"/>
-			<dependency name="update"/>
-			<dependency name="va_format"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -9928,30 +9662,6 @@
 				<paraminfo>Float </paraminfo>
 			</param>
 		</member>
-		<member name="M:AttachTrailer" syntax="AttachTrailer(playerid)">
-			<attribute name="public"/>
-			<stacksize value="12"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
-			<dependency name="operator-(Float:,Float:)"/>
-			<dependency name="operator&lt;(Float:,Float:)"/>
-			<dependency name="AttachTrailerToVehicle"/>
-			<dependency name="GetPlayerPos"/>
-			<dependency name="GetPlayerVehicleID"/>
-			<dependency name="GetVehiclePos"/>
-			<dependency name="JobVehicle"/>
-			<dependency name="Trailer"/>
-			<dependency name="floatabs"/>
-			<param name="playerid">
-			</param>
-		</member>
-		<member name="M:AttachTrailerToVehicle" syntax="AttachTrailerToVehicle(trailerid, vehicleid)">
-			<attribute name="native"/>
-			<referrer name="AttachTrailer"/>
-			<param name="trailerid">
-			</param>
-			<param name="vehicleid">
-			</param>
-		</member>
 		<member name="M:BanIPOffline" syntax="BanIPOffline(playerid, ip, reason)">
 			<attribute name="public"/>
 			<stacksize value="10"/>
@@ -10186,9 +9896,7 @@
 		</member>
 		<member name="M:CB_ApplyAnimation" syntax="CB_ApplyAnimation(playerid, animlib[], animname[], fDelta, loop, lockx, locky, freeze, time, forcesync)">
 			<stacksize value="13"/>
-			<referrer name="@yH_OnPlayerConnect@008"/>
 			<referrer name="pc_cmd_fish"/>
-			<referrer name="pc_cmd_usedrugs"/>
 			<referrer name="OnePlayAnim"/>
 			<referrer name="StopLoopingAnim"/>
 			<referrer name="PreloadAnimLib"/>
@@ -10227,6 +9935,7 @@
 		<member name="M:CB_CancelSelectTextDraw" syntax="CB_CancelSelectTextDraw(playerid)">
 			<stacksize value="7"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
+			<referrer name="OnPlayerClickPlayerTextDraw"/>
 			<dependency name="Callback_SetFlag"/>
 			<dependency name="CancelSelectTextDraw"/>
 			<dependency name="e_bSelectTD"/>
@@ -10240,10 +9949,6 @@
 		<member name="M:CB_CreateVehicle" syntax="CB_CreateVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren)">
 			<stacksize value="13"/>
 			<referrer name="dialog_DIALOG_SVF"/>
-			<referrer name="dialog_TRUCKER_SELECT"/>
-			<referrer name="dialog_TRUCKER_SELECTTWO"/>
-			<referrer name="dialog_TRUCKER_SELECTTHREE"/>
-			<referrer name="jobWork"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="pc_cmd_park"/>
 			<referrer name="pc_cmd_spawncar"/>
@@ -10301,7 +10006,6 @@
 		<member name="M:CB_OnPlayerDisconnect" syntax="CB_OnPlayerDisconnect(playerid, reason)">
 			<attribute name="public"/>
 			<stacksize value="4110"/>
-			<dependency name="CancelJob"/>
 			<dependency name="DCC_GetBotPresenceStatus"/>
 			<dependency name="DCC_SetBotActivity"/>
 			<dependency name="DCC_SetBotPresenceStatus"/>
@@ -10329,7 +10033,6 @@
 			<dependency name="REPORT_TYPE_NONE"/>
 			<dependency name="StoreMoney"/>
 			<dependency name="TogglePlayerSpectatingEx"/>
-			<dependency name="Working"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="cBy"/>
 			<dependency name="cClanColor"/>
@@ -10382,12 +10085,9 @@
 		</member>
 		<member name="M:CB_OnPlayerKeyStateChange" syntax="CB_OnPlayerKeyStateChange(playerid, newkeys, oldkeys)">
 			<attribute name="public"/>
-			<stacksize value="8202"/>
+			<stacksize value="4105"/>
 			<dependency name="operator*(Float:,Float:)"/>
 			<dependency name="Float:operator=(_:)"/>
-			<dependency name="AttachTrailer"/>
-			<dependency name="EOS"/>
-			<dependency name="FishWeight"/>
 			<dependency name="GetPVarInt"/>
 			<dependency name="GetPlayerState"/>
 			<dependency name="GetPlayerVehicleID"/>
@@ -10400,17 +10100,13 @@
 			<dependency name="I@"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="IsPlayerInRangeOfPoint"/>
-			<dependency name="IsPlayerInVehicle"/>
-			<dependency name="IsTrailerAttachedToVehicle"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
 			<dependency name="Iterator@PlayerVehicles"/>
 			<dependency name="J@"/>
 			<dependency name="JOB_FISHER"/>
-			<dependency name="JobVehicle"/>
 			<dependency name="MoneyMoney"/>
 			<dependency name="MoveDynamicObject"/>
-			<dependency name="SQL"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerHealthEx"/>
 			<dependency name="SetPlayerInterior"/>
@@ -10422,7 +10118,6 @@
 			<dependency name="StopFly"/>
 			<dependency name="StopLoopingAnim"/>
 			<dependency name="StoreMoney"/>
-			<dependency name="Working"/>
 			<dependency name="acInfo"/>
 			<dependency name="acInfo"/>
 			<dependency name="acTimeCrash"/>
@@ -10461,7 +10156,6 @@
 			<dependency name="false"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
-			<dependency name="gQuery"/>
 			<dependency name="gates"/>
 			<dependency name="gettime"/>
 			<dependency name="hExtX"/>
@@ -10479,12 +10173,12 @@
 			<dependency name="isBike"/>
 			<dependency name="isBoat"/>
 			<dependency name="isPlane"/>
-			<dependency name="mysql_format"/>
-			<dependency name="mysql_tquery"/>
 			<dependency name="pAnimLooping"/>
 			<dependency name="pDailyMission"/>
 			<dependency name="pEnableBoost"/>
 			<dependency name="pFaction"/>
+			<dependency name="pFishCaught"/>
+			<dependency name="pFishMoney"/>
 			<dependency name="pFishSkill"/>
 			<dependency name="pFishTimes"/>
 			<dependency name="pFlymode"/>
@@ -10501,7 +10195,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="pvSpawnedID"/>
 			<dependency name="returnNeededPoints"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<dependency name="va_GameTextForPlayer"/>
@@ -10519,7 +10212,6 @@
 		<member name="M:CB_OnPlayerStateChange" syntax="CB_OnPlayerStateChange(playerid, newstate, oldstate)">
 			<attribute name="public"/>
 			<stacksize value="4108"/>
-			<dependency name="CancelJob"/>
 			<dependency name="ClearAnimations"/>
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="GetVehicleParamsEx"/>
@@ -10545,7 +10237,6 @@
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetVehicleParamsEx"/>
 			<dependency name="TimerSpeedo_yT@"/>
-			<dependency name="Working"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="acKicked"/>
 			<dependency name="addRaportPoint"/>
@@ -10666,6 +10357,7 @@
 		</member>
 		<member name="M:CB_SelectTextDraw" syntax="CB_SelectTextDraw(playerid, hovercolor)">
 			<stacksize value="7"/>
+			<referrer name="pc_cmd_fish"/>
 			<referrer name="cancelDriveTest"/>
 			<referrer name="pc_cmd_buycar"/>
 			<dependency name="Callback_SetFlag"/>
@@ -11176,38 +10868,8 @@
 			<dependency name="true"/>
 		</member>
 		<member name="M:CancelJob" syntax="CancelJob(playerid, job)">
-			<stacksize value="4"/>
-			<referrer name="dialog_TRUCKER_SELECT"/>
-			<referrer name="dialog_TRUCKER_SELECTTWO"/>
-			<referrer name="dialog_TRUCKER_SELECTTHREE"/>
-			<referrer name="pc_cmd_quitjob"/>
-			<referrer name="CB_OnPlayerDisconnect"/>
-			<referrer name="OnPlayerSpawn"/>
-			<referrer name="OnPlayerDeath"/>
-			<referrer name="CB_OnPlayerStateChange"/>
-			<dependency name="CHECKPOINT_NONE"/>
-			<dependency name="ClearAnimations"/>
-			<dependency name="DisablePlayerCheckpoint"/>
-			<dependency name="FishTimer"/>
-			<dependency name="FishWeight"/>
-			<dependency name="Fishing"/>
-			<dependency name="Iter_DestroyVehicle"/>
-			<dependency name="JOB_ARMSDEALER"/>
-			<dependency name="JOB_CARPENTER"/>
-			<dependency name="JOB_DRUGSDEALER"/>
+			<stacksize value="1"/>
 			<dependency name="JOB_FISHER"/>
-			<dependency name="JOB_TRUCKER"/>
-			<dependency name="JobVehicle"/>
-			<dependency name="RemovePlayerAttachedObject"/>
-			<dependency name="TogglePlayerControllable"/>
-			<dependency name="Trailer"/>
-			<dependency name="Working"/>
-			<dependency name="_Timer_F"/>
-			<dependency name="false"/>
-			<dependency name="pCheckpoint"/>
-			<dependency name="pCheckpointID"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -11437,10 +11099,7 @@
 		</member>
 		<member name="M:ClearAnimations" syntax="ClearAnimations(playerid, forcesync)">
 			<attribute name="native"/>
-			<referrer name="FishingTimer"/>
-			<referrer name="pc_cmd_fish"/>
-			<referrer name="usedrugsTimer"/>
-			<referrer name="CancelJob"/>
+			<referrer name="timerFishJob"/>
 			<referrer name="pc_cmd_bomb"/>
 			<referrer name="OnPlayerEnterVehicle"/>
 			<referrer name="CB_OnPlayerStateChange"/>
@@ -12887,8 +12546,6 @@
 			<referrer name="dialog_DIALOG_FDEPOSIT"/>
 			<referrer name="dialog_DIALOG_FDEPOSIT2"/>
 			<referrer name="pc_cmd_jobs"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="jobWork"/>
 			<referrer name="dialog_BIZ_OPTION"/>
 			<referrer name="dialog_BIZ_OPTION_TITLE"/>
 			<referrer name="dialog_BIZ_OPTION_DESCRIPTION"/>
@@ -12964,8 +12621,6 @@
 			<referrer name="examenFail"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="@yH_OnPlayerEnterCheckpoint@007"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="CancelJob"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerCar"/>
 			<referrer name="TimerCarFind"/>
@@ -13378,78 +13033,6 @@
 			<dependency name="Q@"/>
 			<dependency name="getproperty"/>
 			<dependency name="strunpack"/>
-		</member>
-		<member name="M:FishingTimer" syntax="FishingTimer(playerid, x, y, z)">
-			<stacksize value="4106"/>
-			<referrer name="FishingTimer@_yT"/>
-			<dependency name="ClearAnimations"/>
-			<dependency name="FishNames"/>
-			<dependency name="FishNames"/>
-			<dependency name="FishWeight"/>
-			<dependency name="Fishing"/>
-			<dependency name="IsPlayerConnected"/>
-			<dependency name="IsPlayerInRangeOfPoint"/>
-			<dependency name="RemovePlayerAttachedObject"/>
-			<dependency name="SendClientMessage"/>
-			<dependency name="TogglePlayerControllable"/>
-			<dependency name="false"/>
-			<dependency name="pFishSkill"/>
-			<dependency name="pName"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="random"/>
-			<dependency name="sendNearbyMessage"/>
-			<dependency name="string_fast"/>
-			<dependency name="true"/>
-			<param name="playerid">
-			</param>
-			<param name="x">
-				<paraminfo>Float </paraminfo>
-			</param>
-			<param name="y">
-				<paraminfo>Float </paraminfo>
-			</param>
-			<param name="z">
-				<paraminfo>Float </paraminfo>
-			</param>
-		</member>
-		<member name="M:FishingTimer@_yT" syntax="FishingTimer@_yT(__r, playerid, x, y, z)">
-			<tagname value="@Yj"/>
-			<attribute name="public"/>
-			<stacksize value="7"/>
-			<dependency name="FishingTimer"/>
-			<param name="__r">
-			</param>
-			<param name="playerid">
-			</param>
-			<param name="x">
-				<paraminfo>Float </paraminfo>
-			</param>
-			<param name="y">
-				<paraminfo>Float </paraminfo>
-			</param>
-			<param name="z">
-				<paraminfo>Float </paraminfo>
-			</param>
-		</member>
-		<member name="M:FishingTimer_yT@" syntax="FishingTimer_yT@(playerid, x, y, z)">
-			<stacksize value="11"/>
-			<referrer name="pc_cmd_fish"/>
-			<dependency name="I@"/>
-			<dependency name="J@"/>
-			<dependency name="O@"/>
-			<dependency name="_Timer_C"/>
-			<param name="playerid">
-			</param>
-			<param name="x">
-				<paraminfo>Float </paraminfo>
-			</param>
-			<param name="y">
-				<paraminfo>Float </paraminfo>
-			</param>
-			<param name="z">
-				<paraminfo>Float </paraminfo>
-			</param>
 		</member>
 		<member name="M:Fly" syntax="Fly(playerid)">
 			<attribute name="public"/>
@@ -14086,8 +13669,6 @@
 			<stacksize value="4"/>
 			<referrer name="dialog_GPS"/>
 			<referrer name="dialog_GPS1"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="jobWork"/>
 			<dependency name="operator+(Float:,Float:)"/>
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="floatabs"/>
@@ -14686,7 +14267,6 @@
 		<member name="M:GetPVarInt" syntax="GetPVarInt(playerid, varname[])">
 			<attribute name="native"/>
 			<referrer name="pc_cmd_rentabil"/>
-			<referrer name="pc_cmd_invite"/>
 			<referrer name="pc_cmd_so"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
@@ -15206,11 +14786,6 @@
 			<referrer name="TimerGetHit"/>
 			<referrer name="dialog_DIALOG_SVF"/>
 			<referrer name="pc_cmd_createsafe"/>
-			<referrer name="dialog_TRUCKER_SELECT"/>
-			<referrer name="dialog_TRUCKER_SELECTTWO"/>
-			<referrer name="dialog_TRUCKER_SELECTTHREE"/>
-			<referrer name="AttachTrailer"/>
-			<referrer name="pc_cmd_fish"/>
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="ProxDetectorS"/>
 			<referrer name="PlayerToPoint"/>
@@ -15290,7 +14865,6 @@
 			<referrer name="pc_cmd_news"/>
 			<referrer name="pc_cmd_live"/>
 			<referrer name="pc_cmd_tie"/>
-			<referrer name="AttachTrailer"/>
 			<referrer name="dialog_BUY_INSURANCE"/>
 			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_lock"/>
@@ -15914,7 +15488,6 @@
 			<referrer name="GetDistancePlayerToVeh"/>
 			<referrer name="GetVehicleMapZone"/>
 			<referrer name="GetVehicleMapZone2D"/>
-			<referrer name="AttachTrailer"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="pc_cmd_lock"/>
 			<referrer name="pc_cmd_park"/>
@@ -15932,12 +15505,6 @@
 			</param>
 			<param name="z">
 				<paraminfo>Float &amp; </paraminfo>
-			</param>
-		</member>
-		<member name="M:GetVehicleTrailer" syntax="GetVehicleTrailer(vehicleid)">
-			<attribute name="native"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<param name="vehicleid">
 			</param>
 		</member>
 		<member name="M:GetVehicleVelocity" syntax="GetVehicleVelocity(vehicleid, &amp;X, &amp;Y, &amp;Z)">
@@ -15965,9 +15532,6 @@
 		</member>
 		<member name="M:GetVehicleZAngle" syntax="GetVehicleZAngle(vehicleid, &amp;z_angle)">
 			<attribute name="native"/>
-			<referrer name="dialog_TRUCKER_SELECT"/>
-			<referrer name="dialog_TRUCKER_SELECTTWO"/>
-			<referrer name="dialog_TRUCKER_SELECTTHREE"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="pc_cmd_park"/>
 			<referrer name="pc_cmd_flipveh"/>
@@ -16021,7 +15585,6 @@
 			<referrer name="pc_cmd_contract"/>
 			<referrer name="dialog_DIALOG_FWITHDRAW2"/>
 			<referrer name="dialog_DIALOG_FDEPOSIT2"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
 			<referrer name="dialog_BUYBIZ"/>
 			<referrer name="pc_cmd_buybusiness"/>
@@ -17123,8 +16686,6 @@
 			<referrer name="Fly"/>
 			<referrer name="GetPlayerID"/>
 			<referrer name="SetPlayerToFactionColor"/>
-			<referrer name="returnNeededPoints"/>
-			<referrer name="FishingTimer"/>
 			<referrer name="resetQuest"/>
 			<param name="playerid">
 			</param>
@@ -17138,7 +16699,6 @@
 			<referrer name="pc_cmd_arrest"/>
 			<referrer name="fareUpdateTimer"/>
 			<referrer name="pc_cmd_tie"/>
-			<referrer name="pc_cmd_fish"/>
 			<referrer name="pc_cmd_startwork"/>
 			<referrer name="pc_cmd_sellbizstate"/>
 			<referrer name="pc_cmd_lock"/>
@@ -17240,7 +16800,6 @@
 		<member name="M:IsPlayerInArea" syntax="IsPlayerInArea(playerid, MinX, MinY, MaxX, MaxY)">
 			<stacksize value="9"/>
 			<referrer name="GetPlayerCityLocation"/>
-			<referrer name="pc_cmd_fish"/>
 			<dependency name="operator&gt;=(Float:,Float:)"/>
 			<dependency name="operator&lt;=(Float:,Float:)"/>
 			<dependency name="GetPlayerPos"/>
@@ -17271,9 +16830,9 @@
 			<referrer name="dialog_DIALOG_SVF"/>
 			<referrer name="pc_cmd_fdeposit"/>
 			<referrer name="pc_cmd_fwithdraw"/>
-			<referrer name="FishingTimer"/>
 			<referrer name="pc_cmd_getjob"/>
 			<referrer name="pc_cmd_startwork"/>
+			<referrer name="pc_cmd_fish"/>
 			<referrer name="pc_cmd_buybusiness"/>
 			<referrer name="pc_cmd_ad"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
@@ -17332,7 +16891,6 @@
 			<referrer name="pc_cmd_live"/>
 			<referrer name="pc_cmd_tie"/>
 			<referrer name="pc_cmd_accept"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
 			<param name="playerid">
 			</param>
@@ -17523,13 +17081,6 @@
 			<stacksize value="1"/>
 			<param name="tag">
 				<paraminfo> [] </paraminfo>
-			</param>
-		</member>
-		<member name="M:IsTrailerAttachedToVehicle" syntax="IsTrailerAttachedToVehicle(vehicleid)">
-			<attribute name="native"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
-			<param name="vehicleid">
 			</param>
 		</member>
 		<member name="M:IsValidActor" syntax="IsValidActor(actorid)">
@@ -18181,8 +17732,6 @@
 			<referrer name="dialog_DIALOG_MEMBERS2"/>
 			<referrer name="dialog_DIALOG_MEMBERSUINV2"/>
 			<referrer name="pc_cmd_dvf"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="CancelJob"/>
 			<referrer name="removeFunction"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerCar"/>
@@ -19001,6 +18550,9 @@
 			</param>
 			  <remarks>  Run an iterator backwards.  </remarks> 
 		</member>
+		<member name="M:JobVehicle" syntax="JobVehicle()">
+			<stacksize value="1"/>
+		</member>
 		<member name="M:Kick" syntax="Kick(playerid)">
 			<attribute name="native"/>
 			<referrer name="acKicked"/>
@@ -19165,7 +18717,7 @@
 		</member>
 		<member name="M:LoadFactions" syntax="LoadFactions()">
 			<attribute name="public"/>
-			<stacksize value="4114"/>
+			<stacksize value="4115"/>
 			<dependency name="CreateDynamic3DTextLabel"/>
 			<dependency name="CreateDynamicMapIcon"/>
 			<dependency name="CreateDynamicPickup"/>
@@ -19281,7 +18833,7 @@
 		</member>
 		<member name="M:LoadJobs" syntax="LoadJobs()">
 			<attribute name="public"/>
-			<stacksize value="4139"/>
+			<stacksize value="4115"/>
 			<dependency name="CreateDynamic3DTextLabel"/>
 			<dependency name="CreateDynamicPickup"/>
 			<dependency name="Iter_Add_InternalC"/>
@@ -20084,8 +19636,7 @@
 			<referrer name="fareUpdateTimer_yT@"/>
 			<referrer name="TimerWar_yT@"/>
 			<referrer name="TimerGetHit_yT@"/>
-			<referrer name="FishingTimer_yT@"/>
-			<referrer name="usedrugsTimer_yT@"/>
+			<referrer name="timerFishJob_yT@"/>
 			<referrer name="advertismentTimer_yT@"/>
 			<referrer name="helpnTimer_yT@"/>
 			<referrer name="TimerCar_yT@"/>
@@ -20305,7 +19856,18 @@
 			</param>
 		</member>
 		<member name="M:OnPlayerClickPlayerTextDraw" syntax="OnPlayerClickPlayerTextDraw(playerid, playertextid)">
-			<stacksize value="1"/>
+			<attribute name="public"/>
+			<stacksize value="7"/>
+			<dependency name="CB_CancelSelectTextDraw"/>
+			<dependency name="PlayerTextDrawHide"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="fishTD"/>
+			<dependency name="pFishSteps"/>
+			<dependency name="pFishingRod"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="playertextid">
@@ -20403,7 +19965,6 @@
 		<member name="M:OnPlayerDeath" syntax="OnPlayerDeath(playerid, killerid, reason)">
 			<attribute name="public"/>
 			<stacksize value="4287"/>
-			<dependency name="CancelJob"/>
 			<dependency name="GameTextForPlayer"/>
 			<dependency name="GivePlayerCash"/>
 			<dependency name="I@"/>
@@ -20420,7 +19981,6 @@
 			<dependency name="SetPlayerWantedLevel"/>
 			<dependency name="TimerJail_yT@"/>
 			<dependency name="TogglePlayerControllable"/>
-			<dependency name="Working"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="cellRandom"/>
 			<dependency name="format"/>
@@ -20980,7 +20540,6 @@
 		<member name="M:OnPlayerSpawn" syntax="OnPlayerSpawn(playerid)">
 			<attribute name="public"/>
 			<stacksize value="11"/>
-			<dependency name="CancelJob"/>
 			<dependency name="Dialog_Open"/>
 			<dependency name="InterpolateCameraLookAt"/>
 			<dependency name="InterpolateCameraPos"/>
@@ -20999,7 +20558,6 @@
 			<dependency name="SetPlayerVirtualWorld"/>
 			<dependency name="StopFly"/>
 			<dependency name="TogglePlayerControllable"/>
-			<dependency name="Working"/>
 			<dependency name="cellRandom"/>
 			<dependency name="clearChat"/>
 			<dependency name="examenFail"/>
@@ -21087,7 +20645,10 @@
 			</param>
 		</member>
 		<member name="M:OnPlayerStreamIn" syntax="OnPlayerStreamIn(playerid, forplayerid)">
-			<stacksize value="1"/>
+			<attribute name="public"/>
+			<stacksize value="46"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="format"/>
 			<param name="playerid">
 			</param>
 			<param name="forplayerid">
@@ -21873,6 +21434,7 @@
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
+			<referrer name="OnPlayerClickPlayerTextDraw"/>
 			<param name="playerid">
 			</param>
 			<param name="text">
@@ -21963,6 +21525,17 @@
 			<param name="set">
 			</param>
 		</member>
+		<member name="M:PlayerTextDrawSetSelectable" syntax="PlayerTextDrawSetSelectable(playerid, text, set)">
+			<attribute name="native"/>
+			<referrer name="playerTextDraws"/>
+			<param name="playerid">
+			</param>
+			<param name="text">
+				<paraminfo>PlayerText </paraminfo>
+			</param>
+			<param name="set">
+			</param>
+		</member>
 		<member name="M:PlayerTextDrawSetShadow" syntax="PlayerTextDrawSetShadow(playerid, text, size)">
 			<attribute name="native"/>
 			<referrer name="playerTextDraws"/>
@@ -21996,6 +21569,7 @@
 			<referrer name="dialog_DIALOG_HUD"/>
 			<referrer name="updateTaxiTextdraw"/>
 			<referrer name="TimerWar"/>
+			<referrer name="pc_cmd_fish"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="showNotification"/>
 			<referrer name="TimerSpeedo"/>
@@ -22230,7 +21804,6 @@
 			<attribute name="public"/>
 			<stacksize value="5"/>
 			<referrer name="dialog_DIALOG_SVF"/>
-			<referrer name="jobWork"/>
 			<referrer name="pc_cmd_park"/>
 			<referrer name="pc_cmd_spawncar"/>
 			<referrer name="pc_cmd_closestcar"/>
@@ -22709,9 +22282,7 @@
 			<attribute name="native"/>
 			<referrer name="pc_cmd_uncuff"/>
 			<referrer name="pc_cmd_arrest"/>
-			<referrer name="@yH_OnPlayerConnect@008"/>
-			<referrer name="FishingTimer"/>
-			<referrer name="CancelJob"/>
+			<referrer name="timerFishJob"/>
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="OnPlayerDeath"/>
 			<param name="playerid">
@@ -23141,18 +22712,13 @@
 			<referrer name="pc_cmd_order"/>
 			<referrer name="dialog_DIALOG_FWITHDRAW2"/>
 			<referrer name="dialog_DIALOG_FDEPOSIT2"/>
-			<referrer name="FishingTimer"/>
 			<referrer name="dialog_DIALOG_JOBS"/>
 			<referrer name="pc_cmd_jobs"/>
 			<referrer name="pc_cmd_getjob"/>
 			<referrer name="pc_cmd_quitjob"/>
-			<referrer name="pc_cmd_fish"/>
 			<referrer name="pc_cmd_skills"/>
 			<referrer name="pc_cmd_startwork"/>
-			<referrer name="pc_cmd_usedrugs"/>
-			<referrer name="usedrugsTimer"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="jobWork"/>
+			<referrer name="pc_cmd_fish"/>
 			<referrer name="dialog_BIZ_OPTION_TITLE"/>
 			<referrer name="dialog_BIZ_OPTION_DESCRIPTION"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
@@ -23402,7 +22968,9 @@
 			<referrer name="OnPlayerEnterVehicle"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerStateChange"/>
+			<referrer name="OnPlayerStreamIn"/>
 			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
+			<referrer name="OnPlayerClickPlayerTextDraw"/>
 			<param name="playerid">
 			</param>
 			<param name="color">
@@ -23673,7 +23241,6 @@
 			<referrer name="mutePlayer"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="pc_cmd_rentabil"/>
-			<referrer name="pc_cmd_invite"/>
 			<referrer name="pc_cmd_so"/>
 			<referrer name="checkAccountBanDatabase"/>
 			<referrer name="checkBanPlayer"/>
@@ -23830,12 +23397,7 @@
 			<referrer name="dialog_DIALOG_WANTEDS"/>
 			<referrer name="pc_cmd_gethit"/>
 			<referrer name="TimerGetHit"/>
-			<referrer name="dialog_TRUCKER_SELECT"/>
-			<referrer name="dialog_TRUCKER_SELECTTWO"/>
-			<referrer name="dialog_TRUCKER_SELECTTHREE"/>
 			<referrer name="dialog_DIALOG_JOBS"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="jobWork"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimersWantedFind"/>
 			<referrer name="TimerCarFind"/>
@@ -23918,7 +23480,6 @@
 			<referrer name="pc_cmd_armour"/>
 			<referrer name="pc_cmd_heal"/>
 			<referrer name="pc_cmd_duty"/>
-			<referrer name="usedrugsTimer"/>
 			<referrer name="removeFunction"/>
 			<referrer name="pc_cmd_fly"/>
 			<referrer name="pc_cmd_slap"/>
@@ -24156,15 +23717,6 @@
 			<param name="playerid">
 			</param>
 			<param name="level">
-			</param>
-		</member>
-		<member name="M:SetPlayerWeather" syntax="SetPlayerWeather(playerid, weather)">
-			<attribute name="native"/>
-			<referrer name="pc_cmd_usedrugs"/>
-			<referrer name="usedrugsTimer"/>
-			<param name="playerid">
-			</param>
-			<param name="weather">
 			</param>
 		</member>
 		<member name="M:SetTimer" syntax="SetTimer(funcname[], interval, repeating)">
@@ -25546,9 +25098,8 @@
 			<referrer name="pc_cmd_endlive"/>
 			<referrer name="pc_cmd_tie"/>
 			<referrer name="pc_cmd_untie"/>
-			<referrer name="FishingTimer"/>
+			<referrer name="timerFishJob"/>
 			<referrer name="pc_cmd_fish"/>
-			<referrer name="CancelJob"/>
 			<referrer name="SetPlayerFreeze"/>
 			<referrer name="pc_cmd_fill"/>
 			<referrer name="gasTimer"/>
@@ -25574,6 +25125,9 @@
 		<member name="M:TogglePlayerSpectating" syntax="TogglePlayerSpectating(playerid, toggle)">
 			<attribute name="native"/>
 			<referrer name="TogglePlayerSpectatingEx"/>
+			<referrer name="pc_cmd_setadmin"/>
+			<referrer name="pc_cmd_spec"/>
+			<referrer name="pc_cmd_specoff"/>
 			<param name="playerid">
 			</param>
 			<param name="toggle">
@@ -25583,9 +25137,6 @@
 			<attribute name="public"/>
 			<stacksize value="4"/>
 			<referrer name="removeFunction"/>
-			<referrer name="pc_cmd_setadmin"/>
-			<referrer name="pc_cmd_spec"/>
-			<referrer name="pc_cmd_specoff"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<dependency name="TogglePlayerSpectating"/>
 			<dependency name="acInfo"/>
@@ -25797,6 +25348,9 @@
 			<param name="...">
 				<paraminfo> {_,Language,Bit,Text,Menu,Style,XML,Bintree,Group,Timer,Float,File,Text3D} </paraminfo>
 			</param>
+		</member>
+		<member name="M:Working" syntax="Working()">
+			<stacksize value="1"/>
 		</member>
 		<member name="M:WriteAmxCell" syntax="WriteAmxCell(offset, value)">
 			<stacksize value="6"/>
@@ -26301,8 +25855,7 @@
 			<referrer name="fareUpdateTimer_yT@"/>
 			<referrer name="TimerWar_yT@"/>
 			<referrer name="TimerGetHit_yT@"/>
-			<referrer name="FishingTimer_yT@"/>
-			<referrer name="usedrugsTimer_yT@"/>
+			<referrer name="timerFishJob_yT@"/>
 			<referrer name="advertismentTimer_yT@"/>
 			<referrer name="helpnTimer_yT@"/>
 			<referrer name="TimerCar_yT@"/>
@@ -26364,8 +25917,6 @@
 			<referrer name="pc_cmd_fare"/>
 			<referrer name="fareUpdateTimer"/>
 			<referrer name="TimerWar"/>
-			<referrer name="@yH_OnPlayerDisconnect@008"/>
-			<referrer name="CancelJob"/>
 			<referrer name="advertismentTimer"/>
 			<referrer name="pc_cmd_deletemyad"/>
 			<referrer name="@yH_OnPlayerDisconnect@010"/>
@@ -27429,6 +26980,7 @@
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<dependency name="PlayerTextDrawDestroy"/>
 			<dependency name="fareTD"/>
+			<dependency name="fishTD"/>
 			<dependency name="notificationTD"/>
 			<dependency name="playerLevelPTD"/>
 			<dependency name="serverDealerPTD"/>
@@ -27953,13 +27505,15 @@
 			<param name="listitem">
 			</param>
 		</member>
-		<member name="M:dialog_DIALOG_JOBS" syntax="dialog_DIALOG_JOBS(playerid, response, listitem, inputtext[])">
+		<member name="M:dialog_DIALOG_JOBS" syntax="dialog_DIALOG_JOBS(playerid, response, listitem)">
 			<attribute name="public"/>
-			<stacksize value="4104"/>
-			<dependency name="CHECKPOINT_JOB"/>
+			<stacksize value="8"/>
+			<dependency name="Float:operator=(_:)"/>
+			<dependency name="CHECKPOINT_GPS"/>
 			<dependency name="CHECKPOINT_NONE"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerCheckpoint"/>
+			<dependency name="jobID"/>
 			<dependency name="jobInfo"/>
 			<dependency name="jobInfo"/>
 			<dependency name="jobName"/>
@@ -27970,16 +27524,13 @@
 			<dependency name="pCheckpointID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="response">
 			</param>
 			<param name="listitem">
-			</param>
-			<param name="inputtext">
-				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
 		<member name="M:dialog_DIALOG_MEMBERS" syntax="dialog_DIALOG_MEMBERS(playerid, response, listitem)">
@@ -29024,84 +28575,6 @@
 			<param name="response">
 			</param>
 		</member>
-		<member name="M:dialog_TRUCKER_SELECT" syntax="dialog_TRUCKER_SELECT(playerid, response, listitem)">
-			<attribute name="public"/>
-			<stacksize value="16"/>
-			<dependency name="operator+(Float:,_:)"/>
-			<dependency name="CB_CreateVehicle"/>
-			<dependency name="CHECKPOINT_TRUCKERLV"/>
-			<dependency name="CHECKPOINT_TRUCKERSF"/>
-			<dependency name="CancelJob"/>
-			<dependency name="GetPlayerPos"/>
-			<dependency name="GetVehicleZAngle"/>
-			<dependency name="JOB_TRUCKER"/>
-			<dependency name="JobVehicle"/>
-			<dependency name="SetPlayerCheckpoint"/>
-			<dependency name="Trailer"/>
-			<dependency name="pCheckpoint"/>
-			<dependency name="pCheckpointID"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="true"/>
-			<param name="playerid">
-			</param>
-			<param name="response">
-			</param>
-			<param name="listitem">
-			</param>
-		</member>
-		<member name="M:dialog_TRUCKER_SELECTTHREE" syntax="dialog_TRUCKER_SELECTTHREE(playerid, response, listitem)">
-			<attribute name="public"/>
-			<stacksize value="16"/>
-			<dependency name="operator+(Float:,_:)"/>
-			<dependency name="CB_CreateVehicle"/>
-			<dependency name="CHECKPOINT_TRUCKERLS"/>
-			<dependency name="CHECKPOINT_TRUCKERSF"/>
-			<dependency name="CancelJob"/>
-			<dependency name="GetPlayerPos"/>
-			<dependency name="GetVehicleZAngle"/>
-			<dependency name="JOB_TRUCKER"/>
-			<dependency name="JobVehicle"/>
-			<dependency name="SetPlayerCheckpoint"/>
-			<dependency name="Trailer"/>
-			<dependency name="pCheckpoint"/>
-			<dependency name="pCheckpointID"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="true"/>
-			<param name="playerid">
-			</param>
-			<param name="response">
-			</param>
-			<param name="listitem">
-			</param>
-		</member>
-		<member name="M:dialog_TRUCKER_SELECTTWO" syntax="dialog_TRUCKER_SELECTTWO(playerid, response, listitem)">
-			<attribute name="public"/>
-			<stacksize value="16"/>
-			<dependency name="operator+(Float:,_:)"/>
-			<dependency name="CB_CreateVehicle"/>
-			<dependency name="CHECKPOINT_TRUCKERLS"/>
-			<dependency name="CHECKPOINT_TRUCKERLV"/>
-			<dependency name="CancelJob"/>
-			<dependency name="GetPlayerPos"/>
-			<dependency name="GetVehicleZAngle"/>
-			<dependency name="JOB_TRUCKER"/>
-			<dependency name="JobVehicle"/>
-			<dependency name="SetPlayerCheckpoint"/>
-			<dependency name="Trailer"/>
-			<dependency name="pCheckpoint"/>
-			<dependency name="pCheckpointID"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="true"/>
-			<param name="playerid">
-			</param>
-			<param name="response">
-			</param>
-			<param name="listitem">
-			</param>
-		</member>
 		<member name="M:ecp_OnPlayerEnterCheckpoint" syntax="ecp_OnPlayerEnterCheckpoint(playerid)">
 			<attribute name="public"/>
 			<stacksize value="13"/>
@@ -29382,7 +28855,6 @@
 			<referrer name="SetPlayerLookAt"/>
 			<referrer name="OnPlayerUpdate"/>
 			<referrer name="GetDistanceBetweenPoints"/>
-			<referrer name="AttachTrailer"/>
 			<param name="value">
 				<paraminfo>Float </paraminfo>
 			</param>
@@ -29618,6 +29090,7 @@
 			<referrer name="pc_cmd_quests"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="OnPlayerText"/>
+			<referrer name="OnPlayerStreamIn"/>
 			<param name="output">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -29668,7 +29141,7 @@
 			<referrer name="dialog_DIALOG_FWITHDRAW"/>
 			<referrer name="dialog_DIALOG_FWITHDRAW2"/>
 			<referrer name="dialog_DIALOG_FDEPOSIT2"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
+			<referrer name="timerFishJob"/>
 			<referrer name="LoadBusinesses"/>
 			<referrer name="dialog_BIZ_OPTION_TITLE"/>
 			<referrer name="dialog_BIZ_OPTION_DESCRIPTION"/>
@@ -29995,7 +29468,6 @@
 			<referrer name="dialog_DIALOG_REPORT_NORMAL"/>
 			<referrer name="dialog_DIALOG_REPORT_CHEATER"/>
 			<referrer name="pc_cmd_rentabil"/>
-			<referrer name="pc_cmd_invite"/>
 			<referrer name="pc_cmd_so"/>
 			<referrer name="pc_cmd_news"/>
 			<referrer name="pc_cmd_live"/>
@@ -30218,6 +29690,7 @@
 			<referrer name="pc_cmd_setraport"/>
 			<referrer name="pc_cmd_resetraport"/>
 			<referrer name="pc_cmd_myraport"/>
+			<referrer name="returnNeededPoints"/>
 			<referrer name="pc_cmd_sellbizstate"/>
 			<referrer name="pc_cmd_bizbalance"/>
 			<referrer name="pc_cmd_bizwithdraw"/>
@@ -30277,10 +29750,8 @@
 			<referrer name="OnPlayerText"/>
 			<referrer name="OnPlayerCommandReceived"/>
 			<dependency name="Iter_Contains_InternalC"/>
-			<dependency name="Iterator@Player"/>
+			<dependency name="Iterator@loggedPlayers"/>
 			<dependency name="false"/>
-			<dependency name="pLogged"/>
-			<dependency name="playerInfo"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -30347,33 +29818,8 @@
 			  <remarks>  Used to declare a special iterator function.  Examples:  <code>  iterfunc stock OnlyZero(cur)                                                    <br />  {                                                                               <br /><indent />  if (cur == -1)                                                              <br /><indent /><indent />  return 0;                                                               <br /><indent />  return -1;                                                                  <br />  }                                                                               <br />  </code>  <code>  iterfunc stock AlsoOnlyZero[cellmin](cur)                                       <br />  {                                                                               <br /><indent />  if (cur == cellmin)                                                         <br /><indent /><indent />  return 0;                                                               <br /><indent />  return cellmin;                                                             <br />  }                                                                               <br />  </code>  <code>  iterfunc stock OneToTen[cellmin](cur)                                           <br />  {                                                                               <br /><indent />  if (cur == cellmin)                                                         <br /><indent /><indent />  return 1;                                                               <br /><indent />  if (cur == 10)                                                              <br /><indent /><indent />  return cellmin;                                                         <br /><indent />  return cur + 1;                                                             <br />  }                                                                               <br />  </code>  <code>  iterfunc stock OneToN(cur, n)                                                   <br />  {                                                                               <br /><indent />  if (n &lt; 1)                                                               <br /><indent /><indent />  return -1;                                                              <br /><indent />  if (cur == -1)                                                              <br /><indent /><indent />  return 1;                                                               <br /><indent />  if (cur == n)                                                               <br /><indent /><indent />  return -1;                                                              <br /><indent />  return cur + 1;                                                             <br />  }                                                                               <br />  </code>  </remarks> 
 		</member>
 		<member name="M:jobWork" syntax="jobWork(playerid, job)">
-			<stacksize value="4103"/>
-			<referrer name="pc_cmd_startwork"/>
-			<dependency name="CB_CreateVehicle"/>
-			<dependency name="CHECKPOINT_ARMSDEALER"/>
-			<dependency name="CHECKPOINT_CARPENTER"/>
-			<dependency name="CHECKPOINT_DRUGSDEALER"/>
-			<dependency name="Dialog_Open"/>
-			<dependency name="EOS"/>
-			<dependency name="GetDistanceBetweenPoints"/>
-			<dependency name="JOB_ARMSDEALER"/>
-			<dependency name="JOB_CARPENTER"/>
-			<dependency name="JOB_DRUGSDEALER"/>
-			<dependency name="JOB_TRUCKER"/>
-			<dependency name="JobVehicle"/>
-			<dependency name="PutPlayerInVehicleEx"/>
-			<dependency name="SendClientMessage"/>
-			<dependency name="SetPlayerCheckpoint"/>
-			<dependency name="Working"/>
-			<dependency name="gString"/>
-			<dependency name="pCheckpoint"/>
-			<dependency name="pCheckpointID"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="sendSplitMessage"/>
-			<dependency name="string_fast"/>
+			<stacksize value="1"/>
 			<dependency name="true"/>
-			<dependency name="va_format"/>
 			<dependency name="vehicle_engine"/>
 			<dependency name="vehicle_fuel"/>
 			<dependency name="vehicle_personal"/>
@@ -30734,7 +30180,6 @@
 			<referrer name="kickPlayer"/>
 			<referrer name="dialog_REGISTER"/>
 			<referrer name="dialog_LOGIN"/>
-			<referrer name="pc_cmd_quitjob"/>
 			<referrer name="MyHttpResponse"/>
 			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
@@ -30756,7 +30201,6 @@
 			<referrer name="pc_cmd_unjailo"/>
 			<referrer name="pc_cmd_jailo"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<param name="handle">
 				<paraminfo>MySQL </paraminfo>
 			</param>
@@ -30827,7 +30271,6 @@
 			<referrer name="dialog_LOGIN"/>
 			<referrer name="pc_cmd_buyhouse"/>
 			<referrer name="pc_cmd_members"/>
-			<referrer name="pc_cmd_quitjob"/>
 			<referrer name="MySQLLoad"/>
 			<referrer name="MyHttpResponse"/>
 			<referrer name="checkPlayerBan"/>
@@ -30854,7 +30297,6 @@
 			<referrer name="dialog_DIALOG_EMAILS"/>
 			<referrer name="pc_cmd_emails"/>
 			<referrer name="SSCANF_OnPlayerConnect"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<param name="handle">
 				<paraminfo>MySQL </paraminfo>
 			</param>
@@ -31012,16 +30454,12 @@
 			<dependency name="mysql_pquery"/>
 			<dependency name="mysql_tquery"/>
 			<dependency name="pAdmin"/>
-			<dependency name="pArmsSkill"/>
-			<dependency name="pArmsTimes"/>
 			<dependency name="pArrested"/>
 			<dependency name="pBank"/>
 			<dependency name="pBoatLicense"/>
 			<dependency name="pBoatLicenseSuspend"/>
 			<dependency name="pBusiness"/>
 			<dependency name="pBusinessID"/>
-			<dependency name="pCarpenterSkill"/>
-			<dependency name="pCarpenterTimes"/>
 			<dependency name="pClan"/>
 			<dependency name="pClanAge"/>
 			<dependency name="pClanRank"/>
@@ -31032,8 +30470,6 @@
 			<dependency name="pDrivingLicense"/>
 			<dependency name="pDrivingLicenseSuspend"/>
 			<dependency name="pDrugs"/>
-			<dependency name="pDrugsSkill"/>
-			<dependency name="pDrugsTimes"/>
 			<dependency name="pEMail"/>
 			<dependency name="pFPSShow"/>
 			<dependency name="pFaction"/>
@@ -31041,8 +30477,13 @@
 			<dependency name="pFactionPunish"/>
 			<dependency name="pFactionRank"/>
 			<dependency name="pFactionWarns"/>
+			<dependency name="pFishBaitNormal"/>
+			<dependency name="pFishBaitSpecial"/>
+			<dependency name="pFishCaughtNormal"/>
+			<dependency name="pFishCaughtSpecial"/>
 			<dependency name="pFishSkill"/>
 			<dependency name="pFishTimes"/>
+			<dependency name="pFishingRod"/>
 			<dependency name="pFlyLicense"/>
 			<dependency name="pFlyLicenseSuspend"/>
 			<dependency name="pGender"/>
@@ -31079,8 +30520,6 @@
 			<dependency name="pSkin"/>
 			<dependency name="pSpawnChange"/>
 			<dependency name="pStoreBank"/>
-			<dependency name="pTruckSkill"/>
-			<dependency name="pTruckTimes"/>
 			<dependency name="pTutorial"/>
 			<dependency name="pVIP"/>
 			<dependency name="pVehicleSlots"/>
@@ -34202,27 +33641,34 @@
 		</member>
 		<member name="M:pc_cmd_fish" syntax="pc_cmd_fish(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="20"/>
-			<referrer name="pc_cmd_startwork"/>
-			<dependency name="Float:operator=(_:)"/>
+			<stacksize value="18"/>
 			<dependency name="CB_ApplyAnimation"/>
-			<dependency name="ClearAnimations"/>
+			<dependency name="CB_SelectTextDraw"/>
 			<dependency name="FishTimer"/>
-			<dependency name="FishWeight"/>
-			<dependency name="Fishing"/>
-			<dependency name="FishingTimer_yT@"/>
-			<dependency name="GetPlayerPos"/>
 			<dependency name="I@"/>
-			<dependency name="IsPlayerInAnyVehicle"/>
-			<dependency name="IsPlayerInArea"/>
+			<dependency name="IsPlayerInRangeOfPoint"/>
 			<dependency name="J@"/>
+			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerAttachedObject"/>
 			<dependency name="TogglePlayerControllable"/>
 			<dependency name="false"/>
+			<dependency name="fishTD"/>
+			<dependency name="pFishBaitNormal"/>
+			<dependency name="pFishBaitSpecial"/>
+			<dependency name="pFishCaught"/>
+			<dependency name="pFishCaughtNormal"/>
+			<dependency name="pFishCaughtSpecial"/>
+			<dependency name="pFishingRod"/>
 			<dependency name="pJob"/>
+			<dependency name="pWorking"/>
 			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendPlayerSyntax"/>
+			<dependency name="timerFishJob_yT@"/>
 			<dependency name="true"/>
+			<dependency name="unformat"/>
+			<dependency name="va_PlayerTextDrawSetString"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -34617,7 +34063,7 @@
 		</member>
 		<member name="M:pc_cmd_getjob" syntax="pc_cmd_getjob(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4104"/>
+			<stacksize value="8"/>
 			<dependency name="IsPlayerInRangeOfPoint"/>
 			<dependency name="Iter_Single@ServerJobs"/>
 			<dependency name="SendClientMessage"/>
@@ -34634,9 +34080,9 @@
 			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="update"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -34716,6 +34162,7 @@
 			<dependency name="playerInfo"/>
 			<dependency name="sendAdmin"/>
 			<dependency name="sendPlayerSyntax"/>
+			<dependency name="strmatch"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
 			<dependency name="update"/>
@@ -35419,12 +34866,9 @@
 		<member name="M:pc_cmd_invite" syntax="pc_cmd_invite(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="4175"/>
-			<dependency name="GetPVarInt"/>
 			<dependency name="SendClientMessage"/>
-			<dependency name="SetPVarInt"/>
 			<dependency name="factionName"/>
 			<dependency name="factionName"/>
-			<dependency name="gettime"/>
 			<dependency name="invitedByPlayer"/>
 			<dependency name="invitedPlayer"/>
 			<dependency name="isPlayerLogged"/>
@@ -35533,13 +34977,15 @@
 		</member>
 		<member name="M:pc_cmd_jobs" syntax="pc_cmd_jobs(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="290"/>
+			<stacksize value="10"/>
 			<dependency name="CallRemoteFunction"/>
 			<dependency name="Dialog_Open"/>
+			<dependency name="EOS"/>
 			<dependency name="Iter_Single@ServerJobs"/>
 			<dependency name="Iterator@ServerJobs"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="format"/>
+			<dependency name="gString"/>
 			<dependency name="jobInfo"/>
 			<dependency name="jobInfo"/>
 			<dependency name="jobLegal"/>
@@ -36478,20 +35924,14 @@
 		</member>
 		<member name="M:pc_cmd_quitjob" syntax="pc_cmd_quitjob(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="7"/>
-			<dependency name="CancelJob"/>
-			<dependency name="EOS"/>
-			<dependency name="SQL"/>
+			<stacksize value="5"/>
 			<dependency name="SendClientMessage"/>
-			<dependency name="Working"/>
-			<dependency name="gQuery"/>
-			<dependency name="mysql_format"/>
-			<dependency name="mysql_tquery"/>
 			<dependency name="pJob"/>
 			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="true"/>
+			<dependency name="update"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -37150,7 +36590,7 @@
 			<dependency name="PlayerTextDrawHide"/>
 			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="SendClientMessage"/>
-			<dependency name="TogglePlayerSpectatingEx"/>
+			<dependency name="TogglePlayerSpectating"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pAdmin"/>
@@ -37396,28 +36836,17 @@
 		</member>
 		<member name="M:pc_cmd_skills" syntax="pc_cmd_skills(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="4107"/>
-			<dependency name="JOB_ARMSDEALER"/>
-			<dependency name="JOB_CARPENTER"/>
-			<dependency name="JOB_DRUGSDEALER"/>
+			<stacksize value="9"/>
 			<dependency name="JOB_FISHER"/>
-			<dependency name="JOB_TRUCKER"/>
 			<dependency name="SendClientMessage"/>
-			<dependency name="pArmsSkill"/>
-			<dependency name="pArmsTimes"/>
-			<dependency name="pCarpenterSkill"/>
-			<dependency name="pCarpenterTimes"/>
-			<dependency name="pDrugsSkill"/>
-			<dependency name="pDrugsTimes"/>
 			<dependency name="pFishSkill"/>
 			<dependency name="pFishTimes"/>
-			<dependency name="pTruckSkill"/>
-			<dependency name="pTruckTimes"/>
+			<dependency name="pJob"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="returnNeededPoints"/>
-			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -37640,7 +37069,7 @@
 			<dependency name="SetPlayerInterior"/>
 			<dependency name="SetPlayerVirtualWorld"/>
 			<dependency name="TimerSpectator_yT@"/>
-			<dependency name="TogglePlayerSpectatingEx"/>
+			<dependency name="TogglePlayerSpectating"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="pName"/>
@@ -37676,7 +37105,7 @@
 			<dependency name="Iterator@ServerHelpers"/>
 			<dependency name="PlayerTextDrawHide"/>
 			<dependency name="SendClientMessage"/>
-			<dependency name="TogglePlayerSpectatingEx"/>
+			<dependency name="TogglePlayerSpectating"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="pName"/>
 			<dependency name="pSpectate"/>
@@ -37733,25 +37162,20 @@
 		</member>
 		<member name="M:pc_cmd_startwork" syntax="pc_cmd_startwork(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="8"/>
+			<stacksize value="7"/>
+			<dependency name="CHECKPOINT_NONE"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="IsPlayerInRangeOfPoint"/>
-			<dependency name="JOB_ARMSDEALER"/>
-			<dependency name="JOB_CARPENTER"/>
-			<dependency name="JOB_DRUGSDEALER"/>
-			<dependency name="JOB_TRUCKER"/>
 			<dependency name="SendClientMessage"/>
-			<dependency name="Working"/>
 			<dependency name="jobInfo"/>
-			<dependency name="jobWork"/>
 			<dependency name="jobXST"/>
 			<dependency name="jobYST"/>
 			<dependency name="jobZST"/>
-			<dependency name="pCheckpointID"/>
+			<dependency name="pCheckpoint"/>
 			<dependency name="pDrivingLicense"/>
 			<dependency name="pDrivingLicenseSuspend"/>
 			<dependency name="pJob"/>
-			<dependency name="pc_cmd_fish"/>
+			<dependency name="pWorking"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="true"/>
@@ -38358,31 +37782,6 @@
 				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
-		<member name="M:pc_cmd_usedrugs" syntax="pc_cmd_usedrugs(playerid, params[])">
-			<attribute name="public"/>
-			<stacksize value="13"/>
-			<dependency name="CB_ApplyAnimation"/>
-			<dependency name="I@"/>
-			<dependency name="J@"/>
-			<dependency name="SendClientMessage"/>
-			<dependency name="SetPlayerWeather"/>
-			<dependency name="UsingDrugs"/>
-			<dependency name="false"/>
-			<dependency name="pDrugs"/>
-			<dependency name="pName"/>
-			<dependency name="pSQLID"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="sendNearbyMessage"/>
-			<dependency name="true"/>
-			<dependency name="update"/>
-			<dependency name="usedrugsTimer_yT@"/>
-			<param name="playerid">
-			</param>
-			<param name="params">
-				<paraminfo> [] </paraminfo>
-			</param>
-		</member>
 		<member name="M:pc_cmd_vehicles" syntax="pc_cmd_vehicles(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="4107"/>
@@ -38624,10 +38023,13 @@
 			<dependency name="PlayerTextDrawSetPreviewRot"/>
 			<dependency name="PlayerTextDrawSetPreviewVehCol"/>
 			<dependency name="PlayerTextDrawSetProportional"/>
+			<dependency name="PlayerTextDrawSetSelectable"/>
 			<dependency name="PlayerTextDrawSetShadow"/>
 			<dependency name="PlayerTextDrawTextSize"/>
 			<dependency name="PlayerTextDrawUseBox"/>
 			<dependency name="fareTD"/>
+			<dependency name="fishTD"/>
+			<dependency name="fishTD"/>
 			<dependency name="jailTimeTD"/>
 			<dependency name="levelBar"/>
 			<dependency name="notificationTD"/>
@@ -38727,8 +38129,7 @@
 			<referrer name="Iter_Func@Random"/>
 			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="pc_cmd_arrest"/>
-			<referrer name="FishingTimer"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
+			<referrer name="timerFishJob"/>
 			<referrer name="dialog_BUYBIZ"/>
 			<referrer name="questProgress"/>
 			<referrer name="giveQuest"/>
@@ -38955,6 +38356,9 @@
 			<dependency name="pExamenVehicle"/>
 			<dependency name="pFPS"/>
 			<dependency name="pFactionDuty"/>
+			<dependency name="pFishCaught"/>
+			<dependency name="pFishMoney"/>
+			<dependency name="pFishSteps"/>
 			<dependency name="pFlyLicense"/>
 			<dependency name="pFlyLicenseSuspend"/>
 			<dependency name="pFlymode"/>
@@ -38999,6 +38403,7 @@
 			<dependency name="pWarn"/>
 			<dependency name="pWeaponLicense"/>
 			<dependency name="pWeaponLicenseSuspend"/>
+			<dependency name="pWorking"/>
 			<dependency name="pinVehicle"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
@@ -39091,22 +38496,14 @@
 		<member name="M:returnNeededPoints" syntax="returnNeededPoints(playerid, job)">
 			<stacksize value="6"/>
 			<referrer name="pc_cmd_skills"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
-			<dependency name="IsPlayerConnected"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerJobs"/>
-			<dependency name="JOB_ARMSDEALER"/>
-			<dependency name="JOB_CARPENTER"/>
-			<dependency name="JOB_DRUGSDEALER"/>
 			<dependency name="JOB_FISHER"/>
-			<dependency name="JOB_TRUCKER"/>
-			<dependency name="pArmsSkill"/>
-			<dependency name="pCarpenterSkill"/>
-			<dependency name="pDrugsSkill"/>
+			<dependency name="isPlayerLogged"/>
 			<dependency name="pFishSkill"/>
-			<dependency name="pTruckSkill"/>
 			<dependency name="playerInfo"/>
+			<dependency name="true"/>
 			<param name="playerid">
 			</param>
 			<param name="job">
@@ -39354,8 +38751,6 @@
 			<referrer name="fareUpdateTimer"/>
 			<referrer name="pc_cmd_tie"/>
 			<referrer name="pc_cmd_untie"/>
-			<referrer name="FishingTimer"/>
-			<referrer name="pc_cmd_usedrugs"/>
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="pc_cmd_accept"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
@@ -39433,6 +38828,7 @@
 			<referrer name="pc_cmd_cancelhit"/>
 			<referrer name="pc_cmd_setraport"/>
 			<referrer name="pc_cmd_createsafe"/>
+			<referrer name="pc_cmd_fish"/>
 			<referrer name="pc_cmd_bizwithdraw"/>
 			<referrer name="pc_cmd_bizdeposit"/>
 			<referrer name="pc_cmd_sellbiz"/>
@@ -39571,8 +38967,6 @@
 			<referrer name="sendToAdmin"/>
 			<referrer name="sendFactionMessage"/>
 			<referrer name="pc_cmd_invite"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="jobWork"/>
 			<referrer name="advertismentTimer"/>
 			<referrer name="sendClanMessage"/>
 			<referrer name="InsertCarDS"/>
@@ -39678,7 +39072,6 @@
 			<dependency name="WeaponAmmo"/>
 			<dependency name="Weapons"/>
 			<dependency name="Weapons"/>
-			<dependency name="Working"/>
 			<dependency name="getWeaponSlot"/>
 			<dependency name="pJob"/>
 			<dependency name="pWeaponLicense"/>
@@ -40084,12 +39477,6 @@
 			<referrer name="pc_cmd_createsafe"/>
 			<referrer name="pc_cmd_order"/>
 			<referrer name="LoadJobs"/>
-			<referrer name="FishingTimer"/>
-			<referrer name="dialog_DIALOG_JOBS"/>
-			<referrer name="pc_cmd_getjob"/>
-			<referrer name="pc_cmd_skills"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="jobWork"/>
 			<referrer name="advertismentTimer"/>
 			<referrer name="LoadBusinesses"/>
 			<referrer name="dialog_BIZ_OPTION_TITLE"/>
@@ -40140,7 +39527,6 @@
 			<referrer name="SSCANF_OnPlayerConnect"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<referrer name="OnPlayerText"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<dependency name="EOS"/>
 			<dependency name="YVA2_DummyPush"/>
 			<dependency name="gFast"/>
@@ -40263,6 +39649,7 @@
 			<referrer name="pc_cmd_confiscate"/>
 			<referrer name="pc_cmd_givelicense"/>
 			<referrer name="pc_cmd_banoffline"/>
+			<referrer name="pc_cmd_givemoney"/>
 			<referrer name="pc_cmd_kick"/>
 			<referrer name="pc_cmd_banip"/>
 			<referrer name="pc_cmd_banipoffline"/>
@@ -40427,6 +39814,58 @@
 			<param name="playerid">
 			</param>
 		</member>
+		<member name="M:timerFishJob" syntax="timerFishJob(playerid, type)">
+			<stacksize value="8205"/>
+			<referrer name="timerFishJob@_yT"/>
+			<dependency name="ClearAnimations"/>
+			<dependency name="RemovePlayerAttachedObject"/>
+			<dependency name="TogglePlayerControllable"/>
+			<dependency name="fishNamesFund"/>
+			<dependency name="fishNamesFund"/>
+			<dependency name="fishNamesPluta"/>
+			<dependency name="formatNumber"/>
+			<dependency name="formatNumber"/>
+			<dependency name="pFishBaitNormal"/>
+			<dependency name="pFishBaitSpecial"/>
+			<dependency name="pFishCaught"/>
+			<dependency name="pFishCaughtNormal"/>
+			<dependency name="pFishCaughtSpecial"/>
+			<dependency name="pFishMoney"/>
+			<dependency name="pFishingRod"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="random"/>
+			<dependency name="true"/>
+			<dependency name="va_SendClientMessage"/>
+			<param name="playerid">
+			</param>
+			<param name="type">
+			</param>
+		</member>
+		<member name="M:timerFishJob@_yT" syntax="timerFishJob@_yT(__r, playerid, type)">
+			<tagname value="@Yj"/>
+			<attribute name="public"/>
+			<stacksize value="5"/>
+			<dependency name="timerFishJob"/>
+			<param name="__r">
+			</param>
+			<param name="playerid">
+			</param>
+			<param name="type">
+			</param>
+		</member>
+		<member name="M:timerFishJob_yT@" syntax="timerFishJob_yT@(playerid, type)">
+			<stacksize value="9"/>
+			<referrer name="pc_cmd_fish"/>
+			<dependency name="I@"/>
+			<dependency name="J@"/>
+			<dependency name="O@"/>
+			<dependency name="_Timer_C"/>
+			<param name="playerid">
+			</param>
+			<param name="type">
+			</param>
+		</member>
 		<member name="M:tolower" syntax="tolower(c)">
 			<attribute name="native"/>
 			<referrer name="StrToLower"/>
@@ -40487,6 +39926,7 @@
 			<referrer name="pc_cmd_cancelhit"/>
 			<referrer name="pc_cmd_setraport"/>
 			<referrer name="pc_cmd_createsafe"/>
+			<referrer name="pc_cmd_fish"/>
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="pc_cmd_n"/>
 			<referrer name="pc_cmd_ch"/>
@@ -40629,8 +40069,7 @@
 			<referrer name="dialog_DIALOG_FWITHDRAW2"/>
 			<referrer name="dialog_DIALOG_FDEPOSIT2"/>
 			<referrer name="pc_cmd_getjob"/>
-			<referrer name="pc_cmd_usedrugs"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
+			<referrer name="pc_cmd_quitjob"/>
 			<referrer name="dialog_BIZ_OPTION_TITLE"/>
 			<referrer name="dialog_BIZ_OPTION_DESCRIPTION"/>
 			<referrer name="dialog_SELL_BIZ_STATE"/>
@@ -40800,39 +40239,6 @@
 			<param name="playerid">
 			</param>
 		</member>
-		<member name="M:usedrugsTimer" syntax="usedrugsTimer(playerid)">
-			<stacksize value="5"/>
-			<referrer name="usedrugsTimer@_yT"/>
-			<dependency name="Float:operator=(_:)"/>
-			<dependency name="ClearAnimations"/>
-			<dependency name="SendClientMessage"/>
-			<dependency name="SetPlayerHealthEx"/>
-			<dependency name="SetPlayerWeather"/>
-			<dependency name="UsingDrugs"/>
-			<dependency name="true"/>
-			<param name="playerid">
-			</param>
-		</member>
-		<member name="M:usedrugsTimer@_yT" syntax="usedrugsTimer@_yT(__r, playerid)">
-			<tagname value="@Yj"/>
-			<attribute name="public"/>
-			<stacksize value="4"/>
-			<dependency name="usedrugsTimer"/>
-			<param name="__r">
-			</param>
-			<param name="playerid">
-			</param>
-		</member>
-		<member name="M:usedrugsTimer_yT@" syntax="usedrugsTimer_yT@(playerid)">
-			<stacksize value="8"/>
-			<referrer name="pc_cmd_usedrugs"/>
-			<dependency name="I@"/>
-			<dependency name="J@"/>
-			<dependency name="O@"/>
-			<dependency name="_Timer_C"/>
-			<param name="playerid">
-			</param>
-		</member>
 		<member name="M:va_CreatePlayerTextDraw" syntax="va_CreatePlayerTextDraw(playerid, x, y, fmat[], ...)">
 			<tagname value="PlayerText"/>
 			<stacksize value="146"/>
@@ -40898,6 +40304,7 @@
 			<referrer name="updateLevelBar"/>
 			<referrer name="updateTaxiTextdraw"/>
 			<referrer name="TimerWar"/>
+			<referrer name="pc_cmd_fish"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="showNotification"/>
 			<referrer name="TimerSpeedo"/>
@@ -40988,6 +40395,10 @@
 			<referrer name="pc_cmd_resetraport"/>
 			<referrer name="pc_cmd_myraport"/>
 			<referrer name="pc_cmd_createsafe"/>
+			<referrer name="timerFishJob"/>
+			<referrer name="dialog_DIALOG_JOBS"/>
+			<referrer name="pc_cmd_getjob"/>
+			<referrer name="pc_cmd_skills"/>
 			<referrer name="pc_cmd_startwork"/>
 			<referrer name="dialog_BUYBIZ"/>
 			<referrer name="pc_cmd_sellbiz"/>
@@ -41084,6 +40495,7 @@
 			<referrer name="CB_OnPlayerStateChange"/>
 			<referrer name="OnPlayerCommandReceived"/>
 			<referrer name="OnPlayerCommandPerformed"/>
+			<referrer name="OnPlayerClickPlayerTextDraw"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="YVA2_DummyPush"/>
 			<dependency name="va_return"/>
@@ -41187,8 +40599,6 @@
 			<referrer name="oocNews"/>
 			<referrer name="sendToAdmin"/>
 			<referrer name="sendFactionMessage"/>
-			<referrer name="@yH_OnPlayerEnterCheckpoint@008"/>
-			<referrer name="jobWork"/>
 			<referrer name="sendClanMessage"/>
 			<referrer name="SendDiscordAC"/>
 			<referrer name="InsertCarDS"/>
