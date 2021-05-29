@@ -66,7 +66,7 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
     Timer:taxi[MAX_PLAYERS],
     Timer:getHit[MAX_PLAYERS],
     Timer:spectator[MAX_PLAYERS],
-    // Timer:fpsShow[MAX_PLAYERS],
+    Timer:examen[MAX_PLAYERS],
 
 
 vehNames[212][] =

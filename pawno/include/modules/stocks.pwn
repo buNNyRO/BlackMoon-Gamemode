@@ -173,6 +173,8 @@ stock showLicenses(playerid, userID)
 	if(playerInfo[userID][pBoatLicenseSuspend] > 0) SCMf(playerid, COLOR_LIGHTRED, "Licenta de Navigatie: Suspendata (%d ore)", playerInfo[userID][pBoatLicenseSuspend]);
 	else if(playerInfo[userID][pBoatLicense] > 0) SCMf(playerid, COLOR_LIGHTRED, "Licenta de Navigatie: Valida (%d ore)", playerInfo[userID][pBoatLicense]);
 	else SCM(playerid, COLOR_GREY, "Licenta de Navigatie: Expirata");
+
+	if(playerInfo[userID][pCertificate][0] > 0) SCMf(playerid, COLOR_LIGHTRED, "Certificat 'ADR': Valid (%d zile)", playerInfo[userID][pCertificate][0]);
 	
 	SCM(playerid, COLOR_GREY, "----------------------------------------");
 	return true;
@@ -1291,6 +1293,7 @@ stock resetVars(playerid)
 	playerInfo[playerid][pFishMoney] = 0;
 	playerInfo[playerid][pFishCaught] = 0;
 	playerInfo[playerid][pCertificateStep] = 0;
+	playerInfo[playerid][pCertificateSeconds] = 0;
 
 	if(IsValidVehicle(playerInfo[playerid][pExamenVehicle])) DestroyVehicle(playerInfo[playerid][pExamenVehicle]);
 

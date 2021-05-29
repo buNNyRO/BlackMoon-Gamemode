@@ -201,6 +201,7 @@ enum playerInfoEnum
     pFishCaught,
     Timer:pGasTimer,
     pCertificateStep,
+    pCertificateSeconds,
     pSelectVehicle[MAX_PLAYER_PERSONAL_VEHICLES]
 };
 /*

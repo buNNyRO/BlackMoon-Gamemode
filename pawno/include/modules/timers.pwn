@@ -308,3 +308,15 @@ timer tazerTimer[10000](playerid) {
 }
 
 timer notificationTimer[10000](playerid) PlayerTextDrawHide(playerid, notificationTD[playerid]);
+
+timer timerExamen[1000](playerid) {
+	va_PlayerTextDrawSetString(playerid, examenTD[playerid][9], "%s", secinmin(playerInfo[playerid][pCertificateSeconds]));
+	if(playerInfo[playerid][pCertificateSeconds] == 0) {
+		SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Deoarece nu a mai ramas timp valabil, ti-a fost inchis testul.");
+		for(new i = 0; i < 13; i++) PlayerTextDrawHide(playerid, examenTD[playerid][i]);
+		playerInfo[playerid][pCertificateStep] = 0; 	
+		playerInfo[playerid][pCertificateSeconds] = 0;
+		stop examen[playerid];
+	}
+	return true;
+}
