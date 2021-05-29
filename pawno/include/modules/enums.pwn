@@ -189,6 +189,7 @@ enum playerInfoEnum
     pAdminCover[MAX_PLAYER_NAME],
     pDrunkLevel,
     pFPS,
+    pAccountBlocked,
     pAdText[256],
     pAdminDuty,
     pSpectate,

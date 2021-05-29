@@ -70,6 +70,7 @@
 #include <modules\comenzi\player.pwn>
 #include <modules\dealership.pwn>
 #include <modules\emails.pwn>
+#include <modules\examen.pwn>
 
 main() { }
 

@@ -11,7 +11,7 @@ function MySQLLoad() {
 	if(mysql_errno() != 0) {
 		mysql_close(SQL);
 		destroyServerTextDraws();
-		SetGameModeText("MYSQL Error");
+		SetGameModeText("RPG v0.0.0");
 		SendRconCommand("password MYSQLError");
 		print("[MYSQL] Baza de date, nu s-a conectat.");
 	}
@@ -56,6 +56,15 @@ function MyHttpResponse(playerid, response_code, data[]) {
 	}
     else printf("[ANTI-VPN] HTTP ERROR: %d", response_code);
 	return 1;
+}
+
+function twofa(playerid) {
+	if(playerInfo[playerid][pIp] == playerInfo[playerid][pLastIp]) return 1;
+    HTTP(playerid, HTTP_POST, string_fast("http://cdn.blackmoon.ro/send.php?Account=%s&Email=%s&IP=%s", playerInfo[playerid][pSQLID], playerInfo[playerid][pEmail], playerInfo[playerid][pLastIp]), "", "");
+    playerInfo[playerid][pAccountBlocked] = 1;
+	SCM(playerid, COLOR_LIGHTRED, "Contul tau este blocat, te rog sa verifici email-ul asociat la cont!");
+    update("UPDATE `server_users` SET `AccountBlocked` = '1' WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
+    return 1;
 }
 
 function checkPlayerBan(playerid) {
@@ -104,8 +113,7 @@ function checkPlayerBan(playerid) {
 
 function onPlayerLogin(playerid)
 {
-	if(!cache_num_rows())
-		return wrongPass(playerid);
+	if(!cache_num_rows()) return wrongPass(playerid);
 
 	SpawnPlayerEx(playerid);
 	playerInfo[playerid][pLogged] = true;
@@ -133,6 +141,7 @@ function onPlayerLogin(playerid)
 	cache_get_value_name_float(0, "Seconds", playerInfo[playerid][pSeconds]);
 	cache_get_value_name_int(0, "Mute", playerInfo[playerid][pMute]); 
 	cache_get_value_name_int(0, "Warn", playerInfo[playerid][pWarn]);
+	cache_get_value_name_int(0, "AccountBlocked", playerInfo[playerid][pAccountBlocked]);
  	cache_get_value_name_int(0, "Job", playerInfo[playerid][pJob]);
 	cache_get_value_name_int(0, "Business", playerInfo[playerid][pBusiness]);
 	cache_get_value_name_int(0, "BusinessID", playerInfo[playerid][pBusinessID]);
@@ -186,6 +195,8 @@ function onPlayerLogin(playerid)
 	cache_get_value_name_int(0, "FPSShow", playerInfo[playerid][pFPSShow]);
 	cache_get_value_name_int(0, "Certificate1", playerInfo[playerid][pCertificate][0]);
 	cache_get_value_name_int(0, "Certificate2", playerInfo[playerid][pCertificate][1]);
+
+	twofa(playerid);
 
  	new guns[32];
  	cache_get_value_name(0, "Guns", guns, 32);
