@@ -54,6 +54,7 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
     PlayerText:notificationTD[MAX_PLAYERS],
     PlayerText:specTD[MAX_PLAYERS],
     PlayerText:fishTD[MAX_PLAYERS][15],
+    PlayerText:examenTD[MAX_PLAYERS][13],
 
     Timer:jailTime[MAX_PLAYERS],
     Timer:wantedTime[MAX_PLAYERS],

@@ -119,6 +119,7 @@ enum playerInfoEnum
     pFishCaughtSpecial,
     pFishBaitNormal,
     pFishBaitSpecial,
+    pCertificate[2],
 	pLoginTries,
 	pAFKSeconds,
 	bool:pLogged,
@@ -197,6 +198,8 @@ enum playerInfoEnum
     pFishSteps,
     pFishMoney,
     pFishCaught,
+    Timer:pGasTimer,
+    pCertificateStep,
     pSelectVehicle[MAX_PLAYER_PERSONAL_VEHICLES]
 };
 /*

@@ -571,7 +571,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
             playerInfo[playerid][pinBusiness] = -1;
             return true;
         }
-
 		if(playerInfo[playerid][areaHouse] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, houseInfo[playerInfo[playerid][areaHouse]][hExtX], houseInfo[playerInfo[playerid][areaHouse]][hExtY], houseInfo[playerInfo[playerid][areaHouse]][hExtZ])) {
 			if(houseInfo[playerInfo[playerid][areaHouse]][hLocked] == 1) return SCM(playerid, COLOR_ERROR, eERROR"Acesta casa, este inchisa.");
 			if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Esti intr-un vehicul.");
@@ -590,7 +589,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 			playerInfo[playerid][pinHouse] = -1;
 			return true;
 		}
-
 		if(playerInfo[playerid][areaFaction] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, factionInfo[playerInfo[playerid][areaFaction]][fEnterX],factionInfo[playerInfo[playerid][areaFaction]][fEnterY], factionInfo[playerInfo[playerid][areaFaction]][fEnterZ])) {
 			if(playerInfo[playerid][pFaction] != playerInfo[playerid][areaFaction] && factionInfo[playerInfo[playerid][areaFaction]][fLocked]) return SCMf(playerid, COLOR_ERROR, eERROR"Nu faci parte din factiunea %s.", factionName(playerInfo[playerid][areaFaction]));						
 			SetPlayerPos(playerid, factionInfo[playerInfo[playerid][areaFaction]][fExitX], factionInfo[playerInfo[playerid][areaFaction]][fExitY], factionInfo[playerInfo[playerid][areaFaction]][fExitZ]);
@@ -950,10 +948,97 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid) {
 		for(new i = 0; i < 15; i++) PlayerTextDrawHide(playerid, fishTD[playerid][i]);
 		CancelSelectTextDraw(playerid);
 	}	
+	if(playertextid == examenTD[playerid][10]) {
+		switch(playerInfo[playerid][pCertificateStep]) {
+			case 1: {
+				playerInfo[playerid][pCertificateStep] ++;
+				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Progress 1/3 step for certificate 'ADR'.");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][8], "Question #2~n~Care sunt obligatiile unui 'Community Transporter' inainte de plecarea cu marfa de tip 'ADR'?");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][10], "a) Nicio obligatie.");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][11], "b) Sa plece.");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][12], "c) Sa verifice remorca, inclusiv conexiunile.");		
+				return true;
+			}
+			case 2: {
+				playerInfo[playerid][pCertificateStep] = 1; 
+				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Deoarece ai ales raspunsul corect, ti-a fost resetat testul.");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][8], "Question #1~n~Cu cate placi de culoare portocalie trebuie sa fie dotat un tir?");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][10], "a) 2 (1 fata, 1 spate)");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][11], "b) 1 doar pe spate");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][12], "c) niciuna");
+				return true;
+			}
+			case 3: {
+				playerInfo[playerid][pCertificateStep] = 1; 
+				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Deoarece ai ales raspunsul corect, ti-a fost resetat testul.");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][8], "Question #1~n~Cu cate placi de culoare portocalie trebuie sa fie dotat un tir?");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][10], "a) 2 (1 fata, 1 spate)");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][11], "b) 1 doar pe spate");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][12], "c) niciuna");
+				return true;
+			}
+		}
+	}
+	if(playertextid == examenTD[playerid][11]) {
+		switch(playerInfo[playerid][pCertificateStep]) {
+			case 1: {
+				playerInfo[playerid][pCertificateStep] = 0; 
+				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Deoarece ai ales raspunsul corect si esti la primul stagiu, ti-a fost inchis testul.");
+				for(new i = 0; i < 13; i++) PlayerTextDrawHide(playerid, examenTD[playerid][i]);
+				return true;
+			}
+			case 2: {
+				playerInfo[playerid][pCertificateStep] = 1; 
+				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Deoarece ai ales raspunsul corect, ti-a fost resetat testul.");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][8], "Question #1~n~Cu cate placi de culoare portocalie trebuie sa fie dotat un tir?");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][10], "a) 2 (1 fata, 1 spate)");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][11], "b) 1 doar pe spate");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][12], "c) niciuna");
+				return true;
+			}
+			case 3: {
+				playerInfo[playerid][pCertificateStep] = 0;
+				playerInfo[playerid][pCertificate][0] = 30;
+				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Felicitari ! Ai absolvit certificatul de 'ADR' (Valabil: 30 zile) acum poti face curse de mare pericol.");
+				for(new i = 0; i < 13; i++) PlayerTextDrawHide(playerid, examenTD[playerid][i]);
+				return true;
+			}
+		}	
+	}
+	if(playertextid == examenTD[playerid][12]) {
+		switch(playerInfo[playerid][pCertificateStep]) {
+			case 1: {
+				playerInfo[playerid][pCertificateStep] = 0; 
+				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Deoarece ai ales raspunsul corect si esti la primul stagiu, ti-a fost inchis testul.");
+				for(new i = 0; i < 13; i++) PlayerTextDrawHide(playerid, examenTD[playerid][i]);
+				return true;
+			}
+			case 2: {
+				playerInfo[playerid][pCertificateStep] ++;
+				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Progress 2/3 step for certificate 'ADR'.");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][8], "Question #3~n~Care sunt riscurile ale unui transport de tip'ADR'?");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][10], "a) Niciun risc.");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][11], "b) Sa explodeze remorca, sa produca avarii.");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][12], "c) Sa se piarda lichidul din remorca.");		
+				return true;
+			}
+			case 3: {
+				playerInfo[playerid][pCertificateStep] = 1; 
+				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Deoarece ai ales raspunsul corect, ti-a fost resetat testul.");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][8], "Question #1~n~Cu cate placi de culoare portocalie trebuie sa fie dotat un tir?");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][10], "a) 2 (1 fata, 1 spate)");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][11], "b) 1 doar pe spate");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][12], "c) niciuna");
+				return true;
+			}
+		}	
+	}
 	return true;
 }
 
 function loadMaps() {
+	CreateDynamicPickup(1210, 1,-322.8313,1025.3314,19.7422,-1, -1, -1, 50.0); 
+	CreateDynamic3DTextLabel("Certificate System\nType /certificate for getting a certificate", -1, -322.8313,1025.3314,19.7422, 20.0, 0xFFFF, 0xFFFF, 0, 0, 0, -1, STREAMER_3D_TEXT_LABEL_SD);
 	#include map/other
 	// #include map/spawn
 	// #include map/admin_house

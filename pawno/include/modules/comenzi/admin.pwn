@@ -1380,7 +1380,16 @@ CMD:jailo(playerid, params[]) {
 
 CMD:resetquests(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 6) return true;
-	resetQuest();
+	update("UPDATE `server_users` SET `DailyMission`='-1', `Progress`='0', `DailyMission2`='-1', `Progress2`='0', `NeedProgress1`='0', `NeedProgress2`='0'");
+    foreach(new i : loggedPlayers) {
+       playerInfo[i][pDailyMission][0] = random(5);
+	   playerInfo[i][pDailyMission][1] = 1+random(4);
+	   if(playerInfo[i][pDailyMission][0] == playerInfo[i][pDailyMission][1]) playerInfo[i][pDailyMission][1] = 1+random(4);
+	   update("UPDATE `server_users` SET `DailyMission` = '%d', `DailyMission2` = '%d' WHERE `ID` = '%d'", playerInfo[i][pDailyMission][0], playerInfo[i][pDailyMission][1], playerInfo[i][pSQLID]);
+	   questProgress(i, playerInfo[i][pDailyMission][0], 0);
+	   questProgress(i, playerInfo[i][pDailyMission][1], 1);
+	   SCM(i, COLOR_ORANGE, "* Misiunile zilei au fost resetate. Foloseste comanda /quests pentru a vedea noile misiuni.");
+    }
 	return true;
 }
 

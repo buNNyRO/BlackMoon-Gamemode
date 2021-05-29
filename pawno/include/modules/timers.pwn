@@ -67,7 +67,21 @@ task Timers[1000]() {
 		foreach(new i : JailedPlayers) SCM(i, COLOR_LIGHTRED, string_fast("* Jail Cells:{ffffff} Deoarece ora a ajuns la '12:00:00', celule se deschid."));	
 	}
 	if(hour == 0 && minute == 0 && second == 0) {
-		mysql_tquery(SQL, "UPDATE server_bans SET Days = Days-1 WHERE Days > 0");	
+		update("UPDATE server_bans SET Days = Days-1 WHERE Days > 0 LIMIT 1");	
+		update("UPDATE server_users SET Certificate1 = Certificate1-1 WHERE Certificate1 > 0 LIMIT 1");
+		update("UPDATE `server_users` SET `DailyMission`='-1', `Progress`='0', `DailyMission2`='-1', `Progress2`='0', `NeedProgress1`='0', `NeedProgress2`='0'");
+         
+		foreach(new i : loggedPlayers) {
+		   playerInfo[i][pCertificate][0] --;	
+		   playerInfo[i][pDailyMission][0] = random(5);
+		   playerInfo[i][pDailyMission][1] = 1+random(4);
+		   if(playerInfo[i][pDailyMission][0] == playerInfo[i][pDailyMission][1]) playerInfo[i][pDailyMission][1] = 1+random(4);
+		   update("UPDATE `server_users` SET `DailyMission` = '%d', `DailyMission2` = '%d' WHERE `ID` = '%d'", playerInfo[i][pDailyMission][0], playerInfo[i][pDailyMission][1], playerInfo[i][pSQLID]);
+		   questProgress(i, playerInfo[i][pDailyMission][0], 0);
+		   questProgress(i, playerInfo[i][pDailyMission][1], 1);
+		   SCM(i, COLOR_ORANGE, "* Misiunile zilei au fost resetate. Foloseste comanda /quests pentru a vedea noile misiuni.");
+		}
+	    
 		new rand = random(6);
 		MoveObject(gates[1], 1160.19, 1303.31, 11.71, 0.5, 0.00, 0.00, -90.00);
 		MoveObject(gates[2], 1160.18, 1312.26, 11.71, 0.5, 0.00, 0.00, -90.00);
@@ -76,17 +90,16 @@ task Timers[1000]() {
 			SetPlayerPos(i, cellRandom[rand][0], cellRandom[rand][1], cellRandom[rand][2]);
 			SCM(i, COLOR_LIGHTRED, string_fast("* Jail Cells:{ffffff} Deoarece ora a ajuns la '00:00:00', celule se inchid."));
 		}
-		resetQuest();
 		foreach(new i : TotalPlayerVehicles) personalVehicle[i][pvAge] ++;
-		mysql_tquery(SQL, "UPDATE `server_personal_vehicles` SET `Age` = Age+1");
+		update("UPDATE `server_personal_vehicles` SET `Age` = Age+1 LIMIT 1");
         foreach(new x : ServerClans) {
             if(clanInfo[x][cDays] == 0) {
-            	mysql_tquery(SQL, string_fast("DELETE FROM `server_clans` WHERE `server_clans`.`ID` = %d", clanInfo[x][cDays]));
+            	update("DELETE FROM `server_clans` WHERE `server_clans`.`ID` = %d", clanInfo[x][cDays]);
                 Iter_Remove(ServerClans, x);
             }
             clanInfo[x][cDays] --;
         }
-        mysql_tquery(SQL, "UPDATE `server_clans` SET `Days` = Days-1 WHERE `Days` > 0"); 		
+        update("UPDATE `server_clans` SET `Days` = Days-1 WHERE `Days` > 0 LIMIT 1"); 		
 	}
 	if(CountTime > 0) {
 		CountTime --;

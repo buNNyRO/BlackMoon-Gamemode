@@ -71,7 +71,7 @@ function LoadJobs() {
 }
 
 timer timerFishJob[10000](playerid, type) {
-	new rand_fish_money = 100000 + random(10000*playerInfo[playerid][pFishingRod]+10000*type), rand_fish = type > 1 ? random(sizeof fishNamesFund) : random(sizeof fishNamesPluta);
+	new rand_fish_money = 100000 + random(2500*playerInfo[playerid][pFishingRod]+10000*type*playerInfo[playerid][pFishSkill]), rand_fish = type > 1 ? random(sizeof fishNamesFund) : random(sizeof fishNamesPluta);
 	if(type == 1) playerInfo[playerid][pFishCaughtNormal] ++, playerInfo[playerid][pFishBaitNormal] --;
 	else if(type == 2) playerInfo[playerid][pFishCaughtSpecial] ++, playerInfo[playerid][pFishBaitSpecial] --;
 	playerInfo[playerid][pFishingRod] --;		

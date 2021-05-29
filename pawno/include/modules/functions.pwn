@@ -184,6 +184,8 @@ function onPlayerLogin(playerid)
 	cache_get_value_name_int(0, "VIP", playerInfo[playerid][pVIP]);
 	cache_get_value_name_int(0, "PremiumPoints", playerInfo[playerid][pPremiumPoints]);
 	cache_get_value_name_int(0, "FPSShow", playerInfo[playerid][pFPSShow]);
+	cache_get_value_name_int(0, "Certificate1", playerInfo[playerid][pCertificate][0]);
+	cache_get_value_name_int(0, "Certificate2", playerInfo[playerid][pCertificate][1]);
 
  	new guns[32];
  	cache_get_value_name(0, "Guns", guns, 32);
@@ -652,22 +654,6 @@ function giveQuest(playerid) {
 	update("UPDATE `server_users` SET `DailyMission` = '%d', `DailyMission2` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pDailyMission][0], playerInfo[playerid][pDailyMission][1], playerInfo[playerid][pSQLID]);
 	questProgress(playerid, playerInfo[playerid][pDailyMission][0], 0);
 	questProgress(playerid, playerInfo[playerid][pDailyMission][1], 1);
-	return true;
-}
-
-function resetQuest() {
-	update("UPDATE `server_users` SET `DailyMission`='-1', `Progress`='0', `DailyMission2`='-1', `Progress2`='0', `NeedProgress1`='0', `NeedProgress2`='0'");
-    foreach(new i : loggedPlayers) {
-        if(IsPlayerConnected(i) && playerInfo[i][pLogged] == true) {
-			playerInfo[i][pDailyMission][0] = random(5);
-			playerInfo[i][pDailyMission][1] = 1+random(4);
-			if(playerInfo[i][pDailyMission][0] == playerInfo[i][pDailyMission][1]) playerInfo[i][pDailyMission][1] = 1+random(4);
-			update("UPDATE `server_users` SET `DailyMission` = '%d', `DailyMission2` = '%d' WHERE `ID` = '%d'", playerInfo[i][pDailyMission][0], playerInfo[i][pDailyMission][1], playerInfo[i][pSQLID]);
-			questProgress(i, playerInfo[i][pDailyMission][0], 0);
-			questProgress(i, playerInfo[i][pDailyMission][1], 1);
-			SCM(i, COLOR_ORANGE, "* Misiunile zilei au fost resetate. Foloseste comanda /quests pentru a vedea noile misiuni.");
-        }
-    }
 	return true;
 }
 

@@ -57,9 +57,7 @@ stock warnPlayer(playerid, adminid, const reason[])
 	update("UPDATE `server_users` SET `Warn` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pWarn], playerInfo[playerid][pSQLID]);
 	SCMf(playerid, COLOR_GREY, "* Ai primit un warn pe motiv: %s", reason);
 
-	gQuery[0] = (EOS);
-	mysql_format(SQL, gQuery, sizeof gQuery, "INSERT INTO `server_warn_logs` (PlayerName, PlayerID, AdminName, AdminID, WarnReason) VALUES ('%s', '%d', '%s', '%d', '%s')", getName(playerid), playerInfo[playerid][pSQLID], adminName, (adminid != INVALID_PLAYER_ID) ? (playerInfo[adminid][pSQLID]) : (0), reason);
-	mysql_pquery(SQL, gQuery, "", "");
+	update("INSERT INTO `server_warn_logs` (PlayerName, PlayerID, AdminName, AdminID, WarnReason) VALUES ('%s', '%d', '%s', '%d', '%s')", getName(playerid), playerInfo[playerid][pSQLID], adminName, (adminid != INVALID_PLAYER_ID) ? (playerInfo[adminid][pSQLID]) : (0), reason);
 	return true;
 }
 
@@ -73,10 +71,7 @@ stock banPlayer(playerid, adminid, days, const reason[])
 		SetPVarInt(adminid, "banDeelay", (gettime() + 60));
 	}
 
-	gQuery[0] = (EOS);
-	mysql_format(SQL, gQuery, 256, "INSERT INTO `server_bans` (PlayerName, PlayerID, AdminName, AdminID, Reason, Days, Permanent, Date) VALUES ('%s', '%d', '%s', '%d', '%s', '%d', '%d', '%s')", getName(playerid), playerInfo[playerid][pSQLID], adminName, (INVALID_PLAYER_ID == adminid) ? (0) : (playerInfo[adminid][pSQLID]), reason, days, (days == 0) ? (1) : (0), getDateTime());
-	mysql_pquery(SQL, gQuery, "", "");
-
+	update("INSERT INTO `server_bans` (PlayerName, PlayerID, AdminName, AdminID, Reason, Days, Permanent, Date) VALUES ('%s', '%d', '%s', '%d', '%s', '%d', '%d', '%s')", getName(playerid), playerInfo[playerid][pSQLID], adminName, (INVALID_PLAYER_ID == adminid) ? (0) : (playerInfo[adminid][pSQLID]), reason, days, (days == 0) ? (1) : (0), getDateTime());
 	defer kickEx(playerid);
 	return true;
 }
@@ -97,9 +92,7 @@ stock mutePlayer(playerid, adminid, minutes, const reason[])
 	if(!Iter_Contains(MutedPlayers, playerid))
 		Iter_Add(MutedPlayers, playerid);
 
-	gQuery[0] = (EOS);
-	mysql_format(SQL, gQuery, 256, "INSERT INTO `server_mute_logs` (PlayerName, PlayerID, AdminName, AdminID, MuteReason, MuteMinutes) VALUES ('%s', '%d', '%s', '%d', '%s', '%d')", getName(playerid), playerInfo[playerid][pSQLID], adminName, (adminid != INVALID_PLAYER_ID) ? (playerInfo[adminid][pSQLID]) : (0), reason, minutes);
-	mysql_pquery(SQL, gQuery, "", "");
+	update("INSERT INTO `server_mute_logs` (PlayerName, PlayerID, AdminName, AdminID, MuteReason, MuteMinutes) VALUES ('%s', '%d', '%s', '%d', '%s', '%d')", getName(playerid), playerInfo[playerid][pSQLID], adminName, (adminid != INVALID_PLAYER_ID) ? (playerInfo[adminid][pSQLID]) : (0), reason, minutes);
 	return true;
 }
 
@@ -803,6 +796,160 @@ stock playerTextDraws(playerid) {
 	PlayerTextDrawFont(playerid, levelBar[2], 2);
 	PlayerTextDrawSetProportional(playerid, levelBar[2], 1);
 	PlayerTextDrawSetShadow(playerid, levelBar[2], 0);	
+
+	examenTD[playerid][0] = CreatePlayerTextDraw(playerid, 330.333160, 168.439956, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][0], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, examenTD[playerid][0], 271.000000, 114.000000);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][0], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][0], 1419188479);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][0], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][0], 0);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][0], 255);
+	PlayerTextDrawFont(playerid, examenTD[playerid][0], 4);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][0], 0);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][0], 0);
+
+	examenTD[playerid][1] = CreatePlayerTextDraw(playerid, 331.133209, 169.540023, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][1], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, examenTD[playerid][1], 269.000000, 112.000000);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][1], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][1], 387389439);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][1], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][1], 0);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][1], 255);
+	PlayerTextDrawFont(playerid, examenTD[playerid][1], 4);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][1], 0);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][1], 0);
+
+	examenTD[playerid][2] = CreatePlayerTextDraw(playerid, 330.333160, 168.439956, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][2], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, examenTD[playerid][2], 34.000000, -15.000000);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][2], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][2], 1419188479);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][2], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][2], 0);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][2], 255);
+	PlayerTextDrawFont(playerid, examenTD[playerid][2], 4);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][2], 0);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][2], 0);
+
+	examenTD[playerid][3] = CreatePlayerTextDraw(playerid, 331.222015, 198.399856, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][3], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, examenTD[playerid][3], 270.000000, -1.000000);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][3], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][3], 1419188479);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][3], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][3], 0);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][3], 255);
+	PlayerTextDrawFont(playerid, examenTD[playerid][3], 4);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][3], 0);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][3], 0);
+
+	examenTD[playerid][4] = CreatePlayerTextDraw(playerid, 331.133178, 154.604415, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][4], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, examenTD[playerid][4], 32.000000, 14.000000);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][4], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][4], 387389439);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][4], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][4], 0);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][4], 255);
+	PlayerTextDrawFont(playerid, examenTD[playerid][4], 4);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][4], 0);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][4], 0);
+
+	examenTD[playerid][5] = CreatePlayerTextDraw(playerid, 336.000000, 203.400177, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][5], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, examenTD[playerid][5], 260.000000, 22.000000);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][5], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][5], 1419188479);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][5], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][5], 0);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][5], 255);
+	PlayerTextDrawFont(playerid, examenTD[playerid][5], 4);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][5], 0);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][5], 0);
+	PlayerTextDrawSetSelectable(playerid, examenTD[playerid][5], true);
+
+	examenTD[playerid][6] = CreatePlayerTextDraw(playerid, 335.944885, 228.686050, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][6], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, examenTD[playerid][6], 260.000000, 22.000000);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][6], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][6], 1419188479);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][6], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][6], 0);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][6], 255);
+	PlayerTextDrawFont(playerid, examenTD[playerid][6], 4);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][6], 0);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][6], 0);
+	PlayerTextDrawSetSelectable(playerid, examenTD[playerid][6], true);
+
+	examenTD[playerid][7] = CreatePlayerTextDraw(playerid, 335.989135, 253.883972, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][7], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, examenTD[playerid][7], 260.000000, 22.000000);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][7], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][7], 1419188479);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][7], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][7], 0);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][7], 255);
+	PlayerTextDrawFont(playerid, examenTD[playerid][7], 4);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][7], 0);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][7], 0);
+	PlayerTextDrawSetSelectable(playerid, examenTD[playerid][7], true);
+
+	examenTD[playerid][8] = CreatePlayerTextDraw(playerid, 334.455688, 173.386856, "Iti place pula?Iti place pula?Iti place pula?~n~Iti place pula?Iti place pula?Iti place pula pula?");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][8], 0.242222, 1.057422);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][8], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][8], -1);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][8], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][8], 1);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][8], 86);
+	PlayerTextDrawFont(playerid, examenTD[playerid][8], 1);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][8], 1);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][8], 0);
+
+	examenTD[playerid][9] = CreatePlayerTextDraw(playerid, 334.366851, 155.857894, "05:29");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][9], 0.200000, 1.161955);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][9], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][9], -1);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][9], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][9], 1);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][9], 86);
+	PlayerTextDrawFont(playerid, examenTD[playerid][9], 2);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][9], 1);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][9], 0);
+
+	examenTD[playerid][10] = CreatePlayerTextDraw(playerid, 338.811340, 208.422363, "a) da");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][10], 0.200000, 1.161955);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][10], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][10], -1);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][10], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][10], 1);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][10], 86);
+	PlayerTextDrawFont(playerid, examenTD[playerid][10], 2);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][10], 1);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][10], 0);
+
+	examenTD[playerid][11] = CreatePlayerTextDraw(playerid, 339.477905, 234.006805, "B) NU");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][11], 0.200000, 1.161955);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][11], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][11], -1);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][11], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][11], 1);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][11], 86);
+	PlayerTextDrawFont(playerid, examenTD[playerid][11], 2);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][11], 1);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][11], 0);
+
+	examenTD[playerid][12] = CreatePlayerTextDraw(playerid, 339.911193, 259.495727, "C) Poate");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][12], 0.200000, 1.161955);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][12], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][12], -1);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][12], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][12], 1);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][12], 86);
+	PlayerTextDrawFont(playerid, examenTD[playerid][12], 2);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][12], 1);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][12], 0);
 	return true;
 }
 
@@ -1143,6 +1290,7 @@ stock resetVars(playerid)
 	playerInfo[playerid][pFishSteps] = 0;
 	playerInfo[playerid][pFishMoney] = 0;
 	playerInfo[playerid][pFishCaught] = 0;
+	playerInfo[playerid][pCertificateStep] = 0;
 
 	if(IsValidVehicle(playerInfo[playerid][pExamenVehicle])) DestroyVehicle(playerInfo[playerid][pExamenVehicle]);
 
