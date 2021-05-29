@@ -875,7 +875,7 @@
 			<member name="C:SAFE" value="4">
 			</member>
 		</member>
-		<member name="T:playerInfoEnum" value="885">
+		<member name="T:playerInfoEnum" value="890">
 			<tagname value="playerInfoEnum"/>
 			<member name="C:pSQLID" value="0">
 			</member>
@@ -1046,180 +1046,190 @@
 			</member>
 			<member name="C:pFishBaitSpecial" value="329">
 			</member>
-			<member name="C:pLoginTries" value="330">
+			<member name="C:pCertificate" value="330">
+				<size value="2"/>
 			</member>
-			<member name="C:pAFKSeconds" value="331">
+			<member name="C:pLoginTries" value="332">
 			</member>
-			<member name="C:pLogged" value="332">
+			<member name="C:pAFKSeconds" value="333">
+			</member>
+			<member name="C:pLogged" value="334">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pLoginEnabled" value="333">
+			<member name="C:pLoginEnabled" value="335">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pLoginTimer" value="334">
+			<member name="C:pLoginTimer" value="336">
 				<tagname value="Timer"/>
 			</member>
-			<member name="C:pLastPosX" value="335">
+			<member name="C:pLastPosX" value="337">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pLastPosY" value="336">
+			<member name="C:pLastPosY" value="338">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pLastPosZ" value="337">
+			<member name="C:pLastPosZ" value="339">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pExamenVehicle" value="338">
+			<member name="C:pExamenVehicle" value="340">
 			</member>
-			<member name="C:pExamenCheckpoint" value="339">
+			<member name="C:pExamenCheckpoint" value="341">
 			</member>
-			<member name="C:pFlymode" value="340">
+			<member name="C:pFlymode" value="342">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pFreeze" value="341">
+			<member name="C:pFreeze" value="343">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pMark" value="342">
+			<member name="C:pMark" value="344">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pMarkX" value="343">
+			<member name="C:pMarkX" value="345">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pMarkY" value="344">
+			<member name="C:pMarkY" value="346">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pMarkZ" value="345">
+			<member name="C:pMarkZ" value="347">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pHealth" value="346">
+			<member name="C:pHealth" value="348">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pArmour" value="347">
+			<member name="C:pArmour" value="349">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pMarkInterior" value="348">
+			<member name="C:pMarkInterior" value="350">
 			</member>
-			<member name="C:pTutorialSeconds" value="349">
+			<member name="C:pTutorialSeconds" value="351">
 			</member>
-			<member name="C:pReportChat" value="350">
+			<member name="C:pReportChat" value="352">
 			</member>
-			<member name="C:pTutorialActive" value="351">
+			<member name="C:pTutorialActive" value="353">
 			</member>
-			<member name="C:pCheckpoint" value="352">
+			<member name="C:pCheckpoint" value="354">
 			</member>
-			<member name="C:pCheckpointID" value="353">
+			<member name="C:pCheckpointID" value="355">
 			</member>
-			<member name="C:pinBusiness" value="354">
+			<member name="C:pinBusiness" value="356">
 			</member>
-			<member name="C:pinHouse" value="355">
+			<member name="C:pinHouse" value="357">
 			</member>
-			<member name="C:pinVehicle" value="356">
+			<member name="C:pinVehicle" value="358">
 			</member>
-			<member name="C:pinDealer" value="357">
+			<member name="C:pinDealer" value="359">
 			</member>
-			<member name="C:pinFaction" value="358">
+			<member name="C:pinFaction" value="360">
 			</member>
-			<member name="C:pTintaApasata" value="359">
+			<member name="C:pTintaApasata" value="361">
 			</member>
-			<member name="C:pTransferMoney" value="360">
+			<member name="C:pTransferMoney" value="362">
 			</member>
-			<member name="C:pTransferPlayer" value="361">
+			<member name="C:pTransferPlayer" value="363">
 			</member>
-			<member name="C:pspecFaction" value="362">
+			<member name="C:pspecFaction" value="364">
 			</member>
-			<member name="C:pPhoneOnline" value="363">
+			<member name="C:pPhoneOnline" value="365">
 			</member>
-			<member name="C:pReply" value="364">
+			<member name="C:pReply" value="366">
 			</member>
-			<member name="C:pDistanceCheckpoint" value="365">
+			<member name="C:pDistanceCheckpoint" value="367">
 			</member>
-			<member name="C:pFactionDuty" value="366">
+			<member name="C:pFactionDuty" value="368">
 			</member>
-			<member name="C:pCuffed" value="367">
+			<member name="C:pCuffed" value="369">
 			</member>
-			<member name="C:pTazer" value="368">
+			<member name="C:pTazer" value="370">
 			</member>
-			<member name="C:pMDCon" value="369">
+			<member name="C:pMDCon" value="371">
 			</member>
-			<member name="C:pCollision" value="370">
+			<member name="C:pCollision" value="372">
 			</member>
-			<member name="C:pUnFreezeTime" value="371">
+			<member name="C:pUnFreezeTime" value="373">
 			</member>
-			<member name="C:pFreezed" value="372">
+			<member name="C:pFreezed" value="374">
 			</member>
-			<member name="C:pAnimLibLoaded" value="373">
+			<member name="C:pAnimLibLoaded" value="375">
 			</member>
-			<member name="C:pAnimLooping" value="374">
+			<member name="C:pAnimLooping" value="376">
 			</member>
-			<member name="C:pTaxiDuty" value="375">
+			<member name="C:pTaxiDuty" value="377">
 			</member>
-			<member name="C:pTaxiFare" value="376">
+			<member name="C:pTaxiFare" value="378">
 			</member>
-			<member name="C:pTaxiDriver" value="377">
+			<member name="C:pTaxiDriver" value="379">
 			</member>
-			<member name="C:pTaxiMoney" value="378">
+			<member name="C:pTaxiMoney" value="380">
 			</member>
-			<member name="C:pLiveOffer" value="379">
+			<member name="C:pLiveOffer" value="381">
 			</member>
-			<member name="C:pTalkingLive" value="380">
+			<member name="C:pTalkingLive" value="382">
 			</member>
-			<member name="C:pQuestionText" value="381">
+			<member name="C:pQuestionText" value="383">
 				<size value="180"/>
 			</member>
-			<member name="C:pInLesson" value="561">
+			<member name="C:pInLesson" value="563">
 			</member>
-			<member name="C:pLesson" value="562">
+			<member name="C:pLesson" value="564">
 			</member>
-			<member name="C:pLicense" value="563">
+			<member name="C:pLicense" value="565">
 			</member>
-			<member name="C:pLicenseOffer" value="564">
+			<member name="C:pLicenseOffer" value="566">
 			</member>
-			<member name="C:pShowTurfs" value="565">
+			<member name="C:pShowTurfs" value="567">
 			</member>
-			<member name="C:pSafeID" value="566">
+			<member name="C:pSafeID" value="568">
 			</member>
-			<member name="C:pSelectedItem" value="567">
+			<member name="C:pSelectedItem" value="569">
 			</member>
-			<member name="C:pOnTurf" value="568">
+			<member name="C:pOnTurf" value="570">
 			</member>
-			<member name="C:areaBizz" value="569">
+			<member name="C:areaBizz" value="571">
 			</member>
-			<member name="C:areaHouse" value="570">
+			<member name="C:areaHouse" value="572">
 			</member>
-			<member name="C:areaFaction" value="571">
+			<member name="C:areaFaction" value="573">
 			</member>
-			<member name="C:areaJob" value="572">
+			<member name="C:areaJob" value="574">
 			</member>
-			<member name="C:areaSafe" value="573">
+			<member name="C:areaSafe" value="575">
 			</member>
-			<member name="C:pEnableBoost" value="574">
+			<member name="C:pEnableBoost" value="576">
 			</member>
-			<member name="C:pAdminCover" value="575">
+			<member name="C:pAdminCover" value="577">
 				<size value="24"/>
 			</member>
-			<member name="C:pDrunkLevel" value="599">
+			<member name="C:pDrunkLevel" value="601">
 			</member>
-			<member name="C:pFPS" value="600">
+			<member name="C:pFPS" value="602">
 			</member>
-			<member name="C:pAdText" value="601">
+			<member name="C:pAccountBlocked" value="603">
+			</member>
+			<member name="C:pAdText" value="604">
 				<size value="256"/>
 			</member>
-			<member name="C:pAdminDuty" value="857">
+			<member name="C:pAdminDuty" value="860">
 			</member>
-			<member name="C:pSpectate" value="858">
+			<member name="C:pSpectate" value="861">
 			</member>
-			<member name="C:pContract" value="859">
+			<member name="C:pContract" value="862">
 			</member>
-			<member name="C:pContractID" value="860">
+			<member name="C:pContractID" value="863">
 			</member>
-			<member name="C:pWorking" value="861">
+			<member name="C:pWorking" value="864">
 			</member>
-			<member name="C:pFishSteps" value="862">
+			<member name="C:pFishSteps" value="865">
 			</member>
-			<member name="C:pFishMoney" value="863">
+			<member name="C:pFishMoney" value="866">
 			</member>
-			<member name="C:pFishCaught" value="864">
+			<member name="C:pFishCaught" value="867">
 			</member>
-			<member name="C:pSelectVehicle" value="865">
+			<member name="C:pGasTimer" value="868">
+				<tagname value="Timer"/>
+			</member>
+			<member name="C:pCertificateStep" value="869">
+			</member>
+			<member name="C:pSelectVehicle" value="870">
 				<size value="20"/>
 			</member>
 		</member>
@@ -1409,9 +1419,6 @@
 		<member name="C:EOS" value="0">
 			<referrer name="string_fast"/>
 			<referrer name="sendNearbyMessage"/>
-			<referrer name="warnPlayer"/>
-			<referrer name="banPlayer"/>
-			<referrer name="mutePlayer"/>
 			<referrer name="formatNumber"/>
 			<referrer name="update"/>
 			<referrer name="resetVars"/>
@@ -2027,7 +2034,6 @@
 			<referrer name="SetPlayerFreeze"/>
 			<referrer name="questProgress"/>
 			<referrer name="giveQuest"/>
-			<referrer name="resetQuest"/>
 			<referrer name="checkMission"/>
 			<referrer name="faceReclama"/>
 			<referrer name="removeFunction"/>
@@ -2053,7 +2059,6 @@
 			<referrer name="pc_cmd_carcolor"/>
 			<referrer name="pc_cmd_park"/>
 			<referrer name="pc_cmd_vehicles"/>
-			<referrer name="updateGasCan"/>
 			<referrer name="pc_cmd_addbizgas"/>
 			<referrer name="pc_cmd_fill"/>
 			<referrer name="gasTimer"/>
@@ -2260,6 +2265,7 @@
 			<referrer name="dialog_DIALOG_EMAILS2"/>
 			<referrer name="pc_cmd_emails"/>
 			<referrer name="pc_cmd_insertemail"/>
+			<referrer name="pc_cmd_certificate"/>
 			<referrer name="OnQueryError"/>
 			<referrer name="CB_OnGameModeInit"/>
 			<referrer name="ScriptInit_OnGameModeExit"/>
@@ -3273,7 +3279,6 @@
 			<referrer name="pc_cmd_endlive"/>
 			<referrer name="TimerWar"/>
 			<referrer name="onPlayerLogin"/>
-			<referrer name="resetQuest"/>
 			<referrer name="getVehicleOwner"/>
 			<referrer name="Timers"/>
 			<referrer name="PayDay"/>
@@ -3282,6 +3287,7 @@
 			<referrer name="pc_cmd_banipoffline"/>
 			<referrer name="pc_cmd_unjailo"/>
 			<referrer name="pc_cmd_jailo"/>
+			<referrer name="pc_cmd_resetquests"/>
 			<referrer name="pc_cmd_clearchat"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
 			<referrer name="OnPlayerDeath"/>
@@ -3484,9 +3490,6 @@
 		</member>
 		<member name="F:SQL">
 			<tagname value="MySQL"/>
-			<referrer name="warnPlayer"/>
-			<referrer name="banPlayer"/>
-			<referrer name="mutePlayer"/>
 			<referrer name="update"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="dialog_REGISTER"/>
@@ -3510,7 +3513,6 @@
 			<referrer name="SaveComponent"/>
 			<referrer name="TimerCar"/>
 			<referrer name="pc_cmd_park"/>
-			<referrer name="Timers"/>
 			<referrer name="pc_cmd_addexamcp"/>
 			<referrer name="pc_cmd_banoffline"/>
 			<referrer name="pc_cmd_unban"/>
@@ -3984,6 +3986,7 @@
 			<referrer name="pc_cmd_buy"/>
 			<referrer name="pc_cmd_ad"/>
 			<referrer name="pc_cmd_createbusiness"/>
+			<referrer name="pc_cmd_addbizgas"/>
 			<referrer name="pc_cmd_gotobusiness"/>
 			<referrer name="pc_cmd_findbusiness"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
@@ -4073,6 +4076,12 @@
 			<referrer name="pc_cmd_addexamcp"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
+		</member>
+		<member name="F:examenTD">
+			<tagname value="PlayerText"/>
+			<referrer name="playerTextDraws"/>
+			<referrer name="pc_cmd_certificate"/>
+			<referrer name="OnPlayerClickPlayerTextDraw"/>
 		</member>
 		<member name="F:exhaust">
 			<referrer name="SaveComponent"/>
@@ -4205,9 +4214,6 @@
 			<referrer name="AsmGetPreviousWriteOffset"/>
 		</member>
 		<member name="F:gQuery">
-			<referrer name="warnPlayer"/>
-			<referrer name="banPlayer"/>
-			<referrer name="mutePlayer"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="dialog_REGISTER"/>
 			<referrer name="dialog_LOGIN"/>
@@ -4312,7 +4318,6 @@
 		</member>
 		<member name="F:gasInfo">
 			<referrer name="LoadGasCan"/>
-			<referrer name="updateGasCan"/>
 			<referrer name="pc_cmd_addbizgas"/>
 			<referrer name="pc_cmd_fill"/>
 			<referrer name="gasTimer"/>
@@ -4697,6 +4702,7 @@
 			<referrer name="dialog_DIALOG_CLANSETTINGS1"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS2"/>
 			<referrer name="MyHttpResponse"/>
+			<referrer name="twofa"/>
 			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
@@ -4716,7 +4722,6 @@
 			<referrer name="getNeedProgress"/>
 			<referrer name="questProgress"/>
 			<referrer name="giveQuest"/>
-			<referrer name="resetQuest"/>
 			<referrer name="checkMission"/>
 			<referrer name="removeFunction"/>
 			<referrer name="Reclama"/>
@@ -4733,6 +4738,8 @@
 			<referrer name="pc_cmd_park"/>
 			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="pc_cmd_addbizgas"/>
+			<referrer name="pc_cmd_fill"/>
+			<referrer name="gasTimer"/>
 			<referrer name="TimerJail"/>
 			<referrer name="TimerWanted"/>
 			<referrer name="Timers"/>
@@ -4892,6 +4899,7 @@
 			<referrer name="dialog_DIALOG_EMAILS2"/>
 			<referrer name="pc_cmd_emails"/>
 			<referrer name="pc_cmd_insertemail"/>
+			<referrer name="pc_cmd_certificate"/>
 			<referrer name="OnPlayerRequestClass"/>
 			<referrer name="SSCANF_OnPlayerConnect"/>
 			<referrer name="CB_OnPlayerDisconnect"/>
@@ -10360,6 +10368,7 @@
 			<referrer name="pc_cmd_fish"/>
 			<referrer name="cancelDriveTest"/>
 			<referrer name="pc_cmd_buycar"/>
+			<referrer name="pc_cmd_certificate"/>
 			<dependency name="Callback_SetFlag"/>
 			<dependency name="SelectTextDraw"/>
 			<dependency name="e_bSelectTD"/>
@@ -11701,7 +11710,9 @@
 			<referrer name="LoadJobs"/>
 			<referrer name="LoadBusinesses"/>
 			<referrer name="pc_cmd_createbusiness"/>
-			<referrer name="updateGasCan"/>
+			<referrer name="LoadGasCan"/>
+			<referrer name="pc_cmd_addbizgas"/>
+			<referrer name="loadMaps"/>
 			<param name="text">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -11877,7 +11888,9 @@
 			<referrer name="LoadJobs"/>
 			<referrer name="LoadBusinesses"/>
 			<referrer name="pc_cmd_createbusiness"/>
-			<referrer name="updateGasCan"/>
+			<referrer name="LoadGasCan"/>
+			<referrer name="pc_cmd_addbizgas"/>
+			<referrer name="loadMaps"/>
 			<param name="modelid">
 			</param>
 			<param name="type">
@@ -15642,6 +15655,7 @@
 		</member>
 		<member name="M:HTTP" syntax="HTTP(index, type, url[], data[], callback[])">
 			<attribute name="native"/>
+			<referrer name="twofa"/>
 			<referrer name="SSCANF_OnPlayerConnect"/>
 			<param name="index">
 			</param>
@@ -16682,16 +16696,7 @@
 			<referrer name="Fly"/>
 			<referrer name="GetPlayerID"/>
 			<referrer name="SetPlayerToFactionColor"/>
-			<referrer name="resetQuest"/>
 			<param name="playerid">
-			</param>
-		</member>
-		<member name="M:IsPlayerInAnyDynamicArea" syntax="IsPlayerInAnyDynamicArea(playerid, recheck)">
-			<attribute name="native"/>
-			<referrer name="pc_cmd_fill"/>
-			<param name="playerid">
-			</param>
-			<param name="recheck">
 			</param>
 		</member>
 		<member name="M:IsPlayerInAnyVehicle" syntax="IsPlayerInAnyVehicle(playerid)">
@@ -16847,6 +16852,7 @@
 			<referrer name="pc_cmd_area"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="pc_cmd_finalquest"/>
+			<referrer name="pc_cmd_certificate"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<referrer name="CB_OnPlayerWeaponShot"/>
 			<param name="playerid">
@@ -18763,8 +18769,10 @@
 		</member>
 		<member name="M:LoadGasCan" syntax="LoadGasCan()">
 			<attribute name="public"/>
-			<stacksize value="12"/>
+			<stacksize value="4115"/>
 			<dependency name="AreaGas"/>
+			<dependency name="CreateDynamic3DTextLabel"/>
+			<dependency name="CreateDynamicPickup"/>
 			<dependency name="CreateDynamicSphere"/>
 			<dependency name="E_STREAMER_EXTRA_ID"/>
 			<dependency name="Iter_Add_InternalC"/>
@@ -18778,6 +18786,8 @@
 			<dependency name="gBizID"/>
 			<dependency name="gFull"/>
 			<dependency name="gID"/>
+			<dependency name="gLabel"/>
+			<dependency name="gPickup"/>
 			<dependency name="gX"/>
 			<dependency name="gY"/>
 			<dependency name="gZ"/>
@@ -18785,7 +18795,7 @@
 			<dependency name="gasInfo"/>
 			<dependency name="print"/>
 			<dependency name="printf"/>
-			<dependency name="updateGasCan"/>
+			<dependency name="string_fast"/>
 		</member>
 		<member name="M:LoadHouses" syntax="LoadHouses()">
 			<attribute name="public"/>
@@ -19863,8 +19873,12 @@
 			<stacksize value="7"/>
 			<dependency name="CB_CancelSelectTextDraw"/>
 			<dependency name="PlayerTextDrawHide"/>
+			<dependency name="PlayerTextDrawSetString"/>
 			<dependency name="SendClientMessage"/>
+			<dependency name="examenTD"/>
 			<dependency name="fishTD"/>
+			<dependency name="pCertificate"/>
+			<dependency name="pCertificateStep"/>
 			<dependency name="pFishSteps"/>
 			<dependency name="pFishingRod"/>
 			<dependency name="playerInfo"/>
@@ -21303,6 +21317,7 @@
 			<referrer name="pc_cmd_ad"/>
 			<referrer name="pc_cmd_fill"/>
 			<referrer name="pc_cmd_accept"/>
+			<referrer name="pc_cmd_certificate"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<dependency name="GetPlayerCash"/>
 			<dependency name="false"/>
@@ -21559,7 +21574,9 @@
 			<referrer name="onPlayerLogin"/>
 			<referrer name="TimerSpeedo"/>
 			<referrer name="pc_cmd_engine"/>
+			<referrer name="pc_cmd_certificate"/>
 			<referrer name="CB_OnPlayerStateChange"/>
+			<referrer name="OnPlayerClickPlayerTextDraw"/>
 			<param name="playerid">
 			</param>
 			<param name="text">
@@ -21588,6 +21605,7 @@
 			<referrer name="ShowDealerShipTD"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="pc_cmd_buycar"/>
+			<referrer name="pc_cmd_certificate"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<param name="playerid">
 			</param>
@@ -22762,6 +22780,7 @@
 			<referrer name="pc_cmd_clan"/>
 			<referrer name="dialog_DIALOG_CLAN"/>
 			<referrer name="MyHttpResponse"/>
+			<referrer name="twofa"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
 			<referrer name="checkAccountInBanDatabase"/>
@@ -22774,7 +22793,6 @@
 			<referrer name="checkAccountJail"/>
 			<referrer name="checkAccountInDatabaseJailo"/>
 			<referrer name="checkAccountJailo"/>
-			<referrer name="resetQuest"/>
 			<referrer name="checkMission"/>
 			<referrer name="Reclama"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
@@ -22855,6 +22873,7 @@
 			<referrer name="pc_cmd_unjailo"/>
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="pc_cmd_jailo"/>
+			<referrer name="pc_cmd_resetquests"/>
 			<referrer name="pc_cmd_showfreq"/>
 			<referrer name="pc_cmd_speed"/>
 			<referrer name="pc_cmd_clearchat"/>
@@ -22970,6 +22989,7 @@
 			<referrer name="pc_cmd_buycar"/>
 			<referrer name="pc_cmd_emails"/>
 			<referrer name="pc_cmd_insertemail"/>
+			<referrer name="pc_cmd_certificate"/>
 			<referrer name="OnPlayerSpawn"/>
 			<referrer name="OnPlayerEnterVehicle"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
@@ -24980,7 +25000,6 @@
 			<dependency name="Iterator@loggedPlayers"/>
 			<dependency name="MoveObject"/>
 			<dependency name="PayDayTime"/>
-			<dependency name="SQL"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerDrunkLevel"/>
 			<dependency name="SetPlayerPos"/>
@@ -24992,28 +25011,31 @@
 			<dependency name="clanInfo"/>
 			<dependency name="gates"/>
 			<dependency name="gettime"/>
-			<dependency name="mysql_tquery"/>
 			<dependency name="mysql_unprocessed_queries"/>
 			<dependency name="pAFKSeconds"/>
 			<dependency name="pAdmin"/>
+			<dependency name="pCertificate"/>
+			<dependency name="pDailyMission"/>
 			<dependency name="pDrunkLevel"/>
 			<dependency name="pFPS"/>
 			<dependency name="pFPSShow"/>
 			<dependency name="pLastPosX"/>
 			<dependency name="pLastPosY"/>
 			<dependency name="pLastPosZ"/>
+			<dependency name="pSQLID"/>
 			<dependency name="pSeconds"/>
 			<dependency name="personalVehicle"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="pvAge"/>
+			<dependency name="questProgress"/>
 			<dependency name="random"/>
-			<dependency name="resetQuest"/>
 			<dependency name="secinmin"/>
 			<dependency name="serverHud"/>
 			<dependency name="string_fast"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="update"/>
 			<dependency name="va_GameTextForAll"/>
 			<dependency name="va_PlayerTextDrawSetString"/>
 		</member>
@@ -25257,6 +25279,7 @@
 		<member name="M:UpdateDynamic3DTextLabelText" syntax="UpdateDynamic3DTextLabelText(id, color, text[])">
 			<attribute name="native"/>
 			<referrer name="pc_cmd_flock"/>
+			<referrer name="gasTimer"/>
 			<param name="id">
 				<paraminfo>Text3D </paraminfo>
 			</param>
@@ -25928,6 +25951,7 @@
 			<referrer name="removeFunction"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="TimerSpeedo"/>
+			<referrer name="gasTimer"/>
 			<referrer name="TimerJail"/>
 			<referrer name="TimerWanted"/>
 			<referrer name="TimerTutorial"/>
@@ -26167,26 +26191,21 @@
 			</param>
 		</member>
 		<member name="M:banPlayer" syntax="banPlayer(playerid, adminid, days, reason[])">
-			<stacksize value="41"/>
+			<stacksize value="36"/>
 			<referrer name="warnPlayer"/>
 			<referrer name="pc_cmd_ban"/>
-			<dependency name="EOS"/>
 			<dependency name="GetPlayerName"/>
 			<dependency name="I@"/>
 			<dependency name="J@"/>
-			<dependency name="SQL"/>
 			<dependency name="SetPVarInt"/>
-			<dependency name="gQuery"/>
 			<dependency name="getDateTime"/>
 			<dependency name="gettime"/>
 			<dependency name="kickEx_yT@"/>
-			<dependency name="mysql_format"/>
-			<dependency name="mysql_pquery"/>
 			<dependency name="pName"/>
 			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
 			<dependency name="true"/>
+			<dependency name="update"/>
 			<param name="playerid">
 			</param>
 			<param name="adminid">
@@ -29264,7 +29283,7 @@
 			</param>
 		</member>
 		<member name="M:gasTimer" syntax="gasTimer(playerid, procent)">
-			<stacksize value="4104"/>
+			<stacksize value="4105"/>
 			<referrer name="gasTimer@_yT"/>
 			<dependency name="operator-(Float:,_:)"/>
 			<dependency name="operator+(Float:,_:)"/>
@@ -29274,14 +29293,21 @@
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="GivePlayerCash"/>
 			<dependency name="TogglePlayerControllable"/>
+			<dependency name="UpdateDynamic3DTextLabelText"/>
+			<dependency name="_Timer_F"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
+			<dependency name="gBizID"/>
 			<dependency name="gFull"/>
+			<dependency name="gLabel"/>
 			<dependency name="gasInfo"/>
 			<dependency name="gasInfo"/>
+			<dependency name="pGasTimer"/>
 			<dependency name="personalVehicle"/>
 			<dependency name="personalVehicle"/>
+			<dependency name="playerInfo"/>
 			<dependency name="pvFuel"/>
+			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
 			<dependency name="vehicle_fuel"/>
@@ -29898,8 +29924,10 @@
 			<stacksize value="20"/>
 			<referrer name="CB_OnGameModeInit"/>
 			<dependency name="Float:operator=(_:)"/>
+			<dependency name="CreateDynamic3DTextLabel"/>
 			<dependency name="CreateDynamicObject"/>
 			<dependency name="CreateDynamicObjectEx"/>
+			<dependency name="CreateDynamicPickup"/>
 			<dependency name="CreateObject"/>
 			<dependency name="SetDynamicObjectMaterial"/>
 			<dependency name="gates"/>
@@ -30101,20 +30129,15 @@
 			        <remarks>  Displays errors in secure mode.  Inserts a string.  Shorthand for <symbolref name="Malloc_SetS" />.  </remarks> 
 		</member>
 		<member name="M:mutePlayer" syntax="mutePlayer(playerid, adminid, minutes, reason[])">
-			<stacksize value="37"/>
+			<stacksize value="34"/>
 			<referrer name="pc_cmd_mute"/>
-			<dependency name="EOS"/>
 			<dependency name="GetPlayerName"/>
 			<dependency name="Iter_Add_InternalC"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iter_Single@MutedPlayers"/>
 			<dependency name="Iterator@MutedPlayers"/>
-			<dependency name="SQL"/>
 			<dependency name="SetPVarInt"/>
-			<dependency name="gQuery"/>
 			<dependency name="gettime"/>
-			<dependency name="mysql_format"/>
-			<dependency name="mysql_pquery"/>
 			<dependency name="pMute"/>
 			<dependency name="pName"/>
 			<dependency name="pSQLID"/>
@@ -30170,9 +30193,6 @@
 		</member>
 		<member name="M:mysql_format" syntax="mysql_format(handle, output[], max_len, format[], ...)">
 			<attribute name="native"/>
-			<referrer name="warnPlayer"/>
-			<referrer name="banPlayer"/>
-			<referrer name="mutePlayer"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="dialog_REGISTER"/>
 			<referrer name="dialog_LOGIN"/>
@@ -30221,9 +30241,6 @@
 		</member>
 		<member name="M:mysql_pquery" syntax="mysql_pquery(handle, query[], callback[], format[], ...)">
 			<attribute name="native"/>
-			<referrer name="warnPlayer"/>
-			<referrer name="banPlayer"/>
-			<referrer name="mutePlayer"/>
 			<referrer name="kickPlayer"/>
 			<referrer name="onPlayerLogin"/>
 			<param name="handle">
@@ -30280,7 +30297,6 @@
 			<referrer name="SaveComponent"/>
 			<referrer name="TimerCar"/>
 			<referrer name="pc_cmd_park"/>
-			<referrer name="Timers"/>
 			<referrer name="pc_cmd_addexamcp"/>
 			<referrer name="pc_cmd_banoffline"/>
 			<referrer name="pc_cmd_unban"/>
@@ -30449,6 +30465,7 @@
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_pquery"/>
 			<dependency name="mysql_tquery"/>
+			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pArrested"/>
 			<dependency name="pBank"/>
@@ -30456,6 +30473,7 @@
 			<dependency name="pBoatLicenseSuspend"/>
 			<dependency name="pBusiness"/>
 			<dependency name="pBusinessID"/>
+			<dependency name="pCertificate"/>
 			<dependency name="pClan"/>
 			<dependency name="pClanAge"/>
 			<dependency name="pClanRank"/>
@@ -30537,6 +30555,7 @@
 			<dependency name="sscanf"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
+			<dependency name="twofa"/>
 			<dependency name="update"/>
 			<dependency name="updateLevelBar"/>
 			<dependency name="updatePlayer"/>
@@ -30898,8 +30917,10 @@
 		</member>
 		<member name="M:pc_cmd_addbizgas" syntax="pc_cmd_addbizgas(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="16"/>
+			<stacksize value="4116"/>
 			<dependency name="Float:operator=(_:)"/>
+			<dependency name="CreateDynamic3DTextLabel"/>
+			<dependency name="CreateDynamicPickup"/>
 			<dependency name="CreateDynamicSphere"/>
 			<dependency name="E_STREAMER_EXTRA_ID"/>
 			<dependency name="GetPlayerPos"/>
@@ -30910,10 +30931,14 @@
 			<dependency name="Iterator@ServerGasCan"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="Streamer_SetIntData"/>
+			<dependency name="bizInfo"/>
+			<dependency name="bizType"/>
 			<dependency name="gArea"/>
 			<dependency name="gBizID"/>
 			<dependency name="gFull"/>
 			<dependency name="gID"/>
+			<dependency name="gLabel"/>
+			<dependency name="gPickup"/>
 			<dependency name="gX"/>
 			<dependency name="gY"/>
 			<dependency name="gZ"/>
@@ -30922,10 +30947,10 @@
 			<dependency name="pAdmin"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerSyntax"/>
+			<dependency name="string_fast"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
 			<dependency name="update"/>
-			<dependency name="updateGasCan"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
@@ -32199,6 +32224,30 @@
 			<dependency name="true"/>
 			<dependency name="update"/>
 			<dependency name="vehicle_personal"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:pc_cmd_certificate" syntax="pc_cmd_certificate(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="15"/>
+			<dependency name="CB_SelectTextDraw"/>
+			<dependency name="IsPlayerInRangeOfPoint"/>
+			<dependency name="PlayerMoney"/>
+			<dependency name="PlayerTextDrawSetString"/>
+			<dependency name="PlayerTextDrawShow"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="examenTD"/>
+			<dependency name="pCertificate"/>
+			<dependency name="pCertificateStep"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="sendPlayerSyntax"/>
+			<dependency name="strmatch"/>
+			<dependency name="true"/>
+			<dependency name="unformat"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -33532,7 +33581,6 @@
 			<dependency name="GetPlayerNumberDynamicAreas"/>
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="I@"/>
-			<dependency name="IsPlayerInAnyDynamicArea"/>
 			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="IsPlayerInRangeOfPoint"/>
 			<dependency name="J@"/>
@@ -33545,6 +33593,9 @@
 			<dependency name="gZ"/>
 			<dependency name="gasInfo"/>
 			<dependency name="gasTimer_yT@"/>
+			<dependency name="pGasTimer"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -36215,11 +36266,18 @@
 		</member>
 		<member name="M:pc_cmd_resetquests" syntax="pc_cmd_resetquests(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="3"/>
+			<stacksize value="8"/>
+			<dependency name="Iterator@loggedPlayers"/>
+			<dependency name="SendClientMessage"/>
 			<dependency name="pAdmin"/>
+			<dependency name="pDailyMission"/>
+			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
-			<dependency name="resetQuest"/>
+			<dependency name="playerInfo"/>
+			<dependency name="questProgress"/>
+			<dependency name="random"/>
 			<dependency name="true"/>
+			<dependency name="update"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -38014,6 +38072,8 @@
 			<dependency name="PlayerTextDrawSetShadow"/>
 			<dependency name="PlayerTextDrawTextSize"/>
 			<dependency name="PlayerTextDrawUseBox"/>
+			<dependency name="examenTD"/>
+			<dependency name="examenTD"/>
 			<dependency name="fareTD"/>
 			<dependency name="fishTD"/>
 			<dependency name="fishTD"/>
@@ -38090,7 +38150,8 @@
 			<attribute name="public"/>
 			<stacksize value="9"/>
 			<referrer name="giveQuest"/>
-			<referrer name="resetQuest"/>
+			<referrer name="Timers"/>
+			<referrer name="pc_cmd_resetquests"/>
 			<dependency name="pNeedProgress"/>
 			<dependency name="pProgress"/>
 			<dependency name="pSQLID"/>
@@ -38119,11 +38180,11 @@
 			<referrer name="dialog_BUYBIZ"/>
 			<referrer name="questProgress"/>
 			<referrer name="giveQuest"/>
-			<referrer name="resetQuest"/>
 			<referrer name="checkMission"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="Timers"/>
 			<referrer name="pc_cmd_jail"/>
+			<referrer name="pc_cmd_resetquests"/>
 			<referrer name="InsertCarDS"/>
 			<referrer name="OnPlayerSpawn"/>
 			<referrer name="OnPlayerDeath"/>
@@ -38289,24 +38350,6 @@
 			<param name="playerid">
 			</param>
 		</member>
-		<member name="M:resetQuest" syntax="resetQuest()">
-			<attribute name="public"/>
-			<stacksize value="8"/>
-			<referrer name="Timers"/>
-			<referrer name="pc_cmd_resetquests"/>
-			<dependency name="IsPlayerConnected"/>
-			<dependency name="Iterator@loggedPlayers"/>
-			<dependency name="SendClientMessage"/>
-			<dependency name="pDailyMission"/>
-			<dependency name="pLogged"/>
-			<dependency name="pSQLID"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="questProgress"/>
-			<dependency name="random"/>
-			<dependency name="true"/>
-			<dependency name="update"/>
-		</member>
 		<member name="M:resetVars" syntax="resetVars(playerid)">
 			<stacksize value="5"/>
 			<referrer name="SSCANF_OnPlayerConnect"/>
@@ -38329,6 +38372,7 @@
 			<dependency name="pBank"/>
 			<dependency name="pBoatLicense"/>
 			<dependency name="pBoatLicenseSuspend"/>
+			<dependency name="pCertificateStep"/>
 			<dependency name="pCheckpoint"/>
 			<dependency name="pCheckpointID"/>
 			<dependency name="pContract"/>
@@ -38909,6 +38953,7 @@
 			<referrer name="pc_cmd_findhouse"/>
 			<referrer name="pc_cmd_id"/>
 			<referrer name="pc_cmd_insertemail"/>
+			<referrer name="pc_cmd_certificate"/>
 			<dependency name="EOS"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="YVA2_DummyPush"/>
@@ -39484,6 +39529,7 @@
 			<referrer name="pc_cmd_cinvite"/>
 			<referrer name="dialog_DIALOG_CLAN"/>
 			<referrer name="SetClanTag"/>
+			<referrer name="twofa"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
 			<referrer name="BanIPPlayer"/>
@@ -39496,7 +39542,9 @@
 			<referrer name="pc_cmd_lock"/>
 			<referrer name="pc_cmd_carplate"/>
 			<referrer name="pc_cmd_vehicles"/>
-			<referrer name="updateGasCan"/>
+			<referrer name="LoadGasCan"/>
+			<referrer name="pc_cmd_addbizgas"/>
+			<referrer name="gasTimer"/>
 			<referrer name="TimerM"/>
 			<referrer name="Timers"/>
 			<referrer name="TimerTutorial"/>
@@ -39643,6 +39691,7 @@
 			<referrer name="pc_cmd_jailo"/>
 			<referrer name="pc_cmd_acover"/>
 			<referrer name="pc_cmd_cancel"/>
+			<referrer name="pc_cmd_certificate"/>
 			<referrer name="OnPlayerText"/>
 			<dependency name="false"/>
 			<dependency name="strcmp"/>
@@ -39817,6 +39866,7 @@
 			<dependency name="pFishCaughtNormal"/>
 			<dependency name="pFishCaughtSpecial"/>
 			<dependency name="pFishMoney"/>
+			<dependency name="pFishSkill"/>
 			<dependency name="pFishingRod"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
@@ -39863,6 +39913,25 @@
 			<referrer name="StrToUpper"/>
 			<referrer name="YHash"/>
 			<param name="c">
+			</param>
+		</member>
+		<member name="M:twofa" syntax="twofa(playerid)">
+			<attribute name="public"/>
+			<stacksize value="4106"/>
+			<referrer name="onPlayerLogin"/>
+			<dependency name="HTTP"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="pAccountBlocked"/>
+			<dependency name="pEMail"/>
+			<dependency name="pIp"/>
+			<dependency name="pLastIp"/>
+			<dependency name="pSQLID"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="string_fast"/>
+			<dependency name="update"/>
+			<dependency name="va_SendClientMessage"/>
+			<param name="playerid">
 			</param>
 		</member>
 		<member name="M:u@" syntax="u@(u[])">
@@ -39986,6 +40055,7 @@
 			<referrer name="pc_cmd_findhouse"/>
 			<referrer name="pc_cmd_id"/>
 			<referrer name="pc_cmd_insertemail"/>
+			<referrer name="pc_cmd_certificate"/>
 			<param name="data">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -40011,6 +40081,7 @@
 		<member name="M:update" syntax="update(text[], ...)">
 			<stacksize value="15"/>
 			<referrer name="warnPlayer"/>
+			<referrer name="banPlayer"/>
 			<referrer name="mutePlayer"/>
 			<referrer name="dialog_GENDER"/>
 			<referrer name="dialog_SPAWNCHANGE"/>
@@ -40074,6 +40145,7 @@
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS1"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS2"/>
+			<referrer name="twofa"/>
 			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
@@ -40084,7 +40156,6 @@
 			<referrer name="checkAccountJailo"/>
 			<referrer name="questProgress"/>
 			<referrer name="giveQuest"/>
-			<referrer name="resetQuest"/>
 			<referrer name="checkMission"/>
 			<referrer name="removeFunction"/>
 			<referrer name="Reclama"/>
@@ -40098,6 +40169,7 @@
 			<referrer name="pc_cmd_addbizgas"/>
 			<referrer name="TimerJail"/>
 			<referrer name="TimerWanted"/>
+			<referrer name="Timers"/>
 			<referrer name="TimerTutorial"/>
 			<referrer name="PayDay"/>
 			<referrer name="pc_cmd_unwarn"/>
@@ -40112,6 +40184,7 @@
 			<referrer name="pc_cmd_reportmute"/>
 			<referrer name="pc_cmd_unjail"/>
 			<referrer name="pc_cmd_jail"/>
+			<referrer name="pc_cmd_resetquests"/>
 			<referrer name="pc_cmd_buylevel"/>
 			<referrer name="pc_cmd_exam"/>
 			<referrer name="pc_cmd_accept"/>
@@ -40140,27 +40213,6 @@
 			</param>
 			<param name="...">
 				<paraminfo> {_,Language,Bit,Text,Menu,Style,XML,Bintree,Group,Timer,Float,File,Text3D} </paraminfo>
-			</param>
-		</member>
-		<member name="M:updateGasCan" syntax="updateGasCan(gid)">
-			<attribute name="public"/>
-			<stacksize value="4113"/>
-			<referrer name="LoadGasCan"/>
-			<referrer name="pc_cmd_addbizgas"/>
-			<dependency name="CreateDynamic3DTextLabel"/>
-			<dependency name="CreateDynamicPickup"/>
-			<dependency name="gBizID"/>
-			<dependency name="gFull"/>
-			<dependency name="gLabel"/>
-			<dependency name="gPickup"/>
-			<dependency name="gX"/>
-			<dependency name="gY"/>
-			<dependency name="gZ"/>
-			<dependency name="gasInfo"/>
-			<dependency name="gasInfo"/>
-			<dependency name="string_fast"/>
-			<dependency name="true"/>
-			<param name="gid">
 			</param>
 		</member>
 		<member name="M:updateLevelBar" syntax="updateLevelBar(playerid)">
@@ -40392,6 +40444,7 @@
 			<referrer name="pc_cmd_ch"/>
 			<referrer name="pc_cmd_hl"/>
 			<referrer name="pc_cmd_deletead"/>
+			<referrer name="twofa"/>
 			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPlayerBanIP"/>
@@ -40689,17 +40742,12 @@
 			</param>
 		</member>
 		<member name="M:warnPlayer" syntax="warnPlayer(playerid, adminid, reason[])">
-			<stacksize value="36"/>
+			<stacksize value="34"/>
 			<referrer name="pc_cmd_warn"/>
-			<dependency name="EOS"/>
 			<dependency name="GetPlayerName"/>
-			<dependency name="SQL"/>
 			<dependency name="SetPVarInt"/>
 			<dependency name="banPlayer"/>
-			<dependency name="gQuery"/>
 			<dependency name="gettime"/>
-			<dependency name="mysql_format"/>
-			<dependency name="mysql_pquery"/>
 			<dependency name="pName"/>
 			<dependency name="pSQLID"/>
 			<dependency name="pWarn"/>

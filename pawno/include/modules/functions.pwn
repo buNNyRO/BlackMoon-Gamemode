@@ -59,8 +59,9 @@ function MyHttpResponse(playerid, response_code, data[]) {
 }
 
 function twofa(playerid) {
-	if(playerInfo[playerid][pIp] == playerInfo[playerid][pLastIp]) return 1;
-    HTTP(playerid, HTTP_POST, string_fast("http://cdn.blackmoon.ro/send.php?Account=%s&Email=%s&IP=%s", playerInfo[playerid][pSQLID], playerInfo[playerid][pEmail], playerInfo[playerid][pLastIp]), "", "");
+	// if(playerInfo[playerid][pIp] == playerInfo[playerid][pLastIp]) return 1;
+	SCMf(playerid, -1, "%s == %s", playerInfo[playerid][pIp], playerInfo[playerid][pLastIp]);
+    HTTP(playerid, HTTP_POST, string_fast("http://cdn.blackmoon.ro/send.php?Account=%s&Email=%s&IP=%s", playerInfo[playerid][pSQLID], playerInfo[playerid][pEMail], playerInfo[playerid][pLastIp]), "", "");
     playerInfo[playerid][pAccountBlocked] = 1;
 	SCM(playerid, COLOR_LIGHTRED, "Contul tau este blocat, te rog sa verifici email-ul asociat la cont!");
     update("UPDATE `server_users` SET `AccountBlocked` = '1' WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
