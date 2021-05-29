@@ -59,13 +59,23 @@ function MyHttpResponse(playerid, response_code, data[]) {
 }
 
 function twofa(playerid) {
-	// if(playerInfo[playerid][pIp] == playerInfo[playerid][pLastIp]) return 1;
-	SCMf(playerid, -1, "%s == %s", playerInfo[playerid][pIp], playerInfo[playerid][pLastIp]);
-    HTTP(playerid, HTTP_POST, string_fast("http://cdn.blackmoon.ro/send.php?Account=%s&Email=%s&IP=%s", playerInfo[playerid][pSQLID], playerInfo[playerid][pEMail], playerInfo[playerid][pLastIp]), "", "");
+    if(YHash(playerInfo[playerid][pIp]) == YHash(playerInfo[playerid][pLastIp])) return 1;
+    SCMf(playerid, -1, "%s == %s", playerInfo[playerid][pIp], playerInfo[playerid][pLastIp]);
+    new test[100];
+    format(test, sizeof test, "cdn.blackmoon.ro/send.php?Account=%d&Email=%s&IP=%s", playerInfo[playerid][pSQLID], playerInfo[playerid][pEMail], playerInfo[playerid][pLastIp]);
+    HTTP(playerid, HTTP_POST, test, "", "");
+
     playerInfo[playerid][pAccountBlocked] = 1;
-	SCM(playerid, COLOR_LIGHTRED, "Contul tau este blocat, te rog sa verifici email-ul asociat la cont!");
+    SCM(playerid, COLOR_LIGHTRED, "Contul tau este blocat, te rog sa verifici email-ul asociat la cont!");
     update("UPDATE `server_users` SET `AccountBlocked` = '1' WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
     return 1;
+}
+
+CMD:verify(playerid, params[]) {
+    playerInfo[playerid][pAccountBlocked] = 0;
+    SCM(playerid, COLOR_LIGHTRED, "Contul tau este deblocat!");
+    update("UPDATE `server_users` SET `AccountBlocked` = '0' WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
+	return 1;
 }
 
 function checkPlayerBan(playerid) {
@@ -253,6 +263,7 @@ function onPlayerLogin(playerid)
 	}
 
 	playerInfo[playerid][pReportMute] += gettime();
+
 	playerInfo[playerid][pIp] = ipnew;
 	PlayerNumber[playerInfo[playerid][pPhone]] = playerid;
 	Iter_Add(loggedPlayers, playerid);

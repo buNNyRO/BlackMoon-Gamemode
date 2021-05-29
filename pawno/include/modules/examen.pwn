@@ -15,6 +15,7 @@ CMD:certificate(playerid, params[]) {
 		for(new i = 0; i < 13; i++) PlayerTextDrawShow(playerid, examenTD[playerid][i]);
 		SelectTextDraw(playerid, COLOR_LIMEGREEN);
 		playerInfo[playerid][pCertificateStep] = 1;
+		playerInfo[playerid][pCertificateSeconds] = 300;
 		examen[playerid] = repeat timerExamen(playerid);
 		SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Ai intrat in examenul pentru certificatul de 'ADR'.");
 	}

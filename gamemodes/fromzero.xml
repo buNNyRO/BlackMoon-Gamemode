@@ -875,7 +875,7 @@
 			<member name="C:SAFE" value="4">
 			</member>
 		</member>
-		<member name="T:playerInfoEnum" value="890">
+		<member name="T:playerInfoEnum" value="891">
 			<tagname value="playerInfoEnum"/>
 			<member name="C:pSQLID" value="0">
 			</member>
@@ -1229,7 +1229,9 @@
 			</member>
 			<member name="C:pCertificateStep" value="869">
 			</member>
-			<member name="C:pSelectVehicle" value="870">
+			<member name="C:pCertificateSeconds" value="870">
+			</member>
+			<member name="C:pSelectVehicle" value="871">
 				<size value="20"/>
 			</member>
 		</member>
@@ -2073,6 +2075,7 @@
 			<referrer name="ExpirationReport"/>
 			<referrer name="closeGate"/>
 			<referrer name="tazerTimer"/>
+			<referrer name="timerExamen"/>
 			<referrer name="pc_cmd_addexamcp"/>
 			<referrer name="pc_cmd_warn"/>
 			<referrer name="pc_cmd_unwarn"/>
@@ -2610,6 +2613,7 @@
 			<referrer name="closeGate_yT@"/>
 			<referrer name="tazerTimer_yT@"/>
 			<referrer name="notificationTimer_yT@"/>
+			<referrer name="timerExamen_yT@"/>
 			<referrer name="pc_cmd_respawnhere"/>
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="pc_cmd_spec"/>
@@ -2617,6 +2621,7 @@
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="testDriveTimer_yT@"/>
+			<referrer name="pc_cmd_certificate"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="OnPlayerText"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
@@ -3351,6 +3356,7 @@
 			<referrer name="closeGate_yT@"/>
 			<referrer name="tazerTimer_yT@"/>
 			<referrer name="notificationTimer_yT@"/>
+			<referrer name="timerExamen_yT@"/>
 			<referrer name="pc_cmd_respawnhere"/>
 			<referrer name="pc_cmd_jail"/>
 			<referrer name="pc_cmd_spec"/>
@@ -3358,6 +3364,7 @@
 			<referrer name="pc_cmd_engine"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="testDriveTimer_yT@"/>
+			<referrer name="pc_cmd_certificate"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="OnPlayerText"/>
 			<referrer name="CB_OnPlayerKeyStateChange"/>
@@ -4070,6 +4077,12 @@
 			<referrer name="OnPlayerCommandReceived"/>
 			<referrer name="OnPlayerCommandPerformed"/>
 		</member>
+		<member name="F:examen">
+			<tagname value="Timer"/>
+			<referrer name="timerExamen"/>
+			<referrer name="pc_cmd_certificate"/>
+			<referrer name="OnPlayerClickPlayerTextDraw"/>
+		</member>
 		<member name="F:examenInfo">
 			<referrer name="LoadExamCheckpoints"/>
 			<referrer name="assignCheckpointID"/>
@@ -4080,6 +4093,7 @@
 		<member name="F:examenTD">
 			<tagname value="PlayerText"/>
 			<referrer name="playerTextDraws"/>
+			<referrer name="timerExamen"/>
 			<referrer name="pc_cmd_certificate"/>
 			<referrer name="OnPlayerClickPlayerTextDraw"/>
 		</member>
@@ -4703,6 +4717,7 @@
 			<referrer name="dialog_DIALOG_CLANSETTINGS2"/>
 			<referrer name="MyHttpResponse"/>
 			<referrer name="twofa"/>
+			<referrer name="pc_cmd_verify"/>
 			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
@@ -4748,6 +4763,7 @@
 			<referrer name="TimerTutorial"/>
 			<referrer name="PayDay"/>
 			<referrer name="ExpirationReport"/>
+			<referrer name="timerExamen"/>
 			<referrer name="pc_cmd_addexamcp"/>
 			<referrer name="pc_cmd_warn"/>
 			<referrer name="pc_cmd_unwarn"/>
@@ -19667,6 +19683,7 @@
 			<referrer name="closeGate_yT@"/>
 			<referrer name="tazerTimer_yT@"/>
 			<referrer name="notificationTimer_yT@"/>
+			<referrer name="timerExamen_yT@"/>
 			<referrer name="TimerSpectator_yT@"/>
 			<referrer name="testDriveTimer_yT@"/>
 			<param name="function">
@@ -19875,9 +19892,12 @@
 			<dependency name="PlayerTextDrawHide"/>
 			<dependency name="PlayerTextDrawSetString"/>
 			<dependency name="SendClientMessage"/>
+			<dependency name="_Timer_F"/>
+			<dependency name="examen"/>
 			<dependency name="examenTD"/>
 			<dependency name="fishTD"/>
 			<dependency name="pCertificate"/>
+			<dependency name="pCertificateSeconds"/>
 			<dependency name="pCertificateStep"/>
 			<dependency name="pFishSteps"/>
 			<dependency name="pFishingRod"/>
@@ -21447,6 +21467,7 @@
 			<referrer name="TimerJail"/>
 			<referrer name="TimerWanted"/>
 			<referrer name="notificationTimer"/>
+			<referrer name="timerExamen"/>
 			<referrer name="pc_cmd_setadmin"/>
 			<referrer name="pc_cmd_unjail"/>
 			<referrer name="pc_cmd_specoff"/>
@@ -22781,6 +22802,7 @@
 			<referrer name="dialog_DIALOG_CLAN"/>
 			<referrer name="MyHttpResponse"/>
 			<referrer name="twofa"/>
+			<referrer name="pc_cmd_verify"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
 			<referrer name="checkAccountInBanDatabase"/>
@@ -22812,6 +22834,7 @@
 			<referrer name="TimerTutorial"/>
 			<referrer name="PayDay"/>
 			<referrer name="ExpirationReport"/>
+			<referrer name="timerExamen"/>
 			<referrer name="pc_cmd_addexamcp"/>
 			<referrer name="pc_cmd_warn"/>
 			<referrer name="pc_cmd_unwarn"/>
@@ -25447,6 +25470,7 @@
 			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="MyHttpResponse"/>
+			<referrer name="twofa"/>
 			<referrer name="pc_cmd_adminsuspendlicense"/>
 			<referrer name="pc_cmd_admingivelicense"/>
 			<referrer name="pc_cmd_admintakelicense"/>
@@ -25898,6 +25922,7 @@
 			<referrer name="closeGate_yT@"/>
 			<referrer name="tazerTimer_yT@"/>
 			<referrer name="notificationTimer_yT@"/>
+			<referrer name="timerExamen_yT@"/>
 			<referrer name="TimerSpectator_yT@"/>
 			<referrer name="testDriveTimer_yT@"/>
 			<dependency name="I@"/>
@@ -25955,6 +25980,7 @@
 			<referrer name="TimerJail"/>
 			<referrer name="TimerWanted"/>
 			<referrer name="TimerTutorial"/>
+			<referrer name="timerExamen"/>
 			<referrer name="pc_cmd_setadmin"/>
 			<referrer name="pc_cmd_acceptreport"/>
 			<referrer name="pc_cmd_closereport"/>
@@ -25966,6 +25992,7 @@
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="CB_OnPlayerStateChange"/>
 			<referrer name="ecp_OnPlayerEnterCheckpoint"/>
+			<referrer name="OnPlayerClickPlayerTextDraw"/>
 			<dependency name="KillTimer"/>
 			<dependency name="Malloc_Free"/>
 			<dependency name="YSI_gMallocMemory"/>
@@ -29100,6 +29127,7 @@
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS1"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS2"/>
+			<referrer name="twofa"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="pc_cmd_carplate"/>
@@ -31563,6 +31591,7 @@
 			<dependency name="banPlayer"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
+			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
@@ -31593,6 +31622,7 @@
 			<dependency name="isPlayerLogged"/>
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_tquery"/>
+			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pIp"/>
 			<dependency name="pName"/>
@@ -31624,6 +31654,7 @@
 			<dependency name="gettime"/>
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_tquery"/>
+			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pIp"/>
 			<dependency name="pName"/>
@@ -31654,6 +31685,7 @@
 			<dependency name="gettime"/>
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_tquery"/>
+			<dependency name="pAccountBlocked"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerSyntax"/>
@@ -31972,6 +32004,7 @@
 			<dependency name="TestingModel"/>
 			<dependency name="TogglePlayerControllable"/>
 			<dependency name="dModel"/>
+			<dependency name="pAccountBlocked"/>
 			<dependency name="pinDealer"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
@@ -32234,18 +32267,23 @@
 			<attribute name="public"/>
 			<stacksize value="15"/>
 			<dependency name="CB_SelectTextDraw"/>
+			<dependency name="I@"/>
 			<dependency name="IsPlayerInRangeOfPoint"/>
+			<dependency name="J@"/>
 			<dependency name="PlayerMoney"/>
 			<dependency name="PlayerTextDrawSetString"/>
 			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="SendClientMessage"/>
+			<dependency name="examen"/>
 			<dependency name="examenTD"/>
 			<dependency name="pCertificate"/>
+			<dependency name="pCertificateSeconds"/>
 			<dependency name="pCertificateStep"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strmatch"/>
+			<dependency name="timerExamen_yT@"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
 			<param name="playerid">
@@ -34197,6 +34235,7 @@
 			<dependency name="formatNumberss"/>
 			<dependency name="formatNumberss"/>
 			<dependency name="isPlayerLogged"/>
+			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pName"/>
 			<dependency name="pSQLID"/>
@@ -35064,6 +35103,7 @@
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="kickPlayer"/>
+			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
@@ -35619,6 +35659,7 @@
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="mutePlayer"/>
+			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pMute"/>
 			<dependency name="pName"/>
@@ -36642,6 +36683,7 @@
 			<dependency name="TogglePlayerSpectating"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="isPlayerLogged"/>
+			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pName"/>
 			<dependency name="pSQLID"/>
@@ -36719,6 +36761,7 @@
 			<dependency name="Iterator@ServerHelpers"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
+			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pHelper"/>
 			<dependency name="pName"/>
@@ -37555,6 +37598,7 @@
 			<dependency name="gettime"/>
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_tquery"/>
+			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerSyntax"/>
@@ -37710,6 +37754,7 @@
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
+			<dependency name="pAccountBlocked"/>
 			<dependency name="pMute"/>
 			<dependency name="pName"/>
 			<dependency name="pSQLID"/>
@@ -37784,6 +37829,7 @@
 			<dependency name="SetPVarInt"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
+			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pName"/>
 			<dependency name="pSQLID"/>
@@ -37853,6 +37899,21 @@
 			<dependency name="true"/>
 			<dependency name="vehNames"/>
 			<dependency name="vehNames"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:pc_cmd_verify" syntax="pc_cmd_verify(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="5"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="pAccountBlocked"/>
+			<dependency name="pSQLID"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="update"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -37930,6 +37991,7 @@
 			<dependency name="SendClientMessage"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
+			<dependency name="pAccountBlocked"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
@@ -38372,6 +38434,7 @@
 			<dependency name="pBank"/>
 			<dependency name="pBoatLicense"/>
 			<dependency name="pBoatLicenseSuspend"/>
+			<dependency name="pCertificateSeconds"/>
 			<dependency name="pCertificateStep"/>
 			<dependency name="pCheckpoint"/>
 			<dependency name="pCheckpointID"/>
@@ -38580,6 +38643,7 @@
 			<stacksize value="21"/>
 			<referrer name="pc_cmd_ad"/>
 			<referrer name="Timers"/>
+			<referrer name="timerExamen"/>
 			<referrer name="OnPlayerText"/>
 			<dependency name="format"/>
 			<dependency name="secinmin"/>
@@ -39203,6 +39267,7 @@
 			<dependency name="SendClientMessage"/>
 			<dependency name="pBoatLicense"/>
 			<dependency name="pBoatLicenseSuspend"/>
+			<dependency name="pCertificate"/>
 			<dependency name="pDrivingLicense"/>
 			<dependency name="pDrivingLicenseSuspend"/>
 			<dependency name="pFlyLicense"/>
@@ -39529,7 +39594,6 @@
 			<referrer name="pc_cmd_cinvite"/>
 			<referrer name="dialog_DIALOG_CLAN"/>
 			<referrer name="SetClanTag"/>
-			<referrer name="twofa"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
 			<referrer name="BanIPPlayer"/>
@@ -39849,6 +39913,45 @@
 			<param name="playerid">
 			</param>
 		</member>
+		<member name="M:timerExamen" syntax="timerExamen(playerid)">
+			<stacksize value="18"/>
+			<referrer name="timerExamen@_yT"/>
+			<dependency name="PlayerTextDrawHide"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="_Timer_F"/>
+			<dependency name="examen"/>
+			<dependency name="examenTD"/>
+			<dependency name="pCertificateSeconds"/>
+			<dependency name="pCertificateStep"/>
+			<dependency name="playerInfo"/>
+			<dependency name="playerInfo"/>
+			<dependency name="secinmin"/>
+			<dependency name="secinmin"/>
+			<dependency name="true"/>
+			<dependency name="va_PlayerTextDrawSetString"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:timerExamen@_yT" syntax="timerExamen@_yT(__r, playerid)">
+			<tagname value="@Yj"/>
+			<attribute name="public"/>
+			<stacksize value="4"/>
+			<dependency name="timerExamen"/>
+			<param name="__r">
+			</param>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:timerExamen_yT@" syntax="timerExamen_yT@(playerid)">
+			<stacksize value="8"/>
+			<referrer name="pc_cmd_certificate"/>
+			<dependency name="I@"/>
+			<dependency name="J@"/>
+			<dependency name="O@"/>
+			<dependency name="_Timer_C"/>
+			<param name="playerid">
+			</param>
+		</member>
 		<member name="M:timerFishJob" syntax="timerFishJob(playerid, type)">
 			<stacksize value="8205"/>
 			<referrer name="timerFishJob@_yT"/>
@@ -39917,10 +40020,12 @@
 		</member>
 		<member name="M:twofa" syntax="twofa(playerid)">
 			<attribute name="public"/>
-			<stacksize value="4106"/>
+			<stacksize value="108"/>
 			<referrer name="onPlayerLogin"/>
 			<dependency name="HTTP"/>
 			<dependency name="SendClientMessage"/>
+			<dependency name="YHash"/>
+			<dependency name="format"/>
 			<dependency name="pAccountBlocked"/>
 			<dependency name="pEMail"/>
 			<dependency name="pIp"/>
@@ -39928,7 +40033,6 @@
 			<dependency name="pSQLID"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="string_fast"/>
 			<dependency name="update"/>
 			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
@@ -40146,6 +40250,7 @@
 			<referrer name="dialog_DIALOG_CLANSETTINGS1"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS2"/>
 			<referrer name="twofa"/>
+			<referrer name="pc_cmd_verify"/>
 			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
@@ -40346,6 +40451,7 @@
 			<referrer name="TimerJail"/>
 			<referrer name="TimerWanted"/>
 			<referrer name="Timers"/>
+			<referrer name="timerExamen"/>
 			<referrer name="pc_cmd_acover"/>
 			<referrer name="TimerSpectator"/>
 			<referrer name="pc_cmd_exam"/>

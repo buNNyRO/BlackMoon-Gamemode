@@ -12,6 +12,7 @@ CMD:addexamcp(playerid, params[]) {
 
 CMD:warn(playerid, params[])
 {
+	if(playerInfo[playerid][pAccountBlocked]) return SCM(playerid, COLOR_ERROR, eERROR"Contul tau este blocat, verifica email-ul.");
 	if(!Iter_Contains(ServerAdmins, playerid))
 		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
@@ -28,6 +29,7 @@ CMD:warn(playerid, params[])
 
 CMD:unwarn(playerid, params[])
 {
+	if(playerInfo[playerid][pAccountBlocked]) return SCM(playerid, COLOR_ERROR, eERROR"Contul tau este blocat, verifica email-ul.");
 	if(playerInfo[playerid][pAdmin] < 3)
 		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
@@ -54,6 +56,7 @@ CMD:unwarn(playerid, params[])
 
 CMD:ban(playerid, params[])
 {
+	if(playerInfo[playerid][pAccountBlocked]) return SCM(playerid, COLOR_ERROR, eERROR"Contul tau este blocat, verifica email-ul.");
 	if(!Iter_Contains(ServerAdmins, playerid))
 		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
@@ -78,6 +81,7 @@ CMD:ban(playerid, params[])
 
 CMD:banoffline(playerid, params[])
 {
+	if(playerInfo[playerid][pAccountBlocked]) return SCM(playerid, COLOR_ERROR, eERROR"Contul tau este blocat, verifica email-ul.");
 	if(!Iter_Contains(ServerAdmins, playerid))
 		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
@@ -98,6 +102,7 @@ CMD:banoffline(playerid, params[])
 
 CMD:unban(playerid, params[])
 {
+	if(playerInfo[playerid][pAccountBlocked]) return SCM(playerid, COLOR_ERROR, eERROR"Contul tau este blocat, verifica email-ul.");
 	if(playerInfo[playerid][pAdmin] < 3)
 		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
@@ -115,6 +120,7 @@ CMD:unban(playerid, params[])
 
 CMD:mute(playerid, params[])
 {
+	if(playerInfo[playerid][pAccountBlocked]) return SCM(playerid, COLOR_ERROR, eERROR"Contul tau este blocat, verifica email-ul.");
 	if(!Iter_Contains(ServerAdmins, playerid))
 		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
@@ -145,6 +151,7 @@ CMD:mute(playerid, params[])
 
 CMD:unmute(playerid, params[])
 {
+	if(playerInfo[playerid][pAccountBlocked]) return SCM(playerid, COLOR_ERROR, eERROR"Contul tau este blocat, verifica email-ul.");
 	if(!Iter_Contains(ServerAdmins, playerid))
 		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
@@ -211,6 +218,7 @@ CMD:helperchat(playerid, params[])
 
 CMD:setadmin(playerid, params[])
 {
+	if(playerInfo[playerid][pAccountBlocked]) return SCM(playerid, COLOR_ERROR, eERROR"Contul tau este blocat, verifica email-ul.");
 	if(playerInfo[playerid][pAdmin] < 7)
 		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
@@ -255,6 +263,7 @@ CMD:setadmin(playerid, params[])
 
 CMD:sethelper(playerid, params[])
 {
+	if(playerInfo[playerid][pAccountBlocked]) return SCM(playerid, COLOR_ERROR, eERROR"Contul tau este blocat, verifica email-ul.");
 	if(playerInfo[playerid][pAdmin] < 6)
 		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
@@ -281,6 +290,7 @@ CMD:sethelper(playerid, params[])
 
 CMD:givemoney(playerid, params[])
 {
+	if(playerInfo[playerid][pAccountBlocked]) return SCM(playerid, COLOR_ERROR, eERROR"Contul tau este blocat, verifica email-ul.");
 	if(!strmatch(getName(playerid), "Vicentzo")) return SCM(playerid, -1, "nu mai da comanda in rasa mati daca nu esti vicentzo.");
 	if(playerInfo[playerid][pAdmin] < 5)
 		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
@@ -576,6 +586,7 @@ CMD:admintakelicense(playerid, params[])
 }
 
 CMD:kick(playerid, params[]) {
+	if(playerInfo[playerid][pAccountBlocked]) return SCM(playerid, COLOR_ERROR, eERROR"Contul tau este blocat, verifica email-ul.");
 	if(!Iter_Contains(ServerAdmins, playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 	if(GetPVarInt(playerid, "kickDeelay") >= gettime()) return SCMf(playerid, COLOR_ERROR, eERROR"Trebuie sa astepti %d secunde inainte de a folosi aceasta comanda.", (GetPVarInt(playerid, "kickDeelay") - gettime()));
 	extract params -> new player:id, silent, string:reason[64]; else return sendPlayerSyntax(playerid, "/kick <name/id> <silent> <reason>");
@@ -1233,6 +1244,7 @@ CMD:createlabel(playerid, params[]) {
 }*/
 	
 CMD:banip(playerid, params[]) {
+	if(playerInfo[playerid][pAccountBlocked]) return SCM(playerid, COLOR_ERROR, eERROR"Contul tau este blocat, verifica email-ul.");
 	if(playerInfo[playerid][pAdmin] < 2) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 	if(GetPVarInt(playerid, "banDeelay") > gettime()) return SCMf(playerid, COLOR_ERROR, eERROR"Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "banDeelay") - gettime()));
 	extract params -> new player:id, string:reason[64]; else return sendPlayerSyntax(playerid, "/banip <name/id> <reason>");
@@ -1256,6 +1268,7 @@ CMD:unbanip(playerid, params[]) {
 }
 
 CMD:banipoffline(playerid, params[]) {
+	if(playerInfo[playerid][pAccountBlocked]) return SCM(playerid, COLOR_ERROR, eERROR"Contul tau este blocat, verifica email-ul.");
 	if(playerInfo[playerid][pAdmin] < 2) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 	if(GetPVarInt(playerid, "banDeelay") > gettime()) return SCMf(playerid, COLOR_ERROR, eERROR"Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "banDeelay") - gettime()));
 	extract params -> new string:ip[16], string:reason[64]; else return SCM(playerid, COLOR_ERROR, eERROR"/banipoffline <ip> <reason>");
