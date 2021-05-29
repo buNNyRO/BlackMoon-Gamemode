@@ -16,7 +16,7 @@
 // B::::::::::::::::B  l::::::l a::::::::::aa:::a  cc:::::::::::::::ck::::::k   k:::::k M::::::M               M::::::M oo:::::::::::oo  oo:::::::::::oo   n::::n    n::::n//
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define MYSQL 0 // 0 - local | 1 - host
+#define MYSQL 1 // 0 - local | 1 - host
 #define VERSION "v1.6.47"
 
 #include <discord>
@@ -70,6 +70,7 @@
 #include <modules\comenzi\player.pwn>
 #include <modules\dealership.pwn>
 #include <modules\emails.pwn>
+#include <modules\examen.pwn>
 
 main() { }
 
@@ -948,7 +949,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid) {
 		for(new i = 0; i < 15; i++) PlayerTextDrawHide(playerid, fishTD[playerid][i]);
 		CancelSelectTextDraw(playerid);
 	}	
-	if(playertextid == examenTD[playerid][10]) {
+	if(playertextid == examenTD[playerid][5]) {
 		switch(playerInfo[playerid][pCertificateStep]) {
 			case 1: {
 				playerInfo[playerid][pCertificateStep] ++;
@@ -960,7 +961,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid) {
 				return true;
 			}
 			case 2: {
-				playerInfo[playerid][pCertificateStep] = 1; 
+				playerInfo[playerid][pCertificateStep] = 1; playerInfo[playerid][pCertificateSeconds] = 300;
 				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Deoarece ai ales raspunsul corect, ti-a fost resetat testul.");
 				PlayerTextDrawSetString(playerid, examenTD[playerid][8], "Question #1~n~Cu cate placi de culoare portocalie trebuie sa fie dotat un tir?");
 				PlayerTextDrawSetString(playerid, examenTD[playerid][10], "a) 2 (1 fata, 1 spate)");
@@ -969,7 +970,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid) {
 				return true;
 			}
 			case 3: {
-				playerInfo[playerid][pCertificateStep] = 1; 
+				playerInfo[playerid][pCertificateStep] = 1; playerInfo[playerid][pCertificateSeconds] = 300;
 				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Deoarece ai ales raspunsul corect, ti-a fost resetat testul.");
 				PlayerTextDrawSetString(playerid, examenTD[playerid][8], "Question #1~n~Cu cate placi de culoare portocalie trebuie sa fie dotat un tir?");
 				PlayerTextDrawSetString(playerid, examenTD[playerid][10], "a) 2 (1 fata, 1 spate)");
@@ -979,16 +980,17 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid) {
 			}
 		}
 	}
-	if(playertextid == examenTD[playerid][11]) {
+	if(playertextid == examenTD[playerid][6]) {
 		switch(playerInfo[playerid][pCertificateStep]) {
 			case 1: {
 				playerInfo[playerid][pCertificateStep] = 0; 
 				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Deoarece ai ales raspunsul corect si esti la primul stagiu, ti-a fost inchis testul.");
 				for(new i = 0; i < 13; i++) PlayerTextDrawHide(playerid, examenTD[playerid][i]);
+				stop examen[playerid];
 				return true;
 			}
 			case 2: {
-				playerInfo[playerid][pCertificateStep] = 1; 
+				playerInfo[playerid][pCertificateStep] = 1; playerInfo[playerid][pCertificateSeconds] = 300;
 				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Deoarece ai ales raspunsul corect, ti-a fost resetat testul.");
 				PlayerTextDrawSetString(playerid, examenTD[playerid][8], "Question #1~n~Cu cate placi de culoare portocalie trebuie sa fie dotat un tir?");
 				PlayerTextDrawSetString(playerid, examenTD[playerid][10], "a) 2 (1 fata, 1 spate)");
@@ -1001,16 +1003,18 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid) {
 				playerInfo[playerid][pCertificate][0] = 30;
 				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Felicitari ! Ai absolvit certificatul de 'ADR' (Valabil: 30 zile) acum poti face curse de mare pericol.");
 				for(new i = 0; i < 13; i++) PlayerTextDrawHide(playerid, examenTD[playerid][i]);
+				stop examen[playerid];
 				return true;
 			}
 		}	
 	}
-	if(playertextid == examenTD[playerid][12]) {
+	if(playertextid == examenTD[playerid][7]) {
 		switch(playerInfo[playerid][pCertificateStep]) {
 			case 1: {
 				playerInfo[playerid][pCertificateStep] = 0; 
 				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Deoarece ai ales raspunsul corect si esti la primul stagiu, ti-a fost inchis testul.");
 				for(new i = 0; i < 13; i++) PlayerTextDrawHide(playerid, examenTD[playerid][i]);
+				stop examen[playerid];
 				return true;
 			}
 			case 2: {
@@ -1023,7 +1027,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid) {
 				return true;
 			}
 			case 3: {
-				playerInfo[playerid][pCertificateStep] = 1; 
+				playerInfo[playerid][pCertificateStep] = 1; playerInfo[playerid][pCertificateSeconds] = 300;
 				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Deoarece ai ales raspunsul corect, ti-a fost resetat testul.");
 				PlayerTextDrawSetString(playerid, examenTD[playerid][8], "Question #1~n~Cu cate placi de culoare portocalie trebuie sa fie dotat un tir?");
 				PlayerTextDrawSetString(playerid, examenTD[playerid][10], "a) 2 (1 fata, 1 spate)");
