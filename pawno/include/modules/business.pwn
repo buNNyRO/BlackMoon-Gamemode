@@ -1,6 +1,5 @@
 #include <YSI\y_hooks>
 #define MAX_BUSINESSES (30) 
-#define BUSINESS_STREAMER_START 0
 
 enum businessInfoEnum {
 	bizID,

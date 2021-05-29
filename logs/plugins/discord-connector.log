@@ -52,3 +52,4 @@
 [05/20/21 20:29:07] [ERROR] Can't write to Discord websocket gateway: The I/O operation has been aborted because of either a thread exit or an application request (995)
 [05/20/21 20:38:20] [ERROR] Discord terminated websocket connection; reason:  (0)
 [05/20/21 20:38:20] [ERROR] Can't write to Discord websocket gateway: The I/O operation has been aborted because of either a thread exit or an application request (995)
+[05/29/21 14:20:30] [WARNING] Unknown gateway event 'GUILD_JOIN_REQUEST_DELETE'

@@ -673,7 +673,7 @@
 			<member name="C:fPickup" value="186">
 			</member>
 		</member>
-		<member name="T:gasCanEnum" value="8">
+		<member name="T:gasCanEnum" value="9">
 			<tagname value="gasCanEnum"/>
 			<member name="C:gID" value="0">
 			</member>
@@ -694,7 +694,9 @@
 			<member name="C:gLabel" value="6">
 				<tagname value="Text3D"/>
 			</member>
-			<member name="C:gPickup" value="7">
+			<member name="C:gArea" value="7">
+			</member>
+			<member name="C:gPickup" value="8">
 			</member>
 		</member>
 		<member name="T:houseInfoEnum" value="151">
@@ -860,22 +862,20 @@
 			<member name="C:pvDespawnTime" value="72">
 			</member>
 		</member>
-		<member name="T:pickInfo" value="6">
+		<member name="T:pickInfo" value="5">
 			<tagname value="pickInfo"/>
 			<member name="C:BIZZ" value="0">
 			</member>
 			<member name="C:HOUSE" value="1">
 			</member>
-			<member name="C:GASCAN" value="2">
+			<member name="C:FACTION" value="2">
 			</member>
-			<member name="C:FACTION" value="3">
+			<member name="C:JOB" value="3">
 			</member>
-			<member name="C:JOB" value="4">
-			</member>
-			<member name="C:SAFE" value="5">
+			<member name="C:SAFE" value="4">
 			</member>
 		</member>
-		<member name="T:playerInfoEnum" value="886">
+		<member name="T:playerInfoEnum" value="885">
 			<tagname value="playerInfoEnum"/>
 			<member name="C:pSQLID" value="0">
 			</member>
@@ -1189,39 +1189,37 @@
 			</member>
 			<member name="C:areaJob" value="572">
 			</member>
-			<member name="C:areaGascan" value="573">
+			<member name="C:areaSafe" value="573">
 			</member>
-			<member name="C:areaSafe" value="574">
+			<member name="C:pEnableBoost" value="574">
 			</member>
-			<member name="C:pEnableBoost" value="575">
-			</member>
-			<member name="C:pAdminCover" value="576">
+			<member name="C:pAdminCover" value="575">
 				<size value="24"/>
 			</member>
-			<member name="C:pDrunkLevel" value="600">
+			<member name="C:pDrunkLevel" value="599">
 			</member>
-			<member name="C:pFPS" value="601">
+			<member name="C:pFPS" value="600">
 			</member>
-			<member name="C:pAdText" value="602">
+			<member name="C:pAdText" value="601">
 				<size value="256"/>
 			</member>
-			<member name="C:pAdminDuty" value="858">
+			<member name="C:pAdminDuty" value="857">
 			</member>
-			<member name="C:pSpectate" value="859">
+			<member name="C:pSpectate" value="858">
 			</member>
-			<member name="C:pContract" value="860">
+			<member name="C:pContract" value="859">
 			</member>
-			<member name="C:pContractID" value="861">
+			<member name="C:pContractID" value="860">
 			</member>
-			<member name="C:pWorking" value="862">
+			<member name="C:pWorking" value="861">
 			</member>
-			<member name="C:pFishSteps" value="863">
+			<member name="C:pFishSteps" value="862">
 			</member>
-			<member name="C:pFishMoney" value="864">
+			<member name="C:pFishMoney" value="863">
 			</member>
-			<member name="C:pFishCaught" value="865">
+			<member name="C:pFishCaught" value="864">
 			</member>
-			<member name="C:pSelectVehicle" value="866">
+			<member name="C:pSelectVehicle" value="865">
 				<size value="20"/>
 			</member>
 		</member>
@@ -1476,8 +1474,8 @@
 			<referrer name="CB_OnPlayerDisconnect"/>
 		</member>
 		<member name="C:E_STREAMER_EXTRA_ID" value="15">
-			<referrer name="LoadHouses"/>
-			<referrer name="pc_cmd_createhouse"/>
+			<referrer name="LoadGasCan"/>
+			<referrer name="pc_cmd_addbizgas"/>
 		</member>
 		<member name="C:FEMALE_GENDER" value="0">
 			<referrer name="dialog_GENDER"/>
@@ -2445,6 +2443,11 @@
 		</member>
 		<member name="F:AntiCheatWarnings">
 			<referrer name="CB_OnPlayerWeaponShot"/>
+		</member>
+		<member name="F:AreaGas">
+			<referrer name="LoadGasCan"/>
+			<referrer name="pc_cmd_fill"/>
+			<referrer name="gasTimer"/>
 		</member>
 		<member name="F:CELLMIN_ON_MATCHES">
 		</member>
@@ -3454,7 +3457,6 @@
 			<referrer name="LoadJobs"/>
 			<referrer name="LoadBusinesses"/>
 			<referrer name="pc_cmd_createbusiness"/>
-			<referrer name="updateGasCan"/>
 		</member>
 		<member name="F:PlayerNumber">
 			<referrer name="onPlayerLogin"/>
@@ -4731,8 +4733,6 @@
 			<referrer name="pc_cmd_park"/>
 			<referrer name="pc_cmd_vehicles"/>
 			<referrer name="pc_cmd_addbizgas"/>
-			<referrer name="pc_cmd_fill"/>
-			<referrer name="gasTimer"/>
 			<referrer name="TimerJail"/>
 			<referrer name="TimerWanted"/>
 			<referrer name="Timers"/>
@@ -11907,8 +11907,8 @@
 		</member>
 		<member name="M:CreateDynamicSphere" syntax="CreateDynamicSphere(x, y, z, size, worldid, interiorid, playerid, priority)">
 			<attribute name="native"/>
-			<referrer name="LoadHouses"/>
-			<referrer name="pc_cmd_createhouse"/>
+			<referrer name="LoadGasCan"/>
+			<referrer name="pc_cmd_addbizgas"/>
 			<param name="x">
 				<paraminfo>Float </paraminfo>
 			</param>
@@ -14722,6 +14722,13 @@
 			<param name="len">
 			</param>
 		</member>
+		<member name="M:GetPlayerNumberDynamicAreas" syntax="GetPlayerNumberDynamicAreas(playerid)">
+			<attribute name="native"/>
+			<referrer name="pc_cmd_fill"/>
+			<referrer name="gasTimer"/>
+			<param name="playerid">
+			</param>
+		</member>
 		<member name="M:GetPlayerPacketLoss" syntax="GetPlayerPacketLoss(playerid)">
 			<tagname value="Float"/>
 			<stacksize value="1"/>
@@ -16679,6 +16686,14 @@
 			<param name="playerid">
 			</param>
 		</member>
+		<member name="M:IsPlayerInAnyDynamicArea" syntax="IsPlayerInAnyDynamicArea(playerid, recheck)">
+			<attribute name="native"/>
+			<referrer name="pc_cmd_fill"/>
+			<param name="playerid">
+			</param>
+			<param name="recheck">
+			</param>
+		</member>
 		<member name="M:IsPlayerInAnyVehicle" syntax="IsPlayerInAnyVehicle(playerid)">
 			<attribute name="native"/>
 			<referrer name="@yH_OnPlayerEnterVehicle@005"/>
@@ -16694,6 +16709,7 @@
 			<referrer name="pc_cmd_swapcolors"/>
 			<referrer name="pc_cmd_carplate"/>
 			<referrer name="pc_cmd_carcolor"/>
+			<referrer name="pc_cmd_fill"/>
 			<referrer name="pc_cmd_despawncar"/>
 			<referrer name="pc_cmd_gotocar"/>
 			<referrer name="pc_cmd_getcar"/>
@@ -18747,13 +18763,18 @@
 		</member>
 		<member name="M:LoadGasCan" syntax="LoadGasCan()">
 			<attribute name="public"/>
-			<stacksize value="8"/>
+			<stacksize value="12"/>
+			<dependency name="AreaGas"/>
+			<dependency name="CreateDynamicSphere"/>
+			<dependency name="E_STREAMER_EXTRA_ID"/>
 			<dependency name="Iter_Add_InternalC"/>
 			<dependency name="Iter_Single@ServerGasCan"/>
 			<dependency name="Iterator@ServerGasCan"/>
+			<dependency name="Streamer_SetIntData"/>
 			<dependency name="cache_get_value_name_float"/>
 			<dependency name="cache_get_value_name_int"/>
 			<dependency name="cache_num_rows"/>
+			<dependency name="gArea"/>
 			<dependency name="gBizID"/>
 			<dependency name="gFull"/>
 			<dependency name="gID"/>
@@ -18772,15 +18793,12 @@
 			<dependency name="CreateDynamic3DTextLabel"/>
 			<dependency name="CreateDynamicMapIcon"/>
 			<dependency name="CreateDynamicPickup"/>
-			<dependency name="CreateDynamicSphere"/>
-			<dependency name="E_STREAMER_EXTRA_ID"/>
 			<dependency name="HOUSE"/>
 			<dependency name="Iter_Add_InternalC"/>
 			<dependency name="Iter_Single@ServerHouses"/>
 			<dependency name="Iterator@ServerHouses"/>
 			<dependency name="PickInfo"/>
 			<dependency name="PickInfo"/>
-			<dependency name="Streamer_SetIntData"/>
 			<dependency name="cache_get_value_name"/>
 			<dependency name="cache_get_value_name_float"/>
 			<dependency name="cache_get_value_name_int"/>
@@ -18788,7 +18806,6 @@
 			<dependency name="format"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
-			<dependency name="hArea"/>
 			<dependency name="hBalance"/>
 			<dependency name="hDescription"/>
 			<dependency name="hExtX"/>
@@ -20376,14 +20393,12 @@
 			<stacksize value="1"/>
 			<dependency name="BIZZ"/>
 			<dependency name="FACTION"/>
-			<dependency name="GASCAN"/>
 			<dependency name="HOUSE"/>
 			<dependency name="JOB"/>
 			<dependency name="PickInfo"/>
 			<dependency name="SAFE"/>
 			<dependency name="areaBizz"/>
 			<dependency name="areaFaction"/>
-			<dependency name="areaGascan"/>
 			<dependency name="areaHouse"/>
 			<dependency name="areaJob"/>
 			<dependency name="areaSafe"/>
@@ -24160,8 +24175,8 @@
 		</member>
 		<member name="M:Streamer_SetIntData" syntax="Streamer_SetIntData(type, id, data, value)">
 			<attribute name="native"/>
-			<referrer name="LoadHouses"/>
-			<referrer name="pc_cmd_createhouse"/>
+			<referrer name="LoadGasCan"/>
+			<referrer name="pc_cmd_addbizgas"/>
 			<param name="type">
 			</param>
 			<param name="id">
@@ -29254,10 +29269,11 @@
 			<dependency name="operator-(Float:,_:)"/>
 			<dependency name="operator+(Float:,_:)"/>
 			<dependency name="Float:operator=(_:)"/>
+			<dependency name="AreaGas"/>
+			<dependency name="GetPlayerNumberDynamicAreas"/>
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="GivePlayerCash"/>
 			<dependency name="TogglePlayerControllable"/>
-			<dependency name="areaGascan"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
 			<dependency name="gFull"/>
@@ -29265,7 +29281,6 @@
 			<dependency name="gasInfo"/>
 			<dependency name="personalVehicle"/>
 			<dependency name="personalVehicle"/>
-			<dependency name="playerInfo"/>
 			<dependency name="pvFuel"/>
 			<dependency name="true"/>
 			<dependency name="va_SendClientMessage"/>
@@ -30883,8 +30898,10 @@
 		</member>
 		<member name="M:pc_cmd_addbizgas" syntax="pc_cmd_addbizgas(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="15"/>
+			<stacksize value="16"/>
 			<dependency name="Float:operator=(_:)"/>
+			<dependency name="CreateDynamicSphere"/>
+			<dependency name="E_STREAMER_EXTRA_ID"/>
 			<dependency name="GetPlayerPos"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iter_Free_Internal"/>
@@ -30892,6 +30909,8 @@
 			<dependency name="Iterator@ServerBusinesses"/>
 			<dependency name="Iterator@ServerGasCan"/>
 			<dependency name="SendClientMessage"/>
+			<dependency name="Streamer_SetIntData"/>
+			<dependency name="gArea"/>
 			<dependency name="gBizID"/>
 			<dependency name="gFull"/>
 			<dependency name="gID"/>
@@ -32652,8 +32671,6 @@
 			<dependency name="CreateDynamic3DTextLabel"/>
 			<dependency name="CreateDynamicMapIcon"/>
 			<dependency name="CreateDynamicPickup"/>
-			<dependency name="CreateDynamicSphere"/>
-			<dependency name="E_STREAMER_EXTRA_ID"/>
 			<dependency name="GetPlayerPos"/>
 			<dependency name="HOUSE"/>
 			<dependency name="Iter_Add_InternalC"/>
@@ -32662,14 +32679,12 @@
 			<dependency name="PickInfo"/>
 			<dependency name="PickInfo"/>
 			<dependency name="SendClientMessage"/>
-			<dependency name="Streamer_SetIntData"/>
 			<dependency name="YHash"/>
 			<dependency name="bigInteriors"/>
 			<dependency name="bigInteriorsID"/>
 			<dependency name="format"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
-			<dependency name="hArea"/>
 			<dependency name="hBalance"/>
 			<dependency name="hDescription"/>
 			<dependency name="hExtX"/>
@@ -33507,27 +33522,29 @@
 		</member>
 		<member name="M:pc_cmd_fill" syntax="pc_cmd_fill(playerid, params[])">
 			<attribute name="public"/>
-			<stacksize value="8"/>
+			<stacksize value="9"/>
 			<dependency name="operator-(Float:,Float:)"/>
 			<dependency name="operator+(Float:,Float:)"/>
 			<dependency name="operator&gt;=(Float:,Float:)"/>
 			<dependency name="operator&lt;(Float:,Float:)"/>
+			<dependency name="AreaGas"/>
 			<dependency name="GameTextForPlayer"/>
+			<dependency name="GetPlayerNumberDynamicAreas"/>
 			<dependency name="GetPlayerVehicleID"/>
 			<dependency name="I@"/>
+			<dependency name="IsPlayerInAnyDynamicArea"/>
+			<dependency name="IsPlayerInAnyVehicle"/>
 			<dependency name="IsPlayerInRangeOfPoint"/>
 			<dependency name="J@"/>
 			<dependency name="PlayerMoney"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="TogglePlayerControllable"/>
-			<dependency name="areaGascan"/>
 			<dependency name="gFull"/>
 			<dependency name="gX"/>
 			<dependency name="gY"/>
 			<dependency name="gZ"/>
 			<dependency name="gasInfo"/>
 			<dependency name="gasTimer_yT@"/>
-			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -40132,9 +40149,6 @@
 			<referrer name="pc_cmd_addbizgas"/>
 			<dependency name="CreateDynamic3DTextLabel"/>
 			<dependency name="CreateDynamicPickup"/>
-			<dependency name="GASCAN"/>
-			<dependency name="PickInfo"/>
-			<dependency name="PickInfo"/>
 			<dependency name="gBizID"/>
 			<dependency name="gFull"/>
 			<dependency name="gLabel"/>

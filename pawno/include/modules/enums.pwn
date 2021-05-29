@@ -183,7 +183,6 @@ enum playerInfoEnum
     areaHouse,
     areaFaction,
     areaJob,
-    areaGascan,
     areaSafe,
     pEnableBoost,
     pAdminCover[MAX_PLAYER_NAME],
