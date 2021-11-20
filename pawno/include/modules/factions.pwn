@@ -215,7 +215,7 @@ hook OnPlayerDisconnect(playerid, reason) {
 	}
 	if(playerInfo[playerid][pFaction]) {
 		Iter_Remove(FactionMembers[playerInfo[playerid][pFaction]], playerid);
-		sendFactionMessage(playerInfo[playerid][pFaction], COLOR_LIMEGREEN, "** MoonBot: %s s-a deconnectat pe server (Total members online: %d).", getName(playerid), Iter_Count(FactionMembers[playerInfo[playerid][pFaction]]));		
+		sendFactionMessage(playerInfo[playerid][pFaction], COLOR_LIMEGREEN, "SERVER: %s s-a deconnectat pe server (Total members online: %d).", getName(playerid), Iter_Count(FactionMembers[playerInfo[playerid][pFaction]]));		
 	}
 	for(new x; x < 3; x++) {
 		if(Iter_Contains(ServiceCalls[x], playerid)) Iter_Remove(ServiceCalls[x], playerid);
@@ -591,8 +591,8 @@ CMD:f(playerid, params[]) {
 	if(factionChat[playerInfo[playerid][pFaction]] == 1 && playerInfo[playerid][pFactionRank] < 6) return SCM(playerid, COLOR_ERROR, eERROR"Chatul factiunii a fost oprit.");
 	if(Iter_Contains(FactionMembers[1], playerid) || Iter_Contains(FactionMembers[2], playerid) || Iter_Contains(FactionMembers[3], playerid) || Iter_Contains(FactionMembers[4], playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Pentru a scrie pe chatul factiunii, foloseste comanda '/r'");
 	extract params -> new string:result[250]; else return sendPlayerSyntax(playerid, "/f <text>");
-	if(faceReclama(result)) return removeFunction(playerid, result);
-    if(faceReclama(result)) return Reclama(playerid, result);
+	// if(faceReclama(result)) return removeFunction(playerid, result);
+    // if(faceReclama(result)) return Reclama(playerid, result);
 	if(playerInfo[playerid][pspecFaction] != 0) {
 		sendFactionMessage(playerInfo[playerid][pspecFaction], COLOR_LIMEGREEN, "* Admin %s: %s", getName(playerid), result);		
 		return true;
@@ -606,8 +606,8 @@ CMD:r(playerid, params[]) {
 	if(Iter_Contains(FactionMembers[5], playerid) || Iter_Contains(FactionMembers[6], playerid) || Iter_Contains(FactionMembers[7], playerid) || Iter_Contains(FactionMembers[8], playerid) || Iter_Contains(FactionMembers[9], playerid) || Iter_Contains(FactionMembers[10], playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Pentru a scrie pe chatul factiunii, foloseste comanda '/f'");
 	if(factionChat[playerInfo[playerid][pFaction]] == 1 && playerInfo[playerid][pFactionRank] < 6) return SCM(playerid, COLOR_ERROR, eERROR"Chatul factiunii a fost oprit.");
 	extract params -> new string:result[250]; else return sendPlayerSyntax(playerid, "/r <text>");
-	if(faceReclama(result)) return removeFunction(playerid, result);
-    if(faceReclama(result)) return Reclama(playerid, result);
+	// if(faceReclama(result)) return removeFunction(playerid, result);
+    // if(faceReclama(result)) return Reclama(playerid, result);
 	if(playerInfo[playerid][pspecFaction] != 0) {
 		sendFactionMessage(playerInfo[playerid][pspecFaction], COLOR_LAWNGREEN, "* Admin %s: %s, over", getName(playerid), result);		
 		return true;
@@ -620,8 +620,8 @@ CMD:d(playerid, params[]) {
 	if(playerInfo[playerid][pFaction] == 0 || playerInfo[playerid][pAdmin] == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai vreo factiune.");
 	if(Iter_Contains(FactionMembers[5], playerid) || Iter_Contains(FactionMembers[6], playerid) || Iter_Contains(FactionMembers[7], playerid) || Iter_Contains(FactionMembers[8], playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Pentru a folosi aceasta comanda, trebuie sa fii intr-un departament.");
 	extract params -> new string:result[144]; else return sendPlayerSyntax(playerid, "/d <text>");
-	if(faceReclama(result)) return removeFunction(playerid, result);
-    if(faceReclama(result)) return Reclama(playerid, result);
+	// if(faceReclama(result)) return removeFunction(playerid, result);
+    // if(faceReclama(result)) return Reclama(playerid, result);
 	sendFactionMessage(1, COLOR_LIGHTRED, "* (%s) %s: %s, over", playerInfo[playerid][pAdmin] > 0 ? "Admin" : factionName(playerInfo[playerid][pFaction]), getName(playerid), result);
 	sendFactionMessage(2, COLOR_LIGHTRED, "* (%s) %s: %s, over", playerInfo[playerid][pAdmin] > 0 ? "Admin" : factionName(playerInfo[playerid][pFaction]), getName(playerid), result);
 	sendFactionMessage(3, COLOR_LIGHTRED, "* (%s) %s: %s, over", playerInfo[playerid][pAdmin] > 0 ? "Admin" : factionName(playerInfo[playerid][pFaction]), getName(playerid), result);
@@ -756,8 +756,8 @@ CMD:megaphone(playerid, params[]) {
 	if(playerInfo[playerid][pFactionDuty] == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda, deoarece nu esti la datorie.");
 	extract params -> new string:text[32]; else return sendPlayerSyntax(playerid, "/megaphone <text>");
 	if(strlen(text) < 1 || strlen(text) > 32) return SCM(playerid, COLOR_ERROR, eERROR"Text invalid, min. 1 caracter max. 32 caractere.");
-	if(faceReclama(text)) return removeFunction(playerid, text);
-    if(faceReclama(text)) return Reclama(playerid, text);
+	// if(faceReclama(text)) return removeFunction(playerid, text);
+    // if(faceReclama(text)) return Reclama(playerid, text);
 	sendNearbyMessage(playerid, COLOR_YELLOW, 75.0, "*- %s: %s. -*", getName(playerid), text);
 	return true;
 }

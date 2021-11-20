@@ -11,9 +11,6 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
     Float: vehicle_fuel[MAX_VEHICLES],
     vehicle_personal[MAX_VEHICLES],
 
-    // DCC_Channel:MoonBot,
-    // DCC_Channel:MoonBotAC,
-
 	Iterator:ServerAdmins<MAX_PLAYERS>,
     Iterator:ServerHelpers<MAX_PLAYERS>,
     Iterator:ServerStaff<MAX_PLAYERS>,
@@ -44,7 +41,7 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
     
     PlayerText:jailTimeTD[MAX_PLAYERS],
 	PlayerText:serverHud[2],
-    PlayerText:levelBar[3],
+    PlayerText:levelBar[4],
 	PlayerText:playerLevelPTD[MAX_PLAYERS],
 	PlayerText:playerExamenPTD[MAX_PLAYERS],
     PlayerText:vehicleHud[20],

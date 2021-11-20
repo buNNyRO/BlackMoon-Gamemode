@@ -74,8 +74,8 @@ CMD:clanchat(playerid, params[]) {
 	if(playerInfo[playerid][pClan] == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti intr-un clan pentru a face acest lucru.");
 	if(clanChat[playerInfo[playerid][pClan]] == 1 && playerInfo[playerid][pClanRank] < 6) return SCM(playerid, COLOR_ERROR, eERROR"Chatul clanului a fost oprit.");
 	extract params -> new string:result[144]; else return sendPlayerSyntax(playerid, "/clanchat <text>");
-	if(faceReclama(result)) return removeFunction(playerid, result);
-    if(faceReclama(result)) return Reclama(playerid, result);	
+	// if(faceReclama(result)) return removeFunction(playerid, result);
+    // if(faceReclama(result)) return Reclama(playerid, result);	
 	switch(playerInfo[playerid][pClanRank]) {
 		case 1: sendClanMessage(playerInfo[playerid][pClan], clanInfo[playerInfo[playerid][pClan]][cClanColor], "* [CLAN] %s %s (%d): %s", clanInfo[playerInfo[playerid][pClan]][cRank1], getName(playerid), playerid, result);
 		case 2: sendClanMessage(playerInfo[playerid][pClan], clanInfo[playerInfo[playerid][pClan]][cClanColor], "* [CLAN] %s %s (%d): %s", clanInfo[playerInfo[playerid][pClan]][cRank2], getName(playerid), playerid, result);

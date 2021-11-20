@@ -1788,9 +1788,7 @@
 			<referrer name="showLicenses"/>
 			<referrer name="playerTextDraws"/>
 			<referrer name="updateLevelBar"/>
-			<referrer name="destroyPlayerTextDraws"/>
 			<referrer name="serverTextDraws"/>
-			<referrer name="destroyServerTextDraws"/>
 			<referrer name="strmatch"/>
 			<referrer name="isValidEmail"/>
 			<referrer name="isPlayerLogged"/>
@@ -2455,7 +2453,6 @@
 		<member name="F:ClockTD">
 			<tagname value="Text"/>
 			<referrer name="serverTextDraws"/>
-			<referrer name="destroyServerTextDraws"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="TimerM"/>
 			<referrer name="Timers"/>
@@ -4109,7 +4106,6 @@
 		<member name="F:fareTD">
 			<tagname value="PlayerText"/>
 			<referrer name="playerTextDraws"/>
-			<referrer name="destroyPlayerTextDraws"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
 			<referrer name="pc_cmd_fare"/>
 			<referrer name="fareUpdateTimer"/>
@@ -4131,7 +4127,6 @@
 		<member name="F:fishTD">
 			<tagname value="PlayerText"/>
 			<referrer name="playerTextDraws"/>
-			<referrer name="destroyPlayerTextDraws"/>
 			<referrer name="pc_cmd_fish"/>
 			<referrer name="OnPlayerClickPlayerTextDraw"/>
 		</member>
@@ -4444,7 +4439,6 @@
 		<member name="F:notificationTD">
 			<tagname value="PlayerText"/>
 			<referrer name="playerTextDraws"/>
-			<referrer name="destroyPlayerTextDraws"/>
 			<referrer name="showNotification"/>
 			<referrer name="notificationTimer"/>
 		</member>
@@ -4912,7 +4906,6 @@
 		<member name="F:playerLevelPTD">
 			<tagname value="PlayerText"/>
 			<referrer name="playerTextDraws"/>
-			<referrer name="destroyPlayerTextDraws"/>
 		</member>
 		<member name="F:playerVehicle">
 			<referrer name="@yH_OnPlayerConnect@007"/>
@@ -5024,7 +5017,6 @@
 		<member name="F:serverDealerPTD">
 			<tagname value="PlayerText"/>
 			<referrer name="playerTextDraws"/>
-			<referrer name="destroyPlayerTextDraws"/>
 			<referrer name="ShowDealerShipTD"/>
 			<referrer name="HideDealerShipTD"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
@@ -5033,7 +5025,6 @@
 		<member name="F:serverDealerTD">
 			<tagname value="Text"/>
 			<referrer name="serverTextDraws"/>
-			<referrer name="destroyServerTextDraws"/>
 			<referrer name="ShowDealerShipTD"/>
 			<referrer name="HideDealerShipTD"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
@@ -5041,7 +5032,6 @@
 		<member name="F:serverHud">
 			<tagname value="PlayerText"/>
 			<referrer name="playerTextDraws"/>
-			<referrer name="destroyPlayerTextDraws"/>
 			<referrer name="dialog_DIALOG_HUD"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="Timers"/>
@@ -5061,7 +5051,6 @@
 		<member name="F:specTD">
 			<tagname value="PlayerText"/>
 			<referrer name="playerTextDraws"/>
-			<referrer name="destroyPlayerTextDraws"/>
 			<referrer name="removeFunction"/>
 			<referrer name="pc_cmd_setadmin"/>
 			<referrer name="pc_cmd_spec"/>
@@ -5317,7 +5306,6 @@
 		<member name="F:wantedTD">
 			<tagname value="PlayerText"/>
 			<referrer name="playerTextDraws"/>
-			<referrer name="destroyPlayerTextDraws"/>
 			<referrer name="TimerWanted"/>
 		</member>
 		<member name="F:wantedTime">
@@ -5342,7 +5330,6 @@
 		<member name="F:warTD">
 			<tagname value="PlayerText"/>
 			<referrer name="playerTextDraws"/>
-			<referrer name="destroyPlayerTextDraws"/>
 			<referrer name="TimerWar"/>
 		</member>
 		<member name="F:wheels">
@@ -5597,7 +5584,6 @@
 			<referrer name="Callback_GetSpeed"/>
 			<referrer name="Callback_IsVehicleInPoint"/>
 			<referrer name="IsPlayerSprayingVehicle"/>
-			<referrer name="updateLevelBar"/>
 			<referrer name="getVehicleSpeed"/>
 			<referrer name="GetDistanceBetweenPoints"/>
 			<referrer name="@yH_OnPlayerDeath@007"/>
@@ -10018,7 +10004,6 @@
 			<dependency name="clanInfo"/>
 			<dependency name="contractInfo"/>
 			<dependency name="contractInfo"/>
-			<dependency name="destroyPlayerTextDraws"/>
 			<dependency name="formatNumber"/>
 			<dependency name="formatNumber"/>
 			<dependency name="gettime"/>
@@ -10161,7 +10146,6 @@
 			<dependency name="pc_cmd_engine"/>
 			<dependency name="pc_cmd_lights"/>
 			<dependency name="pc_cmd_lock"/>
-			<dependency name="pc_cmd_specoff"/>
 			<dependency name="personalVehicle"/>
 			<dependency name="pinBusiness"/>
 			<dependency name="pinFaction"/>
@@ -19294,7 +19278,6 @@
 			<dependency name="SendRconCommand"/>
 			<dependency name="SetGameModeText"/>
 			<dependency name="WARNING"/>
-			<dependency name="destroyServerTextDraws"/>
 			<dependency name="mysql_close"/>
 			<dependency name="mysql_connect"/>
 			<dependency name="mysql_errno"/>
@@ -20445,10 +20428,8 @@
 			<dependency name="GetPlayerColor"/>
 			<dependency name="I@"/>
 			<dependency name="J@"/>
-			<dependency name="Reclama"/>
 			<dependency name="SetPlayerChatBubble"/>
 			<dependency name="deelayInfo"/>
-			<dependency name="faceReclama"/>
 			<dependency name="format"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
@@ -21135,15 +21116,6 @@
 			<param name="color">
 			</param>
 		</member>
-		<member name="M:PlayerTextDrawDestroy" syntax="PlayerTextDrawDestroy(playerid, text)">
-			<attribute name="native"/>
-			<referrer name="destroyPlayerTextDraws"/>
-			<param name="playerid">
-			</param>
-			<param name="text">
-				<paraminfo>PlayerText </paraminfo>
-			</param>
-		</member>
 		<member name="M:PlayerTextDrawFont" syntax="PlayerTextDrawFont(playerid, text, font)">
 			<attribute name="native"/>
 			<referrer name="playerTextDraws"/>
@@ -21707,13 +21679,6 @@
 		<member name="M:Reclama" syntax="Reclama(playerid, text[])">
 			<attribute name="public"/>
 			<stacksize value="8"/>
-			<referrer name="pc_cmd_f"/>
-			<referrer name="pc_cmd_r"/>
-			<referrer name="pc_cmd_d"/>
-			<referrer name="pc_cmd_megaphone"/>
-			<referrer name="pc_cmd_clanchat"/>
-			<referrer name="pc_cmd_wt"/>
-			<referrer name="OnPlayerText"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="gettime"/>
 			<dependency name="pAdmin"/>
@@ -22307,7 +22272,6 @@
 			<automaton name="_ALS"/>
 			<referrer name="OnGameModeExit"/>
 			<dependency name="SQL"/>
-			<dependency name="destroyServerTextDraws"/>
 			<dependency name="mysql_close"/>
 			<dependency name="true"/>
 		</member>
@@ -24108,13 +24072,6 @@
 			</param>
 			<param name="text">
 				<paraminfo> [] </paraminfo>
-			</param>
-		</member>
-		<member name="M:TextDrawDestroy" syntax="TextDrawDestroy(text)">
-			<attribute name="native"/>
-			<referrer name="destroyServerTextDraws"/>
-			<param name="text">
-				<paraminfo>Text </paraminfo>
 			</param>
 		</member>
 		<member name="M:TextDrawFont" syntax="TextDrawFont(text, font)">
@@ -26738,32 +26695,6 @@
 			<param name="v">
 			</param>
 		</member>
-		<member name="M:destroyPlayerTextDraws" syntax="destroyPlayerTextDraws(playerid)">
-			<stacksize value="4"/>
-			<referrer name="CB_OnPlayerDisconnect"/>
-			<dependency name="PlayerTextDrawDestroy"/>
-			<dependency name="fareTD"/>
-			<dependency name="fishTD"/>
-			<dependency name="notificationTD"/>
-			<dependency name="playerLevelPTD"/>
-			<dependency name="serverDealerPTD"/>
-			<dependency name="serverHud"/>
-			<dependency name="specTD"/>
-			<dependency name="true"/>
-			<dependency name="wantedTD"/>
-			<dependency name="warTD"/>
-			<param name="playerid">
-			</param>
-		</member>
-		<member name="M:destroyServerTextDraws" syntax="destroyServerTextDraws()">
-			<stacksize value="4"/>
-			<referrer name="MySQLLoad"/>
-			<referrer name="ScriptInit_OnGameModeExit"/>
-			<dependency name="ClockTD"/>
-			<dependency name="TextDrawDestroy"/>
-			<dependency name="serverDealerTD"/>
-			<dependency name="true"/>
-		</member>
 		<member name="M:dialog_BIZ_OPTION" syntax="dialog_BIZ_OPTION(playerid, response, listitem)">
 			<attribute name="public"/>
 			<stacksize value="10"/>
@@ -28432,13 +28363,6 @@
 		<member name="M:faceReclama" syntax="faceReclama(text[])">
 			<attribute name="public"/>
 			<stacksize value="6"/>
-			<referrer name="pc_cmd_f"/>
-			<referrer name="pc_cmd_r"/>
-			<referrer name="pc_cmd_d"/>
-			<referrer name="pc_cmd_megaphone"/>
-			<referrer name="pc_cmd_clanchat"/>
-			<referrer name="pc_cmd_wt"/>
-			<referrer name="OnPlayerText"/>
 			<dependency name="false"/>
 			<dependency name="strfind"/>
 			<dependency name="true"/>
@@ -32069,7 +31993,6 @@
 		<member name="M:pc_cmd_clanchat" syntax="pc_cmd_clanchat(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="154"/>
-			<dependency name="Reclama"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="cClanColor"/>
 			<dependency name="cRank1"/>
@@ -32082,13 +32005,11 @@
 			<dependency name="clanChat"/>
 			<dependency name="clanInfo"/>
 			<dependency name="clanInfo"/>
-			<dependency name="faceReclama"/>
 			<dependency name="pClan"/>
 			<dependency name="pClanRank"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="removeFunction"/>
 			<dependency name="sendClanMessage"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
@@ -32590,17 +32511,14 @@
 			<stacksize value="4247"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
-			<dependency name="Reclama"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="SetPlayerChatBubble"/>
-			<dependency name="faceReclama"/>
 			<dependency name="factionName"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pFaction"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="removeFunction"/>
 			<dependency name="sendFactionMessage"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="string_fast"/>
@@ -33110,9 +33028,7 @@
 			<stacksize value="259"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
-			<dependency name="Reclama"/>
 			<dependency name="SendClientMessage"/>
-			<dependency name="faceReclama"/>
 			<dependency name="factionChat"/>
 			<dependency name="pFaction"/>
 			<dependency name="pFactionRank"/>
@@ -33120,7 +33036,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="pspecFaction"/>
-			<dependency name="removeFunction"/>
 			<dependency name="sendFactionMessage"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
@@ -35248,15 +35163,12 @@
 			<stacksize value="41"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
-			<dependency name="Reclama"/>
 			<dependency name="SendClientMessage"/>
-			<dependency name="faceReclama"/>
 			<dependency name="pFaction"/>
 			<dependency name="pFactionDuty"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="removeFunction"/>
 			<dependency name="sendNearbyMessage"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="strlen"/>
@@ -35661,9 +35573,7 @@
 			<stacksize value="259"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@FactionMembers"/>
-			<dependency name="Reclama"/>
 			<dependency name="SendClientMessage"/>
-			<dependency name="faceReclama"/>
 			<dependency name="factionChat"/>
 			<dependency name="pFaction"/>
 			<dependency name="pFactionRank"/>
@@ -35671,7 +35581,6 @@
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
 			<dependency name="pspecFaction"/>
-			<dependency name="removeFunction"/>
 			<dependency name="sendFactionMessage"/>
 			<dependency name="sendPlayerSyntax"/>
 			<dependency name="true"/>
@@ -36826,7 +36735,6 @@
 		<member name="M:pc_cmd_specoff" syntax="pc_cmd_specoff(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="8"/>
-			<referrer name="CB_OnPlayerKeyStateChange"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="Iterator@ServerHelpers"/>
@@ -37715,9 +37623,7 @@
 			<attribute name="public"/>
 			<stacksize value="138"/>
 			<dependency name="Iterator@Freqs"/>
-			<dependency name="Reclama"/>
 			<dependency name="SendClientMessage"/>
-			<dependency name="faceReclama"/>
 			<dependency name="gettime"/>
 			<dependency name="pMute"/>
 			<dependency name="pName"/>
@@ -37726,7 +37632,6 @@
 			<dependency name="pWToggle"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
-			<dependency name="removeFunction"/>
 			<dependency name="strlen"/>
 			<dependency name="true"/>
 			<dependency name="unformat"/>
@@ -37970,12 +37875,6 @@
 		<member name="M:removeFunction" syntax="removeFunction(playerid, text[])">
 			<attribute name="public"/>
 			<stacksize value="4110"/>
-			<referrer name="pc_cmd_f"/>
-			<referrer name="pc_cmd_r"/>
-			<referrer name="pc_cmd_d"/>
-			<referrer name="pc_cmd_megaphone"/>
-			<referrer name="pc_cmd_clanchat"/>
-			<referrer name="pc_cmd_wt"/>
 			<dependency name="Float:operator=(_:)"/>
 			<dependency name="DestroyObject"/>
 			<dependency name="HelperAtribut"/>
@@ -39938,7 +39837,6 @@
 			<referrer name="PayDay"/>
 			<referrer name="pc_cmd_set"/>
 			<referrer name="pc_cmd_buylevel"/>
-			<dependency name="operator+(Float:,Float:)"/>
 			<dependency name="operator*(Float:,Float:)"/>
 			<dependency name="operator&gt;(Float:,_:)"/>
 			<dependency name="PlayerTextDrawShow"/>

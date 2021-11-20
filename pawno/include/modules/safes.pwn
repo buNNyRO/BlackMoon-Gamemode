@@ -42,8 +42,7 @@ function LoadSafes() {
 }
 
 CMD:fdeposit(playerid, params[]) {
-	if(playerInfo[playerid][pFaction] == 0 && playerInfo[playerid][pFactionRank] < 6)
-		return true;
+	if(playerInfo[playerid][pFaction] == 0 && playerInfo[playerid][pFactionRank] < 6) return true;
 
 	if(playerInfo[playerid][areaSafe] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, safeInfo[playerInfo[playerid][areaSafe]][sPosX], safeInfo[playerInfo[playerid][areaSafe]][sPosY], safeInfo[playerInfo[playerid][areaSafe]][sPosZ])) {
 		if(playerInfo[playerid][pFaction] != safeInfo[playerInfo[playerid][areaSafe]][sFactionID]) return true;
@@ -54,8 +53,7 @@ CMD:fdeposit(playerid, params[]) {
 }
 
 CMD:fwithdraw(playerid, params[]) {
-	if(playerInfo[playerid][pFaction] == 0 && playerInfo[playerid][pFactionRank] < 6)
-		return true;
+	if(playerInfo[playerid][pFaction] == 0 && playerInfo[playerid][pFactionRank] < 6) return true;
 
 	if(playerInfo[playerid][areaSafe] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, safeInfo[playerInfo[playerid][areaSafe]][sPosX], safeInfo[playerInfo[playerid][areaSafe]][sPosY], safeInfo[playerInfo[playerid][areaSafe]][sPosZ])) {
 		if(playerInfo[playerid][pFaction] != safeInfo[playerInfo[playerid][areaSafe]][sFactionID]) return true;

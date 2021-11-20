@@ -764,9 +764,9 @@ stock playerTextDraws(playerid) {
 	PlayerTextDrawSetProportional(playerid, jailTimeTD[playerid], 1);
 	PlayerTextDrawSetShadow(playerid, jailTimeTD[playerid], 0);
 
-	levelBar[0] = CreatePlayerTextDraw(playerid, 219.222122, 435.248931, "LD_SPAC:white");
+	levelBar[0] = CreatePlayerTextDraw(playerid, 497.888549, 101.637939, "LD_SPAC:white");
 	PlayerTextDrawLetterSize(playerid, levelBar[0], 0.000000, 0.000000);
-	PlayerTextDrawTextSize(playerid, levelBar[0], 201.000000, 9.000000);
+	PlayerTextDrawTextSize(playerid, levelBar[0], 109.000000, 7.000000);
 	PlayerTextDrawAlignment(playerid, levelBar[0], 1);
 	PlayerTextDrawColor(playerid, levelBar[0], 149);
 	PlayerTextDrawSetShadow(playerid, levelBar[0], 0);
@@ -776,9 +776,9 @@ stock playerTextDraws(playerid) {
 	PlayerTextDrawSetProportional(playerid, levelBar[0], 0);
 	PlayerTextDrawSetShadow(playerid, levelBar[0], 0);
 
-	levelBar[1] = CreatePlayerTextDraw(playerid, 219.722152, 435.748962, "LD_SPAC:white");
+	levelBar[1] = CreatePlayerTextDraw(playerid, 498.389068, 102.237838, "LD_SPAC:white");
 	PlayerTextDrawLetterSize(playerid, levelBar[1], 0.000000, 0.000000);
-	PlayerTextDrawTextSize(playerid, levelBar[1], 200.000000, 8.000000);
+	PlayerTextDrawTextSize(playerid, levelBar[1], 108.000000, 6.000000);
 	PlayerTextDrawAlignment(playerid, levelBar[1], 1);
 	PlayerTextDrawColor(playerid, levelBar[1], -2139062180);
 	PlayerTextDrawSetShadow(playerid, levelBar[1], 0);
@@ -788,16 +788,28 @@ stock playerTextDraws(playerid) {
 	PlayerTextDrawSetProportional(playerid, levelBar[1], 0);
 	PlayerTextDrawSetShadow(playerid, levelBar[1], 0);
 
-	levelBar[2] = CreatePlayerTextDraw(playerid, 287.313537, 424.523834, "LEVEL 0 ~p~(0/0)");
-	PlayerTextDrawLetterSize(playerid, levelBar[2], 0.174222, 1.127111);
+	levelBar[2] = CreatePlayerTextDraw(playerid, 498.633209, 102.137870, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, levelBar[2], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, levelBar[2], 0.000000, 6.000000);
 	PlayerTextDrawAlignment(playerid, levelBar[2], 1);
-	PlayerTextDrawColor(playerid, levelBar[2], -1);
+	PlayerTextDrawColor(playerid, levelBar[2], -2139062180);
 	PlayerTextDrawSetShadow(playerid, levelBar[2], 0);
-	PlayerTextDrawSetOutline(playerid, levelBar[2], 1);
-	PlayerTextDrawBackgroundColor(playerid, levelBar[2], 59);
-	PlayerTextDrawFont(playerid, levelBar[2], 2);
-	PlayerTextDrawSetProportional(playerid, levelBar[2], 1);
-	PlayerTextDrawSetShadow(playerid, levelBar[2], 0);	
+	PlayerTextDrawSetOutline(playerid, levelBar[2], 0);
+	PlayerTextDrawBackgroundColor(playerid, levelBar[2], 255);
+	PlayerTextDrawFont(playerid, levelBar[2], 4);
+	PlayerTextDrawSetProportional(playerid, levelBar[2], 0);
+	PlayerTextDrawSetShadow(playerid, levelBar[2], 0);
+
+	levelBar[3] = CreatePlayerTextDraw(playerid, 551.036071, 109.430572, "");
+	PlayerTextDrawLetterSize(playerid, levelBar[3], 0.174222, 1.127110);
+	PlayerTextDrawAlignment(playerid, levelBar[3], 2);
+	PlayerTextDrawColor(playerid, levelBar[3], -1);
+	PlayerTextDrawSetShadow(playerid, levelBar[3], 0);
+	PlayerTextDrawSetOutline(playerid, levelBar[3], 1);
+	PlayerTextDrawBackgroundColor(playerid, levelBar[3], 27);
+	PlayerTextDrawFont(playerid, levelBar[3], 2);
+	PlayerTextDrawSetProportional(playerid, levelBar[3], 1);
+	PlayerTextDrawSetShadow(playerid, levelBar[3], 0);
 
 	examenTD[playerid][0] = CreatePlayerTextDraw(playerid, 330.333160, 168.439956, "LD_SPAC:white");
 	PlayerTextDrawLetterSize(playerid, examenTD[playerid][0], 0.000000, 0.000000);
@@ -961,40 +973,9 @@ stock updateLevelBar(playerid) {
 	if(float((playerInfo[playerid][pRespectPoints]*100)/(playerInfo[playerid][pLevel] * 3)) > 100) level = 100.0;
 	else level = float((playerInfo[playerid][pRespectPoints]*100)/(playerInfo[playerid][pLevel] * 3));
 
-	PlayerTextDrawTextSize(playerid, levelBar[1], (1.000000)+(1.990000 * level), 8.000000);
-	va_PlayerTextDrawSetString(playerid, levelBar[2], "LEVEL %d ~p~(%d%s)", playerInfo[playerid][pLevel], (playerInfo[playerid][pRespectPoints]*100)/(playerInfo[playerid][pLevel] * 3), "%");
+	PlayerTextDrawTextSize(playerid, levelBar[2], (1.080000 * level), 6.000000);
+	va_PlayerTextDrawSetString(playerid, levelBar[3], "LEVEL %d ~p~(%d%s)", playerInfo[playerid][pLevel], (playerInfo[playerid][pRespectPoints]*100)/(playerInfo[playerid][pLevel] * 3), "%");
 	for(new i = 0; i < sizeof levelBar; i++) PlayerTextDrawShow(playerid, levelBar[i]);
-	return true;
-}
-
-stock destroyPlayerTextDraws(playerid)
-{
-	PlayerTextDrawDestroy(playerid, serverHud[0]);
-	PlayerTextDrawDestroy(playerid, serverHud[1]);
-	PlayerTextDrawDestroy(playerid, playerLevelPTD[playerid]);
-	PlayerTextDrawDestroy(playerid, serverDealerPTD[playerid][0]);
-	PlayerTextDrawDestroy(playerid, serverDealerPTD[playerid][1]);
-	PlayerTextDrawDestroy(playerid, serverDealerPTD[playerid][2]);	
-	PlayerTextDrawDestroy(playerid, wantedTD[playerid]);
-	PlayerTextDrawDestroy(playerid, fareTD[playerid]);
-	PlayerTextDrawDestroy(playerid, warTD[playerid]);
-	PlayerTextDrawDestroy(playerid, notificationTD[playerid]);	
-	PlayerTextDrawDestroy(playerid, specTD[playerid]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][0]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][1]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][2]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][3]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][4]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][5]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][6]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][7]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][8]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][9]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][10]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][11]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][12]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][13]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][14]);
 	return true;
 }
 
@@ -1166,13 +1147,6 @@ stock serverTextDraws()
 	return true;
 }
 
-stock destroyServerTextDraws()
-{
-	for(new i = 0; i < sizeof ClockTD; i++) TextDrawDestroy(ClockTD[i]);
-	for(new i = 0; i < 8; i++) TextDrawDestroy(serverDealerTD[i]);
-	return true;
-}
-
 stock formatNumber(number) 
 {
 	gString[0] = (EOS);
@@ -1197,8 +1171,7 @@ stock update(const text[], va_args<>)
 
 stock isValidEmail(const email[])
 {
-	if(strlen(email) < 8 || strlen(email) > 128)
-		return false;
+	if(strlen(email) < 8 || strlen(email) > 128) return false;
 
     new at_pos = strfind(email, "@", true);
     if(at_pos >= 1)
