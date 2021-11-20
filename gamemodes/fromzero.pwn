@@ -19,7 +19,7 @@
 #define MYSQL 1 // 0 - local | 1 - host
 #define VERSION "v1.6.47"
 
-#include <discord>
+// #include <discord>
 
 #include <a_samp>
 #include <a_zones>
@@ -69,7 +69,7 @@
 #include <modules\comenzi\admin.pwn>
 #include <modules\comenzi\player.pwn>
 #include <modules\dealership.pwn>
-#include <modules\emails.pwn>
+// #include <modules\emails.pwn>
 #include <modules\examen.pwn>
 
 main() { }
@@ -122,8 +122,8 @@ public OnGameModeInit()
 
 	loadMaps();
 
-	DCC_SetBotActivity(string_fast("0 / %d", MAX_PLAYERS));
-	if(DCC_GetBotPresenceStatus() != DCC_BotPresenceStatus:IDLE) DCC_SetBotPresenceStatus(IDLE);	
+	// DCC_SetBotActivity(string_fast("0 / %d", MAX_PLAYERS));
+	// if(DCC_GetBotPresenceStatus() != DCC_BotPresenceStatus:IDLE) DCC_SetBotPresenceStatus(IDLE);	
 	return true;
 }
 
@@ -164,7 +164,7 @@ public OnPlayerConnect(playerid)
 			GameTextForPlayer(playerid, "~p~YOUR ACCOUNT IT'S GOOD", 1000, 3);
 			mysql_tquery(SQL, string_fast("SELECT * FROM `server_bans` WHERE `Active` = '1' AND `PlayerName` = '%s' LIMIT 1", getName(playerid)), "checkPlayerBan", "d", playerid);
 		}
-		default: HTTP(playerid, HTTP_GET, string_fast("blackbox.ipinfo.app/lookup/%s", playerInfo[playerid][pLastIp]), "", "MyHttpResponse");
+		default: HTTP(playerid, HTTP_GET, string_fast("blackbox.ipinfo.app/lookup/%s", playerInfo[playerid][pLastIp]), "", "TestVPN");
 	}
 	return true;
 }
@@ -230,8 +230,8 @@ public OnPlayerDisconnect(playerid, reason)
 	destroyPlayerTextDraws(playerid);
 	update("UPDATE `server_users` SET `Seconds` = '%f', `Mute` = '%d', `ReportMute` = '%d', `Money` = '%d', `MStore` = '%d', `SpawnChange` = '%d', `Jailed` = '%d', `JailTime` = '%d', `WantedLevel` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pSeconds], playerInfo[playerid][pMute], (playerInfo[playerid][pReportMute] > gettime()) ? (playerInfo[playerid][pReportMute] - gettime()) : (0), MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pSpawnChange], playerInfo[playerid][pJailed], playerInfo[playerid][pJailTime], playerInfo[playerid][pWantedLevel], playerInfo[playerid][pSQLID]);
 	
-	DCC_SetBotActivity(string_fast("%d / %d", Iter_Count(Player), MAX_PLAYERS));
-	if(DCC_GetBotPresenceStatus() != DCC_BotPresenceStatus:IDLE) DCC_SetBotPresenceStatus(IDLE);
+	// DCC_SetBotActivity(string_fast("%d / %d", Iter_Count(Player), MAX_PLAYERS));
+	// if(DCC_GetBotPresenceStatus() != DCC_BotPresenceStatus:IDLE) DCC_SetBotPresenceStatus(IDLE);
 	return true;
 }
 
@@ -328,8 +328,16 @@ public OnPlayerSpawn(playerid) {
 	return true;
 }
 
+stock SendDeathMessageToPlayerEx(playerid, killerid1, killerid2, weapon) {
+	SetPlayerName(killerid1, string_fast("%s+%s", getName(killerid1), getName(killerid2)));
+	SendClientMessage(playerid, -1, string_fast("%s + %s", getName(killerid1), getName(killerid2)));
+	SendDeathMessageToPlayer(playerid, killerid1, playerid, weapon);
+	return 1;
+}
+
 public OnPlayerDeath(playerid, killerid, reason) 
 {
+	SendDeathMessageToPlayerEx(playerid, playerid, playerid, 32);
 	if(playerInfo[playerid][pOnTurf] == 1) playerInfo[playerid][pOnTurf] = 0;
 	if(playerInfo[playerid][pFactionDuty]) playerInfo[playerid][pFactionDuty] = 0;
 	if(playerInfo[playerid][pWantedLevel] != 0) {

@@ -1,2 +1,17 @@
+N:\xampp\htdocs\moon\inc\pages\recover.p.php(22) : îřčáęŕ 010: íĺâĺđíŕ˙ ôóíęöč˙ čëč îáú˙âëĺíčĺ
+N:\xampp\htdocs\moon\inc\pages\recover.p.php(22) -- (2) : îřčáęŕ 010: íĺâĺđíŕ˙ ôóíęöč˙ čëč îáú˙âëĺíčĺ
+N:\xampp\htdocs\moon\inc\pages\recover.p.php(22) -- (4) : îřčáęŕ 010: íĺâĺđíŕ˙ ôóíęöč˙ čëč îáú˙âëĺíčĺ
+N:\xampp\htdocs\moon\inc\pages\recover.p.php(22) -- (9) : îřčáęŕ 010: íĺâĺđíŕ˙ ôóíęöč˙ čëč îáú˙âëĺíčĺ
+N:\xampp\htdocs\moon\inc\pages\recover.p.php(22) -- (10) : îřčáęŕ 010: íĺâĺđíŕ˙ ôóíęöč˙ čëč îáú˙âëĺíčĺ
+N:\xampp\htdocs\moon\inc\pages\recover.p.php(20) : îřčáęŕ 010: íĺâĺđíŕ˙ ôóíęöč˙ čëč îáú˙âëĺíčĺ
+N:\xampp\htdocs\moon\inc\pages\recover.p.php(22) : îřčáęŕ 054: íĺńîîňâĺňńňâóţůŕ˙ çŕęđűâŕţůŕ˙ ńęîáęŕ ("}")
+N:\xampp\htdocs\moon\inc\pages\recover.p.php(22) -- (23) : îřčáęŕ 010: íĺâĺđíŕ˙ ôóíęöč˙ čëč îáú˙âëĺíčĺ
+N:\xampp\htdocs\moon\inc\pages\recover.p.php(22) -- (52) : îřčáęŕ 054: íĺńîîňâĺňńňâóţůŕ˙ çŕęđűâŕţůŕ˙ ńęîáęŕ ("}")
+N:\xampp\htdocs\moon\inc\pages\recover.p.php(22) -- (52) : ôŕňŕëüíŕ˙ îřčáęŕ 107: ńëčřęîě ěíîăî îřčáîę íŕ îäíîé ńňđîęĺ
+
+Ęîěďčë˙öč˙ îńňŕíîâëĺíŕ.
+
 Pawn compiler 3.2.3664	 	 	Copyright (c) 1997-2017, ITB CompuPhase
 
+
+Îřčáîę:10.

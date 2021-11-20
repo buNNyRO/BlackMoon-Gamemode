@@ -54,6 +54,7 @@ task TimerM[60000]() {
 
 	TextDrawSetString(ClockTD[2], string_fast("%02d:%02d", hour, minute));
 	TextDrawSetString(ClockTD[1], string_fast("%02d.%02d.%d", day, month, year));
+	foreach(new playerid : AccountBlocked) SCM(playerid, COLOR_ERROR, eERROR"Contul tau este blocat, verifica-ti emailul.");
 	return 1;
 }
 

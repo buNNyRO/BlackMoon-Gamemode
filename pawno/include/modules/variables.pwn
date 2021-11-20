@@ -11,8 +11,8 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
     Float: vehicle_fuel[MAX_VEHICLES],
     vehicle_personal[MAX_VEHICLES],
 
-    DCC_Channel:MoonBot,
-    DCC_Channel:MoonBotAC,
+    // DCC_Channel:MoonBot,
+    // DCC_Channel:MoonBotAC,
 
 	Iterator:ServerAdmins<MAX_PLAYERS>,
     Iterator:ServerHelpers<MAX_PLAYERS>,
@@ -21,6 +21,7 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
 	Iterator:MutedPlayers<MAX_PLAYERS>,
 	Iterator:ExamenCheckpoints<MAX_EXAM_CHECKPOINTS>,
     Iterator:AdminVehicles<MAX_VEHICLES>,
+    Iterator:AccountBlocked<MAX_PLAYERS>,
 	Iterator:StreamPlayer[MAX_PLAYERS]<MAX_PLAYERS>,
 	/*Iterator:Pickups<MAX_DYNAMIC_PICKUPS>,
 	Iterator:Labels<MAX_DYNAMIC_LABELS>,*/

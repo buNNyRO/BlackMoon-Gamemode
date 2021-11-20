@@ -104,47 +104,47 @@ hook OnPlayerDeath(playerid, killerid, reason) {
 			}
 		}
 	}
-	if(playerInfo[killerid][pContract] == playerid) {
-		SCMf(killerid, -1, "distanta de la tine pana la tinta ta este de %.01f metri si incercam sa vedem ce ai fakut bos", DistanceToPlayer(playerid, killerid));  	    	
-	    if(DistanceToPlayer(playerid, killerid) < 5 && reason == 4) {
-	    	SCMf(killerid, -1, "distanta de la tine pana la tinta ta este de %.01f metri si ai dat fail #1", DistanceToPlayer(playerid, killerid));
-   	    	sendFactionMessage(10, COLOR_LIMEGREEN, "* %s (%d) a dat fail contractului folosind 'Knife' plasat de %s (%d) pentru %s (%d) in valoare de %s$.", getName(killerid), killerid, getName(contractInfo[playerInfo[killerid][pContractID]][cBy]), contractInfo[playerInfo[killerid][pContractID]][cBy], getName(contractInfo[playerInfo[killerid][pContractID]][cFor]), contractInfo[playerInfo[killerid][pContractID]][cFor], formatNumber(contractInfo[playerInfo[killerid][pContractID]][cMoney]));
-   	    	Iter_Remove(ServerContracts, playerInfo[killerid][pContractID]);
-   	    	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
-   	    	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
-   	    	contractInfo[playerInfo[killerid][pContractID]][cMoney] = -1;
-   	    	contractInfo[playerInfo[killerid][pContractID]][cHitman] = -1;
-   	    	playerInfo[killerid][pContract] = -1;
-   	    	playerInfo[killerid][pContractID] = -1;
-   	    	return true;	
-   	    }
-   	  	else if(DistanceToPlayer(playerid, killerid) < 100 && reason == 34) {
-   	       	SCMf(killerid, -1, "distanta de la tine pana la tinta ta este de %.01f metri si ai dat fail #2", DistanceToPlayer(playerid, killerid));
-   	       	sendFactionMessage(10, COLOR_LIMEGREEN, "* %s (%d) a dat fail contractului folosind 'Sniper Rifle' plasat de %s (%d) pentru %s (%d) in valoare de %s$.", getName(killerid), killerid, getName(contractInfo[playerInfo[killerid][pContractID]][cBy]), contractInfo[playerInfo[killerid][pContractID]][cBy], getName(contractInfo[playerInfo[killerid][pContractID]][cFor]), contractInfo[playerInfo[killerid][pContractID]][cFor], formatNumber(contractInfo[playerInfo[killerid][pContractID]][cMoney]));
-   	    	Iter_Remove(ServerContracts, playerInfo[killerid][pContractID]);
-   	    	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
-   	    	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
-   	    	contractInfo[playerInfo[killerid][pContractID]][cMoney] = -1;
-   	    	contractInfo[playerInfo[killerid][pContractID]][cHitman] = -1;
-   	    	playerInfo[killerid][pContract] = -1;
-   	    	playerInfo[killerid][pContractID] = -1;
-   	    	return true;
-   	    }
-   	    SCMf(killerid, -1, "distanta de la tine pana la tinta ta este de %.01f metri si ai dat succes", DistanceToPlayer(playerid, killerid));   	
-     	PlayerPlaySound(killerid,17802,0.0,0.0,0.0);
-	    new weaponName[32];
-        GetWeaponName(reason, weaponName, sizeof weaponName);
-        GivePlayerCash(killerid, 1, contractInfo[playerInfo[killerid][pContractID]][cMoney]);
-        sendFactionMessage(10, COLOR_LIMEGREEN, "* %s (%d) a terminat cu succes contractul (%0.1fm) plasat de %s (%d) pe %s (%d) in valoare de %s$.", getName(killerid), killerid, DistanceToPlayer(playerid, killerid), getName(contractInfo[playerInfo[killerid][pContractID]][cBy]), contractInfo[playerInfo[killerid][pContractID]][cBy], getName(contractInfo[playerInfo[killerid][pContractID]][cFor]), contractInfo[playerInfo[killerid][pContractID]][cFor], formatNumber(contractInfo[playerInfo[killerid][pContractID]][cMoney]));
-    	Iter_Remove(ServerContracts, playerInfo[killerid][pContractID]);
-    	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
-    	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
-    	contractInfo[playerInfo[killerid][pContractID]][cMoney] = -1;
-    	contractInfo[playerInfo[killerid][pContractID]][cHitman] = -1;
-    	playerInfo[killerid][pContract] = -1;
-    	playerInfo[killerid][pContractID] = -1;   	
-        return true;
-	}
+	// if(playerInfo[killerid][pContract] == playerid) {
+	// 	SCMf(killerid, -1, "distanta de la tine pana la tinta ta este de %.01f metri si incercam sa vedem ce ai fakut bos", DistanceToPlayer(playerid, killerid));  	    	
+	//     if(DistanceToPlayer(playerid, killerid) < 5 && reason == 4) {
+	//     	SCMf(killerid, -1, "distanta de la tine pana la tinta ta este de %.01f metri si ai dat fail #1", DistanceToPlayer(playerid, killerid));
+ //   	    	sendFactionMessage(10, COLOR_LIMEGREEN, "* %s (%d) a dat fail contractului folosind 'Knife' plasat de %s (%d) pentru %s (%d) in valoare de %s$.", getName(killerid), killerid, getName(contractInfo[playerInfo[killerid][pContractID]][cBy]), contractInfo[playerInfo[killerid][pContractID]][cBy], getName(contractInfo[playerInfo[killerid][pContractID]][cFor]), contractInfo[playerInfo[killerid][pContractID]][cFor], formatNumber(contractInfo[playerInfo[killerid][pContractID]][cMoney]));
+ //   	    	Iter_Remove(ServerContracts, playerInfo[killerid][pContractID]);
+ //   	    	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
+ //   	    	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
+ //   	    	contractInfo[playerInfo[killerid][pContractID]][cMoney] = -1;
+ //   	    	contractInfo[playerInfo[killerid][pContractID]][cHitman] = -1;
+ //   	    	playerInfo[killerid][pContract] = -1;
+ //   	    	playerInfo[killerid][pContractID] = -1;
+ //   	    	return true;	
+ //   	    }
+ //   	  	else if(DistanceToPlayer(playerid, killerid) < 100 && reason == 34) {
+ //   	       	SCMf(killerid, -1, "distanta de la tine pana la tinta ta este de %.01f metri si ai dat fail #2", DistanceToPlayer(playerid, killerid));
+ //   	       	sendFactionMessage(10, COLOR_LIMEGREEN, "* %s (%d) a dat fail contractului folosind 'Sniper Rifle' plasat de %s (%d) pentru %s (%d) in valoare de %s$.", getName(killerid), killerid, getName(contractInfo[playerInfo[killerid][pContractID]][cBy]), contractInfo[playerInfo[killerid][pContractID]][cBy], getName(contractInfo[playerInfo[killerid][pContractID]][cFor]), contractInfo[playerInfo[killerid][pContractID]][cFor], formatNumber(contractInfo[playerInfo[killerid][pContractID]][cMoney]));
+ //   	    	Iter_Remove(ServerContracts, playerInfo[killerid][pContractID]);
+ //   	    	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
+ //   	    	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
+ //   	    	contractInfo[playerInfo[killerid][pContractID]][cMoney] = -1;
+ //   	    	contractInfo[playerInfo[killerid][pContractID]][cHitman] = -1;
+ //   	    	playerInfo[killerid][pContract] = -1;
+ //   	    	playerInfo[killerid][pContractID] = -1;
+ //   	    	return true;
+ //   	    }
+ //   	    SCMf(killerid, -1, "distanta de la tine pana la tinta ta este de %.01f metri si ai dat succes", DistanceToPlayer(playerid, killerid));   	
+ //     	PlayerPlaySound(killerid,17802,0.0,0.0,0.0);
+	//     new weaponName[32];
+ //        GetWeaponName(reason, weaponName, sizeof weaponName);
+ //        GivePlayerCash(killerid, 1, contractInfo[playerInfo[killerid][pContractID]][cMoney]);
+ //        sendFactionMessage(10, COLOR_LIMEGREEN, "* %s (%d) a terminat cu succes contractul (%0.1fm) plasat de %s (%d) pe %s (%d) in valoare de %s$.", getName(killerid), killerid, DistanceToPlayer(playerid, killerid), getName(contractInfo[playerInfo[killerid][pContractID]][cBy]), contractInfo[playerInfo[killerid][pContractID]][cBy], getName(contractInfo[playerInfo[killerid][pContractID]][cFor]), contractInfo[playerInfo[killerid][pContractID]][cFor], formatNumber(contractInfo[playerInfo[killerid][pContractID]][cMoney]));
+ //    	Iter_Remove(ServerContracts, playerInfo[killerid][pContractID]);
+ //    	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
+ //    	contractInfo[playerInfo[killerid][pContractID]][cFor] = -1;
+ //    	contractInfo[playerInfo[killerid][pContractID]][cMoney] = -1;
+ //    	contractInfo[playerInfo[killerid][pContractID]][cHitman] = -1;
+ //    	playerInfo[killerid][pContract] = -1;
+ //    	playerInfo[killerid][pContractID] = -1;   	
+ //        return true;
+	// }
 	return true;
 }
 
