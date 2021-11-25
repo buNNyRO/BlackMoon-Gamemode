@@ -222,7 +222,6 @@ hook OnPlayerClickTextDraw(playerid, Text:clickedid) {
 timer testDriveTimer[120000](playerid) cancelDriveTest(playerid, 1); 
 
 CMD:buycar(playerid, params[]) {
-	if(playerInfo[playerid][pAccountBlocked]) return SCM(playerid, COLOR_ERROR, eERROR"Contul tau este blocat, verifica email-ul.");
 	if(playerInfo[playerid][pinDealer] > 1) return SCM(playerid, COLOR_ERROR, eERROR"Momentan esti deja in dealer-ul de masini.");
 	if(TestingModel[playerid] > 0) return SCM(playerid, COLOR_ERROR, eERROR"Esti in modul de 'test drive' momentan.");
 	LoadDsVehs(playerid);

@@ -18,7 +18,7 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
 	Iterator:MutedPlayers<MAX_PLAYERS>,
 	Iterator:ExamenCheckpoints<MAX_EXAM_CHECKPOINTS>,
     Iterator:AdminVehicles<MAX_VEHICLES>,
-    Iterator:AccountBlocked<MAX_PLAYERS>,
+    // Iterator:AccountBlocked<MAX_PLAYERS>,
 	Iterator:StreamPlayer[MAX_PLAYERS]<MAX_PLAYERS>,
 	/*Iterator:Pickups<MAX_DYNAMIC_PICKUPS>,
 	Iterator:Labels<MAX_DYNAMIC_LABELS>,*/
@@ -38,6 +38,9 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
 
     Text:ClockTD[3],
     Text:serverDealerTD[9],
+    
+    Text:Inventory_BG[30],
+    PlayerText:Inventory_BTN[20],
     
     PlayerText:jailTimeTD[MAX_PLAYERS],
 	PlayerText:serverHud[2],

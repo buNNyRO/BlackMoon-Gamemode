@@ -2638,8 +2638,19 @@
 			<referrer name="pc_cmd_cancel"/>
 			<referrer name="pc_cmd_accept"/>
 		</member>
-		<member name="F:Iter_Single@AccountBlocked">
-			<referrer name="twofa"/>
+		<member name="F:Inventory_BG">
+			<tagname value="Text"/>
+			<referrer name="pc_cmd_inventory"/>
+			<referrer name="pc_cmd_inventory2"/>
+			<referrer name="CB_OnPlayerClickTextDraw"/>
+			<referrer name="serverTextDraws"/>
+		</member>
+		<member name="F:Inventory_BTN">
+			<tagname value="PlayerText"/>
+			<referrer name="pc_cmd_inventory"/>
+			<referrer name="pc_cmd_inventory2"/>
+			<referrer name="CB_OnPlayerClickTextDraw"/>
+			<referrer name="playerTextDraws"/>
 		</member>
 		<member name="F:Iter_Single@Actor">
 			<referrer name="@yH_OnScriptInit@002"/>
@@ -2874,10 +2885,6 @@
 		<member name="F:Iter_Single@serverModelsDS">
 			<referrer name="LoadDSVehicles"/>
 			<referrer name="LoadDsVehs"/>
-		</member>
-		<member name="F:Iterator@AccountBlocked">
-			<referrer name="twofa"/>
-			<referrer name="TimerM"/>
 		</member>
 		<member name="F:Iterator@Actor">
 			<referrer name="@yH_OnScriptInit@002"/>
@@ -4694,8 +4701,6 @@
 			<referrer name="dialog_DIALOG_CLANSETTINGS1"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS2"/>
 			<referrer name="TestVPN"/>
-			<referrer name="twofa"/>
-			<referrer name="pc_cmd_verify"/>
 			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
@@ -9903,6 +9908,8 @@
 		</member>
 		<member name="M:CB_CancelSelectTextDraw" syntax="CB_CancelSelectTextDraw(playerid)">
 			<stacksize value="7"/>
+			<referrer name="pc_cmd_inventory2"/>
+			<referrer name="CB_OnPlayerClickTextDraw"/>
 			<referrer name="@yH_OnPlayerClickTextDraw@013"/>
 			<referrer name="OnPlayerClickPlayerTextDraw"/>
 			<dependency name="Callback_SetFlag"/>
@@ -9966,6 +9973,20 @@
 			<dependency name="gettime"/>
 			<dependency name="loadMaps"/>
 			<dependency name="true"/>
+		</member>
+		<member name="M:CB_OnPlayerClickTextDraw" syntax="CB_OnPlayerClickTextDraw(playerid, clickedid)">
+			<attribute name="public"/>
+			<stacksize value="5"/>
+			<dependency name="CB_CancelSelectTextDraw"/>
+			<dependency name="Inventory_BG"/>
+			<dependency name="Inventory_BTN"/>
+			<dependency name="PlayerTextDrawHide"/>
+			<dependency name="TextDrawHideForPlayer"/>
+			<param name="playerid">
+			</param>
+			<param name="clickedid">
+				<paraminfo>Text </paraminfo>
+			</param>
 		</member>
 		<member name="M:CB_OnPlayerDisconnect" syntax="CB_OnPlayerDisconnect(playerid, reason)">
 			<attribute name="public"/>
@@ -10328,6 +10349,7 @@
 		</member>
 		<member name="M:CB_SelectTextDraw" syntax="CB_SelectTextDraw(playerid, hovercolor)">
 			<stacksize value="7"/>
+			<referrer name="pc_cmd_inventory"/>
 			<referrer name="pc_cmd_fish"/>
 			<referrer name="cancelDriveTest"/>
 			<referrer name="pc_cmd_buycar"/>
@@ -15404,7 +15426,6 @@
 		</member>
 		<member name="M:HTTP" syntax="HTTP(index, type, url[], data[], callback[])">
 			<attribute name="native"/>
-			<referrer name="twofa"/>
 			<referrer name="SSCANF_OnPlayerConnect"/>
 			<param name="index">
 			</param>
@@ -17047,7 +17068,6 @@
 			<referrer name="pc_cmd_ad"/>
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="LoadClans"/>
-			<referrer name="twofa"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="LoadExamCheckpoints"/>
 			<referrer name="checkPanel"/>
@@ -21129,6 +21149,8 @@
 		</member>
 		<member name="M:PlayerTextDrawHide" syntax="PlayerTextDrawHide(playerid, text)">
 			<attribute name="native"/>
+			<referrer name="pc_cmd_inventory2"/>
+			<referrer name="CB_OnPlayerClickTextDraw"/>
 			<referrer name="examenFail"/>
 			<referrer name="dialog_DIALOG_HUD"/>
 			<referrer name="@yH_OnPlayerDisconnect@007"/>
@@ -21282,6 +21304,7 @@
 		</member>
 		<member name="M:PlayerTextDrawShow" syntax="PlayerTextDrawShow(playerid, text)">
 			<attribute name="native"/>
+			<referrer name="pc_cmd_inventory"/>
 			<referrer name="updateLevelBar"/>
 			<referrer name="dialog_DIALOG_HUD"/>
 			<referrer name="updateTaxiTextdraw"/>
@@ -22466,8 +22489,6 @@
 			<referrer name="pc_cmd_clan"/>
 			<referrer name="dialog_DIALOG_CLAN"/>
 			<referrer name="TestVPN"/>
-			<referrer name="twofa"/>
-			<referrer name="pc_cmd_verify"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>
 			<referrer name="checkAccountInBanDatabase"/>
@@ -22495,7 +22516,6 @@
 			<referrer name="pc_cmd_addbizgas"/>
 			<referrer name="pc_cmd_fill"/>
 			<referrer name="TimerWanted"/>
-			<referrer name="TimerM"/>
 			<referrer name="Timers"/>
 			<referrer name="TimerTutorial"/>
 			<referrer name="PayDay"/>
@@ -24085,6 +24105,8 @@
 		</member>
 		<member name="M:TextDrawHideForPlayer" syntax="TextDrawHideForPlayer(playerid, text)">
 			<attribute name="native"/>
+			<referrer name="pc_cmd_inventory2"/>
+			<referrer name="CB_OnPlayerClickTextDraw"/>
 			<referrer name="HideDealerShipTD"/>
 			<param name="playerid">
 			</param>
@@ -24155,6 +24177,7 @@
 		</member>
 		<member name="M:TextDrawShowForPlayer" syntax="TextDrawShowForPlayer(playerid, text)">
 			<attribute name="native"/>
+			<referrer name="pc_cmd_inventory"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="ShowDealerShipTD"/>
 			<param name="playerid">
@@ -24368,8 +24391,6 @@
 			<attribute name="public"/>
 			<stacksize value="4111"/>
 			<dependency name="ClockTD"/>
-			<dependency name="Iterator@AccountBlocked"/>
-			<dependency name="SendClientMessage"/>
 			<dependency name="TextDrawSetString"/>
 			<dependency name="getdate"/>
 			<dependency name="gettime"/>
@@ -25156,7 +25177,6 @@
 			<referrer name="pc_cmd_createhouse"/>
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="TestVPN"/>
-			<referrer name="twofa"/>
 			<referrer name="pc_cmd_adminsuspendlicense"/>
 			<referrer name="pc_cmd_admingivelicense"/>
 			<referrer name="pc_cmd_admintakelicense"/>
@@ -28737,7 +28757,6 @@
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS1"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS2"/>
-			<referrer name="twofa"/>
 			<referrer name="dialog_MY_GARAGE_DESPAWNED"/>
 			<referrer name="dialog_MY_GARAGE_SPAWNED"/>
 			<referrer name="pc_cmd_carplate"/>
@@ -30184,7 +30203,6 @@
 			<dependency name="sscanf"/>
 			<dependency name="string_fast"/>
 			<dependency name="true"/>
-			<dependency name="twofa"/>
 			<dependency name="update"/>
 			<dependency name="updateLevelBar"/>
 			<dependency name="updatePlayer"/>
@@ -31192,7 +31210,6 @@
 			<dependency name="banPlayer"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
-			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
@@ -31223,7 +31240,6 @@
 			<dependency name="isPlayerLogged"/>
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_tquery"/>
-			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pIp"/>
 			<dependency name="pName"/>
@@ -31255,7 +31271,6 @@
 			<dependency name="gettime"/>
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_tquery"/>
-			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pIp"/>
 			<dependency name="pName"/>
@@ -31286,7 +31301,6 @@
 			<dependency name="gettime"/>
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_tquery"/>
-			<dependency name="pAccountBlocked"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerSyntax"/>
@@ -31605,7 +31619,6 @@
 			<dependency name="TestingModel"/>
 			<dependency name="TogglePlayerControllable"/>
 			<dependency name="dModel"/>
-			<dependency name="pAccountBlocked"/>
 			<dependency name="pinDealer"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
@@ -33809,7 +33822,6 @@
 			<dependency name="formatNumberss"/>
 			<dependency name="formatNumberss"/>
 			<dependency name="isPlayerLogged"/>
-			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pName"/>
 			<dependency name="pSQLID"/>
@@ -34494,6 +34506,34 @@
 				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
+		<member name="M:pc_cmd_inventory" syntax="pc_cmd_inventory(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="5"/>
+			<dependency name="CB_SelectTextDraw"/>
+			<dependency name="Inventory_BG"/>
+			<dependency name="Inventory_BTN"/>
+			<dependency name="PlayerTextDrawShow"/>
+			<dependency name="TextDrawShowForPlayer"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:pc_cmd_inventory2" syntax="pc_cmd_inventory2(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="5"/>
+			<dependency name="CB_CancelSelectTextDraw"/>
+			<dependency name="Inventory_BG"/>
+			<dependency name="Inventory_BTN"/>
+			<dependency name="PlayerTextDrawHide"/>
+			<dependency name="TextDrawHideForPlayer"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
 		<member name="M:pc_cmd_invite" syntax="pc_cmd_invite(playerid, params[])">
 			<attribute name="public"/>
 			<stacksize value="4175"/>
@@ -34653,7 +34693,6 @@
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="kickPlayer"/>
-			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
@@ -35206,7 +35245,6 @@
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
 			<dependency name="mutePlayer"/>
-			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pMute"/>
 			<dependency name="pName"/>
@@ -36227,7 +36265,6 @@
 			<dependency name="TogglePlayerSpectating"/>
 			<dependency name="_Timer_F"/>
 			<dependency name="isPlayerLogged"/>
-			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pName"/>
 			<dependency name="pSQLID"/>
@@ -36305,7 +36342,6 @@
 			<dependency name="Iterator@ServerHelpers"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
-			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pHelper"/>
 			<dependency name="pName"/>
@@ -37141,7 +37177,6 @@
 			<dependency name="gettime"/>
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_tquery"/>
-			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="playerInfo"/>
 			<dependency name="sendPlayerSyntax"/>
@@ -37297,7 +37332,6 @@
 			<dependency name="Iterator@ServerAdmins"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="isPlayerLogged"/>
-			<dependency name="pAccountBlocked"/>
 			<dependency name="pMute"/>
 			<dependency name="pName"/>
 			<dependency name="pSQLID"/>
@@ -37372,7 +37406,6 @@
 			<dependency name="SetPVarInt"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
-			<dependency name="pAccountBlocked"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pName"/>
 			<dependency name="pSQLID"/>
@@ -37442,21 +37475,6 @@
 			<dependency name="true"/>
 			<dependency name="vehNames"/>
 			<dependency name="vehNames"/>
-			<param name="playerid">
-			</param>
-			<param name="params">
-				<paraminfo> [] </paraminfo>
-			</param>
-		</member>
-		<member name="M:pc_cmd_verify" syntax="pc_cmd_verify(playerid, params[])">
-			<attribute name="public"/>
-			<stacksize value="5"/>
-			<dependency name="SendClientMessage"/>
-			<dependency name="pAccountBlocked"/>
-			<dependency name="pSQLID"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="update"/>
 			<param name="playerid">
 			</param>
 			<param name="params">
@@ -37534,7 +37552,6 @@
 			<dependency name="SendClientMessage"/>
 			<dependency name="gettime"/>
 			<dependency name="isPlayerLogged"/>
-			<dependency name="pAccountBlocked"/>
 			<dependency name="pName"/>
 			<dependency name="playerInfo"/>
 			<dependency name="playerInfo"/>
@@ -37659,6 +37676,7 @@
 			<stacksize value="8"/>
 			<referrer name="resetVars"/>
 			<dependency name="CreatePlayerTextDraw"/>
+			<dependency name="Inventory_BTN"/>
 			<dependency name="PlayerTextDrawAlignment"/>
 			<dependency name="PlayerTextDrawBackgroundColor"/>
 			<dependency name="PlayerTextDrawBoxColor"/>
@@ -38670,6 +38688,7 @@
 			<stacksize value="5"/>
 			<referrer name="MySQLLoad"/>
 			<dependency name="ClockTD"/>
+			<dependency name="Inventory_BG"/>
 			<dependency name="TextDrawAlignment"/>
 			<dependency name="TextDrawBackgroundColor"/>
 			<dependency name="TextDrawBoxColor"/>
@@ -39529,28 +39548,6 @@
 			<param name="c">
 			</param>
 		</member>
-		<member name="M:twofa" syntax="twofa(playerid)">
-			<attribute name="public"/>
-			<stacksize value="108"/>
-			<referrer name="onPlayerLogin"/>
-			<dependency name="HTTP"/>
-			<dependency name="Iter_Add_InternalC"/>
-			<dependency name="Iter_Single@AccountBlocked"/>
-			<dependency name="Iterator@AccountBlocked"/>
-			<dependency name="SendClientMessage"/>
-			<dependency name="YHash"/>
-			<dependency name="format"/>
-			<dependency name="pAccountBlocked"/>
-			<dependency name="pEMail"/>
-			<dependency name="pIp"/>
-			<dependency name="pLastIp"/>
-			<dependency name="pSQLID"/>
-			<dependency name="playerInfo"/>
-			<dependency name="playerInfo"/>
-			<dependency name="update"/>
-			<param name="playerid">
-			</param>
-		</member>
 		<member name="M:u@" syntax="u@(u[])">
 			<stacksize value="1"/>
 			<param name="u">
@@ -39761,8 +39758,6 @@
 			<referrer name="pc_cmd_createbusiness"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS1"/>
 			<referrer name="dialog_DIALOG_CLANSETTINGS2"/>
-			<referrer name="twofa"/>
-			<referrer name="pc_cmd_verify"/>
 			<referrer name="checkPlayerBan"/>
 			<referrer name="onPlayerLogin"/>
 			<referrer name="checkPanel"/>

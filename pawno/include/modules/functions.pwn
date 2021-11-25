@@ -2,7 +2,7 @@ function MySQLLoad() {
 	mysql_log(ERROR | WARNING);
 	switch(MYSQL) {
 		case 0: SQL = mysql_connect("localhost", "root", "", "from0"); // LocalHost
-		case 1: SQL = mysql_connect("188.212.100.198", "client387_samp", "VqX9BJnllYo7H!pT", "client387_samp"); // MainHost
+		case 1: SQL = mysql_connect("193.105.177.4", "u118_3Dib0K3B9S", "f0D7+NHTOXlh1^=XCs!mApho", "s118_server"); // MainHost
 	}
 	if(mysql_errno() != 0) {
 		mysql_close(SQL);
@@ -52,25 +52,25 @@ function TestVPN(playerid, response_code, data[]) {
 	return 1;
 }
 
-function twofa(playerid) {
-    if(YHash(playerInfo[playerid][pIp]) == YHash(playerInfo[playerid][pLastIp])) return 1;
-    new test[100];
-    format(test, sizeof test, "cdn.blackmoon.ro/send.php?Account=%d&Email=%s&IP=%s", playerInfo[playerid][pSQLID], playerInfo[playerid][pEMail], playerInfo[playerid][pLastIp]);
-    HTTP(playerid, HTTP_POST, test, "", "");
+// function twofa(playerid) {
+//     if(YHash(playerInfo[playerid][pIp]) == YHash(playerInfo[playerid][pLastIp])) return 1;
+//     new test[100];
+//     format(test, sizeof test, "cdn.blackmoon.ro/send.php?Account=%d&Email=%s&IP=%s", playerInfo[playerid][pSQLID], playerInfo[playerid][pEMail], playerInfo[playerid][pLastIp]);
+//     HTTP(playerid, HTTP_POST, test, "", "");
 
-    playerInfo[playerid][pAccountBlocked] = 1;
-    Iter_Add(AccountBlocked, playerid);
-    SCM(playerid, COLOR_LIGHTRED, "Contul tau este blocat, te rog sa verifici email-ul asociat la cont!");
-    update("UPDATE `server_users` SET `AccountBlocked` = '1' WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
-    return 1;
-}
+//     playerInfo[playerid][pAccountBlocked] = 1;
+//     Iter_Add(AccountBlocked, playerid);
+//     SCM(playerid, COLOR_LIGHTRED, "Contul tau este blocat, te rog sa verifici email-ul asociat la cont!");
+//     update("UPDATE `server_users` SET `AccountBlocked` = '1' WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
+//     return 1;
+// }
 
-CMD:verify(playerid, params[]) {
-    playerInfo[playerid][pAccountBlocked] = 0;
-    SCM(playerid, COLOR_LIGHTRED, "Contul tau este deblocat!");
-    update("UPDATE `server_users` SET `AccountBlocked` = '0' WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
-	return 1;
-}
+// CMD:verify(playerid, params[]) {
+//     playerInfo[playerid][pAccountBlocked] = 0;
+//     SCM(playerid, COLOR_LIGHTRED, "Contul tau este deblocat!");
+//     update("UPDATE `server_users` SET `AccountBlocked` = '0' WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
+// 	return 1;
+// }
 
 function checkPlayerBan(playerid) {
 	playerInfo[playerid][pLoginEnabled] = true;
@@ -234,7 +234,7 @@ function onPlayerLogin(playerid)
 	mysql_format(SQL, gQuery, 128, "SELECT * FROM `server_personal_vehicles` WHERE `OwnerID` = '%d'", playerInfo[playerid][pSQLID]);
 	mysql_pquery(SQL, gQuery, "LoadPersonalVehicle", "d", playerid);
 
-	twofa(playerid);
+	// twofa(playerid);
 	new ipnew[16];
 	GetPlayerIp(playerid, ipnew, 16);
 	update("UPDATE `server_users` SET `LastLogin` = '%s', `LastIP` = '%s', `IP` = '%s' WHERE `ID` = '%d'", getDateTime(), playerInfo[playerid][pIp], ipnew, playerInfo[playerid][pSQLID]);

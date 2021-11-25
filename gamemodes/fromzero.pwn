@@ -16,7 +16,7 @@
 // B::::::::::::::::B  l::::::l a::::::::::aa:::a  cc:::::::::::::::ck::::::k   k:::::k M::::::M               M::::::M oo:::::::::::oo  oo:::::::::::oo   n::::n    n::::n//
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define MYSQL 0 // 0 - local | 1 - host
+#define MYSQL 1 // 0 - local | 1 - host
 #define VERSION "v1.6.50"
 
 // #include <discord>
@@ -51,6 +51,7 @@
 #include <modules\ac.pwn> // anti-cheats
 #include <easyDialog>
 #include <easyCheckpoint>
+#include <modules\inventory.pwn>
 #include <modules\stocks.pwn>
 #include <modules\dialogs.pwn>
 #include <modules\pickups.pwn>
