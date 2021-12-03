@@ -99,8 +99,6 @@ function LoadHouses() {
 		houseInfo[i][hText] = CreateDynamic3DTextLabel(string_fast("House ID: %d\nHouse Title: %s\nHouse Description: %s\nOwner: %s\nPrice: $%s%s", houseInfo[i][hID], houseInfo[i][hTitle], houseInfo[i][hDescription], houseInfo[i][hOwner], formatNumber(houseInfo[i][hPrice]),(houseInfo[i][hRentPrice] ? rent : "")), -1, houseInfo[i][hExtX],houseInfo[i][hExtY],houseInfo[i][hExtZ], 20.0, 0xFFFF, 0xFFFF, 0, 0, 0, -1, STREAMER_3D_TEXT_LABEL_SD);
 		houseInfo[i][hPickup] = CreateDynamicPickup((houseInfo[i][hPrice] ? 1273 : 1272), 23, houseInfo[i][hExtX],houseInfo[i][hExtY],houseInfo[i][hExtZ], 0, 0, -1, STREAMER_PICKUP_SD);					
 		PickInfo[houseInfo[i][hPickup]][HOUSE] = i;
-		houseInfo[i][hArea] = CreateDynamicSphere(houseInfo[i][hExtX],houseInfo[i][hExtY],houseInfo[i][hExtZ], 2.0, 0, 0);
-		Streamer_SetIntData(STREAMER_TYPE_AREA, houseInfo[i][hArea], E_STREAMER_EXTRA_ID, (i + HOUSE_STREAMER_START));
 		CreateDynamicMapIcon(houseInfo[i][hExtX],houseInfo[i][hExtY],houseInfo[i][hExtZ],(houseInfo[i][hPrice] ? 31 : 32),0,-1,-1,-1,750.0); 	
 	}
 	return printf("Houses: %d [From Database]", Iter_Count(ServerHouses));
@@ -512,8 +510,6 @@ CMD:createhouse(playerid, params[], help) {
 	houseInfo[i][hText] = CreateDynamic3DTextLabel(string_fast("House ID: %d\nHouse Title: %s\nHouse Description: %s\nOwner: %s\nPrice: $%s%s", houseInfo[i][hID], houseInfo[i][hTitle], houseInfo[i][hDescription], houseInfo[i][hOwner], formatNumber(houseInfo[i][hPrice]),(houseInfo[i][hRentPrice] ? rentx : "")), -1, houseInfo[i][hExtX],houseInfo[i][hExtY],houseInfo[i][hExtZ], 20.0, 0xFFFF, 0xFFFF, 0, 0, 0, -1, STREAMER_3D_TEXT_LABEL_SD);
 	houseInfo[i][hPickup] = CreateDynamicPickup((houseInfo[i][hPrice] ? 1273 : 1272), 23, houseInfo[i][hExtX],houseInfo[i][hExtY],houseInfo[i][hExtZ], 0, 0, -1, STREAMER_PICKUP_SD);					
 	PickInfo[houseInfo[i][hPickup]][HOUSE] = i;
-	houseInfo[i][hArea] = CreateDynamicSphere(houseInfo[i][hExtX],houseInfo[i][hExtY],houseInfo[i][hExtZ], 2.0, 0, 0);
-	Streamer_SetIntData(STREAMER_TYPE_AREA, houseInfo[i][hArea], E_STREAMER_EXTRA_ID, (i + HOUSE_STREAMER_START));
 	CreateDynamicMapIcon(houseInfo[i][hExtX],houseInfo[i][hExtY],houseInfo[i][hExtZ],(houseInfo[i][hPrice] ? 31 : 32),0,-1,-1,-1,750.0); 	
 	update("INSERT INTO `server_houses` (`Title`, `Description`, `Owner`, `X`, `Y`, `Z`, `ExtX`, `ExtY`, `ExtZ`, `Interior`, `Price`) VALUES ('%s', '%s', '%s', '%.2f', '%.2f', '%.2f', '%.2f', '%.2f', '%.2f', '%d', '%d')", houseInfo[i][hTitle], houseInfo[i][hDescription], houseInfo[i][hOwner], houseInfo[i][hX], houseInfo[i][hY], houseInfo[i][hZ], houseInfo[i][hExtX], houseInfo[i][hExtY], houseInfo[i][hExtZ], houseInfo[i][hInterior], houseInfo[i][hPrice]);
 	SCMf(playerid, COLOR_SERVER, "* Notice: {ffffff}Ai creat o casa de tip '%s' (id: %d | price: $%s | rent available: %s).", interior, houseInfo[i][hID], formatNumber(houseInfo[i][hPrice]), houseInfo[i][hRentabil] ? "yes" : "no");

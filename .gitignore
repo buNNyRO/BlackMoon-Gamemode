@@ -8,3 +8,6 @@ gamemodes/fromzero.amx
 *.xml
 *.amx
 server_log.txt
+*.rar
+*.xml
+*.xml

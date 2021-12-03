@@ -1,6 +1,5 @@
 #include <YSI\y_hooks>
 #define MAX_BUSINESSES (30) 
-#define BUSINESS_STREAMER_START 0
 
 enum businessInfoEnum {
 	bizID,
@@ -41,12 +40,6 @@ hook OnPlayerConnect(playerid) {
 timer advertismentTimer[Iter_Count(ServerAds)+1 * 60000](playerid) {
 	sendSplitMessage(playerid, COLOR_LAWNGREEN, string_fast("Advertisment by {ffffff}%s{7CFC00}(phone: {ffffff}%d{7CFC00}): '{ffffff}%s{7CFC00}'", getName(playerid), playerInfo[playerid][pPhone], playerInfo[playerid][pAdText]));
 	stop adTimer[playerid];
-	switch(MYSQL) {
-		case 1: {
-			if (_:MoonBot == 0) MoonBot = DCC_FindChannelById("842858866973737020");
-			DCC_SendChannelMessage(MoonBot, string_fast(":newspaper: Ad by **%s[%d]** (phone: **%d**): %s", getName(playerid), playerid, playerInfo[playerid][pPhone], playerInfo[playerid][pAdText]));
-		}
-	}
 	Iter_Remove(ServerAds, playerid);
 	playerInfo[playerid][pAdText] = (EOS);
 	return true;

@@ -147,7 +147,25 @@ function PutPlayerInVehicleEx(playerid, vehicleid, seatid) {
 }
 
 public OnPlayerUpdate(playerid) {
-    Hacker(playerid);
+    Hacker(playerid);    
+
+    new Float:distanta = GetPlayerDistanceFromPoint(playerid, playerInfo[playerid][pLastPosX], playerInfo[playerid][pLastPosY], playerInfo[playerid][pLastPosZ]);
+
+    if(distanta > 1) {
+        if(GetPlayerAnimationIndex(playerid) != 1130) {
+            if(!IsPlayerInAnyVehicle(playerid) || !GetPlayerSurfingVehicleID(playerid)) {
+                if(isPlayerLogged(playerid)) { }
+            }
+        }
+    }
+
+
+    new Float: x, Float: y, Float: z;
+    GetPlayerPos(playerid, x, y, z);
+    playerInfo[playerid][pLastPosX] = x;
+    playerInfo[playerid][pLastPosY] = y;
+    playerInfo[playerid][pLastPosZ] = z;
+
     // new Float:Pos[3], veh = GetPlayerVehicleID(playerid);
     // if(IsPlayerInVehicle(playerid, veh)) {
     //     GetVehiclePos(veh, Pos[0], Pos[1], Pos[2]);

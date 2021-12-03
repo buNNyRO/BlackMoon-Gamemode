@@ -4,11 +4,9 @@
 
 Dialog:EMAIL(playerid, response, listitem, inputtext[])
 {
-	if(!response)
-		return Dialog_Show(playerid, EMAIL, DIALOG_STYLE_INPUT, "E-Mail", "Scrie mai jos adresa ta de E-Mail:\n{afafaf}Trebuie sa completezi casuta de mai jos cu adresa ta de e-mail.", "Ok", "");
+	if(!response) return Dialog_Show(playerid, EMAIL, DIALOG_STYLE_INPUT, "E-Mail", "Scrie mai jos adresa ta de E-Mail:\n{afafaf}Trebuie sa completezi casuta de mai jos cu adresa ta de e-mail.", "Ok", "");
 
-	if(!isValidEmail(inputtext))
-		return Dialog_Show(playerid, EMAIL, DIALOG_STYLE_INPUT, "E-Mail", "Scrie mai jos adresa ta de E-Mail:\n{afafaf}Adresa de E-Mail introdusa nu este valid.", "Ok", "");
+	if(!isValidEmail(inputtext)) return Dialog_Show(playerid, EMAIL, DIALOG_STYLE_INPUT, "E-Mail", "Scrie mai jos adresa ta de E-Mail:\n{afafaf}Adresa de E-Mail introdusa nu este valid.", "Ok", "");
 	
 	format(playerInfo[playerid][pEMail], 128, inputtext);
 	SCM(playerid, COLOR_YELLOWGREEN, string_fast("REGISTER: {ffffff}Adresa ta de E-Mail este: %s", inputtext));
@@ -46,11 +44,9 @@ Dialog:GENDER(playerid, response, listitem, inputtext[])
 
 Dialog:REGISTER(playerid, response, listitem, inputtext[])
 {
-	if(!response || playerInfo[playerid][pLogged] == true)
-		return Kick(playerid);
+	if(!response || playerInfo[playerid][pLogged] == true) return Kick(playerid);
 
-	if(strlen(inputtext) < 6 || strlen(inputtext) > 32)
-		return Dialog_Show(playerid, REGISTER, DIALOG_STYLE_PASSWORD, "Register", "Bine ai venit, %s.\nScrie mai jos parola pe care doresti sa o ai:\n\n{afafaf}Parola trebuie sa fie formata din 6 - 32 caractere.", "Register", "Quit", getName(playerid));
+	if(strlen(inputtext) < 6 || strlen(inputtext) > 32) return Dialog_Show(playerid, REGISTER, DIALOG_STYLE_PASSWORD, "Register", "Bine ai venit, %s.\nScrie mai jos parola pe care doresti sa o ai:\n\n{afafaf}Parola trebuie sa fie formata din 6 - 32 caractere.", "Register", "Quit", getName(playerid));
 	
 	SHA256_PassHash(inputtext, "fez9yGgHWUqF5hEw", playerInfo[playerid][pPassword], 65);
 
@@ -64,11 +60,9 @@ Dialog:REGISTER(playerid, response, listitem, inputtext[])
 
 Dialog:LOGIN(playerid, response, listitem, inputtext[])
 {
-	if(!response || playerInfo[playerid][pLogged] == true)
-		return Kick(playerid);
+	if(!response || playerInfo[playerid][pLogged] == true) return Kick(playerid);
 
-	if(strlen(inputtext) < 6 || strlen(inputtext) > 32)
-		return Dialog_Show(playerid, LOGIN, DIALOG_STYLE_PASSWORD, "Login", "Bine ai revenit, %s.\nScrie mai jos parola contului tau:\n{afafaf}Parola introdusa nu este valida.", "Login", "Quit", getName(playerid));
+	if(strlen(inputtext) < 6 || strlen(inputtext) > 32) return Dialog_Show(playerid, LOGIN, DIALOG_STYLE_PASSWORD, "Login", "Bine ai revenit, %s.\nScrie mai jos parola contului tau:\n{afafaf}Parola introdusa nu este valida.", "Login", "Quit", getName(playerid));
 	
 	gQuery[0] = (EOS);
 	SHA256_PassHash(inputtext, "fez9yGgHWUqF5hEw", playerInfo[playerid][pPassword], 65);

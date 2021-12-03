@@ -11,9 +11,6 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
     Float: vehicle_fuel[MAX_VEHICLES],
     vehicle_personal[MAX_VEHICLES],
 
-    DCC_Channel:MoonBot,
-    DCC_Channel:MoonBotAC,
-
 	Iterator:ServerAdmins<MAX_PLAYERS>,
     Iterator:ServerHelpers<MAX_PLAYERS>,
     Iterator:ServerStaff<MAX_PLAYERS>,
@@ -21,6 +18,7 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
 	Iterator:MutedPlayers<MAX_PLAYERS>,
 	Iterator:ExamenCheckpoints<MAX_EXAM_CHECKPOINTS>,
     Iterator:AdminVehicles<MAX_VEHICLES>,
+    // Iterator:AccountBlocked<MAX_PLAYERS>,
 	Iterator:StreamPlayer[MAX_PLAYERS]<MAX_PLAYERS>,
 	/*Iterator:Pickups<MAX_DYNAMIC_PICKUPS>,
 	Iterator:Labels<MAX_DYNAMIC_LABELS>,*/
@@ -41,9 +39,12 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
     Text:ClockTD[3],
     Text:serverDealerTD[9],
     
+    Text:Inventory_BG[30],
+    PlayerText:Inventory_BTN[20],
+    
     PlayerText:jailTimeTD[MAX_PLAYERS],
 	PlayerText:serverHud[2],
-    PlayerText:levelBar[3],
+    PlayerText:levelBar[4],
 	PlayerText:playerLevelPTD[MAX_PLAYERS],
 	PlayerText:playerExamenPTD[MAX_PLAYERS],
     PlayerText:vehicleHud[20],
@@ -54,6 +55,7 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
     PlayerText:notificationTD[MAX_PLAYERS],
     PlayerText:specTD[MAX_PLAYERS],
     PlayerText:fishTD[MAX_PLAYERS][15],
+    PlayerText:examenTD[MAX_PLAYERS][13],
 
     Timer:jailTime[MAX_PLAYERS],
     Timer:wantedTime[MAX_PLAYERS],
@@ -65,7 +67,7 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
     Timer:taxi[MAX_PLAYERS],
     Timer:getHit[MAX_PLAYERS],
     Timer:spectator[MAX_PLAYERS],
-    // Timer:fpsShow[MAX_PLAYERS],
+    Timer:examen[MAX_PLAYERS],
 
 
 vehNames[212][] =

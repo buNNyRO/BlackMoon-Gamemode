@@ -28,8 +28,9 @@
 
 // Limits and internal constants
 #define MAX_PLAYER_NAME							(24)
-#define MAX_PLAYERS								(50)
+#define MAX_PLAYERS                             (50)
 #define MAX_VEHICLES							(2000)
+#define MAX_AREAS								(1000)
 #define MAX_ACTORS								(1000)
 #define INVALID_PLAYER_ID						(0xFFFF)
 #define INVALID_VEHICLE_ID						(0xFFFF)

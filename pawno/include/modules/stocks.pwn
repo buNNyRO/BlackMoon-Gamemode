@@ -57,9 +57,7 @@ stock warnPlayer(playerid, adminid, const reason[])
 	update("UPDATE `server_users` SET `Warn` = '%d' WHERE `ID` = '%d'", playerInfo[playerid][pWarn], playerInfo[playerid][pSQLID]);
 	SCMf(playerid, COLOR_GREY, "* Ai primit un warn pe motiv: %s", reason);
 
-	gQuery[0] = (EOS);
-	mysql_format(SQL, gQuery, sizeof gQuery, "INSERT INTO `server_warn_logs` (PlayerName, PlayerID, AdminName, AdminID, WarnReason) VALUES ('%s', '%d', '%s', '%d', '%s')", getName(playerid), playerInfo[playerid][pSQLID], adminName, (adminid != INVALID_PLAYER_ID) ? (playerInfo[adminid][pSQLID]) : (0), reason);
-	mysql_pquery(SQL, gQuery, "", "");
+	update("INSERT INTO `server_warn_logs` (PlayerName, PlayerID, AdminName, AdminID, WarnReason) VALUES ('%s', '%d', '%s', '%d', '%s')", getName(playerid), playerInfo[playerid][pSQLID], adminName, (adminid != INVALID_PLAYER_ID) ? (playerInfo[adminid][pSQLID]) : (0), reason);
 	return true;
 }
 
@@ -73,10 +71,7 @@ stock banPlayer(playerid, adminid, days, const reason[])
 		SetPVarInt(adminid, "banDeelay", (gettime() + 60));
 	}
 
-	gQuery[0] = (EOS);
-	mysql_format(SQL, gQuery, 256, "INSERT INTO `server_bans` (PlayerName, PlayerID, AdminName, AdminID, Reason, Days, Permanent, Date) VALUES ('%s', '%d', '%s', '%d', '%s', '%d', '%d', '%s')", getName(playerid), playerInfo[playerid][pSQLID], adminName, (INVALID_PLAYER_ID == adminid) ? (0) : (playerInfo[adminid][pSQLID]), reason, days, (days == 0) ? (1) : (0), getDateTime());
-	mysql_pquery(SQL, gQuery, "", "");
-
+	update("INSERT INTO `server_bans` (PlayerName, PlayerID, AdminName, AdminID, Reason, Days, Permanent, Date) VALUES ('%s', '%d', '%s', '%d', '%s', '%d', '%d', '%s')", getName(playerid), playerInfo[playerid][pSQLID], adminName, (INVALID_PLAYER_ID == adminid) ? (0) : (playerInfo[adminid][pSQLID]), reason, days, (days == 0) ? (1) : (0), getDateTime());
 	defer kickEx(playerid);
 	return true;
 }
@@ -97,9 +92,7 @@ stock mutePlayer(playerid, adminid, minutes, const reason[])
 	if(!Iter_Contains(MutedPlayers, playerid))
 		Iter_Add(MutedPlayers, playerid);
 
-	gQuery[0] = (EOS);
-	mysql_format(SQL, gQuery, 256, "INSERT INTO `server_mute_logs` (PlayerName, PlayerID, AdminName, AdminID, MuteReason, MuteMinutes) VALUES ('%s', '%d', '%s', '%d', '%s', '%d')", getName(playerid), playerInfo[playerid][pSQLID], adminName, (adminid != INVALID_PLAYER_ID) ? (playerInfo[adminid][pSQLID]) : (0), reason, minutes);
-	mysql_pquery(SQL, gQuery, "", "");
+	update("INSERT INTO `server_mute_logs` (PlayerName, PlayerID, AdminName, AdminID, MuteReason, MuteMinutes) VALUES ('%s', '%d', '%s', '%d', '%s', '%d')", getName(playerid), playerInfo[playerid][pSQLID], adminName, (adminid != INVALID_PLAYER_ID) ? (playerInfo[adminid][pSQLID]) : (0), reason, minutes);
 	return true;
 }
 
@@ -180,6 +173,8 @@ stock showLicenses(playerid, userID)
 	if(playerInfo[userID][pBoatLicenseSuspend] > 0) SCMf(playerid, COLOR_LIGHTRED, "Licenta de Navigatie: Suspendata (%d ore)", playerInfo[userID][pBoatLicenseSuspend]);
 	else if(playerInfo[userID][pBoatLicense] > 0) SCMf(playerid, COLOR_LIGHTRED, "Licenta de Navigatie: Valida (%d ore)", playerInfo[userID][pBoatLicense]);
 	else SCM(playerid, COLOR_GREY, "Licenta de Navigatie: Expirata");
+
+	if(playerInfo[userID][pCertificate][0] > 0) SCMf(playerid, COLOR_LIGHTRED, "Certificat 'ADR': Valid (%d zile)", playerInfo[userID][pCertificate][0]);
 	
 	SCM(playerid, COLOR_GREY, "----------------------------------------");
 	return true;
@@ -769,9 +764,9 @@ stock playerTextDraws(playerid) {
 	PlayerTextDrawSetProportional(playerid, jailTimeTD[playerid], 1);
 	PlayerTextDrawSetShadow(playerid, jailTimeTD[playerid], 0);
 
-	levelBar[0] = CreatePlayerTextDraw(playerid, 219.222122, 435.248931, "LD_SPAC:white");
+	levelBar[0] = CreatePlayerTextDraw(playerid, 497.888549, 101.637939, "LD_SPAC:white");
 	PlayerTextDrawLetterSize(playerid, levelBar[0], 0.000000, 0.000000);
-	PlayerTextDrawTextSize(playerid, levelBar[0], 201.000000, 9.000000);
+	PlayerTextDrawTextSize(playerid, levelBar[0], 109.000000, 7.000000);
 	PlayerTextDrawAlignment(playerid, levelBar[0], 1);
 	PlayerTextDrawColor(playerid, levelBar[0], 149);
 	PlayerTextDrawSetShadow(playerid, levelBar[0], 0);
@@ -781,9 +776,9 @@ stock playerTextDraws(playerid) {
 	PlayerTextDrawSetProportional(playerid, levelBar[0], 0);
 	PlayerTextDrawSetShadow(playerid, levelBar[0], 0);
 
-	levelBar[1] = CreatePlayerTextDraw(playerid, 219.722152, 435.748962, "LD_SPAC:white");
+	levelBar[1] = CreatePlayerTextDraw(playerid, 498.389068, 102.237838, "LD_SPAC:white");
 	PlayerTextDrawLetterSize(playerid, levelBar[1], 0.000000, 0.000000);
-	PlayerTextDrawTextSize(playerid, levelBar[1], 200.000000, 8.000000);
+	PlayerTextDrawTextSize(playerid, levelBar[1], 108.000000, 6.000000);
 	PlayerTextDrawAlignment(playerid, levelBar[1], 1);
 	PlayerTextDrawColor(playerid, levelBar[1], -2139062180);
 	PlayerTextDrawSetShadow(playerid, levelBar[1], 0);
@@ -793,16 +788,483 @@ stock playerTextDraws(playerid) {
 	PlayerTextDrawSetProportional(playerid, levelBar[1], 0);
 	PlayerTextDrawSetShadow(playerid, levelBar[1], 0);
 
-	levelBar[2] = CreatePlayerTextDraw(playerid, 287.313537, 424.523834, "LEVEL 0 ~p~(0/0)");
-	PlayerTextDrawLetterSize(playerid, levelBar[2], 0.174222, 1.127111);
+	levelBar[2] = CreatePlayerTextDraw(playerid, 498.633209, 102.137870, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, levelBar[2], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, levelBar[2], 0.000000, 6.000000);
 	PlayerTextDrawAlignment(playerid, levelBar[2], 1);
-	PlayerTextDrawColor(playerid, levelBar[2], -1);
+	PlayerTextDrawColor(playerid, levelBar[2], -2139062180);
 	PlayerTextDrawSetShadow(playerid, levelBar[2], 0);
-	PlayerTextDrawSetOutline(playerid, levelBar[2], 1);
-	PlayerTextDrawBackgroundColor(playerid, levelBar[2], 59);
-	PlayerTextDrawFont(playerid, levelBar[2], 2);
-	PlayerTextDrawSetProportional(playerid, levelBar[2], 1);
-	PlayerTextDrawSetShadow(playerid, levelBar[2], 0);	
+	PlayerTextDrawSetOutline(playerid, levelBar[2], 0);
+	PlayerTextDrawBackgroundColor(playerid, levelBar[2], 255);
+	PlayerTextDrawFont(playerid, levelBar[2], 4);
+	PlayerTextDrawSetProportional(playerid, levelBar[2], 0);
+	PlayerTextDrawSetShadow(playerid, levelBar[2], 0);
+
+	levelBar[3] = CreatePlayerTextDraw(playerid, 551.036071, 109.430572, "");
+	PlayerTextDrawLetterSize(playerid, levelBar[3], 0.174222, 1.127110);
+	PlayerTextDrawAlignment(playerid, levelBar[3], 2);
+	PlayerTextDrawColor(playerid, levelBar[3], -1);
+	PlayerTextDrawSetShadow(playerid, levelBar[3], 0);
+	PlayerTextDrawSetOutline(playerid, levelBar[3], 1);
+	PlayerTextDrawBackgroundColor(playerid, levelBar[3], 27);
+	PlayerTextDrawFont(playerid, levelBar[3], 2);
+	PlayerTextDrawSetProportional(playerid, levelBar[3], 1);
+	PlayerTextDrawSetShadow(playerid, levelBar[3], 0);
+
+	examenTD[playerid][0] = CreatePlayerTextDraw(playerid, 330.333160, 168.439956, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][0], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, examenTD[playerid][0], 271.000000, 114.000000);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][0], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][0], 1419188479);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][0], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][0], 0);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][0], 255);
+	PlayerTextDrawFont(playerid, examenTD[playerid][0], 4);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][0], 0);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][0], 0);
+
+	examenTD[playerid][1] = CreatePlayerTextDraw(playerid, 331.133209, 169.540023, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][1], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, examenTD[playerid][1], 269.000000, 112.000000);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][1], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][1], 387389439);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][1], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][1], 0);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][1], 255);
+	PlayerTextDrawFont(playerid, examenTD[playerid][1], 4);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][1], 0);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][1], 0);
+
+	examenTD[playerid][2] = CreatePlayerTextDraw(playerid, 330.333160, 168.439956, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][2], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, examenTD[playerid][2], 34.000000, -15.000000);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][2], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][2], 1419188479);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][2], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][2], 0);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][2], 255);
+	PlayerTextDrawFont(playerid, examenTD[playerid][2], 4);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][2], 0);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][2], 0);
+
+	examenTD[playerid][3] = CreatePlayerTextDraw(playerid, 331.222015, 198.399856, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][3], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, examenTD[playerid][3], 270.000000, -1.000000);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][3], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][3], 1419188479);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][3], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][3], 0);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][3], 255);
+	PlayerTextDrawFont(playerid, examenTD[playerid][3], 4);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][3], 0);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][3], 0);
+
+	examenTD[playerid][4] = CreatePlayerTextDraw(playerid, 331.133178, 154.604415, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][4], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, examenTD[playerid][4], 32.000000, 14.000000);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][4], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][4], 387389439);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][4], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][4], 0);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][4], 255);
+	PlayerTextDrawFont(playerid, examenTD[playerid][4], 4);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][4], 0);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][4], 0);
+
+	examenTD[playerid][5] = CreatePlayerTextDraw(playerid, 336.000000, 203.400177, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][5], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, examenTD[playerid][5], 260.000000, 22.000000);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][5], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][5], 1419188479);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][5], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][5], 0);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][5], 255);
+	PlayerTextDrawFont(playerid, examenTD[playerid][5], 4);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][5], 0);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][5], 0);
+	PlayerTextDrawSetSelectable(playerid, examenTD[playerid][5], true);
+
+	examenTD[playerid][6] = CreatePlayerTextDraw(playerid, 335.944885, 228.686050, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][6], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, examenTD[playerid][6], 260.000000, 22.000000);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][6], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][6], 1419188479);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][6], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][6], 0);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][6], 255);
+	PlayerTextDrawFont(playerid, examenTD[playerid][6], 4);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][6], 0);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][6], 0);
+	PlayerTextDrawSetSelectable(playerid, examenTD[playerid][6], true);
+
+	examenTD[playerid][7] = CreatePlayerTextDraw(playerid, 335.989135, 253.883972, "LD_SPAC:white");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][7], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, examenTD[playerid][7], 260.000000, 22.000000);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][7], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][7], 1419188479);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][7], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][7], 0);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][7], 255);
+	PlayerTextDrawFont(playerid, examenTD[playerid][7], 4);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][7], 0);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][7], 0);
+	PlayerTextDrawSetSelectable(playerid, examenTD[playerid][7], true);
+
+	examenTD[playerid][8] = CreatePlayerTextDraw(playerid, 334.455688, 173.386856, "Iti place pula?Iti place pula?Iti place pula?~n~Iti place pula?Iti place pula?Iti place pula pula?");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][8], 0.242222, 1.057422);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][8], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][8], -1);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][8], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][8], 1);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][8], 86);
+	PlayerTextDrawFont(playerid, examenTD[playerid][8], 1);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][8], 1);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][8], 0);
+
+	examenTD[playerid][9] = CreatePlayerTextDraw(playerid, 334.366851, 155.857894, "05:29");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][9], 0.200000, 1.161955);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][9], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][9], -1);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][9], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][9], 1);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][9], 86);
+	PlayerTextDrawFont(playerid, examenTD[playerid][9], 2);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][9], 1);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][9], 0);
+
+	examenTD[playerid][10] = CreatePlayerTextDraw(playerid, 338.811340, 208.422363, "a) da");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][10], 0.200000, 1.161955);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][10], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][10], -1);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][10], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][10], 1);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][10], 86);
+	PlayerTextDrawFont(playerid, examenTD[playerid][10], 2);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][10], 1);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][10], 0);
+
+	examenTD[playerid][11] = CreatePlayerTextDraw(playerid, 339.477905, 234.006805, "B) NU");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][11], 0.200000, 1.161955);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][11], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][11], -1);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][11], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][11], 1);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][11], 86);
+	PlayerTextDrawFont(playerid, examenTD[playerid][11], 2);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][11], 1);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][11], 0);
+
+	examenTD[playerid][12] = CreatePlayerTextDraw(playerid, 339.911193, 259.495727, "C) Poate");
+	PlayerTextDrawLetterSize(playerid, examenTD[playerid][12], 0.200000, 1.161955);
+	PlayerTextDrawAlignment(playerid, examenTD[playerid][12], 1);
+	PlayerTextDrawColor(playerid, examenTD[playerid][12], -1);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][12], 0);
+	PlayerTextDrawSetOutline(playerid, examenTD[playerid][12], 1);
+	PlayerTextDrawBackgroundColor(playerid, examenTD[playerid][12], 86);
+	PlayerTextDrawFont(playerid, examenTD[playerid][12], 2);
+	PlayerTextDrawSetProportional(playerid, examenTD[playerid][12], 1);
+	PlayerTextDrawSetShadow(playerid, examenTD[playerid][12], 0);
+
+	Inventory_BTN[0] = CreatePlayerTextDraw(playerid, 2.333290, 156.991104, "");
+	PlayerTextDrawLetterSize(playerid, Inventory_BTN[0], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, Inventory_BTN[0], 28.000000, 31.000000);
+	PlayerTextDrawAlignment(playerid, Inventory_BTN[0], 1);
+	PlayerTextDrawColor(playerid, Inventory_BTN[0], -1);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[0], 0);
+	PlayerTextDrawSetOutline(playerid, Inventory_BTN[0], 0);
+	PlayerTextDrawBackgroundColor(playerid, Inventory_BTN[0], 255);
+	PlayerTextDrawFont(playerid, Inventory_BTN[0], 5);
+	PlayerTextDrawSetProportional(playerid, Inventory_BTN[0], 0);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[0], 0);
+	PlayerTextDrawSetPreviewModel(playerid, Inventory_BTN[0], 30000);
+	PlayerTextDrawSetPreviewRot(playerid, Inventory_BTN[0], 0.000000, 0.000000, 0.000000, 1.000000);
+	PlayerTextDrawSetSelectable(playerid, Inventory_BTN[0], true);
+
+	Inventory_BTN[1] = CreatePlayerTextDraw(playerid, 33.933345, 156.991104, "");
+	PlayerTextDrawLetterSize(playerid, Inventory_BTN[1], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, Inventory_BTN[1], 28.000000, 31.000000);
+	PlayerTextDrawAlignment(playerid, Inventory_BTN[1], 1);
+	PlayerTextDrawColor(playerid, Inventory_BTN[1], -1);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[1], 0);
+	PlayerTextDrawSetOutline(playerid, Inventory_BTN[1], 0);
+	PlayerTextDrawBackgroundColor(playerid, Inventory_BTN[1], 255);
+	PlayerTextDrawFont(playerid, Inventory_BTN[1], 5);
+	PlayerTextDrawSetProportional(playerid, Inventory_BTN[1], 0);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[1], 0);
+	PlayerTextDrawSetPreviewModel(playerid, Inventory_BTN[1], 30000);
+	PlayerTextDrawSetPreviewRot(playerid, Inventory_BTN[1], 0.000000, 0.000000, 0.000000, 1.000000);
+	PlayerTextDrawSetSelectable(playerid, Inventory_BTN[1], true);
+
+	Inventory_BTN[2] = CreatePlayerTextDraw(playerid, 66.032859, 156.991104, "");
+	PlayerTextDrawLetterSize(playerid, Inventory_BTN[2], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, Inventory_BTN[2], 28.000000, 31.000000);
+	PlayerTextDrawAlignment(playerid, Inventory_BTN[2], 1);
+	PlayerTextDrawColor(playerid, Inventory_BTN[2], -1);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[2], 0);
+	PlayerTextDrawSetOutline(playerid, Inventory_BTN[2], 0);
+	PlayerTextDrawBackgroundColor(playerid, Inventory_BTN[2], 255);
+	PlayerTextDrawFont(playerid, Inventory_BTN[2], 5);
+	PlayerTextDrawSetProportional(playerid, Inventory_BTN[2], 0);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[2], 0);
+	PlayerTextDrawSetPreviewModel(playerid, Inventory_BTN[2], 30000);
+	PlayerTextDrawSetPreviewRot(playerid, Inventory_BTN[2], 0.000000, 0.000000, 0.000000, 1.000000);
+	PlayerTextDrawSetSelectable(playerid, Inventory_BTN[2], true);
+
+	Inventory_BTN[3] = CreatePlayerTextDraw(playerid, 97.432380, 156.991104, "");
+	PlayerTextDrawLetterSize(playerid, Inventory_BTN[3], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, Inventory_BTN[3], 28.000000, 31.000000);
+	PlayerTextDrawAlignment(playerid, Inventory_BTN[3], 1);
+	PlayerTextDrawColor(playerid, Inventory_BTN[3], -1);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[3], 0);
+	PlayerTextDrawSetOutline(playerid, Inventory_BTN[3], 0);
+	PlayerTextDrawBackgroundColor(playerid, Inventory_BTN[3], 255);
+	PlayerTextDrawFont(playerid, Inventory_BTN[3], 5);
+	PlayerTextDrawSetProportional(playerid, Inventory_BTN[3], 0);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[3], 0);
+	PlayerTextDrawSetPreviewModel(playerid, Inventory_BTN[3], 30000);
+	PlayerTextDrawSetPreviewRot(playerid, Inventory_BTN[3], 0.000000, 0.000000, 0.000000, 1.000000);
+	PlayerTextDrawSetSelectable(playerid, Inventory_BTN[3], true);
+
+	Inventory_BTN[4] = CreatePlayerTextDraw(playerid, 2.333290, 191.493209, "");
+	PlayerTextDrawLetterSize(playerid, Inventory_BTN[4], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, Inventory_BTN[4], 28.000000, 31.000000);
+	PlayerTextDrawAlignment(playerid, Inventory_BTN[4], 1);
+	PlayerTextDrawColor(playerid, Inventory_BTN[4], -1);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[4], 0);
+	PlayerTextDrawSetOutline(playerid, Inventory_BTN[4], 0);
+	PlayerTextDrawBackgroundColor(playerid, Inventory_BTN[4], 255);
+	PlayerTextDrawFont(playerid, Inventory_BTN[4], 5);
+	PlayerTextDrawSetProportional(playerid, Inventory_BTN[4], 0);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[4], 0);
+	PlayerTextDrawSetPreviewModel(playerid, Inventory_BTN[4], 30000);
+	PlayerTextDrawSetPreviewRot(playerid, Inventory_BTN[4], 0.000000, 0.000000, 0.000000, 1.000000);
+	PlayerTextDrawSetSelectable(playerid, Inventory_BTN[4], true);
+
+	Inventory_BTN[5] = CreatePlayerTextDraw(playerid, 33.933345, 191.493209, "");
+	PlayerTextDrawLetterSize(playerid, Inventory_BTN[5], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, Inventory_BTN[5], 28.000000, 31.000000);
+	PlayerTextDrawAlignment(playerid, Inventory_BTN[5], 1);
+	PlayerTextDrawColor(playerid, Inventory_BTN[5], -1);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[5], 0);
+	PlayerTextDrawSetOutline(playerid, Inventory_BTN[5], 0);
+	PlayerTextDrawBackgroundColor(playerid, Inventory_BTN[5], 255);
+	PlayerTextDrawFont(playerid, Inventory_BTN[5], 5);
+	PlayerTextDrawSetProportional(playerid, Inventory_BTN[5], 0);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[5], 0);
+	PlayerTextDrawSetPreviewModel(playerid, Inventory_BTN[5], 30000);
+	PlayerTextDrawSetPreviewRot(playerid, Inventory_BTN[5], 0.000000, 0.000000, 0.000000, 1.000000);
+	PlayerTextDrawSetSelectable(playerid, Inventory_BTN[5], true);
+
+	Inventory_BTN[6] = CreatePlayerTextDraw(playerid, 65.432868, 191.493209, "");
+	PlayerTextDrawLetterSize(playerid, Inventory_BTN[6], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, Inventory_BTN[6], 28.000000, 31.000000);
+	PlayerTextDrawAlignment(playerid, Inventory_BTN[6], 1);
+	PlayerTextDrawColor(playerid, Inventory_BTN[6], -1);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[6], 0);
+	PlayerTextDrawSetOutline(playerid, Inventory_BTN[6], 0);
+	PlayerTextDrawBackgroundColor(playerid, Inventory_BTN[6], 255);
+	PlayerTextDrawFont(playerid, Inventory_BTN[6], 5);
+	PlayerTextDrawSetProportional(playerid, Inventory_BTN[6], 0);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[6], 0);
+	PlayerTextDrawSetPreviewModel(playerid, Inventory_BTN[6], 30000);
+	PlayerTextDrawSetPreviewRot(playerid, Inventory_BTN[6], 0.000000, 0.000000, 0.000000, 1.000000);
+	PlayerTextDrawSetSelectable(playerid, Inventory_BTN[6], true);
+
+	Inventory_BTN[7] = CreatePlayerTextDraw(playerid, 97.632377, 191.493209, "");
+	PlayerTextDrawLetterSize(playerid, Inventory_BTN[7], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, Inventory_BTN[7], 28.000000, 31.000000);
+	PlayerTextDrawAlignment(playerid, Inventory_BTN[7], 1);
+	PlayerTextDrawColor(playerid, Inventory_BTN[7], -1);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[7], 0);
+	PlayerTextDrawSetOutline(playerid, Inventory_BTN[7], 0);
+	PlayerTextDrawBackgroundColor(playerid, Inventory_BTN[7], 255);
+	PlayerTextDrawFont(playerid, Inventory_BTN[7], 5);
+	PlayerTextDrawSetProportional(playerid, Inventory_BTN[7], 0);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[7], 0);
+	PlayerTextDrawSetPreviewModel(playerid, Inventory_BTN[7], 30000);
+	PlayerTextDrawSetPreviewRot(playerid, Inventory_BTN[7], 0.000000, 0.000000, 0.000000, 1.000000);
+	PlayerTextDrawSetSelectable(playerid, Inventory_BTN[7], true);
+
+	Inventory_BTN[8] = CreatePlayerTextDraw(playerid, 2.333290, 225.695297, "");
+	PlayerTextDrawLetterSize(playerid, Inventory_BTN[8], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, Inventory_BTN[8], 28.000000, 31.000000);
+	PlayerTextDrawAlignment(playerid, Inventory_BTN[8], 1);
+	PlayerTextDrawColor(playerid, Inventory_BTN[8], -1);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[8], 0);
+	PlayerTextDrawSetOutline(playerid, Inventory_BTN[8], 0);
+	PlayerTextDrawBackgroundColor(playerid, Inventory_BTN[8], 255);
+	PlayerTextDrawFont(playerid, Inventory_BTN[8], 5);
+	PlayerTextDrawSetProportional(playerid, Inventory_BTN[8], 0);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[8], 0);
+	PlayerTextDrawSetPreviewModel(playerid, Inventory_BTN[8], 30000);
+	PlayerTextDrawSetPreviewRot(playerid, Inventory_BTN[8], 0.000000, 0.000000, 0.000000, 1.000000);
+	PlayerTextDrawSetSelectable(playerid, Inventory_BTN[8], true);
+
+	Inventory_BTN[9] = CreatePlayerTextDraw(playerid, 33.833347, 225.695297, "");
+	PlayerTextDrawLetterSize(playerid, Inventory_BTN[9], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, Inventory_BTN[9], 28.000000, 31.000000);
+	PlayerTextDrawAlignment(playerid, Inventory_BTN[9], 1);
+	PlayerTextDrawColor(playerid, Inventory_BTN[9], -1);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[9], 0);
+	PlayerTextDrawSetOutline(playerid, Inventory_BTN[9], 0);
+	PlayerTextDrawBackgroundColor(playerid, Inventory_BTN[9], 255);
+	PlayerTextDrawFont(playerid, Inventory_BTN[9], 5);
+	PlayerTextDrawSetProportional(playerid, Inventory_BTN[9], 0);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[9], 0);
+	PlayerTextDrawSetPreviewModel(playerid, Inventory_BTN[9], 30000);
+	PlayerTextDrawSetPreviewRot(playerid, Inventory_BTN[9], 0.000000, 0.000000, 0.000000, 1.000000);
+	PlayerTextDrawSetSelectable(playerid, Inventory_BTN[9], true);
+
+	Inventory_BTN[10] = CreatePlayerTextDraw(playerid, 65.632865, 225.695297, "");
+	PlayerTextDrawLetterSize(playerid, Inventory_BTN[10], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, Inventory_BTN[10], 28.000000, 31.000000);
+	PlayerTextDrawAlignment(playerid, Inventory_BTN[10], 1);
+	PlayerTextDrawColor(playerid, Inventory_BTN[10], -1);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[10], 0);
+	PlayerTextDrawSetOutline(playerid, Inventory_BTN[10], 0);
+	PlayerTextDrawBackgroundColor(playerid, Inventory_BTN[10], 255);
+	PlayerTextDrawFont(playerid, Inventory_BTN[10], 5);
+	PlayerTextDrawSetProportional(playerid, Inventory_BTN[10], 0);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[10], 0);
+	PlayerTextDrawSetPreviewModel(playerid, Inventory_BTN[10], 30000);
+	PlayerTextDrawSetPreviewRot(playerid, Inventory_BTN[10], 0.000000, 0.000000, 0.000000, 1.000000);
+	PlayerTextDrawSetSelectable(playerid, Inventory_BTN[10], true);
+
+	Inventory_BTN[11] = CreatePlayerTextDraw(playerid, 97.732376, 225.695297, "");
+	PlayerTextDrawLetterSize(playerid, Inventory_BTN[11], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, Inventory_BTN[11], 28.000000, 31.000000);
+	PlayerTextDrawAlignment(playerid, Inventory_BTN[11], 1);
+	PlayerTextDrawColor(playerid, Inventory_BTN[11], -1);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[11], 0);
+	PlayerTextDrawSetOutline(playerid, Inventory_BTN[11], 0);
+	PlayerTextDrawBackgroundColor(playerid, Inventory_BTN[11], 255);
+	PlayerTextDrawFont(playerid, Inventory_BTN[11], 5);
+	PlayerTextDrawSetProportional(playerid, Inventory_BTN[11], 0);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[11], 0);
+	PlayerTextDrawSetPreviewModel(playerid, Inventory_BTN[11], 30000);
+	PlayerTextDrawSetPreviewRot(playerid, Inventory_BTN[11], 0.000000, 0.000000, 0.000000, 1.000000);
+	PlayerTextDrawSetSelectable(playerid, Inventory_BTN[11], true);
+
+	Inventory_BTN[12] = CreatePlayerTextDraw(playerid, 2.333290, 260.497406, "");
+	PlayerTextDrawLetterSize(playerid, Inventory_BTN[12], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, Inventory_BTN[12], 28.000000, 31.000000);
+	PlayerTextDrawAlignment(playerid, Inventory_BTN[12], 1);
+	PlayerTextDrawColor(playerid, Inventory_BTN[12], -1);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[12], 0);
+	PlayerTextDrawSetOutline(playerid, Inventory_BTN[12], 0);
+	PlayerTextDrawBackgroundColor(playerid, Inventory_BTN[12], 255);
+	PlayerTextDrawFont(playerid, Inventory_BTN[12], 5);
+	PlayerTextDrawSetProportional(playerid, Inventory_BTN[12], 0);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[12], 0);
+	PlayerTextDrawSetPreviewModel(playerid, Inventory_BTN[12], 30000);
+	PlayerTextDrawSetPreviewRot(playerid, Inventory_BTN[12], 0.000000, 0.000000, 0.000000, 1.000000);
+	PlayerTextDrawSetSelectable(playerid, Inventory_BTN[12], true);
+
+	Inventory_BTN[13] = CreatePlayerTextDraw(playerid, 33.833347, 260.497406, "");
+	PlayerTextDrawLetterSize(playerid, Inventory_BTN[13], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, Inventory_BTN[13], 28.000000, 31.000000);
+	PlayerTextDrawAlignment(playerid, Inventory_BTN[13], 1);
+	PlayerTextDrawColor(playerid, Inventory_BTN[13], -1);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[13], 0);
+	PlayerTextDrawSetOutline(playerid, Inventory_BTN[13], 0);
+	PlayerTextDrawBackgroundColor(playerid, Inventory_BTN[13], 255);
+	PlayerTextDrawFont(playerid, Inventory_BTN[13], 5);
+	PlayerTextDrawSetProportional(playerid, Inventory_BTN[13], 0);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[13], 0);
+	PlayerTextDrawSetPreviewModel(playerid, Inventory_BTN[13], 30000);
+	PlayerTextDrawSetPreviewRot(playerid, Inventory_BTN[13], 0.000000, 0.000000, 0.000000, 1.000000);
+	PlayerTextDrawSetSelectable(playerid, Inventory_BTN[13], true);
+
+	Inventory_BTN[14] = CreatePlayerTextDraw(playerid, 65.532867, 260.497406, "");
+	PlayerTextDrawLetterSize(playerid, Inventory_BTN[14], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, Inventory_BTN[14], 28.000000, 31.000000);
+	PlayerTextDrawAlignment(playerid, Inventory_BTN[14], 1);
+	PlayerTextDrawColor(playerid, Inventory_BTN[14], -1);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[14], 0);
+	PlayerTextDrawSetOutline(playerid, Inventory_BTN[14], 0);
+	PlayerTextDrawBackgroundColor(playerid, Inventory_BTN[14], 255);
+	PlayerTextDrawFont(playerid, Inventory_BTN[14], 5);
+	PlayerTextDrawSetProportional(playerid, Inventory_BTN[14], 0);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[14], 0);
+	PlayerTextDrawSetPreviewModel(playerid, Inventory_BTN[14], 30000);
+	PlayerTextDrawSetPreviewRot(playerid, Inventory_BTN[14], 0.000000, 0.000000, 0.000000, 1.000000);
+	PlayerTextDrawSetSelectable(playerid, Inventory_BTN[14], true);
+
+	Inventory_BTN[15] = CreatePlayerTextDraw(playerid, 97.432380, 260.497406, "");
+	PlayerTextDrawLetterSize(playerid, Inventory_BTN[15], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, Inventory_BTN[15], 28.000000, 31.000000);
+	PlayerTextDrawAlignment(playerid, Inventory_BTN[15], 1);
+	PlayerTextDrawColor(playerid, Inventory_BTN[15], -1);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[15], 0);
+	PlayerTextDrawSetOutline(playerid, Inventory_BTN[15], 0);
+	PlayerTextDrawBackgroundColor(playerid, Inventory_BTN[15], 255);
+	PlayerTextDrawFont(playerid, Inventory_BTN[15], 5);
+	PlayerTextDrawSetProportional(playerid, Inventory_BTN[15], 0);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[15], 0);
+	PlayerTextDrawSetPreviewModel(playerid, Inventory_BTN[15], 30000);
+	PlayerTextDrawSetPreviewRot(playerid, Inventory_BTN[15], 0.000000, 0.000000, 0.000000, 1.000000);
+	PlayerTextDrawSetSelectable(playerid, Inventory_BTN[15], true);
+
+	Inventory_BTN[16] = CreatePlayerTextDraw(playerid, 2.333290, 294.899505, "");
+	PlayerTextDrawLetterSize(playerid, Inventory_BTN[16], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, Inventory_BTN[16], 28.000000, 31.000000);
+	PlayerTextDrawAlignment(playerid, Inventory_BTN[16], 1);
+	PlayerTextDrawColor(playerid, Inventory_BTN[16], -1);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[16], 0);
+	PlayerTextDrawSetOutline(playerid, Inventory_BTN[16], 0);
+	PlayerTextDrawBackgroundColor(playerid, Inventory_BTN[16], 255);
+	PlayerTextDrawFont(playerid, Inventory_BTN[16], 5);
+	PlayerTextDrawSetProportional(playerid, Inventory_BTN[16], 0);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[16], 0);
+	PlayerTextDrawSetPreviewModel(playerid, Inventory_BTN[16], 30000);
+	PlayerTextDrawSetPreviewRot(playerid, Inventory_BTN[16], 0.000000, 0.000000, 0.000000, 1.000000);
+	PlayerTextDrawSetSelectable(playerid, Inventory_BTN[16], true);
+
+	Inventory_BTN[17] = CreatePlayerTextDraw(playerid, 33.833347, 294.899505, "");
+	PlayerTextDrawLetterSize(playerid, Inventory_BTN[17], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, Inventory_BTN[17], 28.000000, 31.000000);
+	PlayerTextDrawAlignment(playerid, Inventory_BTN[17], 1);
+	PlayerTextDrawColor(playerid, Inventory_BTN[17], -1);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[17], 0);
+	PlayerTextDrawSetOutline(playerid, Inventory_BTN[17], 0);
+	PlayerTextDrawBackgroundColor(playerid, Inventory_BTN[17], 255);
+	PlayerTextDrawFont(playerid, Inventory_BTN[17], 5);
+	PlayerTextDrawSetProportional(playerid, Inventory_BTN[17], 0);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[17], 0);
+	PlayerTextDrawSetPreviewModel(playerid, Inventory_BTN[17], 30000);
+	PlayerTextDrawSetPreviewRot(playerid, Inventory_BTN[17], 0.000000, 0.000000, 0.000000, 1.000000);
+	PlayerTextDrawSetSelectable(playerid, Inventory_BTN[17], true);
+
+	Inventory_BTN[18] = CreatePlayerTextDraw(playerid, 65.532867, 294.899505, "");
+	PlayerTextDrawLetterSize(playerid, Inventory_BTN[18], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, Inventory_BTN[18], 28.000000, 31.000000);
+	PlayerTextDrawAlignment(playerid, Inventory_BTN[18], 1);
+	PlayerTextDrawColor(playerid, Inventory_BTN[18], -1);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[18], 0);
+	PlayerTextDrawSetOutline(playerid, Inventory_BTN[18], 0);
+	PlayerTextDrawBackgroundColor(playerid, Inventory_BTN[18], 255);
+	PlayerTextDrawFont(playerid, Inventory_BTN[18], 5);
+	PlayerTextDrawSetProportional(playerid, Inventory_BTN[18], 0);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[18], 0);
+	PlayerTextDrawSetPreviewModel(playerid, Inventory_BTN[18], 30000);
+	PlayerTextDrawSetPreviewRot(playerid, Inventory_BTN[18], 0.000000, 0.000000, 0.000000, 1.000000);
+	PlayerTextDrawSetSelectable(playerid, Inventory_BTN[18], true);
+
+	Inventory_BTN[19] = CreatePlayerTextDraw(playerid, 97.232383, 294.899505, "");
+	PlayerTextDrawLetterSize(playerid, Inventory_BTN[19], 0.000000, 0.000000);
+	PlayerTextDrawTextSize(playerid, Inventory_BTN[19], 28.000000, 31.000000);
+	PlayerTextDrawAlignment(playerid, Inventory_BTN[19], 1);
+	PlayerTextDrawColor(playerid, Inventory_BTN[19], -1);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[19], 0);
+	PlayerTextDrawSetOutline(playerid, Inventory_BTN[19], 0);
+	PlayerTextDrawBackgroundColor(playerid, Inventory_BTN[19], 255);
+	PlayerTextDrawFont(playerid, Inventory_BTN[19], 5);
+	PlayerTextDrawSetProportional(playerid, Inventory_BTN[19], 0);
+	PlayerTextDrawSetShadow(playerid, Inventory_BTN[19], 0);
+	PlayerTextDrawSetPreviewModel(playerid, Inventory_BTN[19], 30000);
+	PlayerTextDrawSetPreviewRot(playerid, Inventory_BTN[19], 0.000000, 0.000000, 0.000000, 1.000000);
+	PlayerTextDrawSetSelectable(playerid, Inventory_BTN[19], true);
+
 	return true;
 }
 
@@ -812,45 +1274,374 @@ stock updateLevelBar(playerid) {
 	if(float((playerInfo[playerid][pRespectPoints]*100)/(playerInfo[playerid][pLevel] * 3)) > 100) level = 100.0;
 	else level = float((playerInfo[playerid][pRespectPoints]*100)/(playerInfo[playerid][pLevel] * 3));
 
-	PlayerTextDrawTextSize(playerid, levelBar[1], (1.000000)+(1.990000 * level), 8.000000);
-	va_PlayerTextDrawSetString(playerid, levelBar[2], "LEVEL %d ~p~(%d%s)", playerInfo[playerid][pLevel], (playerInfo[playerid][pRespectPoints]*100)/(playerInfo[playerid][pLevel] * 3), "%");
+	PlayerTextDrawTextSize(playerid, levelBar[2], (1.080000 * level), 6.000000);
+	va_PlayerTextDrawSetString(playerid, levelBar[3], "LEVEL %d ~p~(%d%s)", playerInfo[playerid][pLevel], (playerInfo[playerid][pRespectPoints]*100)/(playerInfo[playerid][pLevel] * 3), "%");
 	for(new i = 0; i < sizeof levelBar; i++) PlayerTextDrawShow(playerid, levelBar[i]);
-	return true;
-}
-
-stock destroyPlayerTextDraws(playerid)
-{
-	PlayerTextDrawDestroy(playerid, serverHud[0]);
-	PlayerTextDrawDestroy(playerid, serverHud[1]);
-	PlayerTextDrawDestroy(playerid, playerLevelPTD[playerid]);
-	PlayerTextDrawDestroy(playerid, serverDealerPTD[playerid][0]);
-	PlayerTextDrawDestroy(playerid, serverDealerPTD[playerid][1]);
-	PlayerTextDrawDestroy(playerid, serverDealerPTD[playerid][2]);	
-	PlayerTextDrawDestroy(playerid, wantedTD[playerid]);
-	PlayerTextDrawDestroy(playerid, fareTD[playerid]);
-	PlayerTextDrawDestroy(playerid, warTD[playerid]);
-	PlayerTextDrawDestroy(playerid, notificationTD[playerid]);	
-	PlayerTextDrawDestroy(playerid, specTD[playerid]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][0]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][1]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][2]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][3]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][4]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][5]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][6]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][7]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][8]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][9]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][10]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][11]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][12]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][13]);
-	PlayerTextDrawDestroy(playerid, fishTD[playerid][14]);
 	return true;
 }
 
 stock serverTextDraws()
 {
+	Inventory_BG[0] = TextDrawCreate(94.032951, 152.613372, "LD_CARD:cd1h");
+	TextDrawLetterSize(Inventory_BG[0], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[0], 36.000000, 42.000000);
+	TextDrawAlignment(Inventory_BG[0], 1);
+	TextDrawColor(Inventory_BG[0], -2139062017);
+	TextDrawSetShadow(Inventory_BG[0], 0);
+	TextDrawSetOutline(Inventory_BG[0], 0);
+	TextDrawBackgroundColor(Inventory_BG[0], 255);
+	TextDrawFont(Inventory_BG[0], 4);
+	TextDrawSetProportional(Inventory_BG[0], 0);
+	TextDrawSetShadow(Inventory_BG[0], 0);
+
+	Inventory_BG[1] = TextDrawCreate(-8.777791, 152.908920, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[1], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[1], 117.000000, 177.000000);
+	TextDrawAlignment(Inventory_BG[1], 1);
+	TextDrawColor(Inventory_BG[1], -2139062017);
+	TextDrawSetShadow(Inventory_BG[1], 0);
+	TextDrawSetOutline(Inventory_BG[1], 0);
+	TextDrawBackgroundColor(Inventory_BG[1], 255);
+	TextDrawFont(Inventory_BG[1], 4);
+	TextDrawSetProportional(Inventory_BG[1], 0);
+	TextDrawSetShadow(Inventory_BG[1], 0);
+
+	Inventory_BG[2] = TextDrawCreate(94.132949, 288.213531, "LD_CARD:cd1h");
+	TextDrawLetterSize(Inventory_BG[2], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[2], 36.000000, 42.000000);
+	TextDrawAlignment(Inventory_BG[2], 1);
+	TextDrawColor(Inventory_BG[2], -2139062017);
+	TextDrawSetShadow(Inventory_BG[2], 0);
+	TextDrawSetOutline(Inventory_BG[2], 0);
+	TextDrawBackgroundColor(Inventory_BG[2], 255);
+	TextDrawFont(Inventory_BG[2], 4);
+	TextDrawSetProportional(Inventory_BG[2], 0);
+	TextDrawSetShadow(Inventory_BG[2], 0);
+
+	Inventory_BG[3] = TextDrawCreate(13.588875, 157.513702, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[3], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[3], 116.190040, 144.000000);
+	TextDrawAlignment(Inventory_BG[3], 1);
+	TextDrawColor(Inventory_BG[3], -2139062017);
+	TextDrawSetShadow(Inventory_BG[3], 0);
+	TextDrawSetOutline(Inventory_BG[3], 0);
+	TextDrawBackgroundColor(Inventory_BG[3], 255);
+	TextDrawFont(Inventory_BG[3], 4);
+	TextDrawSetProportional(Inventory_BG[3], 0);
+	TextDrawSetShadow(Inventory_BG[3], 0);
+
+	Inventory_BG[4] = TextDrawCreate(93.732955, 153.213409, "LD_CARD:cd1h");
+	TextDrawLetterSize(Inventory_BG[4], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[4], 36.000000, 42.000000);
+	TextDrawAlignment(Inventory_BG[4], 1);
+	TextDrawColor(Inventory_BG[4], 255);
+	TextDrawSetShadow(Inventory_BG[4], 0);
+	TextDrawSetOutline(Inventory_BG[4], 0);
+	TextDrawBackgroundColor(Inventory_BG[4], 255);
+	TextDrawFont(Inventory_BG[4], 4);
+	TextDrawSetProportional(Inventory_BG[4], 0);
+	TextDrawSetShadow(Inventory_BG[4], 0);
+
+	Inventory_BG[5] = TextDrawCreate(-8.777791, 153.508956, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[5], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[5], 117.000000, 176.000000);
+	TextDrawAlignment(Inventory_BG[5], 1);
+	TextDrawColor(Inventory_BG[5], 255);
+	TextDrawSetShadow(Inventory_BG[5], 0);
+	TextDrawSetOutline(Inventory_BG[5], 0);
+	TextDrawBackgroundColor(Inventory_BG[5], 255);
+	TextDrawFont(Inventory_BG[5], 4);
+	TextDrawSetProportional(Inventory_BG[5], 0);
+	TextDrawSetShadow(Inventory_BG[5], 0);
+
+	Inventory_BG[6] = TextDrawCreate(93.632957, 287.713500, "LD_CARD:cd1h");
+	TextDrawLetterSize(Inventory_BG[6], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[6], 36.000000, 42.000000);
+	TextDrawAlignment(Inventory_BG[6], 1);
+	TextDrawColor(Inventory_BG[6], 255);
+	TextDrawSetShadow(Inventory_BG[6], 0);
+	TextDrawSetOutline(Inventory_BG[6], 0);
+	TextDrawBackgroundColor(Inventory_BG[6], 255);
+	TextDrawFont(Inventory_BG[6], 4);
+	TextDrawSetProportional(Inventory_BG[6], 0);
+	TextDrawSetShadow(Inventory_BG[6], 0);
+
+	Inventory_BG[7] = TextDrawCreate(13.144433, 157.513702, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[7], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[7], 116.190040, 144.000000);
+	TextDrawAlignment(Inventory_BG[7], 1);
+	TextDrawColor(Inventory_BG[7], 255);
+	TextDrawSetShadow(Inventory_BG[7], 0);
+	TextDrawSetOutline(Inventory_BG[7], 0);
+	TextDrawBackgroundColor(Inventory_BG[7], 255);
+	TextDrawFont(Inventory_BG[7], 4);
+	TextDrawSetProportional(Inventory_BG[7], 0);
+	TextDrawSetShadow(Inventory_BG[7], 0);
+
+	Inventory_BG[8] = TextDrawCreate(129.622299, 142.235824, "(30/30 KG) Inventory");
+	TextDrawLetterSize(Inventory_BG[8], 0.213778, 1.241600);
+	TextDrawAlignment(Inventory_BG[8], 3);
+	TextDrawColor(Inventory_BG[8], -1);
+	TextDrawSetShadow(Inventory_BG[8], 0);
+	TextDrawSetOutline(Inventory_BG[8], 1);
+	TextDrawBackgroundColor(Inventory_BG[8], 81);
+	TextDrawFont(Inventory_BG[8], 2);
+	TextDrawSetProportional(Inventory_BG[8], 1);
+	TextDrawSetShadow(Inventory_BG[8], 0);
+
+	Inventory_BG[9] = TextDrawCreate(130.477813, 156.006805, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[9], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[9], 11.000000, 172.000000);
+	TextDrawAlignment(Inventory_BG[9], 1);
+	TextDrawColor(Inventory_BG[9], -2139062272);
+	TextDrawSetShadow(Inventory_BG[9], 0);
+	TextDrawSetOutline(Inventory_BG[9], 0);
+	TextDrawBackgroundColor(Inventory_BG[9], 255);
+	TextDrawFont(Inventory_BG[9], 4);
+	TextDrawSetProportional(Inventory_BG[9], 0);
+	TextDrawSetShadow(Inventory_BG[9], 0);
+	TextDrawSetSelectable(Inventory_BG[9], true);
+
+	Inventory_BG[10] = TextDrawCreate(1.811282, 156.493377, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[10], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[10], 29.000000, 32.000000);
+	TextDrawAlignment(Inventory_BG[10], 1);
+	TextDrawColor(Inventory_BG[10], -2139062017);
+	TextDrawSetShadow(Inventory_BG[10], 0);
+	TextDrawSetOutline(Inventory_BG[10], 0);
+	TextDrawBackgroundColor(Inventory_BG[10], 255);
+	TextDrawFont(Inventory_BG[10], 4);
+	TextDrawSetProportional(Inventory_BG[10], 0);
+	TextDrawSetShadow(Inventory_BG[10], 0);
+
+	Inventory_BG[11] = TextDrawCreate(33.611248, 156.391143, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[11], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[11], 29.000000, 32.000000);
+	TextDrawAlignment(Inventory_BG[11], 1);
+	TextDrawColor(Inventory_BG[11], -2139062017);
+	TextDrawSetShadow(Inventory_BG[11], 0);
+	TextDrawSetOutline(Inventory_BG[11], 0);
+	TextDrawBackgroundColor(Inventory_BG[11], 255);
+	TextDrawFont(Inventory_BG[11], 4);
+	TextDrawSetProportional(Inventory_BG[11], 0);
+	TextDrawSetShadow(Inventory_BG[11], 0);
+
+	Inventory_BG[12] = TextDrawCreate(65.411186, 156.493377, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[12], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[12], 29.000000, 32.000000);
+	TextDrawAlignment(Inventory_BG[12], 1);
+	TextDrawColor(Inventory_BG[12], -2139062017);
+	TextDrawSetShadow(Inventory_BG[12], 0);
+	TextDrawSetOutline(Inventory_BG[12], 0);
+	TextDrawBackgroundColor(Inventory_BG[12], 255);
+	TextDrawFont(Inventory_BG[12], 4);
+	TextDrawSetProportional(Inventory_BG[12], 0);
+	TextDrawSetShadow(Inventory_BG[12], 0);
+
+	Inventory_BG[13] = TextDrawCreate(97.211509, 156.493377, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[13], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[13], 29.000000, 32.000000);
+	TextDrawAlignment(Inventory_BG[13], 1);
+	TextDrawColor(Inventory_BG[13], -2139062017);
+	TextDrawSetShadow(Inventory_BG[13], 0);
+	TextDrawSetOutline(Inventory_BG[13], 0);
+	TextDrawBackgroundColor(Inventory_BG[13], 255);
+	TextDrawFont(Inventory_BG[13], 4);
+	TextDrawSetProportional(Inventory_BG[13], 0);
+	TextDrawSetShadow(Inventory_BG[13], 0);
+
+	Inventory_BG[14] = TextDrawCreate(1.811282, 190.693725, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[14], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[14], 29.000000, 32.000000);
+	TextDrawAlignment(Inventory_BG[14], 1);
+	TextDrawColor(Inventory_BG[14], -2139062017);
+	TextDrawSetShadow(Inventory_BG[14], 0);
+	TextDrawSetOutline(Inventory_BG[14], 0);
+	TextDrawBackgroundColor(Inventory_BG[14], 255);
+	TextDrawFont(Inventory_BG[14], 4);
+	TextDrawSetProportional(Inventory_BG[14], 0);
+	TextDrawSetShadow(Inventory_BG[14], 0);
+
+	Inventory_BG[15] = TextDrawCreate(33.611248, 190.891494, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[15], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[15], 29.000000, 32.000000);
+	TextDrawAlignment(Inventory_BG[15], 1);
+	TextDrawColor(Inventory_BG[15], -2139062017);
+	TextDrawSetShadow(Inventory_BG[15], 0);
+	TextDrawSetOutline(Inventory_BG[15], 0);
+	TextDrawBackgroundColor(Inventory_BG[15], 255);
+	TextDrawFont(Inventory_BG[15], 4);
+	TextDrawSetProportional(Inventory_BG[15], 0);
+	TextDrawSetShadow(Inventory_BG[15], 0);
+
+	Inventory_BG[16] = TextDrawCreate(65.111183, 190.891494, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[16], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[16], 29.000000, 32.000000);
+	TextDrawAlignment(Inventory_BG[16], 1);
+	TextDrawColor(Inventory_BG[16], -2139062017);
+	TextDrawSetShadow(Inventory_BG[16], 0);
+	TextDrawSetOutline(Inventory_BG[16], 0);
+	TextDrawBackgroundColor(Inventory_BG[16], 255);
+	TextDrawFont(Inventory_BG[16], 4);
+	TextDrawSetProportional(Inventory_BG[16], 0);
+	TextDrawSetShadow(Inventory_BG[16], 0);
+
+	Inventory_BG[17] = TextDrawCreate(96.911506, 190.891494, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[17], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[17], 29.000000, 32.000000);
+	TextDrawAlignment(Inventory_BG[17], 1);
+	TextDrawColor(Inventory_BG[17], -2139062017);
+	TextDrawSetShadow(Inventory_BG[17], 0);
+	TextDrawSetOutline(Inventory_BG[17], 0);
+	TextDrawBackgroundColor(Inventory_BG[17], 255);
+	TextDrawFont(Inventory_BG[17], 4);
+	TextDrawSetProportional(Inventory_BG[17], 0);
+	TextDrawSetShadow(Inventory_BG[17], 0);
+
+	Inventory_BG[18] = TextDrawCreate(1.811282, 225.194076, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[18], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[18], 29.000000, 32.000000);
+	TextDrawAlignment(Inventory_BG[18], 1);
+	TextDrawColor(Inventory_BG[18], -2139062017);
+	TextDrawSetShadow(Inventory_BG[18], 0);
+	TextDrawSetOutline(Inventory_BG[18], 0);
+	TextDrawBackgroundColor(Inventory_BG[18], 255);
+	TextDrawFont(Inventory_BG[18], 4);
+	TextDrawSetProportional(Inventory_BG[18], 0);
+	TextDrawSetShadow(Inventory_BG[18], 0);
+
+	Inventory_BG[19] = TextDrawCreate(33.611248, 225.194076, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[19], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[19], 29.000000, 32.000000);
+	TextDrawAlignment(Inventory_BG[19], 1);
+	TextDrawColor(Inventory_BG[19], -2139062017);
+	TextDrawSetShadow(Inventory_BG[19], 0);
+	TextDrawSetOutline(Inventory_BG[19], 0);
+	TextDrawBackgroundColor(Inventory_BG[19], 255);
+	TextDrawFont(Inventory_BG[19], 4);
+	TextDrawSetProportional(Inventory_BG[19], 0);
+	TextDrawSetShadow(Inventory_BG[19], 0);
+
+	Inventory_BG[20] = TextDrawCreate(65.111183, 225.194076, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[20], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[20], 29.000000, 32.000000);
+	TextDrawAlignment(Inventory_BG[20], 1);
+	TextDrawColor(Inventory_BG[20], -2139062017);
+	TextDrawSetShadow(Inventory_BG[20], 0);
+	TextDrawSetOutline(Inventory_BG[20], 0);
+	TextDrawBackgroundColor(Inventory_BG[20], 255);
+	TextDrawFont(Inventory_BG[20], 4);
+	TextDrawSetProportional(Inventory_BG[20], 0);
+	TextDrawSetShadow(Inventory_BG[20], 0);
+
+	Inventory_BG[21] = TextDrawCreate(96.911506, 225.194076, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[21], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[21], 29.000000, 32.000000);
+	TextDrawAlignment(Inventory_BG[21], 1);
+	TextDrawColor(Inventory_BG[21], -2139062017);
+	TextDrawSetShadow(Inventory_BG[21], 0);
+	TextDrawSetOutline(Inventory_BG[21], 0);
+	TextDrawBackgroundColor(Inventory_BG[21], 255);
+	TextDrawFont(Inventory_BG[21], 4);
+	TextDrawSetProportional(Inventory_BG[21], 0);
+	TextDrawSetShadow(Inventory_BG[21], 0);
+
+	Inventory_BG[22] = TextDrawCreate(1.811282, 259.994232, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[22], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[22], 29.000000, 32.000000);
+	TextDrawAlignment(Inventory_BG[22], 1);
+	TextDrawColor(Inventory_BG[22], -2139062017);
+	TextDrawSetShadow(Inventory_BG[22], 0);
+	TextDrawSetOutline(Inventory_BG[22], 0);
+	TextDrawBackgroundColor(Inventory_BG[22], 255);
+	TextDrawFont(Inventory_BG[22], 4);
+	TextDrawSetProportional(Inventory_BG[22], 0);
+	TextDrawSetShadow(Inventory_BG[22], 0);
+
+	Inventory_BG[23] = TextDrawCreate(33.611248, 259.994232, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[23], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[23], 29.000000, 32.000000);
+	TextDrawAlignment(Inventory_BG[23], 1);
+	TextDrawColor(Inventory_BG[23], -2139062017);
+	TextDrawSetShadow(Inventory_BG[23], 0);
+	TextDrawSetOutline(Inventory_BG[23], 0);
+	TextDrawBackgroundColor(Inventory_BG[23], 255);
+	TextDrawFont(Inventory_BG[23], 4);
+	TextDrawSetProportional(Inventory_BG[23], 0);
+	TextDrawSetShadow(Inventory_BG[23], 0);
+
+	Inventory_BG[24] = TextDrawCreate(65.111183, 259.994232, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[24], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[24], 29.000000, 32.000000);
+	TextDrawAlignment(Inventory_BG[24], 1);
+	TextDrawColor(Inventory_BG[24], -2139062017);
+	TextDrawSetShadow(Inventory_BG[24], 0);
+	TextDrawSetOutline(Inventory_BG[24], 0);
+	TextDrawBackgroundColor(Inventory_BG[24], 255);
+	TextDrawFont(Inventory_BG[24], 4);
+	TextDrawSetProportional(Inventory_BG[24], 0);
+	TextDrawSetShadow(Inventory_BG[24], 0);
+
+	Inventory_BG[25] = TextDrawCreate(96.911506, 259.994232, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[25], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[25], 29.000000, 32.000000);
+	TextDrawAlignment(Inventory_BG[25], 1);
+	TextDrawColor(Inventory_BG[25], -2139062017);
+	TextDrawSetShadow(Inventory_BG[25], 0);
+	TextDrawSetOutline(Inventory_BG[25], 0);
+	TextDrawBackgroundColor(Inventory_BG[25], 255);
+	TextDrawFont(Inventory_BG[25], 4);
+	TextDrawSetProportional(Inventory_BG[25], 0);
+	TextDrawSetShadow(Inventory_BG[25], 0);
+
+	Inventory_BG[26] = TextDrawCreate(1.811282, 294.492828, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[26], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[26], 29.000000, 32.000000);
+	TextDrawAlignment(Inventory_BG[26], 1);
+	TextDrawColor(Inventory_BG[26], -2139062017);
+	TextDrawSetShadow(Inventory_BG[26], 0);
+	TextDrawSetOutline(Inventory_BG[26], 0);
+	TextDrawBackgroundColor(Inventory_BG[26], 255);
+	TextDrawFont(Inventory_BG[26], 4);
+	TextDrawSetProportional(Inventory_BG[26], 0);
+	TextDrawSetShadow(Inventory_BG[26], 0);
+
+	Inventory_BG[27] = TextDrawCreate(33.466804, 294.288421, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[27], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[27], 29.000000, 32.000000);
+	TextDrawAlignment(Inventory_BG[27], 1);
+	TextDrawColor(Inventory_BG[27], -2139062017);
+	TextDrawSetShadow(Inventory_BG[27], 0);
+	TextDrawSetOutline(Inventory_BG[27], 0);
+	TextDrawBackgroundColor(Inventory_BG[27], 255);
+	TextDrawFont(Inventory_BG[27], 4);
+	TextDrawSetProportional(Inventory_BG[27], 0);
+	TextDrawSetShadow(Inventory_BG[27], 0);
+
+	Inventory_BG[28] = TextDrawCreate(64.966735, 294.288421, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[28], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[28], 29.000000, 32.000000);
+	TextDrawAlignment(Inventory_BG[28], 1);
+	TextDrawColor(Inventory_BG[28], -2139062017);
+	TextDrawSetShadow(Inventory_BG[28], 0);
+	TextDrawSetOutline(Inventory_BG[28], 0);
+	TextDrawBackgroundColor(Inventory_BG[28], 255);
+	TextDrawFont(Inventory_BG[28], 4);
+	TextDrawSetProportional(Inventory_BG[28], 0);
+	TextDrawSetShadow(Inventory_BG[28], 0);
+
+	Inventory_BG[29] = TextDrawCreate(96.467056, 294.288421, "LD_SPAC:white");
+	TextDrawLetterSize(Inventory_BG[29], 0.000000, 0.000000);
+	TextDrawTextSize(Inventory_BG[29], 29.000000, 32.000000);
+	TextDrawAlignment(Inventory_BG[29], 1);
+	TextDrawColor(Inventory_BG[29], -2139062017);
+	TextDrawSetShadow(Inventory_BG[29], 0);
+	TextDrawSetOutline(Inventory_BG[29], 0);
+	TextDrawBackgroundColor(Inventory_BG[29], 255);
+	TextDrawFont(Inventory_BG[29], 4);
+	TextDrawSetProportional(Inventory_BG[29], 0);
+	TextDrawSetShadow(Inventory_BG[29], 0);
+
 	ClockTD[0] = TextDrawCreate(544.358215, 19.871158, "~p~PAYDAY~w~ IN: 12:00");
 	TextDrawLetterSize(ClockTD[0], 0.174222, 1.127111);
 	TextDrawAlignment(ClockTD[0], 1);
@@ -1017,13 +1808,6 @@ stock serverTextDraws()
 	return true;
 }
 
-stock destroyServerTextDraws()
-{
-	for(new i = 0; i < sizeof ClockTD; i++) TextDrawDestroy(ClockTD[i]);
-	for(new i = 0; i < 8; i++) TextDrawDestroy(serverDealerTD[i]);
-	return true;
-}
-
 stock formatNumber(number) 
 {
 	gString[0] = (EOS);
@@ -1048,8 +1832,7 @@ stock update(const text[], va_args<>)
 
 stock isValidEmail(const email[])
 {
-	if(strlen(email) < 8 || strlen(email) > 128)
-		return false;
+	if(strlen(email) < 8 || strlen(email) > 128) return false;
 
     new at_pos = strfind(email, "@", true);
     if(at_pos >= 1)
@@ -1143,6 +1926,8 @@ stock resetVars(playerid)
 	playerInfo[playerid][pFishSteps] = 0;
 	playerInfo[playerid][pFishMoney] = 0;
 	playerInfo[playerid][pFishCaught] = 0;
+	playerInfo[playerid][pCertificateStep] = 0;
+	playerInfo[playerid][pCertificateSeconds] = 0;
 
 	if(IsValidVehicle(playerInfo[playerid][pExamenVehicle])) DestroyVehicle(playerInfo[playerid][pExamenVehicle]);
 

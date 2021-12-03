@@ -119,6 +119,7 @@ enum playerInfoEnum
     pFishCaughtSpecial,
     pFishBaitNormal,
     pFishBaitSpecial,
+    pCertificate[2],
 	pLoginTries,
 	pAFKSeconds,
 	bool:pLogged,
@@ -183,12 +184,12 @@ enum playerInfoEnum
     areaHouse,
     areaFaction,
     areaJob,
-    areaGascan,
     areaSafe,
     pEnableBoost,
     pAdminCover[MAX_PLAYER_NAME],
     pDrunkLevel,
     pFPS,
+    pAccountBlocked,
     pAdText[256],
     pAdminDuty,
     pSpectate,
@@ -198,6 +199,9 @@ enum playerInfoEnum
     pFishSteps,
     pFishMoney,
     pFishCaught,
+    Timer:pGasTimer,
+    pCertificateStep,
+    pCertificateSeconds,
     pSelectVehicle[MAX_PLAYER_PERSONAL_VEHICLES]
 };
 /*

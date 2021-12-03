@@ -17,9 +17,9 @@
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define MYSQL 1 // 0 - local | 1 - host
-#define VERSION "v1.6.46"
+#define VERSION "v1.6.50"
 
-#include <discord>
+// #include <discord>
 
 #include <a_samp>
 #include <a_zones>
@@ -51,6 +51,7 @@
 #include <modules\ac.pwn> // anti-cheats
 #include <easyDialog>
 #include <easyCheckpoint>
+#include <modules\inventory.pwn>
 #include <modules\stocks.pwn>
 #include <modules\dialogs.pwn>
 #include <modules\pickups.pwn>
@@ -69,7 +70,8 @@
 #include <modules\comenzi\admin.pwn>
 #include <modules\comenzi\player.pwn>
 #include <modules\dealership.pwn>
-#include <modules\emails.pwn>
+// #include <modules\emails.pwn>
+#include <modules\examen.pwn>
 
 main() { }
 
@@ -120,27 +122,21 @@ public OnGameModeInit()
 	UsePlayerPedAnims();
 
 	loadMaps();
-
-	DCC_SetBotActivity(string_fast("0 / %d", MAX_PLAYERS));
-	if(DCC_GetBotPresenceStatus() != DCC_BotPresenceStatus:IDLE) DCC_SetBotPresenceStatus(IDLE);	
 	return true;
 }
 
 public OnGameModeExit()
 {
 	mysql_close(SQL);
-	destroyServerTextDraws();
 	return true;
 }
 
 public OnPlayerRequestClass(playerid, classid)
 {
-	if(playerInfo[playerid][pLogged] == true)
-		return SpawnPlayerEx(playerid);
+	if(playerInfo[playerid][pLogged] == true) return SpawnPlayerEx(playerid);
 
 
-	if(playerInfo[playerid][pLoginEnabled] == true)
-		return true;
+	if(playerInfo[playerid][pLoginEnabled] == true) return true;
 
 	SetPlayerVirtualWorld(playerid, (playerid + 1));
 	TogglePlayerControllable(playerid, false);
@@ -163,7 +159,7 @@ public OnPlayerConnect(playerid)
 			GameTextForPlayer(playerid, "~p~YOUR ACCOUNT IT'S GOOD", 1000, 3);
 			mysql_tquery(SQL, string_fast("SELECT * FROM `server_bans` WHERE `Active` = '1' AND `PlayerName` = '%s' LIMIT 1", getName(playerid)), "checkPlayerBan", "d", playerid);
 		}
-		default: HTTP(playerid, HTTP_GET, string_fast("blackbox.ipinfo.app/lookup/%s", playerInfo[playerid][pLastIp]), "", "MyHttpResponse");
+		default: HTTP(playerid, HTTP_GET, string_fast("blackbox.ipinfo.app/lookup/%s", playerInfo[playerid][pLastIp]), "", "TestVPN");
 	}
 	return true;
 }
@@ -179,7 +175,7 @@ public OnPlayerDisconnect(playerid, reason)
 
 	if(Iter_Contains(ServerStaff, playerid)) {
 		Iter_Remove(ServerStaff, playerid);
-		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a deconnectat de pe server | Total Staff: %d [%d admins, %d helpers].", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
+		sendStaff(COLOR_SERVER, "SERVER: {ffffff}%s s-a deconnectat de pe server | Total Staff: %d [%d admins, %d helpers].", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
 	}
 
 	if(Iter_Contains(MutedPlayers, playerid))
@@ -190,7 +186,7 @@ public OnPlayerDisconnect(playerid, reason)
 
 	if(playerInfo[playerid][pClan]) {
 		Iter_Remove(TotalClanMembers, playerid);
-		sendClanMessage(playerInfo[playerid][pClan], clanInfo[playerInfo[playerid][pClan]][cClanColor], "** MoonBot: {ffffff}%s s-a deconnectat de pe server.", getName(playerid));
+		sendClanMessage(playerInfo[playerid][pClan], clanInfo[playerInfo[playerid][pClan]][cClanColor], "SERVER: {ffffff}%s s-a deconnectat de pe server.", getName(playerid));
 	}
 
 	if(playerInfo[playerid][pContractID] > -1) {
@@ -226,11 +222,7 @@ public OnPlayerDisconnect(playerid, reason)
 	if(reason == 0) sendNearbyMessage(playerid, COLOR_SERVER, 20.0, "(*) {ffffff}%s a iesit de pe server (Crash).", getName(playerid));
     else if(reason == 1) sendNearbyMessage(playerid, COLOR_SERVER, 20.0, "(*) {ffffff}%s a iesit de pe server (Quit).", getName(playerid));
     else if(reason == 2) sendNearbyMessage(playerid, COLOR_SERVER, 20.0, "(*) {ffffff}%s a iesit de pe server (Kicked/Banned).", getName(playerid));
-	destroyPlayerTextDraws(playerid);
 	update("UPDATE `server_users` SET `Seconds` = '%f', `Mute` = '%d', `ReportMute` = '%d', `Money` = '%d', `MStore` = '%d', `SpawnChange` = '%d', `Jailed` = '%d', `JailTime` = '%d', `WantedLevel` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pSeconds], playerInfo[playerid][pMute], (playerInfo[playerid][pReportMute] > gettime()) ? (playerInfo[playerid][pReportMute] - gettime()) : (0), MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pSpawnChange], playerInfo[playerid][pJailed], playerInfo[playerid][pJailTime], playerInfo[playerid][pWantedLevel], playerInfo[playerid][pSQLID]);
-	
-	DCC_SetBotActivity(string_fast("%d / %d", Iter_Count(Player), MAX_PLAYERS));
-	if(DCC_GetBotPresenceStatus() != DCC_BotPresenceStatus:IDLE) DCC_SetBotPresenceStatus(IDLE);
 	return true;
 }
 
@@ -327,8 +319,16 @@ public OnPlayerSpawn(playerid) {
 	return true;
 }
 
+stock SendDeathMessageToPlayerEx(playerid, killerid1, killerid2, weapon) {
+	SetPlayerName(killerid1, string_fast("%s+%s", getName(killerid1), getName(killerid2)));
+	SendClientMessage(playerid, -1, string_fast("%s + %s", getName(killerid1), getName(killerid2)));
+	SendDeathMessageToPlayer(playerid, killerid1, playerid, weapon);
+	return 1;
+}
+
 public OnPlayerDeath(playerid, killerid, reason) 
 {
+	SendDeathMessageToPlayerEx(playerid, playerid, playerid, 32);
 	if(playerInfo[playerid][pOnTurf] == 1) playerInfo[playerid][pOnTurf] = 0;
 	if(playerInfo[playerid][pFactionDuty]) playerInfo[playerid][pFactionDuty] = 0;
 	if(playerInfo[playerid][pWantedLevel] != 0) {
@@ -403,10 +403,10 @@ public OnPlayerText(playerid, text[]) {
 	if(!isPlayerLogged(playerid)) defer kickEx(playerid);
 	if(strmatch(deelayInfo[playerid][Chat], text)) return 0;
 	format(deelayInfo[playerid][Chat], 144, text);
-	if(faceReclama(text)) {
-		Reclama(playerid, text);
-		return 0;
-	}
+	// if(faceReclama(text)) {
+	// 	Reclama(playerid, text);
+	// 	return 0;
+	// }
 	if(playerInfo[playerid][pMute] > gettime()) {
 		SCMf(playerid, COLOR_LIGHTRED, eERROR"Ai mute pentru inca %s.", secinmin(playerInfo[playerid][pMute]-gettime()));
 		return 0;
@@ -571,7 +571,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
             playerInfo[playerid][pinBusiness] = -1;
             return true;
         }
-
 		if(playerInfo[playerid][areaHouse] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, houseInfo[playerInfo[playerid][areaHouse]][hExtX], houseInfo[playerInfo[playerid][areaHouse]][hExtY], houseInfo[playerInfo[playerid][areaHouse]][hExtZ])) {
 			if(houseInfo[playerInfo[playerid][areaHouse]][hLocked] == 1) return SCM(playerid, COLOR_ERROR, eERROR"Acesta casa, este inchisa.");
 			if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Esti intr-un vehicul.");
@@ -590,7 +589,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 			playerInfo[playerid][pinHouse] = -1;
 			return true;
 		}
-
 		if(playerInfo[playerid][areaFaction] != 0 && IsPlayerInRangeOfPoint(playerid, 3.5, factionInfo[playerInfo[playerid][areaFaction]][fEnterX],factionInfo[playerInfo[playerid][areaFaction]][fEnterY], factionInfo[playerInfo[playerid][areaFaction]][fEnterZ])) {
 			if(playerInfo[playerid][pFaction] != playerInfo[playerid][areaFaction] && factionInfo[playerInfo[playerid][areaFaction]][fLocked]) return SCMf(playerid, COLOR_ERROR, eERROR"Nu faci parte din factiunea %s.", factionName(playerInfo[playerid][areaFaction]));						
 			SetPlayerPos(playerid, factionInfo[playerInfo[playerid][areaFaction]][fExitX], factionInfo[playerInfo[playerid][areaFaction]][fExitY], factionInfo[playerInfo[playerid][areaFaction]][fExitZ]);
@@ -665,7 +663,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 		}
 	}
 	if(PRESSED(KEY_NO)) callcmd::lock(playerid, "\1"); 
-	if(PRESSED(KEY_WALK)) callcmd::specoff(playerid, "\1");
 	if(PRESSED(KEY_CROUCH)) {
 		if(Iter_Contains(FactionMembers[2], playerid) || Iter_Contains(FactionMembers[3], playerid) || Iter_Contains(FactionMembers[4], playerid)) {
 			if(IsPlayerInRangeOfPoint(playerid, 15.0, 1542.2355, -1628.0953, 13.4154)) {
@@ -950,71 +947,99 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid) {
 		for(new i = 0; i < 15; i++) PlayerTextDrawHide(playerid, fishTD[playerid][i]);
 		CancelSelectTextDraw(playerid);
 	}	
+	if(playertextid == examenTD[playerid][5]) {
+		switch(playerInfo[playerid][pCertificateStep]) {
+			case 1: {
+				playerInfo[playerid][pCertificateStep] ++;
+				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Progress 1/3 step for certificate 'ADR'.");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][8], "Question #2~n~Care sunt obligatiile unui 'Community Transporter' inainte de plecarea cu marfa de tip 'ADR'?");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][10], "a) Nicio obligatie.");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][11], "b) Sa plece.");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][12], "c) Sa verifice remorca, inclusiv conexiunile.");		
+				return true;
+			}
+			case 2: {
+				playerInfo[playerid][pCertificateStep] = 1; playerInfo[playerid][pCertificateSeconds] = 300;
+				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Deoarece ai ales raspunsul corect, ti-a fost resetat testul.");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][8], "Question #1~n~Cu cate placi de culoare portocalie trebuie sa fie dotat un tir?");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][10], "a) 2 (1 fata, 1 spate)");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][11], "b) 1 doar pe spate");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][12], "c) niciuna");
+				return true;
+			}
+			case 3: {
+				playerInfo[playerid][pCertificateStep] = 1; playerInfo[playerid][pCertificateSeconds] = 300;
+				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Deoarece ai ales raspunsul corect, ti-a fost resetat testul.");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][8], "Question #1~n~Cu cate placi de culoare portocalie trebuie sa fie dotat un tir?");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][10], "a) 2 (1 fata, 1 spate)");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][11], "b) 1 doar pe spate");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][12], "c) niciuna");
+				return true;
+			}
+		}
+	}
+	if(playertextid == examenTD[playerid][6]) {
+		switch(playerInfo[playerid][pCertificateStep]) {
+			case 1: {
+				playerInfo[playerid][pCertificateStep] = 0; 
+				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Deoarece ai ales raspunsul corect si esti la primul stagiu, ti-a fost inchis testul.");
+				for(new i = 0; i < 13; i++) PlayerTextDrawHide(playerid, examenTD[playerid][i]);
+				stop examen[playerid];
+				return true;
+			}
+			case 2: {
+				playerInfo[playerid][pCertificateStep] = 1; playerInfo[playerid][pCertificateSeconds] = 300;
+				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Deoarece ai ales raspunsul corect, ti-a fost resetat testul.");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][8], "Question #1~n~Cu cate placi de culoare portocalie trebuie sa fie dotat un tir?");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][10], "a) 2 (1 fata, 1 spate)");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][11], "b) 1 doar pe spate");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][12], "c) niciuna");
+				return true;
+			}
+			case 3: {
+				playerInfo[playerid][pCertificateStep] = 0;
+				playerInfo[playerid][pCertificate][0] = 30;
+				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Felicitari ! Ai absolvit certificatul de 'ADR' (Valabil: 30 zile) acum poti face curse de mare pericol.");
+				for(new i = 0; i < 13; i++) PlayerTextDrawHide(playerid, examenTD[playerid][i]);
+				stop examen[playerid];
+				return true;
+			}
+		}	
+	}
+	if(playertextid == examenTD[playerid][7]) {
+		switch(playerInfo[playerid][pCertificateStep]) {
+			case 1: {
+				playerInfo[playerid][pCertificateStep] = 0; 
+				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Deoarece ai ales raspunsul corect si esti la primul stagiu, ti-a fost inchis testul.");
+				for(new i = 0; i < 13; i++) PlayerTextDrawHide(playerid, examenTD[playerid][i]);
+				stop examen[playerid];
+				return true;
+			}
+			case 2: {
+				playerInfo[playerid][pCertificateStep] ++;
+				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Progress 2/3 step for certificate 'ADR'.");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][8], "Question #3~n~Care sunt riscurile ale unui transport de tip'ADR'?");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][10], "a) Niciun risc.");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][11], "b) Sa explodeze remorca, sa produca avarii.");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][12], "c) Sa se piarda lichidul din remorca.");		
+				return true;
+			}
+			case 3: {
+				playerInfo[playerid][pCertificateStep] = 1; playerInfo[playerid][pCertificateSeconds] = 300;
+				SCM(playerid, COLOR_SERVER, "* (Certificate): {ffffff}Deoarece ai ales raspunsul corect, ti-a fost resetat testul.");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][8], "Question #1~n~Cu cate placi de culoare portocalie trebuie sa fie dotat un tir?");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][10], "a) 2 (1 fata, 1 spate)");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][11], "b) 1 doar pe spate");
+				PlayerTextDrawSetString(playerid, examenTD[playerid][12], "c) niciuna");
+				return true;
+			}
+		}	
+	}
 	return true;
 }
 
 function loadMaps() {
+	CreateDynamicPickup(1210, 1,-322.8313,1025.3314,19.7422,-1, -1, -1, 50.0); 
+	CreateDynamic3DTextLabel("Certificate System\nType /certificate for getting a certificate", -1, -322.8313,1025.3314,19.7422, 20.0, 0xFFFF, 0xFFFF, 0, 0, 0, -1, STREAMER_3D_TEXT_LABEL_SD);
 	#include map/other
-	// #include map/spawn
-	// #include map/admin_house
-	// #include map/CNN
-	// #include map/hospital
-	// #include map/demorgan
-	// #include map/cont
-	// #include map/waxta
-	// #include map/lspd
-	// #include map/avtoscool
-	// #include map/ostalnoeb
-	// #include map/ferma
-	// #include map/mapping
-	// #include map/bank
-	// #include map/kazik
-	// #include map/centerrinok
-	// #include map/army_lv
-	// #include map/armylvint
-	// #include map/armySF
-	// #include map/map
-	// #include map/map1
-	// #include map/map2
-	// #include map/map3
-	// #include map/map4
-	// #include map/kpp
-	// #include map/intaksioma
-	// #include map/pirs
-	// #include map/inter
-	// #include map/meria
-	// #include map/russianmafia
-	// #include map/bayker
-	// #include map/podval
-	// #include map/newyearhouse1
-	// #include map/newyearhouse2
-	// #include map/newyearhouse_int
-	// #include map/halloweenhouse1
-	// #include map/halloweenhouse2
-	// #include map/halloweenhouse_int
-	// #include map/viphouse1
-	// #include map/door
-	// #include map/24_7
-	// #include map/zapravka
-	// #include map/arizonashow
-	// #include map/parking
-	// #include map/eventsobirateli
-	// #include map/radio
-	// #include map/vip_house_1
-	// #include map/vip_house_2
-	// #include map/vip_house_3
-	// #include map/vip_house_4
-	// #include map/vip_house_5
-	// #include map/vip_house_6
-	// #include map/vip_house_7
-	// #include map/vip_house_8
-	// #include map/vip_house_9
-	// #include map/vip_house_10
-	// #include map/newhouse
-	// #include map/GarageInt1
-	// #include map/GarageInt2
-	// #include map/GarageInt3
-	// #include map/GarageInt4
-	// #include map/GarageInt5
-	// #include map/GarageInt6
 }

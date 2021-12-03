@@ -1,17 +1,12 @@
 function MySQLLoad() {
 	mysql_log(ERROR | WARNING);
 	switch(MYSQL) {
-		case 0: { // LocalHost
-			SQL = mysql_connect("localhost", "root", "", "from0");
-		}
-		case 1: { // MainHost
-			SQL = mysql_connect("localhost", "root", "ytTUkAKQXL86htZT", "black");
-		}
+		case 0: SQL = mysql_connect("localhost", "root", "", "from0"); // LocalHost
+		case 1: SQL = mysql_connect("193.105.177.4", "u118_3Dib0K3B9S", "f0D7+NHTOXlh1^=XCs!mApho", "s118_server"); // MainHost
 	}
 	if(mysql_errno() != 0) {
 		mysql_close(SQL);
-		destroyServerTextDraws();
-		SetGameModeText("MYSQL Error");
+		SetGameModeText("RPG v0.0.0");
 		SendRconCommand("password MYSQLError");
 		print("[MYSQL] Baza de date, nu s-a conectat.");
 	}
@@ -27,6 +22,7 @@ function MySQLLoad() {
 		mysql_tquery(SQL, "SELECT * FROM `server_turfs`", "LoadTurfs", "");
 		mysql_tquery(SQL, "SELECT * FROM `server_safes`", "LoadSafes", "");
 		mysql_tquery(SQL, "SELECT * FROM `server_clans`", "LoadClans", "");
+		mysql_tquery(SQL, "SELECT * FROM `server_gascan`", "LoadGasCan", "");
 		print("[MYSQL] Baza de date, s-a conectat.");
 		SetGameModeText("RPG "VERSION);
 		serverTextDraws();
@@ -34,28 +30,47 @@ function MySQLLoad() {
 	return true;
 }
 
-function MyHttpResponse(playerid, response_code, data[]) {
+function TestVPN(playerid, response_code, data[]) {
 	if(response_code == 200) {
 		switch(YHash(data)) {
 			case _H<Y>: {
-				sendAdmin(COLOR_LIGHTRED, "** MoonBot: {ffffff}%s a incercat sa se conecteze cu VPN.", getName(playerid));
-				SCM(playerid, COLOR_LIGHTRED, "** MoonBot: {ffffff}Trebuie sa scoti VPN, pentru a te putea connecta pe acest server.");
+				sendAdmin(COLOR_LIGHTRED, "SERVER: {ffffff}%s a incercat sa se conecteze cu VPN.", getName(playerid));
+				SCM(playerid, COLOR_LIGHTRED, "SERVER: {ffffff}Trebuie sa scoti VPN, pentru a te putea connecta pe acest server.");
 				defer kickEx(playerid);
 			}
-			case _H<X>: sendAdmin(COLOR_LIGHTRED, "** MoonBot: {ffffff}%s posibil sa se fii conectat cu VPN.", getName(playerid));
-			case _H<E>: sendAdmin(COLOR_LIGHTRED, "** MoonBot: {ffffff}%s are un ip gresit, posibil sa se fii conectat cu VPN.", getName(playerid));
 			case _H<N>: {
 				GameTextForPlayer(playerid, "~p~YOUR ACCOUNT IT'S GOOD", 1000, 3);
 				gQuery[0] = (EOS);
 				mysql_format(SQL, gQuery, 128, "SELECT * FROM `server_bans` WHERE `Active` = '1' AND `PlayerName` = '%s' LIMIT 1", getName(playerid));
 				mysql_tquery(SQL, gQuery, "checkPlayerBan", "d", playerid);
 			}
+			case _H<X>: sendAdmin(COLOR_LIGHTRED, "SERVER: {ffffff}%s posibil sa se fii conectat cu VPN.", getName(playerid));
 			default: printf("[ANTI-VPN] Eroare de request: %d", response_code);
 		}
 	}
     else printf("[ANTI-VPN] HTTP ERROR: %d", response_code);
 	return 1;
 }
+
+// function twofa(playerid) {
+//     if(YHash(playerInfo[playerid][pIp]) == YHash(playerInfo[playerid][pLastIp])) return 1;
+//     new test[100];
+//     format(test, sizeof test, "cdn.blackmoon.ro/send.php?Account=%d&Email=%s&IP=%s", playerInfo[playerid][pSQLID], playerInfo[playerid][pEMail], playerInfo[playerid][pLastIp]);
+//     HTTP(playerid, HTTP_POST, test, "", "");
+
+//     playerInfo[playerid][pAccountBlocked] = 1;
+//     Iter_Add(AccountBlocked, playerid);
+//     SCM(playerid, COLOR_LIGHTRED, "Contul tau este blocat, te rog sa verifici email-ul asociat la cont!");
+//     update("UPDATE `server_users` SET `AccountBlocked` = '1' WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
+//     return 1;
+// }
+
+// CMD:verify(playerid, params[]) {
+//     playerInfo[playerid][pAccountBlocked] = 0;
+//     SCM(playerid, COLOR_LIGHTRED, "Contul tau este deblocat!");
+//     update("UPDATE `server_users` SET `AccountBlocked` = '0' WHERE `ID` = '%d'", playerInfo[playerid][pSQLID]);
+// 	return 1;
+// }
 
 function checkPlayerBan(playerid) {
 	playerInfo[playerid][pLoginEnabled] = true;
@@ -103,8 +118,7 @@ function checkPlayerBan(playerid) {
 
 function onPlayerLogin(playerid)
 {
-	if(!cache_num_rows())
-		return wrongPass(playerid);
+	if(!cache_num_rows()) return wrongPass(playerid);
 
 	SpawnPlayerEx(playerid);
 	playerInfo[playerid][pLogged] = true;
@@ -132,6 +146,7 @@ function onPlayerLogin(playerid)
 	cache_get_value_name_float(0, "Seconds", playerInfo[playerid][pSeconds]);
 	cache_get_value_name_int(0, "Mute", playerInfo[playerid][pMute]); 
 	cache_get_value_name_int(0, "Warn", playerInfo[playerid][pWarn]);
+	cache_get_value_name_int(0, "AccountBlocked", playerInfo[playerid][pAccountBlocked]);
  	cache_get_value_name_int(0, "Job", playerInfo[playerid][pJob]);
 	cache_get_value_name_int(0, "Business", playerInfo[playerid][pBusiness]);
 	cache_get_value_name_int(0, "BusinessID", playerInfo[playerid][pBusinessID]);
@@ -183,6 +198,8 @@ function onPlayerLogin(playerid)
 	cache_get_value_name_int(0, "VIP", playerInfo[playerid][pVIP]);
 	cache_get_value_name_int(0, "PremiumPoints", playerInfo[playerid][pPremiumPoints]);
 	cache_get_value_name_int(0, "FPSShow", playerInfo[playerid][pFPSShow]);
+	cache_get_value_name_int(0, "Certificate1", playerInfo[playerid][pCertificate][0]);
+	cache_get_value_name_int(0, "Certificate2", playerInfo[playerid][pCertificate][1]);
 
  	new guns[32];
  	cache_get_value_name(0, "Guns", guns, 32);
@@ -190,7 +207,7 @@ function onPlayerLogin(playerid)
 
 	if(playerInfo[playerid][pFaction]) {
 		Iter_Add(FactionMembers[playerInfo[playerid][pFaction]], playerid); 
-		sendFactionMessage(playerInfo[playerid][pFaction], COLOR_LIMEGREEN, "** MoonBot: {ffffff}%s s-a connectat pe server (Total members online: %d).", getName(playerid), Iter_Count(FactionMembers[playerInfo[playerid][pFaction]]));		
+		sendFactionMessage(playerInfo[playerid][pFaction], COLOR_LIMEGREEN, "SERVER: {ffffff}%s s-a connectat pe server (Total members online: %d).", getName(playerid), Iter_Count(FactionMembers[playerInfo[playerid][pFaction]]));		
 	}
 	if(playerInfo[playerid][pWantedLevel]) {
 		Iter_Add(Wanteds, playerid);
@@ -200,7 +217,7 @@ function onPlayerLogin(playerid)
 	}
 	if(playerInfo[playerid][pClan]) {
 		Iter_Add(TotalClanMembers, playerid);
-		sendClanMessage(playerInfo[playerid][pClan], clanInfo[playerInfo[playerid][pClan]][cClanColor], "** MoonBot: {ffffff}%s s-a connectat pe server.", getName(playerid));
+		sendClanMessage(playerInfo[playerid][pClan], clanInfo[playerInfo[playerid][pClan]][cClanColor], "SERVER: {ffffff}%s s-a connectat pe server.", getName(playerid));
 	}
 	if(playerInfo[playerid][pDailyMission][0] == -1 || playerInfo[playerid][pDailyMission][1] == -1) giveQuest(playerid);
 	if(playerInfo[playerid][pWTChannel] > 0) Iter_Add(Freqs[playerInfo[playerid][pWTChannel]], playerid);
@@ -217,6 +234,7 @@ function onPlayerLogin(playerid)
 	mysql_format(SQL, gQuery, 128, "SELECT * FROM `server_personal_vehicles` WHERE `OwnerID` = '%d'", playerInfo[playerid][pSQLID]);
 	mysql_pquery(SQL, gQuery, "LoadPersonalVehicle", "d", playerid);
 
+	// twofa(playerid);
 	new ipnew[16];
 	GetPlayerIp(playerid, ipnew, 16);
 	update("UPDATE `server_users` SET `LastLogin` = '%s', `LastIP` = '%s', `IP` = '%s' WHERE `ID` = '%d'", getDateTime(), playerInfo[playerid][pIp], ipnew, playerInfo[playerid][pSQLID]);
@@ -228,16 +246,17 @@ function onPlayerLogin(playerid)
 
 		PlayerTextDrawSetString(playerid, serverHud[1], "");
 		PlayerTextDrawShow(playerid, serverHud[1]);
-		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server | Total Staff: %d [%d admins, %d helpers].", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
+		sendStaff(COLOR_SERVER, "SERVER: {ffffff}%s s-a connectat pe server | Total Staff: %d [%d admins, %d helpers].", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
 	}
 
 	if(playerInfo[playerid][pHelper]) {
 		Iter_Add(ServerHelpers, playerid);
 		Iter_Add(ServerStaff, playerid);
-		sendStaff(COLOR_SERVER, "** MoonBot: {ffffff}%s s-a connectat pe server | Total Staff: %d [%d admins, %d helpers].", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
+		sendStaff(COLOR_SERVER, "SERVER: {ffffff}%s s-a connectat pe server | Total Staff: %d [%d admins, %d helpers].", getName(playerid), Iter_Count(ServerStaff), Iter_Count(ServerAdmins), Iter_Count(ServerHelpers));
 	}
 
 	playerInfo[playerid][pReportMute] += gettime();
+
 	playerInfo[playerid][pIp] = ipnew;
 	PlayerNumber[playerInfo[playerid][pPhone]] = playerid;
 	Iter_Add(loggedPlayers, playerid);
@@ -259,9 +278,6 @@ function onPlayerLogin(playerid)
 	SetPlayerScore(playerid, playerInfo[playerid][pLevel]);
 	updatePlayer(playerid);
 	updateLevelBar(playerid);
-
-	DCC_SetBotActivity(string_fast("%d / %d", Iter_Count(Player), MAX_PLAYERS));
-	if(DCC_GetBotPresenceStatus() != DCC_BotPresenceStatus:IDLE) DCC_SetBotPresenceStatus(IDLE);
 	return true;
 }
 
@@ -312,7 +328,6 @@ function LoadLabels() {
 	}
 	return printf("Labels: %d [From Database]", Iter_Count(Labels));
 }*/
-
 
 function checkPanel() {
 	new giverid,playerid, actionid, actiontime, complaint, reason[64], name[25], givername[25];
@@ -452,8 +467,7 @@ function checkPanel() {
 }	
 
 function checkPlayerAccount(playerid) {
-	if(!cache_num_rows())
-		return Dialog_Show(playerid, REGISTER, DIALOG_STYLE_PASSWORD, "Register", "Bine ai venit, %s.\nScrie mai jos parola pe care doresti sa o ai:", "Register", "Quit", getName(playerid));
+	if(!cache_num_rows()) return Dialog_Show(playerid, REGISTER, DIALOG_STYLE_PASSWORD, "Register", "Bine ai venit, %s.\nScrie mai jos parola pe care doresti sa o ai:", "Register", "Quit", getName(playerid));
 
 	new lastLogin[64];
 	cache_get_value_name(0, "LastLogin", lastLogin, 64);
@@ -474,8 +488,7 @@ function assignCheckpointID(i) {
 }
 
 function checkAccountInBanDatabase(playerid, playerName, days, reason) {
-	if(cache_num_rows())
-		return SCM(playerid, COLOR_ERROR, eERROR"Acest cont este deja banat.");
+	if(cache_num_rows()) return SCM(playerid, COLOR_ERROR, eERROR"Acest cont este deja banat.");
 
 	gQuery[0] = (EOS);
 	mysql_format(SQL, gQuery, sizeof gQuery, "SELECT * FROM `server_users` WHERE `Name` = '%s' LIMIT 1", playerName);
@@ -484,8 +497,7 @@ function checkAccountInBanDatabase(playerid, playerName, days, reason) {
 }
 
 function checkAccountBanDatabase(playerid, playerName, days, reason)  {
-	if(!cache_num_rows())
-		return SCM(playerid, COLOR_ERROR, eERROR"Acest cont nu exista.");
+	if(!cache_num_rows()) return SCM(playerid, COLOR_ERROR, eERROR"Acest cont nu exista.");
 
 	new playerID;
 	cache_get_value_name_int(0, "ID", playerID);
@@ -516,8 +528,7 @@ function checkPlayerBanIP(playerid) {
 }
 
 function checkBanPlayer(playerid) {
-	if(!cache_num_rows())
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu a fost gasit nici-un jucator banat cu acest nume.");
+	if(!cache_num_rows()) return SCM(playerid, COLOR_ERROR, eERROR"Nu a fost gasit nici-un jucator banat cu acest nume.");
 
 	new playerName[MAX_PLAYER_NAME], playerID;
 	cache_get_value_name(0, "PlayerName", playerName, MAX_PLAYER_NAME);
@@ -654,22 +665,6 @@ function giveQuest(playerid) {
 	return true;
 }
 
-function resetQuest() {
-	update("UPDATE `server_users` SET `DailyMission`='-1', `Progress`='0', `DailyMission2`='-1', `Progress2`='0', `NeedProgress1`='0', `NeedProgress2`='0'");
-    foreach(new i : loggedPlayers) {
-        if(IsPlayerConnected(i) && playerInfo[i][pLogged] == true) {
-			playerInfo[i][pDailyMission][0] = random(5);
-			playerInfo[i][pDailyMission][1] = 1+random(4);
-			if(playerInfo[i][pDailyMission][0] == playerInfo[i][pDailyMission][1]) playerInfo[i][pDailyMission][1] = 1+random(4);
-			update("UPDATE `server_users` SET `DailyMission` = '%d', `DailyMission2` = '%d' WHERE `ID` = '%d'", playerInfo[i][pDailyMission][0], playerInfo[i][pDailyMission][1], playerInfo[i][pSQLID]);
-			questProgress(i, playerInfo[i][pDailyMission][0], 0);
-			questProgress(i, playerInfo[i][pDailyMission][1], 1);
-			SCM(i, COLOR_ORANGE, "* Misiunile zilei au fost resetate. Foloseste comanda /quests pentru a vedea noile misiuni.");
-        }
-    }
-	return true;
-}
-
 function checkMission(playerid, id) {
 	new money = 50000 + playerInfo[playerid][pLevel] * 1000 + random(50000), rp = 1 + random(4);
 	if(playerInfo[playerid][pDailyMission][id] != -1) {
@@ -783,19 +778,6 @@ function IsPlayerInTurf(playerid, turfid) {
 	GetPlayerPos(playerid,x,y,z);
 	if(x >= turfInfo[turfid][tMinX] && x < turfInfo[turfid][tMaxX] && y >= turfInfo[turfid][tMinY] && y < turfInfo[turfid][tMaxY]) return true;
 	return false;
-}
-
-function SendDiscordAC(const text[], va_args<>) {
-	switch(MYSQL) {
-		case 1: {
-			if (_:MoonBotAC == 0) MoonBotAC = DCC_FindChannelById("843145109977825310");
-
-			new Discord[100];
-			va_format(Discord, sizeof Discord, text, va_start<1>);
-			DCC_SendChannelMessage(MoonBotAC, string_fast(":warning: %s", Discord));
-		}
-	}
-	return 1;
 }
 
 function showNotification(playerid, from[], const text[]) {

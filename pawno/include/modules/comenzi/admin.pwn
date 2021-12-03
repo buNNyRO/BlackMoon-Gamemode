@@ -12,8 +12,7 @@ CMD:addexamcp(playerid, params[]) {
 
 CMD:warn(playerid, params[])
 {
-	if(!Iter_Contains(ServerAdmins, playerid))
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
+	if(!Iter_Contains(ServerAdmins, playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
 	if(GetPVarInt(playerid, "warnDeelay") > gettime()) return SCMf(playerid, COLOR_ERROR, eERROR"Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "warnDeelay") - gettime()));	
 
@@ -28,19 +27,15 @@ CMD:warn(playerid, params[])
 
 CMD:unwarn(playerid, params[])
 {
-	if(playerInfo[playerid][pAdmin] < 3)
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
+	if(playerInfo[playerid][pAdmin] < 3) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
-	if(GetPVarInt(playerid, "unWarnDeelay") > gettime())
-		return SCMf(playerid, COLOR_ERROR, eERROR"Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "unWarnDeelay") - gettime()));
+	if(GetPVarInt(playerid, "unWarnDeelay") > gettime()) return SCMf(playerid, COLOR_ERROR, eERROR"Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "unWarnDeelay") - gettime()));
 
 	extract params -> new player:userID, string:reason[64]; else return sendPlayerSyntax(playerid, "/unwarn <name/id> <reason>");
 
-	if(!isPlayerLogged(userID))
-		return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
+	if(!isPlayerLogged(userID)) return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
 
-	if(playerInfo[userID][pWarn] == 0)
-		return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu are nici-un warn.");
+	if(playerInfo[userID][pWarn] == 0) return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu are nici-un warn.");
 
 	playerInfo[userID][pWarn] --;
 	update("UPDATE `server_users` SET `Warn` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[userID][pWarn], playerInfo[userID][pSQLID]);
@@ -54,22 +49,17 @@ CMD:unwarn(playerid, params[])
 
 CMD:ban(playerid, params[])
 {
-	if(!Iter_Contains(ServerAdmins, playerid))
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
+	if(!Iter_Contains(ServerAdmins, playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
-	if(GetPVarInt(playerid, "banDeelay") > gettime())
-		return SCMf(playerid, COLOR_ERROR, eERROR"Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "banDeelay") - gettime()));
+	if(GetPVarInt(playerid, "banDeelay") > gettime()) return SCMf(playerid, COLOR_ERROR, eERROR"Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "banDeelay") - gettime()));
 
 	extract params -> new player:userID, days, string:reason[64]; else return sendPlayerSyntax(playerid, "/ban <name/id> <days (0 = permanent)> <reason>");
 
-	if(!isPlayerLogged(userID))
-		return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
+	if(!isPlayerLogged(userID)) return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
 
-	if(playerid == userID)
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda asupra ta.");
+	if(playerid == userID) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda asupra ta.");
 
-	if(playerInfo[userID][pAdmin] >= playerInfo[playerid][pAdmin])
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu poti sa-i dai ban acelui jucator.");
+	if(playerInfo[userID][pAdmin] >= playerInfo[playerid][pAdmin]) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti sa-i dai ban acelui jucator.");
 
 	va_SendClientMessageToAll(COLOR_LIGHTRED, "AdmCmd: %s a primit ban %s de la %s, motiv: %s.", getName(userID), (days == 0) ? ("permanent") : (string_fast("%d zile", days)), getName(playerid), days, reason);
 	banPlayer(userID, playerid, days, reason);
@@ -78,11 +68,9 @@ CMD:ban(playerid, params[])
 
 CMD:banoffline(playerid, params[])
 {
-	if(!Iter_Contains(ServerAdmins, playerid))
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
+	if(!Iter_Contains(ServerAdmins, playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
-	if(GetPVarInt(playerid, "banDeelay") > gettime())
-		return SCMf(playerid, COLOR_ERROR, eERROR"Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "banDeelay") - gettime()));
+	if(GetPVarInt(playerid, "banDeelay") > gettime()) return SCMf(playerid, COLOR_ERROR, eERROR"Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "banDeelay") - gettime()));
 
 	extract params -> new string:playerName[MAX_PLAYER_NAME], days, string:reason[64]; else return sendPlayerSyntax(playerid, "/banoffline <name> <days (0 = permanent)> <reason>");
 	foreach(new i : loggedPlayers)
@@ -98,14 +86,11 @@ CMD:banoffline(playerid, params[])
 
 CMD:unban(playerid, params[])
 {
-	if(playerInfo[playerid][pAdmin] < 3)
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
+	if(playerInfo[playerid][pAdmin] < 3) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
-	if(GetPVarInt(playerid, "unbanDeelay") > gettime())
-		return SCMf(playerid, COLOR_ERROR, eERROR"Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "unbanDeelay") - gettime()));
+	if(GetPVarInt(playerid, "unbanDeelay") > gettime()) return SCMf(playerid, COLOR_ERROR, eERROR"Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "unbanDeelay") - gettime()));
 
-	if(isnull(params) || strlen(params) > MAX_PLAYER_NAME)
-		return sendPlayerSyntax(playerid, "/unban <name>");
+	if(isnull(params) || strlen(params) > MAX_PLAYER_NAME) return sendPlayerSyntax(playerid, "/unban <name>");
 
 	gQuery[0] = (EOS);
 	mysql_format(SQL, gQuery, 128, "SELECT * FROM `server_bans` WHERE `PlayerName` = '%s' AND `Active` = '1' LIMIT 1", params);
@@ -115,28 +100,21 @@ CMD:unban(playerid, params[])
 
 CMD:mute(playerid, params[])
 {
-	if(!Iter_Contains(ServerAdmins, playerid))
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
+	if(!Iter_Contains(ServerAdmins, playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
-	if(GetPVarInt(playerid, "muteDeelay") > gettime())
-		return SCMf(playerid, COLOR_ERROR, eERROR"Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "muteDeelay") - gettime()));
+	if(GetPVarInt(playerid, "muteDeelay") > gettime()) return SCMf(playerid, COLOR_ERROR, eERROR"Trebuie sa astepti %d secunde inainte sa folosesti aceasta comanda.", (GetPVarInt(playerid, "muteDeelay") - gettime()));
 
 	extract params -> new player:userID, minutes, string:reason[64]; else return sendPlayerSyntax(playerid, "/mute <name/id> <minutes> <reason>");
 
-	if(userID == playerid)
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda asupra ta.");
+	if(userID == playerid) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda asupra ta.");
 
-	if(!isPlayerLogged(userID))
-		return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
+	if(!isPlayerLogged(userID)) return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
 
-	if(playerInfo[userID][pAdmin] >= playerInfo[playerid][pAdmin])
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu poti sa-i dai mute acelui jucator.");
+	if(playerInfo[userID][pAdmin] >= playerInfo[playerid][pAdmin]) return SCM(playerid, COLOR_ERROR, eERROR"Nu poti sa-i dai mute acelui jucator.");
 
-	if(minutes < 1 || minutes > 120)
-		return SCM(playerid, COLOR_ERROR, eERROR"Numarul de minute introdus nu este valid (1 - 120).");
+	if(minutes < 1 || minutes > 120) return SCM(playerid, COLOR_ERROR, eERROR"Numarul de minute introdus nu este valid (1 - 120).");
 
-	if(playerInfo[userID][pMute] > 0 && playerInfo[playerid][pAdmin] < 2)
-		return SCMf(playerid, COLOR_ERROR, eERROR"Jucatorul are deja mute.");
+	if(playerInfo[userID][pMute] > 0 && playerInfo[playerid][pAdmin] < 2) return SCMf(playerid, COLOR_ERROR, eERROR"Jucatorul are deja mute.");
 
 	va_SendClientMessageToAll(COLOR_LIGHTRED, "AdmCmd: %s a primit mute %d minute de la administratorul %s, motiv: %s.", getName(userID), minutes, getName(playerid), reason);
 	mutePlayer(userID, playerid, minutes, reason);
@@ -145,16 +123,13 @@ CMD:mute(playerid, params[])
 
 CMD:unmute(playerid, params[])
 {
-	if(!Iter_Contains(ServerAdmins, playerid))
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
+	if(!Iter_Contains(ServerAdmins, playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
 	extract params -> new player:userID, string:reason[32]; else return sendPlayerSyntax(playerid, "/unmute <name/id> <reason>");
 
-	if(!isPlayerLogged(userID))
-		return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
+	if(!isPlayerLogged(userID)) return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
 
-	if(playerInfo[userID][pMute] < 0)
-		return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu are mute.");
+	if(playerInfo[userID][pMute] < 0) return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu are mute.");
 
 	playerInfo[userID][pMute] = 0;
 	update("UPDATE `server_users` SET `Mute` = '0' WHERE `ID` = '%d' LIMIT 1", playerInfo[userID][pSQLID]);
@@ -169,11 +144,9 @@ CMD:unmute(playerid, params[])
 
 CMD:mutedplayers(playerid, params[])
 {
-	if(!Iter_Contains(ServerAdmins, playerid))
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
+	if(!Iter_Contains(ServerAdmins, playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
-	if(!Iter_Count(MutedPlayers))
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu sunt jucatori cu mute.");
+	if(!Iter_Count(MutedPlayers)) return SCM(playerid, COLOR_ERROR, eERROR"Nu sunt jucatori cu mute.");
 
 	SCM(playerid, COLOR_GREY, "------Muted Players------");
 	foreach(new i : MutedPlayers) {
@@ -187,11 +160,9 @@ CMD:mutedplayers(playerid, params[])
 
 CMD:adminchat(playerid, params[])
 {
-	if(!Iter_Contains(ServerAdmins, playerid))
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
+	if(!Iter_Contains(ServerAdmins, playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
-	if(isnull(params))
-		return sendPlayerSyntax(playerid, "/adminchat [text]");
+	if(isnull(params)) return sendPlayerSyntax(playerid, "/adminchat [text]");
 
 	sendAdmin(COLOR_ADMINCHAT, "(%d) Admin %s: %s", playerInfo[playerid][pAdmin], getName(playerid), params);
 	return true;
@@ -199,11 +170,9 @@ CMD:adminchat(playerid, params[])
 
 CMD:helperchat(playerid, params[])
 {
-	if(!Iter_Contains(ServerAdmins, playerid) && !Iter_Contains(ServerHelpers, playerid))
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
+	if(!Iter_Contains(ServerAdmins, playerid) && !Iter_Contains(ServerHelpers, playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
-	if(isnull(params))
-		return sendPlayerSyntax(playerid, "/helperchat [text]");
+	if(isnull(params)) return sendPlayerSyntax(playerid, "/helperchat [text]");
 
 	sendStaff(COLOR_HELPERCHAT, "(%d) %s %s: %s", (Iter_Contains(ServerAdmins, playerid)) ? (playerInfo[playerid][pAdmin]) : (playerInfo[playerid][pHelper]), (Iter_Contains(ServerAdmins, playerid)) ? ("Admin") : ("Helper"), getName(playerid), params);
 	return true;
@@ -211,18 +180,15 @@ CMD:helperchat(playerid, params[])
 
 CMD:setadmin(playerid, params[])
 {
-	if(playerInfo[playerid][pAdmin] < 7)
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
+	if(playerInfo[playerid][pAdmin] < 7) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
 	extract params -> new player:userID, admin; else return sendPlayerSyntax(playerid, "/setadmin <name/id> <admin level (0 - 7)>");
 	
 	if(admin < 0 || admin > 7) return SCM(playerid, COLOR_ERROR, eERROR"Acest level de admin este invalid (0 - 7).");
 
-	if(!isPlayerLogged(userID))
-		return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
+	if(!isPlayerLogged(userID)) return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
 
-	if(playerInfo[userID][pAdmin] == admin)
-		return SCMf(playerid, COLOR_ERROR, eERROR"Jucatorul are deja acest nivel de admin.");
+	if(playerInfo[userID][pAdmin] == admin) return SCMf(playerid, COLOR_ERROR, eERROR"Jucatorul are deja acest nivel de admin.");
 
 	PlayerTextDrawHide(userID, serverHud[1]);
 	if(admin) PlayerTextDrawShow(userID, serverHud[1]);
@@ -255,16 +221,13 @@ CMD:setadmin(playerid, params[])
 
 CMD:sethelper(playerid, params[])
 {
-	if(playerInfo[playerid][pAdmin] < 6)
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
+	if(playerInfo[playerid][pAdmin] < 6) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
 	extract params -> new player:userID, helper; else return sendPlayerSyntax(playerid, "/sethelper <name/id> <helper level (0 - 3)>");
 
-	if(!isPlayerLogged(userID))
-		return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
+	if(!isPlayerLogged(userID)) return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
 
-	if(playerInfo[userID][pHelper] == helper)
-		return SCMf(playerid, COLOR_ERROR, eERROR"Jucatorul are deja acest nivel de helper.");
+	if(playerInfo[userID][pHelper] == helper) return SCMf(playerid, COLOR_ERROR, eERROR"Jucatorul are deja acest nivel de helper.");
 
 	if(Iter_Contains(ServerHelpers, userID) && !helper)
 		Iter_Remove(ServerHelpers, userID);
@@ -282,12 +245,10 @@ CMD:sethelper(playerid, params[])
 CMD:givemoney(playerid, params[])
 {
 	if(!strmatch(getName(playerid), "Vicentzo")) return SCM(playerid, -1, "nu mai da comanda in rasa mati daca nu esti vicentzo.");
-	if(playerInfo[playerid][pAdmin] < 5)
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
+	if(playerInfo[playerid][pAdmin] < 5) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
 	extract params -> new player:userID, string:money[25]; else return sendPlayerSyntax(playerid, "/givemoney <name/id> <money>");
-	if(!isPlayerLogged(userID))
-		return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
+	if(!isPlayerLogged(userID)) return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
 
 	if(CheckerBigInt(money) != 0) return true;
 	Translate32Bit(StoreMoney[userID], MoneyMoney[userID], money);
@@ -301,19 +262,16 @@ CMD:givemoney(playerid, params[])
 
 CMD:adminsuspendlicense(playerid, params[])
 {
-	if(playerInfo[playerid][pAdmin] < 4)
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
+	if(playerInfo[playerid][pAdmin] < 4) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
 	extract params -> new player:userID, string:license[32], hours; else {
 		SCM(playerid, COLOR_GREY, "Licenses: Driving, Flying, Boat, Weapon.");
 		return sendPlayerSyntax(playerid, "/adminsuspendlicense <name/id> <license> <hours>");
 	}
 
-	if(!isPlayerLogged(userID))
-		return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
+	if(!isPlayerLogged(userID)) return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
 
-	if(hours < 1 || hours > 15)
-		return SCM(playerid, COLOR_ERROR, eERROR"Numarul de ore este Invalid (1 - 15).");
+	if(hours < 1 || hours > 15) return SCM(playerid, COLOR_ERROR, eERROR"Numarul de ore este Invalid (1 - 15).");
 
 	switch(YHash(license))
 	{
@@ -372,8 +330,7 @@ CMD:adminsuspendlicense(playerid, params[])
 }
 
 CMD:ip(playerid, params[]) {
-	if(playerInfo[playerid][pAdmin] < 2)
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");	
+	if(playerInfo[playerid][pAdmin] < 2) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");	
 	extract params -> new player:userID; else {
 		return sendPlayerSyntax(playerid, "/ip <name/id>");
 	}
@@ -390,19 +347,16 @@ CMD:ip(playerid, params[]) {
 
 CMD:admingivelicense(playerid, params[])
 {
-	if(playerInfo[playerid][pAdmin] < 4)
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
+	if(playerInfo[playerid][pAdmin] < 4) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
 	extract params -> new player:userID, string:license[32], hours; else {
 		SCM(playerid, COLOR_GREY, "Licente: Driving, Flying, Boat, Weapon, All.");
 		return sendPlayerSyntax(playerid, "/admingivelicense <name/id> <license> <hours>");
 	}
 
-	if(!isPlayerLogged(userID))
-		return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
+	if(!isPlayerLogged(userID)) return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
 
-	if(hours < 1 || hours > 300)
-		return SCM(playerid, COLOR_ERROR, eERROR"Numarul de ore este Invalid (1 - 300).");
+	if(hours < 1 || hours > 300) return SCM(playerid, COLOR_ERROR, eERROR"Numarul de ore este Invalid (1 - 300).");
 
 	switch(YHash(license))
 	{
@@ -485,16 +439,14 @@ CMD:admingivelicense(playerid, params[])
 
 CMD:admintakelicense(playerid, params[])
 {
-	if(playerInfo[playerid][pAdmin] < 4)
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
+	if(playerInfo[playerid][pAdmin] < 4) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai acces la aceasta comanda.");
 
 	extract params -> new player:userID, string:license[32]; else {
 		SCM(playerid, COLOR_GREY, "Licente: Driving, Flying, Boat, Weapon, All.");
 		return sendPlayerSyntax(playerid, "/admintakelicense <name/id> <license>");
 	}
 
-	if(!isPlayerLogged(userID))
-		return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
+	if(!isPlayerLogged(userID)) return SCM(playerid, COLOR_ERROR, eERROR"Jucatorul nu este conectat.");
 
 	switch(YHash(license))
 	{
@@ -1380,7 +1332,16 @@ CMD:jailo(playerid, params[]) {
 
 CMD:resetquests(playerid, params[]) {
 	if(playerInfo[playerid][pAdmin] < 6) return true;
-	resetQuest();
+	update("UPDATE `server_users` SET `DailyMission`='-1', `Progress`='0', `DailyMission2`='-1', `Progress2`='0', `NeedProgress1`='0', `NeedProgress2`='0'");
+    foreach(new i : loggedPlayers) {
+       playerInfo[i][pDailyMission][0] = random(5);
+	   playerInfo[i][pDailyMission][1] = 1+random(4);
+	   if(playerInfo[i][pDailyMission][0] == playerInfo[i][pDailyMission][1]) playerInfo[i][pDailyMission][1] = 1+random(4);
+	   update("UPDATE `server_users` SET `DailyMission` = '%d', `DailyMission2` = '%d' WHERE `ID` = '%d'", playerInfo[i][pDailyMission][0], playerInfo[i][pDailyMission][1], playerInfo[i][pSQLID]);
+	   questProgress(i, playerInfo[i][pDailyMission][0], 0);
+	   questProgress(i, playerInfo[i][pDailyMission][1], 1);
+	   SCM(i, COLOR_ORANGE, "* Misiunile zilei au fost resetate. Foloseste comanda /quests pentru a vedea noile misiuni.");
+    }
 	return true;
 }
 

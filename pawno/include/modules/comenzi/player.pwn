@@ -1,7 +1,6 @@
 CMD:admins(playerid, params[])
 {
-	if(!Iter_Count(ServerAdmins))
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu sunt admini conectati.");
+	if(!Iter_Count(ServerAdmins)) return SCM(playerid, COLOR_ERROR, eERROR"Nu sunt admini conectati.");
 
 	SendClientMessage(playerid, COLOR_GREY, "-----------------------------------------------------------");
 	foreach(new i : ServerAdmins) {
@@ -13,8 +12,7 @@ CMD:admins(playerid, params[])
 
 CMD:helpers(playerid, params[])
 {
-	if(!Iter_Count(ServerHelpers))
-		return SCM(playerid, COLOR_ERROR, eERROR"Nu sunt helperi conectati.");
+	if(!Iter_Count(ServerHelpers)) return SCM(playerid, COLOR_ERROR, eERROR"Nu sunt helperi conectati.");
 
 	SendClientMessage(playerid, COLOR_GREY, "-----------------------------------------------------------");
 	foreach(new i : ServerHelpers) {
@@ -40,12 +38,10 @@ CMD:showlicenses(playerid, params[]) {
 CMD:buylevel(playerid, params[])
 {
 	new money = (playerInfo[playerid][pLevel] * 250);
-	if(GetPlayerCash(playerid) < money)
-		return SCMf(playerid, COLOR_ERROR, eERROR"Ai nevoie de $%s.", formatNumber(money));
+	if(GetPlayerCash(playerid) < money) return SCMf(playerid, COLOR_ERROR, eERROR"Ai nevoie de $%s.", formatNumber(money));
 
 	new respect = (playerInfo[playerid][pLevel] * 3);
-	if(playerInfo[playerid][pRespectPoints] < respect)
-		return SCMf(playerid, COLOR_ERROR, eERROR"Ai nevoie de %d puncte de respect.", respect);
+	if(playerInfo[playerid][pRespectPoints] < respect) return SCMf(playerid, COLOR_ERROR, eERROR"Ai nevoie de %d puncte de respect.", respect);
 
 	playerInfo[playerid][pRespectPoints] -= respect;
 	playerInfo[playerid][pLevel] ++;
@@ -1121,8 +1117,8 @@ CMD:wt(playerid, params[]) {
 	if(playerInfo[playerid][pWTalkie] == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai un walkie talkie.");
 	if(playerInfo[playerid][pMute] > gettime()) return SCMf(playerid, COLOR_ERROR, eERROR"Nu poti folosi aceasta comanda, deoarece ai mute inca %d secunde.", playerInfo[playerid][pMute]-gettime());
     extract params -> new string:msg[128];
-    if(faceReclama(msg)) return removeFunction(playerid, msg);
-    if(faceReclama(msg)) return Reclama(playerid, msg);
+    // if(faceReclama(msg)) return removeFunction(playerid, msg);
+    // if(faceReclama(msg)) return Reclama(playerid, msg);
     if(strlen(msg) < 1 || strlen(msg) > 128) return SCM(playerid, COLOR_ERROR, eERROR"Mesaj invalid. Minim 1 caracter, maxim 128 caractere.");
 	if(playerInfo[playerid][pWToggle] == 1) return SCM(playerid, COLOR_ERROR, eERROR"Statia ta a fost oprita. Foloseste comanda /tog pentru a o activa.");
 	if(playerInfo[playerid][pWTChannel] == 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu esti pe o frecventa.");
