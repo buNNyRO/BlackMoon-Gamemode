@@ -1810,8 +1810,8 @@ Dialog:DIALOG_SVF(playerid, response, listitem) {
 	}
 	SetVehicleNumberPlate(playerVehicle[playerid], string_fast("SVF-%d", playerInfo[playerid][pFaction]));
 	PutPlayerInVehicleEx(playerid, playerVehicle[playerid], 0);
-	vehicle_personal[playerVehicle[playerid]] = -1;
-	vehicle_fuel[playerVehicle[playerid]] = 100;
+	vehPersonal[playerVehicle[playerid]] = -1;
+	vehFuel[playerVehicle[playerid]] = 100;
 	vehicleFaction[playerVehicle[playerid]] = playerInfo[playerid][pFaction];
 	vehiclePlayerID[playerVehicle[playerid]] = playerid;
 	SCM(playerid, COLOR_LIGHTRED, "* (SVF): Ai spawnat un vehicul de factiune, poti folosi comanda '/dvf' pentru a-o despawna.");

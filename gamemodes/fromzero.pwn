@@ -16,10 +16,22 @@
 // B::::::::::::::::B  l::::::l a::::::::::aa:::a  cc:::::::::::::::ck::::::k   k:::::k M::::::M               M::::::M oo:::::::::::oo  oo:::::::::::oo   n::::n    n::::n//
 // BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkMMMMMMMM               MMMMMMMM   ooooooooooo      ooooooooooo     nnnnnn    nnnnnn//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//		<->,<->						 A CONTRIBUTION OF VICENTZO & BUNNY 				<->,<->			//						
+//									  -= BLACKMOON GAMEMODE =-											//	
+//																										//
+//								IDEAS: ROLEX & XSH3D0W TESTING: ROLEX & XSH3D0W							//
+//							PROGRAMMING: VICENTZO & BUNNY | WEB-DEVELOPING: BUNNY						//
+//						SPECIAL THANKS TO: ASGOOD ADRYAN DANI3L (FOR SUGESSTS)							//
+//											AND MANY OTHERS         									//
+//						---------> CODEUP.RO <----------> BLACKMOON.RO <-----------						//
+// </> In semn de respect lasa acest mesaj aici, iti multumim si spor la coding pe acest gamemode !	</> //
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 #define MYSQL 1 // 0 - local | 1 - host
 #define VERSION "v1.6.50"
-
-// #include <discord>
 
 #include <a_samp>
 #include <a_zones>
@@ -32,8 +44,6 @@
 #include <YSI\y_va>
 #include <YSI\y_inline>
 #include <YSI\y_stringhash>
-
-// #include <ac>
 
 #include <Pawn.CMD>
 #include <a_mysql>
@@ -70,7 +80,6 @@
 #include <modules\comenzi\admin.pwn>
 #include <modules\comenzi\player.pwn>
 #include <modules\dealership.pwn>
-// #include <modules\emails.pwn>
 #include <modules\examen.pwn>
 
 main() { }
@@ -78,9 +87,9 @@ main() { }
 alias:adminchat("a", "ac")
 alias:helperchat("h", "hc")
 alias:setrepsectpoints("setrp", "setrespect")
-alias:admingivelicense("agl", "admingl")
-alias:admintakelicense("atl", "admintl")
-alias:adminsuspendlicense("asl", "adminsl")
+alias:givelicenseadmin("agl", "admingl")
+alias:takelicense("atl", "admintl")
+alias:suspendlicense("asl", "adminsl")
 alias:vehicles("v", "g", "garage")
 alias:fixveh("fv", "fixvehicle")
 alias:addnos("nos", "addnitro")
@@ -106,7 +115,6 @@ public OnQueryError(errorid, const error[], const callback[], const query[], MyS
 	print("=========================================");
 	return true;
 }
-
 
 public OnGameModeInit()
 {
@@ -203,12 +211,12 @@ public OnPlayerDisconnect(playerid, reason)
     }
 
 	foreach(new x : Reports) {
-		if(reportInfo[x][reportID] == playerid) {
+		if(ReportInfo[x][reportID] == playerid) {
 			sendAdmin(COLOR_SERVER, "Notice Report: {ffffff}Report-ul lui %s a fost anulat automat, deoarece s-a deconectat.", getName(playerid));
-			reportInfo[x][reportID] = INVALID_PLAYER_ID;
-			reportInfo[x][reportPlayer] = INVALID_PLAYER_ID;
-			reportInfo[x][reportType] = REPORT_TYPE_NONE;
-			reportInfo[x][reportText] = (EOS);
+			ReportInfo[x][reportID] = INVALID_PLAYER_ID;
+			ReportInfo[x][reportPlayer] = INVALID_PLAYER_ID;
+			ReportInfo[x][reportType] = REPORT_TYPE_NONE;
+			ReportInfo[x][reportText] = (EOS);
 			Iter_Remove(Reports, x);
 			break;
 		}
@@ -219,9 +227,11 @@ public OnPlayerDisconnect(playerid, reason)
 		playerInfo[playerInfo[playerid][pReportChat]][pReportChat] = INVALID_PLAYER_ID;
 		playerInfo[playerid][pReportChat] = INVALID_PLAYER_ID;
 	}
-	if(reason == 0) sendNearbyMessage(playerid, COLOR_SERVER, 20.0, "(*) {ffffff}%s a iesit de pe server (Crash).", getName(playerid));
-    else if(reason == 1) sendNearbyMessage(playerid, COLOR_SERVER, 20.0, "(*) {ffffff}%s a iesit de pe server (Quit).", getName(playerid));
-    else if(reason == 2) sendNearbyMessage(playerid, COLOR_SERVER, 20.0, "(*) {ffffff}%s a iesit de pe server (Kicked/Banned).", getName(playerid));
+	switch(reason) {
+		case 0: sendNearbyMessage(playerid, COLOR_SERVER, 20.0, "(*) {ffffff}%s a iesit de pe server (Crash).", getName(playerid));
+    	case 1: sendNearbyMessage(playerid, COLOR_SERVER, 20.0, "(*) {ffffff}%s a iesit de pe server (Quit).", getName(playerid));
+   	 	case 2: sendNearbyMessage(playerid, COLOR_SERVER, 20.0, "(*) {ffffff}%s a iesit de pe server (Kicked/Banned).", getName(playerid));
+   	}
 	update("UPDATE `server_users` SET `Seconds` = '%f', `Mute` = '%d', `ReportMute` = '%d', `Money` = '%d', `MStore` = '%d', `SpawnChange` = '%d', `Jailed` = '%d', `JailTime` = '%d', `WantedLevel` = '%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pSeconds], playerInfo[playerid][pMute], (playerInfo[playerid][pReportMute] > gettime()) ? (playerInfo[playerid][pReportMute] - gettime()) : (0), MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pSpawnChange], playerInfo[playerid][pJailed], playerInfo[playerid][pJailTime], playerInfo[playerid][pWantedLevel], playerInfo[playerid][pSQLID]);
 	return true;
 }
@@ -273,7 +283,7 @@ public OnPlayerSpawn(playerid) {
 		Dialog_Show(playerid, EMAIL, DIALOG_STYLE_INPUT, "E-Mail", "Scrie mai jos adresa ta de E-Mail:", "Ok", "");
 		return true;
 	}
-	if(IsValidVehicle(playerInfo[playerid][pExamenVehicle])) examenFail(playerid);
+	if(IsValidVehicle(playerInfo[playerid][pExamVeh])) examenFail(playerid);
 	if(playerInfo[playerid][pFlymode] == true)  {
 		playerInfo[playerid][pFlymode] = false;
 		StopFly(playerid);
@@ -403,10 +413,6 @@ public OnPlayerText(playerid, text[]) {
 	if(!isPlayerLogged(playerid)) defer kickEx(playerid);
 	if(strmatch(deelayInfo[playerid][Chat], text)) return 0;
 	format(deelayInfo[playerid][Chat], 144, text);
-	// if(faceReclama(text)) {
-	// 	Reclama(playerid, text);
-	// 	return 0;
-	// }
 	if(playerInfo[playerid][pMute] > gettime()) {
 		SCMf(playerid, COLOR_LIGHTRED, eERROR"Ai mute pentru inca %s.", secinmin(playerInfo[playerid][pMute]-gettime()));
 		return 0;
@@ -427,24 +433,20 @@ public OnPlayerText(playerid, text[]) {
 
 public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 {
-	if(!ispassenger)
-	{
-		if(playerInfo[playerid][pFlyLicense] == 0 && isPlane(vehicleid))
-		{
+	if(!ispassenger) {
+		if(playerInfo[playerid][pFlyLicense] == 0 && isPlane(vehicleid)) {
 			SCM(playerid, COLOR_ERROR, eERROR"Nu ai licenta de pilot.");
 			ClearAnimations(playerid);
 			return true;
 		}
 
-		if(playerInfo[playerid][pBoatLicense] == 0 && isBoat(vehicleid))
-		{
+		if(playerInfo[playerid][pBoatLicense] == 0 && isBoat(vehicleid)) {
 			SCM(playerid, COLOR_ERROR, eERROR"Nu ai licenta de navigatie.");
 			ClearAnimations(playerid);
 			return true;
 		}
 
-		if(playerInfo[playerid][pDrivingLicense] == 0 && !isBike(vehicleid) && !isBoat(vehicleid) && !isPlane(vehicleid) && vehicleid != playerInfo[playerid][pExamenVehicle])
-		{
+		if(playerInfo[playerid][pDrivingLicense] == 0 && !isBike(vehicleid) && !isBoat(vehicleid) && !isPlane(vehicleid) && vehicleid != playerInfo[playerid][pExamVeh]) {
 			SCM(playerid, COLOR_ERROR, eERROR"Nu ai licenta de condus.");
 			ClearAnimations(playerid);
 			return true;
@@ -457,41 +459,41 @@ public OnVehicleSpawn(vehicleid) {
 	new engine, lights, alarm, doors, bonnet, boot, objective;
 	GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
 	SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS_OFF, VEHICLE_PARAMS_OFF, alarm, doors, VEHICLE_PARAMS_OFF, VEHICLE_PARAMS_OFF, objective);
-	if(vehicle_personal[vehicleid] > -1) {
-		new id = vehicle_personal[vehicleid];
-		ModVehicle(personalVehicle[id][pvSpawnedID]);
-		if(personalVehicle[id][pvPaintJob] > -1) {
-			ChangeVehiclePaintjob(personalVehicle[id][pvSpawnedID], personalVehicle[id][pvPaintJob]);
+	if(vehPersonal[vehicleid] > -1) {
+		new id = vehPersonal[vehicleid];
+		ModVehicle(PersonalVeh[id][pvSpawnedID]);
+		if(PersonalVeh[id][pvPaintJob] > -1) {
+			ChangeVehiclePaintjob(PersonalVeh[id][pvSpawnedID], PersonalVeh[id][pvPaintJob]);
 		}
 		#pragma unused id
 	}
-	vehicle_engine[vehicleid] = false;
-	vehicle_lights[vehicleid] = false;
-	vehicle_bonnet[vehicleid] = false;
-	vehicle_boot[vehicleid] = false;
-	vehicle_fuel[vehicleid] = 100.0;
+	vehEngine[vehicleid] = false;
+	vehLights[vehicleid] = false;
+	vehBonnet[vehicleid] = false;
+	vehBoot[vehicleid] = false;
+	vehFuel[vehicleid] = 100.0;
 	return true;
 }
 
 public OnVehicleMod(playerid, vehicleid, componentid) {
-	if(vehicle_personal[vehicleid] > -1 && Iter_Contains(PlayerVehicles[playerid], vehicle_personal[vehicleid])) {
+	if(vehPersonal[vehicleid] > -1 && Iter_Contains(PlayerVehicles[playerid], vehPersonal[vehicleid])) {
 		SaveComponent(vehicleid, componentid);
 	}
 	return true;
 }
 
 public OnVehiclePaintjob(playerid, vehicleid, paintjobid) {
-	if(vehicle_personal[vehicleid] > -1 && Iter_Contains(PlayerVehicles[playerid], vehicle_personal[vehicleid])) {
-		personalVehicle[vehicle_personal[vehicleid]][pvPaintJob] = paintjobid;
-		update("UPDATE `server_personal_vehicles` SET `PaintJob`='%d' WHERE `ID`='%d' LIMIT 1", paintjobid, personalVehicle[vehicle_personal[vehicleid]][pvID]);
+	if(vehPersonal[vehicleid] > -1 && Iter_Contains(PlayerVehicles[playerid], vehPersonal[vehicleid])) {
+		PersonalVeh[vehPersonal[vehicleid]][pvPaintJob] = paintjobid;
+		update("UPDATE `server_personal_vehicles` SET `PaintJob`='%d' WHERE `ID`='%d' LIMIT 1", paintjobid, PersonalVeh[vehPersonal[vehicleid]][pvID]);
 	}
 	return true;
 }
 
 public OnVehicleRespray(playerid, vehicleid, color1, color2) {
-	if(vehicle_personal[vehicleid] > -1 && Iter_Contains(PlayerVehicles[playerid], vehicle_personal[vehicleid])) {
-		personalVehicle[vehicle_personal[vehicleid]][pvHealth] = 1000;
-		update("UPDATE `server_personal_vehicles` SET `Health`= '%f' WHERE `ID`='%d' LIMIT 1", personalVehicle[vehicle_personal[vehicleid]][pvHealth], personalVehicle[vehicle_personal[vehicleid]][pvID]);
+	if(vehPersonal[vehicleid] > -1 && Iter_Contains(PlayerVehicles[playerid], vehPersonal[vehicleid])) {
+		PersonalVeh[vehPersonal[vehicleid]][pvHealth] = 1000;
+		update("UPDATE `server_personal_vehicles` SET `Health`= '%f' WHERE `ID`='%d' LIMIT 1", PersonalVeh[vehPersonal[vehicleid]][pvHealth], PersonalVeh[vehPersonal[vehicleid]][pvID]);
 	}
 	return true;
 }
@@ -505,18 +507,18 @@ public OnVehicleDeath(vehicleid, killerid) {
 		DestroyVehicle(vehicleid);
 	}
 
-	if(vehicle_personal[vehicleid] > -1) {
-		new id = vehicle_personal[vehicleid];
-		personalVehicle[id][pvInsurancePoints] --;
-		update("UPDATE `server_personal_vehicles` SET `InsurancePoints`='%d' WHERE `ID`='%d' LIMIT 1", personalVehicle[id][pvInsurancePoints], personalVehicle[id][pvID]);
-		SCMf(getVehicleOwner(personalVehicle[id][pvOwnerID]), -1, "Vehiculul tau %s a pierdut un punct de asigurare.", getVehicleName(personalVehicle[id][pvModelID]));
+	if(vehPersonal[vehicleid] > -1) {
+		new id = vehPersonal[vehicleid];
+		PersonalVeh[id][pvInsurancePoints] --;
+		update("UPDATE `server_personal_vehicles` SET `InsurancePoints`='%d' WHERE `ID`='%d' LIMIT 1", PersonalVeh[id][pvInsurancePoints], PersonalVeh[id][pvID]);
+		SCMf(getVehicleOwner(PersonalVeh[id][pvOwnerID]), -1, "Vehiculul tau %s a pierdut un punct de asigurare.", getVehicleName(PersonalVeh[id][pvModelID]));
 	}
 
-	vehicle_engine[vehicleid] = false;
-	vehicle_lights[vehicleid] = false;
-	vehicle_bonnet[vehicleid] = false;
-	vehicle_boot[vehicleid] = false;
-	vehicle_fuel[vehicleid] = 100.0;
+	vehEngine[vehicleid] = false;
+	vehLights[vehicleid] = false;
+	vehBonnet[vehicleid] = false;
+	vehBoot[vehicleid] = false;
+	vehFuel[vehicleid] = 100.0;
 	return true;
 }
 
@@ -614,10 +616,10 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 		if(!IsPlayerInAnyVehicle(playerid)) {
 			new Float:x, Float:y, Float:z;
 			foreach(new i : PlayerVehicles[playerid]) {
-				if(personalVehicle[i][pvSpawnedID] != INVALID_VEHICLE_ID) {
-					GetVehiclePos(personalVehicle[i][pvSpawnedID], x, y, z);
+				if(PersonalVeh[i][pvSpawnedID] != INVALID_VEHICLE_ID) {
+					GetVehiclePos(PersonalVeh[i][pvSpawnedID], x, y, z);
 					if(IsPlayerInRangeOfPoint(playerid, 5.0, x, y, z)) {
-						SetVehicleParamsForPlayer(personalVehicle[i][pvSpawnedID], playerid, 0, 0);
+						SetVehicleParamsForPlayer(PersonalVeh[i][pvSpawnedID], playerid, 0, 0);
 						break;
 					}
 				}
@@ -640,12 +642,12 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER || !isBike(GetPlayerVehicleID(playerid)) ||  !isPlane(GetPlayerVehicleID(playerid)) ||  !isBoat(GetPlayerVehicleID(playerid))) {
 			new engine, lights, alarm, doors, bonnet, boot, objective;
 			GetVehicleParamsEx(GetPlayerVehicleID(playerid), engine, lights, alarm, doors, bonnet, boot, objective);
-			if(vehicle_boot[GetPlayerVehicleID(playerid)] == true) {
-				vehicle_boot[GetPlayerVehicleID(playerid)] = false;
+			if(vehBoot[GetPlayerVehicleID(playerid)] == true) {
+				vehBoot[GetPlayerVehicleID(playerid)] = false;
 				SetVehicleParamsEx(GetPlayerVehicleID(playerid), engine, lights, alarm, doors, bonnet, VEHICLE_PARAMS_OFF, objective);
 				return true;
 			}
-			vehicle_boot[GetPlayerVehicleID(playerid)] = true;
+			vehBoot[GetPlayerVehicleID(playerid)] = true;
 			SetVehicleParamsEx(GetPlayerVehicleID(playerid), engine, lights, alarm, doors, bonnet, VEHICLE_PARAMS_ON, objective);
 		}
 	}
@@ -653,12 +655,12 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER || !isBike(GetPlayerVehicleID(playerid)) ||  !isPlane(GetPlayerVehicleID(playerid)) ||  !isBoat(GetPlayerVehicleID(playerid))) {
 			new engine, lights, alarm, doors, bonnet, boot, objective;
 			GetVehicleParamsEx(GetPlayerVehicleID(playerid), engine, lights, alarm, doors, bonnet, boot, objective);
-			if(vehicle_bonnet[GetPlayerVehicleID(playerid)] == true) {
-				vehicle_bonnet[GetPlayerVehicleID(playerid)] = false;
+			if(vehBonnet[GetPlayerVehicleID(playerid)] == true) {
+				vehBonnet[GetPlayerVehicleID(playerid)] = false;
 				SetVehicleParamsEx(GetPlayerVehicleID(playerid), engine, lights, alarm, doors, VEHICLE_PARAMS_OFF, boot, objective);
 				return true;
 			}
-			vehicle_bonnet[GetPlayerVehicleID(playerid)] = true;
+			vehBonnet[GetPlayerVehicleID(playerid)] = true;
 			SetVehicleParamsEx(GetPlayerVehicleID(playerid), engine, lights, alarm, doors, VEHICLE_PARAMS_ON, boot, objective);
 		}
 	}
@@ -690,10 +692,10 @@ public OnPlayerStateChange(playerid, newstate, oldstate) {
 		if(Iter_Contains(PlayerInVehicle, playerid)) Iter_Remove(PlayerInVehicle, playerid);
 		if(playerInfo[playerid][pSpectate] > -1) PlayerSpectatePlayer(playerInfo[playerid][pSpectate], playerid);
 		new vehicleid = playerInfo[playerid][pinVehicle];
-		if(vehicle_personal[vehicleid] > -1) {
-			new i = vehicle_personal[vehicleid];
-			personalVehicle[i][pvDespawnTime] = (gettime() + 900);
-			update("UPDATE `server_personal_vehicles` SET  `Health` = '%f', `Fuel` = '%f', `Odometer`='%f', `DamageDoors`='%d', `DamageLights`='%d', `DamageTires`='%d' WHERE `ID`='%d' LIMIT 1", personalVehicle[i][pvHealth], personalVehicle[i][pvFuel], personalVehicle[i][pvOdometer], personalVehicle[i][pvDamagePanels], personalVehicle[i][pvDamageDoors], personalVehicle[i][pvDamageLights], personalVehicle[i][pvDamageTires],personalVehicle[i][pvID]);
+		if(vehPersonal[vehicleid] > -1) {
+			new i = vehPersonal[vehicleid];
+			PersonalVeh[i][pvDespawnTime] = (gettime() + 900);
+			update("UPDATE `server_personal_vehicles` SET  `Health` = '%f', `Fuel` = '%f', `Odometer`='%f', `DamageDoors`='%d', `DamageLights`='%d', `DamageTires`='%d' WHERE `ID`='%d' LIMIT 1", PersonalVeh[i][pvHealth], PersonalVeh[i][pvFuel], PersonalVeh[i][pvOdometer], PersonalVeh[i][pvDamagePanels], PersonalVeh[i][pvDamageDoors], PersonalVeh[i][pvDamageLights], PersonalVeh[i][pvDamageTires],PersonalVeh[i][pvID]);
 		}	
 		playerInfo[playerid][pinVehicle] = -1;
 		PlayerTextDrawHide(playerid, fareTD[playerid]);
@@ -733,7 +735,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate) {
 		PlayerTextDrawSetString(playerid, vehicleHud[15], "C");
 		PlayerTextDrawSetString(playerid, vehicleHud[16], "L");
 		PlayerTextDrawSetString(playerid, vehicleHud[17], "0000000.0");
-		if(IsValidVehicle(playerInfo[playerid][pExamenVehicle])) examenFail(playerid);
+		if(IsValidVehicle(playerInfo[playerid][pExamVeh])) examenFail(playerid);
 		for(new i; i < sizeof vehicleHud; i++) PlayerTextDrawHide(playerid, vehicleHud[i]);
 	}
 	if(newstate == PLAYER_STATE_DRIVER)
@@ -753,7 +755,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate) {
 			return true;
 		}
 
-		if(playerInfo[playerid][pDrivingLicense] == 0 && !isBike(vehicleid) && !isBoat(vehicleid) && !isPlane(vehicleid) && vehicleid != playerInfo[playerid][pExamenVehicle])
+		if(playerInfo[playerid][pDrivingLicense] == 0 && !isBike(vehicleid) && !isBoat(vehicleid) && !isPlane(vehicleid) && vehicleid != playerInfo[playerid][pExamVeh])
 		{
 			SCM(playerid, COLOR_ERROR, eERROR"Nu ai licenta de condus.");
 			ClearAnimations(playerid);
@@ -762,33 +764,33 @@ public OnPlayerStateChange(playerid, newstate, oldstate) {
 		new engine, lights, alarm, doors, bonnet, boot, objective;
 		GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
 		SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS_OFF, lights, alarm, doors, bonnet, boot, objective);
-		if(vehicle_engine[vehicleid]) {
+		if(vehEngine[vehicleid]) {
 			SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS_ON, lights, alarm, doors, bonnet, boot, objective);
 		}
 		SetVehicleParamsEx(vehicleid, engine, VEHICLE_PARAMS_OFF, alarm, doors, bonnet, boot, objective);
-		if(vehicle_lights[vehicleid]) {
+		if(vehLights[vehicleid]) {
 			SetVehicleParamsEx(vehicleid, engine, VEHICLE_PARAMS_ON, alarm, doors, bonnet, boot, objective);
 		}
 		SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, VEHICLE_PARAMS_OFF, objective);
-		if(vehicle_boot[vehicleid]) {
+		if(vehBoot[vehicleid]) {
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, VEHICLE_PARAMS_ON, objective);
 		}
 		SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, VEHICLE_PARAMS_OFF, boot, objective);
-		if(vehicle_bonnet[vehicleid]) {
+		if(vehBonnet[vehicleid]) {
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, VEHICLE_PARAMS_ON, boot, objective);
 		}
 		if(isBike(vehicleid)) {
 			SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS_ON, lights, alarm, doors, bonnet, boot, objective);
-			vehicle_engine[vehicleid] =  true;
+			vehEngine[vehicleid] =  true;
 		}
-		if(vehicle_personal[vehicleid] > -1) {
-            new id = vehicle_personal[vehicleid];
-            SCMf(playerid, COLOR_WHITE, "Acest %s (ID: %d) este detinut de %s | Age: %d zile | Kilometraj: %.02f km | Culori: %d, %d", getVehicleName(personalVehicle[id][pvModelID]), personalVehicle[id][pvID], getName(getVehicleOwner(personalVehicle[id][pvOwnerID])), personalVehicle[id][pvAge], personalVehicle[id][pvOdometer], personalVehicle[id][pvColorOne], personalVehicle[id][pvColorTwo]);
-            personalVehicle[id][pvDespawnTime] = 0;
+		if(vehPersonal[vehicleid] > -1) {
+            new id = vehPersonal[vehicleid];
+            SCMf(playerid, COLOR_WHITE, "Acest %s (ID: %d) este detinut de %s | Age: %d zile | Kilometraj: %.02f km | Culori: %d, %d", getVehicleName(PersonalVeh[id][pvModelID]), PersonalVeh[id][pvID], getName(getVehicleOwner(PersonalVeh[id][pvOwnerID])), PersonalVeh[id][pvAge], PersonalVeh[id][pvOdometer], PersonalVeh[id][pvColorOne], PersonalVeh[id][pvColorTwo]);
+            PersonalVeh[id][pvDespawnTime] = 0;
             #pragma unused id
         }
 
-		if(vehicle_engine[GetPlayerVehicleID(playerid)] == true) speedo[playerid] = repeat TimerSpeedo(playerid);
+		if(vehEngine[GetPlayerVehicleID(playerid)] == true) speedo[playerid] = repeat TimerSpeedo(playerid);
 		for(new i; i < 18; i++) PlayerTextDrawShow(playerid, vehicleHud[i]);
 	}
 	if(newstate == PLAYER_STATE_PASSENGER) {
@@ -831,23 +833,23 @@ public OnPlayerStreamOut(playerid, forplayerid)
 
 public OnPlayerEnterCheckpoint(playerid) 
 {
-	if(playerInfo[playerid][pExamenCheckpoint] > 0 && IsPlayerInVehicle(playerid, playerInfo[playerid][pExamenVehicle])) {
+	if(playerInfo[playerid][pExamenCP] > 0 && IsPlayerInVehicle(playerid, playerInfo[playerid][pExamVeh])) {
 		DisablePlayerCheckpoint(playerid);
-		playerInfo[playerid][pExamenCheckpoint] ++;
-		if(!Iter_Contains(ExamenCheckpoints, playerInfo[playerid][pExamenCheckpoint])) {
+		playerInfo[playerid][pExamenCP] ++;
+		if(!Iter_Contains(ExamCheckpointIter, playerInfo[playerid][pExamenCP])) {
 			playerInfo[playerid][pDrivingLicense] = 100;
 			update("UPDATE `server_users` SET `Licenses` = '%d|%d|%d|%d|%d|%d|%d|%d' WHERE `ID` = '%d' LIMIT 1", playerInfo[playerid][pDrivingLicense], playerInfo[playerid][pDrivingLicenseSuspend], playerInfo[playerid][pWeaponLicense], playerInfo[playerid][pWeaponLicenseSuspend], playerInfo[playerid][pFlyLicense], playerInfo[playerid][pFlyLicenseSuspend], playerInfo[playerid][pBoatLicense], playerInfo[playerid][pBoatLicenseSuspend], playerInfo[playerid][pSQLID]);
-			DestroyVehicle(playerInfo[playerid][pExamenVehicle]);
+			DestroyVehicle(playerInfo[playerid][pExamVeh]);
 			PlayerTextDrawHide(playerid, playerExamenPTD[playerid]);
-			playerInfo[playerid][pExamenVehicle] = INVALID_VEHICLE_ID;
-			playerInfo[playerid][pExamenCheckpoint] = 0;
+			playerInfo[playerid][pExamVeh] = INVALID_VEHICLE_ID;
+			playerInfo[playerid][pExamenCP] = 0;
 			SetPlayerPos(playerid, 1111.0055,-1795.5551,16.5938);
 			SetPlayerVirtualWorld(playerid, 0);
 			SCM(playerid, COLOR_AQUA, "DMV Exam: {ffffff} Ai trecut cu succes examenul auto, ai primit licenta de condus pentru 100 de payday-uri.");
 			return true;
 		}
-		SetPlayerCheckpoint(playerid, examenInfo[playerInfo[playerid][pExamenCheckpoint]][dmvX], examenInfo[playerInfo[playerid][pExamenCheckpoint]][dmvY], examenInfo[playerInfo[playerid][pExamenCheckpoint]][dmvZ], 3.0);
-		va_PlayerTextDrawSetString(playerid, playerExamenPTD[playerid], "DMV Exam~n~Checkpoints:%d/%d~n~Stay Tuned !", (playerInfo[playerid][pExamenCheckpoint] - 1),  Iter_Count(ExamenCheckpoints));
+		SetPlayerCheckpoint(playerid, ExamInformation[playerInfo[playerid][pExamenCP]][dmvX], ExamInformation[playerInfo[playerid][pExamenCP]][dmvY], ExamInformation[playerInfo[playerid][pExamenCP]][dmvZ], 3.0);
+		va_PlayerTextDrawSetString(playerid, playerExamenPTD[playerid], "DMV Exam~n~Checkpoints:%d/%d~n~Stay Tuned !", (playerInfo[playerid][pExamenCP] - 1),  Iter_Count(ExamCheckpointIter));
 		return true;
 	}
 	switch(playerInfo[playerid][pCheckpoint]) {
@@ -868,27 +870,6 @@ public OnPlayerEnterCheckpoint(playerid)
 }
 
 public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY, Float:fZ)  {
-	if(weaponid != 38 && weaponid > 18 && weaponid < 34 && hittype == 1) {
-		new Float:codX, Float:codY, Float:codZ, Float:codMX, Float:codMY,  Float:codMZ, Float:DistantaAim, weaponname[25];
-		GetPlayerPos(hitid, codX, codY, codZ);
-		GetWeaponName(weaponid, weaponname, sizeof(weaponname));
-		DistantaAim = GetPlayerDistanceFromPoint(playerid, codX, codY, codZ);
-		if(GetPlayerTargetPlayer(playerid) == INVALID_PLAYER_ID && DistantaAim > 1 && DistantaAim < 31 && playerInfo[playerid][pTintaApasata] == 1) {
-			AntiCheatWarnings ++;
-			if(AntiCheatWarnings >= 10) {
-				AntiCheatWarnings = 0;
-				sendAdmin(COLOR_SERVER, "Anti-Cheat Notice: {FFFFFF}%s(%d) este posibil sa foloseasca SilentAim (Arma: %s | Distanta: %i m)", getName(playerid), playerid, weaponname, floatround(DistantaAim));
-			}
-		}
-		GetPlayerLastShotVectors(playerid,codX,codY,codZ,codMX,codMY,codMZ);
-		if(IsPlayerInRangeOfPoint(playerid, 1, codMX, codMY, codMZ)) {
-			AntiCheatWarnings ++;
-			if(AntiCheatWarnings >= 5) {
-				AntiCheatWarnings = 0;
-				sendAdmin(COLOR_SERVER, "Anti-Cheat Notice: {FFFFFF}%s(%d) este posibil sa foloseasca ProAimbot (Arma: %s | Distanta: %i m)", getName(playerid), playerid, weaponname, floatround(DistantaAim));
-			}
-		}
-	}
 	if(weaponid == 24 && playerInfo[playerid][pTazer] == 1) {
 		TogglePlayerControllable(hitid, 0);
 		defer tazerTimer(hitid);

@@ -59,8 +59,8 @@ CMD:fill(playerid, params[]) {
 	extract params -> new Float:full; else return sendPlayerSyntax(playerid, "/fill <gas procent>");
 	new area = AreaGas[GetPlayerNumberDynamicAreas(playerid)];
 	if(IsPlayerInRangeOfPoint(playerid, 3.5, gasInfo[area][gX], gasInfo[area][gY], gasInfo[area][gZ])) {
-		if(full + vehicle_fuel[GetPlayerVehicleID(playerid)] >= 100.0) return SCM(playerid, COLOR_ERROR, eERROR"Acest vehicul are rezervorul plin.");
-		new Float:procent = 100.0 - vehicle_fuel[GetPlayerVehicleID(playerid)];
+		if(full + vehFuel[GetPlayerVehicleID(playerid)] >= 100.0) return SCM(playerid, COLOR_ERROR, eERROR"Acest vehicul are rezervorul plin.");
+		new Float:procent = 100.0 - vehFuel[GetPlayerVehicleID(playerid)];
 		if(!PlayerMoney(playerid, 10 * 250)) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai destui bani pentru a face acest lucru.");
 		if(gasInfo[area][gFull] < procent) return SCM(playerid, COLOR_ERROR, eERROR"Aceasta benzinarie nu detine procentajul necesar de combustibil");
 		TogglePlayerControllable(playerid, 0);
@@ -71,8 +71,8 @@ CMD:fill(playerid, params[]) {
 }
 
 timer gasTimer[10000](playerid, procent) {
-	vehicle_fuel[GetPlayerVehicleID(playerid)] += procent;
-	if(vehicle_personal[GetPlayerVehicleID(playerid)] > -1) personalVehicle[vehicle_personal[GetPlayerVehicleID(playerid)]][pvFuel] += procent;
+	vehFuel[GetPlayerVehicleID(playerid)] += procent;
+	if(vehPersonal[GetPlayerVehicleID(playerid)] > -1) PersonalVeh[vehPersonal[GetPlayerVehicleID(playerid)]][pvFuel] += procent;
 	gasInfo[AreaGas[GetPlayerNumberDynamicAreas(playerid)]][gFull] -= procent;
 	stop playerInfo[playerid][pGasTimer];
 	TogglePlayerControllable(playerid, 1);

@@ -1929,10 +1929,10 @@ stock resetVars(playerid)
 	playerInfo[playerid][pCertificateStep] = 0;
 	playerInfo[playerid][pCertificateSeconds] = 0;
 
-	if(IsValidVehicle(playerInfo[playerid][pExamenVehicle])) DestroyVehicle(playerInfo[playerid][pExamenVehicle]);
+	if(IsValidVehicle(playerInfo[playerid][pExamVeh])) DestroyVehicle(playerInfo[playerid][pExamVeh]);
 
-	playerInfo[playerid][pExamenVehicle] = INVALID_VEHICLE_ID;
-	playerInfo[playerid][pExamenCheckpoint] = 0;
+	playerInfo[playerid][pExamVeh] = INVALID_VEHICLE_ID;
+	playerInfo[playerid][pExamenCP] = 0;
 
 	DeletePVar(playerid, "muteDeelay");
 	DeletePVar(playerid, "banDeelay");
@@ -2066,9 +2066,9 @@ stock Calculate(seconds)
 stock IsNumeric(const string:str[]) return !sscanf(str, "{i}");
 
 stock examenFail(playerid) {
-	if(IsValidVehicle(playerInfo[playerid][pExamenVehicle])) DestroyVehicle(playerInfo[playerid][pExamenVehicle]);
+	if(IsValidVehicle(playerInfo[playerid][pExamVeh])) DestroyVehicle(playerInfo[playerid][pExamVeh]);
 	DisablePlayerCheckpoint(playerid);
-	playerInfo[playerid][pExamenCheckpoint] = 0;
+	playerInfo[playerid][pExamenCP] = 0;
 	PlayerTextDrawHide(playerid, playerExamenPTD[playerid]);
 	SetPlayerPos(playerid, 1286.1072,-1349.8607,13.5684);
 	SetPlayerVirtualWorld(playerid, 0);
@@ -2116,7 +2116,7 @@ stock GetPlayerWeapons(playerid) {
 stock PlayerHaveReport(playerid) {
 	new bool: haveReport = false;
 	foreach(new x : Reports) {
-		if(reportInfo[x][reportID] == playerid) {
+		if(ReportInfo[x][reportID] == playerid) {
 			haveReport = true;
 			break;
 		}
@@ -2127,7 +2127,7 @@ stock PlayerHaveReport(playerid) {
 stock GetReportID(playerid) {
 	new id = INVALID_PLAYER_ID;
 	foreach(new x : Reports) {
-		if(reportInfo[x][reportID] == playerid) {
+		if(ReportInfo[x][reportID] == playerid) {
 			id = x;
 			break;
 		}

@@ -32,7 +32,7 @@ enum {
     REPORT_TYPE_NONE
 };
 
-enum examenInfoEnum {
+enum ExamInformationEnum {
 	dmvID,
 	Float:dmvX,
 	Float:dmvY,
@@ -128,8 +128,8 @@ enum playerInfoEnum
 	Float:pLastPosX,
 	Float:pLastPosY,
 	Float:pLastPosZ,
-	pExamenVehicle,
-	pExamenCheckpoint,
+	pExamVeh,
+	pExamenCP,
 	bool:pFlymode,
     bool:pFreeze,
     bool:pMark,
@@ -227,7 +227,7 @@ enum labelInfoEnum {
     Text3D:labelID
 };
 */
-enum reportInfoEnum {
+enum ReportInfoEnum {
     reportID, 
     reportPlayer,
     reportText[128],

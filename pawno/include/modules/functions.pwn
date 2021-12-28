@@ -232,7 +232,7 @@ function onPlayerLogin(playerid)
 
 	gQuery[0] = (EOS);
 	mysql_format(SQL, gQuery, 128, "SELECT * FROM `server_personal_vehicles` WHERE `OwnerID` = '%d'", playerInfo[playerid][pSQLID]);
-	mysql_pquery(SQL, gQuery, "LoadPersonalVehicle", "d", playerid);
+	mysql_pquery(SQL, gQuery, "LoadPersonalVeh", "d", playerid);
 
 	// twofa(playerid);
 	new ipnew[16];
@@ -284,13 +284,13 @@ function onPlayerLogin(playerid)
 function LoadExamCheckpoints() {
 	if(!cache_num_rows()) return print("Exam Checkpoints: 0 [From DataBase]");
 	for(new i = 1; i < cache_num_rows() +1; i++) {
-		Iter_Add(ExamenCheckpoints, i);
-		cache_get_value_name_int(i - 1, "ID", examenInfo[i][dmvID]);
-		cache_get_value_name_float(i - 1, "X", examenInfo[i][dmvX]);
-		cache_get_value_name_float(i - 1, "Y", examenInfo[i][dmvY]);
-		cache_get_value_name_float(i - 1, "Z", examenInfo[i][dmvZ]);
+		Iter_Add(ExamCheckpointIter, i);
+		cache_get_value_name_int(i - 1, "ID", ExamInformation[i][dmvID]);
+		cache_get_value_name_float(i - 1, "X", ExamInformation[i][dmvX]);
+		cache_get_value_name_float(i - 1, "Y", ExamInformation[i][dmvY]);
+		cache_get_value_name_float(i - 1, "Z", ExamInformation[i][dmvZ]);
 	}
-	return printf("Exam Checkpoints: %d [From Database]", Iter_Count(ExamenCheckpoints));
+	return printf("Exam Checkpoints: %d [From Database]", Iter_Count(ExamCheckpointIter));
 }
 
 /*function LoadPickups() {
@@ -482,8 +482,8 @@ function assignSQLID(playerid) {
 }
 
 function assignCheckpointID(i) {
-	Iter_Add(ExamenCheckpoints, i);
-	examenInfo[i][dmvID] = cache_insert_id();
+	Iter_Add(ExamCheckpointIter, i);
+	ExamInformation[i][dmvID] = cache_insert_id();
 	return true;	
 }
 

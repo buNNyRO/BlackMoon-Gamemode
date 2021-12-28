@@ -82,13 +82,13 @@ Dialog:DIALOG_REPORT(playerid, response, listitem) {
 		case 1: Dialog_Show(playerid, DIALOG_REPORT_CHEATER, DIALOG_STYLE_INPUT, "Report: Cheater", "Scrie mai jos numele/id-ul jucatorului care foloseste cheats:", "Ok", "Cancel");
 		case 2: {
 			new id = (Iter_Count(Reports) +1);
-			reportInfo[id][reportID] = playerid;
-			reportInfo[id][reportType] = REPORT_TYPE_STUCK;
-			reportInfo[id][reportTimer] = defer ExpirationReport(id);
-			format(reportInfo[id][reportText], 128, "Sunt blocat");
+			ReportInfo[id][reportID] = playerid;
+			ReportInfo[id][reportType] = REPORT_TYPE_STUCK;
+			ReportInfo[id][reportTimer] = defer ExpirationReport(id);
+			format(ReportInfo[id][reportText], 128, "Sunt blocat");
 			Iter_Add(Reports, id);
 			SCM(playerid, COLOR_GREY, "* Report trimis cu succes.");
-			sendAdmin(COLOR_SERVER, "Notice Report: {ffffff}Report by %s (ID: %d | Level: %d): %s", getName(playerid), playerid, playerInfo[playerid][pLevel], reportInfo[id][reportText]);
+			sendAdmin(COLOR_SERVER, "Notice Report: {ffffff}Report by %s (ID: %d | Level: %d): %s", getName(playerid), playerid, playerInfo[playerid][pLevel], ReportInfo[id][reportText]);
 			playerInfo[playerid][pReportMute] = (gettime() + 120);
 		}
 	}
@@ -103,13 +103,13 @@ Dialog:DIALOG_REPORT_NORMAL(playerid, response, listitem, inputtext[]) {
 	if(!Iter_Count(ServerAdmins)) return SCM(playerid, COLOR_ERROR, eERROR"Nu sunt admini conectati.");
 	if(strlen(inputtext) < 6 || strlen(inputtext) > 128) return Dialog_Show(playerid, DIALOG_REPORT_NORMAL, DIALOG_STYLE_INPUT, "Report: Normal", "Scrie mai jos problema pe care o ai:", "Ok", "Cancel");
 	new id = (Iter_Count(Reports) +1);
-	reportInfo[id][reportID] = playerid;
-	reportInfo[id][reportType] = REPORT_TYPE_NORMAL;
-	reportInfo[id][reportTimer] = defer ExpirationReport(id);
-	format(reportInfo[id][reportText], 128, inputtext);
+	ReportInfo[id][reportID] = playerid;
+	ReportInfo[id][reportType] = REPORT_TYPE_NORMAL;
+	ReportInfo[id][reportTimer] = defer ExpirationReport(id);
+	format(ReportInfo[id][reportText], 128, inputtext);
 	Iter_Add(Reports, id);
 	SCM(playerid, COLOR_GREY, "* Report trimis cu succes.");
-	sendAdmin(COLOR_SERVER, "Notice Report: {ffffff}Report by %s (ID: %d | Level: %d): %s", getName(playerid), playerid, playerInfo[playerid][pLevel], reportInfo[id][reportText]);
+	sendAdmin(COLOR_SERVER, "Notice Report: {ffffff}Report by %s (ID: %d | Level: %d): %s", getName(playerid), playerid, playerInfo[playerid][pLevel], ReportInfo[id][reportText]);
 	playerInfo[playerid][pReportMute] = (gettime() + 120);
 	return true;
 }
@@ -127,14 +127,14 @@ Dialog:DIALOG_REPORT_CHEATER(playerid, response, listitem, inputtext[]) {
 	if(userid == playerid)  return Dialog_Show(playerid, DIALOG_REPORT_CHEATER, DIALOG_STYLE_INPUT, "Report: Cheater", "Scrie mai jos numele/id-ul jucatorului care foloseste cheats:\n{afafaf} * Nu iti poti da report singur.", "Ok", "Cancel");
 	if(Iter_Contains(ServerAdmins, userid)) return Dialog_Show(playerid, DIALOG_REPORT_CHEATER, DIALOG_STYLE_INPUT, "Report: Cheater", "Scrie mai jos numele/id-ul jucatorului care foloseste cheats:\n{afafaf} * Nu poti da report unui administrator.", "Ok", "Cancel");
 	new id = (Iter_Count(Reports) +1);
-	reportInfo[id][reportID] = playerid;
-	reportInfo[id][reportType] = REPORT_TYPE_CHEATER;
-	reportInfo[id][reportPlayer] = userid;
-	reportInfo[id][reportTimer] = defer ExpirationReport(id);
-	format(reportInfo[id][reportText], 128, "%s ar putea folosi cheats", getName(userid));
+	ReportInfo[id][reportID] = playerid;
+	ReportInfo[id][reportType] = REPORT_TYPE_CHEATER;
+	ReportInfo[id][reportPlayer] = userid;
+	ReportInfo[id][reportTimer] = defer ExpirationReport(id);
+	format(ReportInfo[id][reportText], 128, "%s ar putea folosi cheats", getName(userid));
 	Iter_Add(Reports, id);
 	SCM(playerid, COLOR_GREY, "* Jucatorul a fost raportat cu succes.");
-	sendAdmin(COLOR_SERVER, "Notice Report: {ffffff}Report by %s (ID: %d | Level: %d): %s", getName(playerid), playerid, playerInfo[playerid][pLevel], reportInfo[id][reportText]);
+	sendAdmin(COLOR_SERVER, "Notice Report: {ffffff}Report by %s (ID: %d | Level: %d): %s", getName(playerid), playerid, playerInfo[playerid][pLevel], ReportInfo[id][reportText]);
 	playerInfo[playerid][pReportMute] = (gettime() + 120);
 	return true;
 }

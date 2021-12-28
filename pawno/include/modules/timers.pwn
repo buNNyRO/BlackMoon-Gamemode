@@ -23,6 +23,17 @@ timer TimerJail[1000](i) {
 	return true;
 }
 
+timer TimerSpectator[1000](playerid) {
+	new Float:health, Float:armour, Float:healthv = -1;
+	GetPlayerHealthEx(playerInfo[playerid][pSpectate], health);
+	GetPlayerArmourEx(playerInfo[playerid][pSpectate], armour);
+	if(IsPlayerInAnyVehicle(playerInfo[playerid][pSpectate])) GetVehicleHealth(GetPlayerVehicleID(playerInfo[playerid][pSpectate]), healthv);
+	if(GetPlayerInterior(playerid) != 0) SetPlayerInterior(playerid, GetPlayerInterior(playerInfo[playerid][pSpectate]));
+   	if(GetPlayerVirtualWorld(playerid) != 0) SetPlayerVirtualWorld(playerid, GetPlayerVirtualWorld(playerInfo[playerid][pSpectate])); 
+	va_PlayerTextDrawSetString(playerid, specTD[playerid], "Nume:~p~%s (%d)~n~~w~Health:~p~%.2f~w~~n~Armour:~p~%.2f~w~~n~Vehicle:~p~%d~w~[Health:~p~%.2f~w~]Packet Loss:~p~%.2f~w~~n~Device:~p~%s~w~ FPS:~p~%d~w~ Ping:~p~%d", getName(playerInfo[playerid][pSpectate]), playerInfo[playerid][pSpectate],  health, armour, IsPlayerInAnyVehicle(playerInfo[playerid][pSpectate]) ? GetPlayerVehicleID(playerInfo[playerid][pSpectate]) : -1, healthv > 0 ? healthv : 0.0, NetStats_PacketLossPercent(playerInfo[playerid][pSpectate]), playerInfo[playerInfo[playerid][pSpectate]][pFPS] > 1 ? "PC" : "Android", playerInfo[playerInfo[playerid][pSpectate]][pFPS], GetPlayerPing(playerInfo[playerid][pSpectate]));
+	return true;
+}
+
 timer TimerWanted[1000](x) {
 	playerInfo[x][pWantedTime] --;
 	PlayerTextDrawShow(x, wantedTD[x]);
@@ -90,7 +101,7 @@ task Timers[1000]() {
 			SetPlayerPos(i, cellRandom[rand][0], cellRandom[rand][1], cellRandom[rand][2]);
 			SCM(i, COLOR_LIGHTRED, string_fast("* Jail Cells:{ffffff} Deoarece ora a ajuns la '00:00:00', celule se inchid."));
 		}
-		foreach(new i : TotalPlayerVehicles) personalVehicle[i][pvAge] ++;
+		foreach(new i : TotalPlayerVehicles) PersonalVeh[i][pvAge] ++;
 		update("UPDATE `server_personal_vehicles` SET `Age` = Age+1 LIMIT 1");
         foreach(new x : ServerClans) {
             if(clanInfo[x][cDays] == 0) {
@@ -274,12 +285,12 @@ timer respawnTimer[500](playerid, Float:x, Float:y, Float:z, virtual_world, inte
 }
 
 timer ExpirationReport[120000](id) {
-	SCM(reportInfo[id][reportID], COLOR_GREY, "* Report-ul tau a fost anulat.");
-	sendAdmin(COLOR_SERVER, "Notice Report: {ffffff}Report-ul lui %s a fost anulat automat.", getName(reportInfo[id][reportID]));
-	reportInfo[id][reportID] = INVALID_PLAYER_ID;
-	reportInfo[id][reportPlayer] = INVALID_PLAYER_ID;
-	reportInfo[id][reportType] = REPORT_TYPE_NONE;
-	reportInfo[id][reportText] = (EOS);
+	SCM(ReportInfo[id][reportID], COLOR_GREY, "* Report-ul tau a fost anulat.");
+	sendAdmin(COLOR_SERVER, "Notice Report: {ffffff}Report-ul lui %s a fost anulat automat.", getName(ReportInfo[id][reportID]));
+	ReportInfo[id][reportID] = INVALID_PLAYER_ID;
+	ReportInfo[id][reportPlayer] = INVALID_PLAYER_ID;
+	ReportInfo[id][reportType] = REPORT_TYPE_NONE;
+	ReportInfo[id][reportText] = (EOS);
 	Iter_Remove(Reports, id);
 	return true;
 }

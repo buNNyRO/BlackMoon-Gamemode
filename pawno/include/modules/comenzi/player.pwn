@@ -60,19 +60,19 @@ CMD:exam(playerid, params[]) {
 	if(playerInfo[playerid][pDrivingLicenseSuspend] > 0) return SCMf(playerid, COLOR_ERROR, eERROR"Ai licenta suspendata pentru %d ore.", playerInfo[playerid][pDrivingLicenseSuspend]);
 	if(IsPlayerInRangeOfPoint(playerid, 2.5, 1111.0061, -1795.6694, 16.7100) && GetPlayerVirtualWorld(playerid) != 0) return SCM(playerid, COLOR_ERROR, eERROR"Nu te afli la pozitia in care poti da examen-ul, sau te afli in alt Virtual World"); 
 	if(IsPlayerInAnyVehicle(playerid)) return SCM(playerid, COLOR_ERROR, eERROR"Te afli intr-un vehicul, coboara jos.");
-	if(!Iter_Count(ExamenCheckpoints)) return SCM(playerid, COLOR_ERROR, eERROR"Momentan nu poti sustine acest examen, exista o eroare tehnica te rugam sa revii mai tarziu.");
+	if(!Iter_Count(ExamCheckpointIter)) return SCM(playerid, COLOR_ERROR, eERROR"Momentan nu poti sustine acest examen, exista o eroare tehnica te rugam sa revii mai tarziu.");
 	if(GetPlayerCash(playerid) < 500) return SCM(playerid, COLOR_ERROR, eERROR"Nu ai $500.");
 	GivePlayerCash(playerid, 0, 500);
 	update("UPDATE `server_users` SET `Money` = '%d', `MStore` = '%d' WHERE `ID`='%d'", MoneyMoney[playerid], StoreMoney[playerid], playerInfo[playerid][pSQLID]);
 	SetPlayerVirtualWorld(playerid, (playerid +1));
-	playerInfo[playerid][pExamenVehicle] = CreateVehicle(589, 1110.1354, -1743.3287, 13.0742, -90, -1, -1, -1);
-	SetVehicleVirtualWorld(playerInfo[playerid][pExamenVehicle], (playerid +1));
-	PutPlayerInVehicleEx(playerid, playerInfo[playerid][pExamenVehicle], 0);
-	vehicle_fuel[playerInfo[playerid][pExamenVehicle]] = 100.0;
-	vehicle_personal[playerInfo[playerid][pExamenVehicle]] = -1;
-	SetPlayerCheckpoint(playerid, examenInfo[Iter_First(ExamenCheckpoints)][dmvX], examenInfo[Iter_First(ExamenCheckpoints)][dmvY], examenInfo[Iter_First(ExamenCheckpoints)][dmvZ], 3.0);
-	playerInfo[playerid][pExamenCheckpoint] = Iter_First(ExamenCheckpoints);
-	va_PlayerTextDrawSetString(playerid, playerExamenPTD[playerid], "DMV Exam~n~Checkpoints:%d/%d~n~Stay Tuned !", (playerInfo[playerid][pExamenCheckpoint] - 1), Iter_Count(ExamenCheckpoints));
+	playerInfo[playerid][pExamVeh] = CreateVehicle(589, 1110.1354, -1743.3287, 13.0742, -90, -1, -1, -1);
+	SetVehicleVirtualWorld(playerInfo[playerid][pExamVeh], (playerid +1));
+	PutPlayerInVehicleEx(playerid, playerInfo[playerid][pExamVeh], 0);
+	vehFuel[playerInfo[playerid][pExamVeh]] = 100.0;
+	vehPersonal[playerInfo[playerid][pExamVeh]] = -1;
+	SetPlayerCheckpoint(playerid, ExamInformation[Iter_First(ExamCheckpointIter)][dmvX], ExamInformation[Iter_First(ExamCheckpointIter)][dmvY], ExamInformation[Iter_First(ExamCheckpointIter)][dmvZ], 3.0);
+	playerInfo[playerid][pExamenCP] = Iter_First(ExamCheckpointIter);
+	va_PlayerTextDrawSetString(playerid, playerExamenPTD[playerid], "DMV Exam~n~Checkpoints:%d/%d~n~Stay Tuned !", (playerInfo[playerid][pExamenCP] - 1), Iter_Count(ExamCheckpointIter));
 	PlayerTextDrawShow(playerid, playerExamenPTD[playerid]);
 	SCM(playerid, COLOR_AQUA, "DMV Exam: {ffffff} Examen-ul a inceput, te rugam sa intri in toate checkpoint-urile.");	
 	return true;
@@ -80,25 +80,25 @@ CMD:exam(playerid, params[]) {
 
 CMD:engine(playerid, params[]) {
 	if(!IsPlayerInAnyVehicle(playerid) || GetPlayerState(playerid) != PLAYER_STATE_DRIVER) return true;
-	if(vehicle_fuel[GetPlayerVehicleID(playerid)] < 1) return SCM(playerid, COLOR_ERROR, eERROR"Acest vehicul nu mai are combustibil.");
+	if(vehFuel[GetPlayerVehicleID(playerid)] < 1) return SCM(playerid, COLOR_ERROR, eERROR"Acest vehicul nu mai are combustibil.");
 	if(isBike(GetPlayerVehicleID(playerid))) return SCM(playerid, COLOR_ERROR, eERROR"Acest vehicul nu are un motor.");
 	if(GetPVarInt(playerid, "engineDeelay") == gettime()) return true;
-	if(vehicle_personal[GetPlayerVehicleID(playerid)] > -1) {
-		if(personalVehicle[vehicle_personal[GetPlayerVehicleID(playerid)]][pvInsurancePoints] <= 0) return SCM(playerid, COLOR_ERROR, eERROR"Acest vehicul nu detine puncte de asigurare."); SetPVarInt(playerid, "engineDeelay", gettime());
+	if(vehPersonal[GetPlayerVehicleID(playerid)] > -1) {
+		if(PersonalVeh[vehPersonal[GetPlayerVehicleID(playerid)]][pvInsurancePoints] <= 0) return SCM(playerid, COLOR_ERROR, eERROR"Acest vehicul nu detine puncte de asigurare."); SetPVarInt(playerid, "engineDeelay", gettime());
 	}
 	new engine, lights, alarm, doors, bonnet, boot, objective;
 	GetVehicleParamsEx(GetPlayerVehicleID(playerid), engine, lights, alarm, doors, bonnet, boot, objective);
 
-	sendNearbyMessage(playerid, COLOR_PURPLE, 25.0, "* %s a %s motorul unui %s", getName(playerid), (vehicle_engine[GetPlayerVehicleID(playerid)]) ? ("oprit") : ("pornit"), getVehicleName(GetVehicleModel(GetPlayerVehicleID(playerid))));
+	sendNearbyMessage(playerid, COLOR_PURPLE, 25.0, "* %s a %s motorul unui %s", getName(playerid), (vehEngine[GetPlayerVehicleID(playerid)]) ? ("oprit") : ("pornit"), getVehicleName(GetVehicleModel(GetPlayerVehicleID(playerid))));
 	SetPVarInt(playerid, "engineDeelay", gettime());
 
-	if(vehicle_engine[GetPlayerVehicleID(playerid)] == false) {
-		vehicle_engine[GetPlayerVehicleID(playerid)] = true;
+	if(vehEngine[GetPlayerVehicleID(playerid)] == false) {
+		vehEngine[GetPlayerVehicleID(playerid)] = true;
 		SetVehicleParamsEx(GetPlayerVehicleID(playerid), VEHICLE_PARAMS_ON, lights, alarm, doors, bonnet, boot, objective);
 		speedo[playerid] = repeat TimerSpeedo(playerid);
 	} else {
 		SetVehicleParamsEx(GetPlayerVehicleID(playerid), VEHICLE_PARAMS_OFF, lights, alarm, doors, bonnet, boot, objective);
-		vehicle_engine[GetPlayerVehicleID(playerid)] = false;
+		vehEngine[GetPlayerVehicleID(playerid)] = false;
 		stop speedo[playerid];
 		PlayerTextDrawSetString(playerid, vehicleHud[10], "000");
 		PlayerTextDrawSetString(playerid, vehicleHud[11], "n");
@@ -118,13 +118,13 @@ CMD:lights(playerid, params[]) {
 	if(isBike(GetPlayerVehicleID(playerid)) && isPlane(GetPlayerVehicleID(playerid)) && isBoat(GetPlayerVehicleID(playerid))) return SCM(playerid, COLOR_ERROR, eERROR"Acest vehicul nu are faruri.");
 	new engine, lights, alarm, doors, bonnet, boot, objective;
 	GetVehicleParamsEx(GetPlayerVehicleID(playerid), engine, lights, alarm, doors, bonnet, boot, objective);
-	if(vehicle_lights[GetPlayerVehicleID(playerid)] == false) {
-		vehicle_lights[GetPlayerVehicleID(playerid)] = true;
+	if(vehLights[GetPlayerVehicleID(playerid)] == false) {
+		vehLights[GetPlayerVehicleID(playerid)] = true;
 		SetVehicleParamsEx(GetPlayerVehicleID(playerid), engine, VEHICLE_PARAMS_OFF, alarm, doors, bonnet, boot, objective);
 		return true;
 	}
 	SetVehicleParamsEx(GetPlayerVehicleID(playerid), engine, VEHICLE_PARAMS_ON, alarm, doors, bonnet, boot, objective);
-	vehicle_lights[GetPlayerVehicleID(playerid)] = false;
+	vehLights[GetPlayerVehicleID(playerid)] = false;
 	return true;
 }
 

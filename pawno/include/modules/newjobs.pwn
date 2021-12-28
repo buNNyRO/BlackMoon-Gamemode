@@ -183,9 +183,9 @@ stock jobWork(playerid, job) {
 			SetPlayerCheckpoint(playerid, -64.9157,-1120.2693,1.0781, 4.5);	
 		}*/
 	}	
-	vehicle_fuel[JobVehicle[playerid]] = 100.0;
-	vehicle_personal[JobVehicle[playerid]] = -1;
-	vehicle_engine[JobVehicle[playerid]] = true;
+	vehFuel[JobVehicle[playerid]] = 100.0;
+	vehPersonal[JobVehicle[playerid]] = -1;
+	vehEngine[JobVehicle[playerid]] = true;
 	Working[playerid] = job;
 	return true;
 }

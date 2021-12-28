@@ -2,21 +2,21 @@
 //////    Variables                        //////
 ////////////////////////////////////////////////
 
-new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, PlayerNumber[20000], Weapons[MAX_PLAYERS][47], WeaponAmmo[MAX_PLAYERS][47], gates[4],
+new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], PlayerNumber[20000], Weapons[MAX_PLAYERS][47], WeaponAmmo[MAX_PLAYERS][47], gates[4],
     StoreMoney[MAX_PLAYERS], MoneyMoney[MAX_PLAYERS], Selected[MAX_PLAYERS][50][180], selName[MAX_PLAYERS][180], Questions, PayDayTime, CountTime,
-	bool: vehicle_engine[MAX_VEHICLES],
-	bool: vehicle_lights[MAX_VEHICLES],
-	bool: vehicle_bonnet[MAX_VEHICLES],
-	bool: vehicle_boot[MAX_VEHICLES],
-    Float: vehicle_fuel[MAX_VEHICLES],
-    vehicle_personal[MAX_VEHICLES],
+	bool: vehEngine[MAX_VEHICLES],
+	bool: vehLights[MAX_VEHICLES],
+	bool: vehBonnet[MAX_VEHICLES],
+	bool: vehBoot[MAX_VEHICLES],
+    Float: vehFuel[MAX_VEHICLES],
+    vehPersonal[MAX_VEHICLES],
 
 	Iterator:ServerAdmins<MAX_PLAYERS>,
     Iterator:ServerHelpers<MAX_PLAYERS>,
     Iterator:ServerStaff<MAX_PLAYERS>,
     Iterator:PlayerInVehicle<MAX_PLAYERS>,
 	Iterator:MutedPlayers<MAX_PLAYERS>,
-	Iterator:ExamenCheckpoints<MAX_EXAM_CHECKPOINTS>,
+	Iterator:ExamCheckpointIter<MAX_EXAM_CHECKPOINTS>,
     Iterator:AdminVehicles<MAX_VEHICLES>,
     // Iterator:AccountBlocked<MAX_PLAYERS>,
 	Iterator:StreamPlayer[MAX_PLAYERS]<MAX_PLAYERS>,
@@ -31,8 +31,8 @@ new MySQL:SQL, gQuery[652], gString[4096], gFast[4096], AntiCheatWarnings, Playe
     Iterator:loggedPlayers<MAX_PLAYERS>,
 
 	playerInfo[MAX_PLAYERS][playerInfoEnum],
-	examenInfo[MAX_PLAYERS][examenInfoEnum],
-	reportInfo[MAX_REPORTS][reportInfoEnum],
+	ExamInformation[MAX_PLAYERS][ExamInformationEnum],
+	ReportInfo[MAX_REPORTS][ReportInfoEnum],
 	/*pickupInfo[MAX_DYNAMIC_PICKUPS][pickupInfoEnum],
 	labelInfo[MAX_DYNAMIC_LABELS][labelInfoEnum],*/
 
